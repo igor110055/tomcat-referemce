@@ -1,0 +1,334 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+.infoBar, .infoBarFlyout {
+	font-family: Tahoma;
+	font-size: 8pt;
+}
+
+.infoBar {
+	position: absolute;
+	z-index: 10;
+}
+
+.infoBar.infoBarExpanded {
+	min-width: 120px;
+}
+
+.infoBarFlyout {
+	z-index: 1000;
+	margin: 0px;
+	padding: 0;
+	position: relative;
+	top: -4px;
+	border: 1px solid #cccccc;
+	background-color: #ffffff;
+}
+
+.infoBar table, .infoBarFlyout table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.infoBar td, .infoBarFlyout td, .infoBarFlyout tr {
+	padding: 0;
+	margin: 0;
+}
+
+.infoBarFlyout .bibi {
+	color: #666666;
+}
+
+.dijit_a11y .infoBarExpanded {
+	border: 1px solid;
+	background-color: #FFF;
+}
+
+.buxWidgetNone .infoBarHeader, .buxWidgetHighlight .infoBarHeader {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=45)";
+	filter: alpha(opacity=45);
+	opacity: 0.45;
+}
+
+.dijit_a11y .buxWidgetNone .infoBarHeader,
+.dijit_a11y .buxWidgetHighlight .infoBarHeader {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+.infoBarExpanded .infoBarHeader {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+
+.infoBarExpanded .infoBarHeaderDiv {
+	width: auto;
+	padding-bottom: 4px;
+}
+
+.infoBarHeaderDiv {
+	min-height: 17px;
+	width: 19px;
+	background-color: #e7e7e7;
+	border: 1px solid #cccccc;
+}
+
+.infoBarHeader {
+	color: #444444;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 9pt;
+}
+
+.infoBarHeaderNav {
+	vertical-align: top;
+	text-align: center;
+	padding-top: 2px;
+	width: 15px;
+}
+
+button.infoBarHeaderButton {
+	height: 15px;
+	width: 18px;
+	float: left;
+}
+
+.infoBarHeaderText, .dj_ie .buxReport SPAN.infoBarHeaderText {
+	font-weight: bold;
+	display: none;
+}
+
+button.infoBarHeaderCloseButton {
+	text-align: right;
+	display: none;
+	float: right;
+}
+
+.infoBarExpanded .infoBarHeaderText,
+.dj_ie .buxReport .infoBarExpanded SPAN.infoBarHeaderText,
+.infoBarExpanded .infoBarHeaderCloseButton {
+	display: inline;
+}
+
+.dijit_a11y .infoBarHeaderButtonText,
+.dijit_a11y .infoBarCloseButtonText,
+.dijit_a11y .infoBarDeleteButtonText {
+	display: inline !important;
+}
+
+.dijit_a11y .infoBarHeaderButtonText {
+	font-weight: bold;
+}
+
+.dijit_a11y .infoBarHeaderNav {
+	background-color: #FFF;
+	border: 1px solid;
+}
+.dijit_a11y .infoBarExpanded .infoBarHeaderNav {
+	border: none;
+}
+.infoBar button,
+.infoBarFlyout button {
+	border: 0 none;
+	padding: 0;
+	margin: 0;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.infoBarFlyoutContent {
+	padding: 3px;
+}
+
+.infoBarDeleteButton {
+	height: 12px;
+	width: 12px;
+}
+
+.dijit_a11y .infoBarDeleteButton {
+	height: auto;
+	width: auto;
+}
+
+.infoBarIconFilterApplied {
+	background: transparent none no-repeat center center;
+	background-image: url(../../../rv/images/infobar_filter_applied.gif);
+	height: 15px;
+	width: 12px;
+}
+
+.infoBarIconSortApplied {
+	background: transparent none no-repeat center center;
+	background-image: url(../../../rv/images/infobar_sort_applied.gif);
+	height: 15px;
+	width: 12px;
+}
+.infoBarIconFilterSortApplied {
+	background: transparent none no-repeat center center;
+	background-image: url(../../../rv/images/infobar_filtersort_applied.gif);
+	height: 15px;
+	width: 12px;
+}
+
+.dijit_a11y .infoBarIconFilterApplied,
+.dijit_a11y .infoBarIconSortApplied,
+.dijit_a11y .infoBarIconFilterSortApplied {
+	display: none !important;
+}
+
+.infoBarIconClose {
+	background: transparent none no-repeat center center;
+	background-image: url(../../../rv/images/infobar_close.gif);
+	height: 15px;
+	width: 12px;
+}
+
+.infoBarIconDelete {
+	background: transparent none  no-repeat center center;
+	background-image: url(../../../rv/images/infobar_delete.gif);
+	height: 12px;
+	width: 12px;
+}
+.dijit_a11y .infoBarIconDelete {
+	display: none !important;
+}
+
+.dj_ff3 .infoBarIconDelete {
+	margin-left: -2px;
+}
+
+.infoBarDetailRow table {
+	width: 100%;
+}
+
+.infoBarDetailRow .infoBarRightIcon button {
+	visibility: hidden;
+}
+
+.infoBarDetailRowHover .infoBarRightIcon button {
+	visibility: visible;
+}
+
+td.infoBarLeftIcon {
+	vertical-align: top;
+	padding: 2px;
+}
+
+td.infoBarRightIcon {
+	padding: 2px 3px 0 5px;
+	text-align: right;
+	vertical-align: top;
+}
+
+.infoBarDetailsText {
+	height: 17px;
+}
+
+.infoBarDetailRow,
+.infoBarDetailsText,
+.infoBarLockedItems,
+.infoBarEditableItems {
+	width: 100%;
+}
+
+td.infoBarLeft,
+td.infoBarRight {
+	padding-left: 7px;
+}
+
+.infoBarEditableItems tr:first-child .infoBarDetailRow table,
+.infoBarLockedItems tr:first-child .infoBarDetailRow table {
+	margin-top: 3px !important;
+}
+
+.infoBarEditableItems .infoBarDetailRowHover table {
+	background: #F6DFB7 none repeat-x 0 0 !important;
+	background-image: url(../../../rv/images/infobar_detail_hover.png);
+}
+
+/*
+* Annotation Infobar
+*/
+.bux-comment-table .infoBar {
+	position: static;
+	margin: 0;
+	width: 260px;
+	font-family: Tahoma;
+	font-size: 0.9em;
+	color: #666666;
+	background-color: #e7e7e7;
+	border: 1px solid #cccccc;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.bux-comment-table .infoBarExpanded {
+	margin-bottom: 0px;
+	background-color: #F5F5F5;
+	border: 1px solid #cccccc;
+}
+
+.bux-comment-table .infoBarCollapsed {
+	margin-bottom: 0px;
+	border: 1px solid #cccccc;
+}
+
+.bux-comment-table .annoInfoBarHeader {
+	background-color: #e7e7e7;
+}
+
+.bux-comment-table .annoInfoBarHeaderText {
+	padding: 3px 0px 3px 2px;
+	text-align: left;
+	width: 220px;
+}
+
+.bux-comment-table .annoInfoBarHeaderControl {
+	color: #acc9e7;
+	text-align: right;
+	padding-right: 5px;
+	text-decoration: underline;
+	cursor: pointer;
+	width: 40px;
+}
+
+.bux-comment-table .annoInfoBarHeaderControl button {
+	border: 0 none;
+	padding: 0;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.bux-comment-table .annoInfoBarHeaderControl button:hover {
+	color: #74a1d1;
+}
+
+.bux-comment-table .annoInfoBarDetails {
+	margin: 5px 0;
+}
+
+.bux-comment-table td.infoBarLeft,
+.bux-comment-table td.infoBarRight {
+	padding: 0;
+}
+
+.bux-comment-table td.infoBarLeftIcon {
+	width: 16px;
+	padding: 1px 0 0 2px;
+	vertical-align: top;
+}
+
+.bux-comment-table .infoBarDetailsText {
+	width: 100%;
+	padding: 0 0 0 7px;
+}
+

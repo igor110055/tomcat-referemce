@@ -1,0 +1,125 @@
+/*
+----------------------------------------------------------------
+   This file contains styles used in Tree.js
+----------------------------------------------------------------
+*/
+
+div.tree
+{
+   border: 0px red solid;
+   color: black;
+
+/*
+	font-family:Verdana,Arial, Helvetica, sans-serif;
+	font-size:11pt;
+*/
+}
+
+div.tree ul.nodes
+{
+	list-style-type: none;
+	padding: 1px 0px 0px 8px;
+	margin: 0px;
+	white-space: nowrap;		/* force one-line text */
+}
+
+
+div.tree ul.nodes li
+{
+	background: no-repeat;
+	vertical-align:middle;
+
+	padding: 0px 0px 0px 15px;
+   margin: 0px;
+
+   border: 0px blue solid;
+}
+
+
+div.tree ul.rootNodes
+{
+	list-style-type: none;
+	padding: 1px 0px 0px 2px;
+	margin: 0px;
+}
+
+div.tree ul.rootNodes li.hidden
+{
+   display:none;
+}
+
+
+div.tree ul.nodes li.hidden
+{
+   display:none;
+}
+
+div.tree img.plusMinus
+{
+   vertical-align:middle;
+   padding-right: 0px;
+   background-color:none;
+}
+
+
+div.tree li.collapsedNode
+{
+}
+
+div.tree li.expandedNode
+{
+}
+
+
+div.tree div.children
+{
+   border: 0px red solid;
+}
+
+
+div.tree span.nodeContent
+{
+   background-color:none;
+   cursor: hand;
+   border: 0px blue solid;
+}
+
+div.tree span.selectedNodeContent
+{
+   background-color:#316AC5;
+   color: white;
+   cursor: hand;
+}
+
+div.tree span.compositeNodeHandle
+{
+   vertical-align: middle;
+   padding:0px;
+
+   border: 0px red solid;
+   cursor: hand;
+}
+
+div.tree span.leafNodeHandle
+{
+   vertical-align: middle;
+   padding:0px;
+
+   border: 0px red solid;
+}
+
+div.tree span.leafNodeHandle img
+{
+   vertical-align: middle;
+}
+
+div.tree span.compositeNodeHandle img
+{
+   vertical-align: middle;
+}
+
+
+div.tree li.collapsedNode div.children
+{
+   display:none;
+}

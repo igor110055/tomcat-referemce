@@ -1,0 +1,662 @@
+<!--
+	Licensed Materials - Property of IBM
+	IBM Cognos Products: rspec
+	(C) Copyright IBM Corp. 2016
+	US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!ELEMENT modelPath (#PCDATA)>
+<!ATTLIST modelPath
+	type (FM | module) "FM"
+>
+<!ELEMENT sortList (sortItem)+>
+<!ELEMENT sortItem EMPTY>
+<!ATTLIST sortItem
+	refDataItem CDATA #REQUIRED
+	sortOrder (ascending | descending) "ascending"
+>
+<!ELEMENT XMLAttributes (XMLAttribute)+>
+<!ELEMENT reportPath (XMLAttributes?)>
+<!ATTLIST reportPath
+	path CDATA #REQUIRED
+>
+<!ELEMENT metadataPath (XMLAttributes?)>
+<!ATTLIST metadataPath
+	path CDATA #REQUIRED
+>
+<!ELEMENT source (model | metadataPath | queryRef | sqlQuery | mdxQuery | queryOperation | joinOperation)>
+<!ELEMENT dimensionInfo (dimensions? | factList?)*>
+<!ELEMENT levels (level*)>
+<!ELEMENT level (keys | attributes? | sortList? | caption? | calculatedMembers?)+>
+<!ATTLIST level
+	name CDATA #REQUIRED
+>
+<!ELEMENT levelRef EMPTY>
+<!ATTLIST levelRef
+	refLevel CDATA #REQUIRED
+>
+<!ELEMENT queryRef EMPTY>
+<!ATTLIST queryRef
+	refQuery CDATA #REQUIRED
+>
+<!ELEMENT filterExpression (#PCDATA)>
+<!ATTLIST filterExpression
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT calculatedMembers (calculatedMember*)>
+<!ELEMENT dataItem (expression | XMLAttributes?)+>
+<!ATTLIST dataItem
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+	aggregate (none | automatic | summarize | total | minimum | maximum | average | count | calculated | countDistinct | standardDeviation | variance | median | notApplicable) "automatic"
+	rollupAggregate (none | automatic | summarize | total | minimum | maximum | average | count | calculated | countDistinct | standardDeviation | variance | median) "automatic"
+	sort (ascending | descending | none) "none"
+	naInCalcMemberContext  (true | false) "false"
+	solveOrder CDATA #IMPLIED
+	detail (automatic | true | false) "automatic"
+>
+<!ELEMENT slicerMemberSet (#PCDATA)>
+<!ATTLIST slicerMemberSet
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT joinOperation (joinFilter | joinOperands | applyFilterJoin?)+>
+<!ELEMENT joinOperand (queryRef?)>
+<!ATTLIST joinOperand
+	cardinality (1:N | 1:1 | 0:N | 0:1) "1:N"
+>
+<!ELEMENT calculatedMember (calculatedMembers?)>
+<!ATTLIST calculatedMember
+	name CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+	caption CDATA #IMPLIED
+>
+<!ELEMENT executionOptimization EMPTY>
+<!ATTLIST executionOptimization
+	value (allRows | firstRow) #REQUIRED
+>
+<!ELEMENT memberSet (memberSets?)>
+<!ATTLIST memberSet
+	name CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT localCache EMPTY>
+<!ATTLIST localCache
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT expression (#PCDATA)>
+<!ATTLIST expression
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT summaryFilterLevels (summaryFilterLevel+)>
+<!ELEMENT query (source | selection | detailFilters? | summaryFilters? | dimensionInfo? | slicer? | queryHints? | memberSetStructure?)+>
+<!ATTLIST query
+	name CDATA #REQUIRED
+>
+<!ELEMENT selection (dataItem*)>
+<!ATTLIST selection
+	autoSummary  (true | false) "true"
+>
+<!ELEMENT slicer (slicerMemberSet+)>
+<!ELEMENT detailFilter (filterExpression)>
+<!ATTLIST detailFilter
+	use (required | optional | prohibited) "required"
+	postAutoAggregation  (true | false) "false"
+	canBeChangedInAdvancedViewer  (true | false) "false"
+>
+<!ELEMENT summaryFilter (filterExpression | summaryFilterLevels?)+>
+<!ATTLIST summaryFilter
+	use (required | optional | prohibited) "required"
+>
+<!ELEMENT modQuery (metadataPath? | modDataItems? | modFilters? | modDetailSortList? | XMLAttributes?)*>
+<!ATTLIST modQuery
+	name CDATA #REQUIRED
+	autoSummary  (true | false) "true"
+>
+<!ELEMENT modAttribute EMPTY>
+<!ATTLIST modAttribute
+	refModelItem CDATA #REQUIRED
+	show (all) #IMPLIED
+>
+<!ELEMENT modMeasure EMPTY>
+<!ATTLIST modMeasure
+	refModelItem CDATA #REQUIRED
+	detailRollup (default | total | minimum | maximum | average | count | calculated | countDistinct | median | standardDeviation | variance) "default"
+	groupRollup (default | total | minimum | maximum | average | count | calculated | countDistinct | median | standardDeviation | variance) "default"
+>
+<!ELEMENT modBaseSet (modAttribute | modFacetSet | modExclude | modTopCount | modBottomCount | modTopSum | modBottomSum | modTopPercent | modBottomPercent | modMoveToTop | modMoveToBottom | modConditionalSet | modCustomGrouping | modUnion | modSetReference | modSort | modValueCalc)>
+<!ELEMENT modTuple (modTupleFacets? | modMeasure? | modValueCalc? | modTupleBehavior?)*>
+<!ELEMENT modFacetValue (#PCDATA)>
+<!ATTLIST modFacetValue
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT modFacetValues (modFacetValue+)>
+<!ELEMENT modFilterValue (#PCDATA)>
+<!ATTLIST modFilterValue
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT modValueCalc (modValueCalcDefinition)>
+<!ATTLIST modValueCalc
+	solveOrder CDATA #IMPLIED
+	groupRollup (default | total | minimum | maximum | average | count | calculated | countDistinct | median | standardDeviation | variance) "default"
+>
+<!ELEMENT modFilterFrom (#PCDATA)>
+<!ATTLIST modFilterFrom
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT modFilterTo (#PCDATA)>
+<!ATTLIST modFilterTo
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT queryResultDefinition ((edges?) , masterDetailLinks?)>
+<!ATTLIST queryResultDefinition
+	name CDATA #REQUIRED
+	refQuery CDATA #REQUIRED
+	shape (crosstab | list | automatic) "automatic"
+>
+<!ELEMENT edgeGroup (valueSets | edgeGroups?)+>
+<!ATTLIST edgeGroup
+	name CDATA #IMPLIED
+>
+<!ELEMENT details (dataItemRef+)>
+<!ELEMENT dataItemRef EMPTY>
+<!ATTLIST dataItemRef
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT dataItemContext EMPTY>
+<!ATTLIST dataItemContext
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT parameterContext EMPTY>
+<!ATTLIST parameterContext
+	parameter CDATA #REQUIRED
+>
+<!ELEMENT edgeGroups (edgeGroup+)>
+<!ELEMENT layers (layerEdge)+>
+<!ELEMENT cells (dataItemRef)+>
+<!ELEMENT overallHeader (dataItemRef+)>
+<!ELEMENT overallFooter (dataItemRef+)>
+<!ELEMENT groupHeader (dataItemRef*)>
+<!ATTLIST groupHeader
+	name CDATA #REQUIRED
+>
+<!ELEMENT groupFooter (dataItemRef*)>
+<!ATTLIST groupFooter
+	name CDATA #REQUIRED
+>
+<!ELEMENT groupSort (sortItem+)>
+<!ELEMENT propertyExpressions (propertyExpression*)>
+<!ELEMENT querySet (modelPath? | queries | queryResultDefinitions | requestHints?)+>
+<!ATTLIST querySet
+	expressionLocale NMTOKEN #REQUIRED
+>
+<!ELEMENT XMLAttribute (#PCDATA)>
+<!ATTLIST XMLAttribute
+	xml:space (default | preserve) "preserve"
+	name CDATA #REQUIRED
+	value CDATA #IMPLIED
+	output (no | XML | HTML) "XML"
+>
+<!ELEMENT model EMPTY>
+<!ELEMENT sqlQuery (sqlText | mdProjectedItems?)+>
+<!ATTLIST sqlQuery
+	name CDATA #REQUIRED
+	dataSource CDATA #REQUIRED
+	type (cogSQL | native | passThrough) "native"
+>
+<!ELEMENT mdxQuery (mdxText | mdDimensionalInfo?)+>
+<!ATTLIST mdxQuery
+	name CDATA #REQUIRED
+	dataSource CDATA #REQUIRED
+	catalog CDATA #IMPLIED
+>
+<!ELEMENT queryOperation (queryRefs | projectionList)+>
+<!ATTLIST queryOperation
+	name CDATA #REQUIRED
+	setOperation (UNION | INTERSECT | EXCEPT) "UNION"
+	duplicates (remove | preserve) "remove"
+>
+<!ELEMENT dimensions (dimension+)>
+<!ELEMENT factList (fact+)>
+<!ELEMENT keys (key*)>
+<!ELEMENT attributes (attribute*)>
+<!ELEMENT caption EMPTY>
+<!ATTLIST caption
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT joinFilter (filterExpression)>
+<!ELEMENT joinOperands (joinOperand,joinOperand)>
+<!ELEMENT applyFilterJoin EMPTY>
+<!ATTLIST applyFilterJoin
+	filterType (in | between | table) #IMPLIED
+>
+<!ELEMENT memberSets (memberSet+)>
+<!ELEMENT summaryFilterLevel EMPTY>
+<!ATTLIST summaryFilterLevel
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT detailFilters (detailFilter+)>
+<!ELEMENT summaryFilters (summaryFilter+)>
+<!ELEMENT queryHints (avoidZeroDiv? | autoSort? | executionOptimization? | queryProcessing? | outerJoinAllowed? | crossProductAllowed? | suppress? | rollupProcessing? | maxRowsRetrieved? | maxTablesPerQuery? | maxQueryExecutionTime? | maxTextBlobCharacters? | useSQLWithClause? | localCache? | useV4Interpretation? | executionMethod? | useForParameterInfo? | useSQLJoinSyntax? | useAggregateCache? | useSAPMUNAsBusinessKey? | cacheServerQuery? | useSQLParameters?)*>
+<!ELEMENT memberSetStructure (memberSet*)>
+<!ELEMENT modDataItems (modDataItem+)>
+<!ELEMENT modFilters (modFilter+)>
+<!ELEMENT modDetailSortList (modDetailSort+)>
+<!ELEMENT modFacetSet (modFacetValue+)>
+<!ATTLIST modFacetSet
+	refAttribute CDATA #REQUIRED
+	parameterized  (true | false) "false"
+	parameterName CDATA #IMPLIED
+>
+<!ELEMENT modExclude (modBaseSet | modFacetValues)+>
+<!ATTLIST modExclude
+	parameterized  (true | false) "false"
+	parameterName CDATA #IMPLIED
+>
+<!ELEMENT modTopCount (modBaseSet | modTuple)+>
+<!ATTLIST modTopCount
+	value CDATA #REQUIRED
+>
+<!ELEMENT modBottomCount (modBaseSet | modTuple)+>
+<!ATTLIST modBottomCount
+	value CDATA #REQUIRED
+>
+<!ELEMENT modTopSum (modBaseSet | modTuple)+>
+<!ATTLIST modTopSum
+	value CDATA #REQUIRED
+>
+<!ELEMENT modBottomSum (modBaseSet | modTuple)+>
+<!ATTLIST modBottomSum
+	value CDATA #REQUIRED
+>
+<!ELEMENT modTopPercent (modBaseSet | modTuple)+>
+<!ATTLIST modTopPercent
+	value CDATA #REQUIRED
+>
+<!ELEMENT modBottomPercent (modBaseSet | modTuple)+>
+<!ATTLIST modBottomPercent
+	value CDATA #REQUIRED
+>
+<!ELEMENT modMoveToTop (modBaseSet | modFacetValues)+>
+<!ATTLIST modMoveToTop
+	parameterized  (true | false) "false"
+	parameterName CDATA #IMPLIED
+>
+<!ELEMENT modMoveToBottom (modBaseSet | modFacetValues)+>
+<!ATTLIST modMoveToBottom
+	parameterized  (true | false) "false"
+	parameterName CDATA #IMPLIED
+>
+<!ELEMENT modConditionalSet (modBaseSet | modSetFilter)+>
+<!ELEMENT modCustomGrouping (modBaseSet | modCustomGroups | modCustomGroupRemaining)+>
+<!ELEMENT modUnion ((modAttribute | modFacetSet | modExclude | modTopCount | modBottomCount | modTopSum | modBottomSum | modTopPercent | modBottomPercent | modMoveToTop | modMoveToBottom | modConditionalSet | modCustomGrouping | modUnion | modSetReference | modSort | modValueCalc)+)>
+<!ELEMENT modSetReference EMPTY>
+<!ATTLIST modSetReference
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT modSort (modBaseSet | modSortBy?)+>
+<!ATTLIST modSort
+	ascending  (true | false) "true"
+	nullPosition (first | last) #IMPLIED
+>
+<!ELEMENT modTupleFacets ((modTupleFacet | modTupleCurrentFacet)+)>
+<!ELEMENT modTupleBehavior (modContextAffectedByNone | modContextDetail)>
+<!ELEMENT modValueCalcDefinition (modValueCalcOp | modTuple | modValueNumber | modRollup)>
+<!ELEMENT edges (edge*)>
+<!ELEMENT masterDetailLinks (masterDetailLink+)>
+<!ELEMENT valueSets (valueSet+)>
+<!ELEMENT layerEdge (dataItemRef+)>
+<!ELEMENT propertyExpression (#PCDATA)>
+<!ELEMENT queries (query | modQuery)+>
+<!ELEMENT queryResultDefinitions (queryResultDefinition+)>
+<!ELEMENT requestHints (noDataMode? | designMode? | executionOptimization? | localCache?)*>
+<!ELEMENT sqlText (#PCDATA)>
+<!ATTLIST sqlText
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT mdProjectedItems (mdProjectedItem*)>
+<!ELEMENT mdxText (#PCDATA)>
+<!ATTLIST mdxText
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT mdDimensionalInfo (mdDimensions? | mdFacts?)*>
+<!ELEMENT queryRefs (queryRef*)>
+<!ELEMENT projectionList (queryItem*)>
+<!ATTLIST projectionList
+	autoGenerated  (true | false) "false"
+>
+<!ELEMENT dimension (levels? | hierarchies?)*>
+<!ATTLIST dimension
+	name CDATA #REQUIRED
+>
+<!ELEMENT fact EMPTY>
+<!ATTLIST fact
+	name CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT key EMPTY>
+<!ATTLIST key
+	name CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT attribute EMPTY>
+<!ATTLIST attribute
+	name CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT avoidZeroDiv EMPTY>
+<!ATTLIST avoidZeroDiv
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT autoSort EMPTY>
+<!ATTLIST autoSort
+	value (none | all | minimal) #REQUIRED
+>
+<!ELEMENT queryProcessing EMPTY>
+<!ATTLIST queryProcessing
+	value (databaseOnly | minimizeLocal) #REQUIRED
+>
+<!ELEMENT outerJoinAllowed EMPTY>
+<!ATTLIST outerJoinAllowed
+	value (allow | warn | deny) #REQUIRED
+>
+<!ELEMENT crossProductAllowed EMPTY>
+<!ATTLIST crossProductAllowed
+	value (allow | warn | deny) #REQUIRED
+>
+<!ELEMENT suppress EMPTY>
+<!ATTLIST suppress
+	value (none | nulls) #REQUIRED
+>
+<!ELEMENT rollupProcessing EMPTY>
+<!ATTLIST rollupProcessing
+	value (extended | database | local) #REQUIRED
+>
+<!ELEMENT maxRowsRetrieved EMPTY>
+<!ATTLIST maxRowsRetrieved
+	value CDATA #IMPLIED
+>
+<!ELEMENT maxTablesPerQuery EMPTY>
+<!ATTLIST maxTablesPerQuery
+	value CDATA #IMPLIED
+>
+<!ELEMENT maxQueryExecutionTime EMPTY>
+<!ATTLIST maxQueryExecutionTime
+	value CDATA #IMPLIED
+>
+<!ELEMENT maxTextBlobCharacters EMPTY>
+<!ATTLIST maxTextBlobCharacters
+	value CDATA #IMPLIED
+>
+<!ELEMENT useSQLWithClause EMPTY>
+<!ATTLIST useSQLWithClause
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT useV4Interpretation EMPTY>
+<!ATTLIST useV4Interpretation
+	value  (true | false) "false"
+>
+<!ELEMENT executionMethod EMPTY>
+<!ATTLIST executionMethod
+	value (sequential | concurrent) #REQUIRED
+>
+<!ELEMENT useForParameterInfo EMPTY>
+<!ATTLIST useForParameterInfo
+	value  (true | false) "false"
+>
+<!ELEMENT useSQLJoinSyntax EMPTY>
+<!ATTLIST useSQLJoinSyntax
+	value (implicit | explicit) #REQUIRED
+>
+<!ELEMENT useAggregateCache EMPTY>
+<!ATTLIST useAggregateCache
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT useSAPMUNAsBusinessKey EMPTY>
+<!ATTLIST useSAPMUNAsBusinessKey
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT cacheServerQuery EMPTY>
+<!ATTLIST cacheServerQuery
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT useSQLParameters EMPTY>
+<!ATTLIST useSQLParameters
+	value (marker | literal) #REQUIRED
+>
+<!ELEMENT modDataItem (modDefinition | XMLAttributes? | modLabel?)+>
+<!ATTLIST modDataItem
+	name CDATA #REQUIRED
+>
+<!ELEMENT modFilter (modFilterDefinition | XMLAttributes?)+>
+<!ATTLIST modFilter
+	use (required | optional | disabled) "required"
+	canBeChangedInAdvancedViewer  (true | false) "false"
+>
+<!ELEMENT modDetailSort EMPTY>
+<!ATTLIST modDetailSort
+	refDataItem CDATA #REQUIRED
+	ascending  (true | false) "true"
+	nullPosition (first | last) #IMPLIED
+>
+<!ELEMENT modSetFilter (modTupleCompare | modSetFilterCompare | modSetFilterStringCompare | modSetFilterRange | modSetFilterNulls | modSetFilterAnd | modSetFilterOr | modSetFilterNot)>
+<!ELEMENT modCustomGroups (modCustomGroup)+>
+<!ELEMENT modCustomGroupRemaining (includeRemainingFacets | excludeRemainingFacets | groupRemainingFacets)>
+<!ELEMENT modSortBy (modTuple | modAttribute)>
+<!ELEMENT modTupleFacet EMPTY>
+<!ATTLIST modTupleFacet
+	refAttribute CDATA #REQUIRED
+	refFacet CDATA #REQUIRED
+	parameterized  (true | false) "false"
+	parameterName CDATA #IMPLIED
+>
+<!ELEMENT modTupleCurrentFacet EMPTY>
+<!ATTLIST modTupleCurrentFacet
+	refAttribute CDATA #REQUIRED
+>
+<!ELEMENT modContextAffectedByNone EMPTY>
+<!ELEMENT modContextDetail EMPTY>
+<!ELEMENT modValueCalcOp ((modValueCalcOp | modTuple | modValueNumber | modRollup)+)>
+<!ATTLIST modValueCalcOp
+	operator (add | subtract | multiply | divide) #REQUIRED
+>
+<!ELEMENT modValueNumber (#PCDATA)>
+<!ATTLIST modValueNumber
+	parameterized  (true | false) "false"
+	parameterName CDATA #IMPLIED
+>
+<!ELEMENT modRollup (modBaseSet)>
+<!ATTLIST modRollup
+	groupRollup (default | total | minimum | maximum | average | count | calculated | countDistinct | median | standardDeviation | variance) "default"
+>
+<!ELEMENT edge (edgeGroups? | edgeSuppression?)*>
+<!ATTLIST edge
+	name CDATA #REQUIRED
+	edgeID CDATA #IMPLIED
+	memberCache (default | none | all) #IMPLIED
+>
+<!ELEMENT masterDetailLink (masterContext | detailContext)+>
+<!ELEMENT valueSet (groupHeader? | groupBody? | groupFooter? | groupSort? | propertyExpressions?)*>
+<!ATTLIST valueSet
+	name CDATA #REQUIRED
+	refDataItem CDATA #IMPLIED
+	solveOrder CDATA "0"
+>
+<!ELEMENT noDataMode EMPTY>
+<!ATTLIST noDataMode
+	enabled  (true | false) "true"
+>
+<!ELEMENT designMode EMPTY>
+<!ATTLIST designMode
+	enabled  (true | false) "true"
+>
+<!ELEMENT mdProjectedItem EMPTY>
+<!ATTLIST mdProjectedItem
+	name CDATA #REQUIRED
+>
+<!ELEMENT mdDimensions (mdDimension+)>
+<!ELEMENT mdFacts (mdFact+)>
+<!ELEMENT queryItem EMPTY>
+<!ATTLIST queryItem
+	name CDATA #REQUIRED
+>
+<!ELEMENT hierarchies ((levelHierarchy | memberHierarchy)*)>
+<!ELEMENT modDefinition (modMeasure | modListSummary | modEdgeSummary | (modAttribute | modFacetSet | modExclude | modTopCount | modBottomCount | modTopSum | modBottomSum | modTopPercent | modBottomPercent | modMoveToTop | modMoveToBottom | modConditionalSet | modCustomGrouping | modUnion | modSetReference | modSort | modValueCalc))>
+<!ELEMENT modLabel (defaultText | localizedText?)+>
+<!ELEMENT modFilterDefinition (modFilterFacets | modFilterCompare | modFilterStringCompare | modFilterRange | modFilterNulls | modFilterAnd | modFilterOr | modFilterNot)>
+<!ELEMENT modTupleCompare (modTuple)>
+<!ATTLIST modTupleCompare
+	operator (equal | notEqual | greaterThan | greaterThanEqual | lessThan | lessThanEqual) #REQUIRED
+	value CDATA #IMPLIED
+	includeNulls  (true | false) "false"
+>
+<!ELEMENT modSetFilterCompare (modFilterValue)>
+<!ATTLIST modSetFilterCompare
+	refDataItem CDATA #REQUIRED
+	operator (equal | notEqual | greaterThan | greaterThanEqual | lessThan | lessThanEqual) #REQUIRED
+	includeNulls  (true | false) "false"
+	parameterized  (true | false) "false"
+	parameterName CDATA #IMPLIED
+>
+<!ELEMENT modSetFilterStringCompare (modFilterValue)>
+<!ATTLIST modSetFilterStringCompare
+	refDataItem CDATA #REQUIRED
+	operator (contains | beginsWith | endsWith | matches | containsNot | beginsWithNot | endsWithNot | matchesNot) #REQUIRED
+	caseInsensitive (yes | dataSource) "dataSource"
+	escapeCharacter CDATA #IMPLIED
+	includeNulls  (true | false) "false"
+	parameterized  (true | false) "false"
+	parameterName CDATA #IMPLIED
+>
+<!ELEMENT modSetFilterRange (modFilterFrom? | modFilterTo?)*>
+<!ATTLIST modSetFilterRange
+	refDataItem CDATA #REQUIRED
+	out  (true | false) "false"
+	includeNulls  (true | false) "false"
+	parameterized  (true | false) "false"
+	parameterName CDATA #IMPLIED
+>
+<!ELEMENT modSetFilterNulls EMPTY>
+<!ATTLIST modSetFilterNulls
+	refDataItem CDATA #REQUIRED
+	out  (true | false) "false"
+>
+<!ELEMENT modSetFilterAnd ((modTupleCompare | modSetFilterCompare | modSetFilterStringCompare | modSetFilterRange | modSetFilterNulls | modSetFilterAnd | modSetFilterOr | modSetFilterNot)+)>
+<!ELEMENT modSetFilterOr ((modTupleCompare | modSetFilterCompare | modSetFilterStringCompare | modSetFilterRange | modSetFilterNulls | modSetFilterAnd | modSetFilterOr | modSetFilterNot)+)>
+<!ELEMENT modSetFilterNot (modTupleCompare | modSetFilterCompare | modSetFilterStringCompare | modSetFilterRange | modSetFilterNulls | modSetFilterAnd | modSetFilterOr | modSetFilterNot)>
+<!ELEMENT modCustomGroup (modFacetValues)>
+<!ATTLIST modCustomGroup
+	label CDATA #REQUIRED
+	parameterized  (true | false) "false"
+	parameterName CDATA #IMPLIED
+>
+<!ELEMENT includeRemainingFacets EMPTY>
+<!ELEMENT excludeRemainingFacets EMPTY>
+<!ELEMENT groupRemainingFacets EMPTY>
+<!ATTLIST groupRemainingFacets
+	label CDATA #REQUIRED
+>
+<!ELEMENT edgeSuppression EMPTY>
+<!ATTLIST edgeSuppression
+	null  (true | false) "true"
+	zero  (true | false) "true"
+	divByZero  (true | false) "true"
+	overflow  (true | false) "true"
+>
+<!ELEMENT masterContext (dataItemContext)>
+<!ATTLIST masterContext
+	refQueryResultDefinition CDATA #REQUIRED
+>
+<!ELEMENT detailContext (dataItemContext | parameterContext)>
+<!ATTLIST detailContext
+	refQueryResultDefinition CDATA #REQUIRED
+>
+<!ELEMENT groupBody (dataItemRef* , propertyExpressions?)>
+<!ATTLIST groupBody
+	name CDATA #IMPLIED
+>
+<!ELEMENT mdDimension (mdHierarchy)>
+<!ATTLIST mdDimension
+	name CDATA #REQUIRED
+>
+<!ELEMENT mdFact EMPTY>
+<!ATTLIST mdFact
+	name CDATA #REQUIRED
+>
+<!ELEMENT levelHierarchy (levelRef*)>
+<!ATTLIST levelHierarchy
+	name CDATA #REQUIRED
+>
+<!ELEMENT memberHierarchy (calculatedMembers?)?>
+<!ATTLIST memberHierarchy
+	name CDATA #REQUIRED
+>
+<!ELEMENT modListSummary EMPTY>
+<!ATTLIST modListSummary
+	refDataItem CDATA #REQUIRED
+	groupRollup (default | total | minimum | maximum | average | count | calculated | countDistinct | median | standardDeviation | variance) "default"
+>
+<!ELEMENT modEdgeSummary EMPTY>
+<!ATTLIST modEdgeSummary
+	refDataItem CDATA #REQUIRED
+	groupRollup (default | total | minimum | maximum | average | count | calculated | countDistinct | median | standardDeviation | variance) "default"
+>
+<!ELEMENT defaultText (#PCDATA)>
+<!ATTLIST defaultText
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT localizedText (localeText+)>
+<!ELEMENT modFilterFacets (modFacetValues?)>
+<!ATTLIST modFilterFacets
+	refDataItem CDATA #REQUIRED
+	out  (true | false) "false"
+	includeNulls  (true | false) "false"
+	parameterized  (true | false) "false"
+	parameterName CDATA #IMPLIED
+>
+<!ELEMENT modFilterCompare (modFilterValue?)>
+<!ATTLIST modFilterCompare
+	refDataItem CDATA #REQUIRED
+	operator (equal | notEqual | greaterThan | greaterThanEqual | lessThan | lessThanEqual) #REQUIRED
+	includeNulls  (true | false) "false"
+	parameterized  (true | false) "false"
+	parameterName CDATA #IMPLIED
+>
+<!ELEMENT modFilterStringCompare (modFilterValue?)>
+<!ATTLIST modFilterStringCompare
+	refDataItem CDATA #REQUIRED
+	operator (contains | beginsWith | endsWith | matches | containsNot | beginsWithNot | endsWithNot | matchesNot) #REQUIRED
+	caseInsensitive (yes | dataSource) "dataSource"
+	escapeCharacter CDATA #IMPLIED
+	includeNulls  (true | false) "false"
+	parameterized  (true | false) "false"
+	parameterName CDATA #IMPLIED
+>
+<!ELEMENT modFilterRange (modFilterFrom? | modFilterTo?)*>
+<!ATTLIST modFilterRange
+	refDataItem CDATA #REQUIRED
+	out  (true | false) "false"
+	includeNulls  (true | false) "false"
+	parameterized  (true | false) "false"
+	parameterName CDATA #IMPLIED
+>
+<!ELEMENT modFilterNulls EMPTY>
+<!ATTLIST modFilterNulls
+	refDataItem CDATA #REQUIRED
+	out  (true | false) "false"
+>
+<!ELEMENT modFilterAnd ((modFilterFacets | modFilterCompare | modFilterStringCompare | modFilterRange | modFilterNulls | modFilterAnd | modFilterOr | modFilterNot)+)>
+<!ELEMENT modFilterOr ((modFilterFacets | modFilterCompare | modFilterStringCompare | modFilterRange | modFilterNulls | modFilterAnd | modFilterOr | modFilterNot)+)>
+<!ELEMENT modFilterNot (modFilterFacets | modFilterCompare | modFilterStringCompare | modFilterRange | modFilterNulls | modFilterAnd | modFilterOr | modFilterNot)>
+<!ELEMENT mdHierarchy (mdLevel*)>
+<!ATTLIST mdHierarchy
+	name CDATA #REQUIRED
+>
+<!ELEMENT localeText (#PCDATA)>
+<!ATTLIST localeText
+	xml:space (default | preserve) "preserve"
+	locale NMTOKEN #REQUIRED
+>
+<!ELEMENT mdLevel EMPTY>
+<!ATTLIST mdLevel
+	name CDATA #REQUIRED
+>

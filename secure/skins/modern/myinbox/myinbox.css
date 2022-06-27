@@ -1,0 +1,747 @@
+/*
+   (C) Copyright IBM Corp. 2005, 2011.
+   Licensed Material - Property of IBM Corp. IBM, the IBM logo, and Cognos are trademarks of IBM Corp., registered in many jurisdictions worldwide.
+*/
+
+/*****************************************************************************************
+  This is a generated file. Any changes you make to it will not be upgraded.
+/*****************************************************************************************/
+.separator {
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #999999;
+	height: 25px;
+	padding-right: 6px;
+}
+.dropDownButton {
+	background-color: #ffffff;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #cccccc;
+	height: 20px;
+	padding-left: 5px;
+	padding-right: 3px;
+	padding-top: 5px;
+	padding-bottom: 0px;
+	margin-bottom: 3px;
+	margin-right: 7px;
+	height: 20px;
+}
+.dropdownButtonMouseOver {
+	background-color: #cccce3;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #cccccc;
+	height: 20px;
+	cursor: hand;
+	cursor: pointer;
+	padding-left: 5px;
+	padding-right: 3px;
+	padding-top: 5px;
+	padding-bottom: 0px;
+	margin-bottom: 3px;
+	margin-right: 7px;
+	height: 20px;
+}
+.dropdownButtonMouseOut {
+	background-color: #ffffff;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #cccccc;
+	height: 20px;
+	padding-left: 5px;
+	padding-top: 5px;
+	padding-right: 3px;
+	padding-bottom: 0px;
+	margin-bottom: 3px;
+	margin-right: 7px;
+	height: 20px;
+}
+.dropDownButtonMouseDown {
+	background-color: #9999be;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #666699;
+	height: 20px;
+	padding-left: 5px;
+	padding-right: 3px;
+	padding-top: 5px;
+	padding-bottom: 0px;
+	margin-bottom: 3px;
+	margin-right: 7px;
+	height: 20px;
+}
+.labelTable {
+	margin-right: 7px;
+}
+.labelCell {
+	height: 20px;
+	vertical-alignment: middle;
+}
+.spinInput, .spinContainer /* * Change this to modify the default spin control background color */ {
+	background-color: #ffffff;
+}
+.spinLeftRightEdge, .spinTopBottomEdge {
+	background-color: #9999be;
+	overflow: hidden;
+	position: absolute;
+}
+.spinContainer {
+	font-size: 0px;
+	height: 20px;
+	position: relative;
+}
+.spinLeftRightEdge {
+	height: 20px;
+	width: 1px;
+}
+.spinTopBottomEdge {
+	height: 1px;
+	left: 1px;
+}
+.spinInput {
+	border: 0px;
+	color: black;
+	font-family: arial;
+	font-size: 9pt;
+	height: 18px;
+	left: 2px;
+	position: absolute;
+	top: 1px;
+}
+.spinUpBtn, .spinUpBtnHover, .spinUpBtnPress, .spinDownBtn, .spinDownBtnHover, .spinDownBtnPress {
+	background-color: #000000;
+	background-image: url('spin_control_buttons.png');
+	background-repeat: no-repeat;
+	height: 8px;
+	position: absolute;
+	right: 2px;
+	width: 15px;
+}
+.spinUpBtn, .spinUpBtnHover, .spinUpBtnPress {
+	top: 2px;
+}
+.spinDownBtn, .spinDownBtnHover, .spinDownBtnPress {
+	top: 10px;
+}
+.spinUpBtn {
+	background-position: 0px 0px;
+}
+.spinUpBtnHover {
+	background-position: 0px -16px;
+}
+.spinUpBtnPress {
+	background-position: 0px -32px;
+}
+.spinDownBtn {
+	background-position: 0px -8px;
+}
+.spinDownBtnHover {
+	background-position: 0px -24px;
+}
+.spinDownBtnPress {
+	background-position: 0px -40px;
+}
+.taskDetailsButtonBar {
+	background-color: #c6c6d7;
+	border-width: 1px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	border-style: solid;
+	border-color: #cccccc;
+}
+.tableHeader {
+	background-color: #e7e7e7;
+	color: #444465;
+	font-weight: bolder;
+	text-align: left;
+}
+.tableRowSelected {
+	background-color: #9999be;
+}
+.tableHeaderCellDivider {
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #cccccc;
+}
+
+/* Task pool page css start */
+.poolTableBody {
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #cccccc;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #cccccc;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #cccccc;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #cccccc;
+	margin-top: 3px;
+}
+.oddTableRow {
+	background-color: #f3f3f3;
+	cursor: pointer;
+}
+.oddTableRow:hover {
+	background-color: #c6c6d7;
+	cursor: pointer;
+}
+.oddTableRowUnread {
+	background-color: #f3f3f3;
+	cursor: pointer;
+	font-weight: bolder;
+}
+.oddTableRowUnread:hover {
+	background-color: #c6c6d7;
+	cursor: pointer;
+	font-weight: bolder;
+}
+.evenTableRow {
+	background-color: #ffffff;
+	cursor: pointer;
+}
+.evenTableRow:hover {
+	background-color: #c6c6d7;
+	cursor: pointer;
+}
+.evenTableRowUnread {
+	background-color: #ffffff;
+	cursor: pointer;
+	font-weight: bolder;
+}
+.evenTableRowUnread:hover {
+	background-color: #c6c6d7;
+	cursor: pointer;
+}
+.superTipHeader {
+	font-weight: bolder;
+}
+.superTipDiv {
+	background-color: #ffffcc;
+	border-style: solid;
+	border-width: 1px;
+	display: none;
+	position: absolute;
+	z-index: 99;
+}
+
+/* Task pool page css end */
+
+/* Task viewer css start */
+.taskOptionsAdvancedTableData {
+	background-color: lightpink;
+	height: 200px;
+	width: 600px;
+}
+.taskOptionsAdvancedEmptyTableData {
+	height: 10px;
+}
+.scrollFrame {
+	background-color: #ffffff;
+	border: 0px;
+	overflow: auto;
+	padding: 0px;
+}
+.taskMainSubTitle {
+	color: #666699;
+	background-color: #ffffff;
+	border: 0px solid;
+	font-size: 110%;
+	height: 100%;
+	width: 100%;
+	text-align: left;
+}
+.taskSubTitle {
+	background-color: #cccce3;
+	text-align: left;
+}
+.taskView {
+	background-color: #ffffff;
+	border: 1px solid #666699;
+}
+.taskAttr {
+	font-weight: bolder;
+}
+.selectDropDown {
+	border: 0px;
+	font-size: 11px;
+}
+.advancedPropertiesHeader {
+	color: #ffffff;
+	font-size: normal;
+	font-weight: bold;
+}
+.editSubscriptionsLink {
+	float: left;
+}
+.cogstyle-usv-subscriptiondialog-advanced-table {
+	padding-bottom: 5px;
+	padding-left: 0px;
+	padding-top: 5px;
+}
+.cogstyle-usv-subscriptiondialog-advanced-tabledata {
+	padding: left:3px;
+}
+
+/* Task viewer css end */
+
+/* Subscriptions dialog css start */
+.sub_wrapper {
+	background-color: #ffffff;
+}
+.sub_wrapper_over {
+	background-color: #cccce3;
+}
+.sub_main {
+	padding-bottom: 20px;
+	width: 100%;
+}
+
+/* Subscriptions dialog css end */
+
+/* agent user task renderings start */
+.actions {
+	padding-bottom: 10px;
+}
+
+/* agent user task renderings end */
+
+/* comments viewer css start */
+.cogstyle-comment-area {
+	background-color: #ffffff;
+	border: 1px solid #9999be;
+	border-spacing: 2pt;
+}
+.cogstyle-usv-comment-table-row {
+	background-color: #ffffff;
+	border: 1px solid #eeeeee;
+	border-spacing: 2pt;
+}
+.cogstyle-usv-comment-table-row:hover {
+	background-color: #eeeeee;
+}
+
+/* comments viewer css end */
+
+/* *common - render output css start */
+.mask {
+	position: absolute;
+	-moz-opacity: 0.5;
+	background-color: #ffffff;
+	cursor: not-allowed;
+	display: block;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+	z-index: 1;
+}
+.att_enabled {
+	border: 2px solid blue;
+	clear: none;
+	cursor: hand;
+	cursor: pointer;
+	float: left;
+	position: relative;
+	text-decoration: none;
+}
+.att_disabled {
+	-moz-opacity: 0.5;
+	border: 2px solid blue;
+	clear: none;
+	cursor: not-allowed;
+	filter: alpha(opacity=50);
+	float: left;
+	opacity: 0.5;
+	position: relative;
+	text-decoration: none;
+}
+.wrapper {
+	clear: left;
+	float: left;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	width: 100%;
+}
+.task_icon {
+	margin-left: 3px;
+}
+.cell {
+	background-color: #ffffff;
+	float: left;
+	margin: 2px;
+	padding: 1px;
+}
+.cell_over {
+	background-color: #eff5ff;
+	border: 1px solid #dfebff;
+	cursor: hand;
+	cursor: pointer;
+	float: left;
+	margin: 3px;
+}
+.viewer {
+	border: 1px solid #9999be;
+	margin-top: 25px;
+	overflow: auto;
+}
+.task_name {
+	clear: left;
+	font-size: 110%;
+	font-weight: 500;
+}
+
+/* *common - render output css end */
+
+/* * render context menu css start */
+#leftcontent {
+	float: left;
+}
+#rightcontent {
+	float: right;
+}
+#leftcontent div {
+	float: left;
+}
+#rightcontent div {
+	float: left;
+	margin-right: 3px;
+}
+
+/* start cross browser vertical text alignment without tables */
+.valign-wrapper {
+	display: table;
+	#position: relative;
+	overflow: hidden;
+	width: 100%;
+}
+.valign-inner {
+	#position: absolute;
+	#top: 50%;
+	width: 100%;
+	vertical-align: middle;
+}
+.valign-text {
+	#position: relative;
+	#top: -50%;
+	text-align: center;
+}
+
+/* stop cross browser vertical text alignment without tables */
+
+/* * render context menu css start */
+
+/* * action menu css start */
+.menuDiv {
+	color: #134679;
+	text-decoration: underline;
+}
+
+/* * action menu css start */
+
+/* * render renderings css start */
+.cogstyle-usv-scroll-frame {
+	background: #ffffff;
+	border: 0px;
+	height: 270px;
+	overflow: auto;
+	padding: 0px;
+}
+.cogstyle-usv-task-title {
+	font-size: larger;
+	font-weight: bolder;
+	text-align: left;
+}
+.cogstyle-usv-task-description {
+	text-align: left;
+}
+.cogstyle-usv-task-deadline {
+	text-align: right;
+}
+.cogstyle-usv-task-table-row {
+	background-color: #ffffff;
+	border: 1px solid #eeeeee;
+	border-spacing: 5pt;
+}
+.cogstyle-usv-task-table-row:hover {
+	background-color: #eeeeee;
+}
+.cogstyle-usv-selectable {
+	cursor: pointer;
+}
+.cogstyle-layout-button {
+	vertical-align: top;
+	horizontal-align: left;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.cogstyle-usv-rendering-table {
+	background-color: #ffffff;
+	border: 0px;
+	width: 100%;
+}
+
+/* * render renderings css end */
+
+/* * task wizard css start */
+.cogstyle-usv-taskwizard-table {
+	padding-left: 5px;
+}
+.cogstyle-hts-subscription-div-border {
+	border: 1px solid lightgrey;
+}
+.cogstyle-hts-table-text {
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+/* * task wizard css end */
+.subject_line {
+	margin-top: 5px;
+	height: 20px;
+	width: 100%;
+	font-weight: bolder;
+}
+.taskDetailsWrapper {
+	background-color: #ffffff;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #cccccc;
+	margin: 0px 3px 3px 3px;
+	padding: 0px;
+	*width: 100%;
+}
+.taskOptionsWrapper {
+	background-color: #ffffff;
+	border-width: 1px;
+	border-bottom: 0px;
+	border-style: solid;
+	border-color: #cccccc;
+	margin: 0px 3px 0px 3px;
+	padding: 0px;
+}
+.taskNoSelectionWrapper {
+	background-color: #ffffff;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #cccccc;
+	margin: 0px 3px 3px 3px;
+	padding: 0px;
+}
+.taskOptionButtons {
+	background-color: #ffffff;
+	text-decoration: none !important;
+	vertical-align: middle !important;
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+	padding-left:  2px !important;
+	padding-right: 3px !important;
+}
+.taskOptionButtonsMouseOver {
+	background-color: #cccce3;
+	text-decoration: none !important;
+	vertical-align: middle !important;
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+	padding-left:  2px !important;
+	padding-right: 3px !important;
+	border: 1px solid;
+	border-color: #999999;
+	color: #000000;
+	cursor: pointer;
+	font-size: 129%;
+	height: 24px;
+	overflow-x: visible;
+	padding: 0 10px;
+	width: 70px;
+}
+.taskOptionButtonsMouseOut {
+	background-color: #ffffff;
+	text-decoration: none !important;
+	vertical-align: middle !important;
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+	padding-left:  2px !important;
+	padding-right: 3px !important;
+	border: 1px solid;
+	border-color: #999999;
+	color: #000000;
+	cursor: pointer;
+	font-size: 129%;
+	height: 24px;
+	overflow-x: visible;
+	padding: 0 10px;
+	width: 70px;
+}
+.taskOptionButtons_hidden {
+	color: #737373 !important;
+	vertical-align: middle !important;
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+	padding-left: 2px !important;
+	padding-right: 3px !important;
+}
+.taskOptionButtons_hiddenMouseOver {
+	background-color: #ffffff;
+	vertical-align: middle !important;
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+	padding-left: 2px !important;
+	padding-right: 3px !important;
+	border: 1px solid;
+	color: #737373 !important;
+	cursor: not-allowed;
+	font-size: 129%;
+	height: 24px;
+	overflow-x: visible;
+	padding: 0 10px;
+	width: 70px;
+}
+.taskOptionButtons_separator {
+	border-right-color: rgb(153, 153, 153);
+	border-right-style: solid;
+	border-right-width: 1px;
+	height: 24px;
+	padding-left: 10px;
+}
+.htsButton {
+	background-color: #ffffff;
+	text-decoration: none !important;
+	vertical-align: middle !important;
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+	padding-left:  2px !important;
+	padding-right: 3px !important;
+	border: 1px solid;
+	border-color: #999999;
+	color: #000000;
+	cursor: pointer;
+	font-size: 129%;
+	height: 24px;
+	overflow-x: visible;
+	padding: 0 10px;
+	width: 70px;
+}
+.htsButtonMouseOver {
+	background-color: #cccce3;
+	text-decoration: none !important;
+	vertical-align: middle !important;
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+	padding-left:  2px !important;
+	padding-right: 3px !important;
+	border: 1px solid;
+	border-color: #999999;
+	color: #000000;
+	cursor: pointer;
+	font-size: 129%;
+	height: 24px;
+	overflow-x: visible;
+	padding: 0 10px;
+	width: 70px;
+}
+.taskSubcontentWrapper {
+	top: -10px;
+	position: relative;
+}
+ul.CList_ul {
+	padding: 0;
+	margin: 0;
+	text-align: justify;
+	font-size: 10pt;
+}
+li.CList_li {
+	display: table;
+	float: left;
+}
+li.CList_over {
+	display: table;
+	float: left;
+	word-wrap: break-word;
+	background-color: #cccccc;
+}
+li.CList_selected {
+	display: table;
+	float: left;
+	word-wrap: break-word;
+	background-color: #666699;
+	color:  white;
+}
+li.SelValCList_li {
+	display: table;
+}
+li.SelValCList_over {
+	display: table;
+	word-wrap: break-word;
+	background-color: #cccccc;
+}
+li.SelValCList_selected {
+	display: table;
+	word-wrap: break-word;
+	background-color: #666699;
+	color:  white;
+}
+.htsLinkArea {
+	border: 1px solid;
+	border-color: #cccccc;
+	height: 30px;
+	padding: 4px 2px 2px 2px;
+	overflow: auto;
+}
+.reportLink {
+	margin: 0px 2px 0px 2px;
+	font-size: 80%;
+}
+td.scrollCell {
+	padding: 0px;
+	white-space: nowrap;
+	overflow: hidden;
+	height: auto;
+}
+div.myinboxListTableBody {
+	height: 200px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+div.myinboxListTableHeader {
+	background-color: #E7E7E7;
+	_width: 100%;
+	padding-right: 16px;
+}
+div.myinboxList {
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #cccccc;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #cccccc;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #cccccc;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #cccccc;
+	margin-top: 3px;
+}
+col.col1 {
+	width: 1%;
+}
+col.col2 {
+	width: 1%;
+}
+col.col3 {
+	width: 1%;
+}
+col.col4 {
+	width: 54%;
+}
+col.col5 {
+	width: 16%;
+}
+col.col6 {
+	width: 10%;
+}
+col.col7 {
+	width: 17%;
+}

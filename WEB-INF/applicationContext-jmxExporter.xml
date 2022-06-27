@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    ">
+
+    <!-- moved this def to a separate file so we don't load it during unit tests -->
+    <!-- expose hibernate stats via JMX Mbean -->
+
+
+    <bean id="jmsJmxExporter"
+             class="org.springframework.jmx.export.MBeanExporter">
+          <property name="beans">
+             <map>
+                <entry key="pre.execute.container.name" value-ref="reportService.preExecute.container.default"/>
+                <entry key="execute.container.name" value-ref="reportService.execute.container.default"/>
+                <entry key="post.execute.container.name" value-ref="reportService.postExecute.container.default"/>
+                <entry key="download.container.name" value-ref="reportService.download.container.default"/>
+             </map>
+          </property>
+          <property name="namingStrategy" ref="namingStrategy"/>
+          <property name="notificationListeners">
+             <list>
+                <bean class="org.springframework.jmx.export.NotificationListenerBean">
+                   <constructor-arg ref="rclConfigurationNotificationListener"/>
+                   <property name="mappedObjectNames">
+                      <list>
+                         <!-- handles notifications from two distinct MBeans -->
+                         <value>MotioADF:name=pre-execute-container</value>
+                         <value>MotioADF:name=execute-container</value>
+                         <value>MotioADF:name=download-container</value>
+                         <value>MotioADF:name=post-execute-container</value>
+                         <!--<value>execute.container.name</value>-->
+                         <!--<value>post.execute.container.name</value>-->
+                         <!--<value>download.container.name</value>-->
+                      </list>
+                   </property>
+                   <property name="handback">
+                      <bean class="java.lang.String">
+                         <constructor-arg value="This could be anything..."/>
+                      </bean>
+                   </property>
+
+                   <property name="notificationFilter" ref="rclConfigurationNotificationListener"/>
+                </bean>
+             </list>
+          </property>
+          <!--<property name="notificationListenerMappings">-->
+          <!--<map>-->
+          <!--<entry key="*" value-ref="rclConfigurationNotificationListener"/>-->
+          <!--</map>-->
+          <!--</property>-->
+
+       </bean>
+
+    <!-- expose hibernate stats via JMX Mbean -->
+
+       <bean id="namingStrategy" class="org.springframework.jmx.export.naming.KeyNamingStrategy">
+
+          <property name="mappingLocations">
+             <value type="org.springframework.core.io.Resource">
+                file:${motio.adf.conf.dir}/MotioAdf.properties
+             </value>
+          </property>
+       </bean>
+</beans>

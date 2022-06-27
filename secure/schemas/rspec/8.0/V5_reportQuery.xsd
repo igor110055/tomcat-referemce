@@ -1,0 +1,1451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2014
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rspec="http://developer.cognos.com/schemas/report/8.0/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5_base.xsd"/>
+	<xs:include schemaLocation="V5_queryBase.xsd"/>
+	<xs:element name="query" type="queryType">
+		<xs:annotation>
+			<xs:documentation>A query defines the data to be retrieved from the database.  It consists of a source, a selection, detailed and summary filters, and a dimension Information. Query hints can be supplied. A query does not define the structure or presentation of the retrieved data.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:group name="dataItemElement">
+		<xs:choice>
+			<xs:element ref="dataItem"/>
+			<xs:element name="dataItemMember">
+				<xs:annotation>
+					<xs:documentation>Repreesents a single member.</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmMember"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemDetailAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemCalculatedMember">
+				<xs:annotation>
+					<xs:documentation>A V5 expressin that results in a single calculated member.</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="expression"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemCalculatedMemberAttributes"/>
+					<xs:attributeGroup ref="DataItemDetailAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemMemberProperty">
+				<xs:annotation>
+					<xs:documentation>Represents a member property from either a level or hierarchy.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmMemberProperty"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="dmLevel" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemMeasure">
+				<xs:annotation>
+					<xs:documentation>Represents a single measure.  For the most part, measures are the same as members.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmMember"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemCalculatedMeasure">
+				<xs:annotation>
+					<xs:documentation>A V5 expressin that results in a single calculated member.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="expression"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemCalculatedMemberAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemSet">
+				<xs:annotation>
+					<xs:documentation>Describes an explicit set of members. Generates a V5 expressions of the form set(MUN1, MUN2, ...).</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmMembers"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="setSorting" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemDetailAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemChildrenSet">
+				<xs:annotation>
+					<xs:documentation>Describes the set of children of a member. Generates a V5 expression of the form children(MUN).</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmMember"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="setSorting" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemDetailAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemSetExpression">
+				<xs:annotation>
+					<xs:documentation>A V5 expression that results in a set of members.</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="expression"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="setSorting" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemDetailAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemLevelSet">
+				<xs:annotation>
+					<xs:documentation>The members of a level.</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmLevel"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="setSorting" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemDetailAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemHierarchySet">
+				<xs:annotation>
+					<xs:documentation>The member of a hierarchy</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="setSorting" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attribute name="rootMembersOnly" type="xs:boolean" default="false"/>
+					<xs:attributeGroup ref="DataItemDetailAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemNamedSet">
+				<xs:annotation>
+					<xs:documentation>References a named set from the model.</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="NSUN"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy" minOccurs="0"/>
+						<xs:element ref="setSorting" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemDetailAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemTuple">
+				<xs:annotation>
+					<xs:documentation>The tuple is represented by the set of members. Each member must be from a different dimension. The tuple itself must be placed into a hierarchy indicated by dataItemHierarchy. Generates a V5 expression of the form tuple(MUN1, MUN2, ..)</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmTuple"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemMemberSet">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+					<xs:documentation>Comment describing your root element</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="setDefinition">
+							<xs:annotation>
+								<xs:documentation source="rn_added_7.0"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:group ref="setDefinitionType"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="setSorting" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemDetailAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemListSummary">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					<xs:attribute name="aggregateMethod" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="aggregate">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_automatic_aggregate"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="total"/>
+								<xs:enumeration value="minimum"/>
+								<xs:enumeration value="maximum"/>
+								<xs:enumeration value="average"/>
+								<xs:enumeration value="count"/>
+								<xs:enumeration value="calculated">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_calculated_aggregate"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="countDistinct"/>
+								<xs:enumeration value="median"/>
+								<xs:enumeration value="standardDeviation"/>
+								<xs:enumeration value="variance"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemEdgeSummary">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					<xs:attribute name="aggregateMethod" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="aggregate">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_automatic_aggregate"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="total"/>
+								<xs:enumeration value="minimum"/>
+								<xs:enumeration value="maximum"/>
+								<xs:enumeration value="average"/>
+								<xs:enumeration value="count"/>
+								<xs:enumeration value="median"/>
+								<xs:enumeration value="standardDeviation"/>
+								<xs:enumeration value="variance"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="useSetAggregation" type="xs:boolean" default="false"/>
+					<xs:attributeGroup ref="DataItemCalculatedMemberAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemDimensionalEdgeSummary">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					<xs:attribute name="aggregateMethod" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="aggregate">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_automatic_aggregate"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="total"/>
+								<xs:enumeration value="minimum"/>
+								<xs:enumeration value="maximum"/>
+								<xs:enumeration value="average"/>
+								<xs:enumeration value="count"/>
+								<xs:enumeration value="median"/>
+								<xs:enumeration value="standardDeviation"/>
+								<xs:enumeration value="variance"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="useSetAggregation" type="xs:boolean" default="true"/>
+					<xs:attributeGroup ref="DataItemCalculatedMemberAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemCustomGroup">
+				<xs:annotation>
+					<xs:documentation>Represents a custom grouping calcuation stored as a high level grouping of relational names or dimenstional members or value ranges associated with a name.</xs:documentation>
+					<xs:documentation source="rn_added_7.1"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="customGroups">
+							<xs:complexType>
+								<xs:sequence maxOccurs="unbounded">
+									<xs:choice>
+										<xs:element name="customValuesGroup">
+											<xs:annotation>
+												<xs:documentation>Custom group for relation dataitems defined by matching specified values.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="selectedValue" type="TextType" maxOccurs="unbounded"/>
+												</xs:sequence>
+												<xs:attribute name="label" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="customRangeGroup">
+											<xs:annotation>
+												<xs:documentation>Custom group for dimensional or relational data items defined by ranages of values.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="lowValue" type="TextType" minOccurs="0"/>
+													<xs:element name="highValue" type="TextType" minOccurs="0"/>
+												</xs:all>
+												<xs:attribute name="label" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="customGroupRemainingValues">
+							<xs:annotation>
+								<xs:documentation>Represents what to do with values in the refDataItem that do not fall into one of the defined custom groups.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:choice>
+									<xs:element name="showRemainingValues">
+										<xs:annotation>
+											<xs:documentation>Other values that do not match the custom groping are returned as normal.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType/>
+									</xs:element>
+									<xs:element name="hideRemainingValues">
+										<xs:annotation>
+											<xs:documentation>Other values that do not match the custom groping are returned as null values.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType/>
+									</xs:element>
+									<xs:element name="groupRemainingValuesAs">
+										<xs:annotation>
+											<xs:documentation>Other values that do not match the custom groping are returned as a  single label.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="label" type="xs:string" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemDetailAttributes"/>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					<xs:attribute name="dataType" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="integer"/>
+								<xs:enumeration value="decimal"/>
+								<xs:enumeration value="float"/>
+								<xs:enumeration value="date"/>
+								<xs:enumeration value="time"/>
+								<xs:enumeration value="dateTime"/>
+								<xs:enumeration value="interval"/>
+								<xs:enumeration value="string"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:element name="selection">
+		<xs:annotation>
+			<xs:documentation>The selection identifies the metadata elements upon which the query is based.  This is analogous to a projection from the source.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="dataItemElement" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="autoSummary" type="xs:boolean" use="optional" default="true"/>
+		</xs:complexType>
+		<xs:unique name="dataItemUniqueness">
+			<xs:selector xpath="*"/>
+			<xs:field xpath="@name"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="slicer">
+		<xs:annotation>
+			<xs:documentation>a list of member expressions. the list is interpreted as a tuple of members.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="slicerMemberSet" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="contextSlice" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>There can only be one contextSlicer per dimension or hierarchy depending on the data source.</xs:documentation>
+							<xs:documentation source="rn_added_4.0"/>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:all>
+								<xs:element ref="dmDimension"/>
+								<xs:element ref="dmHierarchy"/>
+								<xs:element ref="dmLevel" minOccurs="0"/>
+								<xs:element name="contextSliceDefinition">
+									<xs:annotation>
+										<xs:documentation>Defines the context for this dimension. Currently, only a list of members is supported, but in the future it could also support a contextCalculatedMember element.</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:choice>
+											<xs:element ref="dmMembers"/>
+										</xs:choice>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="parameterizedSlice" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>This element indicates that the slicer will be converted into a parameter against either the hierarchy or level when the report is run. </xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:attribute name="type" use="required">
+											<xs:annotation>
+												<xs:documentation source="doc_att_type_parameterizedSlice"/>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="hierarchy"/>
+													<xs:enumeration value="level">
+														<xs:annotation>
+															<xs:documentation source="doc_enum_level_parameterizedSlice"/>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="singleMember" type="xs:boolean" default="false">
+											<xs:annotation>
+												<xs:documentation>If true, then slicer will appear as a single member parameter. If false, the slicer will appear as a multiple value parameter.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+							</xs:all>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="contextSliceUniqueness">
+			<xs:selector xpath="rspec:contextSlice/rspec:dmHierarchy"/>
+			<xs:field xpath="rspec:HUN"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="dmLevel">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="LUN" type="queryExpressionType">
+					<xs:annotation>
+						<xs:documentation>Level Unique Name</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="itemCaption"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dmMember">
+		<xs:annotation>
+			<xs:documentation>Reference to a member</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="MUN"/>
+				<xs:element ref="itemCaption"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dmMembers">
+		<xs:annotation>
+			<xs:documentation>A list of member references</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dmMember" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dmTuple">
+		<xs:annotation>
+			<xs:documentation>A tuple definition. A tuple can only reference one member per dimension.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="dmTuplePart">
+						<xs:annotation>
+							<xs:documentation>Refers to a member or measure in the tuple.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:all>
+								<xs:element ref="dmMember"/>
+								<xs:element ref="dmDimension"/>
+								<xs:element ref="dmHierarchy" minOccurs="0"/>
+							</xs:all>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="dmTuplePartDataItemRef">
+						<xs:annotation>
+							<xs:documentation>References a dataItemCalculatedMember or a dataItemCalculatedMeasure from the current query in the tuple.</xs:documentation>
+							<xs:documentation source="rn_added_5.0"/>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:unique name="tupleMemberHierarchyUniqueness">
+			<xs:selector xpath="rspec:dmTuplePart/rspec:dmHierarchy"/>
+			<xs:field xpath="rspec:HUN"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="dmMemberProperty">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="MPUN" type="queryExpressionType">
+					<xs:annotation>
+						<xs:documentation>Member Property Unique Name</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="itemCaption"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="itemCaption" type="TextType"/>
+	<xs:element name="setSorting">
+		<xs:annotation>
+			<xs:documentation>Sort the set by the given tuple. Default is to sort by caption, but can be overridden to sort by a tuple or member property.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0">
+				<xs:element ref="dmTuple"/>
+				<xs:element ref="dmMemberProperty"/>
+			</xs:choice>
+			<xs:attribute name="ascending" type="xs:boolean" default="true"/>
+			<xs:attribute name="breakHierarchy" type="xs:boolean" default="true">
+				<xs:annotation>
+					<xs:documentation>If the set contains members from different levels in the hierarchy, then if this property is true it will sort them without taking the hierarchy into consideration, if false, then the items will be sorted within each level of the hierarchy.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dmHierarchy">
+		<xs:annotation>
+			<xs:documentation>Reference to a hierarchy</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="HUN"/>
+				<xs:element ref="itemCaption"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dmDimension">
+		<xs:annotation>
+			<xs:documentation>Reference to a dimension</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="DUN"/>
+				<xs:element ref="itemCaption"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HUN" type="queryExpressionType">
+		<xs:annotation>
+			<xs:documentation>Hierarchy Unique Name</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="MUN" type="queryExpressionType">
+		<xs:annotation>
+			<xs:documentation>Member Unique Name</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DUN" type="queryExpressionType">
+		<xs:annotation>
+			<xs:documentation>Dimension Unique Name</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NSUN" type="queryExpressionType"/>
+	<xs:group name="setDefinitionType">
+		<xs:choice>
+			<xs:element name="setExplicitMembers">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmMembers"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setChildrenMembers">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmMember"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setLevelMembers">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmLevel"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setHierarchyMembers">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="rootMembersOnly" type="xs:boolean" default="false"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setExpression">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="expression"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setNamedReference">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="NSUN"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setExceptMembers">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+					<xs:documentation>Removes members from a set.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="baseSet"/>
+						<xs:element ref="dmMembers"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setTopCount">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="baseSet"/>
+						<xs:element ref="dmTuple"/>
+					</xs:all>
+					<xs:attribute name="value" type="xs:positiveInteger" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setTopPercent">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="baseSet"/>
+						<xs:element ref="dmTuple"/>
+					</xs:all>
+					<xs:attribute name="value" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:minExclusive value="0"/>
+								<xs:maxInclusive value="100"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setTopSum">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="baseSet"/>
+						<xs:element ref="dmTuple"/>
+					</xs:all>
+					<xs:attribute name="value" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal"/>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setBottomCount">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="baseSet"/>
+						<xs:element ref="dmTuple"/>
+					</xs:all>
+					<xs:attribute name="value" type="xs:positiveInteger" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setBottomPercent">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="baseSet"/>
+						<xs:element ref="dmTuple"/>
+					</xs:all>
+					<xs:attribute name="value" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:minExclusive value="0"/>
+								<xs:maxInclusive value="100"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setBottomSum">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="baseSet"/>
+						<xs:element ref="dmTuple"/>
+					</xs:all>
+					<xs:attribute name="value" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal"/>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setUnion">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="baseSets">
+							<xs:annotation>
+								<xs:documentation source="rn_added_7.0"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:group ref="setDefinitionType" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+					<xs:attribute name="all" type="xs:boolean" default="false">
+						<xs:annotation>
+							<xs:documentation>If true, retains duplicate members after the union.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setMoveMembersToTop">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+					<xs:documentation>Removes the members from the base set and then positions them at the top of the resultant set.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="baseSet"/>
+						<xs:element ref="dmMembers"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setMoveMembersToBottom">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+					<xs:documentation>Removes the members from the base set and then positions them at the bottom of the resultant set.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="baseSet"/>
+						<xs:element ref="dmMembers"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setExpandMember">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="baseSet"/>
+						<xs:element ref="dmMember"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setCollapseMember">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="baseSet"/>
+						<xs:element ref="dmMember"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setFilter">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="baseSet"/>
+						<xs:element name="setFilterCriteria">
+							<xs:annotation>
+								<xs:documentation source="rn_added_7.0"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:group ref="setFilterCondition"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setCustomGroup">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="baseSet"/>
+						<xs:element name="setCustomGroups">
+							<xs:complexType>
+								<xs:sequence maxOccurs="unbounded">
+									<xs:element name="customMembersGroup">
+										<xs:annotation>
+											<xs:documentation>Custom group for dimensional dataitems defined by lists of members.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:all>
+												<xs:element ref="dmMembers"/>
+											</xs:all>
+											<xs:attribute name="label" type="xs:string" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="customGroupRemainingMembers">
+							<xs:annotation>
+								<xs:documentation>Represents what to do with any members from the base set that do not fall into one of the defined custom groups.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:choice>
+									<xs:element name="includeRemainingMembers">
+										<xs:annotation>
+											<xs:documentation>Other members that do not match the custom groping are included in the set.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType/>
+									</xs:element>
+									<xs:element name="excludeRemainingMembers">
+										<xs:annotation>
+											<xs:documentation>Other members that do not match the custom groping are excluded from the set.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType/>
+									</xs:element>
+									<xs:element name="groupRemainingMembersAs">
+										<xs:annotation>
+											<xs:documentation>Other members that do not match the custom groping are grouped under as a  single label.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="label" type="xs:string" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:element name="baseSet">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:group ref="setDefinitionType"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:group name="setFilterCondition">
+		<xs:annotation>
+			<xs:documentation>Represents a simple or compound set filter condition</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="setFilterAnd">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="setFilterCondition" minOccurs="2" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setFilterOr">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="setFilterCondition" minOccurs="2" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setFilterNot">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="setFilterCondition"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="memberCaptionCondition">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+					<xs:documentation>Defines a condition against the member caption.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="operator" use="required">
+						<xs:annotation>
+							<xs:documentation source="doc_att_filterCondition_operator"/>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="contains">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_memberCaptionCondition_operator_contains"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="beginsWith">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_memberCaptionCondition_operator_beginsWith"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="endsWith">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_memberCaptionCondition_operator_endsWith"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="matches">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_memberCaptionCondition_operator_matches"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="containsNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_memberCaptionCondition_operator_containsNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="beginsWithNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_memberCaptionCondition_operator_beginsWithNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="endsWithNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_memberCaptionCondition_operator_endsWithNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="matchesNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_memberCaptionCondition_operator_matchesNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="value" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="stringPropertyCondition">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+					<xs:documentation>Defines a condition against a string member property. The value attribute must be provided for all operators except isNull and isNotNull.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmMemberProperty"/>
+					</xs:all>
+					<xs:attribute name="operator" use="required">
+						<xs:annotation>
+							<xs:documentation source="doc_att_filterCondition_operator"/>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="contains">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_contains"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="beginsWith">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_beginsWith"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="endsWith">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_endsWith"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="matches">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_matches"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="containsNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_containsNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="beginsWithNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_beginsWithNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="endsWithNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_endsWithNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="matchesNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_matchesNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="isNull"/>
+								<xs:enumeration value="isNotNull"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="value" type="xs:string" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="numericPropertyCondition">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+					<xs:documentation>Defines a numeric condition. The condition can be for either a tuple or a member property. The value attribute must be provided for all operators except isNull and isNotNull.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmMemberProperty"/>
+					</xs:all>
+					<xs:attribute name="operator" use="required">
+						<xs:annotation>
+							<xs:documentation source="doc_att_filterCondition_operator"/>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="equal"/>
+								<xs:enumeration value="notEqual"/>
+								<xs:enumeration value="greaterThan"/>
+								<xs:enumeration value="greaterThanEqual"/>
+								<xs:enumeration value="lessThan"/>
+								<xs:enumeration value="lessThanEqual"/>
+								<xs:enumeration value="isNull"/>
+								<xs:enumeration value="isNotNull"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="value" type="xs:decimal" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tupleCondition">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+					<xs:documentation>Defines a numeric condition. The condition can be for either a tuple or a member property. The value attribute must be provided for all operators except isNull and isNotNull.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmTuple"/>
+					</xs:all>
+					<xs:attribute name="operator" use="required">
+						<xs:annotation>
+							<xs:documentation source="doc_att_filterCondition_operator"/>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="equal"/>
+								<xs:enumeration value="notEqual"/>
+								<xs:enumeration value="greaterThan"/>
+								<xs:enumeration value="greaterThanEqual"/>
+								<xs:enumeration value="lessThan"/>
+								<xs:enumeration value="lessThanEqual"/>
+								<xs:enumeration value="isNull"/>
+								<xs:enumeration value="isNotNull"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="value" type="xs:decimal" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="filterElement">
+		<xs:choice>
+			<xs:element name="filterAnd">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="2" maxOccurs="unbounded">
+						<xs:group ref="filterElement"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="filterOr">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="2" maxOccurs="unbounded">
+						<xs:group ref="filterElement"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="filterNot">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="filterElement"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="filterInMembers">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmMembers"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="FilterElementCommonAttributes"/>
+					<xs:attributeGroup ref="FilterElementParameterAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="filterInValues">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="filterValues" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation source="rn_added_7.0"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="filterValue" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="FilterElementCommonAttributes"/>
+					<xs:attributeGroup ref="FilterElementAllDataTypeAttributes"/>
+					<xs:attributeGroup ref="FilterElementIncludeNullAttributes"/>
+					<xs:attributeGroup ref="FilterElementParameterAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="filterCompare">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="filterValue"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="FilterElementCommonAttributes"/>
+					<xs:attributeGroup ref="FilterElementComparableDataTypeAttributes"/>
+					<xs:attributeGroup ref="FilterElementIncludeNullAttributes"/>
+					<xs:attribute name="operator" use="required">
+						<xs:annotation>
+							<xs:documentation source="doc_att_filterCondition_operator"/>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="greaterThan"/>
+								<xs:enumeration value="greaterThanEqual"/>
+								<xs:enumeration value="lessThan"/>
+								<xs:enumeration value="lessThanEqual"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="FilterElementParameterAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="filterRange">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="filterFrom" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation source="rn_added_7.0"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="TextType"/>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="filterTo" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation source="rn_added_7.0"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="TextType"/>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="FilterElementCommonAttributes"/>
+					<xs:attributeGroup ref="FilterElementComparableDataTypeAttributes"/>
+					<xs:attributeGroup ref="FilterElementIncludeNullAttributes"/>
+					<xs:attributeGroup ref="FilterElementParameterAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="filterNulls">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="FilterElementCommonAttributes"/>
+					<xs:attributeGroup ref="FilterElementAllDataTypeAttributes"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:element name="filterValue" type="TextType">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="detailFilter">
+		<xs:annotation>
+			<xs:documentation>This is not ideally modelled. filterExpression should be moved into filterDefinition and filterDefinition should be required. This change would require a spec version change and upgrade. A filter must only contain one of filterExpression or filterDefinition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="filterExpression" minOccurs="0"/>
+				<xs:element ref="filterDefinition" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="use" use="optional" default="required">
+				<xs:annotation>
+					<xs:documentation>{required} When optional, this filter will be applied only if all the parameters referenced by the filter expression have been provided with values. If the filter expression does not refer to any parameters, then this filter will always be applied. When prohibited, this filter will never be applied, which is useful for testing and authoring purposes. Default: "required".</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="required"/>
+						<xs:enumeration value="optional"/>
+						<xs:enumeration value="prohibited"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="postAutoAggregation" type="xs:boolean" use="optional" default="false">
+				<xs:annotation>
+					<xs:documentation>{false} Specifies that when "false", this condition will be applied to detail database rows from the tabular result set prior to aggregation and summarization. Any reference to a fact (aggregate) item in this expression will be interpreted as the individual database value before it has been summarized. When "true", this condition will be applied to the summarized rows; that is, after one or more detail rows have been aggregated into one summary row. Any reference to a fact (aggregate) item in this expression will be interpreted as the aggregate value of the summarized row(s). This attribute has no effect upon references to non-aggregate items, nor is it effective when automatic summarization is disabled (see "autoSummary" attribute of the selection element).  This attribute has no effect in all cases for OLAP data sources.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="summaryFilter">
+		<xs:annotation>
+			<xs:documentation>This is not ideally modelled. filterExpression should be moved into filterDefinition and filterDefinition should be required. This change would require a spec version change and upgrade. A filter must only contain one of filterExpression or filterDefinition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="filterExpression" minOccurs="0"/>
+				<xs:element ref="filterDefinition" minOccurs="0"/>
+				<xs:element ref="summaryFilterLevels" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="use" use="optional" default="required">
+				<xs:annotation>
+					<xs:documentation>{required} When optional, this filter will be applied only if all the parameters referenced by the filter expression have been provided with values. If the filter expression does not refer to any parameters, then this filter will always be applied. When prohibited, this filter will never be applied, which is useful for testing and authoring purposes. Default: "required".</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="required"/>
+						<xs:enumeration value="optional"/>
+						<xs:enumeration value="prohibited"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="filterDefinition">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:group ref="filterElement"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="FilterElementCommonAttributes">
+		<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+		<xs:attribute name="not" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="FilterElementIncludeNullAttributes">
+		<xs:attribute name="includeNulls" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>The set of values being filtered (in or not in) should also include any null values.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="FilterElementComparableDataTypeAttributes">
+		<xs:attribute name="dataType" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="integer"/>
+					<xs:enumeration value="decimal"/>
+					<xs:enumeration value="float"/>
+					<xs:enumeration value="date"/>
+					<xs:enumeration value="time"/>
+					<xs:enumeration value="dateTime"/>
+					<xs:enumeration value="interval"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="FilterElementAllDataTypeAttributes">
+		<xs:attribute name="dataType" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="string"/>
+					<xs:enumeration value="integer"/>
+					<xs:enumeration value="decimal"/>
+					<xs:enumeration value="float"/>
+					<xs:enumeration value="date"/>
+					<xs:enumeration value="time"/>
+					<xs:enumeration value="dateTime"/>
+					<xs:enumeration value="interval"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="FilterElementParameterAttributes">
+		<xs:attribute name="parameterized" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>Indicates that when the report is run in the viewer the user should be prompted for the value(s). </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="parameterName" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The name the parameter will have in the report. If no name is specified one will be generated by the server. The name will be used by generated prompt pages.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+</xs:schema>

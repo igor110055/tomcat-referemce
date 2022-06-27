@@ -1,0 +1,33 @@
+
+div.divList {
+}
+
+div.divList ul.divListItems
+{
+   display:block;
+   overflow:auto;
+   border: 1px solid gray;
+   list-style-type: none;
+	padding: 2px 2px 2px 5px;
+	margin: 0px;
+	white-space: nowrap;		/* force one-line text */
+   cursor:pointer;
+}
+
+div.divList ul.divListHover
+{
+   background-color:#CCCCCC;
+}
+
+div.divList div.divListButtons
+{
+   padding:5px 0px 3px 0px;
+   text-align:right;
+}
+
+
+div.divList div.emptyMessage {
+   text-align:center;
+   padding-top:40px;
+   position:relative;
+}

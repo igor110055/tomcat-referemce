@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2014
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+--> 
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rspecExtension="http://developer.cognos.com/schemas/rspecExtension/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5_format.xsd"/>
+	<xs:element name="style">
+		<xs:annotation>
+			<xs:documentation>Describes the CSS styling and/or data formatting of an object.
+ Data formatting applies individually to all elements contained within that can support a format.</xs:documentation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="CSS" minOccurs="0"/>
+				<xs:element ref="dataFormat" minOccurs="0"/>
+				<xs:element ref="defaultStyles" minOccurs="0"/>
+				<xs:element ref="generatedBackground" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="conditionalStyles">
+		<xs:annotation>
+			<xs:documentation>DEPRECATED: The namedConditionalStyles and conditionalStylesRef elements should be used instead.
+
+Contains a list of conditional styles. When rendering, the variable pointed to by refVariable in conditoinalStyleCases will be eveluated and the first conditionalStyle whose refVariableValue matches the value of the expression will be applied. If no match is found, then the conditionalStyleDefault element will be applied. </xs:documentation>
+			<xs:documentation>The condition described by the refVariable attribute is executed. The resulting value is then used to pick a single style using the refVariableValue attribute of the contained style elements. If no match is found, then the style that does not contain a refVariableValue is returned.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="conditionalStyleCases">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="conditionalStyle" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="CSS" minOccurs="0"/>
+										<xs:element ref="dataFormat" minOccurs="0"/>
+										<xs:element ref="generatedBackground" minOccurs="0"/>
+									</xs:all>
+									<xs:attributeGroup ref="ConditionalPartAttributes"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attributeGroup ref="ConditionalOwnerAttributes"/>
+					</xs:complexType>
+					<xs:unique name="styleCases">
+						<xs:selector xpath="*"/>
+						<xs:field xpath="@refVariableValue"/>
+					</xs:unique>
+				</xs:element>
+				<xs:element name="conditionalStyleDefault">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="CSS" minOccurs="0"/>
+							<xs:element ref="dataFormat" minOccurs="0"/>
+							<xs:element ref="generatedBackground" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CSS">
+		<xs:annotation>
+			<xs:documentation>Describes the CSS style portion.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="value" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation source="doc_att_value_style"/>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/colors.html#propdef-background-color">
+						<xs:annotation/>background-color. Sets the background color for the selected object.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/colors.html#propdef-background-color">
+						<xs:annotation/>background-color. Sets the background color for the selected object. Enter the name of the color, the RBG value, or the number of the web-safe color. For example, enter "background-color:lime;" or "background-color:#00FF00;" to use the web-safe lime. </xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/colors.html#propdef-background-image">
+						<xs:annotation/>background-image. Sets an image as the background. Enter the url where the image is located. The background color in the report will be visible in the transparent parts of the image.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/box.html#propdef-border">
+						<xs:annotation/>border. Sets all the properties for the four borders. You can set the width, style, and color in one declaration.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/visuren.html#propdef-display">
+						<xs:annotation/>display. Specifies the type of box to generate.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/visuren.html#propdef-display">
+						<xs:annotation/>display. Specifies the type of box to generate. For example, "display:block;" generates a principal block box.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/visuren.html#propdef-float">
+						<xs:annotation/>float. Sets where an image or text will appear.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/visuren.html#propdef-float">
+						<xs:annotation/>float. Sets where an image or text will appear. For example, specifying "float:left;" for an image with text next to the image will result in the text flowing around and to the right of the image. </xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/visudet.html#propdef-height">
+						<xs:annotation/>height. Sets the height of an object. Enter a number or percentage. The possible units of measure for numbers are: em for the font-size of the font, ex for the x-height of the font, px for pixels, in for inches, cm for centimeters, mm for millimeters, pt for points, and pc for picas. You cannot use negative numbers.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/visudet.html#propdef-line-height">
+						<xs:annotation/>line-height. Sets the distance between lines. Enter a number, length, or percentage. For example, the number of 1.2, the length of 1.2em, and 120% all result in the same line height. You cannot use negative numbers. If you enter a number without specifying a unit of measure, the font size will be multiplied by the number you enter.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/visudet.html#propdef-width">
+						<xs:annotation/>width. Sets the width of an object. Enter the length or percentage. For example, 100px sets the object to be 100 pixels wide. You cannot use negative numbers.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/fonts.html#propdef-font">
+						<xs:annotation/>font. Sets all the font properties for the selected object.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/fonts.html#propdef-font">
+						<xs:annotation/>font. Sets all the font properties for the selected object. You can set the font-family, font-size, font-style, font-weight, text-decoration, and color in one declaration.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/box.html#propdef-margin">
+						<xs:annotation/>margin. Sets all the margin properties for the selected object.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/box.html#propdef-margin">
+						<xs:annotation/>margin. Sets all the margin properties for the selected object. To use the same margin all around the selected object, enter "margin:nn;" where nn is the number. To use different margins around the object, you must specify margin-top, margin-left, and so on. </xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/box.html#propdef-padding">
+						<xs:annotation/>padding. Sets all the padding properties for the selected object.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/box.html#propdef-padding">
+						<xs:annotation/>padding. Sets all the padding properties for the selected object. Enter the numbers in this order: top, right, bottom, left. For example, "padding:10px 15px 10px 15px;" will put 10 pixels of padding at the top and bottom of the object and 15 pixels at the right and left.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/visufx.html#propdef-overflow">
+						<xs:annotation/>overflow. Specifies what happens if the content of an object overflows its area.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/visudet.html#propdef-vertical-align">
+						<xs:annotation/>vertical-align. Sets the vertical alignment of the selected object.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/visudet.html#propdef-vertical-align">
+						<xs:annotation/>vertical-align. Sets the vertical alignment of a selected object. For example, "vertical-align:middle;" will align the vertical midpoint of the selected object with the baseline of the parent object plus half the x-height of the parent object.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/tables.html#collapsing-borders">
+						<xs:annotation/>border-collapse. Sets a border to collapse, separate, or inherit. Use "border-collapse:collapse;" to have borders around the entire table. Use "border-collapse:separate;" to have borders around individual cells in the table. Use "border-collapse:inherit;" to have the same borders as the parent object.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/tables.html#borders">
+						<xs:annotation/>border-spacing. Sets the distance between the borders of adjacent cells of a table. This property is used only when you set the border-collapse property to separate.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/tables.html#propdef-empty-cells">
+						<xs:annotation/>empty-cells. Specifies whether cells with no visible content should have borders or not. This property is used only when you set the border-collapse property to separate.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/tables.html#width-layout">
+						<xs:annotation/>table-layout. Sets the algorithm used to lay out table cells, rows, and columns.</xs:documentation>
+					<xs:documentation source="http://www.w3schools.com/css/pr_text_color.asp">
+						<xs:annotation/>color. Sets the color of text.</xs:documentation>
+					<xs:documentation source="http://www.w3schools.com/css/pr_text_color.asp">
+						<xs:annotation/>color. Sets the color of text. Enter the name of the color, the RBG value, or the number of the web-safe color. For example, enter "background-color:lime;" or "background-color:0,255,0 ;"or "background-color:#00FF00;" to use the web-safe lime.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/visuren.html#propdef-direction">
+						<xs:annotation/>direction. Sets the direction of text when using the Unicode bidirectional (bidi) algorithm. Values are ltr (left-to-right) and rtl (right-to-left). Use with the unicode-bidi property. Note: For the direction property to have any effect on inline-level objects, the unicode-bidi property must be set to embed or override. </xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/text.html#propdef-letter-spacing">
+						<xs:annotation/>letter-spacing. Increases or decreases the space between characters.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/text.html#propdef-text-align">
+						<xs:annotation/>text-align. Specifies how the contents of the cells of a table column will be aligned. This property is called Horizontal Align in Report Studio.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/text.html#propdef-text-indent">
+						<xs:annotation/>text-indent. Specifies the indentation for the first line of text in a table. The possible units of measure are: em for the font-size of the font, ex for the x-height of the font, and px for pixels.</xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/visuren.html#propdef-unicode-bidi">
+						<xs:annotation/>unicode-bidi. Sets the level of embedding for the Unicode bidirectional algorithm. Use with the direction property. Note: Because the Unicode algorithm has a limit of 15 levels of embedding, do not use a value other than normal unless appropriate. In particular, a value of inherit should be used with extreme caution. </xs:documentation>
+					<xs:documentation source="http://www.w3.org/TR/CSS2/text.html#propdef-white-space">
+						<xs:annotation/>white-space. Increases or decreases the space between words.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dataFormat">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="numberFormat"/>
+				<xs:element ref="percentFormat"/>
+				<xs:element ref="currencyFormat"/>
+				<xs:element ref="stringFormat"/>
+				<xs:element ref="dateFormat"/>
+				<xs:element ref="dateTimeFormat"/>
+				<xs:element ref="timeFormat"/>
+				<xs:element ref="intervalFormat"/>
+				<xs:element ref="format"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="defaultStyles">
+		<xs:annotation>
+			<xs:documentation source="rn_added_4.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="defaultStyle" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation source="rn_added_4.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="refStyle" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="generatedBackground">
+		<xs:annotation>
+			<xs:documentation source="rn_added_5.0"/>
+			<xs:documentation>Background image generated by the server based on a set of properties.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="border" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_5.0"/>
+						<xs:documentation>Draw a border around the rectangle.  If the cornerRadius is non-zero this would be rendered as a rounded rectangle.  The allowTransparentBleed option indicates whether or not the border picks up the transparent settings of the inner fill that touches the border.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="borderColor" type="ColorType" default="gray"/>
+						<xs:attribute name="borderStyle" default="solid">
+							<xs:annotation>
+								<xs:documentation source="rn_added_5.0"/>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="solid"/>
+									<xs:enumeration value="double"/>
+									<xs:enumeration value="dotted"/>
+									<xs:enumeration value="dashed"/>
+									<xs:enumeration value="groove"/>
+									<xs:enumeration value="ridge"/>
+									<xs:enumeration value="inset"/>
+									<xs:enumeration value="outset"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="borderWidth" type="CSSLength" default="1pt">
+							<xs:annotation>
+								<xs:documentation source="rn_added_5.0"/>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="cornerRadius" type="CSSLength" default="0pt">
+							<xs:annotation>
+								<xs:documentation source="rn_added_5.0"/>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="allowTransparentBleed" type="xs:boolean" default="false">
+							<xs:annotation>
+								<xs:documentation source="rn_added_5.0"/>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="dropShadow" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_5.0"/>
+						<xs:documentation>Draw a drop shadow around the border.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="shadowColor" type="ColorType" default="gray"/>
+						<xs:attribute name="thickness" type="CSSLength" default="5px"/>
+						<xs:attributeGroup ref="TransparencyAttributes"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="backgroundImages" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_5.0"/>
+						<xs:documentation>Draw a list of images in the background.  The images are rendered in the order they are listed here.  Images always appear on top of the fill.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="backgroundImage" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation source="rn_added_5.0"/>
+									<xs:documentation>Defines an image.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="backgroundImagePosition">
+											<xs:annotation>
+												<xs:documentation source="rn_added_5.0"/>
+												<xs:documentation>Determines how the image is positioned.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:choice>
+													<xs:element name="automaticPosition">
+														<xs:annotation>
+															<xs:documentation source="rn_added_5.0"/>
+															<xs:documentation>Position calculated based on the choice of the attribute.</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:attribute name="automaticPosition" default="leftTop">
+																<xs:annotation>
+																	<xs:documentation source="rn_added_5.0"/>
+																</xs:annotation>
+																<xs:simpleType>
+																	<xs:restriction base="xs:NMTOKEN">
+																		<xs:enumeration value="leftTop"/>
+																		<xs:enumeration value="centerTop"/>
+																		<xs:enumeration value="rightTop"/>
+																		<xs:enumeration value="leftMiddle"/>
+																		<xs:enumeration value="centerMiddle"/>
+																		<xs:enumeration value="rightMiddle"/>
+																		<xs:enumeration value="leftBottom"/>
+																		<xs:enumeration value="centerBottom"/>
+																		<xs:enumeration value="rightBottom"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+															<xs:attribute name="tile" type="xs:boolean" default="false"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="manualPosition">
+														<xs:annotation>
+															<xs:documentation source="rn_added_5.0"/>
+															<xs:documentation>Explicit position is measured from the top left corner of the rectangle.</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:attribute name="positionX" type="CSSLength" default="0px">
+																<xs:annotation>
+																	<xs:documentation source="rn_added_5.0"/>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="positionY" type="CSSLength" default="0px">
+																<xs:annotation>
+																	<xs:documentation source="rn_added_5.0"/>
+																</xs:annotation>
+															</xs:attribute>
+															<xs:attribute name="tile" type="xs:boolean" default="false"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="stretchPosition">
+														<xs:annotation>
+															<xs:documentation source="rn_added_5.0"/>
+														</xs:annotation>
+														<xs:complexType/>
+													</xs:element>
+												</xs:choice>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="URL" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation source="rn_added_5.0"/>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attributeGroup ref="TransparencyAttributes"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="fill" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_5.0"/>
+						<xs:documentation>Defines a background fill.  The fill can be either a linear gradient, radial gradient or pattern.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="linearGradient">
+								<xs:annotation>
+									<xs:documentation source="rn_added_5.0"/>
+									<xs:documentation>Draw a linear gradient.  The angle is measured from the horizontal.  A value of zero means from left to right.  A value of 90 means from bottom to top.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="gradientColor" maxOccurs="unbounded"/>
+									</xs:sequence>
+									<xs:attribute name="gradientAngle" default="0">
+										<xs:annotation>
+											<xs:documentation source="rn_added_5.0"/>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:minInclusive value="0"/>
+												<xs:maxInclusive value="360"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="radialLineGradient">
+								<xs:annotation>
+									<xs:documentation source="rn_added_5.0"/>
+									<xs:documentation>Draw a radial gradient.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="gradientColor" maxOccurs="unbounded"/>
+									</xs:sequence>
+									<xs:attribute name="focusX1Position" type="CSSLength" default="50%">
+										<xs:annotation>
+											<xs:documentation source="rn_added_5.0"/>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="focusY1Position" type="CSSLength" default="50%">
+										<xs:annotation>
+											<xs:documentation source="rn_added_5.0"/>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="focusX2Position" type="CSSLength" default="50%">
+										<xs:annotation>
+											<xs:documentation source="rn_added_5.0"/>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="focusY2Position" type="CSSLength" default="50%">
+										<xs:annotation>
+											<xs:documentation source="rn_added_5.0"/>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="focusInnerRadius" type="CSSLength" default="0px">
+										<xs:annotation>
+											<xs:documentation source="rn_added_5.0"/>
+											<xs:documentation>If this is a percentage, it is a percentage of the greater of the height or the width of the bounding rectange.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="focusOuterRadius" type="CSSLength" default="0px">
+										<xs:annotation>
+											<xs:documentation source="rn_added_5.0"/>
+											<xs:documentation>If this is a percentage, it is a percentage of the greater of the height or the width of the bounding rectange.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="radialRectangleGradient">
+								<xs:annotation>
+									<xs:documentation source="rn_added_5.0"/>
+									<xs:documentation>Radial gradient that respects the bounding rounded rectangle as much as posible.  Setting the focusSize to 0% means the focus will be a point.  If you set it to 100% the focus will take the entire size of the bounding rounded rectangle.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="gradientColor" maxOccurs="unbounded"/>
+									</xs:sequence>
+									<xs:attribute name="focusSize" default="50">
+										<xs:annotation>
+											<xs:documentation source="rn_added_5.0"/>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:minInclusive value="0"/>
+												<xs:maxInclusive value="100"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="pattern">
+								<xs:annotation>
+									<xs:documentation source="rn_added_5.0"/>
+									<xs:documentation>Defines a pattern fill.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="foregroundColor" type="ColorType" default="black"/>
+									<xs:attribute name="backgroundColor" type="ColorType" default="transparent"/>
+									<xs:attribute name="patternType" default="horizontal">
+										<xs:simpleType>
+											<xs:restriction base="xs:NMTOKEN">
+												<xs:enumeration value="horizontal"/>
+												<xs:enumeration value="vertical"/>
+												<xs:enumeration value="forwardDiagonal"/>
+												<xs:enumeration value="backwardDiagonal"/>
+												<xs:enumeration value="cross"/>
+												<xs:enumeration value="diagonalCross"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attributeGroup ref="TransparencyAttributes"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="fillColor">
+								<xs:annotation>
+									<xs:documentation source="rn_added_5.0"/>
+									<xs:documentation>Defines a solid color</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attributeGroup ref="TransparencyAttributes"/>
+									<xs:attribute name="color" type="ColorType" default="black"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="ColorType" rspecExtension:validSample="black">
+		<xs:annotation>
+			<xs:documentation>A valid CSS color definition</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="CSSLength" rspecExtension:validSample="0px">
+		<xs:annotation>
+			<xs:documentation>A valid CSS length definition</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]*[.]?[0-9]+(px|%|in|cm|mm|pt|pc|em|ex)?">
+				<xs:annotation>
+					<xs:documentation source="doc_enum_CSSLength"/>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attributeGroup name="ConditionalPartAttributes">
+		<xs:attribute name="refVariableValue" type="xs:string" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ConditionalOwnerAttributes">
+		<xs:attribute name="refVariable" type="xs:string" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="TransparencyAttributes">
+		<xs:annotation>
+			<xs:documentation>Common definition for transparency attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="transparency" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:unsignedInt">
+					<xs:minInclusive value="0"/>
+					<xs:maxInclusive value="100"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:element name="gradientColor">
+		<xs:annotation>
+			<xs:documentation source="rn_added_5.0"/>
+			<xs:documentation>Represents a single color in the gradient.  The colorPosition is the percentage along the gradient line that this color starts at.  A value of 0 means this is the first color and a value of 100 means this is the last color.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="gradientColor" type="ColorType" default="black">
+				<xs:annotation>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="colorPosition" default="0">
+				<xs:annotation>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="TransparencyAttributes"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,737 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+.bux-search-refinement-item-icon {
+	display: none;
+}
+
+.bux-search-refinement-item-icon-scorecard,
+.bux-search-refinement-item-icon-metric,
+.bux-search-refinement-item-icon-metrictype,
+.bux-search-refinement-item-icon-comment,
+.bux-search-refinement-item-icon-group,
+.bux-search-refinement-item-icon-grouptype,
+.bux-search-refinement-item-icon-model,
+.bux-search-refinement-item-icon-namespace,
+.bux-search-refinement-item-icon-hierarchy,
+.bux-search-refinement-item-icon-filter,
+.bux-search-refinement-item-icon-dimension,
+.bux-search-refinement-item-icon-level,
+.bux-search-refinement-item-icon-querysubject,
+.bux-search-refinement-item-icon-queryitem,
+.bux-search-refinement-item-icon-memberproperty,
+.bux-search-refinement-item-icon-queryitemfact,
+.bux-search-refinement-item-icon-queryitemdimension,
+.bux-search-refinement-item-icon-measuredimension,
+.bux-search-refinement-item-icon-measure,
+.bux-search-refinement-item-icon-account,
+.bux-search-refinement-item-icon-adminfolder,
+.bux-search-refinement-item-icon-agentdefinition,
+.bux-search-refinement-item-icon-agentdefinitionview,
+.bux-search-refinement-item-icon-analysis,
+.bux-search-refinement-item-icon-archivelocation,
+.bux-search-refinement-item-icon-basersstask,
+.bux-search-refinement-item-icon-urlrsstask,
+.bux-search-refinement-item-icon-capability,
+.bux-search-refinement-item-icon-configuration,
+.bux-search-refinement-item-icon-configurationfolder,
+.bux-search-refinement-item-icon-contact,
+.bux-search-refinement-item-icon-content,
+.bux-search-refinement-item-icon-contenttask,
+.bux-search-refinement-item-icon-indexupdatetask,
+.bux-search-refinement-item-icon-dashboard,
+.bux-search-refinement-item-icon-datasource,
+.bux-search-refinement-item-icon-datamovementtask,
+.bux-search-refinement-item-icon-datasourceconnection,
+.bux-search-refinement-item-icon-datasourcesignon,
+.bux-search-refinement-item-icon-directory,
+.bux-search-refinement-item-icon-dispatcher,
+.bux-search-refinement-item-icon-distributionlist,
+.bux-search-refinement-item-icon-document,
+.bux-search-refinement-item-icon-drillpath,
+.bux-search-refinement-item-icon-exportdeployment,
+.bux-search-refinement-item-icon-folder,
+.bux-search-refinement-item-icon-group,
+.bux-search-refinement-item-icon-importdeployment,
+.bux-search-refinement-item-icon-jobdefinition,
+.bux-search-refinement-item-icon-migrationtask,
+.bux-search-refinement-item-icon-model,
+.bux-search-refinement-item-icon-memo,
+.bux-search-refinement-item-icon-namespace,
+.bux-search-refinement-item-icon-namespacefolder,
+.bux-search-refinement-item-icon-package,
+.bux-search-refinement-item-icon-pagelet,
+.bux-search-refinement-item-icon-pagedefinition,
+.bux-search-refinement-item-icon-planningmacrotask,
+.bux-search-refinement-item-icon-planningtask,
+.bux-search-refinement-item-icon-portal,
+.bux-search-refinement-item-icon-portalpackage,
+.bux-search-refinement-item-icon-portalskin,
+.bux-search-refinement-item-icon-portalskinfolder,
+.bux-search-refinement-item-icon-portletfolder,
+.bux-search-refinement-item-icon-portletproducer,
+.bux-search-refinement-item-icon-portlet,
+.bux-search-refinement-item-icon-pfr,
+.bux-search-refinement-item-icon-powerplaycube,
+.bux-search-refinement-item-icon-powerplayreport,
+.bux-search-refinement-item-icon-powerplay8report,
+.bux-search-refinement-item-icon-powerplay8reportview,
+.bux-search-refinement-item-icon-printer,
+.bux-search-refinement-item-icon-query,
+.bux-search-refinement-item-icon-report,
+.bux-search-refinement-item-icon-reportview,
+.bux-search-refinement-item-icon-role,
+.bux-search-refinement-item-icon-root,
+.bux-search-refinement-item-icon-reportdataserviceagentdefinition,
+.bux-search-refinement-item-icon-securedfeature,
+.bux-search-refinement-item-icon-securedfunction,
+.bux-search-refinement-item-icon-shortcut,
+.bux-search-refinement-item-icon-shortcutrsstask,
+.bux-search-refinement-item-icon-shortcutagentrsstask,
+.bux-search-refinement-item-icon-storedproceduretask,
+.bux-search-refinement-item-icon-subscriptionfolder,
+.bux-search-refinement-item-icon-webservicetask,
+.bux-search-refinement-item-icon-url,
+.bux-search-refinement-item-icon-metricsfileimporttask,
+.bux-search-refinement-item-icon-metricsdatasourceetltask,
+.bux-search-refinement-item-icon-metricsexporttask,
+.bux-search-refinement-item-icon-metricsmaintenancetask,
+.bux-search-refinement-item-icon-reporttemplate,
+.bux-search-refinement-item-icon-uiprofile,
+.bux-search-refinement-item-icon-agentservice,
+.bux-search-refinement-item-icon-batchreportservice,
+.bux-search-refinement-item-icon-contentmanagerservice,
+.bux-search-refinement-item-icon-datamovementservice,
+.bux-search-refinement-item-icon-deliveryservice,
+.bux-search-refinement-item-icon-eventmanagementservice,
+.bux-search-refinement-item-icon-indexdataservice,
+.bux-search-refinement-item-icon-indexsearchservice,
+.bux-search-refinement-item-icon-indexupdateservice,
+.bux-search-refinement-item-icon-jobservice,
+.bux-search-refinement-item-icon-logservice,
+.bux-search-refinement-item-icon-metricsmanagerservice,
+.bux-search-refinement-item-icon-migrationservice,
+.bux-search-refinement-item-icon-metadataservice,
+.bux-search-refinement-item-icon-mobileservice,
+.bux-search-refinement-item-icon-dataintegrationservice,
+.bux-search-refinement-item-icon-monitorservice,
+.bux-search-refinement-item-icon-planningadministrationconsoleservice,
+.bux-search-refinement-item-icon-planningdataservice,
+.bux-search-refinement-item-icon-planningruntimeservice,
+.bux-search-refinement-item-icon-planningtaskservice,
+.bux-search-refinement-item-icon-presentationservice,
+.bux-search-refinement-item-icon-reportdataservice,
+.bux-search-refinement-item-icon-reportservice,
+.bux-search-refinement-item-icon-powerplayservice,
+.bux-search-refinement-item-icon-systemservice,
+.bux-search-refinement-item-icon-list,
+.bux-search-refinement-item-icon-crosstab,
+.bux-search-refinement-item-icon-bubblechart,
+.bux-search-refinement-item-icon-combinationchart,
+.bux-search-refinement-item-icon-gaugechart,
+.bux-search-refinement-item-icon-mapchart,
+.bux-search-refinement-item-icon-metricschart,
+.bux-search-refinement-item-icon-threedcombinationchart,
+.bux-search-refinement-item-icon-threedscatterchart,
+.bux-search-refinement-item-icon-paretochart,
+.bux-search-refinement-item-icon-piechart,
+.bux-search-refinement-item-icon-polarchart,
+.bux-search-refinement-item-icon-progressivechart,
+.bux-search-refinement-item-icon-radarchart,
+.bux-search-refinement-item-icon-scatterchart,
+.bux-search-refinement-item-icon-winlosschart,
+.bux-search-refinement-item-icon-user,
+.bux-search-refinement-item-icon-date,
+.bux-search-refinement-item-icon-barchart,
+.bux-search-refinement-item-icon-linechart,
+.bux-search-refinement-item-icon-areachart,
+.bux-search-refinement-item-icon-marimekkochart,
+.bux-search-refinement-item-icon-interactivereport,
+.bux-search-refinement-item-icon-bulletchart {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	padding-bottom: 1px;
+	padding-right: 2px;
+	vertical-align: middle;
+}
+
+.bux-search-refinement-item-icon-account {
+	background: url(../../../ps/portal/images/icon_user.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-adminfolder {
+	background: url(../../../ps/portal/images/icon_folder.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-agentdefinition {
+	background: url(../../../ps/portal/images/icon_agent.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-agentdefinitionview {
+	background: url(../../../ps/portal/images/icon_agent_sub.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-analysis {
+	background: url(../../../ps/portal/images/icon_ps_analysis.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-archivelocation {
+	background: url(../../../ps/portal/images/icon_file_system_location.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-basersstask {
+	background: url(../../../ps/portal/images/icon_URL_delivery.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-urlrsstask {
+	background: url(../../../ps/portal/images/icon_newsitem.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-capability {
+	background: url(../../../ps/portal/images/icon_built_in_folder.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-configuration {
+	background: url(../../../ps/portal/images/icon_built_in_folder.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-configurationfolder {
+	background: url(../../../ps/portal/images/icon_configuration_folder.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-contact {
+	background: url(../../../ps/portal/images/icon_contact.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-content {
+	background: url(../../../ps/portal/images/icon_publicfolder.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-contenttask {
+	background: url(../../../ps/portal/images/icon_admin_task.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-indexupdatetask {
+	background: url(../../../ps/portal/images/icon_index_update.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-dashboard {
+	background: url(../../../ps/portal/images/icon_dashboard.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-datasource {
+	background: url(../../../ps/portal/images/icon_data_source.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-datamovementtask {
+	background: url(../../../ps/portal/images/icon_data_movement.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-datasourceconnection {
+	background: url(../../../ps/portal/images/icon_data_source_connection.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-datasourcesignon {
+	background: url(../../../ps/portal/images/icon_signon.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-directory {
+	background: url(../../../ps/portal/images/icon_built_in_folder.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-dispatcher {
+	background: url(../../../ps/portal/images/icon_dispatcher.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-distributionlist {
+	background: url(../../../ps/portal/images/icon_distribution_list.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-document {
+	background: url(../../../ps/portal/images/icon_document_coc.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-drillpath {
+	background: url(../../../ps/portal/images/icon_drill_through.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-exportdeployment {
+	background: url(../../../ps/portal/images/icon_export.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-folder {
+	background: url(../../../ps/portal/images/icon_folder.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-group {
+	background: url(../../../ps/portal/images/icon_user_group.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-importdeployment {
+	background: url(../../../ps/portal/images/icon_import.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-jobdefinition {
+	background: url(../../../ps/portal/images/icon_job.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-migrationtask {
+	background: url(../../../ps/portal/images/icon_migration.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-model {
+	background: url(../../../ps/portal/images/icon_model.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-memo {
+	background: url(../../../ps/portal/images/icon_email.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-namespace {
+	background: url(../../../ps/portal/images/icon_namespace.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-namespacefolder {
+	background: url(../../../ps/portal/images/icon_folder.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-package {
+	background: url(../../../ps/portal/images/icon_package.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-pagelet {
+	background: url(../../../ps/portal/images/icon_page.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-pagedefinition {
+	background: url(../../../ps/portal/images/icon_paper_size.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-planningmacrotask {
+	background: url(../../../ps/portal/images/icon_planning_macro.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-planningtask {
+	background: url(../../../ps/portal/images/icon_planning_task.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-portal {
+	background: url(../../../ps/portal/images/icon_portal.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-portalpackage {
+	background: url(../../../ps/portal/images/icon_portalPackage.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-portalskin {
+	background: url(../../../ps/portal/images/icon_style_portal.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-portalskinfolder {
+	background: url(../../../ps/portal/images/icon_folder.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-portletfolder {
+	background: url(../../../ps/portal/images/icon_folder.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-portletproducer {
+	background: url(../../../ps/portal/images/icon_portlet_group.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-portlet {
+	background: url(../../../ps/portal/images/icon_portlet.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-pfr {
+	background: url(../../../ps/portal/images/icon_myfolder.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-powerplaycube {
+	background: url(../../../ps/portal/images/icon_pp_report.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-powerplayreport {
+	background: url(../../../ps/portal/images/icon_pp_report.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-powerplay8report {
+	background: url(../../../ps/portal/images/icon_pp8_report.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-powerplay8reportview {
+	background: url(../../../ps/portal/images/icon_pp8_report_sub.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-printer {
+	background: url(../../../ps/portal/images/icon_printer.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-query {
+	background: url(../../../ps/portal/images/icon_qs_query.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-report {
+	background: url(../../../ps/portal/images/icon_rs_report.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-reportview {
+	background: url(../../../ps/portal/images/icon_report_sub.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-role {
+	background: url(../../../ps/portal/images/icon_user_role.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-root {
+	background: url(../../../ps/portal/images/icon_built_in_folder.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-reportdataserviceagentdefinition {
+	background: url(../../../ps/portal/images/icon_subscription.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-securedfeature {
+	background: url(../../../ps/portal/images/icon_secured_feature.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-securedfunction {
+	background: url(../../../ps/portal/images/icon_secured_function.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-shortcut {
+	background: url(../../../ps/portal/images/icon_ref.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-shortcutrsstask {
+	background: url(../../../ps/portal/images/icon_newsitem.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-shortcutagentrsstask {
+	background: url(../../../ps/portal/images/icon_newsitem.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-storedproceduretask {
+	background: url(../../../ps/portal/images/icon_SQL_writeback.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-subscriptionfolder {
+	background: url(../../../ps/portal/images/icon_folder.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-webservicetask {
+	background: url(../../../ps/portal/images/icon_web_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-url {
+	background: url(../../../ps/portal/images/icon_url.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-metricsfileimporttask {
+	background: url(../../../ps/portal/images/icon_metrics_import_from_file.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-metricsdatasourceetltask {
+	background: url(../../../ps/portal/images/icon_metrics_import_from_data_source.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-metricsexporttask {
+	background: url(../../../ps/portal/images/icon_metrics_export_to_file.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-metricsmaintenancetask {
+	background: url(../../../ps/portal/images/icon_metrics_maintenance.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-reporttemplate {
+	background: url(../../../ps/portal/images/icon_report_template.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-uiprofile {
+	background: url(../../../ps/portal/images/icon_user_interface_profiles.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-agentservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-batchreportservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-contentmanagerservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-datamovementservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-deliveryservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-eventmanagementservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-indexdataservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-indexsearchservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-indexupdateservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-jobservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-logservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-metricsmanagerservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-migrationservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-metadataservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-mobileservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-dataintegrationservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-monitorservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-planningadministrationconsoleservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-planningdataservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-planningruntimeservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-planningtaskservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-presentationservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-reportdataservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-reportservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-powerplayservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-systemservice {
+	background: url(../../../ps/portal/images/icon_service.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-scorecard {
+	background: url(../../../alp/images/icon_scorecard.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-metric {
+	background: url(../../../alp/images/icon_metrics_16.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-metrictype {
+	background: url(../../../alp/images/icon_metrictype.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-comment {
+	background: url(../../../alp/images/icon_comment.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-group {
+	background: url(../../../alp/images/icon_groups.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-grouptype {
+	background: url(../../../alp/images/icon_grouptype.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-model {
+	background: url(../../../ps/portal/images/metadatatree/package.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-namespace {
+	background: url(../../../ps/portal/images/metadatatree/namespace.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-hierarchy {
+	background: url(../../../ps/portal/images/metadatatree/hierarchy.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-filter {
+	background: url(../../../ps/portal/images/metadatatree/filter.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-dimension {
+	background: url(../../../ps/portal/images/metadatatree/dimension.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-level {
+	background: url(../../../ps/portal/images/metadatatree/level.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-querysubject {
+	background: url(../../../ps/portal/images/metadatatree/query_subject.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-queryitem {
+	background: url(../../../ps/portal/images/metadatatree/metadata_attribute.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-memberproperty {
+	background: url(../../../ps/portal/images/metadatatree/metadata_attribute.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-queryitemfact {
+	background: url(../../../ps/portal/images/metadatatree/query_item_fact.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-queryitemdimension {
+	background: url(../../../ps/portal/images/metadatatree/query_item_dimension.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-measuredimension {
+	background: url(../../../ps/portal/images/metadatatree/measure_dimension.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-measure {
+	background: url(../../../ps/portal/images/metadatatree/metadata_measure.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-list {
+	background: url(../../../icd/feeds/images/icon_list.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-crosstab {
+	background: url(../../../icd/feeds/images/icon_crosstab.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-bubblechart {
+	background: url(../../../icd/feeds/images/icon_bubblechart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-combinationchart {
+	background: url(../../../icd/feeds/images/icon_combinationchart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-gaugechart {
+	background: url(../../../icd/feeds/images/icon_gaugechart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-mapchart {
+	background: url(../../../icd/feeds/images/icon_mapchart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-metricschart {
+	background: url(../../../icd/feeds/images/icon_metricschart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-threedcombinationchart {
+	background: url(../../../icd/feeds/images/icon_threedcombinationchart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-threedscatterchart {
+	background: url(../../../icd/feeds/images/icon_threedscatterchart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-paretochart {
+	background: url(../../../icd/feeds/images/icon_paretochart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-piechart {
+	background: url(../../../icd/feeds/images/icon_piechart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-polarchart {
+	background: url(../../../icd/feeds/images/icon_polarchart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-progressivechart {
+	background: url(../../../icd/feeds/images/icon_progressivechart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-radarchart {
+	background: url(../../../icd/feeds/images/icon_radarchart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-scatterchart {
+	background: url(../../../icd/feeds/images/icon_scatterchart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-winlosschart {
+	background: url(../../../icd/feeds/images/icon_winlosschart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-user {
+	background: url(../../../ps/portal/images/icon_user.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-date {
+	background: url(../../../pat/images/date.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-barchart {
+	background: url(../../../pat/images/barChart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-linechart {
+	background: url(../../../pat/images/lineChart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-areachart {
+	background: url(../../../pat/images/area.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-marimekkochart {
+	background: url(../../../ccs/images/marimekkoChart_icon.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-bulletchart {
+	background: url(../../../pat/images/v2_bulletChart.gif) no-repeat;
+}
+
+.bux-search-refinement-item-icon-interactivereport {
+	background: url(../../../icd/feeds/images/icon_interactive_report.gif) no-repeat;
+}

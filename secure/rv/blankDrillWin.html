@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<!--
+  Licensed Materials - Property of IBM
+  IBM Cognos Products: Viewer
+  (C) Copyright IBM Corp. 2001, 2015
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<html lang="en">
+<head>
+	<title>Blank;</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="Copyright" content="(C) Copyright IBM Corporation and its licensors 2001, 2015.">
+	<meta name="Trademark" content="IBM, the IBM logo, and Cognos are trademarks of IBM Corp., registered in many jurisdictions worldwide.">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+	<link id="rvReportCSS" href="../skins/corporate/qs/RVReport.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript">
+	//<!--
+		var sSkin = "../skins/corporate";
+		var sCVId = "";
+		/* figure out the skin folder */
+		var sLocation = document.location.search;
+
+		if (sLocation.match(/\bcv\.id=([^&?]*)/))
+		{
+			sCVId = RegExp.$1;
+		}
+
+		function resubmit()
+		{
+			if (window.history.length > 1) {
+				window.close();
+			}
+			else
+			{
+				var BUSY_LINE_1 = document.getElementById("BUSY_LINE_1");
+				while (BUSY_LINE_1.hasChildNodes())
+				{
+					BUSY_LINE_1.removeChild(BUSY_LINE_1.firstChild);
+				}
+
+				try
+				{
+					var oCognosViewerObject = window.opener["oCV" + sCVId];
+					BUSY_LINE_1.appendChild(document.createTextNode(oCognosViewerObject.getString("RV_PLEASE_WAIT")));
+				}
+				catch(e)
+				{
+				}
+
+				var drillform = self.opener.document.getElementById("drillForm");
+
+				if(drillform)
+				{
+					drillform.submit();
+				}
+				else
+				{
+					var gotoForm = self.opener.document.getElementById("gotoPage");
+					if(gotoForm)
+					{
+						gotoForm.submit();
+					}
+				}
+
+			}
+
+			//Focus on the window, to have the window pop to the foreground in IE8+
+			window.focus();
+
+		}
+	//-->
+	</script>
+</head>
+<body style="background-color: #FFFFFF;" onload="resubmit();">
+	<table cellspacing="0" cellpadding="0" width="100%" height="100%" align="left" onload="resubmit();">
+		<tr valign="top">
+			<td>
+				<span id="BUSY_LINE_1" class="busyUpdatingStr"></span>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

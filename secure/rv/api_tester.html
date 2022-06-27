@@ -1,0 +1,480 @@
+<!-- DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"-->
+<html>
+<head>
+	<title>API Testing page for Viewer</title>
+	
+<style>
+body
+{
+	font-family: "Verdana", "Courier New", "Arial";
+	font-size: 1em;
+}
+
+div {
+	vertical-align: top;
+}
+
+.api_button {
+ background: #F2F2F2;
+ text-align: center;
+}
+
+.left_section {
+ position: absolute;
+ width: 360px;
+ height: 100%;
+ background: #cccccc; 
+ border-right: 2px solid #424242;
+ display: inline;
+ padding-left: 3px;
+}
+
+label {
+ font-weight: bold;
+}
+
+
+.CVContainer {
+ position: absolute;
+ left: 370px;
+ width: 65%;
+ height: 90%;
+}
+
+textarea {
+ width: 350px;
+ height: 300px;
+ overflow: auto;
+}
+
+select {
+ width: 200px;
+}
+
+label {
+ width: 120px;
+}
+
+.CV_iframe {
+ width: 95%;
+ height: 95%;
+}
+
+.result {
+ background: #F2F5A9;
+ font-weight: bold;	
+}
+
+
+.api_call {
+ font-size: 0.8em;
+}
+
+</style>
+
+<script>
+
+var gViewerURL = "";
+
+function log(msg) {
+	if (typeof console != "undefined" && console && console.log) {
+		console.log(msg);
+	}
+}
+
+function getMainForm() {
+	return document.getElementById("mainForm");
+}
+
+function getIFrame() {
+	return document.getElementById("viewerIFrame");
+}
+
+function getDocumentOfIFrame() {
+	return getIFrame().contentWindow.document;
+}
+
+function getReportDiv() {
+	var doc = getDocumentOfIFrame();
+	return doc.getElementById("CVReport_NS_");
+}
+
+function getOutputSection() {
+	return document.getElementById("output_section");;
+}
+
+function getViewerObject() {
+	var iframeWindow = getIFrame().contentWindow;
+	return iframeWindow["oCV_NS_"];
+}
+
+function showFindParams() {
+	var keywordParam = 'getViewerObject().executeAction(\n' +
+		' "Find",\n' +
+		' {\n' +
+		'  "keyword": "Camping Equipment",\n' + 
+		'  "caseSensitive": false,\n' +
+		'  "wrapAroundSearch": true\n' +
+		' }\n' + 
+		');';
+	
+	var mainForm = getMainForm();
+	mainForm.actionParams.value = keywordParam;
+}
+
+function showConfigParams() {
+	var keywordParam = 'window.getViewerConfiguration = function()\n{\n' +
+		'  var configObj = {\n' +
+		'    "findAction" : \n' +
+		'    {\n' +
+		'      "noMatchFoundCallback": function() { alert("Invoked noMatchFoundCallback callback!!");},\n' +
+		'      "findActionCompleteCallback": function() { alert("Invoked findActionCompleteCallback callback!!");},\n' +
+		'      "matchBackgroundColor": "#74DF00",\n' +		
+		'      "focusBackgroundColor": "#E45F2A"\n' +		
+		'    },\n' + 
+		'    "httpRequestCallbacks" : \n' +
+		'    {\n' +
+		'      "reportStatus" : \n' +
+		'      {\n' +
+		'         "complete": function() { alert("complete callback!!");},\n' +
+		'         "working": function() { alert("working callback!!");},\n' +
+		'         "prompting": function() { alert("prompting callback!!");}\n' +
+		'      },\n' +
+		'      "UI" : \n' +
+		'      {\n' +
+		'         "requestIndicator":\n' +
+		'         {\n' +
+		'             "show": function() { log("requestIndicator show called");},\n' +			
+		'             "hide": function() { log("requestIndicator hide called");}\n' +
+		'         },\n' +
+		'         "workingDialog":\n' +
+		'         {\n' +
+		'             "show": function() { log("workingDialog show called");},\n' +			
+		'             "hide": function() { log("workingDialog hide called");}\n' +
+		'         }\n' +
+		'      }\n' +
+		'    },\n' +		
+		'    "UI" : \n' +
+		'    {\n' +
+		'      "showBanner": false,\n' +
+		'      "showToolbar": false,\n' +		
+		'      "showContextMenu": false,\n' +		
+		'      "showPageNavigation": false,\n' +		
+		'      "primarySelectionColor": "#F47835",\n' +		
+		'      "secondarySelectionColor": "#6EFF70",\n' +		
+		'      "showSecondarySelection": true\n' +		
+		'    },\n' +
+	    '    "events" : \n' + 
+	    '    {\n' +
+	    '       "showContextMenuOnClick" : false\n' +
+	    '    }\n' +		
+		'  };\n\n' +
+		'  return configObj;\n' +
+		'};';
+	
+	var mainForm = getMainForm();
+	mainForm.actionParams.value = keywordParam;
+}
+
+function showSortParams() {
+	var keywordParam = 'getViewerObject().executeAction(\n' +
+		'  "Sort",\n' +
+		'  {\n' +
+		'    "order": "descending",\n' +
+		'    "type": "value"\n' + 
+		'  }\n' + 
+		');';
+		
+	mainForm.actionParams.value = keywordParam;
+}
+
+function showGotoPageParams() {
+	var keywordParam = 'var result = getViewerObject().executeAction(\n' +
+		'  "GotoPage",\n' +
+		'  {\n' +
+		'    "pageNumber": "2"\n' +
+		'  }\n' + 
+		');\n\n' + 
+		'if (result) {\n' +
+		'  alert(result.getStatus());\n' +
+		'  alert(result.getCode());\n' +
+		'  alert(result.getMessage());\n' +
+		'}';		
+		
+	mainForm.actionParams.value = keywordParam;
+}
+
+function showGotoPageWithAnchorParams() {
+	var keywordParam = 'var result = getViewerObject().executeAction(\n' +
+		'  "GotoPage",\n' +
+		'  {\n' +
+		'    "pageNumber": "5",\n' +
+		'    "anchorName": "Personal-Accessories"\n' +
+		'  }\n' + 
+		');\n\n' + 
+		'if (result) {\n' +
+		'  alert(result.getStatus());\n' +
+		'  alert(result.getCode());\n' +
+		'  alert(result.getMessage());\n' +
+		'}';		
+		
+	mainForm.actionParams.value = keywordParam;
+}
+
+function showGetPageInfoParams() {
+	var keywordParam = 'var pageInfo = getViewerObject().getPageInfo();\n' +
+	'alert("currentPage = " + pageInfo.currentPage);\n' +
+	'alert("pageCount = " + pageInfo.pageCount);\n';
+		
+		
+	mainForm.actionParams.value = keywordParam;
+}
+
+function showFindNextParams() {
+	var forwardParam = 'getViewerObject().executeAction(\n' +
+		'  "FindNext"\n' +
+		');';
+
+	mainForm.actionParams.value = forwardParam;
+}
+
+function showPrintParms() {
+	var forwardParam = 'var result = getViewerObject().executeAction(\n' +
+		'  "Print",\n' +
+		'  {\n' +
+		'    "pageNumber": "1",\n' +
+		'    "pageCount": "2"\n' +
+		'  }\n' +
+		');\n\n' +
+		'if (result) {\n' +
+		'  alert(result.getStatus());\n' +
+		'  alert(result.getCode());\n' +
+		'  alert(result.getMessage());\n' +
+		'}';		
+
+	mainForm.actionParams.value = forwardParam;
+}
+
+function showGetDrillState() {
+	var forwardParam = 'var result = getViewerObject().getDrillState();\n' + 
+		'prompt("drill state", result);';
+
+	mainForm.actionParams.value = forwardParam;
+}
+
+function showRunWithDrillState() {
+	mainForm.actionParams.value = "doRunWithDrillState();";
+}
+
+function doRunWithDrillState() {
+	var url = prompt("URL to report", gViewerURL);
+	var stateData = prompt("Drill state", "");
+	
+	if (url) {
+		gViewerURL = url;
+		postToIframe(gViewerURL + "&" + encodeURIComponent("generic.XMLEncodedXML.http://developer.cognos.com/ceba/constants/runOptionEnum#drill") + "=" + encodeURIComponent(stateData))
+	}
+}
+
+
+function showDownloadReportParams() {
+	var forwardParam = 'getViewerObject().executeAction(\n' +
+		'  "DownloadReport",\n' +
+		'  {\n' +
+		'    "format" : "PDF"\n' +
+		'  }\n' +
+		');\n\n' +
+		'/**\nPossible formats:\n' +
+		'  PDF\n' +
+		'  XLWA\n' +
+		'  spreadsheetML\n' +
+		'  XML\n' +
+		'*/';
+
+	mainForm.actionParams.value = forwardParam;
+}
+
+function callbackOnNotFound () {
+	alert("Invoked customer NotFound callback function!!");
+}
+
+function callbackOnRepeat () {
+	alert("Invoked customer OnRepeat callback function!!");
+}
+
+function executeAction() {
+	var output = getOutputSection();
+	output.innerHTML = '';
+		
+	var mainForm = getMainForm();
+	var params = mainForm['actionParams'].value;
+	
+		
+	var cleaningRegEx = new RegExp("\n", "g");
+	var cleanString = params.replace(cleaningRegEx, "");
+	
+	var returnCode = eval(cleanString);
+	
+	/*
+	if (typeof returnCode != 'undefined' && !isNaN(returnCode)) {
+		output.innerHTML = 'return code = ' + returnCode;
+	}
+	*/
+}
+
+function changeIFrameURL() {
+	var selectURL = document.getElementById("iFrameURL");
+	var url = selectURL.options[selectURL.selectedIndex].value;	
+	if (url) {
+		gViewerURL = url;
+		document.getElementById("viewerIFrame").src = url;
+	}
+}
+
+function postToIframe(url) {
+	var form = document.getElementById("postToIFrame");
+	
+	form.target = "viewerIFrame";
+	
+	// remove all the children from the form
+	while (form.hasChildNodes()) {
+		form.removeChild(form.firstChild);
+	}
+	
+	var urlParts = url.split("?");
+	form.action = urlParts[0];
+	
+	var formFields = urlParts[1].split("&");
+	for(var i=0; i < formFields.length; i++) {
+		var formField = formFields[i].split("=");
+		form.appendChild(createHiddenFormField(decodeURIComponent(formField[0]), decodeURIComponent(formField[1])));
+	}
+	
+	form.submit();
+}
+
+function createHiddenFormField(name, value)
+{
+	var formField = document.createElement("input");
+	formField.setAttribute("type", "hidden");
+	formField.setAttribute("name", name);
+	formField.setAttribute("id", name);
+	formField.setAttribute("value", value);
+	return(formField);
+}
+
+function changeIFrameURLwithAny(url) {
+	var inputURL = document.getElementById("iFrameURLText");
+	url = url ? url : inputURL.value;
+	
+	if (url) {
+		document.getElementById("viewerIFrame").src = url;
+	}
+}
+
+function switchAction() {
+	var selectAction = document.getElementById("actions");
+	var action = selectAction.options[selectAction.selectedIndex].value;	
+
+	switch(action) {
+		case "config":
+			showConfigParams();
+			break;
+		case "find":
+			showFindParams();
+			break;
+		case "findNext":
+			showFindNextParams();
+			break;
+		case "gotoPage":
+			showGotoPageParams();
+			break;			
+		case "gotoPageWithAnchor":
+			showGotoPageWithAnchorParams();
+			break;			
+		case "sort":
+			showSortParams();
+			break;
+		case "getPageInfo":
+			showGetPageInfoParams();
+			break;
+		case "downloadReport":
+			showDownloadReportParams();
+			break;	
+		case "print":
+			showPrintParms();
+			break;			
+		case "getDrilLState":
+			showGetDrillState();
+			break;
+		case "runWithDrillState":
+			showRunWithDrillState();
+			break;
+	}	
+}
+</script>
+<script language="javascript" type="text/javascript">
+	window.onload=function () {
+		showConfigParams();
+	};
+</script>
+
+</head>
+<body>
+
+<div id="portal_page" class="left_section">
+	<div id="control_section" class="portal_page">
+		<form id="mainForm">
+			<p>
+				<label>Environment:</label>
+				<br/> select 
+				<select onchange="changeIFrameURL()" id="iFrameURL">
+					<option value="about:blank" selected="true">Blank</option>
+				</select>
+				or, 
+				<br/>
+				 enter 
+				<input type=text size='35' id="iFrameURLText" value='http://'>
+				<button type="button" onclick="changeIFrameURLwithAny()">go</button>
+			</p>
+			 <p>
+				<label>Actions:</label>
+				<select onchange="switchAction()" id="actions">
+					<option value="config" selected="true">Set config function</option>
+					<option value="downloadReport">Download Report</option>
+					<option value="find">Find</option>
+					<option value="findNext">Find Next</option>
+					<option value="getPageInfo">Get Page Info</option>
+					<option value="getDrilLState">Get Drill State</option>
+					<option value="runWithDrillState">Run With Drill State</option>
+					<option value="gotoPage">Goto Page</option>
+					<option value="gotoPageWithAnchor">Goto Page with Anchor</option>
+					<option value="print">Print</option>
+					<option value="sort">Sort</option>
+				</select>				
+			 </p>
+		
+					
+			<p><label>Action parameters:</label><br/>
+				<textarea  wrap="off" id="actionParams"></textarea>
+			</p>
+			<p class="api_call"><div style="margin-right: 15px" align="right"><button class="api_button" type="button" value="go" onclick="executeAction()">Execute</button></div></p>
+		</form>
+	</div>
+	
+	<form name="postToIFrame" id="postToIFrame" method="post">
+	</form>
+	
+	<div id="output_section" class="result portal_page">
+
+	</div>
+ </div>
+
+
+<div id="CVContainer" class="CVContainer">
+	<iframe id="viewerIFrame" name="viewerIFrame" src="about:blank" class="CV_iframe">
+	  Loading sample report...
+	
+	</iframe>
+</div>
+</body>

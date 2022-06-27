@@ -1,0 +1,4037 @@
+/*
+Licensed Materials - Property of IBM
+
+IBM Cognos Products: pps
+
+(C) Copyright IBM Corp. 2005, 2010
+
+US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+/***********************************/
+/*  PP STUDIO - CORPORATE SKIN     */
+/***********************************/
+/* 
+ * Please consult your documentation for PowerPlay Web Administrator for more information...
+ */
+
+/* default text font families for all text displayed */
+HTML 
+{
+	font-family: Tahoma, Arial, Helvetica, sans-serif, 'MS Gothic', 'MS Mincho', 'MS Song', SimSun, NSimSun, MingLiu, PMingLiu, Gulim, GulimChe, Miriam, 'Andale WT';
+	word-break: keep-all;
+}
+
+/*
+
+Using the language specific font list below can help to workaround the following rendering issues on Browsers:
+
+1. The Japanese Yen and Korean Won sign appears as the "backslash" when they are represented by the code point "U+005C".
+
+2. Browser fails to supply a reasonable fall-back font support based on the font list in the "generic fonts" section.
+
+Also, these font lists will be useful for rendering some of the Unified Han ideographs to the form and shape which is
+
+typographically preferred by different Asian writing scripts.
+
+*/
+
+/* For Japanese:
+
+HTML 
+{
+	font-family: 'MS UI Gothic', Tahoma, Arial, Helvetica, sans-serif, 'MS Gothic', 'MS Mincho', 'MS Song', SimSun, NSimSun, MingLiu, PMingLiu, Gulim, GulimChe, Miriam,'Andale WT J';
+	word-break: keep-all;
+}
+
+*/
+
+/* For Simplified Chinese:
+
+HTML 
+{
+	font-family: SimSun, Tahoma, Arial, Helvetica, sans-serif, 'MS Gothic', 'MS Mincho', 'MS Song', SimSun, NSimSun, MingLiu, PMingLiu, Gulim, GulimChe, Miriam, 'Andale WT';
+	word-break: keep-all;
+}
+
+*/
+
+/* For Traditional Chinese:
+
+HTML 
+{
+	font-family: PMingLiU, Tahoma, Arial, Helvetica, sans-serif, 'MS Gothic', 'MS Mincho', 'MS Song', SimSun, NSimSun, MingLiu, PMingLiu, Gulim, GulimChe, Miriam, 'Andale WT';
+	word-break: keep-all;
+}
+
+*/
+
+/* For Korean:
+
+HTML 
+{
+	font-family: Gulim, Tahoma, Arial, Helvetica, sans-serif, 'MS Gothic', 'MS Mincho', 'MS Song', SimSun, NSimSun, MingLiu, PMingLiu, Gulim, GulimChe, Miriam, 'Andale WT K';
+	word-break: keep-all;
+}
+
+*/
+
+
+
+body
+{ 	
+	border: 0;
+	overflow: hidden;
+	background: #ffffff;
+}
+
+/* vertical division to the left of the crosstab */
+#testDivMain-tab0 
+{
+	overflow: hidden;
+	height: 100%;
+	color: black;
+	padding: 0px;
+	z-index: 0;
+}
+
+.dimTreeBorderContainer
+{
+	height: 100%;
+	float: left;
+}
+
+.dimTreeBorder
+{
+	width: 3px;
+	height: 100%;
+	border: 1px solid #DADADA; 
+	background-color: #E3E9F3;
+	margin: 0px;
+	padding: 0px;
+}
+
+.dimTreeBorderImg
+{
+	width: 3px;
+}
+
+/* area behind and just underneath the dimension bar */
+#testDivBar-tab0 
+{
+	width: 100%; 
+	border: 0px; 
+}
+
+/* placeholder for the dimension bar */
+#floatDivBar-tab0 
+{
+	position: absolute;
+	top: 0; 
+	left:0; 
+	width: 165px; 
+	border: 0px; 
+	display: block;
+	padding: 0px; 
+	margin: 5px;
+	z-index: 10; 
+	visibility: visible;
+}
+
+/* area behind the dimension bar (behind testDivBar-tab0 as well) */
+#innerNiceMain-tab0 
+{
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	background: white;
+	color: black;
+	padding: 0px;
+}
+
+/* frame containing the crosstab */	
+#innerNice1-tab0 
+{
+	overflow: auto;
+	width: 100%;
+	border: none;
+	background: white;
+	color: black;
+	padding: 0px;
+}
+
+
+/*********************************************/
+/*  Find Dialog                              */
+/*********************************************/
+
+/* Find results background */
+.findRow 
+{
+	height:15px;
+	font-size: 9pt;
+	background: #FFFFFF;
+}
+
+.findDialogContent
+{
+    padding: 0px;
+	margin: 0px;
+}
+
+/* Selected Find result Background */
+.findRowSelected 
+{
+	height:15px;
+	font-size: 9pt;
+	background-color: #E3E9F3;
+}
+
+/* Find results border */
+.findTable 
+{
+	border: 1px solid #CCCCCC;
+}
+
+/* Find results Header */
+.findHeaderRow 
+{
+	font-size: 9pt;
+	background-color: #98ABCF;
+}
+
+.findLabel
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+	vertical-align: top;
+}
+
+/* Find result descriptions */
+DIV.FindResult 
+{
+	background-color: #FFFFFF;
+	width: 97%;
+}
+
+/* results label above results */
+TD.FindText 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+/* Previous and Next Links */
+.FindResultsLink 
+{
+	font-size: 8pt;
+	color: #0000FF;
+	text-decoration: none;
+}
+
+.FindResultsLinkOver
+{
+	font-size: 8pt;
+	color: #0000FF;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.FindResultsLinkDisabled
+{
+	font-size: 8pt;
+	color: #999999;
+	text-decoration: none;
+}
+
+/* Find Results */
+A.FindResultCategory 
+{
+	font-size: 9pt;
+	text-decoration: none;
+	vertical-align: top;
+	color: #000000;
+}
+
+/* Error Messages */ 
+TD.FindError 
+{
+	font-size:	 10pt;
+	font-weight: bold;
+	color:	 black;
+}
+
+/* find pane */
+.FindPaneContent 
+{
+	color: #336699;
+	width: 100%;
+	height: 167px;
+}
+
+/* find dialog left pane */
+.FindPaneLeft 
+{
+	width: 50%;
+	border-right: 1px solid #99AACC;
+}
+
+/* find dialog left pane table */
+.FindPaneLeftTable 
+{
+	top: 10%; 
+	left: 2%;
+}
+
+/* find restriction selection box */
+.FindRestriction 
+{
+	width: 120px;
+}
+
+/* find pattern selection box */
+.FindPattern 
+{
+	width: 150px;
+}
+
+/* find target selection box */
+.FindTarget 
+{
+	width: 120px;
+}
+
+/* find dialog right pane */
+.FindPaneRight 
+{
+	visibility: hidden;
+}
+
+/* find dialog bottom pane */
+.FindPaneBottom 
+{
+	border-top: 1px solid #99AACC;
+	background-color: #E3E9F3;
+	width: 100%;
+}
+
+/* find dim/dimenesion selection box container */ 
+.FindControl 
+{
+	display: none;
+	position: absolute;
+}
+
+/* find dim/dimenesion selection box */ 
+.FindDimAxis 
+{
+	width: 150px;
+}
+
+/*********************************************/
+/* Custom Subsets Dialog                     */
+/*********************************************/
+
+.CustomSubsetsPaneContent
+{
+	width: 100%;
+	border-collapse: collapse;
+	height: 287px;
+	vertical-align: top;
+}
+
+.CustomSubsetsFinalPaneContent
+{
+	width: 100%;
+	border-collapse: collapse;
+	height: 155px;
+	vertical-align: top;	
+}
+
+.CustomSubsetsTabsTable
+{
+	width: 100%;
+	margin-top: 2px;
+	border-collapse: collapse;
+}
+
+.CustomSubsetsTabBegin
+{
+	border-bottom: 1px solid #99AACC;
+	border-right: 1px solid #99AACC;
+}
+
+.CustomSubsetsTabSpace
+{
+	width: 1px;
+}
+
+.CustomSubsetsActiveTab
+{
+	font-size:	 10pt;
+	font-weight: bold;
+	color:	 black;
+	border-left: 2px solid #99AACC;
+	border-top: 2px solid #99AACC;
+	border-right: 2px solid #99AACC;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.CustomSubsetsInactiveTab
+{
+	font-size:	 10pt;
+	color:	 #000099;
+	text-decoration: underline;
+	border: 1px solid #99AACC;
+	padding-left: 5px;
+	padding-right: 5px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.CustomSubsetsNoTab
+{
+	width: 100%;
+	border-bottom: 1px solid #99AACC;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.CustomSubsetsPaneLeft
+{
+	width: 50%;
+	border-right: 1px solid #99AACC;
+	padding-left: 7px;
+	padding-right: 7px;
+	vertical-align: top;
+} 
+
+.CustomSubsetsPanePartPicklist
+{
+	width: 0%;
+	padding-left: 7px;
+	padding-right: 7px;
+	vertical-align: top;
+}
+
+.CustomSubsetsPaneLeftTable
+{
+	width: 100%;
+}
+
+.CustomSubsetsPaneFieldLabel
+{
+	font-size:	 8pt;
+	font-weight: bold;
+	color: #336699;
+	white-space: nowrap;
+}
+
+.CustomSubsetsPaneCountResults
+{
+	font-size:	 8pt;
+	font-weight: bold;
+	color: #336699;
+	white-space: nowrap;
+	width: 100%;
+	text-align: left;
+}
+
+.CustomSubsetsPaneSectionLabel
+{
+	font-size:	 8pt;
+	font-weight: bold;
+	color: #336699;
+	padding-bottom: 7px;
+}
+
+.CustomSubsetsPaneFieldCellHalfWidth
+{
+	width:50%;
+}
+
+.CustomSubsetsPaneFieldCellFullWidth
+{
+	width:100%;
+}
+
+.CustomSubsetsPaneValueField
+{
+	width: 150px;
+}
+
+.CustomSubsetsPaneWideValueField
+{
+	width: 300px;
+}
+
+.CustomSubsetsInitialPaneLevelsDiv
+{
+	background: white;
+	overflow: auto;
+	height: 115px;
+	width: 350px;
+	border: 2px inset;
+}
+
+.CustomSubsetsPaneLink
+{
+	font-size: 8pt;
+	color:#0000FF;
+	text-decoration: none;
+	cursor: pointer;
+	cursor: hand;
+	padding-bottom: 10px;
+}
+
+.CustomSubsetsPaneLinkRollover
+{
+	font-size: 8pt;
+	color:#0000FF;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+	padding-bottom: 10px;
+}
+
+.CustomSubsetsPaneLinkDisabled
+{
+	font-size:	 8pt;
+	color:	 #999999;
+	text-decoration: none;
+	cursor: pointer;
+	cursor: hand;
+	padding-bottom: 10px;
+}
+
+.CustomSubsetsPaneLinkSmall
+{
+	font-size:	 8pt;
+	color:	 #0000FF;
+	text-decoration: none;
+	cursor: pointer;
+	cursor: hand;
+	white-space: nowrap;
+}
+
+.CustomSubsetsPaneLinkSmallRollover
+{
+	font-size:	 8pt;
+	color:	 #0000FF;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+	white-space: nowrap;
+}
+
+.CustomSubsetsAlignTopCell
+{
+	vertical-align: top;
+}
+
+.CustomSubsetsInitialPaneLevelItem
+{
+	display: block;
+	font-size:	 9pt;
+}
+
+.CustomSubsetsPaneNameDefItem
+{
+	display: block;
+	font-size: 9pt;
+	cursor: default;
+	padding-left: 5px;
+}
+
+.CustomSubsetsPaneNameDefItemSel
+{
+	display: block;
+	font-size: 9pt;
+	color: white;
+	background-color: #000066;
+	cursor: default;
+	padding-left: 5px;
+}
+
+.CustomSubsetsPaneRight
+{
+	width: 50%;
+	padding-left: 7px;
+	padding-right: 7px;
+	vertical-align: top;
+}
+
+.CustomSubsetsPaneLeftNoSep
+{
+	width: 50%;
+	padding-left: 7px;
+	padding-right: 7px;
+	vertical-align: top;
+}
+
+.CustomSubsetsPaneMost
+{
+	width: 85%;
+	padding-left: 7px;
+	padding-right: 7px;
+	vertical-align: top;
+}
+
+.CustomSubsetsPaneABit
+{
+	width: 15%;
+	padding-top: 28px;
+	padding-left: 7px;
+	padding-right: 7px;
+	vertical-align: top;	
+}
+
+.CustomSubsetsPaneResultsButton
+{
+	width: 80px;
+}
+
+.CustomsubsetsPaneMiddle
+{
+	width: 10%;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.CustomSubsetsPaneRightTable
+{
+	width: 100%;
+}
+
+.CustomSubsetsPaneRightTableHidden
+{
+	display: none;
+}
+
+.CustomSubsetsPicklistResultsDiv
+{
+	background: white;
+	overflow: auto;
+	height: 180px;
+	width: 350px;
+	border: 2px inset;
+}
+
+.CustomSubsetsInitialPaneAction
+{
+	font-size:	 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+.CustomSubsetsPaneMultiSel
+{
+	width:100%;
+	height: 200px;
+}
+
+.CustomSubsetsPanePicklistMultiSel
+{
+	width:100%;
+	height: 120px;
+}
+
+.CustomSubsetMultiSelCell
+{
+	width: 300px;
+}
+
+.CustomSubsetsPaneSelectClearCell
+{
+	text-align: left;
+}
+
+.CustomsubsetsPaneBottom
+{
+	width: 100%;
+	border-top: 1px solid #99AACC;
+}
+
+.CustomSubsetsPaneMDValueField
+{
+	width: 150px;
+}
+
+.CustomSubsetsPaneDimbarTable
+{
+	width: 100%;
+	font-size: 70%;
+}
+
+.CustomSubsetsPaneSelectItem
+{
+	color: #999999;
+}
+
+.CustomSubsetsPaneTreeDiv
+{
+	background: white;
+	overflow: auto;
+	height: 180px;
+	width: 350px;
+	border: 2px inset;
+}
+
+.CustomSubsetsPaneMeasureTreeDiv
+{
+	background: white;
+	overflow: auto;
+	height: 100px;
+	width: 350px;
+	border: 2px inset;
+}
+
+.CustomSubsetsNamePaneTreeDiv
+{
+	background: white;
+	overflow: auto;
+	height: 80px;
+	width: 350px;
+	border: 2px inset;
+}
+
+.CustomSubsetsMeasurePaneTreeDiv
+{
+	background: white;
+	overflow: auto;
+	height: 105px;
+	width: 350px;
+	border: 2px inset;
+}
+
+.customSubsetsScopeTypeSelect
+{
+	width: 350px;
+}
+
+.CustomSubsetsLevelSelectTableHidden
+{
+	display: none;
+}
+
+.CustomSubsetsPickListResultsItem
+{   
+	display: block;
+	white-space: nowrap;
+	font-size: 70%;
+}
+
+.CustomSubsetsPickListResultsItemSelected
+{
+	display: block;
+	white-space: nowrap;
+	font-size: 70%;
+	background-color: #E3E9F3;
+}
+
+.CustomSubsetsPickListResultsItemText
+{
+	margin: 0px 0px 0px 3px;
+	padding: 0px 3px 0px 3px;
+	cursor: default;
+	text-decoration: none;
+	color: #000000;
+}
+
+.customSubsetsPickListResultsItemTextSelected
+{
+	margin: 0px 0px 0px 3px;
+	padding: 0px 3px 0px 3px;
+	cursor: default;
+	text-decoration: none;
+	color: #000000;
+}
+
+.customSubsetsPickListResultsItemTextStrikeout
+{
+	margin: 0px 0px 0px 3px;
+	padding: 0px 3px 0px 3px;
+	cursor: default;
+	color: gray;
+	text-decoration: line-through;
+}
+
+.CustomSubsetsPickListResultsIcon
+{
+	border: 0px;
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+}
+
+.CustomSubsetsPickListResultsIcon
+{
+	border: 0px;
+	margin-left: 2px;
+	vertical-align: middle;
+}
+
+.customSubsetPicklistCellRight
+{
+	text-align: right;
+}
+
+.customSubsetsHoverDiv
+{
+	padding: 2px;
+	font-size: 10pt;
+	position: absolute;
+	z-index: 10;
+	background-color: white;
+	border: 1px solid black;
+	color: black;
+	cursor: default;
+}
+
+.customSubsetsHoverDivMouseOver
+{
+	padding: 2px;
+	font-size: 10pt;
+	position: absolute;
+	z-index: 10;
+	background-color: #E3E9F3;
+	border: 1px solid black;
+	color: white;
+	cursor: default;
+}
+
+.customSubsetsMessageDiv
+{
+	display: inline;
+	font-size: 10pt;
+	font-weight: bold;
+	padding-left: 5px;
+}
+
+.customSubsetsMessageIcon
+{
+	width: 25px;
+	height: 25px;
+	margin-left: 5px;
+	margin-right: 5px;
+	vertical-align: middle;
+}
+
+.CustomSubsetsPaneMesuresRangeInput
+{
+	width: 100px;
+}
+
+.customSubsetsArrowButton
+{
+	border: 1px solid #CCCCCC;
+	background-color: #F8F8F8;
+	cursor: hand;
+	cursor: pointer;
+}
+
+.customSubsetsArrowButtonPressed
+{
+	border : 1px solid #000000;
+	background-color: #E3E9F3;
+	cursor: hand;
+	cursor: pointer;
+}
+
+.customSubsetsArrowButtonRollover
+{
+	border : 1px solid #000000;
+	background-color: #BEC8DC;
+	cursor: hand;
+	cursor: pointer;
+}
+
+.customSubsetsInitPaneTypeHeader
+{
+	padding-top: 10px;
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+.CustomSubsetsResultCountFrame
+{
+	border: 0px;
+	height: 0px;
+	width:  0px;
+	position: absolute;
+	visibility: hidden;
+	display: block;
+}
+
+.scopeTreeOptionsDropDown
+{
+	position: absolute;
+	width: 350px;
+	overflow: visible;
+	background-color: white;
+	border: 1px solid black;
+}
+
+.scopeTreeOptionsOption
+{
+	white-space: nowrap;
+	cursor: default;
+	font-size: 10pt;
+	padding-left: 3px;
+	width: 350px;
+	overflow: visible;	
+}
+
+.scopeTreeOptionsOptionMouseOver
+{
+	white-space: nowrap;
+	background-color: #E3E9F3;
+	color: white;
+	cursor: default;
+	font-size: 10pt;
+	padding-left: 2px;
+	width: 350px;
+	overflow: visible;
+}
+
+/*********************************************/
+/* Hide/Show Dialog                          */
+/*********************************************/
+	
+/* links to select items in the lists */
+.selectlink
+{
+	color: #0000FF;
+	font-size: 8pt;
+	text-decoration: none;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.selectlinkRollover
+{
+	color: #0000FF;
+	font-size: 8pt;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+}
+
+/* hide/show dialog labels */
+.HideShowLabel 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+/* hide/show selection boxes */
+.HideShowMultiSel 
+{
+	width:	300px;
+}
+
+/* hide/show dialog bottom pane */
+.HideShowPaneBottom 
+{
+	width: 100%;
+	background-color: #E3E9F3;
+}
+
+.HideShowBottom
+{
+    border-top: 1px solid #99AACC;
+	padding: 0px;
+	margin: 0px;
+}
+
+
+/*********************************************/
+/* Calculation Dialog                        */
+/*********************************************/
+
+/* Left border of right hand pane */
+.resultsCell 
+{ 
+}
+	
+/* Disabled control text */
+TD.CalculationTextDisabled
+{
+	height:15px;
+	font-size: 8pt;
+	font-weight: bold;
+	color: #999999;
+}
+
+/* Text */
+TD.CalculationText
+{
+	height:15px;
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+	padding-top: 3px;
+	white-space: nowrap;
+}
+
+.CalculationPaneSelect
+{
+	width: 170px;
+}
+
+.refCalculationText
+{
+	font-size: 10pt;
+	color: black;
+	padding-left: 10px;
+}
+
+.calculationDeleteContent
+{
+	height: 164px;
+}
+
+.calculationAddorEditContent
+{
+	height: 164px;
+}
+
+.calculationRenameContent
+{
+	height: 118px;
+}
+
+/* calculation pane */
+.CalculationContent 
+{
+	background-color: #F2F1F1;
+	width: 100%;
+}
+
+.calcDialogContent
+{
+    padding: 0px;
+	margin: 0px;
+}
+
+/* calculation pane */
+.OKCancelRowContent
+{
+	height: 164px;
+}
+
+/* calculation left pane */
+TD.CalculationPaneLeft 
+{
+	text-align: left;
+	vertical-align: top;
+	color: black;
+	width: 50%;
+	border-right: 1px solid #99AACC;
+}
+
+/* calculation bottom pane */
+.CalculationPaneBottom 
+{
+	width: 100%;
+	background-color: #E3E9F3;
+}
+
+.CalculationBottom
+{
+    border-top: 1px solid #99AACC;
+	padding: 0px;
+	margin: 0px;
+}
+
+/* Calculation choose type pane */
+.CalculationAddOrEdit 
+{
+
+}
+
+/* Calculation left pane bottom */
+.CalculationAddOrEditBottom 
+{
+	width: 100%;
+}
+
+/* Calculation Name entry field */
+.CalculationRename 
+{
+
+}
+
+/* Calculation left pane bottom */
+.CalculationRenameBottom 
+{
+	width: 100%;
+	border-top: 1px solid #99AACC;
+}
+
+/* Calculation add style right hand pane */
+.CalculationAddMulti 
+{
+
+}
+
+/* Calculation roll up multiselect */
+.CalculationAddRollupMultiSelect 
+{
+	width: 300px;
+}
+
+/* Calculation subtract style right hand pane */
+.CalculationSubDivPctExpo 
+{
+
+}
+
+/* Calculation percent of base style right hand pane */
+.CalculationPctBasePctCumAccum 
+{
+
+}
+
+/* Calculation forcast style right hand pane */
+.CalculationForecast 
+{
+
+}
+
+/* Calculation roll up style right hand pane */
+.CalculationRollup 
+{
+
+}
+
+.ForecastMethodExplanation
+{
+	font-size: 9pt;
+	color: #336699;
+}
+
+/*********************************************/
+/* PDF Options Dialog                        */
+/*********************************************/
+
+/* Text */	
+.pdfOptionsLabel 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+/* Text labels for Radio Buttons */
+.pdfOptionsValue
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+/* PDF options dialog */
+.PdfOptionsContent 
+{
+	width: 100%;
+}
+
+/* PDF options page format selection box */
+.PdfOptionsPageFormats 
+{
+	width: 160px;
+}
+
+/* PDF options pane Bottom */
+.PdfOptionsPaneBottom 
+{
+	border-top: 1px solid #99AACC;
+	width: 100%;
+}
+
+/*********************************************/
+/* Display Options Dialog                    */
+/*********************************************/
+
+/* Text */
+.displayOptionsLabel 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+/* values in drop down boxes */
+.displayOptionsValue
+{
+	font-size: 9pt;
+	font-weight: normal;
+}
+
+/* right pane */	
+.displayOptionsRight 
+{
+	border-left: 1px solid #99AACC;
+}
+
+/* display options bottom pane */
+.DisplayOptBottom
+{
+	width: 100%;
+	border-top: 1px solid #99AACC;
+	background-color: #E3E9F3;
+}
+
+/* display options invalid min/max error message */
+.DisplayOptionsError
+{
+	font-size: 9pt;
+	font-weight: bold;
+	visibility: hidden;
+	position: absolute;
+}
+
+
+/*********************************************/
+/* Edit Title Dialog                         */
+/*********************************************/
+
+/* Label Text */
+.editTitleOptionsLabel 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+/* Text */
+.editTitleOptionsText 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+/* Links to the right of the custom exceptions list */
+.editTitleLinks 
+{
+	font-size: 8pt;
+	color: #0000FF;
+	font-weight: normal;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.editTitleLinksRollover 
+{
+	font-size: 8pt;
+	color: #0000FF;
+	font-weight: normal;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.editTitleContentTable
+{
+	padding-left: 8px;
+}
+
+.editTitleContentTableBottom
+{
+	padding-left: 8px;
+	border-top: 1px solid #99AACC;
+}
+
+/*********************************************/
+/* Rank Dialog                               */
+/*********************************************/
+
+.rankTextCell
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+	padding-top: 3px;
+}
+
+.RankPaneLeft
+{
+	text-align: left;
+	vertical-align: top;
+	color: black;
+	width: 50%;
+	border-right: 1px solid #99AACC;
+}
+
+.RankPaneRight
+{
+	width: 50%;
+	padding-left: 10px;
+}
+
+.RankContent
+{
+	width: 100%;
+}
+
+.rankDialogContent
+{
+    padding: 0px;
+	margin: 0px;
+}
+
+.rankDialogLeftPaneTable
+{
+	width: 100%;
+}
+
+.RankHalfWidthCell
+{
+	width: 50%;
+}
+
+.RankBottom
+{
+	border-top: 1px solid #99AACC;
+	background-color: #E3E9F3;
+	padding: 0px;
+}
+
+.RankPaneSelect
+{
+	width: 150px;
+}
+
+.RankPaneOrdinalInputField
+{
+	width: 100px;
+}
+
+.RankEdit
+{
+
+}
+
+/*********************************************/
+/* Crosstab                                  */
+/*********************************************/
+
+/* row label */
+.rowlabel 
+{
+	height: 100%; 
+	vertical-align: top;
+	color: #000000;
+	text-align: left;
+}
+
+/* label cell */
+.rowlabelTable	
+{
+	cursor: auto; 
+	font-size: 100%; 
+	font-weight: bold;
+	height: 100%;
+	color: #000000;
+	background-color: #C1D6EA;
+}
+
+.financialRowLabelTable
+{
+	cursor: auto; 
+	font-size: 100%; 
+	font-weight: bold;
+	height: 100%;
+	color: #000000;
+	background-color: #FFFFFF;
+}
+
+/* Column label cell */
+.colLabelTable 
+{
+	cursor: auto; 
+	font-size: 100%; 
+	font-weight: bold;
+	color: #000000;
+	height: 100%;
+	width: 100%;
+	background-color: #C0D6EC;
+}
+
+.financialColLabelTable
+{
+	cursor: auto; 
+	font-size: 100%; 
+	font-weight: bold;
+	color: #000000;
+	height: 100%;
+	width: 100%;
+	background-color: #FFFFFF;
+}
+
+/* summary label type 1 */
+.summarylabelone 
+{
+    cursor: auto; 
+	font-size: 100%; 
+	border: none;
+	background: #DFDFDF; 
+	height: 100%;
+	font-weight: bold;
+	text-decoration:none;
+	color: black;
+}
+
+/* summary label type 2 */
+.summarylabeltwo 
+{
+    cursor: auto; 
+	font-size: 100%; 
+	border: none;
+	background-color: #F2F1F1; 
+	height: 100%;
+	font-weight: bold;
+	text-decoration:none;
+	color: black;
+}
+
+/* 80/20 label */
+.eightytwentylabel 
+{ 
+	font-size: 100%; 
+	height: 100%;
+	font-style: italic; 
+	font-weight: bold;
+	color: black;
+}
+
+/* calculation label */
+.calculationlabel 
+{
+	font-size: 100%; 
+	height: 100%;
+	font-style: italic;
+	font-weight: bold;
+}
+
+/* row label cell - inner table row */
+.rowlabelTableRow	
+{
+	height: 100%;
+	width: 100%;
+	vertical-align: top;
+	color: inherit;
+}
+
+/* row label cell - inner table cell */
+.rowlabelTableCell	
+{
+	height: 100%;
+	width: 100%;
+	text-align: left;
+	vertical-align: top;
+	color: inherit;
+}
+
+.labelSpacer {
+}
+
+/* row nest markers */
+.rowNest 
+{
+	width: 6px;
+	height: 100%;
+	cursor: default;
+}
+
+.rowNestCell
+{
+    width: 6px;
+}
+
+.rowNestIMG 
+{
+	width: 6px;
+	height: 1px;
+	border: 0px;
+	visibility: hidden;
+	cursor: default;
+}
+
+/* row nesting Zone */
+.rowNestZoneImg 
+{
+	width: 12px;
+	height: 1px;
+	border: 0px;
+	visibility: hidden;
+}
+
+.nestSpot
+{
+    width: 6px;
+	height: 100%;
+}
+
+/* column label */
+.colLabel 
+{
+	vertical-align: top;
+	text-align: center;
+	height: 100%; 
+	padding: 0px;
+}
+
+/* column nest markers */
+.colNest 
+{
+	width: 100%;
+	height: 6px;
+	overflow: hidden;
+	cursor: default;
+}
+
+.colNestImg
+{
+    height: 6px;
+	width: 1px;
+	cursor: default;
+}
+
+/* column nesting zone */
+
+.colNestZoneImg
+{
+	height: 6px;
+	width: 1px;
+	visibility: hidden;
+}
+
+/* nested column labels */
+.colLabelNested 
+{
+	vertical-align: top;
+	text-align: left;
+	height: 100%;
+	padding: 0px;
+}
+
+/* nesting area */
+.nestArea 
+{
+	width: 100%;
+	overflow: hidden;
+}
+
+.summaryText
+{
+    color: black;
+}
+
+/* summary cell type 1 */
+.summarycellone 
+{
+	background-color: #DFDFDF !important; 
+	font-weight: bold;
+	color: black;
+}
+
+/* summary cell type 2 */
+.summarycelltwo 
+{
+	background-color: #F2F1F1 !important; 
+	font-weight: bold;
+	color: black;
+}
+
+.suppressOptionsLabel
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+.suppressOptBottom
+{
+	width: 100%;
+	border-top: 1px solid #99AACC;	
+	background-color: #E3E9F3;
+}
+
+/* 80/20 image */
+.eightytwentyimage 
+{
+	height: 15px;
+	width: 15px;
+	border: 0px;
+}
+
+/* 80/20 cell */
+.eightytwentycell 
+{ 
+	font-style: italic;
+}
+
+/* calculation cell */
+.calculationcell 
+{
+	font-style: italic;
+}
+
+.rankcell
+{
+	font-style: italic;
+	text-align: center !important;
+}
+
+/* low value exception */
+.lowexceptioncell 
+{ 
+	font-weight: bold; 
+	color: red;
+	text-align:	right;
+	padding: 2px;
+	white-space: nowrap;
+	background-color: white;
+}
+
+/* high value exception cell */
+.highexceptioncell 
+{ 
+	font-weight: bold; 
+	color: green;
+	text-align:	right;
+	padding: 2px;
+	white-space: nowrap;
+	background-color: white;
+}
+
+/* measure cell */ 
+.measurecell 
+{
+	font-weight: bold; 
+	text-align: center; 
+	vertical-align: middle; 
+	color:#000000;
+	padding: 6px;
+	background-color: white;
+}
+
+/* indented crosstab */
+.financialTable 
+{
+	font-size: 70%;
+	border: none; 
+	background: white;
+}
+
+/* level selector */
+.levelSelector	
+{
+	text-align: center;
+	vertical-align: middle;
+	background-color: white;
+}
+
+/* level selector in the indented crosstab */
+.financialLevelSelector	
+{ 
+	background: silver;
+	text-align: center;
+	vertical-align: middle;
+}
+
+/* level rollover image */
+.levelHoverImage 
+{
+	visibility: hidden;
+	border: 0px;
+	padding: 0px;
+} 
+
+/* level rollover */
+.levelover
+{
+	background:  	#99CCFF;
+}
+
+/* Crosstab row/col header selected */
+.header-selected
+{
+	background: #336699 !important;
+	color: #FFFFFF !important;
+}
+
+.header-mouse-over
+{
+	background-color: #BEC8DC !important;
+	color: #0000CC !important;
+}
+
+.header-highlighted
+{
+	background: #BEC8DC;
+	color: white;
+}
+
+/* crosstab level selected */
+.level-selected
+{
+	background: #FFFFCC;
+}
+
+.chart-legend-cell-selected
+{
+	border-left: none;
+	padding-left: 5px;
+}
+
+.chart-legend-last-cell-selected
+{
+	border-left: none;
+	text-align: right;
+	padding-left: 5px;
+}
+
+/* level selection area when level is selected */
+.level-area-selected
+{
+	background: #336699;
+}
+
+/* levels when category dragged over it */
+.level-drag-over
+{
+	background: #000000;
+	color: #999999;
+}
+
+/* drop area to nest levels when dragging over */
+.nest-area
+{
+	background: #000000;
+}
+
+/* measures cell when category dragged over it */
+.measure-drag-over
+{
+	background: #000000;
+	color: #999999;
+}
+
+/* selected cell */ 
+.cell-selected
+{
+	background: #FFFFCC !important;
+}
+
+/* cell */
+.cell
+{
+	text-align:	right;
+	padding: 2px;
+	white-space: nowrap;
+	background-color: white;
+}
+
+/*cells sharing row or column of selected cells*/
+.cell-intersection-selected
+{
+	background-color : #FFCC00 !important;
+}
+
+/* links */
+.link
+{
+	color: inherit;
+	font-weight: normal;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.getDataLaterLabel
+{
+	color: #000099;
+	font-weight: bold;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+}
+
+/* clickable areas */
+.clickArea
+{
+    cursor: pointer;
+	cursor: hand;
+}
+
+/* sorting icon */
+.sortIcon 
+{
+	border: 0px;
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+/* sort icon (hidden) */
+.hiddenSortIcon 
+{
+	border: 0px;
+	width: 15px;
+	height: 15px; 
+	visibility: hidden;
+}
+
+/* crosstab sort icon area */
+.sortArea 
+{
+	text-align: center;
+	vertical-align: top;
+}
+
+
+/* labels on columns */
+.columnLabelArea 
+{
+	padding-left: 4px;
+	padding-right: 4px;
+	height: 100%;
+}
+
+/* labels on rows */
+.rowLabelArea 
+{
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 2px;
+}
+
+/* Crosstab outer table */
+.XtabDisplay 
+{
+	font-size: 70%;
+	margin: 10px;
+	margin-left: 3px;
+	background-color: #A2C4E0;
+}
+
+/* crosstab status line */
+.StatusLine 
+{
+	margin: 10px;
+	border: none;
+	font-size: 70%;
+	white-space: nowrap;
+}
+
+/*********************************************/
+/* Charts                                    */
+/*********************************************/
+
+/* Nested chart row nesting area */
+.chartrowNest 
+{
+	width: 8px; 
+	height: 100%;
+	overflow: hidden;
+	text-align: right;
+}
+
+/* chart legend */
+.legend	
+{
+	font-size: 100%;
+	border-collapse: collapse;
+}
+
+/* legend summary cell */
+.legendSummary 
+{
+	font-weight: bold;
+	color: #000000;
+}
+
+/* legend summary table cells */
+.legendSummary td
+{
+}
+
+.legendCell
+{
+	color: #000099;
+	border-left: none;
+	padding-left: 5px;
+}
+
+.legendimage
+{
+	padding: 2px;
+}
+
+/* chart containing table */
+.simplechart 
+{
+	border: none;
+	margin-left: 10px;
+	font-size: 70%;
+
+}
+
+/* data description cell above charts */ 
+.simplechartcell 
+{
+	border: 1px solid #A2C4E0; 
+	background-color: #C1D6EA;
+}
+
+/* column labels for nested charts */
+.chartColumnLabel 
+{
+	vertical-align: bottom;
+	text-align: center;
+	height: 100%;
+}
+
+/* summary labels on nested charts */
+.chartSummaryLabel 
+{
+	font-weight: bold;
+	color: black;
+	vertical-align: top;
+}
+
+/* summary label below single charts */
+.chartSummaryLabelTextDiv 
+{
+	padding: 2px;
+	width: 100%;
+	font-size: 70%;
+}
+
+/* Legends on nested Charts */
+.nestedlegendContainer 
+{
+	font-size: 100%;
+	background-color: #FFFFFF;
+	vertical-align: top;
+}
+
+/* Legends on nested Charts */
+.nestedlegend 
+{
+	font-size: 100%;
+}
+
+/* Pie chart legend labels */
+.legendLabel 
+{
+	vertical-align: top;
+	text-align: center;
+}
+
+/* 80/20 suppressed legend labels */
+.eightytwentyLegendLabel
+{
+	color: black;
+	vertical-align: top;
+	text-align: center;
+	font-style: italic;
+	font-weight: bold;
+}
+
+/*Chart legend values */
+.legendValue 
+{
+	text-align: right;
+}
+
+/* row labels for nested charts */
+.chartrowlabel 
+{
+	width: 100%; 
+	vertical-align: top;
+	text-align: left;
+}
+/* row labels for the outer level of nested charts */
+.nestedchartrowlabel
+{
+	background-color: #C1D6EA;
+	height: 100%;
+	text-align: left;
+}
+
+/* chart */
+IMG.chartImage 
+{
+    	cursor: pointer;
+	cursor: hand;
+	border: 0px;
+	background-color: white;
+}
+
+.chartImageCell
+{
+	background-color: white;
+}
+
+.chartzoomIcon
+{
+	vertical-align: top;
+    cursor: pointer;
+	cursor: hand;
+}
+
+/* nested charts outer table */
+.ChartDisplay 
+{
+	font-size: 70%;
+	margin: 10px;
+	margin-left: 3px;
+	border: none;
+	background-color: silver;
+}
+
+/*********************************************/
+/* Split view                                */
+/*********************************************/
+
+.comboBoxesTable
+{
+	border: 0px;
+}
+
+.comboBoxesTableTextCell
+{
+	font-size: 70%;
+}
+
+.comboBoxesTablecbCell
+{
+	padding-right: 20px;
+	width: 150px;
+}
+
+/* area containing combo box */
+.ChartDropdownArea 
+{
+	text-align: left;
+	height: 0;
+}
+
+
+/*********************************************/
+/* Alert Dialog                              */
+/*********************************************/
+
+.AlertContentDiv
+{
+	width: 100%;
+}
+
+.alertContentTable
+{
+	height: 164px;
+}
+
+/* Data for Alert */
+TR.AlertData 
+{
+	font-size:	 8pt;
+	font-weight: normal;
+	color: #336699;
+}
+
+/* Alert Text */
+TD.AlertText 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+/* Header for create agent dialog */
+TD.CreateAgentHeader 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;;
+}
+
+/* Alert selected category */
+TD.AlertSelection 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+	background-color:#FFFFCC;
+}
+
+/* Alert selected cell */
+TD.AlertCellSelection 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+	background-color:#FFCC00;
+}
+
+/* Alert text descriptions */
+TD.AlertDescription 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+TD.AlertError
+{
+	font-size:	 8pt;
+	font-weight: bold;
+	color:	 black;   
+}
+
+.AlertBottom
+{
+	width: 100%;
+	border-top: 1px solid #99AACC;
+}
+
+.alertlink
+{
+	font-size: 8pt;
+	font-weight: normal;
+	color: #0000FF;
+}
+
+.alertlinkRollover
+{
+	font-size: 8pt;
+	font-weight: normal;
+	color: #0000FF;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;	
+}
+
+/*********************************************/
+/* Custom Exceptions Dialog                  */
+/*********************************************/
+
+/* Text */
+TD.CustomExceptionDescription 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+/* Labels */
+DIV.CustomExceptionLabel 
+{
+	font-size: 9pt;
+	font-weight: bold;
+	background-color: #FFFFFF;
+}
+
+/* Exception name */
+TD.CustomExceptionName 
+{
+	font-size: 9pt;
+	background-color: #F2F1F1;
+}
+
+/* Text in boxes detailing exception parameters */
+TD.CustomExceptionDetails 
+{
+	font-size: 9pt;
+	background-color: #FFFFFF;
+}
+
+/* Text in boxes showing an example of the exception */
+TD.CustomExceptionDetailsNumber 
+{
+	font-size: 9pt;
+	background-color: #FFFFFF;
+}
+
+/* Links to the right of the custom exceptions list */
+.CustomExceptionLinks 
+{
+	font-size: 8pt;
+	color:#0000FF;
+	text-decoration: none;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.CustomExceptionLinksRollover 
+{
+	font-size: 8pt;
+	color:#0000FF;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+}
+
+/* Custom Exception error messages */
+TD.CustomExceptionError 
+{
+	font-size:	 8pt;
+	font-weight: bold;
+	color:	 red;
+}
+
+/* custome exception pane */
+.CustomExContent 
+{
+	background-color: #F2F1F1;
+	width: 100%;
+}
+
+/* left side of the custom exceptions pane */
+.CustomExPaneLeft 
+{
+	padding-left: 10px;
+	vertical-align: top;
+	width: 40%;
+	border: 0px;
+}
+
+/* custom exceptions selection box */
+.CustomExSelect 
+{
+	width: 100%;
+}
+
+/* right side of the customs exceptions pane */
+.CustomExPaneRight 
+{
+	padding-left: 15px;
+	vertical-align: top;
+	border-left: 1px solid #99AACC;
+}
+
+/* used to define that either the create or define custom exception pane is hidden */
+.ExceptionSwapPane 
+{
+	display: none;
+}
+
+/* exceptions instruction area */
+TD.CustomExceptionInstructions 
+{
+	font-size: 8pt;
+	padding-top: 10px;
+	color: #336699;
+}
+
+/* custom exceptions bottom pane */
+.CustomExPaneBottom 
+{
+
+	width: 100%;
+	border-top: #99AACC 1px solid; 
+	background-color: #E3E9F3;
+}
+
+/* custom exceptions (Maximum/Minimum) popup boxes */
+.CustomExceptionDropText 
+{
+	position: absolute;
+	border: 1px solid #000000;
+	visibility: hidden;
+	font-size: 9pt;
+	font-weight: bold;
+	background-color: #FFFFFF;
+}
+
+/* custom exceptions color select popup box */
+.CustomExceptionDropColor 
+{
+	position:absolute;
+	background-color: #000000;
+	border: 1px none #000000;
+	visibility:hidden;
+}
+
+/*********************************************/
+/* menu bar                                  */
+/*********************************************/
+
+/* floating toolbar */
+.webfx-float-menu-bar 
+{
+	background: #FFFFFF;
+	padding: 2px;
+	font-size: 70%;
+	width: 100%;
+	height: 22px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #99AACC;
+	position: absolute;
+	z-index: 10;
+}
+
+
+/*********************************************/
+/* context menu                              */
+/*********************************************/
+
+/* context menu (Iframe, not visible) */
+.PP-ContextMenu
+{
+	border: 0px;
+	height: 0px;
+	width:  0px;
+	position: absolute;
+	visibility: hidden;
+	display: block;
+	z-index:60000000;
+}
+
+/* context menu */
+.PP-ContextMenu-Body 
+{
+	background-color: #FFFFFF;
+	margin: 0px;
+	padding: 1px;
+	border: 1px solid #99AACC;
+	font-size: 8pt;
+}
+
+.PP-ContextMenu-Body-horizontal
+{
+	background-color: #FFFFFF;
+	padding: 1px;
+	border: 1px solid #99AACC;
+}
+
+/* context menu item */					
+.PP-ContextMenu-Item 
+{
+	cursor:	default;
+	font-size: 8pt;
+	padding: 2px 10px 2px 6px;
+	border:	1px solid white;
+	white-space: nowrap;
+}
+
+.ContextMenu-ImageItem
+{
+	border: 1px solid #FFFFFF;
+}
+
+.ContextMenu-ImageItemRollover
+{
+	border: #cccccc 1px solid; 
+	background-color: #BEC8DC;
+}
+
+/* context menu item (Roll over) */
+.PP-ContextMenu-Over 
+{
+	cursor:	default;
+	background-color: #E3E9F3;
+	font-size: 8pt;
+	padding: 2px 10px 2px 6px;
+	color: black;
+	border:	1px solid #99AACC;
+	white-space: nowrap;
+}
+
+/* context menu disabled item */
+.PP-ContextMenu-Disabled-item 
+{
+	cursor:	default;
+	font-size: 8pt;
+	padding: 2px 10px 2px 6px;
+	color: gray;
+	border: 1px solid white;
+	white-space: nowrap;
+}
+
+/* context menu disabled item (rollover) */
+.PP-ContextMenu-Disabled-Over 
+{
+	cursor:	default;
+	background-color: #E3E9F3;
+	padding: 2px 10px 2px 6px;
+	color: gray;
+	font-size: 8pt;
+	border:	1px solid #99AACC;
+	white-space: nowrap;
+}
+	
+/* context menu separator */				
+.PP-ContextMenu-Separator
+{
+	font-size: 0pt;
+	border: 1px inset;
+	height: 2px;
+	overflow: hidden;
+	margin:	3px 1px 3px 1px;
+}
+
+.PP-ContextMenu-Disabled-Over .PP-ContextMenu-DisabledContainer
+{
+	display: block;
+	vertical-align:	middle;
+}
+
+.PP-ContextMenu-Disabled .PP-ContextMenu-DisabledContainer
+ {
+	display: block;
+	vertical-align:	middle;
+}
+
+.PP-ContextMenu-Disabled .PP-ContextMenu-DisabledContainer .PP-ContextMenu-DisabledContainer
+{
+}
+
+.PP-ContextMenu-Disabled-Over .PP-ContextMenu-DisabledContainer .PP-ContextMenu-DisabledContainer
+{
+}
+
+.ContextMenu-Image
+{
+	vertical-align: middle;
+}
+/* alternate drill path */
+.alternatePath 
+{
+	font-style: italic;
+}
+
+/*Banner flyouts*/
+
+.BannerflyOutMenu 
+{
+	background-color: #FFFFFF;
+	margin: 0px;
+	padding: 2px;
+	border: 1px solid #99AACC;
+	font-size: 8pt;
+}
+
+.BannerflyOutMenuSeparator 
+{
+	border-bottom: #99AACC 1px solid;
+	width:100%;
+	margin-bottom:3px;
+	margin-top:1px;
+	font-size:0px;
+	height:1px;
+}
+.BannermenuItemOver 
+{ 
+	text-decoration:underline;
+	cursor:pointer;
+	color: #0000CC;
+	font-size: 8pt;
+	background-color: #e3e9f3;
+	height: 20px;
+	vertical-align: middle;
+}
+.BannermenuItemNormal 
+{ 
+	text-decoration:underline;
+	cursor:pointer;
+	color: #0000CC;
+	font-size: 8pt;
+	background-color: #ffffff;
+	height: 20px;
+	vertical-align: middle;
+}
+.BannermenuItemIcon 
+{
+	margin-right: 8px; 
+	margin-left: 6px; 
+	vertical-align: middle;
+}
+
+.BannermenuItemSpacer
+{
+	height: 20px;
+	width: 5px;
+	vertical-align: middle;	
+}
+
+/**********************************************/
+/* Action Pane                                */
+/**********************************************/
+
+/* action Pane */
+.ActionPane 
+{
+	background-color: #F2F1F1;
+	color:	#000000;
+	overflow: auto;
+	height: 100%;
+}
+
+/* action pane header */
+.ActionPaneHeader
+{
+	background-color: #336699;
+	border: 1px solid #000000;
+	width: 100%;
+	padding: 3px;
+}
+
+.ActionPaneHeaderWithTabs
+{
+	background-color: #336699;
+	border: 1px solid #000000;
+	width: 100%;
+	padding: 3px;	
+}
+
+/* action pane header text */
+.ActionPaneHeaderText
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: white;
+	padding-left: 5px;
+}
+
+/* action pane error */
+.paneError
+{
+
+}
+
+
+/***********************************************/
+/* Window                                      */
+/***********************************************/
+
+/* window banner */
+.Banner
+{
+	background-color: #000099;
+}
+
+/* window banner content */
+.BannerContent
+{
+	color: white;
+	width: 100%;
+	border: 0px;
+}
+
+/* banner text */
+.banner-title
+{
+	font-size: 8pt; 
+	font-weight: bold; 
+	color: #FFFFFF;
+	white-space: nowrap;
+}
+
+/* banner report title */
+.banner-report-title
+{
+	font-size: 10pt; 
+	font-weight: bold; 
+	color: #FFFFFF;
+	text-align: center;
+	width : 100%;
+}
+
+/* Iframe for preloading data */
+.resultFrame 
+{
+	visibility: hidden;
+	height: 0px;
+	width: 0px;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+}
+
+/* title area */
+.titleArea
+{
+	background: #FFFFFF;
+	color:	black;
+	width: 100%;
+	font-size: 70%;
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-top: 2px;
+	overflow:hidden;
+}
+
+/* button to hide x tree */
+.HideTree 
+{
+	cursor: pointer;
+	cursor: hand;
+	visibility: hidden;
+	width: 8px;
+}
+
+#fhidden
+{
+    position: absolute;
+}
+
+/***********************************************/
+/* Drag and Drop Toolbar                       */
+/***********************************************/
+.dragNDropBar
+{
+    height: 29px;
+	width: 100%;
+	background: #CCCCE3;
+}
+
+.dragNDropTable
+{
+    border: 2px solid white;
+	height: 100%;
+	width: 100%;
+	padding: 0px;
+}
+
+.dragNDropViewCell
+{
+    border: 2px solid #CCCCCC;
+	width: 100%;
+	height: 25px;
+	background: white;
+	padding: 1px;
+	vertical-align: middle;
+	font-size: 8pt;
+	color: black;
+	white-space: nowrap;
+	cursor: default;
+}
+
+/***********************************************/
+/* Toolbar                                     */
+/***********************************************/
+.toolbar-body
+{
+	background-color: #EFEFEF;
+	border-top: 1px solid #CCCCCC;
+}
+
+.toolbarButtonNormal
+{
+	border: 1px solid #EFEFEF;
+}
+
+.toolbarButtonRollOver
+{
+	border: 1px solid #336699;
+	background-color: #e3e9f3;
+}
+
+.toolbarButtonPressed
+{
+	border : 1px solid #336699;
+	background-color: #E3E9F3;
+}
+
+.toolbarButtonRollOverPressed
+{
+	border : 1px solid #336699;
+	background-color: #BEC8DC;
+}
+
+.toolbarButtonDisabled
+{
+	border: 1px solid #EFEFEF;
+}
+
+.xtabdragcursor
+{
+	position: absolute;
+	border: none;
+	z-index: 100;
+	visibility: hidden;
+}
+
+.xtabNestBetweenHeadersDiv
+{
+	position: absolute;
+	background: #000000;
+	z-index: 10;
+	visibility: hidden;
+}
+
+
+/**********************************************/
+/* PowerPlay Report Viewer Modify Report Page */
+/**********************************************/
+.promptModifyTitle
+{ 
+	height: 28px;
+	width: 100%;
+	font-size: 13pt;
+	color: #FF9933;
+	font-weight: bold;
+}
+
+.promptModifyDescption
+{ 
+	text-align: left;
+	width: 100%;
+	font-size: 10pt;
+}
+
+.promptDimBar
+{
+	background: #CCCCCC;
+}
+
+.promptSectionTitle
+{ 
+	text-align: left;
+	vertical-align: top;
+	background: #CCCCFF;
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+.promptSectionText
+{ 
+	text-align: left;
+	vertical-align: middle;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+.promptSectionOption
+{ 
+	font-size: 9pt;
+	font-weight: normal;
+}
+
+.promptTopBanner
+{
+	background: #000099;
+	text-align: left;
+	vertical-align: top;
+}
+
+.promptBottomBanner
+{
+	width: 100%;
+	background: #000099;
+}
+
+.promptPageBody
+{
+	 overflow: auto;
+	 background: #FFFFFF;
+}
+
+
+/***********************************/
+/* Dim Tree Message Pane		   */
+/***********************************/
+
+.dimtreeMessageDiv
+{
+    position: absolute;
+	visibility: hidden;
+	z-index: 10;
+}
+
+.dimtreeMSGHeader
+{
+	background-color: #336699;
+	border: 1px solid #000000;
+	width: 100%;
+	padding: 3px;
+}
+
+.dimtreeMSGHeaderText
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: white;
+	padding-left: 5px; 
+}
+
+.dimtreeMSGBody
+{
+	background-color: #F2F1F1;
+}
+
+.dimTreeMSGtext
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+	height: 60px;
+}
+
+.dimtreemsgBottom
+{
+	width: 100%;
+	border-top: 1px solid #336699;
+}
+
+/***********************************/
+/* Dimbar						   */
+/***********************************/
+
+.dimbar-table
+{
+	width: 100%;
+	padding: 0;
+	font-size: 70%;
+	border-spacing: 0px;
+	border: 2px solid white;
+	border-right: 4px solid white;
+}
+
+.dimbar-button-cell
+{
+	vertical-align: middle;
+	width: 24px;
+	margin: 0px;
+	padding: 0px 1px 0px 1px;
+}
+
+.dimbar-content-cell
+{
+	padding: 0px;
+	margin: 0px;
+	display: auto;
+	height: 24px;
+	overflow: hidden;
+}
+
+.dimbar-content-div
+{
+	height: 25px;
+	overflow: hidden;
+	background-color: #E3E9F3;
+}
+
+.dimbar-content-div-wrap
+{
+	overflow: visible;
+	background-color: #E3E9F3;
+}
+
+.dimbar-button-img
+{
+	border: 1px solid #CCCCCC;	
+	background-color: #FFFFFF;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.dimbar-button-img-rollover
+{	
+	border: 1px solid #336699;
+	background-color: #e3e9f3;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.dimbar-button-img-disabled
+{
+	border: 1px solid #CCCCCC;	
+	background-color: #FFFFFF;
+}
+
+.dimbar-dimension-link-hidden
+{
+	display: none;
+}
+
+.dimbar-dimension-link
+{
+	width: 0px;
+	cursor: pointer;
+	cursor: hand;
+	text-decoration: none;
+	color:#000084;
+}
+
+.dimbar-dimension-link-filtered
+{
+	width: 0px;
+	cursor: pointer;
+	cursor: hand;
+	text-decoration: none;
+	color:#000000;
+}
+
+.dimbar-dimension-span
+{
+	color:#000084;
+	white-space: nowrap;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.dimbar-dimension-span-filtered
+{
+	color:#000000;
+	white-space: nowrap;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-weight: bold;
+}
+
+.dimbar-arrow
+{
+	border:	0;
+	padding: 0px;
+	vertical-align: text-bottom;
+	height: 14px;
+	width: 16px;
+}
+
+.dimbar-item-sibling-img
+{
+	height: 3px;
+	width: 100%;
+	border: 0px;	
+}
+
+.dimbar-item-sibling-cell
+{
+	text-align: center;
+	cursor: default;
+	height: 5px;
+	background-color: #E3E9F3;
+}
+
+.dimbar-item-sibling-cell-rollover-bottom
+{
+	text-align: center;
+	background-color: #bec8dc;
+	cursor: default;
+	height: 5px;
+	background-image: url("../../../ppwb/Icon/dimbarItemDown.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.dimbar-item-sibling-cell-rollover-top
+{
+	text-align: center;
+	background-color: #bec8dc;
+	cursor: default;
+	height: 5px;
+	background-image: url("../../../ppwb/Icon/dimbarItemUp.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.dimbar-item-wrapper
+{
+	width: 0px;
+	height: 0px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+
+.dimbar-item-table
+{
+	display: inline;
+	font-size: 100%;
+}
+
+.dimbar-item-table-hidden
+{
+	display: none;
+}
+
+.dimbar-item-cell
+{
+	border: 1px solid #E3E9F3; 
+	background-color: transparent;
+}
+
+.dimbar-item-cell-rollover
+{
+	border: 1px solid #336699;
+	background-color: #bec8dc;
+}
+
+/*********************************/
+/* dimbar flyouts				 */
+/*********************************/
+
+.dimbar_flyout
+{
+	background: white;
+	border:	1px solid #99AACC;
+	position: absolute;
+	overflow: auto;
+	z-index: 20;
+}
+
+.dimbar_flyout_insert
+{
+	border: 1px solid white;
+	padding: 0px;
+}
+
+.dimbar_flyout_entry
+{
+	display: block;
+	border:	1px solid white;
+	font-size: 8pt;
+	text-decoration: none;
+	color: black;
+	padding: 2px 0px 2px 5px;
+	white-space: nowrap;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.dimbar_flyout_entry_alternate
+{
+	display: block;
+	border:	1px solid white;
+	font-size: 8pt;
+	font-style: italic;
+	text-decoration: none;
+	color: black;
+	padding: 2px 0px 2px 5px;
+	white-space: nowrap;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.dimbar_flyout_entry_rollover
+{
+	display: block;
+	background: #E3E9F3;
+	border: 1px solid #99AACC;
+	font-size: 8pt;
+	text-decoration: none;
+	color: black;
+	padding: 2px 0px 2px 5px;
+	white-space: nowrap;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.dimbar_flyout_arrow
+{
+	float: right;
+	border:	0;
+	width: 3px;
+	margin-right: 3px;
+	border: 0px;
+	padding: 0px;
+	margin-top: 4px;
+}
+
+.dimbar-flyout-separator 
+{
+	height:	1px;
+	background: #808080;
+	overflow: hidden;
+	margin:	2px 0px 2px 0px;
+	font-size: 0px;
+}
+
+/*********************************/
+/* dimension viewer				 */
+/*********************************/
+
+.dimTree
+{
+	overflow: auto;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+}
+
+.dimtree-page
+{
+	padding-top: 5px;
+	padding-left: 5px
+}
+
+.dimtree_item_div
+{   
+	display: block;
+	color: black;
+	white-space: nowrap;
+	font-size: 70%;
+}
+
+.dimtree_item_div_selected
+{
+	display: block;
+	color: black;
+	white-space: nowrap;
+	font-size: 70%;
+	background-color: #E3E9F3;	
+}
+
+.dimtree_item_div_childselect
+{
+	display: block;
+	color: black;
+	white-space: nowrap;
+	font-size: 70%;
+	background-color: #E3E9F3
+}
+
+.dimtree_item_div_notTransparent
+{
+	display: block;
+	color: black;
+	white-space: nowrap;
+	font-size: 70%;
+	background-color: white;
+}
+
+.dimtree_content_div
+{
+	display: block;
+}
+
+.dimtree_content_div_childselect
+{
+	display: block;
+	background-color: #E3E9F3
+}
+
+.dimtree_content_div_hidden
+{
+	display: none;
+}
+
+.dimtree_content_div_notTransparent
+{
+	display: block;
+	background-color: #FFFFFF;
+}
+
+.dimtree_package_item
+{
+	border: 0px;
+	width: 16px;
+	height: 16px;
+	vertical-align: text-bottom;
+}
+
+.dimtree_folder_icon
+{
+	border: 0px;
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+}
+
+.dimtree_icon
+{
+	border: 0px;
+	width: 19px;
+	height: 16px;
+	vertical-align: middle;
+}
+
+.dimtree_text
+{
+	margin: 0px 0px 0px 3px;
+	padding: 0px 3px 0px 3px;
+	cursor: default;
+	text-decoration: none;
+	color: black;
+}
+
+.dimtree_text_disabled
+{
+	margin: 0px 0px 0px 3px;
+	padding: 0px 3px 0px 3px;
+	cursor: default;
+	text-decoration: none;
+	color: gray;
+}
+
+.dimtree_text_selected
+{
+	margin: 0px 0px 0px 3px;
+	padding: 0px 2px 0px 2px;
+	cursor: default;
+	text-decoration: none;
+	color: #FFFFFF !important;
+	background-color: #000000 !important;
+	border: 1px solid #000000 !important;
+}
+
+.dimtree_text_rollover
+{
+	padding: 0px 2px 0px 2px;
+	border: 1px solid #bec8dc;
+	background-color: #bec8dc;
+	color: #000000;
+}
+
+.nav 
+{	
+	padding: 1px;
+	text-align: center;
+	cursor: default;
+}
+
+.pageControlCell
+{
+	background-color: white;
+}
+
+.pageCell
+{
+	background-color: white;
+}
+
+/*********************************/
+/* Common message				 */
+/*********************************/
+
+.commonMessageIframeHidden
+{
+	display: none;
+}
+
+.commonMessageIframeBody
+{
+	background-color: transparent;
+}
+
+.commonMessageIframe
+{
+	display: block;
+	position: absolute;
+	top: 16px;
+	left: 0px;
+	background-color: transparent;
+	z-index:100;
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=70); 
+}
+
+.commonMessageIframeInsert
+{
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index:200;
+	visibility: hidden;
+}
+
+.commonMessageContainer
+{
+	top: 0px;
+	left: 0px;
+	display: block;
+	position: absolute;
+	border: 1px solid #CCCCCC;
+	background-color: white;
+	padding: 10px;
+	z-index:200;
+}
+
+.commonMessageTextCell
+{
+	font-size: 10pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+.commonMessageImgCell
+{
+	vertical-align:top;
+}
+
+.commonMessageButtonDiv
+{
+	padding-top: 10px;
+	text-align: left;
+}
+
+.commonMessageImg
+{
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+.commonMessageButtonSpan
+{
+	border: 1px solid #CCCCCC;
+	font-size: 10pt;
+	color: #000000;
+	width: 70px;	
+	text-align: center;	
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 15px;
+	padding-right: 15px;
+	cursor: default;
+}
+
+.commonMessageButtonSpanRollover
+{
+	border: 1px solid #CCCCCC;
+	font-size: 10pt;
+	color: #000000;
+	width: 70px;	
+	text-align: center;	
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 15px;
+	padding-right: 15px;
+	background-color: #E3E9F3;
+	cursor: default;
+}
+
+.commonMessageBlanket
+{
+	position: absolute;
+	top: 24px;
+	left: 0px;
+	background: transparent;
+	background-image: url("../../../ppwb/Graphics/message_background.gif");
+}
+
+.commonMessageSelectImitator
+{
+	background-color: white;
+	border: 2px inset;
+}
+
+/************************
+	Combo Box
+************************/
+
+.comboBoxContainer
+{
+	width: 100%;
+	height: 20px;
+	border: 2px inset;
+}
+
+.comboBoxText
+{
+	width: 100%;
+	white-space: nowrap;
+	cursor: default;
+	font-size: 10pt;
+	font-weight: normal;
+	padding-left: 3px;
+	overflow: hidden;
+	background-color: white;
+}
+
+.comboBoxDropDown
+{
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	display: block;
+	background-color: white;
+	border: 1px solid black;
+	overflow: auto;
+}
+
+.comboBoxDropDownLimited
+{
+	top: 0px;
+	left: 0px;
+	height: 80px;
+	position: absolute;
+	display: block;
+	background-color: white;
+	border: 1px solid black;
+	overflow: auto;
+}
+
+.comboBoxItem
+{
+	height: 16px;
+	white-space: nowrap;
+	cursor: default;
+	font-size: 10pt;
+	padding-left: 3px;
+}
+
+.comboBoxItemOver
+{
+	height: 16px;
+	white-space: nowrap;
+	background-color: #E3E9F3;
+	color: #000000;
+	cursor: default;
+	font-size: 10pt;
+	padding-left: 3px;
+	overflow: visible;
+}
+
+.comboBoxItemImg
+{
+	border: 0px;
+	vertical-align: top;
+}
+
+/*********************************/
+/* Chart Options				 */
+/*********************************/
+
+.ActionPaneTabs
+{
+
+	background-color: #E3E9F3;
+	width: 100%;
+	color: white;
+	height: 20px;
+	border-left: 1px solid #336699;
+	border-right: 1px solid #336699;
+}
+
+.ActionPaneTabsSpacer
+{
+	background-color: #E3E9F3;
+	height: 10px;
+}
+
+.ActionPanePreTabs
+{
+	border-bottom: 1px solid #336699;
+}
+
+.ActionPanePostTabs
+{
+	width: 100%;
+	border-bottom: 1px solid #336699;
+}
+
+.ActionPaneSelectedTab
+{
+	background-color: #F1F2F1;
+	border-left: 1px solid #336699;
+	border-right: 1px solid #336699;
+	border-top: 1px solid #336699;
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+	white-space: nowrap;
+	padding-left: 10px;
+	padding-right: 10px;
+	cursor: pointer;
+	cursor: hand;
+
+}
+
+.ActionPaneTab
+{
+	background-color: #E3E9F3;
+	border-bottom: 1px solid #336699;
+	font-size: 8pt;
+	text-decoration: underline;
+	color: #0000FF;
+	white-space: nowrap;
+	padding-left: 10px;
+	padding-right: 10px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.ActionPaneSelectedTabBody
+{
+	display: block;
+	width: 100%;
+}
+
+.ActionPaneTabBody
+{
+	display: none;
+}
+
+.ActionPaneTabBodyTableLeft
+{
+	border-right: 1px solid #CCCCCC;
+}
+
+.ActionPaneTabBodyTableRight
+{
+
+}
+
+.ChartOptionsLabel
+{
+	font-size: 8pt;
+	font-weight: bold;
+	white-space: nowrap;
+	color: #336699;
+}
+
+.ChartOptionsLabelImgCell
+{
+	vertical-align: middle;
+	text-align: center;
+}
+
+.ChartOptionsLabelImg
+{
+	width: 100px;
+	height: 100px;
+}
+
+.ActionPaneTabBodyTable
+{
+	padding-left: 10px;
+	height: 220px;
+	width: 100%;
+}
+
+.ActionPaneSmallerTabBodyTable
+{
+	padding-left: 10px;
+	height: 185px;
+	width: 100%;
+}
+
+.ChartOptionsStatItemDiv
+{
+	padding: 5px;
+}
+
+.ChartOptionsStatItemTable
+{
+	padding: 2px;
+}
+
+.ChartOptionsPaletteItemTable
+{
+}
+
+.ChartOptionsPalettePreviewTable
+{
+	border: solid 2px #999999;
+}
+
+.ChartOptionsFontPreview
+{
+	padding: 1px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border: solid 2px #999999;
+}
+
+.xtabOptionsFontPreview
+{
+	padding: 1px;
+	height: 50px;
+	border: solid 1px #000000;
+}
+
+.ChartOptionsPaletteItemTableCell
+{
+	padding: 5px;
+	vertical-align: top;
+	text-align: left;
+}
+
+.ChartOptionsLineTypeSelectDiv
+{
+	width: 125px;
+}
+
+.chartOptionsContentTable
+{
+	height: 245px;
+	width: 100%;
+	overflow: auto;
+}
+
+.pdfOptionsContentTable
+{
+	height: 180px;
+	overflow: auto;
+}
+
+.ColorSelectContainer
+{
+	width: 80px;
+	height: 20px;
+	border: 1px solid black;
+}
+
+.PatternSelectContainer
+{
+	width: 80px;
+	height: 20px;
+	border: 1px solid black;
+}
+
+.colorComponentVisible
+{
+	display: block;
+}
+
+.colorComponentHidden
+{
+	display: none;
+}
+
+.palettePreviewCell
+{
+	width: 30px;
+	height: 20px;
+}
+
+.palettePreviewCellDiv
+{
+	width: 100%;
+	height: 100%;
+	border: 2px solid #EEEEEE;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.palettePreviewCellDivSelected
+{
+	width: 100%;
+	height: 100%;
+	border: 2px solid #000099;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.chartOptionsFontControlCell
+{
+	width: 150px;
+}
+
+.chartOptionsChartLabelControlCell
+{
+	width: 250px;
+}
+
+.chartOptionsFontSizeControlCell
+{
+	width: 40px;
+}
+
+.chartOptionsFontButton
+{
+	border: 1px solid #CCCCCC;
+	background-color: #F8F8F8;
+	padding: 1px;
+}
+
+.chartOptionsFontButtonPressed
+{
+	border : 1px solid #CCCCCC;
+	background-color: #E3E9F3;
+	padding: 1px;
+}
+
+.chartOptionsFontButtonRollover
+{
+	border : 1px solid #000000;
+	background-color: #BEC8DC;
+	padding: 1px;
+}
+
+.chartOptionsFontButtonRolloverPressed
+{
+	border : 1px solid #000000;
+	background-color: #E3E9F3;
+	padding: 1px;
+}
+
+/***************************/
+/* Color Picker            */
+/***************************/
+
+.ColorPickerDiv
+{
+	position: absolute;
+	border: 2px solid #CCCCCC;
+	background-color: #FFFFFF;
+}
+
+.PatternPickerDiv
+{
+	position: absolute;
+	border: 2px solid #CCCCCC;
+	background-color: #FFFFFF;
+	padding: 10px;
+}
+
+.colorPickerButtonArea
+{
+	padding: 10px;
+	text-align: left;	
+}
+
+.colorPickerButton
+{
+	border: 1px solid #CCCCCC;
+	font-size: 10pt;
+	color: #000000;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 15px;
+	padding-right: 15px;
+	cursor: default;
+}
+
+.colorPickerButtonRollover
+{
+	border: 1px solid #CCCCCC;
+	font-size: 10pt;
+	color: #000000;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 15px;
+	padding-right: 15px;
+	background-color: #E3E9F3;
+	cursor: default;
+}
+
+.colorPickerPreview
+{
+	width: 80px;
+	height: 80px;
+	border: 2px solid #CCCCCC;
+}
+
+.colorPickerColorTable
+{
+	border: 1px solid #CCCCCC;
+}
+
+.colorPickerLabel
+{
+	font-size: 9pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+.colorPickerPreviewCell
+{
+	text-align: center;
+}
+
+.colorPickerColorTableContainer
+{
+	text-align: center;
+}
+
+.colorPickerWebSafeColorCell
+{
+	height: 8px;
+	width: 8px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.colorPickerWebSafeColorCellSelected
+{
+	height: 4px;
+	width: 4px;
+	border: 1px solid #000000;
+}
+
+.patternPickerPatternCell
+{
+	width: 30px;
+	height: 20px;
+}
+
+.patternPickerPatternDiv
+{
+	border: 1px solid #CCCCCC;
+	width: 100%;
+	height: 100%;
+}
+
+.patternPickerPatternDivSelected
+{
+	border: 2px solid #CCCCCC;
+	width: 100%;
+	height: 100%;
+}
+
+.sliderControlArea
+{
+}
+
+.sliderControlMarker
+{
+	position: relative;
+	left: 0px;
+}
+
+.dialogButtonTable
+{
+}
+
+.dialogButtonTableCell
+{
+	padding-left: 3px;
+	padding-right: 3px;
+	width:70px;
+	height: 20px !important;
+}
+.dialogButton
+{
+	border: 1px solid #CCCCCC;
+	font-size: 11pt;
+	color: #000000;
+	padding: 2px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #FFFFFF;
+	cursor: pointer;
+	white-space:nowrap;
+	cursor: hand;
+}
+
+.dialogButtonDisabled
+{
+	color: #999999;
+	border: 1px solid #999999;
+	font-size: 11pt;
+	color: #999999;
+	padding: 2px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #FFFFFF;
+	cursor: pointer;
+	white-space:nowrap;
+	cursor: hand;	
+}
+
+.dialogButtonRollover
+{	
+	background-color: #E3E9F3;
+	border: 1px solid #000000;
+	font-size: 11pt;
+	color: #000000;
+	padding: 2px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	white-space:nowrap;
+	cursor: hand;
+}
+
+/*********************************************/
+/* Explain Dialog                            */
+/*********************************************/
+
+/* Data for Explain */
+TR.ExplainData 
+{
+	font-size:	 8pt;
+	font-weight: normal;
+	color: #336699;
+}
+
+/* Explain headers */
+TD.ExplainText 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+/* Explain selected category */
+TD.ExplainSelection 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+	background-color:#FFFFCC;
+}
+
+/* Explain selected cell */
+TD.ExplainCellSelection 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+	background-color:#FFCC00;
+}
+
+/* Explain text descriptions */
+TD.ExplainDescription 
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+/* Explain custom exception descriptions */
+TD.ExplainCustomExceptionData 
+{
+	background-color:#FFFFFF;
+}
+
+.ExplainAdditionalInfo
+{
+	padding-top: 5px;
+	padding-left:15px;
+	font-size: 9pt;
+}
+
+.ExplainBottom
+{
+	width: 100%;
+	border-top: 1px solid #99AACC;
+	background-color: #E3E9F3;
+}
+
+.ExplainItemsArea
+{
+	height: 168px;
+	overflow: auto;
+}
+
+.BookmarkItemsArea
+{
+	height: 168px;
+	overflow: auto;
+}
+
+.bookmarklink
+{
+	font-size: 8pt;
+	font-weight: normal;
+	color: #0000FF;
+	text-decoration: none;
+}
+
+.bookmarklinkrollover
+{
+	font-size: 8pt;
+	font-weight: normal;
+	color: #0000FF;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;	
+}
+
+/**********************************/
+/***    HTML TEMPLATE STYLES    ***/
+/**********************************/
+
+.dialogHeader
+{
+	border: #000000 1px solid;
+	height: 24px;
+	background-color: #336699;
+}
+
+.dialogHeaderTitle 
+{
+	padding-left: 3px; 
+	font-weight: bold; 
+	font-size: 70%; 
+	color: #FFFFFF; 
+	padding-top: 4px;
+}
+
+.dialogHeaderLink
+{
+	padding-right: 10px; 
+	font-size: 70%;
+	color: #FFFFFF;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.dialogHeaderImg
+{
+	padding: 3px;
+}
+
+.dialogText
+{
+	font-size: 70%;
+	color: #336699;	
+}
+.dialogText2
+{
+	font-size: 70%;
+}
+.dialogLabel 
+{
+	font-weight: bold; 
+	font-size: 70%; 
+	color: #336699;
+}
+
+.dialog
+{
+  padding: 3px;
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  visibility: hidden;
+}
+
+.htmlBottom
+{
+	background-color: #E3E9F3;
+	border: 1px solid #99AACC;
+	padding: 3px;
+	width:100%;
+}
+
+/*******************************/
+/**  for about.html skinning  **/
+/*******************************/
+
+.dialogSubHeaderAnchorContainer
+{
+	padding-right: 10px;
+	font-size: 70%; 	
+}
+
+.bold 
+{
+	font-weight: bold;
+}
+
+.formText 
+{
+	font-size: 70%; 
+	color: #000000;
+}
+
+.legalText 
+{
+	font-weight: normal; 
+	font-size: 70%; 
+	color: #999999;
+}
+
+.dialogHeaderText /* Introductory dialog text*/ 
+{
+	font-size: 70%;
+	color: #336699;	
+}

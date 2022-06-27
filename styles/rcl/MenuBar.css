@@ -1,0 +1,124 @@
+/**
+ * This file contains styles used by MenuBar.js
+ *
+ **/
+
+.mgGroupTitleOff {
+	color:#CCCCCC;
+	font-size:11px;
+	font-weight:bold;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	text-decoration:none;
+}
+
+.mgGroupTitleOn {
+   color:white;
+   font-size:11px;
+   font-weight:bold;
+   font-family: Tahoma, Arial, Helvetica, sans-serif;
+   text-decoration:none;
+}
+
+
+div.mgMenuGroupContainer {
+   background-color: inherit;
+   -moz-user-select:none;
+}
+
+div.mgMenuGroupContainer div.mgHeaderDivOn {
+	padding: 6px 0px 6px 10px;
+	margin:0px;
+	border-top: 1px solid #9A9A9A;
+   cursor:hand;
+
+   background-image: url(../../images/menuBarBackground.gif);
+
+   height:20px;
+}
+
+div.mgMenuGroupContainer div.mgHeaderDivOff {
+	padding:6px 0px 6px 10px;
+	margin:0px;
+	border-top: 1px solid #9A9A9A;
+   cursor:hand;
+
+   background-image: url(../../images/menuBarBackground.gif);
+
+   height:20px;
+}
+
+div.mgMenuGroupContainer div.mgBodyDiv {
+   padding:0px 0px 10px 0px;
+   /*overflow: auto;*/
+   background-color: white;
+
+   overflow:hidden;
+}
+
+div.mgHidden {
+   display:none;
+}
+
+
+div.miNestedItemsDiv {
+   background-color:#FFFFFF;
+
+   padding-left:0px;
+   cursor:hand;
+
+   border: 0px solid red;
+}
+
+
+
+tr.miSelectedItem {
+	background-color: #8BAECD;
+	font-weight:normal;
+	cursor:hand;
+	padding:2px 0px 2px 0px;
+}
+
+tr.miHoverItem {
+	background-color: #D6E2ED;
+	font-weight:normal;
+	cursor:hand;
+	padding:2px 0px 2px 0px;
+	text-decoration: underline;
+}
+
+tr.miNonSelectedItem {
+   border-width:0px;
+   color:#003466;
+   cursor:hand;
+   padding:2px 0px 2px 0px;
+   
+   /* hack - just doing this for IE with dropshadow, since otherwise we get a wierd effect on the very first item */
+   background-color: white;
+}
+
+tr.miHiddenItem {
+   height:0px;
+   font-size:0;
+   cursor:auto;
+}
+
+
+td.miIcons {
+   text-align:right;
+   vertical-align:middle;
+   width:35px;
+}
+
+td.miText {
+   padding-left:3px;
+   text-align:left;
+   width:155px;
+   height: 3.3ex;
+}
+
+
+.mgBodyDiv .miIcon {
+}
+
+.mgBodyDiv .miExpandCollapseIcon {
+}

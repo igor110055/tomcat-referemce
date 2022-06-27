@@ -1,0 +1,78 @@
+/*
+Licensed Materials - Property of IBM
+
+IBM Cognos Products: rsvp
+
+(C) Copyright IBM Corp. 2005, 2016
+
+US Government Users Restricted Rights - Use, duplication or disclosure 
+restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+/* COPYRIGHT_DATA { 'YEAR':[2011, 2010, 2005, 2009], 'RELEASE':['colorado_wave1', 'colorado_wave2'], 'VISIBLE':'YES', 'COMPONENT':'rsvp' }*/
+/*All lines above the COPYRIGHT_DATA  line will be replaced when copyright notices are generated. */
+
+
+html,body {
+	height:100%;
+    overflow:auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+body {
+	margin:0;
+}
+
+table
+{
+	empty-cells: hide;
+}
+
+.ls, .sc, .xt, .rt, .tb, .ccb {
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	font-size:medium;
+	word-spacing:normal;
+	letter-spacing:normal;
+	text-decoration:none none none;
+	text-transform:none;
+	text-align:left;
+	text-indent:0;
+	line-height:normal;
+	white-space:normal;
+	word-wrap:initial;
+	color:black;
+}
+
+
+
+
+.pg *,
+.pp *
+{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing:border-box;
+}
+
+IMG
+{
+	-moz-box-sizing: content-box !important;
+	-webkit-box-sizing: content-box !important;
+	box-sizing:content-box !important;
+}
+
+
+.q-div {
+}
+
+.q-table {
+	border-spacing:0px;
+	border-collapse:collapse;
+	display:inline-table;
+    line-height:normal;
+}
+
+.q-td {
+	padding:0px;
+}

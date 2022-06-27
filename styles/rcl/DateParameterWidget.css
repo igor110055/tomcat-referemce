@@ -1,0 +1,31 @@
+
+div.dateParameterWidget {
+   display:block;
+   clear:both;
+   border: 1px solid #CCCCCC;
+   margin: 2px;
+   padding:10px 0px 10px 0px;
+   width: 240px;
+   height: 80px;
+}
+
+div.dateParamLabel {
+   float:left;
+   padding: 7px 10px 0px 7px;
+   width:75px;
+}
+
+div.dateParamValuesDiv {
+   float:left;
+   display:inline;
+   /*height:65px;*/
+}
+
+
+div.dateParameterWidget select {
+   width: 130px;
+   margin-top: 2px;
+   font-family:Verdana, Helvetica, sans-serif;
+   font-size:11px;
+   
+}

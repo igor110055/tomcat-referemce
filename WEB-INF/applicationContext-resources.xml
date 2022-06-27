@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   APP SERVER VERSION
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+      This bean exposes the properties found in two files from <appserver>/conf
+
+         MotioAdf.properties
+         MotioAdf-node.properties
+
+      These properties will get merged with properties defined in the database (TODO)
+    -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <!-- this causes system properties to override properties read from the designated property files -->
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+        <property name="locations">
+          <array>
+             <value type="org.springframework.core.io.Resource">
+                file:${motio.adf.conf.dir}/MotioAdf.properties
+             </value>
+             <value type="org.springframework.core.io.Resource">
+                file:${motio.adf.conf.dir}/MotioAdf-node.properties
+              </value>
+             <value type="org.springframework.core.io.Resource">
+                file:${motio.adf.conf.dir}/referenceSystem.properties
+              </value>
+           </array>
+        </property>
+    </bean>
+
+   <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+      <property name="basenames">
+         <list>
+            <value>RclWebResources</value>
+         </list>
+      </property>
+   </bean>
+
+     <bean id="rclMessageSource" class="com.focus.rcl.core.RclResourceBundleMessageSource">
+      <property name="basenames">
+         <list>
+            <value>RclWebResources</value>
+         </list>
+      </property>
+   </bean>
+
+   <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass">
+            <value>com.focus.rcl.jdbc.SecureDriver</value>
+        </property>
+        <property name="jdbcUrl">
+            <value>${rcl.secure.database.url}</value>
+        </property>
+        <property name="user">
+            <value>${rcl.db.username}</value>
+        </property>
+        <property name="password">
+            <value>${rcl.db.password}</value>
+        </property>
+          <!-- these are C3P0 properties -->
+        <property name="acquireIncrement" value="5" />
+        <property name="minPoolSize" value="${rcl.database.pool.min}" />
+        <property name="maxPoolSize" value="${rcl.database.pool.max}" />
+        <property name="maxIdleTime" value="600" />
+    </bean>
+
+   <bean id="quartzProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+      <property name="properties">
+          <props>
+
+            <prop key="org.quartz.scheduler.instanceName">AdfQuartzScheduler</prop>
+            <prop key="org.quartz.scheduler.instanceId">AUTO</prop>
+
+            <!-- Thread Pool Related Properties -->
+            <prop key="org.quartz.threadPool.class">org.quartz.simpl.SimpleThreadPool</prop>
+            <prop key="org.quartz.threadPool.threadCount">10</prop>
+            <prop key="org.quartz.threadPool.threadPriority">5</prop>
+
+
+            <!-- Jobstore Related Properties -->
+              <!--Never run clustering on separate machines, unless their clocks are synchronized using some form of
+              time-sync service (daemon) that runs very regularly (the clocks must be within a second of each other).
+              See http://www.boulder.nist.gov/timefreq/service/its.htm if you are unfamiliar with how to do this.
+              Never fire-up a non-clustered instance against the same set of tables that any other instance is running against.
+              You may get serious data corruption, and will definitely experience erratic behavior.-->
+            <prop key="org.quartz.jobStore.isClustered">${org.quartz.jobStore.isClustered:false}</prop>
+            <prop key="org.quartz.jobStore.clusterCheckinInterval">20000</prop>
+
+            <prop key="org.quartz.jobStore.misfireThreshold">60000</prop>
+
+            <prop key="org.quartz.jobStore.tablePrefix">QRTZ_</prop>
+            <prop key="org.quartz.jobStore.selectWithLockSQL">SELECT * FROM {0}LOCKS UPDLOCK WHERE LOCK_NAME = ?</prop>
+
+            <prop key="org.quartz.scheduler.skipUpdateCheck">true</prop>
+         </props>
+      </property>
+   </bean>
+
+
+   <!--
+   APPSERVER JMS
+   -->
+
+   <!--containers-->
+
+   <!--There are two types of containers here.  Ones that prefetch messages for consumers.  This is for very fast listeners.-->
+   <!--The other type does not prefetch messages.  The distinction is made by the connection factory (connectionFactory or zeroPreFetch...).-->
+   <!--For those that do NOT prefetch messages it is important to use the cache level of CACHE_NONE and set a reasonable receiveTimeout value-->
+   <!--If these are not set as previously stated the container will fail to shutdown gracefully when the application context is unloaded. -->
+   <!--Essentially the appserver will hang and a force kill will be required.  Using these conjunction of values allows the -->
+   <!--polling container to periodically refresh it's connection (which releases the resources necessary to detect a shutdown)-->
+
+   <!--For more about prefetching (polling consumers)-->
+   <!--http://activemq.apache.org/what-is-the-prefetch-limit-for.html-->
+
+   <!--This is a good reference for JMS Consumer tuning : -->
+   <!--http://bsnyderblog.blogspot.com/2010/05/tuning-jms-message-consumption-in.html-->
+
+   <!-- This is a "template" with defaults used by all of the Report Service related containers -->
+   <bean id="reportService.container.defaults" abstract="true">
+      <property name="connectionFactory" ref="zeroPreFetchConnectionFactory"/>
+      <property name="receiveTimeout" value="5000"/>
+      <property name="cacheLevelName" value="CACHE_NONE"/>
+      <property name="sessionTransacted" value="true"/>
+   </bean>
+
+   <bean id="reportService.preExecute.container.default"
+         class="org.springframework.jms.listener.DefaultMessageListenerContainer"
+         parent="reportService.container.defaults">
+      <property name="destination" ref="reportService.preExecute.queue.default"/>
+      <property name="messageListener" ref="preExecuteMessageListener"/>
+      <property name="taskExecutor">
+         <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+            <property name="daemon" value="true"/>
+            <property name="keepAliveSeconds" value="180"/>
+            <property name="threadNamePrefix" value="adf.preExecute.default-"/>
+            <property name="corePoolSize" value="${rcl.reportservice.preExecute.minPoolSize}"/>
+            <property name="maxPoolSize" value="${rcl.reportservice.preExecute.maxPoolSize}"/>
+         </bean>
+      </property>
+
+   </bean>
+
+   <bean id="reportService.execute.container.default"
+         class="org.springframework.jms.listener.DefaultMessageListenerContainer"
+         parent="reportService.container.defaults">
+      <property name="destination" ref="reportService.execute.queue.default"/>
+      <property name="messageListener" ref="executeMessageListener"/>
+      <property name="taskExecutor">
+         <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+            <property name="daemon" value="true"/>
+            <property name="keepAliveSeconds" value="180"/>
+            <property name="threadNamePrefix" value="adf.execute.default-"/>
+            <property name="corePoolSize" value="${rcl.reportservice.execute.minPoolSize}"/>
+            <property name="maxPoolSize" value="${rcl.reportservice.execute.maxPoolSize}"/>
+         </bean>
+      </property>
+
+   </bean>
+
+   <bean id="reportService.download.container.default"
+         class="org.springframework.jms.listener.DefaultMessageListenerContainer"
+         parent="reportService.container.defaults">
+      <property name="destination" ref="reportService.download.queue.default"/>
+      <property name="messageListener" ref="downloadMessageListener"/>
+      <property name="taskExecutor">
+         <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+            <property name="daemon" value="true"/>
+            <property name="keepAliveSeconds" value="180"/>
+            <property name="threadNamePrefix" value="adf.download.default-"/>
+            <property name="corePoolSize" value="${rcl.reportservice.download.minPoolSize}"/>
+            <property name="maxPoolSize" value="${rcl.reportservice.download.maxPoolSize}"/>
+         </bean>
+      </property>
+
+   </bean>
+
+   <bean id="reportService.postExecute.container.default"
+         class="org.springframework.jms.listener.DefaultMessageListenerContainer"
+         parent="reportService.container.defaults">
+      <property name="destination" ref="reportService.postExecute.queue.default"/>
+      <property name="messageListener" ref="postExecuteMessageListener"/>
+      <property name="taskExecutor">
+         <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+            <property name="daemon" value="true"/>
+            <property name="keepAliveSeconds" value="180"/>
+            <property name="threadNamePrefix" value="adf.postExecute.default-"/>
+            <property name="corePoolSize" value="${rcl.reportservice.postExecute.minPoolSize}"/>
+            <property name="maxPoolSize" value="${rcl.reportservice.postExecute.maxPoolSize}"/>
+         </bean>
+      </property>
+   </bean>
+
+
+   <bean id="deliveryContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+      <property name="connectionFactory" ref="connectionFactory"/>
+      <property name="destination" ref="deliveryQueue"/>
+      <property name="sessionTransacted" value="true"/>
+      <property name="messageListener" ref="deliveryMessageListener"/>
+
+
+      <property name="taskExecutor">
+         <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+            <property name="daemon" value="true"/>
+            <property name="keepAliveSeconds" value="180"/>
+
+            <!-- TODO: need variables for these -->
+            <property name="corePoolSize" value="1"/>
+            <property name="maxPoolSize" value="10"/>
+         </bean>
+      </property>
+
+   </bean>
+
+   <bean id="emailContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+      <property name="connectionFactory" ref="connectionFactory"/>
+      <property name="destination" ref="emailQueue"/>
+      <property name="sessionTransacted" value="true"/>
+      <property name="messageListener" ref="emailMessageListener"/>
+
+
+      <property name="taskExecutor">
+         <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+            <property name="daemon" value="true"/>
+            <property name="keepAliveSeconds" value="180"/>
+
+            <!-- TODO: need variables for these -->
+            <property name="corePoolSize" value="1"/>
+            <property name="maxPoolSize" value="10"/>
+         </bean>
+      </property>
+
+   </bean>
+
+   <bean id="concatenationContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+      <property name="connectionFactory" ref="connectionFactory"/>
+      <property name="destination" ref="concatenationQueue"/>
+      <property name="sessionTransacted" value="true"/>
+      <property name="messageListener" ref="concatenationMessageListener"/>
+
+      <property name="taskExecutor">
+         <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+            <property name="daemon" value="true"/>
+            <property name="keepAliveSeconds" value="180"/>
+
+            <!-- TODO: need variables for these -->
+            <property name="corePoolSize" value="1"/>
+            <property name="maxPoolSize" value="10"/>
+         </bean>
+      </property>
+
+   </bean>
+
+   <bean id="ciIntegrationContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+      <property name="connectionFactory" ref="connectionFactory"/>
+      <property name="destination" ref="ciIntegrationQueue"/>
+      <property name="sessionTransacted" value="true"/>
+      <property name="messageListener" ref="ciIntegrationMessageListener"/>
+
+      <property name="taskExecutor">
+         <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+            <property name="daemon" value="true"/>
+            <property name="keepAliveSeconds" value="180"/>
+
+            <!-- TODO: need variables for these -->
+            <property name="corePoolSize" value="1"/>
+            <property name="maxPoolSize" value="10"/>
+         </bean>
+      </property>
+
+   </bean>
+
+
+
+
+
+   <bean id="reportingDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName">
+          <value>${reference.reporting.db.driver_class}</value>
+      </property>
+      <property name="url">
+          <value>${rcl.secure.reference.reporting.db.url}</value>
+      </property>
+      <property name="username">
+          <value>${reference.reporting.db.username}</value>
+      </property>
+      <property name="password">
+          <value>${reference.reporting.db.password}</value>
+      </property>
+   </bean>
+
+   <bean id="reportingJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+      <property name="dataSource" ref="reportingDataSource"/>
+   </bean>
+
+   <bean id="motioJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+      <property name="dataSource" ref="dataSource"/>
+   </bean>
+
+
+</beans>

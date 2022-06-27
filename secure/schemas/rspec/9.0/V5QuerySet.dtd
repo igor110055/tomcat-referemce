@@ -1,0 +1,384 @@
+<!--
+	Licensed Materials - Property of IBM
+	IBM Cognos Products: rspec
+	(C) Copyright IBM Corp. 2003, 2014
+	US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!ELEMENT modelPath (#PCDATA)>
+<!ELEMENT sortList (sortItem)+>
+<!ELEMENT sortItem EMPTY>
+<!ATTLIST sortItem
+	refDataItem CDATA #REQUIRED
+	sortOrder (ascending | descending) "ascending"
+>
+<!ELEMENT XMLAttributes (XMLAttribute)+>
+<!ELEMENT reportPath (XMLAttributes?)>
+<!ATTLIST reportPath
+	path CDATA #REQUIRED
+>
+<!ELEMENT source (model | queryRef | sqlQuery | mdxQuery | queryOperation | joinOperation)>
+<!ELEMENT dimensionInfo (dimensions? | factList?)*>
+<!ELEMENT levels (level*)>
+<!ELEMENT level (keys | attributes? | sortList? | caption? | calculatedMembers?)+>
+<!ATTLIST level
+	name CDATA #REQUIRED
+>
+<!ELEMENT levelRef EMPTY>
+<!ATTLIST levelRef
+	refLevel CDATA #REQUIRED
+>
+<!ELEMENT queryRef EMPTY>
+<!ATTLIST queryRef
+	refQuery CDATA #REQUIRED
+>
+<!ELEMENT filterExpression (#PCDATA)>
+<!ATTLIST filterExpression
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT calculatedMembers (calculatedMember*)>
+<!ELEMENT dataItem (expression | XMLAttributes?)+>
+<!ATTLIST dataItem
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+	aggregate (none | automatic | summarize | total | minimum | maximum | average | count | calculated | countDistinct | standardDeviation | variance | median | notApplicable) "automatic"
+	rollupAggregate (none | automatic | summarize | total | minimum | maximum | average | count | calculated | countDistinct | standardDeviation | variance | median) "automatic"
+	sort (ascending | descending | none) "none"
+	naInCalcMemberContext  (true | false) "false"
+	solveOrder CDATA #IMPLIED
+	detail (automatic | true | false) "automatic"
+>
+<!ELEMENT slicerMemberSet (#PCDATA)>
+<!ATTLIST slicerMemberSet
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT joinOperation (joinFilter | joinOperands)+>
+<!ELEMENT joinOperand (queryRef?)>
+<!ATTLIST joinOperand
+	cardinality (1:N | 1:1 | 0:N | 0:1) "1:N"
+>
+<!ELEMENT calculatedMember (calculatedMembers?)>
+<!ATTLIST calculatedMember
+	name CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+	caption CDATA #IMPLIED
+>
+<!ELEMENT executionOptimization EMPTY>
+<!ATTLIST executionOptimization
+	value (allRows | firstRow) #REQUIRED
+>
+<!ELEMENT memberSet (memberSets?)>
+<!ATTLIST memberSet
+	name CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT localCache EMPTY>
+<!ATTLIST localCache
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT expression (#PCDATA)>
+<!ATTLIST expression
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT summaryFilterLevels (summaryFilterLevel+)>
+<!ELEMENT query (source | selection | detailFilters? | summaryFilters? | dimensionInfo? | slicer? | queryHints? | memberSetStructure?)+>
+<!ATTLIST query
+	name CDATA #REQUIRED
+>
+<!ELEMENT selection (dataItem*)>
+<!ATTLIST selection
+	autoSummary  (true | false) "true"
+>
+<!ELEMENT slicer (slicerMemberSet+)>
+<!ELEMENT detailFilter (filterExpression)>
+<!ATTLIST detailFilter
+	use (required | optional | prohibited) "required"
+	postAutoAggregation  (true | false) "false"
+>
+<!ELEMENT summaryFilter (filterExpression | summaryFilterLevels?)+>
+<!ATTLIST summaryFilter
+	use (required | optional | prohibited) "required"
+>
+<!ELEMENT queryResultDefinition ((edges?) , masterDetailLinks?)>
+<!ATTLIST queryResultDefinition
+	name CDATA #REQUIRED
+	refQuery CDATA #REQUIRED
+	shape (crosstab | list | automatic) "automatic"
+>
+<!ELEMENT edgeGroup (valueSets | edgeGroups?)+>
+<!ATTLIST edgeGroup
+	name CDATA #IMPLIED
+>
+<!ELEMENT details (dataItemRef+)>
+<!ELEMENT dataItemRef EMPTY>
+<!ATTLIST dataItemRef
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT dataItemContext EMPTY>
+<!ATTLIST dataItemContext
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT parameterContext EMPTY>
+<!ATTLIST parameterContext
+	parameter CDATA #REQUIRED
+>
+<!ELEMENT edgeGroups (edgeGroup+)>
+<!ELEMENT layers (layerEdge)+>
+<!ELEMENT cells (dataItemRef)+>
+<!ELEMENT overallHeader (dataItemRef+)>
+<!ELEMENT overallFooter (dataItemRef+)>
+<!ELEMENT groupHeader (dataItemRef*)>
+<!ATTLIST groupHeader
+	name CDATA #REQUIRED
+>
+<!ELEMENT groupFooter (dataItemRef*)>
+<!ATTLIST groupFooter
+	name CDATA #REQUIRED
+>
+<!ELEMENT groupSort (sortItem+)>
+<!ELEMENT propertyExpressions (propertyExpression*)>
+<!ELEMENT querySet (modelPath? | queries | queryResultDefinitions | requestHints?)+>
+<!ATTLIST querySet
+	expressionLocale NMTOKEN #REQUIRED
+>
+<!ELEMENT XMLAttribute EMPTY>
+<!ATTLIST XMLAttribute
+	name CDATA #REQUIRED
+	value CDATA #REQUIRED
+	output (no | XML | HTML) "XML"
+>
+<!ELEMENT model EMPTY>
+<!ELEMENT sqlQuery (sqlText | mdProjectedItems?)+>
+<!ATTLIST sqlQuery
+	name CDATA #REQUIRED
+	dataSource CDATA #REQUIRED
+	type (cogSQL | native | passThrough) "native"
+>
+<!ELEMENT mdxQuery (mdxText | mdDimensionalInfo?)+>
+<!ATTLIST mdxQuery
+	name CDATA #REQUIRED
+	dataSource CDATA #REQUIRED
+	catalog CDATA #IMPLIED
+>
+<!ELEMENT queryOperation (queryRefs | projectionList)+>
+<!ATTLIST queryOperation
+	name CDATA #REQUIRED
+	setOperation (UNION | INTERSECT | EXCEPT) "UNION"
+	duplicates (remove | preserve) "remove"
+>
+<!ELEMENT dimensions (dimension+)>
+<!ELEMENT factList (fact+)>
+<!ELEMENT keys (key*)>
+<!ELEMENT attributes (attribute*)>
+<!ELEMENT caption EMPTY>
+<!ATTLIST caption
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT joinFilter (filterExpression)>
+<!ELEMENT joinOperands (joinOperand,joinOperand)>
+<!ELEMENT memberSets (memberSet+)>
+<!ELEMENT summaryFilterLevel EMPTY>
+<!ATTLIST summaryFilterLevel
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT detailFilters (detailFilter+)>
+<!ELEMENT summaryFilters (summaryFilter+)>
+<!ELEMENT queryHints (avoidZeroDiv? | autoSort? | executionOptimization? | queryProcessing? | outerJoinAllowed? | crossProductAllowed? | suppress? | rollupProcessing? | maxRowsRetrieved? | maxTablesPerQuery? | maxQueryExecutionTime? | maxTextBlobCharacters? | useSQLWithClause? | localCache? | useV4Interpretation? | executionMethod? | useForParameterInfo? | useSQLJoinSyntax? | useAggregateCache? | useSAPMUNAsBusinessKey? | cacheServerQuery? | useSQLParameters?)*>
+<!ELEMENT memberSetStructure (memberSet*)>
+<!ELEMENT edges (edge*)>
+<!ELEMENT masterDetailLinks (masterDetailLink+)>
+<!ELEMENT valueSets (valueSet+)>
+<!ELEMENT layerEdge (dataItemRef+)>
+<!ELEMENT propertyExpression (#PCDATA)>
+<!ELEMENT queries (query)+>
+<!ELEMENT queryResultDefinitions (queryResultDefinition+)>
+<!ELEMENT requestHints (noDataMode? | designMode? | executionOptimization? | localCache?)*>
+<!ELEMENT sqlText (#PCDATA)>
+<!ATTLIST sqlText
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT mdProjectedItems (mdProjectedItem*)>
+<!ELEMENT mdxText (#PCDATA)>
+<!ATTLIST mdxText
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT mdDimensionalInfo (mdDimensions? | mdFacts?)*>
+<!ELEMENT queryRefs (queryRef*)>
+<!ELEMENT projectionList (queryItem*)>
+<!ATTLIST projectionList
+	autoGenerated  (true | false) "false"
+>
+<!ELEMENT dimension (levels? | hierarchies?)*>
+<!ATTLIST dimension
+	name CDATA #REQUIRED
+>
+<!ELEMENT fact EMPTY>
+<!ATTLIST fact
+	name CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT key EMPTY>
+<!ATTLIST key
+	name CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT attribute EMPTY>
+<!ATTLIST attribute
+	name CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT avoidZeroDiv EMPTY>
+<!ATTLIST avoidZeroDiv
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT autoSort EMPTY>
+<!ATTLIST autoSort
+	value (none | all | minimal) #REQUIRED
+>
+<!ELEMENT queryProcessing EMPTY>
+<!ATTLIST queryProcessing
+	value (databaseOnly | minimizeLocal) #REQUIRED
+>
+<!ELEMENT outerJoinAllowed EMPTY>
+<!ATTLIST outerJoinAllowed
+	value (allow | warn | deny) #REQUIRED
+>
+<!ELEMENT crossProductAllowed EMPTY>
+<!ATTLIST crossProductAllowed
+	value (allow | warn | deny) #REQUIRED
+>
+<!ELEMENT suppress EMPTY>
+<!ATTLIST suppress
+	value (none | nulls) #REQUIRED
+>
+<!ELEMENT rollupProcessing EMPTY>
+<!ATTLIST rollupProcessing
+	value (extended | database | local) #REQUIRED
+>
+<!ELEMENT maxRowsRetrieved EMPTY>
+<!ATTLIST maxRowsRetrieved
+	value CDATA #IMPLIED
+>
+<!ELEMENT maxTablesPerQuery EMPTY>
+<!ATTLIST maxTablesPerQuery
+	value CDATA #IMPLIED
+>
+<!ELEMENT maxQueryExecutionTime EMPTY>
+<!ATTLIST maxQueryExecutionTime
+	value CDATA #IMPLIED
+>
+<!ELEMENT maxTextBlobCharacters EMPTY>
+<!ATTLIST maxTextBlobCharacters
+	value CDATA #IMPLIED
+>
+<!ELEMENT useSQLWithClause EMPTY>
+<!ATTLIST useSQLWithClause
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT useV4Interpretation EMPTY>
+<!ATTLIST useV4Interpretation
+	value  (true | false) "false"
+>
+<!ELEMENT executionMethod EMPTY>
+<!ATTLIST executionMethod
+	value (sequential | concurrent) #REQUIRED
+>
+<!ELEMENT useForParameterInfo EMPTY>
+<!ATTLIST useForParameterInfo
+	value  (true | false) "false"
+>
+<!ELEMENT useSQLJoinSyntax EMPTY>
+<!ATTLIST useSQLJoinSyntax
+	value (implicit | explicit) #REQUIRED
+>
+<!ELEMENT useAggregateCache EMPTY>
+<!ATTLIST useAggregateCache
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT useSAPMUNAsBusinessKey EMPTY>
+<!ATTLIST useSAPMUNAsBusinessKey
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT cacheServerQuery EMPTY>
+<!ATTLIST cacheServerQuery
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT useSQLParameters EMPTY>
+<!ATTLIST useSQLParameters
+	value (marker | literal) #REQUIRED
+>
+<!ELEMENT edge (edgeGroups? | edgeSuppression?)*>
+<!ATTLIST edge
+	name CDATA #REQUIRED
+	edgeID CDATA #IMPLIED
+	memberCache (default | none | all) #IMPLIED
+>
+<!ELEMENT masterDetailLink (masterContext | detailContext)+>
+<!ELEMENT valueSet (groupHeader? | groupBody? | groupFooter? | groupSort? | propertyExpressions?)*>
+<!ATTLIST valueSet
+	name CDATA #REQUIRED
+	refDataItem CDATA #IMPLIED
+	solveOrder CDATA "0"
+>
+<!ELEMENT noDataMode EMPTY>
+<!ATTLIST noDataMode
+	enabled  (true | false) "true"
+>
+<!ELEMENT designMode EMPTY>
+<!ATTLIST designMode
+	enabled  (true | false) "true"
+>
+<!ELEMENT mdProjectedItem EMPTY>
+<!ATTLIST mdProjectedItem
+	name CDATA #REQUIRED
+>
+<!ELEMENT mdDimensions (mdDimension+)>
+<!ELEMENT mdFacts (mdFact+)>
+<!ELEMENT queryItem EMPTY>
+<!ATTLIST queryItem
+	name CDATA #REQUIRED
+>
+<!ELEMENT hierarchies ((levelHierarchy | memberHierarchy)*)>
+<!ELEMENT edgeSuppression EMPTY>
+<!ATTLIST edgeSuppression
+	null  (true | false) "true"
+	zero  (true | false) "true"
+	divByZero  (true | false) "true"
+	overflow  (true | false) "true"
+>
+<!ELEMENT masterContext (dataItemContext)>
+<!ATTLIST masterContext
+	refQueryResultDefinition CDATA #REQUIRED
+>
+<!ELEMENT detailContext (dataItemContext | parameterContext)>
+<!ATTLIST detailContext
+	refQueryResultDefinition CDATA #REQUIRED
+>
+<!ELEMENT groupBody (dataItemRef* , propertyExpressions?)>
+<!ATTLIST groupBody
+	name CDATA #IMPLIED
+>
+<!ELEMENT mdDimension (mdHierarchy)>
+<!ATTLIST mdDimension
+	name CDATA #REQUIRED
+>
+<!ELEMENT mdFact EMPTY>
+<!ATTLIST mdFact
+	name CDATA #REQUIRED
+>
+<!ELEMENT levelHierarchy (levelRef*)>
+<!ATTLIST levelHierarchy
+	name CDATA #REQUIRED
+>
+<!ELEMENT memberHierarchy (calculatedMembers?)?>
+<!ATTLIST memberHierarchy
+	name CDATA #REQUIRED
+>
+<!ELEMENT mdHierarchy (mdLevel*)>
+<!ATTLIST mdHierarchy
+	name CDATA #REQUIRED
+>
+<!ELEMENT mdLevel EMPTY>
+<!ATTLIST mdLevel
+	name CDATA #REQUIRED
+>

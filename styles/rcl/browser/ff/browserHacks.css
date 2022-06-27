@@ -1,0 +1,16 @@
+/* Firefox Specific CSS Hacks.... */
+
+
+/*-------------------------------------------------------
+  workspace.css hacks
+  -------------------------------------------------------*/
+
+body.workspace {
+
+   /* this is really just to account for the drop shadow'd nav menu which is offset
+   by 14 px... we want the tops of the workspace and the nave menu to line up. */
+   padding-top: 8px;
+
+   margin:0px;
+}
+

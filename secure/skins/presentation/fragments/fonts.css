@@ -1,0 +1,25 @@
+
+
+
+/********************************
+*  Licensed Materials - Property of IBM
+*    
+*  IBM Cognos Products: cpscrn
+*   
+*  (C) Copyright IBM Corp. 2005, 2012
+*  
+*  US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.  
+********************************/
+BODY {
+	font-family: tahoma, arial, geneva, helvetica, sans-serif;
+	font-size: 70%;
+}
+TEXTAREA {
+	font-family: tahoma, arial, geneva, helvetica, sans-serif;
+}
+INPUT {
+	font-family: tahoma, arial, geneva, helvetica, sans-serif;
+}
+SELECT {
+	font-family: tahoma, arial, geneva, helvetica, sans-serif;
+}

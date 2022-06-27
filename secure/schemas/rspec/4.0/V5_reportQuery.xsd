@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2014
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+--> 
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rspec="http://developer.cognos.com/schemas/report/4.0/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5_base.xsd"/>
+	<xs:include schemaLocation="V5_queryBase.xsd"/>
+	<xs:element name="query" type="queryType">
+		<xs:annotation>
+			<xs:documentation>A query defines the data to be retrieved from the database.  It consists of a source, a selection, detailed and summary filters, and a dimension Information. Query hints can be supplied. A query does not define the structure or presentation of the retrieved data.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:group name="dataItemElement">
+		<xs:choice>
+			<xs:element ref="dataItem"/>
+			<xs:element name="dataItemMember">
+				<xs:annotation>
+					<xs:documentation>Repreesents a single member.</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmMember"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemSetAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemCalculatedMember">
+				<xs:annotation>
+					<xs:documentation>A V5 expressin that results in a single calculated member.</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="expression"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemCalculatedMemberAttributes"/>
+					<xs:attributeGroup ref="DataItemSetAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemMemberProperty">
+				<xs:annotation>
+					<xs:documentation>Represents a member property from either a level or hierarchy.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmMemberProperty"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="dmLevel" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemMeasure">
+				<xs:annotation>
+					<xs:documentation>Represents a single measure.  For the most part, measures are the same as members.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmMember"/>
+						<xs:element ref="dmDimension"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemSetAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemCalculatedMeasure">
+				<xs:annotation>
+					<xs:documentation>A V5 expressin that results in a single calculated member.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="expression"/>
+						<xs:element ref="dmDimension"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemCalculatedMemberAttributes"/>
+					<xs:attributeGroup ref="DataItemSetAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemSet">
+				<xs:annotation>
+					<xs:documentation>Describes an explicit set of members. Generates a V5 expressions of the form set(MUN1, MUN2, ...).</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmMembers"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="setSorting" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemSetAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemChildrenSet">
+				<xs:annotation>
+					<xs:documentation>Describes the set of children of a member. Generates a V5 expression of the form children(MUN).</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmMember"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="setSorting" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemSetAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemSetExpression">
+				<xs:annotation>
+					<xs:documentation>A V5 expression that results in a set of members.</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="expression"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="setSorting" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemSetAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemLevelSet">
+				<xs:annotation>
+					<xs:documentation>The members of a level.</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmLevel"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="setSorting" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemSetAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemHierarchySet">
+				<xs:annotation>
+					<xs:documentation>The member of a hierarchy</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy"/>
+						<xs:element ref="setSorting" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attribute name="rootMembersOnly" type="xs:boolean" default="false"/>
+					<xs:attributeGroup ref="DataItemSetAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemNamedSet">
+				<xs:annotation>
+					<xs:documentation>References a named set from the model.</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="NSUN" type="queryExpressionType"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy" minOccurs="0"/>
+						<xs:element ref="setSorting" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemSetAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataItemTuple">
+				<xs:annotation>
+					<xs:documentation>The tuple is represented by the set of members. Each member must be from a different dimension. The tuple itself must be placed into a hierarchy indicated by dataItemHierarchy. Generates a V5 expression of the form tuple(MUN1, MUN2, ..)</xs:documentation>
+					<xs:documentation source="rn_added_4.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dmTuple"/>
+						<xs:element ref="dmDimension"/>
+						<xs:element ref="dmHierarchy" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="DataItemAttributes"/>
+					<xs:attributeGroup ref="DataItemSetAttributes"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:element name="selection">
+		<xs:annotation>
+			<xs:documentation>The selection identifies the metadata elements upon which the query is based.  This is analogous to a projection from the source.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="dataItemElement" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="autoSummary" type="xs:boolean" use="optional" default="true"/>
+		</xs:complexType>
+		<xs:unique name="dataItemUniqueness">
+			<xs:selector xpath="*"/>
+			<xs:field xpath="@name"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="slicer">
+		<xs:annotation>
+			<xs:documentation>a list of member expressions. the list is interpreted as a tuple of members.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="slicerMemberSet" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="contextSlice" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>There can only be one contextSlicer per dimension or hierarchy depending on the data source.</xs:documentation>
+							<xs:documentation source="rn_added_4.0"/>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:all>
+								<xs:element ref="dmDimension"/>
+								<xs:element ref="dmHierarchy"/>
+								<xs:element ref="dmLevel" minOccurs="0"/>
+								<xs:element name="contextSliceDefinition">
+									<xs:annotation>
+										<xs:documentation>Defines the context for this dimension. Currently, only a list of members is supported, but in the future it could also support a contextCalculatedMember element.</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:choice>
+											<xs:element ref="dmMembers"/>
+										</xs:choice>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="parameterizedSlice" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>This element indicates that the slicer will be converted into a parameter against either the hierarchy or level when the report is run. </xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:attribute name="type" use="required">
+											<xs:annotation>
+												<xs:documentation source="doc_att_type_parameterizedSlice"/>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="hierarchy"/>
+													<xs:enumeration value="level">
+														<xs:annotation>
+															<xs:documentation source="doc_enum_level_parameterizedSlice"/>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="singleMember" type="xs:boolean" default="false">
+											<xs:annotation>
+												<xs:documentation>If true, then slicer will appear as a single member parameter. If false, the slicer will appear as a multiple value parameter.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+							</xs:all>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="contextSliceUniqueness">
+			<xs:selector xpath="rspec:contextSlice/rspec:dmHierarchy"/>
+			<xs:field xpath="rspec:HUN"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="dmLevel">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="LUN" type="queryExpressionType">
+					<xs:annotation>
+						<xs:documentation>Level Unique Name</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="itemCaption"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dmMember">
+		<xs:annotation>
+			<xs:documentation>Reference to a member</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="MUN"/>
+				<xs:element ref="itemCaption"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dmMembers">
+		<xs:annotation>
+			<xs:documentation>A list of member references</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dmMember" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dmTuple">
+		<xs:annotation>
+			<xs:documentation>A tuple definition. A tuple can only reference one member per dimension.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="dmTuplePart" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Refers to a member or measure in the tuple.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="dmMember"/>
+							<xs:element ref="dmDimension"/>
+							<xs:element ref="dmHierarchy" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:unique name="tupleMemberHierarchyUniqueness">
+			<xs:selector xpath="rspec:dmTuplePart/rspec:dmHierarchy"/>
+			<xs:field xpath="rspec:HUN"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="dmMemberProperty">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="MPUN" type="queryExpressionType">
+					<xs:annotation>
+						<xs:documentation>Member Property Unique Name</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="itemCaption"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="itemCaption" type="TextType"/>
+	<xs:element name="setSorting">
+		<xs:annotation>
+			<xs:documentation>Sort the set by the given tuple. Default is to sort by caption, but can be overridden to sort by a tuple or member property.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0">
+				<xs:element ref="dmTuple"/>
+				<xs:element ref="dmMemberProperty"/>
+			</xs:choice>
+			<xs:attribute name="ascending" type="xs:boolean" default="true"/>
+			<xs:attribute name="breakHierarchy" type="xs:boolean" default="true">
+				<xs:annotation>
+					<xs:documentation>If the set contains members from different levels in the hierarchy, then if this property is true it will sort them without taking the hierarchy into consideration, if false, then the items will be sorted within each level of the hierarchy.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dmHierarchy">
+		<xs:annotation>
+			<xs:documentation>Reference to a hierarchy</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="HUN"/>
+				<xs:element ref="itemCaption"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dmDimension">
+		<xs:annotation>
+			<xs:documentation>Reference to a dimension</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="DUN"/>
+				<xs:element ref="itemCaption"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HUN" type="queryExpressionType">
+		<xs:annotation>
+			<xs:documentation>Hierarchy Unique Name</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="MUN" type="queryExpressionType">
+		<xs:annotation>
+			<xs:documentation>Member Unique Name</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DUN" type="queryExpressionType">
+		<xs:annotation>
+			<xs:documentation>Dimension Unique Name</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

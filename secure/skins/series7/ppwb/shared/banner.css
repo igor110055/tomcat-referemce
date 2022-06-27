@@ -1,0 +1,127 @@
+/*
+Licensed Materials - Property of IBM
+
+IBM Cognos Products: pps
+
+(C) Copyright IBM Corp. 2005, 2010
+
+US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+
+.mainHeader1 
+{	
+	padding: 1px;
+	background-color: #000099;
+/*	background-image: url(../shared/images/banner.gif);*/
+	background-position: top left;
+	background-repeat: no-repeat;	
+	height:28px;
+	width:100%;
+	border-bottom: #f3f3f3 1px solid;
+}
+.mainHeader1Middle
+{
+	background-color: #000099;
+	width:100%;
+}
+.bannerOptionsButtonNormal
+{
+	border: #000099 1px solid; 
+	padding: 1px;
+	cursor: pointer;
+}
+.bannerOptionsButtonOver 
+{
+	border: #000099 1px solid; 
+	padding: 1px;
+	cursor:pointer;
+}
+.bannerDivider 
+{
+	background-image: url(../shared/images/tool_sep_dot_line_banner.gif);
+	background-position: top left;
+	background-repeat: no-repeat;	 
+	font-size: 0px; 
+	width: 1px;
+	height:18px;
+}
+.bannerOptions
+{
+	font-size: 70%; 
+	color: #FFFFFF;
+	text-decoration: underline;
+	cursor:pointer;
+}
+.headerTitle 
+{
+	background-color: #000099;	
+	padding-left: 5px;
+	font-weight: bold;
+	font-size: 75%;
+	color: #FFFFFF;
+	vertical-align: middle;
+	white-space:nowrap;
+}
+.userNameContainer 
+{
+	padding-right: 8px;
+	font-weight: bold; 
+	font-size: 70%; 
+	color: #ffffff;
+	white-space:nowrap;
+}
+.customBannerContainer
+{
+	padding-left: 5px;
+	padding-right: 5px;
+	white-space: nowrap;
+}
+.refreshContainer 
+{
+	padding-left: 3px;
+}
+.personalOptionsContainer 
+{
+	padding-left: 5px;
+}
+.homeContainer 
+{
+	padding-left: 5px;
+}
+.returnContainer 
+{
+	padding-left: 5px;
+}
+.searchEditContainer 
+{
+	padding-left: 5px;
+}
+.searchIconContainer 
+{
+	padding-left: 3px;
+	padding-right: 3px;
+}
+.helpContainer 
+{
+	padding-left: 3px;
+	padding-right: 5px;
+}
+.dividerContainer 
+{
+	padding-left: 2px;
+}
+.authOptionContainer 
+{ 
+	padding-right: 3px;
+	white-space: nowrap;
+}
+.appOptionsContainer 
+{
+	padding-left: 2px;
+}
+.aboutContainer
+{
+	padding-bottom: 5px;
+	padding-left: 4px;
+	white-space:nowrap;
+}

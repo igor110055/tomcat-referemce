@@ -1,0 +1,54 @@
+div.pageBanner {
+   background-color: #4A7DAD;
+
+   border: 1px solid #333333;
+
+   padding: 5px;
+   width: 99%;
+   height: 35px;
+   margin-bottom: 0px;
+
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 16pt;
+   font-weight: bold;
+   color: white;
+}
+
+div.pageBody {
+   border: 1px solid #333333;
+
+   padding: 5px;
+   width: 99%;
+   margin-bottom: 10px;
+
+   font-family: Arial, Helvetica, sans-serif;
+   font-weight: bold;
+}
+
+
+.bottomButtons input {
+   width: auto;
+}
+
+#userPreferences *.label {
+   font-size: 11px;
+   font-weight:bold;
+   font-family:Arial, Helvetica, sans-serif;
+
+   color:#000000;
+   text-align:right;
+   padding-right:10px;
+}
+
+#userPreferences {
+   padding: 10px 10px 30px 30px;
+
+}
+
+.bottomButtons {
+   width: 99%;
+   text-align: center;
+   clear: both;
+   display: block;
+   left: 0px;
+}

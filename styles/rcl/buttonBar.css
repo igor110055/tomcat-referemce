@@ -1,0 +1,178 @@
+
+.bbar-container {
+}
+
+.bbar-wrap {
+    position: relative;
+    z-index: 10;
+    font: 12px arial, Verdana, sans-serif;
+}
+
+.bbar-button {
+   position: relative;
+   float: left;
+   margin:  0px 0px -1px 1px;
+   padding: 2px 0px 2px 25px;
+   text-align: center;
+   font-weight: bold;
+   cursor: pointer;
+   border: 1px solid #7a8295;
+   /*border-width:*/
+   /*border: none;*/
+   font: 12px arial, Verdana, sans-serif;
+   color:white;
+   /*width:90px;*/
+
+}
+
+.float-left {
+   float: left;
+}
+
+.float-right {
+   float: right;
+}
+
+.bbar-button-bg-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    height: 21px;
+}
+
+.bbar-button-unfocused {
+    color: white;
+    /*background: transparent url( ../../images/default_button_bg_right.gif ) 100% 0 no-repeat;*/
+    background-position:0px 1px;
+   background-image: url(../../images/button3.gif);
+   background-repeat: repeat-x;
+   background-color: transparent;
+}
+
+.bbar-button-focused {
+    /*background: transparent url( ../../images/default_button_bg_dark_right.gif ) 100% 0 no-repeat;*/
+    background-position:0px 1px;
+   background-image: url(../../images/buttonHover.gif);
+   background-repeat: repeat-x;
+   background-color: black;
+}
+
+.bbar-button-unfocused .bbar-button-bg-left {
+    /*background: transparent url( ../../images/default_button_bg_left.gif ) 0 0 no-repeat;*/
+    /*background-position:0px 2px;*/
+   /*background-image: url(/singlepoint/images/button2.gif);*/
+   background-repeat: no-repeat;
+   background-color: transparent;
+   /*width:90px;*/
+}
+
+.bbar-button-focused .bbar-button-bg-left {
+    /*background: transparent url( ../../images/default_button_bg_dark_left.gif ) 0 0 no-repeat;*/
+    background-position:top;
+   /*background-image: url(/singlepoint/images/button.gif);*/
+   background-repeat: repeat-x;
+   background-color: black;
+}
+
+.bbar-button a:link,
+.bbar-button a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.bbar-wrap .bbar-button-unfocused a:link,
+.bbar-wrap .bbar-button-unfocused a:visited {
+    color: white;
+}
+
+.bbar-button-icon {
+   position: absolute;
+   top: 3px;
+   left: 6px;
+}
+
+.bbar-clear {
+   height: 0px;
+   margin: 0;
+   padding: 0;
+   clear: both;
+}
+
+.bbar-button-dropdown {
+   padding: 1px;
+   position: absolute;
+   visibility: hidden;
+   border: 1px solid #999;
+   width: 240px;
+   background: white url( ../../images/bbar_menubg.gif ) 0 0 repeat-y;
+    font: 12px arial, Verdana, sans-serif;
+}
+
+.bbar-menuitm {
+   cursor: pointer;
+   background: transparent;
+   text-align: left;
+}
+
+.bbar-separator {
+   height: 1px;
+   border-bottom: 1px solid black;
+   padding: 0;
+   margin-bottom: 3px;
+   margin-top: -11px;
+   margin-right: 1px;
+   margin-left: 20px;
+   background: transparent;
+}
+
+head:first-child+body .bbar-separator {
+   margin-top: 3px;
+}
+
+.bbar-menutxt {
+   padding-left: 4px;
+   display: inline;
+   font-size: 0.90em;
+   background: transparent;
+}
+
+.bbar-menuitm-unfocused {
+   padding: 0px;
+   margin-left: 1px;
+   margin-right: 1px;
+
+   border: 0px solid transparent;
+   color: #000;
+}
+
+.bbar-menuitm-focused {
+   padding: 0px;
+   margin-left: 1px;
+   margin-right: 1px;
+
+   border: 0px solid black;
+   background-color: #bbbbdd;
+}
+
+.bbar-menuitm-expand {
+   display:inline;
+   position:absolute;
+   right:4px;
+}
+
+.bbar-arrow-down {
+   margin: 0px;
+   vertical-align: 15%;
+   padding-left: 10px;
+   padding-right: 2px;
+   display:inline;
+}
+
+.bbar-arrow-down-trans {
+   margin: 0px;
+   vertical-align: 15%;
+   padding-left: 2px;
+   padding-right: 2px;
+   display:inline;
+}

@@ -1,0 +1,2634 @@
+@charset "UTF-8";
+/*
+	Licensed Materials - Property of IBM
+	IBM Cognos Products: ans
+	(C) Copyright IBM Corp. 2005, 2010
+	US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+
+/*	General HTML element styles	*/
+html, body
+{
+	height: 100%;
+	width: 100%;
+
+	/*Prevent cursor from switching to "I" over text*/
+	cursor: default;
+	overflow: hidden;
+
+}
+
+html
+{
+	font-family: Tahoma, 'Arial Unicode MS', 'Andale WT', Arial, 'MS UI Gothic', Gulim, SimSun, PMingLiU, Raghu8, sans-serif;
+	color: #000000;
+}
+
+.splashWorking
+{
+	font-size: 80%;
+	padding-right: 4px;
+}
+
+
+/*GM temp for memory leak tests*/
+.stab_test
+{
+	position: absolute;
+	top: 95%;
+	left: 45%;
+}
+
+.stab_test2
+{
+	position: absolute;
+	top: 95%;
+	left: 0%;
+}
+
+.stab_test3
+{
+	position: absolute;
+	top: 95%;
+	left: 75%;
+}
+
+
+/*	Drag 'n' drop tooltips */
+.clsDragTooltip, .clsDragTooltipVisible {
+	color: #000000;
+	padding: 1px;
+	font-size: 10pt;
+	border: 1px solid #000000;
+	background-color: #FFFFCC;
+	display: block;
+	position: absolute;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+}
+
+.clsDragTooltip
+{
+	display: none;
+}
+
+.tooltipTable {
+	color: #000000;
+	font-size: 8pt;
+	padding: 0px;
+	margin: 0px;
+	white-space: pre;
+}
+
+
+/*	Pane splitter styles */
+DIV.clsSplitterHoriz
+{
+	margin: 0px;
+	position: absolute;
+	cursor: n-resize;
+	line-height: 4px;
+	overflow: hidden;
+	background-color: transparent;
+	background-image:url(../../../explore/images/blank.gif);
+
+}
+
+DIV.clsSplitterMoverHoriz
+{
+	margin: 0px;
+	position: absolute;
+	cursor: n-resize;
+	/*change CUIPaneSplitter.kiStaticDimensionSize if you change the following value*/
+	line-height: 4px;
+	overflow: hidden;
+	background-image: url(../../../explore/images/splitter_active.gif);
+	visibility: hidden;
+}
+
+DIV.clsSplitterVert
+{
+	width: 0px; 
+	border-left: 2px solid  #e7e7e7;;
+	margin: 0px;
+	position: absolute;
+	cursor: e-resize;
+}
+
+DIV.clsSplitterMoverVert
+{
+	width: 1px; 
+	border: 0px;
+	background-image: url(../../../explore/images/splitter_active.gif);
+	line-height: 4px;
+	margin: 0px;
+	position: absolute;
+	visibility: hidden;
+}
+
+DIV.clsVertResizeBar
+{
+	width: 10px; 
+	border: 0px solid green;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	cursor: e-resize;
+}
+
+.clsChartSliderMovingBar
+{
+	border: 0px solid green;
+	position: absolute;
+	z-Index: 101;
+	cursor: hand;
+	padding:0px;
+		
+}
+.clsVertChartSliderHandler
+{
+	border: 0px;
+	z-Index: 150;
+	vertical-align: middle;	
+}
+.clsVertChartSliderRuler
+{
+	border: 0px;
+	z-Index: 130;
+	width: 90%;
+	height: 1px;
+	vertical-align: middle;
+	
+}
+.sliderCoordinatesToolTip{
+	border: 1px solid black;
+	width: 80px;
+	height: 20px;
+	background-color: #FFFAC8;
+	color: black;
+	position: absolute;
+	z-Index: 130;
+	font-family: Tahoma;
+	font-size: 70%;
+}
+.clsHorizChartSliderHandler
+{
+	border: 0px;
+	position: absolute;
+	z-Index: 150;
+		
+}
+.clsHorizChartSliderRuler
+{
+	border: 0px;
+	z-Index: 130;
+	position: absolute;
+	width: 1px;
+	height: 100%;	
+}
+
+
+/*	Specific styles	*/
+
+.dialog_toolbar
+{
+	display: inline-block;
+	white-space: nowrap;
+}
+
+.app_pane
+{
+	position: absolute;
+}
+
+.worksheet
+{
+	border-collapse: collapse;
+	text-align: center;
+	top: 15%;
+	/*Width and height are reset in CUIWorkSheet*/
+	width: 60%;
+	height: 85%;
+	position:absolute;
+}
+
+.worksheet_status
+{
+	position: absolute;
+	font-size:70%;
+	left: 60%;
+}
+
+.worksheet_paging
+{
+	position: absolute;
+	font-size:70%;
+}
+
+.crosstab
+{
+	text-align: center;
+	top: 0px;
+	left: 0px;
+	/* The height is reset in the code - see CUICrosstab.kfPercentWSHeight */
+	height: 88.5%;
+	position:absolute;
+	background-color: white;
+	overflow: hidden;
+	font-weight: normal;
+	
+}
+.crosstabTableDiv
+{
+	font-size: 100%;
+	overflow:hidden;
+	position:absolute;
+	left: 0px;
+	width: 100%;
+}
+
+.crosstabTable, .sizeTestTable
+{
+	border-collapse: collapse;
+	border-width: 0px 0px 0px 0px;
+	border-style: solid;
+	border-color: #CCCCCC;
+	position:absolute;
+	top: 0px;
+	left: 0px;
+	padding: 0px 0px 0px 0px;
+	font-size: 70%;
+}
+
+.crosstabTable_NS, .sizeTestTable_NS
+{
+	border-collapse: collapse !important;	
+	border-spacing: 0px;
+	border-style: none;
+	position:absolute;
+	top: 0px;
+	left: 0px;
+	padding: 0px 0px 0px 0px;
+	font-size: 70%;
+}
+
+
+.sizeTestTable, .sizeTestTable_NS
+{
+	top: -10000px;
+	left: -10000px;
+	visibility: hidden;
+	padding: 0px;
+}
+
+/**********************************************
+* Context Bar Styles
+***********************************************/
+
+.context_bar
+{
+	background-color: #e3e9f3	;
+	overflow: hidden;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #99aacc;
+}
+
+.filters_applied_info
+{
+	background-color: #e7e7e7		;
+	padding: 3px;
+	border : 1px solid;
+	border-color : #cccccc; 
+	height: auto;
+	font-size: 70%;
+}
+
+.scroll_pane
+{
+	overflow: hidden;
+}
+
+.invisible_link
+{
+	white-space: pre;
+	text-decoration: none;
+	padding:0px;
+}
+
+.context_item_name_component
+{
+	padding: 0px;
+	white-space: nowrap;
+	font-size: 70%;
+}
+
+.hierarchy_label
+{
+	text-decoration: none;
+	font-size: 100%;
+	color: #346799;
+	padding: 0px;
+	text-align: center;
+	font-style: italic;
+	border: 0px;
+	
+}
+
+.drag_handle
+{
+	
+}
+
+.axis_context_table
+{
+	padding-top: 0px;
+	padding-bottom: 1px;
+}
+
+
+.axis_context_set_dragover, .filter_context_set_dragover
+{
+	background-color: #000000;
+}
+
+
+.axis_context_tbody, .filter_context_tbody
+{
+	vertical-align: top;
+}
+
+.axis_label, .rules_label
+{
+	padding-left: 4px;
+	white-space: nowrap;
+	color: #336699;
+	font-size: 60%;
+}
+
+.axis_context_item, .filter_context_item
+{
+	white-space: nowrap;
+	padding-left: 6px;
+}
+
+.axis_context_item_name, .axis_context_item_name_selected, .axis_context_item_name_dragover,
+.axis_context_item_name_HAMCdragover, .axis_context_item_name_semiselect, .axis_context_item_name_hover,
+.dup_dim_axis_context_item_name, .dup_dim_axis_context_item_name_selected, .dup_dim_axis_context_item_name_dragover,
+.dup_dim_axis_context_item_name_HAMCdragover, .dup_dim_axis_context_item_name_semiselect, .dup_dim_axis_context_item_name_hover
+{
+	white-space: pre;
+	border-style: solid;
+	border-color: #99aacc;
+	border-width: 1px;
+	border-right: none;
+	cursor: default;
+	background-color: #e3e9f3;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	color: #000000;
+	font-size: 70%;
+	text-align: center;
+}
+
+.dup_dim_axis_context_item_name, .dup_dim_axis_context_item_name_selected, .dup_dim_axis_context_item_name_dragover,
+.dup_dim_axis_context_item_name_HAMCdragover, .dup_dim_axis_context_item_name_semiselect, .dup_dim_axis_context_item_name_hover, .dup_dim_context_item_name_component
+{
+	font-size: 54%;
+}
+
+
+.axis_context_item_name_semiselect,.dup_dim_axis_context_item_name_semiselect
+{
+	border-width: 2px;
+	border-right: 1px solid #99aacc;
+	padding-left: 2px;
+	padding-right: 1px;
+}
+
+.dropdown_arrow, .filter_icon
+{
+	cursor: pointer;
+	cursor: hand;
+}
+
+.filter_icon
+{
+	vertical-align: middle;
+	margin-right: 2px;
+}
+
+.dropdown_arrow
+{
+	border: 1px solid #99aacc;
+	background-color: #e3e9f3;
+	cursor: pointer;
+	cursor: hand;
+
+}
+
+.dropdown_arrow_pressed
+{
+	background-color: #bec8dc;
+	border : 1px solid;
+	border-color : #336699;	
+}
+
+.dropdown_arrow_hover
+{
+	background-color: #bec8dc;
+	border : 1px solid;
+	border-color : #99aacc;	
+}
+
+
+.filter_context_table
+{
+	padding-top: 0px;
+	padding-bottom: 1px;
+}
+
+.right_resize_pane
+{
+	background-color: #FFFFFF	;
+}
+
+.end_drop_zone
+{
+	background-color: #FFFFFF	;
+	padding: 2px;
+	border: solid #cccccc 1px;
+}
+
+.filter_scroll_arrow, .filter_scroll_arrow_vis
+{
+	background-color: #FFFFFF	;
+}
+
+.axis_scroll_arrow, .axis_scroll_arrow_vis
+{
+	background-color: #e3e9f3	;
+}
+
+.filter_scroll_arrow, .axis_scroll_arrow, .filter_scroll_arrow_vis, .axis_scroll_arrow_vis
+{
+	padding-left: 1px;
+	padding-right: 1px;
+}
+
+.scroll_arrow_button
+{
+	background-color: #FFFFFF	;
+	border : 1px solid;
+	border-color : #cccccc;		
+}
+
+.scrollArrowStyle {
+	border-width:0px;
+}
+.button_hover
+{
+	background-color: #bec8dc;
+	border : 1px solid;
+	border-color : #99aacc;	
+	cursor: pointer;
+	cursor: hand;
+
+}
+.button_pressed
+{
+	background-color: #bec8dc;
+	border : 1px solid;
+	border-color : #336699;	
+	cursor: pointer;
+	cursor: hand;
+}
+
+.button_disabled
+{
+	cursor: default;
+}
+
+.filter_context_item_name, .filter_context_item_name_root, .filter_context_item_name_selected,
+.filter_context_item_name_root_selected, .filter_context_item_name_hover, .filter_context_item_name_root_hover,
+.dup_dim_filter_context_item_name, .dup_dim_filter_context_item_name_root, .dup_dim_filter_context_item_name_selected,
+.dup_dim_filter_context_item_name_root_selected, .dup_dim_filter_context_item_name_hover, .dup_dim_filter_context_item_name_root_hover
+{
+	white-space: nowrap;
+	border-style: solid;
+	border-color: #99aacc;
+	border-width: 1px;
+	border-right: none;
+	background-color: #e3e9f3;
+	padding-left: 3px;
+	padding-right: 3px;
+	font-weight: normal;
+	font-size: 70%;
+	color: #000000;
+	text-align: center;
+}
+.dup_dim_filter_context_item_name, .dup_dim_filter_context_item_name_root, .dup_dim_filter_context_item_name_selected,
+.dup_dim_filter_context_item_name_root_selected, .dup_dim_filter_context_item_name_hover, .dup_dim_filter_context_item_name_root_hover
+{
+	font-size: 54%;
+}
+
+.axis_context_item_name_selected, .dup_dim_axis_context_item_name_selected, .axis_context_item_name_hover, .dup_dim_axis_context_item_name_hover,
+.filter_context_item_name_selected,.filter_context_item_name_root_selected, .filter_context_item_name_hover, .filter_context_item_name_root_hover,
+.dup_dim_filter_context_item_name_selected,.dup_dim_filter_context_item_name_root_selected, .dup_dim_filter_context_item_name_hover, .dup_dim_filter_context_item_name_root_hover
+{
+	border-width: 2px;
+	border-color:#134679;
+	border-right: 2px solid #134679;
+	padding-left: 2px;
+	padding-right: 1px;
+
+}
+
+.filter_context_item_name_root, .filter_context_item_name_root_selected, .filter_context_item_name_root_hover,
+.dup_dim_filter_context_item_name_root, .dup_dim_filter_context_item_name_root_selected, .dup_dim_filter_context_item_name_root_hover
+{
+	color: #999999;
+}
+
+
+.context_item_HAMCdragover
+{
+	background-color: gray;
+	color: #FFFFFF	;
+}
+
+.context_item_dragover
+{
+	background-color: #000000;
+	color: #FFFFFF	;
+}
+
+
+/**********************************************
+* Left pane & dim tree styles
+***********************************************/
+.mdmetadata, .analysis_item
+{
+	color: #0000CC;
+	left: 0px;
+	position:absolute;
+	font-size: 70%;
+	font-family: Tahoma;
+	padding: 3px 3px 3px 3px;
+	overflow: auto;
+	white-space: nowrap;
+	vertical-align : middle;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+
+}
+.pane
+{
+	text-align: left;
+	position:absolute;
+	padding: 3px;
+	margin: 0px 0px 0px 0px;
+	background-color : white;
+	background-color: #e7e7e7;
+	border : 1px solid;
+	border-color : #e7e7e7 #cccccc #cccccc #e7e7e7;		
+}
+
+.insert_objects
+{
+	border-collapse: collapse;
+	position: absolute;
+	background-color: #ffffff;
+}
+
+.BlockProperties
+{
+	border: 0px;
+	padding: 0px;
+}
+
+.left_pane_footer
+{
+	position:absolute;
+	background-color : #e7e7e7;
+}
+
+.InfoTable
+{
+	border-collapse: collapse;
+	font-size: 70%;
+	table-layout: fixed;
+}
+
+.InfoTable_NS
+{
+	border-spacing: 0px;
+	font-size: 70%;
+}
+
+.Description
+{
+	display:none;
+	background-color: #e8ecf4;
+	padding: 3px;
+	border-bottom : 1px solid #99aacc;
+	font-size: 70%;
+}
+
+
+.InfoTableCell, .InfoDragCell
+{
+	padding-left: 3px;
+	padding-top: 3px;
+}
+
+.InfoDragCell
+{
+	font-weight: bold;
+}
+
+
+.InfoDragText_Hover
+{
+	background-color: #bec8dc;
+	color: #000000;
+}
+
+.InfoDragText_Selected
+{
+	background-color: #000000;
+	color: #FFFFFF	;
+}
+
+.InfoDragIcon, .InfoLoadingIcon
+{
+	margin-left: 2px;
+	margin-right: 6px;
+}
+
+.InfoTableLabelText, .InfoTableValueText
+{
+	display: inline;
+	overflow: hidden;	
+	white-space: pre;
+}
+
+.InfoTableLabelText
+{
+	font-weight: bold;
+}
+
+.hide_show		
+{	
+	background-color: #e7e7e7;
+	border : 1px solid;
+	border-color : #cccccc #cccccc #cccccc #cccccc;		
+	position: absolute;
+}
+
+.hide_show_hover
+{
+	background-color: #bec8dc;
+}
+
+.hide_show_pressed
+{
+	border-color : #336699 #336699 #336699 #336699;		
+}
+
+.tab_table{
+	padding: 0px 0px 0px 0px;
+	vertical-align : bottom;
+	border-collapse : collapse;	
+	margin: 0px 0px 0px 0px;
+	width: 100%;		
+}
+.tab_table_NS{
+	padding: 0px 0px 0px 0px;
+	vertical-align : bottom;	
+	border-spacing: 0px;
+	margin: 0px 0px 0px 0px;
+	width: 100%;		
+}
+
+.tab_text_selected
+{
+	cursor: default;
+}
+
+.tab_text_none_selected
+{
+	cursor: pointer;
+	cursor: hand;
+}
+
+.warningmsg{
+	font-family: Verdana;
+  	font-style: normal;
+ 	font-size: 12;
+  	font-weight: bold;
+  	color: #336699;
+ }
+ 
+
+/**********************************************
+* Crosstab Styles
+***********************************************/
+
+.InstructionText
+{
+	font-size: 70%;
+	text-align: left;
+	white-space: nowrap;
+}
+
+.h_scroll_bar_splitter{
+	background-color: #336699;
+	position: absolute;
+	height: 1px;
+	overflow:hidden;
+}
+.v_scroll_bar_splitter{
+	background-color: #336699;
+	position: absolute;
+	width: 1px;
+	overflow:hidden;
+}
+
+.BlockSelectorRows, .BlockSelectorCols, .BlockSelectorRowsHover, .BlockSelectorColsHover
+{
+	background-color: #BFD2E2;
+	border: 1px solid #336699;
+	overflow: hidden;
+}
+
+.BlockSelectorCols, .BlockSelectorColsHover
+{
+	background-image: url(../../../explore/images/block_vertical.gif);
+}
+
+.BlockSelectorRows, .BlockSelectorRowsHover
+{
+	background-image: url(../../../explore/images/block_horizontal.gif);
+}
+.BlockSelectorExpandedSet
+{
+	background-color: #BFD2E2;
+	border: 0px;
+	text-align: right;
+}
+
+
+.BlockSelectorRowsHover, .BlockSelectorColsHover
+{
+	background-color: #99ccff;
+}
+
+.appendIndicator
+{
+	/*border: 1px dashed black;*/
+	overflow: hidden;
+	background-color: #000000;
+}
+
+/* Cell Template Styles */
+
+.NoDataModeCellTemplate
+{
+	border-collapse: collapse;
+	border-width: 1px 1px 1px 1px;
+	border-style: solid;
+	border-color: #CCCCCC;
+	text-align: left;
+	vertical-align: top;
+	color: #999999;
+	/*background-color: white;*/
+	cursor: default;
+	padding: 10px 7px 5px 10px;
+	background-image: url(../../../explore/images/get_data_later_background.gif);
+}
+.NoDataModeDummyMember 
+{
+	background-image: url(../../../explore/images/get_data_later_background.gif);
+}
+
+.DataCellTemplate
+{
+	border-collapse: collapse;
+	border-width: 1px 1px 1px 1px;
+	border-style: solid;
+	border-color: #CCCCCC;
+	text-align: center;
+	color: #999999;
+	background-color: white;
+	cursor: default;
+	padding: 5px 7px 5px 5px;
+}
+.DataCellTemplate_NS
+{
+	border-width: 0px 1px 1px 0px;
+	border-style: solid;
+	border-color: #CCCCCC;
+	text-align: center;
+	color: #999999;
+	background-color: white;
+	cursor: default;
+}
+
+.crostab_drop_arrow{
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+.FixedWidthDataCell
+{
+	white-space: nowrap;
+	border-left: none;
+	border-top: none;
+	vertical-align: middle;
+	text-align: right;
+
+	padding: 0px;
+	cursor: default;
+	
+	overflow: hidden;
+	text-overflow:ellipsis;
+}
+
+.ColMemberCellTemplate
+{
+	border-collapse: collapse;
+	border-width: 1px 1px 1px 1px;
+	border-style: solid;
+	border-color: #CCCCCC;
+	text-align: center;
+	font-weight: bold;
+	color: #999999;
+	background-color: #e3e9f3	;	
+	white-space: nowrap;
+	cursor: default;
+	padding: 5px 7px 5px 5px;
+}
+.ColMemberCellTemplate_NS
+{
+	border-width: 1px 1px 1px 0px;
+	border-style: solid;
+	border-color: #CCCCCC;
+	text-align: center;
+	font-weight: bold;
+	color: #999999;
+	background-color: #e3e9f3	;	
+	white-space: nowrap;
+	cursor: default;
+	padding: 5px 7px 5px 5px;
+}
+
+.RowMemberCellTemplate
+{
+	border-collapse: collapse;
+	border-width: 0px 1px 1px 1px;
+	border-style: solid;
+	border-color: #CCCCCC;
+	text-align: center;
+	font-weight: bold;
+	color: #999999;
+	background-color: #e3e9f3	;	
+	white-space: nowrap;
+	cursor: default;
+	padding: 5px 7px 5px 5px;
+}
+
+
+.CentralMeasureCellTemplate
+{
+	border-collapse: collapse;
+	border-style: solid;
+	border-top-style: dashed;
+	border-left-style: dashed;
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+	color: #999999;
+	padding: 5px 7px 5px 5px;
+}
+
+
+/* Data Cell Styles */
+.DataCell, .DataCellInvalid
+{
+
+	white-space: nowrap;
+	border-left: none;
+	border-top: none;
+	vertical-align: middle;
+	text-align: right;
+
+	padding: 5px 7px 5px 5px;
+	cursor: default;	
+}
+
+.DataCellInvalid
+{
+	text-align: center;
+}
+
+
+
+.DataCellHover
+{
+	cursor: pointer;
+	cursor: hand;
+}
+
+
+.DrillableDataCell
+{
+	text-decoration: underline;
+}
+
+
+
+
+/* Central Measure Cell Styles */
+
+.CentralMeasureCell,.CentralMeasureCellInactive
+{
+	border-collapse: collapse;
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+	cursor: default;
+	white-space: nowrap;
+
+	padding: 5px 7px 5px 5px;
+
+}
+.CentralMeasureCellInactive{
+	color: #CCCCCC;
+	font-weight: normal;
+}
+
+.CentralMeasureCellHover
+{
+	background-color: #336699;
+	color: #FFFFFF	;
+}
+
+.AssistiveMeasureText
+{
+	color: #CCCCCC;
+}
+
+
+/* Member Cell Styles */
+.MemberCell, .MemberCellHover, 
+.MemberCellTotal, .MemberCellTotalHover, .BlockLeftEdge,
+.MemberCellTotal_Inner,.MemberCellTotalHover_Inner,
+.MemberCellSubtotal, .MemberCellSubtotalHover, .IncludeSubtotal, .IncludeSubtotalHover, .ExcludeSubtotal,.ExcludeSubtotalHover
+{
+	white-space: nowrap;
+	border-left: none;
+	border-top: none;
+	vertical-align: middle;
+	text-align: left;
+	padding: 5px 7px 5px 5px;
+	cursor:default;
+}
+
+.MemberCellHover,.ExcludeSubtotalHover, .MemberCellTotalHover, .MemberCellTotalHover_Inner, .IncludeSubtotalHover, .MemberCellSubtotalHover
+{
+	background-color: #BEC8DC;
+	color: #0000cc;
+}
+
+
+.TertiarySelection
+{
+	background-color: #BEC8DC;
+	color: #FFFFFF	;
+}
+
+.SecondarySelection
+{
+	background-color: #FFFFCC;;
+	color: #000000;
+}
+
+.PrimarySelection
+{
+	background-color: #336699;
+	color:#FFFFFF;
+}
+
+
+.DragOver
+{
+	background-color: #000000;
+	color: #999999;
+}
+
+
+.Phantom
+{
+	color: #e7e7e7;
+}
+
+/* Labels */
+.MemberCellLabel
+{
+	white-space: pre;
+	padding: 0px 0px 0px 0px;
+	cursor:default;	
+}
+
+.ColMemberCell
+{
+	white-space: pre;
+	padding: 0px 0px 0px 0px;
+	cursor:default;
+	overflow: hidden;
+	text-overflow:ellipsis;	
+}
+
+
+/*Second class used to force Netscape to update styles dynamically*/
+.SecondClass
+{
+
+}
+
+.SpecialCalcText
+{
+	text-decoration: none;
+	cursor: default;
+}
+
+.SpecialCalcTextHover
+{
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.Property, .Property_selected
+{
+	white-space: nowrap;
+	text-decoration: none;
+	font-weight: normal;
+	display: block;
+	cursor: default;	
+}
+.Property
+{
+	color: #336699;
+}
+.Property_selected
+{
+	color: #e3e9f3;
+}
+
+.BlockLeftEdge
+{
+	border-left: 1px solid #999999;
+}
+.BlockRightEdge
+{
+	border-right: 1px solid #999999;
+}
+.BlockBottomEdge
+{
+	border-bottom: 1px solid #999999;
+}
+.BlockTopEdge
+{
+	border-top: 1px solid #999999;
+}
+
+.BlockLeftEdgeHL
+{
+	border-left: 1px solid #cc0000;
+}
+.BlockRightEdgeHL
+{
+	border-right: 1px solid #cc0000;
+}
+.BlockBottomEdgeHL
+{
+	border-bottom: 1px solid #cc0000;
+}
+.BlockTopEdgeHL
+{
+	border-top: 1px solid #cc0000;
+}
+
+
+.ChartPane
+{
+	left: 0px;
+	position: absolute;
+	text-align: left;
+	overflow: auto;
+}
+
+
+/** Tree */
+.tree_node_normal,.tree_node_clickable
+{
+	color: #000000;
+	cursor: default;
+	height: 16px;
+	padding: 2px 0px 2px 2px;
+	vertical-align : middle;	
+}
+.tree_node_clickable{
+	text-decoration: underline;
+	color: #0000CC;
+	cursor: pointer;
+	cursor:hand;
+}
+.tree_node_selected
+{
+	cursor: default;
+	background-color: #000000;
+	color: #FFFFFF	;
+	height: 16px;
+	padding: 2px 0px 2px 2px;
+	vertical-align : middle;
+}
+
+.tree_node_hover, .tree_node_clickable_hover
+{
+	cursor: default;
+	background-color: #bec8dc;
+	color: #000000;
+	height: 16px;
+	padding: 2px 0px 2px 2px;
+	vertical-align : middle;	
+}
+
+.tree_node_clickable_hover{
+	text-decoration: underline;
+}
+
+.tree_node_blur
+{
+	cursor: default;
+	background-color: #cccccc;
+	color: #000000;
+	height: 16px;
+	padding: 2px 0px 2px 2px;
+	vertical-align : middle;	
+}
+
+.invisible_tree_link
+{
+	white-space: pre;
+	text-decoration: none;
+	cursor: default;
+}
+
+.additional_node_text, .additional_node_link
+{
+	padding-left: 2px;
+	vertical-align: middle;
+}
+
+.additional_node_link, .additional_node_link_hover
+{
+	color: #0000CC;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.additional_node_link_hover
+{
+	background-color: #bec8dc;
+}
+
+
+IMG.tree_img,IMG.tree_icon
+{
+	padding: 0px;
+	margin: 0px 0px 0px 0px;
+	vertical-align : middle;
+}
+
+IMG.tree_icon
+{
+	cursor: pointer;
+	cursor: hand;
+}
+
+IMG.node_type_icon{
+	margin: 0px 0px 0px 0px;
+	vertical-align : middle;
+}
+
+.tree_node_div 
+{
+	font-size: 8pt;
+	padding: 0px 0px 0px 0px;
+	white-space: nowrap;
+	text-align: left;
+	vertical-align : middle;
+	color:#000000;
+	margin: 0px 0px 0px 0px;
+}
+IMG.clsCursor
+{
+	position: absolute;
+	visibility: hidden;
+	margin: 17px 0px 0px 3px;
+}
+
+
+/**********************************************
+* Context Menu Style
+***********************************************/
+.contextMenu_Separator
+{
+	height: 1px;
+}
+
+.contextMenu_submenu_img{
+	vertical-align: middle;
+	padding: 2px;
+	width: 4px;
+	height: 7px;
+}
+
+.contextItem_img
+{
+	padding: 0px;
+	vertical-align: middle;
+}
+
+/*********** Combo box *************/
+
+TABLE.ComboBox
+{
+	table-layout: fixed;
+	/*need to change CUIComboBox.BorderWidth if this style attribute changed*/
+	border: 1px solid #cccccc;
+	background-color: window;
+	color: windowtext;
+	text-align: left;
+}
+TD.ComboBoxIcon
+{
+	height: 18px;
+	width: 18px;
+	vertical-align: middle;
+	cursor: default;
+}
+TD.ComboBoxIconEmpty
+{
+	height: 18px;
+	width: 0px;
+	vertical-align: middle;
+	cursor: default;
+}
+TD.ComboBoxText
+{
+	white-space: pre;
+	overflow: hidden;
+	padding: 0px;
+	padding-left: 2px;
+	vertical-align: middle;
+	text-align: left;
+	font-size: 8pt;
+}
+
+TD.ComboBoxText INPUT
+{
+	background-color: transparent;
+	width: 100%;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+}
+TD.ComboBoxArrow,
+TD.ComboBoxArrow_down
+{
+	background-repeat: no-repeat;
+	vertical-align: middle;
+	background-color: #e7e7e7		;
+	cursor: default;
+	padding: 1px;
+	border: 1px solid green;
+}
+
+TD.ComboBoxArrowWhite,
+TD.ComboBoxArrowWhite_down
+{
+	background-repeat: no-repeat;
+	vertical-align: middle;
+	background-color: #ffffff;
+	cursor: default;
+	padding: 1px;
+}
+
+TD.ComboBoxArrowWhite,
+TD.ComboBoxArrow
+{
+	background-position: center center;
+	/*reflected border constants need to be change in filter dialog*/
+	border: 1px solid #cccccc;
+	
+}
+TD.ComboBoxArrowWhite_down,
+TD.ComboBoxArrow_down
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+	background-position: center center;
+
+}
+
+TD.ComboBoxArrowWhite_hover
+{
+	background-repeat: no-repeat;
+	vertical-align: middle;
+	background-color: #e7e7e7		;
+	cursor: pointer;
+	cursor: hand;
+	padding: 1px;
+	background-position: center center;
+	/*reflected border constants need to be change in filter dialog*/
+	border: 1px solid #cccccc;
+}
+
+/***************** List ctrl **********************/
+
+.ListCtrl
+{
+	overflow: auto;
+	border: 1px solid #999999;
+
+}
+
+DIV.ListView,
+DIV.ListView_dropdown
+{
+	overflow: auto;
+	white-space: nowrap;
+	background-color: window;
+	color: windowtext;
+	border: 2px inset threedhighlight;
+}
+
+DIV.ListView_dropdown
+{
+	border: 1px solid #000000;
+	overflow: auto;
+	background-color: #FFFFFF;
+}
+
+.ListCtrlIcon
+{
+	margin-right: 2px;
+}
+
+
+.chart_IE
+{
+	border: none;
+}
+
+.chart
+{
+	border:none;
+}
+
+.chartError
+{
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+/**********************************************
+* dialog styles
+***********************************************/
+.dialogDiv, .dialogDiv_NS
+{
+	background-color: #FFFFFF	;
+	position: absolute;
+	overflow: hidden;
+	visibility: hidden;
+	border: 0px;
+}
+
+.modalDialogDiv
+{
+	background-image: url(../../../explore/images/blank.gif);
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	visibility: hidden;	
+}
+.dlgContentDiv
+{
+	background-color: #FFFFFF	;
+	overflow: auto;
+	border-left: 1px solid  #999999;
+	border-right: 1px solid  #999999;
+	padding-left: 5px;
+	
+}
+
+.modalDialogContentDiv, .modalDialogContentDiv_NS
+{
+	background-color: #eceef3;
+	overflow: hidden;
+	border-left: 1px solid  #999999;
+	border-right: 1px solid  #999999;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.modalDialogContentDiv
+{
+	width: 100%;	
+}
+
+.dialogTitle
+{
+	font-family: Tahoma;
+	font-size: 80%;
+	color: #336699;
+	font-weight: bold;
+	border-bottom: 1px solid #336699;
+	padding-left: 3px;
+	white-space: nowrap;
+}
+.dialogIntroTable {
+	width: 99%;	
+	padding:0px;	
+}
+.dialogIntroText {
+	text-align: left;
+	font-size: 70%;
+	width: 85%;
+	color: #336699;
+	padding-left: 2px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	
+}
+.dlginnerlink{
+	text-align: right;
+	font-size: 8pt;
+	white-space: nowrap;
+}
+
+.dialogCloseCol
+{
+	border-bottom: 1px solid #336699;
+	text-align: right;
+	padding: 0px;
+	margin: 0px;
+}
+
+.dialogCloseButton
+
+{
+	border: 1px solid #336699;
+	border-bottom: none;
+	color: #336699;
+	padding: 2px;
+	vertical-align: bottom;
+}
+
+.dialogText,.dialogText_bold, .aboutDlgVersionText,.srchDlgQoSOpt
+{
+	font-family: Tahoma;
+	font-size: 70%;
+	color: #336699;
+}
+.aboutDlgVersionText
+{
+	font-weight: bold;
+}
+.dialogText_bold
+{
+	font-weight: bold;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.infoLabel, .CheckBoxText
+{
+	font-size: 8pt;
+	font-weight: normal;
+	color: #000000;
+	vertical-align : middle;	
+	padding: 0px;	
+	text-align: left;
+}
+
+.dialogTextBox
+{
+	font-family: Tahoma;
+	font-size: 70%;
+	color: #000000;	
+	overflow: hidden;
+}
+
+/*Firefox - have to force the color background*/
+.disabledTextBox 
+{
+	background-color: #FFFFFF !important;
+}
+
+.dialogTextArea
+{
+	font-family: Tahoma;
+	font-size: 70%;
+	color: #000000;	
+	overflow: auto;
+}
+
+.dialog_block_list
+{
+	padding-top: 10px;
+}
+
+.integerTextBox, .integerTextBox_centered
+{
+	font-family: Tahoma;
+	font-size: 8pt;
+	text-align: left;
+	color: #000000;
+	vertical-align: top;
+	padding: 1px 0px 1px 0px;
+}
+
+.integerTextBox_changed
+{
+	font-weight: bold;	
+}
+
+.integerTextBox_centered
+{
+	text-align: center;
+}
+
+.dialogCheckBox
+{
+	color: #000000;
+}
+
+.dialogSmallCheckBox
+{
+	height: 12px;
+	width: 12px;
+}
+
+.dialogRadioBtn
+{
+	vertical-align: middle;
+}
+
+.dialogImage, .ListCtrlIcon
+{
+	margin-left: auto;
+	margin-right: auto;
+	border: 0px;
+	padding: 0px;
+	vertical-align : middle;
+}
+
+.dialogInnerFuncLink
+{
+	font-size: 8pt;
+	vertical-align : top;
+	text-align: right;
+	padding-right: 4px;	
+	padding-left: 0px;		
+	padding-top: 0px;	
+	padding-bottom: 0px;	
+}
+
+.dialogSelectBox{
+	font-family: Tahoma;
+	font-size: 8pt;
+	font-weight: normal;
+	color: #000000;
+}
+
+.dialogButton, .dialogButton_hover,  .dialogButton_NS, .dialogButton_hover_NS
+{
+	background-color : #FFFFFF	;
+	font : Tahoma;
+	font-size: 90%;
+	font-weight: normal;
+	text-align: center;
+	border : 1px solid #999999;
+	overflow: visible;
+	cursor: pointer;
+	cursor: hand;
+	vertical-align : middle;
+	padding: 1px 10px 1px 10px;	
+}
+	
+ .dialogButton_NS, .dialogButton_hover_NS
+ {
+ 	/*float:left is to make sure min-width works in Firefox.*/
+ 	min-width: 70px;
+}
+
+.dialogButton, .dialogButton_hover
+{
+	width: 70px;
+}
+
+.buttonText, .buttonText_NS
+{
+	text-decoration: none;
+	color : #000000;
+	height: 100%;
+	white-space: nowrap;
+}
+
+.dialogImgButton, .dialogImgButton_hover, .dialogImgButton_selected
+{
+	background-color : #FFFFFF	;
+	font : Tahoma;
+	font-size: 70%;
+	font-weight: normal;
+	color : #000000;
+	border : 1px solid #999999;
+	padding: 0px 10px 0px 10px;
+	overflow: visible;
+	cursor: pointer;
+	cursor: hand;
+	text-align : center;
+	vertical-align : middle;
+	white-space:nowrap;
+	display: inline-block;
+}
+
+.dialogImgButton_hover, .dialogImgButton_selected
+{
+	background-color: #bec8dc;
+}
+
+.dialogRequiredFieldIndicator
+{
+	vertical-align: top;	
+}
+.dialogTable{
+	/*border-style:none;*/
+	width: 100%;	
+	padding:0px;	
+}
+
+.dialogInnerDiv
+{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+
+a.dialogAnchor
+{
+	background-color : #FFFFFF	;
+	font-size: 80%;
+	color : #336699;
+	margin-left : 10px;
+	text-decoration : underline;
+}
+.helplink, .cancelLink, .noDataModeFuncLink
+{
+	text-decoration : underline;
+	font-size: 8pt;
+	text-align: right;
+	color: blue;
+	cursor: hand;
+	vertical-align:middle;
+}
+.disabled_cancelLink
+{
+	text-decoration: none;
+	font-size: 8pt;
+	text-align: right;
+	color: graytext;
+	cursor: default;
+}
+.disabled_link
+{
+	text-decoration: none;
+	font-size: 8pt;
+	text-align: right;
+	color: #336699;
+	cursor: default;
+}
+.link
+{
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+	color: #336699;
+	font-weight: normal;
+	white-space: pre;
+}
+
+.helplink {
+	color: #ffffff;
+	font-weight: normal;
+	white-space: nowrap;
+}
+
+.dialogSecTitle
+{
+	font-size: 8pt;
+	color: #336699;
+	font-weight: bold;
+	background-color : #FFFFFF	;
+}
+
+/* should be removed once CUIChart was cleaned up */
+.dialogBorderedText
+{
+	font-size: 8pt;
+	color: #336699;
+	border-left: 1px solid #336699;
+	padding-left: 5px;
+	height: 12px;
+}
+
+.srchDlgQoSOpt
+{
+	vertical-align: top;				
+}
+.singleBlockSegmentDiv
+{
+	overflow: auto;
+	border: 0px;	
+	font-family: Tahoma;
+	font-size: 70%;
+	color: #336699;	
+	padding: 0px 5px 0px 5px;
+}
+.nestedBlockSegmentDiv
+{
+	overflow: auto;
+	border: 1px solid #000000;	
+	background-color : #FFFFFF	;	
+	font-family: Tahoma;
+	font-size: 70%;
+	color: #336699;	
+	padding: 5px 5px 5px 5px;
+}
+
+.fltDlgBlockCntx
+{
+	font-family: Tahoma;
+	font-size: 70%;
+	font-weight: normal;
+	color: #000000;	
+}
+
+.srchDlgResultDiv, .suppressionDlgTuplesDiv
+{
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color : #FFFFFF	;	
+		
+}
+.srchDlgResultArea, .calcExprEditArea, .suppressionDlgTuplesArea
+{
+	border: 1px solid #999999;
+	vertical-align: top;	
+}
+
+.listCtrlTBL,.nonWrapListCtrlTBL
+{
+	border: 0px;
+	width: 100%;
+	padding: 0px;
+	
+}
+
+.srchDlgResultTBLHeader
+{
+	font-size: 8pt;
+	color: #336699;
+	font-weight: bold;
+	background-color : #e7e7e7		;
+	/*remove the right border right now, might be add back
+	border-right: 1px solid #999999;*/
+}
+
+.srchDlgResultItem, .ListCtrlItem, .ListCtrlSeparator, .SpecialListCtrlItem, .missingDataItem, .suppressionDlgTupleItem
+{
+	font-size: 8pt;
+	color: #000000;
+	background-color : white;
+	font-weight: normal;
+	cursor: default;
+	white-space: pre;
+}
+
+.suppressionTupleItemTblHeader
+{
+	font-size: 8pt;
+	color: #336699;
+	background-color : #EEEEEE;
+	font-weight: bold;
+	cursor: default;
+	text-align: left;
+}
+
+.suppressionTupleItemTblHeaderTD
+{
+	border-left: 1px solid #CCCCCC;
+}
+
+.SpecialListCtrlItem
+{
+	font-style: italic;
+}
+
+.srchDlgResultItemSelected, .suppressionDlgTupleItemSelected
+{
+	font-size: 8pt;
+	background-color: #FFFFCC;
+	border-right: 1px solid #e7e7e7		;
+	cursor: pointer;
+	cursor: hand;
+	white-space: pre;
+}
+.tempOperand{
+	font-style: italic;
+}
+.inValidOperand
+{
+	color: #DC143C;	
+}
+
+.inValidOperandSelected
+{
+	color: #FFCCCC;
+}
+
+.ListCtrlItem_Selected
+{
+	background-color:#99aacc;
+}
+
+.ListCtrlItem_Hover
+{
+	background-color: #e3e9f3;
+}
+
+.ListCtrlItem_blur
+{	
+	background-color: #cccccc;
+}
+
+.ListCtrlItemLink
+{
+	color: #000000;
+	text-decoration: none;
+	cursor: default;
+}
+
+.nonWrapListCtrlTBL{
+	white-space:pre;	
+}
+
+.aboutDlgBrandImg
+{
+	vertical-align: top;
+}
+
+.aboutDlgDiv
+{
+	padding-bottom: 10px;
+	padding-top:10px;
+		
+}
+
+.aboutImageDiv
+{
+	height: 340px;
+	padding-left:10px;
+	overflow:auto;
+	overflow-x:hidden; 
+	position: relative;
+}
+.aboutImageTemplate
+{
+	position: absolute;
+}
+
+.aboutProductTemplate
+{
+    padding-top: 46px;
+    font-weight: bold;
+}
+
+.aboutVersionTemplate
+{
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+.aboutLicenseTemplate
+{
+    padding-top: 8px;
+    font-size: 8pt;
+    font-weight: normal;
+}
+
+.aboutCopyrightTemplate
+{
+    font-size: 8pt;
+    width: 450px;
+    font-weight: normal;
+}
+
+.aboutDlgVersion
+{
+	padding-bottom: 5px;
+}
+
+.patentPendingTD
+{
+	padding-bottom: 10px;
+}
+
+.patentPending
+{
+	font-family: Tahoma, Arial, Geneva, Helvetica, sans-serif;
+	font-size: 70%;
+	color: #000000;
+	font-weight: normal;
+}
+
+
+.copyrightWarning
+{
+	padding-top: 10px;
+	font-family: Tahoma, Arial, Geneva, Helvetica, sans-serif;
+	font-size: 70%;
+	color: #999999;
+	font-weight: normal;
+}
+
+.CopyrightNotice
+{
+	/*font: messagebox;*/
+	font-size: 70%;
+	cursor: default;
+	padding:5px;
+	border:solid black 1px;
+	background-color:white;
+	width:92%;
+	height:200px;
+	overflow:auto;
+	background-image: url(../branding/ibm-logo-white.gif);
+	background-position: center center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+}
+
+.aboutDlgText
+{
+	padding-left:10px;
+	padding-right:10px;
+	vertical-align:middle;
+	width:100%;
+}
+
+/*Styles to be compliant with Liz standard*/
+.pagerCtrlTBL
+{
+	border-top: 0px;
+	border-bottom: 1px;
+	border-left: 0px;
+	border-right: 1px;
+	border-collapse: collapse;
+	/*width: 100%;*/
+	padding: 0px;
+}
+
+.pagerCtrlTBLHeader, .pagerCtrlTBLHeaderLastColumn, .missingDataTBLHeader
+{
+	font-size: 8pt;
+	color: #336699;
+	font-weight: bold;
+	border-right: 1px solid #b7b7b7;
+	border-bottom: 1px solid #e7e7e7;
+	background-color : #e7e7e7		;		
+	padding-left: 5px;
+	padding-right: 5px;
+	white-space: nowrap;
+}
+.pagerCtrlTBLHeaderLastColumn
+{
+	border-right-style: none;
+}
+.pagerCtrlTBLItem_selected
+{
+	background-color:#e3e9f3;
+}
+.pagerCtrlTBLItem
+{
+	background-color : white;
+}
+.pagerCtrlTBLItem_hidden
+{
+	display:none;
+}
+.pagerCtrlTBLItem_show
+{
+	display:block;
+}
+.pagerCtrlTBLTD,.pagerCtrlTBLTD_selected
+{
+	font-size: 8pt;
+	color: #000000;
+	padding-left: 3px;
+	padding-right: 3px;
+	white-space: noWrap;
+	border: 1px solid #b7b7b7;
+}
+.pagerCtrlTBLTD{
+	background-color: #ffffff;
+}
+.pagerCtrlTBLTD_selected{
+	background-color: #e3e9f3;
+}
+
+
+
+.calcExprDisplay{
+	vertical-align: top;
+	padding: 0px 3px 0px 20px;
+}
+
+
+/* new driozone implementation*/
+.dz_div_LR
+{
+	background: white;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	padding: 2px;
+	
+}
+.dz_div_TB
+{
+	background: white;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	padding: 2px;
+	
+}
+
+.replace_dz
+{
+	color: #999999;
+	background-color: #000000;
+	background-image: url('');
+}
+.hamc_replace_dz
+{
+	color: #000000;
+	background-color: #e7e7e7;
+}
+
+.crosstab_dropzone
+{
+	background-color: #FFFFFF	;
+}
+
+.userDefFLTDlgRuleDiv
+{
+	width: 100%;
+	height: 100px;
+	overflow: auto;
+	border: 1px solid #000000;
+	border-bottom: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	padding: 0px;
+		
+}
+
+/****************** Block Properties Pane *******************/
+
+.BlockPropertyLineLabel
+{
+	font-weight: bold;
+	font-size: 70%;
+	white-space: nowrap;
+}
+
+.BlockPropertiesContainer
+{
+	border-left: 1px solid #e7e7e7;
+	border-right: 1px solid #e7e7e7;
+	background-color: #FFFFFF	;
+	overflow: auto;
+
+}
+
+.BlockPropertiesText
+{
+	display: inline-block;
+	overflow: hidden;	
+}
+
+.BlockPropertiesText_NS
+{
+	/*Netscape doesn't officially support inline-block but -moz-inline-box gives us what we need -
+	i.e. the ability to set the width
+	See also http://bugzilla.mozilla.org/show_bug.cgi?id=9458*/
+	display: -moz-inline-box;
+	overflow: hidden;
+}
+
+.BlockPropertyCell
+{
+	padding-left: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-align: left;
+	vertical-align: middle;	
+}
+
+.disabledDIV_NS span
+{
+	color: #555555;		
+}
+
+.disabledDIV_NS td
+{
+	color: #555555;		
+}
+
+.prop_div, .lock_prop_div
+{
+	padding: 0px 0px 0px 0px;
+	white-space: nowrap;
+	text-align: left;
+	vertical-align: middle;
+	color:#000000;
+	font-family: Tahoma;
+	font-size: 70%;
+	display: inline;
+	font-weight: normal;
+	cursor: default;	
+}
+
+.prop_block_table{
+	border-collapse: collapse;
+	vertical-align: top;	
+	font-size: 100%;
+}
+
+.lock_prop_div
+{
+	font-size: 100%;
+}
+
+.prop_div_middel_valign
+{
+	padding: 0px 0px 0px 0px;
+	white-space: nowrap;
+	text-align: left;
+	vertical-align: middle;
+	color:#000000;
+	font-family: Tahoma;
+	font-size: 70%;
+	display: inline;
+	font-weight: normal;
+	cursor: default;	
+}
+
+.prop_div_link
+{
+	color: #0000CC;
+	text-decoration: underline;
+	white-space: pre;
+}
+
+.prop_div_changed
+{
+	font-weight: bold;
+}
+
+.prop_div_hover
+{
+	background-color: #e3e9f3;
+}
+
+.prop_div_selected
+{
+	background-color:#99aacc;
+}
+
+.prop_div_editable
+{
+	cursor: pointer;
+	cursor: hand;
+}
+
+IMG.prop_dropdown_arrow, .dlg_dropdown_arrow{
+	height: 12px;
+	width: 13px;
+	margin: 0px 0px 0px 0px;
+	vertical-align: middle;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.link_image
+{
+	cursor: pointer;
+	cursor: hand;
+}
+
+.dlg_dropdown, .dlg_img_in_pageCtrlTBL 
+{
+	font-family: Tahoma;
+	font-size: 70%;
+	text-align: center;		
+}
+.dlg_img_in_pageCtrlTBL {
+	vertical-align: top;
+	padding-top: 3px;
+}
+
+.dlg_dropdown_container {
+	text-align: center;		
+	display: inline;
+}
+
+.dlg_dropdown_block_container {
+	text-align: right;
+	/*padding-right: 30px;	*/	
+	display: inline-block;
+}
+
+.inner_rule_div{
+	border: 1px solid #cccccc;
+	display: inline-block;
+	padding: 2px;
+}
+.vAlign_top {
+	vertical-align: top;	
+}
+.vAlign_middle {
+	vertical-align: middle;	 
+}
+.vCellSpacing{
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
+.rs_content_top_alignment{
+	vertical-align: top;
+}
+
+.flt_rule_group_brakets_open
+{
+	vertical-align: top;	
+	padding: 6px 1px 2px 1px;
+	display: inline-block;
+	
+	
+}
+.flt_rule_group_brakets_close
+{
+	vertical-align: bottom;
+	padding: 2px 1px 4px 1px;
+	display: inline-block;		
+}
+.editable_content_link{
+	text-decoration : underline;
+	font-size: 8pt;
+}
+
+.Disabled
+{
+	color: #CCCCCC;
+	background-color: #999999 !important;
+	cursor: default;
+}
+
+/*Firefox UI fix, the above color=#CCC does not apply in Firefox*/
+.Disabled a
+{
+ 	color: #CCC;
+}
+
+.worksheet_loading
+{
+	padding: 0px 5px 0px 0px;
+	vertical-align : middle;
+}
+
+.missingDataPane
+{
+	text-align: left;
+	padding: 10px 10px 0px 10px;
+	position: absolute;
+	/*Width and height are reset in CUIWorkSheet*/
+	overflow: auto;
+}
+
+.missingDataErrorMsgDiv
+{
+	padding: 10px 10px 30px 10px;
+	color: #336699;
+}
+
+.missingDataFixInstruction
+{
+	padding: 0px 0px 5px 0px;
+	font-size: 70%;
+	
+}
+.missingDataAnaUpdateInstruction
+{
+	padding: 20px 0px 20px 0px;
+	font-size: 70%;
+}
+
+
+.missingDataTBL
+{
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #b7b7b7;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #b7b7b7;
+	border-collapse: collapse;
+	/*width: 100%;*/
+	padding: 0px;
+	text-align: center;		
+}
+
+.missingDataItem, .repItemDragOver, .missingDataItemSelected
+{
+	border-right: 1px solid #b7b7b7;
+	padding: 3px;
+	height: 13px;
+	vertical-align: middle;
+	background-color: #FFFFFF;
+	font-size: 8pt;
+}
+.repItemDragOver
+{
+	background-color: #000000;
+}
+.missingDataItemSelected
+{
+	background-color: #FFFFCC;
+}
+.missdatapanebutton{
+	border-top: 1px solid #bec8dc;
+	border-right: 1px solid #999999;
+	border-left: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	background-color: #e7e7e7;
+	width: 100%;
+	padding: 0px;
+}
+
+/**********************************************
+* Z - indexes - Please leave this at the bottom of the file
+***********************************************/
+
+.clsDragTooltipVisible
+{
+	z-index: 100;
+}
+
+DIV.clsSplitterVert
+{
+	z-index: 30;
+}
+DIV.clsSplitterMoverVert
+{
+	z-index: 31;
+}
+
+.left_resize_pane
+{
+	z-index: 20;
+}
+
+.scroll_pane
+{
+	z-index: 1;
+}
+
+.filter_scroll_arrow_vis
+{
+	z-index: 14;
+}
+
+.filter_scroll_arrow
+{
+	z-index: 0;
+}
+
+.axis_scroll_arrow
+{
+	z-index: 0;
+}
+
+.axis_scroll_arrow_vis
+{
+	z-index: 15;
+}
+
+.contextMenu_body, .contextMenu_body_NS
+{
+	z-index: 99;
+}
+
+.h_scroll_bar_splitter, .v_scroll_bar_splitter{
+	z-index: 3;
+}
+
+.scrollbarStyle {
+	 z-index: 4;
+}
+
+.dialogDiv
+{
+	z-index: 10;
+}
+
+.dialogDiv_NS
+{
+	z-index: 32;
+}
+
+.end_drop_zone
+{
+	z-index: 55;
+}
+
+.crosstab_dropzone
+{
+	z-index: 100;
+}
+
+.Annotation
+{
+	z-index: 50;
+}
+
+.modalDialogContentDiv
+{
+	z-index: 150;
+}
+.modalDialogDyncContentDiv
+{
+	z-index: 151;
+}
+
+.modalDialogDiv
+{
+	z-index:149;
+}
+
+.DefaultANSTable
+{
+	margin-top: 10px;
+	margin-left: 10px;
+	font-family: Tahoma;
+	text-align: center;
+	
+}
+
+.DefaultANSTable td
+{
+	vertical-align: top;
+	line-height: 20px;
+	width: 100px;
+	color: #000000;	
+}
+
+.showOption
+{
+	text-align: left;
+	margin-left: 0px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 0px;
+	white-space: nowrap;
+	font-size: 70%;	
+}
+
+.DefaultANSTableTextDiv
+{
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.DefaultANSTableText_hover
+{
+	background-color: #E3E9F3;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.DefaultANSTableText_selected
+{
+	background-color: #000000;
+	color: #FFFFFF;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.modalDialogInfoDiv
+{
+	margin: 0px;
+	line-height: 100px;
+	background-color: #FFFFFF;
+	overflow: hidden;
+	border-left: 1px solid  #999999;
+	border-right: 1px solid  #999999;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.DefaultANSCellDiv
+{
+	margin-top: 0px;
+	margin-left: 0px;
+	text-align: center;
+}
+
+.calcExprBoardDiv
+{
+	width: 100%;
+	height: 100px;
+	overflow: auto;
+	border: 1px solid #000000;
+	border-bottom: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	color: #000000;
+	padding: 0px;
+	vertical-align: top;
+	margin: 0px;
+	white-space: pre;
+}
+
+.calcExprBoardInvalidLink, .invalidListCtrlItemLink
+{
+	color: #DC143C;
+	cursor: hand;
+	text-decoration: underline;
+}
+
+.calcFullSyntax{
+	color: #336699;
+	text-decoration: underline;
+	white-space: nowrap;
+	font-weight: normal;
+	font-size: 8pt;
+	margin-left: 20px;
+}
+
+.calcFullSyntaxContent{
+	font-weight: normal;
+	font-size: 8pt;
+}
+
+.detailErrMssgDiv
+{
+	width: 80%;
+	height: 100px;
+	overflow: auto;
+	border: 1px solid #000000;
+	border-bottom: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	color: #000000;
+	background-color: #FFFFFF;
+	padding: 2px;
+	margin: 0px;
+}
+
+/**********************************************
+* End Z - indexes - Please do not add anything after this
+***********************************************/

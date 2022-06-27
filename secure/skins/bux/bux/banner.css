@@ -1,0 +1,622 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+.buxBannerbar {
+	height: 42px;
+	color: #ffffff;
+	width: 100%;
+}
+
+.buxBannerbar .buxBannerSection {
+	vertical-align: middle;
+	height: 38px;
+}
+
+.buxBannerBlueDotSection {
+	background-repeat: no-repeat;
+	background-position: 10px 3px !important;
+	width: 50px;
+	min-width: 50px;
+}
+
+.icdUI .buxBannerbar .buxBannerBlueDotSection .dijitToolbar {
+	border-radius: 3px 3px 3px 3px;
+    border-style: inset outset outset inset;
+    border-width: 1px;
+    box-shadow: 3px 3px 2px #444444;
+    border-color:#222222;
+}
+
+.bannerWrapperTable{
+	width: 100%; 
+	padding-left:5px;
+}
+.buxBannerBlueDotSection:hover {
+	background-position: 10px -257px !important;
+}
+
+.buxBannerBlueDotSection .dijitToolbar .dijitDropDownButton,
+.buxBannerBlueDotSection .dijitToolbar .dijitDropDownButton .dijitButtonNode {
+	margin: 0px !important;
+}
+
+/*we need to override hover look of the blue dot menu*/
+.claro .buxBannerbar .buxBannerBlueDotSection .dijitToolbar .dijitDropDownButtonHover.buxBannerBigButton .dijitButtonNode,
+.dj_ie .claro .buxBannerbar .buxBannerBlueDotSection .dijitToolbar .dijitDropDownButtonHover.buxBannerBigButton .dijitButtonNode,
+.dj_ie .claro .buxBannerbar .buxBannerBlueDotSection .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode,
+.dj_ie .claro .buxBannerbar .buxBannerBlueDotSection .dijitToolbar .dijitToggleButtonHover .dijitButtonNode,
+.dj_ie .claro .buxBannerbar .buxBannerBlueDotSection  .dijitToolbar .dijitButtonHover .dijitButtonNode
+{
+	background-image: none !important;
+	background-color: transparent !important;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+
+.buxBannerMainSectionLeft {
+	background-position: 0px -50px !important;
+}
+
+.buxBannerMainSectionRight {
+	background-position: 0px -50px !important;
+	width: 0px;
+	text-align: right;
+}
+
+.buxBannerMainToRightSection {
+	background-position: -36px 0px !important;
+	width: 17px;
+	min-width: 17px;
+}
+
+.buxBannerRightSection {
+	background-position: 0px -100px !important;
+	width: 5px;
+	padding-left: 0px;
+	padding-right: 5px;
+	text-align: right;
+}
+
+.icdUI .buxBannerBlueDotSection .dijitButtonNode {
+	border-color: transparent !important;
+	background-color: transparent !important;
+	background-image: none !important;
+}
+
+.dj_ie .buxBannerbar .dijitToolbar .dijitButton,
+.dj_ie .buxBannerbar .dijitToolbar .dijitDropDownButton {
+	margin: 0em 0.2em;
+}
+
+.buxBannerBigButton .dijitArrowButtonInner {
+	display: none;
+}
+
+.buxBannerIcon {
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}
+
+.dj_ie .buxBannerEnvironmentTitle {
+	margin-bottom: 3px;
+}
+
+.buxBannerSection .dijitToolbar .dijitToggleButton,
+.buxBannerSection .dijitToolbar .dijitButton,
+.buxBannerSection .dijitToolbar .dijitDropDownButton,
+.buxBannerSection .dijitToolbar .dijitComboButton {
+	margin-left: 7px;
+	height: 36px;
+}
+
+.icdUI .buxBannerSection .dijitToolbarSeparator {
+	margin: 0 0 0 5px;
+	height:10px;
+}
+
+.claro .buxBannerbar .dijitButtonText {
+    padding: 0 6px;
+}
+
+/*Skin section*/
+.icdUI .buxBannerbar .dijitToolbar {
+	background-color: transparent;
+	background-image: none;
+	border: none;
+	white-space: nowrap;
+	padding: 0px;
+	height: 36px;
+    line-height: 36px;
+}
+
+.buxBannerbar {
+	background-color: #444444;
+	background-image: none;
+	background-image: none, -moz-linear-gradient(top, #444444 0%, #222222 100%);
+	background-image: none, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#444444), color-stop(100%,#222222));
+	background-image: none, -webkit-linear-gradient(top, #444444 0%, #222222 100%);
+	background-image: none, -o-linear-gradient(top, #444444 0%, #222222 100%);
+	background-image: none, -ms-linear-gradient(top, #444444 0%, #222222 100%);
+	background-image: none, linear-gradient(to bottom, #444444 0%, #222222 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#222222',GradientType=0 );
+	zoom: 1;
+}
+
+.buxBannerbar .buxBannerSection {
+	background-repeat: repeat-x;
+	background-image: url(images/banner/bar_strip.png);
+	background-attachment: scroll;
+	border: medium none;
+}
+
+.bannerLip{
+	background-color: #008abf;
+	height: 4px;
+}
+
+.buxBannerbar .dijitButtonText {
+	font-weight: bold;
+	color: #e7e7e7;
+	font-size: 1.05em;
+}
+
+.claro .buxBannerbar .dijitToolbar .dijitButtonHover .dijitButtonNode,
+.claro .buxBannerbar .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode,
+.claro .buxBannerbar .dijitToolbar .dijitToggleButtonHover .dijitButtonNode,
+.dj_ie .claro .buxBannerbar .dijitToolbar .dijitButtonHover .dijitButtonNode,
+.dj_ie .claro .buxBannerbar .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode,
+.dj_ie .claro .buxBannerbar .dijitToolbar .dijitToggleButtonHover .dijitButtonNode, 
+.claro .buxBannerbar .dijitToolbar .dijitHover .dijitButtonNode {
+	background-color: #444444 !important;
+	border: 1px solid #222222 !important;
+	background-image: none;
+	background-image: none, -moz-linear-gradient(top, #222222 0%, #444444 100%);
+	background-image: none, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#222222), color-stop(100%,#444444));
+	background-image: none, -webkit-linear-gradient(top, #222222 0%, #444444 100%);
+	background-image: none, -o-linear-gradient(top, #222222 0%, #444444 100%);
+	background-image: none, -ms-linear-gradient(top, #222222 0%, #444444 100%);
+	background-image: none, linear-gradient(to bottom, #222222 0%, #444444 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#444444',GradientType=0 );
+	zoom: 1;
+}
+
+.claro .buxBannerbar .dijitToolbar .dijitButtonContents
+{
+	height: 32px;
+	padding: 0 2px;
+}
+
+
+.buxBannerBigButton .buxBannerIcon {
+	width: 42px;
+}
+
+.buxBannerbar .dijitDisabled .dijitButtonText {
+	color: #767676;
+}
+
+.buxBannerTextItem {
+	font-weight: bold;
+	font-size: 1em;
+	color: #ffffff;
+	cursor: default;
+	padding-top: 1px;
+}
+
+.dj_ie .buxBannerEnvironmentTitle .buxBannerTextItem,
+.dj_ie .dijit_a11y .buxBannerEnvironmentTitle .buxBannerTextItem {
+	font-size: 1em;
+}
+
+/*blue menu strip*/
+.buxBannerRootAdaptiveAnalytics,
+.buxBannerRootQueryStudio,
+.buxBannerRootPowerPlayStudio,
+.buxBannerRootAnalysisStudio,
+.buxBannerRootReportStudio,
+.buxBannerRootBUA,
+.buxBannerRootIBMCI,
+.buxBannerRootEventStudio,
+.buxBannerRootDrill,
+.buxBannerRootConnection,
+.buxBannerRootAdministration,
+.buxBannerMenuSave,
+.buxBannerMenuSaveAs,
+.buxBannerMenuPrint,
+.buxBannerMenuRefresh,
+.buxBannerMenuRefreshBlue,
+.buxBannerMenuNew,
+.buxBannerMenuOpen,
+.buxBannerMenuMailtoURL,
+.buxBannerMenuHome,
+.buxBannerMenuFitToWindow,
+.buxBannerMenuResizeAll,
+.buxBannerMenuAddTab,
+.buxBannerMenuDeleteTab,
+.buxBannerLotusConnections,
+.buxBannerLotusMyActivities,
+.buxBannerRootContributor,
+.buxBannerRootController,
+.buxBannerRootMetricStudio,
+/*blue bar strip*/
+.buxBannerButtonNewImage,
+.buxBannerButtonOpenImage,
+.buxBannerButtonSaveImage,
+.buxBannerButtonPrintImage,
+.buxBannerButtonDashboardViewImage,
+.buxBannerButtonHomeImage,
+.buxBannerButtonCollaboration,
+.buxBannerButtonCollaborationUpdate,
+.buxBannerButtonCollaborationNew,
+.buxBannerButtonCollaborationView,
+.buxBannerButtonReturn,
+.buxBannerButtonHelpImage,
+.buxBannerMarkAsFavoriteButton,
+.buxBannerRemoveFromFavoritesButton,
+.buxBannerButtonCollaborationNew,
+.buxBannerButtonCollaborationView,
+.buxBannerButtonMailtoURL,
+.buxBannerButtonAddImage {
+	background-repeat: no-repeat;
+}
+
+/*blue menu strip*/
+.buxBannerRootAdaptiveAnalytics {
+	background-position: -240px;
+}
+
+.buxBannerRootQueryStudio {
+	background-position: -416px;
+}
+
+.buxBannerRootReportStudio {
+	background-position: -432px;
+}
+
+.buxBannerRootEventStudio {
+	background-position: -320px;
+}
+
+.buxBannerRootAnalysisStudio {
+	background-position: -400px;
+}
+
+.buxBannerRootBUA {
+	background-position: -224px;
+}
+
+.buxBannerRootIBMCI {
+	background-position: -672px;
+}
+
+.buxBannerRootDrill {
+	background-position: -304px;
+}
+
+.buxBannerRootConnection {
+	background-position: -272px;
+}
+
+.buxBannerRootAdministration {
+	background-position: -256px;
+}
+
+.buxBannerLotusConnections {
+	background-position: 0px;
+}
+
+.buxBannerMenuNew {
+	background-position: -64px;
+}
+
+.buxBannerMenuOpen {
+	background-position: -80px;
+}
+
+.buxBannerMenuSave {
+	background-position: -112px;
+}
+
+.dijitMenuItemDisabled .buxBannerMenuSave {
+	background-position: -160px;
+}
+
+.buxBannerMenuSaveAs {
+	background-position: -128px;
+}
+
+.dijitMenuItemDisabled .buxBannerMenuSaveAs {
+	background-position: -144px
+}
+
+.buxBannerMenuPrint {
+	background-position: -544px;
+}
+
+/* todo - could there be a case where we want print to be disabled (e.g when getting started page is shown) ? */
+.dijitMenuItemDisabled .buxBannerMenuPrint {
+	background-position: -544px
+}
+
+.buxBannerMenuRefresh {
+	background-position: -96px;
+}
+
+.buxBannerMenuMailtoURL {
+	background-position: -208px;
+}
+
+.buxBannerMenuHome {
+	background-position: -32px;
+}
+
+.buxBannerMenuFitToWindow {
+	background-position: -464px;
+}
+
+.buxBannerMenuResizeAll {
+	background-position: -480px;
+}
+
+.dijitMenuItemDisabled .buxBannerMenuFitToWindow {
+	background-position: -640px;
+}
+
+.dijitMenuItemDisabled .buxBannerMenuResizeAll {
+	background-position: -656px;
+}
+.buxBannerMenuAddTab {
+	background-position: -608px;
+}
+
+.dijitMenuItemDisabled .buxBannerMenuAddTab {
+	background-position: -624px;
+}
+
+.buxBannerMenuDeleteTab {
+	background-position: -576px;
+}
+
+.dijitMenuItemDisabled .buxBannerMenuDeleteTab {
+	background-position: -592px;
+}
+
+.buxBannerRootContributor {
+	background-position: -288px;
+}
+
+.buxBannerRootController {
+	background-position: -176px;
+}
+
+.buxBannerRootMetricStudio {
+	background-position: -336px;
+}
+
+.buxBannerRootPowerPlayStudio {
+	background-position: -560px;
+}
+/*blue bar strip*/
+.buxBannerButtonCollaboration {
+	background-position: 0px;
+}
+
+.buxBannerButtonCollaborationUpdate {
+	background-position: -304px;
+}
+
+.buxBannerButtonCollaborationNew {
+	background-position: -512px;
+}
+
+.buxBannerButtonCollaborationView {
+	background-position: -528px;
+}
+
+.buxBannerButtonDashboardViewImage {
+	background-position: -16px;
+}
+
+.buxBannerButtonAddImage {
+	background-position: -272px;
+}
+
+.buxBannerButtonMailtoURL {
+	background-position: -256px;
+}
+
+.buxBannerButtonPrintImage {
+	background-position: -288px;
+}
+
+.dijitDisabled .buxBannerButtonDashboardViewImage {
+	background-position: -240px;
+}
+
+.dijitDisabled .buxBannerButtonSaveImage {
+	background-position: -160px;
+}
+
+/* todo - could there be a case where we want print to be disabled (e.g when getting started page is shown) ? */
+.dijitDisabled .buxBannerButtonPrintImage {
+	background-position: -288px;
+}
+
+.dijitDisabled .buxBannerButtonMailtoURL {
+	background-position: -320px;
+}
+
+.buxBannerRemoveFromFavoritesButton {
+	background-position: -32px;
+}
+
+.buxBannerButtonHelpImage {
+	background-position: -48px;
+}
+
+.buxBannerButtonHomeImage {
+	background-position: -64px;
+}
+
+.buxBannerButtonNewImage {
+	background-position: -96px;
+}
+
+.buxBannerMarkAsFavoriteButton {
+	background-image: none;
+	background-image: url(images/icons/blue_bar_strip.png);
+	background-position: -112px;
+}
+
+.buxBannerButtonOpenImage {
+	background-position: -128px;
+}
+
+.buxBannerButtonSaveImage {
+	background-position: -144px;
+}
+
+.buxBannerMenuRefreshBlue {
+	background-position: -224px;
+}
+
+.buxBannerButtonReturn {
+	background-position: -336px;
+}
+
+.buxBannerMenuHelp {
+	background-position: -496px;
+}
+
+.buxBannerRootQueryStudio,
+.buxBannerRootAdaptiveAnalytics,
+.buxBannerRootAnalysisStudio,
+.buxBannerRootEventStudio,
+.buxBannerRootReportStudio,
+.buxBannerRootPowerPlayStudio,
+.buxBannerRootBUA,
+.buxBannerRootIBMCI,
+.buxBannerRootDrill,
+.buxBannerRootConnection,
+.buxBannerRootAdministration,
+.buxBannerMenuNew,
+.buxBannerMenuOpen,
+.buxBannerMenuSave,
+.buxBannerMenuSaveAs,
+.buxBannerMenuPrint,
+.buxBannerMenuRefresh,
+.buxBannerMenuMailtoURL,
+.buxBannerMenuHome,
+.buxBannerMenuFitToWindow,
+.buxBannerMenuResizeAll,
+.buxBannerMenuAddTab,
+.buxBannerMenuDeleteTab,
+.buxBannerMenuHelp,
+.buxBannerLotusConnections,
+.buxBannerButtonCollaborationNew,
+.buxBannerButtonCollaborationView,
+.buxBannerRootContributor,
+.buxBannerRootController,
+.buxBannerRootMetricStudio {
+	background-image: none;
+	background-image: url(images/icons/blue_menu_strip.png);
+}
+
+/*blue bar strip*/
+.buxBannerButtonNewImage,
+.buxBannerButtonOpenImage,
+.buxBannerButtonSaveImage,
+.buxBannerButtonPrintImage,
+.buxBannerButtonDashboardViewImage,
+.buxBannerButtonHomeImage,
+.buxBannerButtonCollaboration,
+.buxBannerButtonCollaborationUpdate,
+.buxBannerButtonHelpImage,
+.buxBannerRemoveFromFavoritesButton,
+.buxBannerButtonMailtoURL,
+.buxBannerMenuRefreshBlue,
+.buxBannerButtonAddImage,
+.buxBannerButtonReturn {
+	background-image: none;
+	background-image: url(images/icons/blue_bar_strip.png);
+	height: 30px;
+}
+
+/* -- A11Y -- */
+
+.dijit_a11y .buxBannerbar {
+	border-bottom: 1px solid black;
+	overflow-x: auto;
+	overflow-y: hidden;
+	height: 70px;
+}
+
+.dijit_a11y .buxBannerMainToRightSection .dijitDropDownButton .dijitButtonNode {
+	border: 0 none;
+}
+
+.dijit_a11y .buxBannerIcon {
+	display: none;
+}
+
+.dijit_a11y .buxBannerButton button {
+	font-weight: normal;
+	font-size: 1em;
+	height: auto;
+	vertical-align: top;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.dijit_a11y .dijitToolbar .dijitButton,
+.dijit_a11y .dijitToolbar .dijitToggleButton,
+.dijit_a11y .dijitToolbar .dijitDropDownButton {
+	padding: 0px;
+}
+
+.dijit_a11y .buxBannerButton .dijitButtonNode {
+	height: auto;
+}
+
+.dijit_a11y .buxBannerComboButton {
+	font-weight: normal;
+	height: auto;
+	vertical-align: top;
+	padding: 0px;
+}
+
+.dj_gecko .dijit_a11y .buxBannerComboButton .dijitButtonNode {
+	height: auto;
+}
+
+.dijit_a11y .buxBannerBigButton {
+	height: auto;
+}
+
+.dijit_a11y .buxBannerEnvironmentTitle .buxBannerTextItem {
+	font-weight: bold;
+	font-size: 1em;
+	color: #ffffff;
+	padding-top: 6px;
+}
+
+.dijit_a11y .buxBannerEnvironmentTitle .dijitButtonNode {
+	border: 0px none !important;
+}
+
+.dijit_a11y .buxBannerbar {
+	z-index: 998;
+}
+
+.dijit_a11y .buxBannerbar .dijitButtonNode button {
+	height: 100%;
+}
+

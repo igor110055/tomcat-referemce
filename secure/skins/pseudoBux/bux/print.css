@@ -1,0 +1,162 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+/* General CSS styles that can be used for any element */
+.BUXNoPrint,#widgetBuxContentPane_EP {
+	display: none !important;
+}
+
+/* Specific BUX printing overrides */
+.icdBorder,
+.icdBorderPopup {
+	display: none !important;
+}
+
+.bux-toolbar {
+	display: none !important;
+}
+
+.buxBannerButton,
+.buxBannerDropDownButton,
+.buxBannerComboButton {
+	display: none !important;
+}
+
+.buxBannerBlueDotSection,
+.buxBannerMainSectionLeft,
+.buxBannerMainToRightSection,
+.buxBannerRightSection {
+	display: none !important;
+}
+
+.buxBannerMainSectionRight {
+	width: 100% !important;
+	text-align: center !important;
+}
+
+.dojoxExpandoTop {
+	overflow: visible !important;
+	width: 100% !important;
+}
+.dojoxExpandoBottom{
+	overflow: visible !important;
+	width: 100% !important;
+}
+
+#buxCANVASTab {
+	left: 0px !important;
+	top: 0px !important;
+	width: 100% !important;
+	height: 100% !important;
+	overflow: visible !important;
+	position: relative !important
+}
+
+div.buxCanvasHidden {
+	display: none !important;
+}
+
+.buxCanvas,
+.dijitTabContainer  {
+	bottom: auto !important;
+	right: auto !important;
+	width: 100% !important;
+	height: 100% !important;
+	overflow: visible !important;
+	position: relative !important
+}
+
+
+.icdUI .dijitSplitter {
+	display: none!important;
+}
+
+.buxCanvasDropZoneInner {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.dijitTabListContainer-bottom,
+.dijitTabListContainer-top{
+	display: none !important;
+}
+
+
+.dijitTabPaneWrapper,
+.dijitTabPane,
+.dijitTabListWrapper,
+.nowrapTabStrip {
+	width: 100% !important;
+	position: static !important
+}
+
+.dijitHidden .buxFilterSlider  {
+	display: none !important;
+}
+
+.buxCanvasDropZoneInner .dojoxFloatingPaneContent {
+	position: relative;
+}
+
+.buxCanvasDropZoneIndicator {
+	display: none !important;
+}
+
+.dojoxFloatingPaneCanvas {
+	overflow: visible !important;
+}
+
+#widgetBuxBanner {
+	display: none !important;
+}
+
+.bux-comment-cell-indicator {
+	display: none !important;
+}
+
+.icdFilterSelectButton {
+	display: none !important;
+}
+
+.icdSplitter-left .dijitSplitterThumb,
+.icdSplitter-right .dijitSplitterThumb,
+.icdSplitter-bottom .dijitSplitterThumb,
+.icdSplitter-top .dijitSplitterThumb {
+	display: none !important;
+}
+
+.bux-cbn-button {
+	visibility: hidden !important;
+}
+
+.bux-cbn-activityTable td.bux-cbn-expandActivityButton {
+	display: none !important;
+}
+
+.claro .dojoxExpandoClosed {
+	border: none !important;
+}
+
+/**IE specific css to ensure overlapping widgets are not transparent when printing. See COGCQ00722421 **/
+.icdUI  .buxCanvasDropZoneInner .dojoxFloatingPane{
+	/* IE7 specific */
+	filter: progid:DXImageTransform.Microsoft.gradient(
+		GradientType=0,
+		startColorstr='#ffffff',
+		endColorstr='#ffffff'
+	);
+	/* IE8 and 9 specific */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(
+		GradientType=0,
+		startColorstr='#ffffff',
+		endColorstr='#ffffff'
+		)";
+}

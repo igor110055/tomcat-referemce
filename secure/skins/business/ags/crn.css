@@ -1,0 +1,680 @@
+/********************************************************************************************************************************
+* Licensed Materials - Property of IBM                                                                                          *
+*                                                                                                                               *
+* IBM Cognos Products: AGS                                                                                                      *
+*                                                                                                                               *
+* (C) Copyright IBM Corp. 2005, 2015                                                                         *
+*                                                                                                                               *
+* US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp. *
+*********************************************************************************************************************************/
+
+/*General styles*/
+a
+{ 
+    font-family: Tahoma;
+	color: #336699;
+	text-decoration: underline;
+}
+
+.text
+{
+	 font-family: Tahoma;
+	 color: #000000;
+}
+.text2
+{
+	 font-family: Tahoma;
+     color: #336699;
+}
+.bold	{
+	font-weight: bold;	
+}
+.inactiveText	{
+	color: #999999;	
+}
+.button
+{
+	background-color: #ffffff;
+	border : 1px solid;
+	border-color : #cccccc;		
+}
+.button_hover
+{
+	background-color: #bec8dc;
+	border : 1px solid;
+	border-color : #8CADBD;	
+}
+.button_pressed
+{
+	background-color: #bec8dc;
+	border : 1px solid;
+	border-color : #336699;		
+}
+.flybutton
+{
+	background-color: #ffffff;
+	border : 1px solid;
+	border-color : #cccccc;		
+	padding: 0;
+}
+.flybutton_hover
+{
+	background-color: #bec8dc;
+	border : 1px solid;
+	border-color : #8CADBD;	
+	padding: 0;
+}
+.flybutton_pressed
+{
+	background-color: #bec8dc;
+	border : 1px solid;
+	border-color : #336699;		
+	padding: 0;
+}
+.mainHeader3
+{
+	padding: 0px;
+	background-color: #ffffff;
+}
+* { margin: 0; padding: 0 }
+.page_label
+{
+    font-family: Tahoma
+    font-size: 110%;
+    color: #336699;
+    font-weight: bold;
+}
+
+/*menu bar styles
+    Note that until common styles are placed into a single location
+    for all studios/portal to use the menuItem_XX classes can be found
+    in webcontent\skins\current\portal\default.css
+*/
+
+/*menu bar styles*/
+
+.menuBar
+{
+	background-image:url(images/title_bar_graphic_studios.gif);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	background-color:#D8DEDC;
+	border-bottom: #D8DEDC 1px solid;
+	border-left: #D8DEDC 1px solid;
+	border-top: #D8DEDC 1px solid;
+	border-right: #D8DEDC 1px solid;
+	height: 25px;
+	width:100%;
+	padding: 1px
+}
+
+.menuTitle_normal
+{
+	padding: 3px;
+	/*background-color: #336699;*/
+	color:#000000;
+	font-family: Tahoma;
+	font-weight: bold;
+}
+.menuTitle_hover
+{
+	padding: 2px 3px 2px 3px;
+	background-color: #8CADBD;
+	border: 0px solid #cccccc;
+	color: #ffffff;
+	font-family: Tahoma;
+	font-weight: bold;
+	cursor: hand;
+}
+.menuTitle_pressed
+{
+	padding: 2px;
+	background-color: #8CADBD;
+	border: 1px solid #ffffff;
+	color: #ffffff;
+	font-family: Tahoma;
+	font-weight: bold;
+	cursor: hand;
+}
+
+.menuItem_normal
+{
+	background-color: white;
+	border: 1px solid white;
+	color:blue;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+	font-family: Tahoma;
+	font-weight: normal;
+}
+
+.menuItem_disabled
+{
+	background-color: white;
+	border: 1px solid white;
+	color:lightgrey;
+	text-decoration: underline;
+	font-family: Tahoma;
+	font-weight: normal;
+}
+.menuItem_hover
+{
+	background-color: #D8DEDC;
+	border: 1px solid #cccccc;
+	color:blue;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+	font-family: Tahoma;
+	font-weight: normal;
+}
+.menuItem_pressed
+{
+	background-color: #D8DEDC;
+	border: 1px solid #ffffff;
+	color:blue;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+	font-family: Tahoma;
+	font-weight: normal;
+	padding: 1px;
+}
+.menuContainer
+{
+	background-color: #ffffff;
+	border: 1px solid #336699;
+	padding: 2px;
+}
+
+/* Drop down arrow */
+.dropDownArrow 
+{
+	border : 1px solid #f3f3f3;
+    height:20px;
+    width:11px;
+	background-color: #f3f3f3;
+	padding: 0px;
+	margin:0px;
+	cursor: pointer;
+	cursor: hand;
+	align:center
+}
+
+.dropDownArrowOver 
+{
+	border : 1px solid #336699;
+    height:20px;
+    width:11px;
+	background-color: #D8DEDC;
+	padding: 0px;
+	margin:0px;
+	cursor: pointer;
+	cursor: hand
+	align:center
+}
+
+/*toolbar styles*/
+.toolbar
+{
+	background-color: #f3f3f3;
+
+    border-top: #cc9900 0px solid;
+	border-bottom: #cccccc 1px solid ;
+	border-left: #cccccc 1px solid ;
+	border-right: #cccccc 1px solid ;
+	
+	padding-top: 2px;
+	padding-bottom: 1px;
+}
+.toolbar_studio
+{
+	padding: 2px;
+	background-color: #f3f3f3;
+	border-bottom: 1px solid #cccccc;
+}
+.toolbarImageNormal
+{
+	border : 1px solid #f3f3f3;
+	background-color: #ffffff;
+	padding : 1px;	
+}
+
+.toolbarImageOver
+{
+	border : 1px solid #336699;
+	background-color: #D8DEDC;
+	padding : 1px;	
+}
+
+.toolbarDropdownImageNormal_studio
+{
+	border : 1px solid #f3f3f3;
+    height:20px;
+    width:30px;
+	background-color: #f3f3f3;
+	padding: 0px;
+}
+.toolbarDropdownImageOver_studio
+{
+	border : 1px solid #336699;
+    height:20px;
+    width:30px;
+	background-color: #D8DEDC;
+	padding: 0px;
+	cursor: pointer;
+	cursor: hand;
+}
+.toolbarDropdownImagePressed_studio
+{
+	border : 1px solid #336699;
+    height:20px;
+    width:30px;
+	background-color: #bec8dc;
+	padding: 0px;
+	cursor: pointer;
+	cursor: hand;
+}
+.toolbarDropdownImageOverPressed_studio
+{
+	border : 1px solid #336699;
+    height:20px;
+    width:30px;
+	background-color: #D8DEDC;
+	padding: 0px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.toolbarImageNormal_studio
+{
+	border : 1px solid #f3f3f3;
+    height:20px;
+    width:20px;
+	background-color: #f3f3f3;
+	padding: 0px;
+}
+.toolbarImageOver_studio
+{
+	border : 1px solid #336699;
+    height:20px;
+    width:20px;
+	background-color: #D8DEDC;
+	padding: 0px;
+	cursor: pointer;
+	cursor: hand;
+}
+.toolbarImagePressed_studio
+{
+	border : 1px solid #336699;
+    height:20px;
+    width:20px;
+	background-color: #bec8dc;
+	padding: 0px;
+	cursor: pointer;
+	cursor: hand;
+}
+.toolbarImageOverPressed_studio
+{
+	border : 1px solid #336699;
+    height:20px;
+    width:20px;
+	background-color: #D8DEDC;
+	padding: 0px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.toolbarImageUnavailable
+{
+	border: 1px solid #f3f3f3;
+	background-color: #ffffff;
+	padding: 1px;	
+}
+
+/*Pane Area*/
+.pane			
+{	
+	background-color: #f3f3f3;
+	border : 1px solid;
+	border-color : #f3f3f3 #cccccc #cccccc #f3f3f3;		
+}
+
+/*AREAS -  General*/
+.area		
+{	
+	background-color: #F3F3F3;
+	padding: 0px;
+	border-top : 0px solid;
+	border-bottom : 1px solid;
+	border-left : 1px solid;
+	border-right : 1px solid;
+	border-color : #cccccc; 	
+}
+.area_header	
+{	
+	font-family: Tahoma;
+	font-weight: bold;		
+	color: #f3f3f3;	
+	background-color: #8CADBD;
+	padding: 3px;
+	border : 1px solid;
+	border-color : #336699;
+}
+.area_tabbed		
+{	
+	background-color: #ffffff;
+	padding: 3px;
+	border : 1px solid;
+	border-color : #cccccc; 	
+}
+
+.resize		
+{	
+	background-color: #e7e7e7;
+	padding-bottom: 3px;
+	padding-top: 3px;	
+}
+.hide_show_leftpane		
+{	
+	background-color: #e7e7e7;
+	border : 1px solid;
+	border-color : #cccccc;		
+}
+.hide_show_taskspane		
+{	
+	background-color: #8CADBD;
+	border : 1px solid;
+	border-color : #8CADBD;
+}
+.hide_show_hover		
+{	
+	background-color: #bec8dc;
+	border : 1px solid;
+	border-color : #cccccc;			
+}
+.hide_show_pressed		
+{	
+	background-color: #bec8dc;
+	border : 1px solid;
+	border-color : #336699;		
+}
+
+/*Insertable Objects Area*/
+.area_reserved		
+{	
+	background-color: #ffffff;
+	padding: 3px;
+	border : 1px solid;
+	border-top: cccccc;
+}
+.tab_active		
+{	
+	font-family: Tahoma;
+	font-weight: bold;		
+	color: #336699;	
+	background-color: #ffffff;
+	padding: 3px;
+	border : 1px solid;
+	border-color : #ffffff #cccccc #cccccc #cccccc;
+}
+.tab_inactive		
+{	
+	font-family: Tahoma;
+	font-weight: normal;
+	text-decoration: underline;		
+	color: Blue;	
+	background-color: #e7e7e7;
+	padding: 3px;
+	border : 1px solid;
+	border-color : #cccccc #ffffff #ffffff #cccccc;
+}
+/* override the default.css style */
+.internal_div
+{
+	width:2px;
+	border : 1px solid;
+}
+.external_div
+{
+	padding : 2px;
+	width : 4px;
+	height : 100%;
+	border : solid #cccccc 1px;
+	background-color: white;
+}
+.external_div_hidden 
+{
+	padding : 2px; 
+	width : 4px; 
+	height : 100%; 
+	border : 1px solid #ffffff; 
+	background-color : white; 
+} 
+
+/*Information Area*/
+.area_descriptive_info		
+{	
+	background-color: #D8DEDC;
+	padding: 3px;
+	border : 1px solid;
+	border-color : #8CADBD 	
+}
+.area_label_value_info		
+{	
+	background-color: #e7e7e7;
+	padding: 3px;
+	border : 1px solid;
+	border-color : #8CADBD 	
+}
+.tooltip 
+{
+	font-family : Tahoma; 
+	font-weight : normal; 
+	color : #000000; 
+	padding : 1px; 
+	border : 1px solid inherit; 
+	border-color : #000000; 
+	background-color : #FFFFCC; 
+} 
+.screentip
+{
+	font-family: Tahoma;
+	font-weight: bold;
+	color: #336699;
+}
+.info_label
+{
+	font-family: Tahoma;
+	font-weight: bold;
+	color: #000000;
+}
+
+/*Summary and Context Areas*/
+.summary_bar
+{
+	background-color: #ffffff;
+	padding: 3px;
+}
+.summaryBoundary {
+	border-width : 0 1px; 
+	border-color : #999999; 
+	border-style : solid; 
+	overflow     : hidden; 
+	scrollbars   : no;
+}
+
+.summaryHeaderBoundary {
+	border-width : 0 1px; 
+	border-color : #ffffff; 
+	border-style : solid; 
+	overflow     : hidden; 
+	scrollbars   : no;
+}
+
+.context_bar
+{
+	background-color: #ffffff;
+	padding: 5px;
+	border-bottom : 1px solid #cccccc;
+}
+.item_not_selected 
+{
+	border-width : 0 0 1px; 
+	border-color : #999999; 
+	border-style : solid; 
+	margin-left : 0px; 
+	cursor: hand;
+	margin-right : 0px; 
+	margin-top : 0px; 
+} 
+.item_selected 
+{
+	border-width: 1px 1px 0; 
+	border-color: #999999; 
+	border-style: solid; 
+	cursor: hand;
+} 
+
+.item
+{
+	background-color: #D8DEDC;
+	border : 1px solid;
+	border-color : #8CADBD ;
+	
+	padding-bottom: 1px;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 1px;
+
+}
+.item_active
+{
+	background-color: #D8DEDC;
+	border : 2px solid;
+	border-color: #336699;
+	
+	padding-bottom: 0px;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 0px;
+	
+}
+.item_label 
+{
+	font-family : Tahoma; 
+	font-weight : normal; 
+	color : #000000; 
+} 
+.item_label_active		
+{	
+	font-family: Tahoma;
+	font-weight: bold;		
+	color: #336699;	
+	
+}
+
+.item_active_replace
+{
+	background-color: #000000;
+	color:#ffffff;
+	padding: 3px;	
+}
+.tab_line
+{
+	border : 1px solid;
+	border-color : #cccccc #ffffff #ffffff #cccccc;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+/*Dialogs*/
+.button_bar
+{
+	background : #e7e7e7;
+	border : 1px solid;
+	border-color : #bec8dc #cccccc #cccccc #cccccc;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+/*Tree Control*/
+.hover	
+{	
+	background-color: #bec8dc;
+}
+.select
+{	
+	color: #ffffff;
+	background-color: #000000;
+}
+.select_secondary
+{	
+	color: #ffffff;
+	background-color: #D8DEDC;
+}
+.select_blur
+{	
+	background-color: #cccccc;
+}
+.group_label 
+{
+	font-family : Tahoma; 
+	font-weight : normal; 
+	color : #336699; 
+	padding : 3px; 
+} 
+
+/*Pager Control*/
+.tableHeader	{
+	background-color: #e7e7e7;	
+}
+.RowDivider 
+{
+	border-top : 1px solid #e7e7e7;	
+}	
+.tableTitle
+{
+	font-weight: bold;
+	color: #336699;	
+}
+
+/*Controls*/
+.formText
+{
+	color: #000000;	
+}
+
+.task_inactive
+{
+	font-family: Tahoma;
+	color: #336699;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.task_active
+{
+	font-family: Tahoma;
+	font-weight: bold;
+	color: #336699;
+	cursor: pointer;
+}
+
+.insertableItemsPaneBorder{
+    background-color: #F3F3F3 ;	   
+}
+
+/*MenuTabs and Props*/
+.normalTabImage {
+	margin:0px;
+	padding:0px;
+}
+.selectedTabImage {
+	outline: 2px solid #6374AB;
+}

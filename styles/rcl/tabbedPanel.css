@@ -1,0 +1,167 @@
+/**
+ *  This file contains styles which are used by the TabbedPanel (don't add styles
+ *  related to anything else here).
+ *
+ *  @author: Lance Hankins
+ *
+ **/
+
+
+body
+{
+   background-color: #FFFFFF;
+   color: #000000;
+   font: 8pt/11 Verdana, Arial, sans-serif;
+   line-height: 12px;
+   margin: 0px;
+}
+
+.tabbedPanelOuterDiv
+{
+   position: relative;
+   display: block;
+   float: left;
+
+   width:100%;
+   height:100%;
+}
+
+
+.tabHeadersContainer
+{
+   position: relative;
+   display: block;
+
+   background-color:white;
+
+   width:100%;
+   z-index:1;
+   padding-top:2px;
+}
+
+
+.tabBodiesContainer
+{
+   position: relative;
+   display: block;
+
+   width:100%;
+   height:94%;
+
+   padding-top:10px;
+   padding-left:3px;
+   padding-right:3px;
+   padding-bottom:10px;
+
+   border-top-style:solid;
+   border-top-width:1px;
+   border-top-color: black;
+
+   border-left-style:solid;
+   border-left-width:1px;
+   border-left-color: black;
+
+   border-right-style:solid;
+   border-right-width:1px;
+   border-right-color: black;
+
+   border-bottom-style:solid;
+   border-bottom-width:1px;
+   border-bottom-color: black;
+
+   z-index:0;
+   background-color:#EEEEEE;
+}
+
+
+
+.selectedTabHeader
+{
+   position: relative;
+   display: inline;
+
+   width:auto;
+
+   background-color:#EEEEEE;
+
+   padding-right:10px;
+   padding-left:10px;
+
+
+   margin-right:5px;
+   margin-top:2px;
+
+   border-style:solid;
+   border-width:1px;
+   border-bottom-width:2px;
+
+
+   border-top-color:#222222;
+   border-right-color:#222222;
+   border-left-color:#222222;
+   border-bottom-color:#EEEEEE;
+
+   cursor: pointer;
+}
+
+.tabHeader
+{
+   position: relative;
+   display: inline;
+
+   width:auto;
+
+   background-color:#AAAAAA;
+
+   padding-right:10px;
+   padding-left:5px;
+
+   margin-right:5px;
+
+   border-style:solid;
+
+   border-width:1px;
+   border-top-color:#222222;
+   border-right-color:#222222;
+   border-left-color:#222222;
+
+   border-bottom-color:#222222;
+
+
+   cursor: pointer;
+
+/* TODO: for mozilla, this should be this:
+
+   border-bottom-color:#AAAAAA;
+*/
+}
+
+
+.tabIsLoadingImage
+{
+   display:inline;
+   vertical-align:middle;
+}
+
+.tabBody
+{
+   position: relative;
+   display: inline;
+
+   width:100%;
+   height:100%;
+
+
+   top:0px;
+}
+
+iframe.tabBodyIFrame
+{
+   position: relative;
+   display: none;
+
+   width:100%;
+   height:100%;
+
+   top:0px;
+}

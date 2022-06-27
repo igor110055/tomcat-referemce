@@ -1,0 +1,1526 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+.bux-upgrade-warningDialog-widgetTitle {
+	width: 150px;
+	white-space: normal;
+}
+
+.bux-upgrade-warningDialog-msg {
+	width: 250px;
+	white-space: normal;
+}
+
+.bux-userPreferences-dialog {
+	width: 550px;
+}
+
+.buxDialogScaleNineTable {
+	border: none;
+	background-color: transparent;
+}
+
+.buxDialog {
+	background-color: #ffffff;
+	padding: 9px 10px 14px 10px !important;
+}
+
+.dijitTooltip .buxDialog {
+	padding: 0 !important;
+}
+
+.bux-baseDialog-ButtonIcon {
+	margin-right: 1px;
+}
+
+.bux-resetButton-container {
+	text-align: right;
+	margin-top: 3px;
+}
+/*file dialogs*/
+/*file dialog - layout section*/
+.bux-fileDialog {
+	overflow: hidden;
+}
+
+.bux-fileDialog .dijitTreeLabel {
+	margin: 0px;
+	padding-left: 4px;
+}
+
+.bux-fileDialog .dijitDialogPaneContent {
+	padding: 0px;
+}
+
+.bux-fileDialog .dijitDialogPaneActionBar {
+	margin: 0px;
+}
+
+.bux-fileDialog-left-section-special-locations {
+	vertical-align: top;
+	min-width: 100px;
+	overflow: hidden;
+	padding: 10px 1px 5px 4px !important;
+}
+
+.bux-packageDialog .bux-fileDialog-left-section-special-locations {
+	min-width: 110px;
+}
+
+.bux-fileDialog-button-cell {
+	height: 100px;
+}
+
+.bux-fileDialog-big-button {
+	min-width: 80px;
+	min-height: 80px;
+	width: 5em;
+	height: 5em;
+	margin-bottom: 10px;
+	margin-left: 4px;
+}
+
+.bux-packageDialog .bux-fileDialog-big-button {
+	min-width: 90px;
+}
+
+.bux-fileDialog-big-button .dijitButtonContents {
+	min-width: 80px;
+	min-height: 70px;
+	width: 5em;
+	height: 5em;
+	padding-top: 10px;
+}
+
+.bux-packageDialog .bux-fileDialog-big-button .dijitButtonContents {
+	min-width: 90px;
+}
+
+.bux-fileDialog-big-button .dijitButtonText {
+	padding: 0 0.2em;
+	white-space: normal;
+}
+
+.bux-fileDialog-right-section-content {
+	min-width: 500px;
+	width: 31.25em;
+}
+
+.bux-fileDialog-toolbar-section {
+	height: auto;
+	vertical-align: top;
+}
+
+.bux-fileDialog-toolbar-container-left {
+	padding-right: 1px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 135px;
+	margin-left: -107px;
+}
+
+.dj_ie .bux-fileDialog-toolbar-container-left {
+	position: absolute;
+	margin-left: -113px;
+	height: 23px;
+}
+
+.bux-fileDialog-toolbar-container {
+	padding-right: 1px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 4px;
+}
+
+.bux-fileDialog-table-container {
+	height: 300px;
+	width: 600px;
+}
+
+
+.bux-fileDialog-table-container .bux-fileDialog-table-container-list-label {
+	width: 380px;
+}
+
+.bux-packageDialog .bux-fileDialog-table-container {
+	height: 320px;
+	width: 610px;
+}
+
+.dj_ie .bux-fileDialog-table-container .bux-contentpane-toolbar {
+	padding-top: 0px;
+}
+
+.bux-fileDialog-toolbar-container .bux-contentpane-toolbar,
+.bux-fileDialog-toolbar-container-left .bux-contentpane-toolbar {
+	height: auto;
+	position: static;
+	right: 0px;
+	padding-top: 0px;
+}
+
+.bux-fileDialog-location-section {
+	height: 28px;
+}
+
+.bux-fileDialog-location-section .dijitDropDownButton {
+	margin: 0px;
+}
+
+.bux-location-sort-cell {
+	width: 100%;
+	text-align: right;
+}
+
+div.bux-fileDialog-stackcontainer-inner {
+	overflow: auto;
+	position: static;
+	height: 100%;
+}
+
+.bux-fileDialog-stackcontainer .dijitTreeIcon {
+	width: 16px;
+	height: 16px;
+}
+
+.bux-fileDialog-treeView {
+	height: 100%;
+	margin-right: 1px;
+	margin-left: 1px;
+}
+
+.bux-fileDialog-name-section {
+	height: 50px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.bux-savedialog-text-field {
+	right: 0px;
+	padding-left: 0px;
+	padding-top: 0px;
+}
+
+.bux-fileDialog-name-textbox-cell {
+	width: 100%;
+	padding-right: 5px;
+}
+
+.bux-fileDialog-name-section-container {
+	width: 430px;
+	overflow: hidden;
+}
+
+.bux-fileDialog-name-section .dijitTextBox {
+	margin-left: 5px;
+	width: 420px;
+}
+/* Display Options dialog - layout section*/
+.bux-DisplayOptionsDialog-Table {
+	height: 350px;
+}
+
+.bux-DisplayOptionsDialog-Left {
+	width: 200px;
+	vertical-align: top;
+}
+
+.bux-DisplayOptionsDialog-Right {
+	width: 400px;
+	height: 350px;
+	vertical-align: top;
+}
+
+.bux-DisplayOptionsDialog-Right-insert {
+	width: 469px;
+	height: 350px;
+	overflow: auto;
+}
+
+.bux-DisplayOptionsDialog-Left-insert {
+	height: 350px;
+	width: 174px;
+	padding-left: 1px;
+	padding-right: 1px;
+	margin-right: 5px;
+}
+
+.bux-DisplayOptionsDialog-CategorySelector {
+}
+
+.bux-DisplayOptionsDialog-CategorySelector .container {
+	min-height: 20px;
+	margin-top: 1px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding-top: 1px;
+	padding-right: 2px;
+	padding-bottom: 0px;
+	padding-left: 4px;
+}
+
+.bux-DisplayOptionsDialog-CategorySelectorImage {
+	border: 0px;
+	vertical-align: middle;
+	display: table-cell;
+	float: left;
+}
+
+.bux-DisplayOptionsDialog-Left-insert .bux-DisplayOptionsDialog-CategorySelectorLabel {
+	display: table-cell;
+	padding-left: 3px;
+}
+
+.bux-DisplayOptionsDialog-CategoriesContainer {
+	padding-bottom: 5px;
+}
+
+.bux-DisplayOptionsDialog-CategoryHeader {
+	padding-top: 3px;
+	padding-right: 6px;
+	padding-bottom: 3px;
+	padding-left: 6px;
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.bux-DisplayOptionsDialog-displayType .container {
+	padding-right: 3px;
+	padding-left: 3px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-left: 3px;
+	margin-bottom: 3px;
+}
+/*Information Dialog*/
+/*Information Dialog - layout section*/
+.bux-WorkingDialog .bux-InformationDialog {
+	min-height: inherit;
+}
+
+.claro .dijitDialog.bux-WorkingDialog {
+	background-color: #ffffff;
+}
+
+.bux-InformationDialog-standard {
+	min-width: 200px;
+}
+
+.bux-InformationDialog-Icon {
+	vertical-align: top;
+	width: 32px;
+	height: 32px;
+}
+
+.bux-InformationDialog-dialogTypeSection {
+	display: none;
+}
+
+.icdUI .buxMessageNotificationOuter .dijitTitlePaneTextNode,
+.bux-InformationDialog-mainMessage {
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	font-size: 1.25em;
+}
+
+.bux-InformationDialog-controlLabel {
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	font-size: 1.25em;
+}
+
+.claro .dijitTitlePaneTitle {
+	padding: 2px;
+}
+
+.claro .dijitTitlePaneTitleFocus {
+	margin-top: 0px;
+	padding-bottom: 0px;
+}
+
+.buxMessageNotificationOuter .dijitTitlePaneTextNode {
+	vertical-align: middle;
+}
+
+.bux-informationDialog-info-icon,
+.bux-informationDialog-error-icon,
+.bux-informationDialog-warning-icon,
+.bux-informationDialog-working-icon {
+	width: 32px;
+	height: 32px;
+	background-repeat: no-repeat;
+}
+
+.buxErrorNodeInner,
+.buxInfoNodeInner,
+.buxWarningNodeInner {
+	display: none;
+}
+
+.buxMessageNotificationOuter {
+	position: absolute;
+	overflow: auto;
+	top: 5px;
+	left: 5px;
+	right: 5px;
+	bottom: 5px;
+	z-index: 500;
+}
+
+.icdUI .icdIFrame .buxMessageNotificationOuter {
+	position: relative;
+}
+
+.icdUI .buxMessageNotificationOuter .buxDialog {
+	left: 0; right: 0; top: 0;
+	display: block;
+	overflow: auto;
+	margin: 7px;
+}
+
+.buxMessageNotificationUnderlay {
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+.icdUI .buxMessageNotificationOuter .buxMessageNotificationUnderlay {
+	background-color: #9EA7B2;
+	opacity: 0.60;
+	filter: alpha(opacity=60);
+}
+
+/*bux-widgetPropertiesDialog*/
+/*bux-widgetPropertiesDialog - layout section*/
+.bux-widgetPropertiesDialog {
+	min-height: 80px;
+	width: 320px;
+}
+
+.bux-widgetPropertiesDialog-ItemSpacing {
+	padding-top: 6px;
+	padding-bottom: 0px;
+}
+
+.bux-widgetPropertiesDialog-ItemNoSpacing {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.bux-widgetPropertiesDialog-HSpacer {
+	height: 9px;
+}
+
+.tabsInvisible .dijitTabContainerTop-tabs {
+	display: none;
+}
+
+.tabsInvisible .dijitTabContainerTop-spacer {
+	border: 0px;
+}
+
+.tabsInvisible .dijitTabContainerTop-container {
+	border: 0px;
+}
+/*bux-appPropertiesDialog*/
+/*bux-appPropertiesDialog - layout section*/
+.bux-appPropertiesDialog-tab-body {
+	height: 430px;
+}
+
+.bux-dialog-sectionDivider-Separator {
+	height: 1px;
+	width: 100%;
+	margin-left: 5px;
+	margin-right: 5px;
+	vertical-align: middle;
+}
+
+.bux-dialog-sectionDivider {
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.dj_gecko .bux-dialog-sectionDivider {
+	margin-bottom: 9px !important;
+	padding-bottom: 1px;
+	margin-top: 9px !important;
+	padding-top: 1px;
+}
+
+.icdAppPropertiesDialogTabContainer .dijitDropDownButton .dijitButtonNode {
+	min-width: 120px;
+	text-align: left;
+}
+
+.icdAppPropertiesDialogTabContainer .dijitDropDownButton .dijitButtonText {
+	min-width: 80px;
+	text-align: left;
+}
+
+.bux-dialog-controls-section {
+	margin-left: 15px;
+	margin-bottom: 15px;
+}
+
+.bux-dialog-controls-spacer {
+	width: 7px;
+}
+
+.bux-appPropertiesDialog-previewBox {
+	width: 100%;
+	height: 250px;
+}
+
+.bux-appPropertiesDialog-previewBox .dojoxFloatingPaneTitle {
+	cursor: default;
+	min-height: 20px;
+}
+
+.bux-appPropertiesDialog-previewBox-content-container {
+	width: 292px;
+	height: 240px;
+	margin: 3px;
+}
+
+.bux-appPropertiesDialog-previewBox-content-container {
+	background-image: url(images/transparent_tile.png);
+	background-repeat: repeat;
+}
+
+.bux-appPropertiesDialog-previewBox-content-container tbody {
+	margin: 0px;
+	padding: 0px;
+}
+
+.bux-appPropertiesDialog-previewBox-content {
+	overflow: hidden;
+}
+
+.bux-appPropertiesDialog-previewBox-content div {
+	height: 140px;
+}
+
+.bux-appPropertiesDialog-previewBox-title {
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-top: 3px;
+	margin-bottom: -3px;
+	overflow: visible;
+}
+
+.bux-SimplePromptDialog-text-field {
+	width: 200px;
+}
+
+.bux-activitycreated-loading-container {
+	width: 100%;
+}
+
+.bux-activitycreated-loading-container p {
+	text-align: center;
+}
+
+.bux-activitycreated-loading-icon {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 218px;
+}
+
+.icdDialogButton .dijitIcon {
+	height: 16px; /*This is required to make all the on a dialog buttons consistent even if only one of them has a 16x16 icon*/
+}
+
+.icdDialogButtonBar {
+	text-align: right;
+}
+
+.icdAppPropertiesDialogTabContainer {
+	height: 500px;
+	width: 640px;
+}
+
+.icdUI .dijitDialogTitle {
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.icdUI .dijitDialogPaneContent {
+	display: inline-block;
+}
+
+.icdUI .buxMessageNotificationOuter .buxDialog .dijitDialogPaneContent,
+.icdUI .buxMessageNotificationOuter .buxDialog .dijitTitlePaneContentInner {
+	display: block;
+	overflow: auto;
+	padding: 2px;
+}
+
+.bux-dialog-description,
+.bux-InformationDialog-mainMessage,
+.icdUI .buxMessageNotificationOuter .buxDialog .dijitTitlePaneContentInner {
+	white-space: pre-wrap;
+}
+
+.icdUI .icdDialogNoChrome .bux-dialog-blank {
+	height: 0px;
+}
+
+.icdUI .icdDialogNoChrome .dijitDialogTitleBar {
+	display: none;
+}
+
+.icdUI .icdDialogNoChrome .dijitDialogPaneContent {
+	border: none;
+}
+
+.icdUI .icdDialogNoChrome .bux-InformationDialog-mainMessage {
+	color: #444444;
+}
+
+.icdEmptyDialogMessage {
+	vertical-align: middle;
+	text-align: center;
+	min-width: 400px;
+}
+
+.dj_ie .icdEmptyDialogMessage {
+	width: 400px;
+}
+
+.dijitDialogPaneContent .imagePreviewArea {
+	width: 350px;
+	height: 250px;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid #000000;
+}
+
+.bux-manageTabs-tab-select {
+	height: 200px;
+	width: 400px;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-CategorySelectorImage {
+	width: 16px;
+	height: 16px;
+	background-repeat: no-repeat;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-Left {
+	width: 125px;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-CategorySelectorLabel {
+	vertical-align: middle;
+	color: 
+				
+				
+			;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-Left-insert {
+	padding: 0px;
+	margin: 0px;
+	border-right: none;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-Right-insert {
+	height: 350px;
+	overflow: hidden;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-Variations-Table {
+	table-layout: fixed;
+	width: 100%;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-variations-Left {
+	width: 90px;
+	vertical-align: top;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-variations-Left-insert {
+	margin: 0;
+	padding: 0;
+	border-right: 1px solid #cccccc;
+	height: 350px;
+	width: 90px;
+	text-align: center;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-variations-Right {
+	height: 197px;
+	vertical-align: top;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-variations-Right-insert {
+	border-bottom: 1px solid #cccccc;
+	height: 197px;
+	overflow: auto;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-variations-Bottom {
+	height: 140px;
+	vertical-align: top;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-variations-Bottom-insert {
+	height: 153px;
+	overflow: auto;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-variations-Bottom-insert .variationDescription  {
+	padding-top: 6px;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariationSelector {
+	padding: 1px 2px;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariationSelector .container {
+	width: 48px;
+	padding: 4px 8px;
+	height: 48px;
+	cursor: pointer;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariationSelector .container.active {
+	padding: 3px 8px;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.dj_webkit .bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table {
+	margin: 0px -1px;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .header {
+	font-weight: bold;
+	border-bottom: 1px solid #cccccc;
+	padding: 7px 10px;
+	white-space: nowrap;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .cell {
+	border-bottom: 1px solid #cccccc;
+	padding: 7px 10px;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .cell.radioCell {
+	padding-right: 5px;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .lastcell {
+	width: 100%;
+}
+
+.bux-displaydialog-recommender-tab .description-title {
+	padding: 8px 10px;
+	font-size: 1em;
+	font-weight: bold;
+	color: 
+				
+				
+			;
+}
+
+.bux-displaydialog-recommender-tab .description-item {
+	padding: 2px 10px;
+	font-size: 0.92em;
+	color: #444444;
+}
+
+.bux-displaydialog-recommender-tab .loadingBlanket {
+	position: absolute;
+	width: 603px;
+	height: 350px;
+}
+
+.bux-displaydialog-recommender-tab .displayOptionsDialog-noReasons .bux-DisplayOptionsDialog-variations-Right,
+.bux-displaydialog-recommender-tab .displayOptionsDialog-noReasons .bux-DisplayOptionsDialog-variations-Right-insert {
+	height: 285px;
+}
+
+.bux-displaydialog-recommender-tab .displayOptionsDialog-noReasons .bux-DisplayOptionsDialog-variations-Bottom {
+	height: 56px;
+}
+
+.icdUI .icdFileDialogToolbar .dijitStackController .dijitButtonText {
+	padding: 0px;
+}
+/*iframe dialogs*/
+.icdIFrame .dijitDialogPaneContent {
+	padding: 0px;
+}
+
+/*Start of Public css classes
+	Note: the following classes maybe used by the widgets/content providers
+	to create their own custom dialogs content while keeping the look and feel consistent.
+
+	Please do not remove them.
+ */
+.bux-dialog-text,
+.bux-dialog-info {
+	padding-left: 0px;
+	padding-right: 7px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-weight: normal;
+	font-size: 1em;
+	color: #444444;
+}
+
+.bux-label,
+.bux-dialog-label {
+	padding-top: 2px;
+	padding-bottom: 5px;
+	font-weight: normal;
+	font-size: 1em;
+	color: #0070aa;
+	white-space: nowrap;
+}
+
+.bux-dialog-label-wrap {
+	white-space: normal;
+}
+
+.bux-widgetPropertiesDialog-labelCell {
+	width: 100%;
+}
+
+.bux-control-text {
+	color: #000000;
+	font-size: 1em;
+	font-weight: normal;
+	white-space: nowrap;
+	padding-bottom: 5px;
+}
+
+.bux-control-text-wrap {
+	white-space: normal !important;
+}
+
+.bux-dialog-example-text,
+.bux-dialog-tip-text {
+	width: auto;
+	font-size: 1em;
+	color: #444444;
+}
+
+.bux-dialog-tip-text {
+	padding-left: 35px;
+}
+
+.bux-dialog-tip-icon {
+	background-image: none;
+	background-image: url('images/icons/tip_template.gif');
+	background-repeat: no-repeat;
+	background-position: 0px 6px;
+}
+
+.dj_ie .bux-label,
+.dj_ie .bux-dialog-label {
+	font-size: 100%;
+}
+
+.bux-dialog-label {
+	padding-left: 0px;
+	padding-right: 7px;
+}
+
+.bux-dialog-blank {
+	height: 12px;
+}
+
+.bux-dialog-field,
+.bux-field {
+	padding-top: 2px;
+	padding-bottom: 5px;
+	font-weight: normal;
+	font-size: 0.97em;
+	color: #444444;
+}
+
+.bux-dialog-field {
+	padding-left: 0px;
+	padding-right: 7px;
+}
+
+.bux-dialog-description {
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	font-weight: normal;
+	font-size: 1em;
+	color: #444444;
+}
+
+div.bux-InformationDialog .bux-dialog-description {
+	padding: 7px 0;
+}
+
+/*
+End of public CSS classes
+
+Start of private CSS classes
+The following classes are meant to be used only by bux development team.
+These classes are subject to change, removal, and drastic modifications.
+*/
+/*file dialog - skin section*/
+.claro .bux-fileDialog .dijitToolbar {
+	border-color: #cccccc;
+	border-style: solid;
+    border-width: 0 1px 1px;
+}
+
+.bux-fileDialog-big-button .dijitButtonText {
+	font-weight: bold;
+	font-size: 1em;
+}
+
+.claro .bux-fileDialog-left-section-special-locations .dijitButtonNode {
+	background-color: transparent;
+	border: none;
+	background-image: none;
+	-moz-box-shadow: none;
+	filter: none;
+}
+
+.claro .bux-fileDialog-left-section-special-locations .dijitToggleButtonChecked .dijitButtonNode {
+	background-color: #f8e2ba !important;
+	border: 1px solid #cc9850 !important;
+	padding: 1px 3px 3px 3px;
+}
+
+.claro .bux-fileDialog-left-section-special-locations .dijitButtonChecked .dijitButtonNode {
+	padding: 3px;
+}
+
+.bux-fileDialog-name-section {
+	background-color: transparent;
+}
+
+.bux-fileDialog-stackcontainer {
+	border: solid 1px #cccccc;
+}
+
+.bux-fileDialog-name-section-table {
+	height: 50px;
+	margin-left: 5px;
+}
+
+.bux-fileDialog-big-button .dijitButtonText {
+	color: #444444;
+}
+
+.bux-publicFolders32-icon {
+	background-image: none;
+	background-image: url(images/icons/icon_publicfolder_32.png);
+}
+
+.bux-myFolders32-icon {
+	background-image: none;
+	background-image: url(images/icons/icon_myfolder_32.png);
+}
+
+.bux-mruFolder32-icon {
+	background-image: none;
+	background-image: url(images/icons/icon_package_32.png);
+}
+
+.icdFileDialogToolbar {
+	text-align: right;
+	padding-right: 5px !important;
+}
+
+.bux-saveDialog-ButtonIcon {
+	background-image: none;
+	background-image: url(images/icons/blue_menu_strip.png);
+	background-position: -112px;
+}
+
+.dijitButtonDisabled .bux-saveDialog-ButtonIcon {
+	background-position: -160px;
+}
+
+.bux-openDialog-ButtonIcon {
+	background-image: none;
+	background-image: url(images/icons/blue_menu_strip.png);
+	background-position: -80px;
+}
+
+.dijitButtonDisabled .bux-openDialog-ButtonIcon {
+	background-image: none;
+	background-image: url('images/icons/openbuttonIconDisabled.png');
+	background-position: 0px;
+}
+
+/* Display Options dialog - skin section*/
+.bux-DisplayOptionsDialog-Right-insert,
+.bux-DisplayOptionsDialog-Left-insert {
+	border: 1px solid #cccccc;
+}
+
+.bux-DisplayOptionsDialog-CategorySelector .container,
+.bux-DisplayOptionsDialog-displayType .container {
+	border: 1px solid white;
+	text-decoration: none;
+	color: #000000;
+	cursor: pointer;
+}
+
+.bux-DisplayOptionsDialog-CategorySelector .hover,
+.bux-DisplayOptionsDialog-displayType .hover {
+	border: 1px solid #cccccc;
+	color: #444444;
+}
+
+.bux-DisplayOptionsDialog-CategorySelector .active,
+.bux-DisplayOptionsDialog-displayType .active,
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariationSelector .active,
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .active .cell,
+.bux-DisplayOptionsDialog-CategorySelector .ready,
+.bux-DisplayOptionsDialog-displayType .ready,
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariationSelector .ready,
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .ready .cell {
+	border: 1px solid #cccccc;
+	background-color: #dfedfb;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariationSelector .ready {
+	border: 0px;
+}
+
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .active .cell,
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .ready .cell {
+	color: #444444;
+}
+
+.bux-DisplayOptionsDialog-CategorySelector .hover,
+.bux-DisplayOptionsDialog-displayType .hover,
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariationSelector .hover,
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .hover .cell {
+	background-color: #b6cfd9;
+}
+
+.bux-DisplayOptionsDialog-CategoryHeader {
+	color: 
+				
+				
+			;
+	border: none;
+	border-top: 1px solid #cccccc;
+}
+
+.bux-DisplayOptionsDialog-displayTypeImage {
+	border: 0px;
+}
+
+/*Information Dialog - skin section*/
+.icdUI .buxMessageNotificationOuter .dijitTitlePaneTextNode,
+.bux-InformationDialog-mainMessage,
+.bux-InformationDialog-controlLabel {
+	color: #444444;
+}
+
+.bux-informationDialog-warning-icon {
+	background-image: url(images/icons/icon_warning.png);
+}
+
+.bux-informationDialog-error-icon {
+	background-image: url(images/icons/icon_error.png);
+}
+
+.bux-informationDialog-info-icon {
+	background-image: url(images/icons/icon_info.png);
+}
+
+.bux-informationDialog-working-icon {
+	background-image: none;
+	background-image: url(images/action_busy_32x32.gif);
+}
+
+.icdUI .buxMessageNotificationOuter .dijitTitlePaneTitle,
+.icdUI .bux-InformationDialog .dijitTitlePaneTitle {
+	background: none;
+	border: none;
+}
+
+.claro .dijitTitlePaneContentOuter {
+	border: 1px solid #000000;
+}
+
+.claro .dijitTitlePane .dijitArrowNode {
+	width: 19px;
+	height: 21px;
+}
+
+.claro .dijitTitlePane .dijitClosed .dijitArrowNode {
+	background-position: center center;
+	background-image: none;
+	background-image: url(images/icons/action_expand.png);
+}
+
+.claro .dijitTitlePane .dijitOpen .dijitArrowNode {
+	background-position: center center;
+	background-image: none;
+	background-image: url(images/icons/action_collapse.png);
+}
+
+.claro .buxMessageNotificationOuter .dijitTitlePaneTextNode,
+.bux-InformationDialog-mainMessage {
+	color: #444444;
+	font-size: 1.25em;
+	padding: 2px 7px;
+}
+
+/*bux-appPropertiesDialog - skin section*/
+.bux-dialog-sectionDivider-Separator {
+	border-top: 1px solid #cccccc;
+}
+
+.bux-dialog-sectionDivider-text {
+	font-weight: normal;
+	color: #444444;
+	vertical-align: middle;
+}
+
+.bux-appPropertiesDialog-previewBox {
+	border: 1px solid #000000;
+}
+
+.bux-imagePicker-backgroundPosition {
+	border-collapse: separate;
+}
+
+.bux-imagePicker-backgroundPosition td {
+	padding: 4px;
+	border: 2px solid;
+	border-color: transparent;
+}
+
+.bux-imagePicker {
+	background-image: url(images/icons/image_picker.png);
+}
+
+.bux-imagePickerNone {
+	background-image: url(images/icons/icon_none.png);
+}
+
+.bux-colorPicker {
+	background-image: url(images/icons/color_picker.png);
+}
+
+.bux-colorPickerLine {
+	background-image: url(images/icons/action_line_colour.png);
+}
+
+.bux-WidgetBorderPickerAll {
+	background-image: url(images/icons/action_widget_border_all.png);
+}
+
+.bux-WidgetBorderPickerNone {
+	background-image: url(images/icons/action_widget_border_none.png);
+}
+
+.bux-WidgetBorderPickerTitle {
+	background-image: url(images/icons/action_portlet_content_title.png);
+}
+
+.bux-WidgetBorderPickerOutside {
+	background-image: url(images/icons/action_portlet_content_outside.png);
+}
+
+.bux-WidgetBorderStylePickerDashed {
+	background-image: url(images/icons/action_line_style_dashed.png);
+}
+
+.bux-WidgetBorderStylePickerDotted {
+	background-image: url(images/icons/action_line_style_dotted.png);
+}
+
+.bux-WidgetBorderStylePickerDouble {
+	background-image: url(images/icons/action_line_style_double.png);
+}
+
+.bux-WidgetBorderStylePickerGroove {
+	background-image: url(images/icons/action_line_style_groove.png);
+}
+
+.bux-WidgetBorderStylePickerInset {
+	background-image: url(images/icons/action_line_style_inset.png);
+}
+
+.bux-WidgetBorderStylePickerOutset {
+	background-image: url(images/icons/action_line_style_outset.png);
+}
+
+.bux-WidgetBorderStylePickerRidge {
+	background-image: url(images/icons/action_line_style_ridge.png);
+}
+
+.bux-WidgetBorderStylePickerSolid {
+	background-image: url(images/icons/action_line_style_solid.png);
+}
+
+/*bux filter dialog*/
+.bux-filter-slider-range-image,
+.bux-filter-slider-singleValue-image {
+	background-repeat: no-repeat;
+	background-position: top left;
+	height: 30px;
+	width: 95px;
+}
+
+.bux-filter-slider-range-image {
+	background-image: url(images/dialog/props_graphic_range.png);
+}
+
+.bux-filter-slider-singleValue-image {
+	background-image: url(images/dialog/props_graphic_single.png);
+}
+
+/* icdBorder is used by Viewer. Changing this name will need to be communicated to them.  */
+.icdBorder,
+.icdBorderPopup {
+	-moz-border-radius: 5px 5px 5px 5px !important;
+	-moz-box-shadow: 0 0 3px 3px rgba(118, 157, 192, 0.6) !important;
+}
+
+.bux-widgetPropertiesDialog-specific-section .dijitTabContainerTop-container {
+	border: none;
+}
+
+.claro .dijitDialogTitle {
+	color: #0070aa;
+	font-size: 1.5em;
+	font-weight: normal;
+}
+
+.claro .dijitDialogPaneActionBar {
+	background-color: #dfedfb;
+	border-top: 1px solid #cccccc;
+	padding-top:15px;
+	padding-bottom: 0;
+}
+
+.claro .bux-fileDialog .dijitDialogPaneActionBar {
+	border-top: 0px none;
+}
+
+.claro .icdDialogButtonBar .dijitButton {
+	margin-left: 5px;
+}
+
+.claro .icdDialogButtonBar .dijitButtonNode {
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );
+	zoom: 1;
+	background-color: transparent;
+	color: #222222;
+	font-size: 1em;
+	font-weight: bold;
+	min-width: 50px;
+	padding-bottom: 3px;
+	border-radius: 3px;
+	border-color: #759dc0;
+}
+
+.claro .icdDialogButtonBar .dijitButtonHover .dijitButtonNode {
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#b9cee3));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #b9cee3 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#b9cee3',GradientType=0 );
+	zoom: 1;
+	color: #222222;
+	border-color: #759dc0;
+}
+
+.claro .icdDialogButtonBar .dijitButtonDisabled .dijitButtonNode {
+	background-position: 0 -75px;
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );
+	zoom: 1;
+	border-color: #759dc0;
+}
+
+.claro .icdDialogButtonBar .dijitDisabled .dijitButtonText {
+	color: #767676;
+}
+
+.claro .dijitDialogTitleBar {
+	background-color: #dfedfb;
+	border: none;
+	background-image: none;
+	padding-bottom: 15px;
+	padding-top: 0;
+}
+
+.claro .dijitDialogPaneContent {
+	border-color: #cccccc;
+}
+
+.claro .dijitTabChecked .dijitTabInnerDiv {
+	background-color: transparent;
+}
+
+.claro .dijitDialogCloseIcon {
+	background-image: none;
+	background-image: url(images/dialog/dialog_icon_close_strip.png);
+	background-position: 0px 0px;
+	width: 16px;
+	height: 16px;
+	display: none;
+}
+
+.claro .dijitDialogCloseIconHover {
+	background-position: -16px 0px;
+}
+
+.claro .bux-manageTabs-order-button-container .dijitButtonNode {
+	background-color: transparent;
+	border: 1px solid transparent;
+	background-image: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+.claro .bux-manageTabs-order-button-container .dijitButtonHover .dijitButtonNode {
+	background-color: #f8e2ba;
+	border: 1px solid #cc9850;
+}
+
+.bux-manageTabs-top-button-icon {
+	background-position: 0px;
+}
+
+.bux-manageTabs-up-button-icon {
+	background-position: -16px;
+}
+
+.bux-manageTabs-down-button-icon {
+	background-position: -32px;
+}
+
+.bux-manageTabs-bottom-button-icon {
+	background-position: -48px;
+}
+
+.bux-manageTabs-top-button-icon,
+.bux-manageTabs-up-button-icon,
+.bux-manageTabs-down-button-icon,
+.bux-manageTabs-bottom-button-icon {
+	background-image: url('images/icons/list_move_buttons.png');
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	margin-top: 2px;
+}
+
+.dj_rtl .claro .dijitDialogCloseIcon {
+	right: auto;
+	left: 5px;
+}
+
+.dj_rtl .claro .dijitDialogPaneActionBar {
+	text-align: left;
+}
+
+/* -- A11Y -- */
+
+.dijit_a11y .buxDialog {
+	padding: 0 !important;
+	border: 1px solid #000000 !important;
+}
+
+.dijit_a11y .buxDialog .dijitDialogTitleBar {
+	background-repeat: repeat-x;
+	background-color: #ffffff;
+	padding: 0px 0 15px 0;
+	white-space: nowrap;
+}
+
+.dijit_a11y .buxDialog .dijitDialogTitleBar {
+	border-bottom: 1px solid #000000;
+}
+
+.dj_ie7 .dijit_a11y .dijitDialogTitle {
+	font-size: 1em;
+}
+
+.dijit_a11y .bux-baseDialog-ButtonIcon {
+	display: none;
+}
+/*file dialog - a11y section*/
+.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitToggleButton,
+.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitToggleButton,
+.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitToggleButton .dijitRight,
+.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitToggleButtonNode,
+.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitButton,
+.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitButton .dijitRight,
+.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitButtonNode,
+.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitToggleButtonHover
+.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitToggleButtonChecked {
+	height: auto !important;
+	width: auto !important;
+}
+
+.dijit_a11y .bux-pulldown-icon-section {
+	display: none;
+}
+/*Information Dialog - A11y section*/
+.dj_ie7 .dijit_a11y .buxMessageNotificationOuter .dijitTitlePaneTextNode,
+.dj_ie7 .dijit_a11y .bux-InformationDialog-mainMessage {
+	font-size: 1em;
+}
+
+.dj_ie .dijit_a11y .buxMessageNotificationOuter .dijitTitlePaneTextNode {
+	vertical-align: middle;
+}
+
+.dj_ie7 .dijit_a11y .bux-dialog-description {
+	font-size: 1em;
+}
+
+.dijit_a11y .bux-informationDialog-info-icon,
+.dijit_a11y .bux-informationDialog-error-icon,
+.dijit_a11y .bux-informationDialog-warning-icon {
+	width: 45px;
+	text-align: center;
+}
+
+.dijit_a11y .bux-informationDialog-info-icon .buxInfoNodeInner,
+.dijit_a11y .bux-informationDialog-error-icon .buxErrorNodeInner,
+.dijit_a11y .bux-informationDialog-warning-icon .buxWarningNodeInner {
+	display: inline;
+	font-size: 5em;
+}
+
+.dijit_a11y .bux-DisplayOptionsDialog-displayType .hover {
+	border: 3px solid;
+}
+
+.dijit_a11y .bux-DisplayOptionsDialog-displayType .active,
+.dijit_a11y .bux-DisplayOptionsDialog-displayType .ready {
+	border: 5px outset;
+}
+
+.dijit_a11y .bux-DisplayOptionsDialog-CategorySelector .hover {
+	border: 2px solid;
+	font-weight: bold;
+}
+
+.dijit_a11y .bux-DisplayOptionsDialog-CategorySelector .active,
+.dijit_a11y .bux-DisplayOptionsDialog-CategorySelector .ready {
+	border: 3px outset;
+}
+
+.dj_ie7 .dijit_a11y .dijitTitlePaneContentInner {
+	font-size: 1em;
+}
+/*.dijit_a11y*/
+.dijit_a11y .bux-iconPicker {
+	display: none;
+}
+
+.dijit_a11y .buxDialog .dijitComboBox input {
+	background: none !important;
+}
+
+.dijit_a11y .bux-imagePicker-backgroundPosition td:focus {
+	border: 2px dashed;
+}
+
+.dijit_a11y .bux-baseDialog-Button-center {
+	width: auto;
+}
+
+.dijit_a11y .dijitFocusedLabel {
+	border: 1px dotted !important;
+}
+
+.dijit_a11y .bux-fileDialog-toolbar-container-left {
+	border: none;
+	padding-left: 4px;
+	margin: 0px;
+}
+
+.dijit_a11y .bux-fileDialog-toolbar-container {
+	border: none;
+}
+
+.dijit_a11y .bux-fileDialog-toolbar-container-left .contentpane-pulldown-l {
+	left: -4px;
+}
+
+.dijit_a11y .buxDialogButtonBar {
+	height: auto;
+}
+
+.dijit_a11y .bux-fileDialog-table-container {
+	height: 500px;
+	width: 800px;
+}
+
+.dijit_a11y .bux-packageDialog .bux-fileDialog-table-container {
+	height: 520px;
+	width: 820px;
+}
+
+.dijit_a11y .bux-packageDialog .bux-fileDialog-left-section-special-locations {
+	min-width: 170px;
+}
+
+.dijit_a11y .bux-fileDialog-left-section-special-locations {
+	min-width: 150px;
+}

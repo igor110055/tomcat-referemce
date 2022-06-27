@@ -1,0 +1,207 @@
+
+
+
+/********************************
+*  Licensed Materials - Property of IBM
+*    
+*  IBM Cognos Products: cpscrn
+*   
+*  (C) Copyright IBM Corp. 2005, 2012
+*  
+*  US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.  
+********************************/
+
+
+/* nav bar */
+.psPagerNavHeader {
+	padding-bottom: 2px;
+}
+.psPagerNavLabel {
+	padding-right: 5px;
+}
+.psPagerNavHeader .dijitInputField {
+	padding-top: 2px;
+}
+.psPagerSeparator {
+	padding: 0 8px;
+}
+.psPagerNavHeader .button  {
+	margin: 4px 1px 0;
+	cursor: pointer;
+}
+.psPager .rowDivider {
+	height: 13px;
+}
+.psPager .buttonDisabled {
+	cursor: auto;
+}
+
+/* grid images */
+.psPager .dojoxGrid img {
+	border: none;
+}
+
+/* grid header */
+.psPager .dojoxGridHeader .dojoxGridCell {
+	background: none;
+	padding: 3px;
+	line-height: 1.3em;
+}
+.psPager .dojoxGridHeader .dojoxGridSortNode, .psPagerFilterButton, .psPagerSortButton {
+	float: left;
+}
+
+.rtl .psPager .dojoxGridHeader .dojoxGridSortNode, .rtl .psPagerFilterButton, .rtl .psPagerSortButton {
+	float: right;
+}
+
+.psPagerSortable, .psPagerFilterable, .psPagerFilterButton, .psPagerSortButton {
+	cursor: pointer;
+}
+.psPagerFilterable .dijitDropDownButton {
+	margin: 0;
+}
+.psPagerFilterable .dijitArrowButtonInner {
+	display: none;
+}
+.psPagerSelectedImage {
+	visibility: hidden;
+}
+.psPagerFilterMenuItemSelected .psPagerSelectedImage {
+	visibility: visible;
+	background-color:transparent
+}
+.psPagerFilterMenuItemSelected{
+	background-color:transparent
+}
+.psPagerFilterable .dijitButtonNode {
+	border: 0;
+	padding: 0;
+	background: none !important;
+	color: inherit !important;
+}
+
+/* counter the 1px left offset of the checkbox column */
+.psPager .dojoxGridMasterView {
+	margin-left: -1px;
+}
+
+/* checkbox column */
+.psPager .controlCheckbox {
+	padding: 3px 0 2px 3px;
+	width: 20px;
+	border: 1px dashed transparent;
+}
+.psPager .controlCheckboxFocused {
+	border-color: darkblue !important;
+}
+.psPager .dojoxGridRowbar, .psPager .dojoxGridScrollbox {
+	background-image: none;
+	background-color: white;
+}
+.psPager .dojoxGridRowbarOdd .dojoxGridRowbar:nth-child(even) {
+	background-color: #F2F5F9;
+}
+.psPager .dojoxGridRowbar {
+	border-width: 0 1px;
+	border-color: transparent;
+}
+.psPager .dojoxGridRowbarInner {
+	border-style: none;
+	border-bottom: 1px dotted #D5CDB5;
+}
+.psPagerNoSeparator  .dojoxGridRowbarInner {
+	border-top-color: white;
+	border-bottom-color: white;
+}
+
+/* header */
+.psPager .dojoxGridHeader {
+	background-color:  #8b81ac;
+}
+.psPager .dojoxGridHeader .dojoxGridCell { 
+	border-width: 1px;
+	padding-bottom: 0px;
+	border-color: transparent #ACA899 #919191 transparent;
+	color: #f9f9fb !important;
+}
+.psPager .dojoxGridHeader .dojoxGridCellOver {
+	color: #f9f9fb !important;
+}
+
+/* rows */
+.psPager .dojoxGridRow {
+	border: medium none;
+}
+.psPagerNoSeparator .dojoxGridRowTable {
+	border-right: 1px solid #F8F7F1;
+}
+.psPager .dojoxGridRow {
+	background-color: #ffffff;
+}
+.psPager .dojoxGridRowbarOdd, .psPager .dojoxGridRowOdd {
+	background-color: #f6f5f8;
+}
+.psPagerNoSeparator .dojoxGridRowOdd, .psPagerLineSeparator .dojoxGridRowOdd  {
+	background-color: white;
+}
+
+/* cells */
+.psPager .dojoxGridCell {
+	border-color: transparent #D5CDB5 #D5CDB5 transparent;
+	border-width: 1px;
+	border-style: dotted;
+	outline: 0;
+	line-height: 16px;
+}
+.psPagerNoSeparator .dojoxGridMasterView .dojoxGridCell {
+	border-color: transparent;
+	border-style: solid;
+}
+
+/* selected rows */
+.psPager .dojoxGridRowbarSelected, .psPager .dojoxGridRowSelected  .dojoxGridCell {
+	background-color: #c6c6d7 !important;
+}
+.psPager .dojoxGridRowbarSelected, .psPager .dojoxGridRowbarSelected .dojoxGridRowbarInner, .psPager .dojoxGridRowSelected .dojoxGridCell {
+	border-color: #c6c6d7 !important;
+}
+
+/* hovered rows */
+.psPagerHighlightable .dojoxGridRowbarOver, .psPagerHighlightable .dojoxGridRowOver .dojoxGridCell, .psPager .dojoxGridRowOver .dojoxGridCell {
+	background-color: #f2f1f6 !important;
+}
+.psPagerHighlightable .dojoxGridRowbarOver, .psPagerHighlightable .dojoxGridRowbarOver .dojoxGridRowbarInner, .psPagerHighlightable .dojoxGridRowOver .dojoxGridCell {
+	border-color: #f2f1f6 !important;
+}
+.psPagerHighlightable .dojoxGridRowOver .dojoxGridCell, .psPagerHighlightable .dojoxGridRowOver .dojoxGridCell a {
+	color: #51486d;
+}
+
+/* focused cells */
+.psPager .dojoxGridCellFocus, .psPager .dojoxGridRowSelected  .dojoxGridCellFocus, .psPager .dojoxGridRowOver .dojoxGridCellFocus , .psPager .dojoxGridRowbarFocus .dojoxGridRowbarTable {
+	border: 1px dashed darkblue !important;
+}
+
+/* A11y Label */
+.psPagerHiddenLabel {
+	margin-top: -9999px;
+	position: absolute;
+}
+
+/* actions */
+.psPagerActionList {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.psPagerActionList li {
+	display: inline;
+	margin: 0;
+	padding-left: 10px;
+}
+.psPagerActionList li a {
+	text-decoration: underline;
+	cursor: pointer;
+}
+

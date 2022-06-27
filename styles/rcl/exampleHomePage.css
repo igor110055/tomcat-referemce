@@ -1,0 +1,21 @@
+/** styles specific to the main(example.jsp) page **/
+
+DIV.nav {
+   margin: 0px 10px 10px 0px;
+   color: black;
+
+   width: 205px;
+
+   border: 1px solid black;
+
+}
+
+#header { margin: 5px 10px 10px 10px; color: grey; background-color: white; }
+
+#header h1 { padding: 0px 10px; }
+
+#outer { margin: auto; width: 820px; background-color: lightgrey }
+
+#content { margin: 0px 0px 10px 10px; color: white; background-color: red; width: 565px; text-align: center; }
+
+IFRAME.homeReport { width:95%; height:500px; border:0px; margin:auto; }

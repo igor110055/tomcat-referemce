@@ -1,0 +1,308 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+/*layout section*/
+.icdUI .dijitTooltipContainer {
+	padding: 1px;
+}
+
+.claro .bux-tooltip-table .dijitToolbar,
+.bux-tooltip-title {
+	padding-bottom: 4px;
+	padding-left: 5px;
+}
+
+.claro .bux-businesscard-table .dijitToolbar,
+.bux-businesscard-title {
+	padding-bottom: 6px;
+	padding-left: 8px;
+	padding-right: 6px;
+}
+
+.bux-tooltip-title,
+.bux-businesscard-title {
+	min-height: 26px;
+	vertical-align: middle;
+}
+
+.bux-tooltip-text {
+	padding: 5px;
+}
+
+.bux-tooltip-help-image {
+	background-position-x: center;
+	background-position-y: center;
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 20px;
+}
+
+.dj_ie .bux-tooltip-help-image {
+	background-position-y: 2px;
+	background-position-x: left;
+	height: 18px;
+}
+
+.bux-tooltip-help {
+	text-align: right;
+	padding: 2px;
+}
+
+.bux-tooltip-help-link {
+	vertical-align: bottom;
+}
+
+.dj_ie .bux-tooltip-help-link {
+	vertical-align: top;
+}
+
+.bux-tooltip-table {
+	width: 200px;
+}
+
+.bux-businesscard-table {
+	width: 400px;
+}
+
+.bux-businesscard-image {
+	width: 95px;
+	height: 95px;
+}
+
+.buxThumbnail {
+	background-repeat: no-repeat;
+	background-position: center;
+	white-space: nowrap;
+}
+
+.buxThumbnailImage {
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.bux-businesscard-thumbnail {
+	padding-left: 8px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	vertical-align: top;
+	width: 107px;
+}
+
+.bux-businesscard-itemtable {
+	padding-top: 3px;
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-bottom: 2px;
+	vertical-align: top;
+	text-align: left;
+}
+
+.bux-businesscard-item-header {
+	padding-right: 7px;
+	padding-bottom: 4px;
+	vertical-align: top;
+	white-space: nowrap;
+}
+
+.bux-businesscard-item-text {
+	min-width: 240px;
+	padding-bottom: 4px;
+	vertical-align: top;
+}
+/* Tooltip overrides */
+.buxTooltipBelow,
+.buxTooltipBelowMiddle { /* leave room for arrow above content */
+	padding-top: 16px;
+}
+
+.buxTooltipAbove,
+.buxTooltipAboveMiddle { /* leave room for arrow below content */
+	padding-bottom: 14px;
+}
+
+.icdUI .buxTooltipLeft,
+.icdUI .buxTooltipLeftMiddle {
+	padding-right: 12px;
+}
+
+.icdUI .buxTooltipRight,
+.icdUI .buxTooltipRightMiddle {
+	padding-left: 12px;
+}
+
+.dj_ie .bux-masterTooltip { /* prevents from the connector going over the box */
+	margin-left: 4px;
+}
+
+.icdBusinessCardText {
+	width: 240px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-height: 90px;
+}
+
+/*skin section*/
+.bux-tooltip-title,
+.bux-businesscard-title {
+	font-weight: bold;
+	color: #0070aa;
+}
+
+.claro .bux-tooltip-table .dijitToolbar,
+.claro .bux-businesscard-table .dijitToolbar {
+	background-color: #ffffff;
+	border-bottom: 0px none;
+}
+
+.bux-tooltip-title {
+	font-size: 100%;
+}
+
+.bux-tooltip-text {
+	font-weight: normal;
+	font-size: 100%;
+	color:#444444;
+}
+
+.bux-tooltip-help-link {
+	font-weight: normal;
+	text-decoration: underline;
+	font-size: 11pt;
+	color: #0070aa;
+}
+
+.bux-tooltip-table,
+.bux-businesscard-table {
+	background-color: #ffffff;
+}
+
+.bux-businesscard-image {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #cccccc;
+}
+
+.bux-businesscard-item-header {
+	font-weight: normal;
+	color: #444444;
+}
+
+.bux-businesscard-item-text {
+	font-weight: normal;
+	color: #444444;
+}
+
+.bux-businesscard-item-email,
+.bux-businesscard-more {
+	text-decoration: underline;
+}
+/* Images */
+.bux-tooltip-help-image {
+	background-image: none;
+	background-image: url(images/tooltip/tooltip_icon_help.png);
+}
+
+.claro.icdUI .dijitTooltipConnector {
+	background-image: none;
+	background-image: url(images/tooltip/tooltip.png);
+	height: 18px;
+}
+
+.claro .dijitTooltipBelow .dijitTooltipConnector {
+    background-position: -18px 0;
+    left: 10px;
+    top: -2px;
+    width: 18px;
+}
+
+.claro .dijitTooltipLeft .dijitTooltipConnector {
+    background-position: -36px 0;
+    right: 0;
+    width: 17px;
+}
+
+.claro .dijitTooltipRight .dijitTooltipConnector {
+    background-position: -54px 0;
+    left: 0;
+    width: 17px;
+}
+
+.claro .dijitTooltipAbove .dijitTooltipConnector {
+    background-position: 0 0;
+    bottom: -2px;
+    left: 10px;
+    width: 18px;
+}
+.claro .dijitTooltipABRight .dijitTooltipConnector{
+	right: 10px; 
+}
+
+/* -- A11Y -- */
+
+.buxTooltipConnector-LeftMiddle-A11y,
+.buxTooltipConnector-RightMiddle-A11y,
+.buxTooltipConnector-AboveMiddle-A11y,
+.buxTooltipConnector-BelowMiddle-A11y {
+	display: none;
+	position: absolute;
+	background: transparent !important;
+}
+
+.dj_ie .dijit_a11y .bux-businesscard-image {
+	width: 99px;
+	height: 99px;
+}
+
+.dijit_a11y .bux-businesscard-title {
+	border-bottom: solid 2px;
+}
+
+.dijit_a11y .dijitTooltip {
+	background: transparent !important;
+}
+
+.dijit_a11y .buxTooltipLeftMiddle  .buxTooltipConnector-LeftMiddle-A11y,
+.dijit_a11y .buxTooltipRightMiddle .buxTooltipConnector-RightMiddle-A11y {
+	display: block;
+	top: 30%;
+	font-size: xx-large;
+	margin-left: -7px;
+}
+
+.dijit_a11y .buxTooltipLeftMiddle .bux-businesscard  .buxTooltipConnector-LeftMiddle-A11y,
+.dijit_a11y .buxTooltipRightMiddle .bux-businesscard .buxTooltipConnector-RightMiddle-A11y {
+	top: 38%;
+}
+
+.dj_ie .dijit_a11y .buxTooltipLeftMiddle .buxTooltipConnector-LeftMiddle-A11y,
+.dj_ie .dijit_a11y .buxTooltipRightMiddle .buxTooltipConnector-RightMiddle-A11y {
+	top: 15%;
+}
+
+.dijit_a11y .buxTooltipAboveMiddle .buxTooltipConnector-AboveMiddle-A11y,
+.dijit_a11y .buxTooltipBelowMiddle .buxTooltipConnector-BelowMiddle-A11y {
+	display: block;
+	left: 45%;
+	font-size: x-large;
+	margin-top: -3px;
+}
+
+.dijit_a11y .buxTooltipBelow .buxTooltipConnector-BelowMiddle-A11y {
+	display: block;
+	left: 5%;
+	font-size: x-large;
+	margin-top: -3px;
+}
+
+.dijit_a11y .bux-tooltip-title {
+	background-position: top;
+	border-bottom: 1px solid #000000;
+}

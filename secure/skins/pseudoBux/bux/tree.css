@@ -1,0 +1,501 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+/*layout section*/
+.buxList_ListView .buxListNode {
+	padding-top: 1px;
+	padding-bottom: 1px;
+	display: block;
+}
+
+.buxList_DetailView .dijitTreeRow {
+	padding-bottom: 10px;
+}
+
+.buxListThumbLabel {
+	display: block;
+	text-align: center;
+	overflow: hidden;
+	width: 100px;
+}
+
+.buxListContainer {
+	height: 100%;
+	overflow: visible;
+}
+
+.buxListContainer .buxListPage .buxListHeaderRow,
+.buxListContainer .buxListPage .buxListHeader DIV {
+	min-height: 23px;
+	height: 1.44em;
+}
+
+.buxListPage {
+	height: 100%;
+	width: 100%;
+	padding: 1px;
+	table-layout: fixed;
+}
+
+.buxListPageContainer {
+	vertical-align: top;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.buxListPagePaginationControls {
+	height: 35px;
+	padding-left: 10px;
+}
+
+.buxListPagePaginationControlsFocusNode {
+	width: 98%;
+}
+
+.buxListThumbContainer {
+	width: 102px;
+	height: 103px;
+	padding-left: 4px;
+	padding-top: 4px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.buxListLoadNode {
+	width: 100%;
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.buxListContainerBackdrop {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.dj_ie .bux-fileDialog-stackcontainer-inner .buxListContainerBackdrop {
+	height: 225px;
+}
+
+.buxListNodeImageCell {
+	width: 16px;
+}
+
+.buxListNodeExpandCell {
+	width: 16px;
+	vertical-align: top;
+}
+
+.buxListRelevanceTextCell {
+	text-align: right;
+	vertical-align: middle;
+	width: 40px;
+	height: 0px;
+}
+
+.buxListRelevanceGraphCell {
+	vertical-align: middle;
+	width: 30px;
+	height: 0px;
+}
+
+.buxListRelevanceCell-Graph {
+	vertical-align: middle;
+}
+
+.buxListRelevanceCell-Graph-Table {
+	height: 4px;
+	width: 30px;
+}
+
+.buxListDateStamp {
+	white-space: nowrap;
+}
+
+.dj_ie .buxListDateStamp {
+	padding-right: 18px;
+}
+
+.buxListHeader .buxListHeaderCell {
+	padding: 0 10px;
+	line-height: 23px;
+	cursor: pointer;
+	width: 100%;
+}
+
+.bux-fileDialog .buxListHeader .buxListHeaderCell { /*we do not support sort in the file dialogs so the cursor should be default*/
+	cursor: default;
+}
+
+.buxListHeaderCellIcon {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	vertical-align: text-bottom;
+}
+
+.dj_ff .buxListHeader .buxListHeaderCell {
+	width: 0px;
+}
+
+.buxListHeader {
+	background-repeat: repeat;
+	min-height: 23px;
+	height: 1.44em;
+	padding-right: 1px;
+}
+
+.buxListHeader .buxListContentTable,
+.buxListHeader .buxSearchContentTable {
+	margin: 0;
+	padding: 0;
+}
+
+.toolboxPane .buxListHeader,
+.toolboxPane .buxListDateStamp {
+	display: none;
+}
+
+.buxListNodeCell {
+	vertical-align: top;
+}
+
+.buxList_TileView img.bux-thumbnail-loading {
+	vertical-align: top;
+}
+
+.buxThumbnailCentered {
+	vertical-align: middle;
+	text-align: center;
+}
+
+.buxThumbnailError {
+	background-image: none;
+	background-image: url(images/icons/icon_unknown_64.gif);
+}
+
+.buxListNodeCell .dijitTreeLabel {
+	white-space: nowrap;
+	display: inline-block;
+	overflow: hidden;
+}
+
+.buxDetailView-label .dijitTreeLabel {
+	width: 100%;
+}
+
+.buxListNodeExpandCell-Closed,
+.buxListNodeExpandCell-Open,
+.buxListNodeExpandCell-Loading {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.buxListNodeExpandCell-None {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+}
+
+.buxListContentTable {
+	width: 100%;
+}
+
+.buxSearchContentTable {
+	width: 100%;
+	table-layout: fixed;
+}
+
+.buxListNode .dijitTreeContent {
+	display: inline-block;
+	width: 100%;
+}
+
+.bux-fileDialog-stackcontainer-inner .buxListPageContainer {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.bux-pagination-first,
+.bux-pagination-previous,
+.bux-pagination-next,
+.bux-pagination-last {
+	height: 20px;
+	width: 20px;
+}
+
+.buxListPagePaginationControls .dijitButtonNode,
+.buxListPagePaginationControls .dijitButtonNode .dijitButtonDisabled {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	background: transparent;
+}
+
+.buxListPagePaginationControls .dijitButton {
+	margin-left: 1px;
+	margin-right: 1px;
+	vertical-align: top;
+}
+
+.bux-pagination-label {
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: center;
+}
+
+.buxListNoResults {
+	vertical-align: middle;
+	text-align: center;
+	font-style: italic;
+	font-size: 12px;
+	width: 100%;
+	height: 100%;
+}
+
+.buxThumbnailNode .dijitTreeContent {
+	width: 102px;
+}
+
+#buxMainBC .dijitTree {
+	overflow: visible !important;
+}
+/*Skin section*/
+.buxListDescription {
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+	white-space: normal;
+	margin: 0 4px;
+	padding-top: 2px;
+}
+
+.buxDetailView-label {
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	white-space: normal;
+}
+
+.buxListThumbContainer {
+	background-image: url(images/contentpane/pane_thumb.png);
+}
+
+.buxList_TileView .buxListNode .dijitTreeContent {
+	width: 102px;
+}
+
+.buxListLoadNode {
+	background-color: transparent;
+}
+
+.buxListRelevanceCell-Text {
+	font-size: 12px;
+	width: 100%;
+	height: 100%;
+	color: #777777;
+	padding-left: 7px;
+	padding-right: 4px;
+}
+
+.buxListRelevanceCell-Graph-full {
+	border: 1px solid #cccccc;
+	background-color: #b6cfd9;
+}
+
+.buxListRelevanceCell-Graph-empty {
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	background-color: #cccccc;
+}
+
+.buxListHeader .buxListSubsequentHeaderCell {
+	border-left: 1px solid #cccccc;
+	white-space: nowrap;
+}
+
+.buxListHeader {
+	background-image: none;
+	background-image: url(images/contentpane/pane_list_columns.png);
+}
+
+.buxListNodeExpandCell-Closed {
+	background-image: none;
+	background-image: url(images/tree/tree_closed.png);
+}
+
+.buxListNodeExpandCell-Open {
+	background-image: none;
+	background-image: url(images/tree/tree_open.png);
+}
+
+.buxListNodeExpandCell-Loading {
+	background-image: none;
+	background-image: url(images/action_busy.gif);
+}
+
+.buxListSeparator {
+	width: 100%;
+	height: 15px;
+	background: none center repeat-x;
+	background-image: url(images/contentpane/divider.png);
+}
+
+.buxListLabel {
+	vertical-align: middle;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	padding: 5px;
+	height: 20px;
+}
+
+.claro .dijitTreeExpandoLoading {
+	background-image: none;
+	background-image: url(images/action_busy.gif);
+	width: 16px;
+	height: 16px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.claro .dijitTreeExpando {
+	border-color: transparent;
+}
+
+.claro .dijitTreeExpando,
+.claro .dijitTreeExpandoClosed,
+.claro .dijitTreeExpandoClosed:hover,
+.claro .dijitTreeExpandoOpened,
+.claro .dijitTreeExpandoOpened:hover {
+	background-position: left !important;
+}
+
+.claro .dijitTreeExpandoClosed {
+	background-image: none;
+	background-image: url(images/tree/tree_closed.png);
+}
+
+.claro .dijitTreeExpandoOpened {
+	background-image: none;
+	background-image: url(images/tree/tree_open.png);
+}
+
+.bux-pagination-first {
+	background: none  no-repeat;
+	background-image: url(images/contentpane/action_page_first.png);
+}
+
+.bux-pagination-previous {
+	background: none no-repeat;
+	background-image: url(images/contentpane/action_page_back.png);
+}
+
+.bux-pagination-next {
+	background: none no-repeat;
+	background-image: url(images/contentpane/action_page_next.png);
+}
+
+.bux-pagination-last {
+	background: none no-repeat;
+	background-image: url(images/contentpane/action_page_last.png);
+}
+
+.dijitDisabled .bux-pagination-first {
+	background: none no-repeat;
+	background-image: url(images/contentpane/action_page_first_dis.png);
+}
+
+.dijitDisabled .bux-pagination-previous {
+	background: none no-repeat;
+	background-image: url(images/contentpane/action_page_back_dis.png);
+}
+
+.dijitDisabled .bux-pagination-next {
+	background: none no-repeat;
+	background-image: url(images/contentpane/action_page_next_dis.png);
+}
+
+.dijitDisabled .bux-pagination-last {
+	background: none no-repeat;
+	background-image: url(images/contentpane/action_page_last_dis.png);
+}
+
+.claro .dijitTreeRowSelected {
+	padding: 3px 1px 1px 0px;
+}
+
+.claro .dijitTreeRowHover {
+	border: none;
+	margin-left: 1px;
+	padding: 4px 2px 2px 0px;
+}
+
+.claro .buxListPagePaginationControls .dijitButtonNode {
+	background: none;
+	background-color: transparent;
+	border: none;
+	-moz-box-shadow: none;
+}
+
+
+/* -- A11Y -- */
+
+.dijit_a11y .dijitTreeExpando {
+	display: none !important;
+}
+
+.dijit_a11y .buxListHeader .buxListHeaderCell .bux-sort-ascending-icon,
+.dijit_a11y .buxListHeader .buxListHeaderCell .bux-sort-ascending-icon span,
+.dijit_a11y .buxListHeader .buxListHeaderCell .bux-sort-descending-icon,
+.dijit_a11y .buxListHeader .buxListHeaderCell .bux-sort-descending-icon span {
+	padding-right: 0px;
+}
+
+.dijit_a11y .buxListHeader {
+	border-bottom: 1px solid;
+}
+
+.dijit_a11y .buxListThumbContainer {
+	border: 1px solid;
+}
+
+.dj_ie .dijit_a11y .dijitTreeContent {
+	zoom: 1;
+}
+
+.dj_ie .dijit_a11y .dijitExpandoText {
+	zoom: 1;
+	margin-right: 5px;
+}
+
+.buxListNodeExpandCell-HighContrast {
+	display: none;
+}
+
+.dijit_a11y .buxListNodeExpandCell-HighContrast {
+	display: inline-block;
+}
+

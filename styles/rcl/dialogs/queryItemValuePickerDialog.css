@@ -1,0 +1,39 @@
+select {
+   font-family:Verdana, Helvetica, sans-serif;
+   font-size:11px;
+
+   overflow:hidden;
+   white-space:nowrap;
+   width:100%;
+}
+
+#bottomButtons {
+   width:100%;
+   text-align:center;
+   padding-top:10px;
+}
+#bottomButtons input {
+   width:80px;
+}
+
+#filterTop {
+   display:block;
+   /*text-align:right;*/
+   padding-bottom:10px;
+   /*border: 1px solid red;*/
+}
+
+#filterTop img {
+   vertical-align:middle;
+}
+
+td.centerButtons {
+   text-align:center;
+   width:25px;
+   /*border:1px solid red;*/
+}
+
+td.centerButtons input {
+   margin: 3px 5px 0px 0px;
+   text-align:center;
+}

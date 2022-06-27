@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+   <bean id="presentationServiceTxProxy" abstract="true"
+         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+      <property name="transactionManager">
+         <ref bean="transactionManager"/>
+      </property>
+
+      <property name="transactionAttributes">
+         <props>
+            <prop key="*">PROPAGATION_REQUIRED</prop>
+         </props>
+      </property>
+   </bean>
+
+   <bean id="presentationService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.web.ui.PresentationService">
+            <property name="reportService">
+               <ref bean="reportService"/>
+            </property>
+            <property name="contentManagementService">
+               <ref bean="contentManagementService"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+</beans>

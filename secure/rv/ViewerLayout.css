@@ -1,0 +1,174 @@
+@charset "UTF-8";
+/*
+  Licensed Materials - Property of IBM
+  IBM Cognos Products: Viewer
+  (C) Copyright IBM Corp. 2014
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+
+body, textarea, input, select
+{
+	font-family:  Tahoma, arial, geneva, helvetica, sans-serif;
+}
+
+
+@media print 
+{
+	.topRow { display: none }
+	.pageControls { display: none }
+	.RVContent { overflow: visible }
+	.RVReport { position: static; }
+	.viewer { overflow : visible !important; }
+	.mainViewerTD { height : auto !important; }
+	.mainViewerTable { height : auto !important; }
+}
+
+html.viewer
+{
+	height: 100%;
+}
+
+body.viewer
+{
+	height: 100%;
+	margin: 0px; 
+}
+
+.formWarpRequest
+{
+	margin: 0px;
+	height: 100%;
+}
+
+.mainViewerTable
+{
+	border-spacing : 0;
+	border : 0px;
+	height : 100%;
+	width : 100%;
+	padding : 0px;
+	table-layout : fixed;
+}
+
+.mainViewerTD
+{
+	height : 100%;
+	width : 100%;
+	padding : 0px;
+}
+
+.RVContent 
+{
+	overflow: auto;
+	left : 0px;
+	top : 0px; 
+	width : 100%;
+	height : 100%;
+	border : 0px;
+	position : relative; 
+}
+
+.RVReport 
+{
+	position: absolute;
+	width : 100%;
+	height : 100%;
+}
+
+.RVContentFragment
+{
+	width : 100%;
+	height : 100%;
+	border : 0px;
+}
+
+.RVReportFragment
+{
+	width : 100%;
+	height : 100%;
+}
+
+.viewerNavigation
+{
+	width : 100%;
+	display : none;
+	height : 16px;
+	padding : 0px;
+}
+
+.RVReport  a
+{
+	text-decoration: underline;
+} 
+
+.dl
+{
+	text-decoration: underline;
+	cursor:	pointer !important;
+}
+
+.viewerWorkingDialog
+{
+	border : 1px solid #000000;
+	border-spacing : 0;
+	box-shadow : 1px 1px 2px #999999;
+	font-size : 70%;
+}
+
+.workingDialogDiv
+{
+	width :350px;
+}
+
+.workingDialogInnerTable
+{
+	border-spacing : 0;
+	padding : 0px;
+	width : 300px;
+	border : 0px;
+	text-align : left;
+	padding-top : 5px;
+	padding-bottom : 5px;
+}
+
+.workingDialogLinks
+{
+	border-width : 1px 0px 1px 0px;
+	border-style : solid;
+	border-color : black;	
+}
+
+.workingDialogOptions
+{
+	padding-top : 3px;
+	padding-left :10px; 
+	padding-bottom : 10px;
+	display : none;
+}
+
+.workingDialogCancelButton
+{
+	padding-right : 10px;
+	padding-left : 10px;
+	padding-top : 2px;
+	padding-bottom : 3px;
+}
+
+.aboutOkButton
+{
+	border : 1px solid #999999;
+	cursor : pointer;
+	fontWeight : normal;
+	padding : 7px 0px 7px 0px;
+	position : absolute;
+	tabIndex : 0;
+	font-size : 80%;
+	bottom : 40px;
+	left : 20px;
+}
+
+.rtl .aboutOkButton {
+	right : 20px;
+}

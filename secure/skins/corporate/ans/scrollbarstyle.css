@@ -1,0 +1,57 @@
+@charset "UTF-8";
+/*
+	Licensed Materials - Property of IBM
+	IBM Cognos Products: ans
+	(C) Copyright IBM Corp. 2005, 2010
+	US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+
+.scrollBoxOuterStyle {
+	border-bottom-style : outset;
+	border-bottom-width : 2px;
+	border-right-style : outset;
+	border-right-width : 2px;
+	border-left-style : outset;
+	border-left-width : 2px;
+	border-top-style : outset;
+	border-top-width : 2px;
+	
+	/*background-color: scrollbar;*/
+	background-color:rgb(212,208,200);
+	
+	/*GM These font properties are necessary for IE 5.5 */
+	font-size: 1px; 
+	font-family: Courier, Times; 
+	/*a bug in IE that you can set height less than 19px, unless you set
+	overflow:hidden;*/ 
+	overflow:hidden; 
+}
+.scrollBoxOuterStyle_NS
+{
+	
+	border-width: 1px;
+	border-style: outset;
+	border-color: #ffffff;
+	background-color: scrollbar;
+	
+	/*GM These font properties are necessary for IE 5.5 */
+	font-size: 1px; 
+	font-family: Courier, Times;  
+}
+
+.scrollBoxInnerStyle {
+	height:100%;
+	width:100%;
+	border-left-style : outset;
+	border-top-style : outset;
+	
+	background-color:#e7e7e7;
+	
+}
+
+.scrollbarStyle {
+	background-color:#e7e7e7;
+}
+
+
+

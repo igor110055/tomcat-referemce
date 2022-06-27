@@ -1,0 +1,90 @@
+
+
+#workspace {
+}
+
+
+*.workspaceToolbar {
+   width:99%;
+   border: 1px solid #AAAAAA;
+
+   margin: 3px 5px 3px 5px;
+   display:block;
+
+   background-position:top;
+   /*background-image: url(../../images/buttonBarBackground.gif);*/
+   /*background-repeat: repeat-x;*/
+   /*background-color: black;*/
+}
+
+
+*.workspaceBodyNormal {
+   border: 1px solid #AAAAAA;
+   margin: 3px 5px 3px 5px;
+   overflow:auto;
+   background-color:white;
+   /* this is only the initial value, its dynamicaly computed */
+   height:378px;
+}
+
+*.workspaceBodyShort {
+   border: 1px solid #AAAAAA;
+   margin: 3px 5px 3px 5px;
+   overflow:auto;
+   background-color:white;
+   /* this is only the initial value, its dynamicaly computed */
+   height:200px;
+}
+
+#contentShell {
+   border: 3px solid rgb(64,85,128);
+   /*border: 3px solid red;*/
+   padding:4px;
+   /*background-color: rgb(255,255,225);*/
+   background-color: #EEEEEE;
+}
+
+div.propertiesPanel#contentShell {
+   background-color:white;
+   height:100%;
+   min-height:98%;
+   height:inherit;
+   overflow-y:scroll;
+}
+
+td {
+   font-weight:normal;
+}
+
+
+/*
+NOTE: this may be overriden in concrete workspace screens to cause
+the overflow element to be something other than bodyDiv
+*/
+#bodyDiv {
+   border: 3px solid rgb(55,104,185);
+   height:560px;
+   display:block;
+   margin:0px;
+
+   width:99%;
+
+   /*------------------------------
+      BEGIN IE SPECIFIC HACK
+   ------------------------------*/
+
+   /* IE Specific Values */
+   overflow-x:none ;
+   overflow-y:hidden;
+
+   /* Mozilla values */
+   voice-family: "\"}\"";
+   voice-family: inherit;
+   /*overflow:-moz-scrollbars-vertical;*/
+
+   /*------------------------------
+      END IE SPECIFIC HACK
+   ------------------------------*/
+}
+
+

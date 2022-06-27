@@ -1,0 +1,44 @@
+*.propertyLabel {
+   display: inline;
+   text-align: right;
+   font-weight: bold;
+   padding-right: 3px;
+}
+
+
+*.propertyValue {
+   display: inline;
+}
+
+#parametersDiv {
+   border: 0px solid black;
+   margin: 5px 0px 0px 30px;
+   width: 280px;
+}
+
+table.paramTable thead {
+   background-color: #EFEBDE;
+   color: black;
+   font-weight: bold;
+}
+
+table.paramTable {
+   width: 100%;
+   border-collapse: collapse;
+}
+
+table.paramTable td {
+   border: 1px solid #777777;
+}
+
+table.paramTable td.paramName {
+   text-align: right;
+   padding-right: 3px;
+   vertical-align: top;
+}
+
+table.paramTable td.paramValue {
+   text-align: left;
+   vertical-align: top;
+}
+

@@ -1,0 +1,152 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+/*layout section*/
+.bux-cbn-dashboardnode-ap {
+	width: 100%;
+}
+
+.bux-cbn-Pane {
+	position: absolute;
+	left: 0px;
+	bottom: -400px;
+	height: 400px;
+	z-index: 997;
+	overflow: hidden;
+}
+
+.bux-cbn-openClose-button {
+	height: 6px;
+	top: 1px;
+	position: absolute;
+	left: 50%;
+	width: 51px;
+	cursor: pointer;
+	z-index: 1;
+}
+
+.bux-cbn-border {
+	height: 10px;
+	width: 100%;
+	margin: 0;
+	overflow: hidden;
+}
+
+.bux-cbn-activityTable td.bux-cbn-expandActivityButton {
+	vertical-align: top;
+	text-align: right;
+}
+
+.bux-cbn-activityTableCell {
+	padding: 5px 2px;
+	vertical-align: top;
+	text-align: left;
+}
+
+.bux-cbn-activityTable h4 {
+	margin: 0px;
+}
+
+.bux-cbn-activityIcon {
+	vertical-align: top;
+	width: 20px;
+}
+
+.bux-cbn-nodeContainer {
+	clear: both;
+}
+
+.bux-cbn-activityDetails {
+	display: none;
+}
+
+.bux-cbn-activityDetails td {
+	border-top: none;
+}
+
+.bux-cbn-table .bux-cbn-actions {
+	clear: none;
+	margin: 7px 0;
+	white-space: nowrap;
+	font-size: 0.9em;
+}
+
+.bux-cbn-content {
+	margin-left: auto;
+	margin-right: auto;
+	overflow: auto;
+	padding: 16px 20px 16px 20px;
+	font-size: 100%;
+}
+
+.bux-cbn-history {
+	margin-bottom: 10px;
+	font-size: 90%;
+}
+
+.bux-cbn-button {
+	height: 16px;
+	width: 16px;
+	cursor: pointer;
+	background-repeat: no-repeat;
+}
+
+.bux-cbn-title {
+	padding-left: 5px;
+	padding-top: 2px;
+	float: left;
+	width: 30%;
+}
+
+.bux-cbn-toolbar {
+	text-align: right;
+	padding-right: 5px;
+}
+
+/*skin section*/
+.bux-cbn-border {
+	background-color: #ffffff;
+	background-image: none;
+	background-image: url(images/collaborationpane/collaborationpane_lo_m.png);
+	background-position: left center;
+	background-repeat: repeat-x;
+}
+
+.bux-cbn-closeButton {
+	background-image: none;
+	background-image: url(images/collaborationpane/icon_close_applbar.png);
+	background-position: center;
+}
+
+.bux-cbn-refreshButton {
+	background-image: none;
+	background-image: url(images/icons/blue_bar_strip.png); 
+	background-position: -224px;
+}
+
+.bux-cbn-activityTable {
+	width: 100%;
+}
+
+.bux-cbn-activityTableCell {
+	border-top: 1px solid #cccccc;
+}
+
+.bux-cbn-content a:link,
+.bux-cbn-content a:visited {
+	color: #00649d;
+	text-decoration: none;
+}
+
+.bux-cbn-title {
+	font-size: 130%;
+	color: #444444;
+}

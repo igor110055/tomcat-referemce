@@ -1,0 +1,104 @@
+/*
+  Licensed Materials - Property of IBM
+  IBM Cognos Products: Viewer
+  (C) Copyright IBM Corp. 2001, 2011
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+/* The classes in this file are common between QSReport.css and RVReport.css and have
+   been removed from those css files and put into this file. */
+
+/* The following two classes are for cursor change when drilling down on a chart */
+
+.drillCursor
+{
+	cursor: url("../skins/presentation/viewer/images/actin_drill_down.cur");
+}
+
+.drillUpCursor
+{
+	cursor: url("../skins/corporate/viewer/images/action_drill_up.cur");
+}
+
+.drillThroughCursor
+{
+	cursor:hand;
+}
+
+.noDrillCursor
+{
+	cursor:default;
+}
+
+/* The following class is used by the waiting screen (when the report is loading) */
+.busyUpdatingStr
+{
+	padding-right:5px;
+	line-height:15px;
+	color: #000000;
+	vertical-align:middle;
+}
+
+.busyBody
+{
+	font-family: Tahoma, arial, geneva, helvetica, sans-serif;
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+/* Pointer selectors */
+
+/*List styles*/
+.ls > .textItem,
+.lt > .textItem,
+.lc > .textItem,
+.lm > .textItem,
+.lh > .textItem,
+.lf > .textItem,
+.ih > .textItem,
+.if > .textItem,
+.is > .textItem,
+.oh > .textItem,
+.of > .textItem,
+.os > .textItem,
+
+/* Section styles */
+.sc > .textItem,
+.sb > .textItem,
+.sh > .textItem,
+.sf > .textItem,
+.ss > .textItem,
+
+/* Crosstab styles */
+.xt > .textItem,
+.xm > .textItem,
+.ml > .textItem,
+.mv > .textItem,
+.cl > .textItem,
+.cv > .textItem,
+.sl > .textItem,
+.sv > .textItem,
+.hl > .textItem,
+.hv > .textItem,
+.nl > .textItem,
+.nv > .textItem,
+.xl > .textItem,
+.xv > .textItem,
+.il > .textItem,
+.iv > .textItem,
+.ol > .textItem,
+.ov > .textItem,
+.dm > .textItem
+{
+	cursor: default;
+}
+
+
+/* accessibility styles */
+.skip a {
+	position: absolute;
+	overflow: hidden;
+	width: 0;
+	height: 0;
+}

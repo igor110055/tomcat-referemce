@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2014
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+--> 
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="ExpressionType">
+		<xs:annotation>
+			<xs:documentation> An expression is represented as a string. Whitespace is preserved to allow the author to add formatting (tabs, newlines, etc.)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextType">
+		<xs:annotation>
+			<xs:documentation>A simple text type that preserves whitespace</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PositiveUnboundedIntegerType">
+		<xs:annotation>
+			<xs:documentation> Represents a positive integer that supports infinity. The absence of the value attribute represents infinity. The absence of the element indicates that no value has been set.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="value" type="xs:positiveInteger" use="optional"/>
+	</xs:complexType>
+	<xs:element name="modelPath" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>a reference to the FM model as specified by its path.  QF currently recognizes the following references 1. the search path to a model package in the content store (/content/package[@name='GoSalesML']/model[@name='Model']) 2.the logical connection name described in nsgeneral.xml (GOSALES_ORACLE) 3. the physical path to the RTM model file (E:\bering\GOSALES_ORA.rtm) 4. the physical path to the xml model file (E:\beging\models\GOSALES_ORA\model.xml) 5. the physical path to the FM project file(E:\bering\models\GOSALES_ORA\GOSALES_ORA.cpf).  Reference 1 is the reference expected from QF clients.  The other references are supported for internal development.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="sortList">
+		<xs:annotation>
+			<xs:documentation>Specifies a sorting order to be used for the element. It will describe either the detail or group sorting for the element in contains depending on what that element represents.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="sortItem"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sortItem">
+		<xs:complexType>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+			<xs:attribute name="sortOrder" default="ascending">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="ascending"/>
+						<xs:enumeration value="descending"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

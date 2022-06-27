@@ -1,0 +1,81 @@
+/**
+ * Just some initial styles to make things look a bit nicer...
+ *
+ **/
+
+body.rclBody {
+	font-family:Verdana, Helvetica, sans-serif;
+	font-size:11px;
+	/*margin: 5px;*/
+   overflow:hidden;
+}
+
+body.rclBody table, body.rclBody td {
+	font-family:Verdana, Helvetica, sans-serif;
+	font-size:11px;
+}
+
+
+body.rclBody *.label {
+   font-size: 11px;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+
+	color:#000000;
+}
+
+body.rclBody *.rightAlignedLabel {
+   font-size: 11px;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+   text-align:right;
+	color:#000000;
+}
+
+body.rclBody *.screenTitle {
+   font-size: 13px;
+	font-weight:bold;
+	color:#000000;
+}
+
+body.rclBody input, body.rclBody select, body.rclBody textarea {
+   font-family:Verdana, Helvetica, sans-serif;
+   font-size:11px;
+}
+
+body.customPromptIframeBody {
+    overflow: auto;
+}
+
+.fieldError {
+   color: red;
+}
+
+fieldset {
+   padding: 5px;
+   margin-bottom: 10px;
+}
+
+legend {
+   font-size: 11px;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+
+	color:#000000;
+}
+
+
+*.environmentNameLabel {
+   font-weight:bold;
+   color:#222222;
+}
+
+*.userIdLabel {
+   font-weight:bold;
+   color:#222222;   
+}
+
+
+*.clear {
+   clear:both;
+}

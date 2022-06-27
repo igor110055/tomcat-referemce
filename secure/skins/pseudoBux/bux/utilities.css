@@ -1,0 +1,70 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+/*layout section*/
+.bux-utilities-content {
+	padding: 4px 4px;
+}
+
+.bux-utilities-desc {
+	padding-left: 1em;
+}
+
+.bux-utilities-logo {
+	padding: 2px 2px;
+}
+
+.bux-utilities-image-tile {
+	visibility: hidden;
+}
+
+.dijit_a11y .bux-utilities-image-tile {
+	visibility: visible;
+}
+
+.bux-utilities-iframe-blanket {
+	background-color: transparent;
+	position: absolute;
+	border: none;
+}
+
+.bux-utilities-actionBtn-image-cursor {
+	cursor: pointer;
+}
+
+/*Skin section*/
+.bux-utilities-title {
+	font-weight: bold;
+	color: #00649d;
+}
+
+.bux-utilities-time {
+	padding-left: 1em;
+	font-size: 0.9em;
+	color: #777777;
+}
+
+.bux-utilities-alternate {
+	background-color: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );
+	zoom: 1;
+}
+
+.bux-utilities-categories {
+	padding-left: 1em;
+	font-weight: bold;
+}

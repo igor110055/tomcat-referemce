@@ -1,0 +1,444 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+/*Listen to dialog controls*/
+
+/*layout section*/
+.icdIcon16 {
+	width: 16px;
+	height: 16px;
+	background-repeat: no-repeat;
+}
+
+.icdIcon32 {
+	background-repeat: no-repeat;
+	background-position: center center;
+	min-height: 32px;
+	min-width: 32px;
+	height: 2em;
+	width: 2em;
+}
+
+.bux-check-on,
+.bux-check-off,
+.bux-check-mixed {
+	background-repeat: no-repeat;
+	background-position: center left;
+	padding-left: 20px;
+	cursor: default;
+}
+
+.bux-connect-collapse,
+.bux-connect-expand {
+	background-repeat: no-repeat;
+	background-position: center left;
+	width: 15px;
+	height: 15px;
+}
+
+.bux-connect-tab-label {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+/*Edit dashboard style dialog*/
+/*layout section*/
+.icdUI .bux-borderStylePicker .dijitButtonNode {
+	min-width: 257px !important;
+}
+
+.icdUI .bux-borderStylePicker .dijitButtonText {
+	min-width: 218px !important;
+}
+
+.icdUI .buxValuePicker,
+.icdUI .buxValuePicker .dijitComboBox {
+	margin: 0px;
+	width: 130px;
+	vertical-align: top;
+}
+
+.buxValuePicker .dijitComboBox .dijitButtonNode {
+	padding: 1px 0.1em;
+}
+
+.buxValuePicker .dijitButtonNode {
+	height: 17px;
+}
+
+.bux-iconPicker,
+.bux-imagePickerNone {
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	text-align: center;
+}
+
+.dj_ie .icdUI .dijitComboBoxMenuPopup {
+	background-color: #ffffff;
+}
+
+.icdContentToolbar .bux-pane-stackbutton {
+	vertical-align: middle;
+}
+
+.icdContentToolbar .dijitButtonNode {
+	border: 0;
+}
+
+/*skin section*/
+.bux-check-on {
+	background-image: none;
+	background-image: url(images/controls/checkbox_checked.gif);
+}
+
+.bux-check-off {
+	background-image: none;
+	background-image: url(images/controls/checkbox_unchecked.gif);
+}
+
+.bux-check-mixed {
+	background-image:  url(images/controls/checkbox_mixed.gif);
+}
+
+.bux-connect-collapse {
+	background-image: none;
+	background-image: url(images/tree/tree_closed.png);
+}
+
+.bux-connect-expand {
+	background-image: none;
+	background-image: url(images/tree/tree_open.png);
+}
+
+.bux-connect-tab-label {
+	border-top: 1px solid #cccccc;
+	background-repeat: repeat-x;
+	font-weight: bold;
+}
+
+.bux-connect-row-expand .bux-connect-tab-label {
+	background-image: none;
+	background-image: url(images/dialog/eventFilterDialog/section_gradient_open.png);
+}
+
+.bux-connect-row-collapse .bux-connect-tab-label {
+	background-image: none;
+	background-image: url(images/dialog/eventFilterDialog/section_gradient_closed.png);
+}
+
+/*Edit dashboard style dialog*/
+
+/*skin section*/
+.icdColorPickerColorNode {
+	border: 1px solid #8d8d8d;
+	-moz-border-radius: 3px;
+	min-width: 100px;
+	padding-right: 2px;
+	height: 12px;
+	margin-top: 2px;
+	display: inline-block;
+}
+
+.icdUI .dojoxColorPicker {
+	background-color: transparent;
+	border: none
+}
+
+.buxCheckBoxPartialChecked {
+	background-position: -16px;
+}
+
+.buxCheckBoxPartialCheckedDisabled {
+	background-position: -64px;
+}
+
+.buxCheckBoxPartialCheckedHover {
+	background-position: -112px;
+}
+
+.dl {
+	text-decoration: underline;
+	cursor: pointer !important;
+}
+
+/*All Controls skin*/
+.claro .dijitArrowButtonInner {
+	background-image: none;
+	background-image: url(images/icons/blue_bar_strip.png);
+	background-position: -192px;
+}
+
+.claro .dijitDisabled .dijitArrowButtonInner {
+	background-position: -208px;
+}
+
+.claro .dijitToolbar .dijitButtonHover .dijitButtonNode,
+.claro .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode,
+.claro .dijitToolbar .dijitToggleButtonHover .dijitButtonNode,
+.dj_ie .claro .dijitToolbar .dijitButtonHover .dijitButtonNode,
+.dj_ie .claro .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode,
+.dj_ie .claro .dijitToolbar .dijitToggleButtonHover .dijitButtonNode {
+	background-color: #efefef;
+	border: 1px solid #cccccc;
+	background-image: none;
+	background-image: none, -moz-linear-gradient(top, #f3f3f3 0%, #cccccc 100%);
+	background-image: none, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f3f3), color-stop(100%,#cccccc));
+	background-image: none, -webkit-linear-gradient(top, #f3f3f3 0%, #cccccc 100%);
+	background-image: none, -o-linear-gradient(top, #f3f3f3 0%, #cccccc 100%);
+	background-image: none, -ms-linear-gradient(top, #f3f3f3 0%, #cccccc 100%);
+	background-image: none, linear-gradient(to bottom, #f3f3f3 0%, #cccccc 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='#cccccc',GradientType=0 );
+	zoom: 1;
+}
+
+
+.claro .dijitToolbar .dijitComboButton .dijitButtonNodeHover,
+.claro .dijitToolbar .dijitComboButton .dijitDownArrowButtonHover,
+.icdContentToolbar .bux-pane-stackbuttonChecked .dijitButtonNode,
+.icdUI .dijitToolbar .dijitToggleButtonChecked .dijitButtonNode,
+.icdUI .dijitToolbar .dijitButtonChecked .dijitButtonNode {
+	background-image: none;
+	background-color: #efefef !important; /*although this is the same as above we have to have a important here to override the transparent definition after to cancel the claro default hover effect*/
+	border: 1px solid #cccccc !important; /*if important is used for all the buttons then blue dot in IE7 will get the same effect we have here which is unwanted*/
+}
+
+.icdUI .dijitToggleButtonChecked .dijitButtonNode,
+.icdUI .dijitButtonChecked .dijitButtonNode {
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #ddf2f9 0%, #ddf2f9 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ddf2f9), color-stop(100%,#ddf2f9));
+	background-image: -webkit-linear-gradient(top, #ddf2f9 0%, #ddf2f9 100%);
+	background-image: -o-linear-gradient(top, #ddf2f9 0%, #ddf2f9 100%);
+	background-image: -ms-linear-gradient(top, #ddf2f9 0%, #ddf2f9 100%);
+	background-image: linear-gradient(to bottom, #ddf2f9 0%, #ddf2f9 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ddf2f9', endColorstr='#ddf2f9',GradientType=0 );
+	zoom: 1;
+	border: 1px solid #cccccc !important; /*if important is used for all the buttons then blue dot in IE7 will get the same effect we have here which is unwanted*/
+}
+
+/* Work around for an IE bug where the background of the table cells in a combo button overlap the borders */
+.dj_ie .claro .dijitToolbar .dijitComboButton TD {
+	position: relative;
+}
+
+.icdContentToolbar .bux-pane-stackbuttonChecked .dijitButtonNode {
+	padding: 1px;
+}
+
+.claro .dijitToolbar .dijitButtonActive .dijitButtonNode,
+.claro .dijitToolbar .dijitDropDownButtonActive .dijitButtonNode,
+.claro .dijitToolbar .dijitDropDownButtonOpened .dijitButtonNode,
+.claro .dijitToolbar .dijitToggleButtonActive .dijitButtonNode {
+	background-color: #e7e7e7;
+	background-position: 0 0;
+	border: 1px solid transparent;
+}
+
+.claro .buxBannerbar  .dijitToolbar .dijitButtonActive .dijitButtonNode,
+.claro .buxBannerbar  .dijitToolbar .dijitDropDownButtonActive .dijitButtonNode,
+.claro .buxBannerbar  .dijitToolbar .dijitDropDownButtonOpened .dijitButtonNode,
+.claro .buxBannerbar  .dijitToolbar .dijitToggleButtonActive .dijitButtonNode {
+	background-image: none;
+	background-image: none, -moz-linear-gradient(top, #777777 0%, #222222 100%);
+	background-image: none, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#777777), color-stop(100%,#222222));
+	background-image: none, -webkit-linear-gradient(top, #777777 0%, #222222 100%);
+	background-image: none, -o-linear-gradient(top, #777777 0%, #222222 100%);
+	background-image: none, -ms-linear-gradient(top, #777777 0%, #222222 100%);
+	background-image: none, linear-gradient(to bottom, #777777 0%, #222222 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#777777', endColorstr='#222222',GradientType=0 );
+	zoom: 1;
+	background-color: transparent;
+	background-position: 0 0;
+	border: 1px solid #777777;
+}
+
+.claro .dijitToolbar .dijitComboButtonOpened .dijitDownArrowButton {
+	background-color: #e7e7e7 !important;
+	background-position: 0 0 !important;
+	border: 1px solid transparent !important;
+}
+
+.claro .dijitToolbar .dijitComboButtonHover,
+.claro .dijitToolbar .dijitComboButtonActive,
+.claro .dijitToolbar .dijitComboButtonHover .dijitDownArrowButton {
+	background-color: transparent; /*we don't want the default effect we get with claro theme because we want the arrowDown to highlight on mouse over*/
+	border: none;
+}
+
+.claro .dijitToolbar .dijitComboButton {
+	-moz-border-radius: 2px 2px 2px 2px; /*we need this otherwise comboButton borders won't be rounded*/
+}
+
+.claro .dijitToolbar .dijitComboButtonActive .dijitButtonNode,
+.claro .dijitToolbar .dijitComboButtonOpened .dijitButtonNode {
+	background-color: #e7e7e7;
+	background-position: 0 0;
+}
+
+.icdUI .dijitDropDownButtonDisabled .dijitButtonNode {
+	color: #767676; /* it should be #6D6D6D but RPT still reports that it fails minimum contrast */
+}
+
+.icdUI .dijitComboBoxDisabled .dijitInputField {
+	color: #767676;
+}
+
+.claro .dijitTextBoxDisabled,
+.claro .dijitTextBoxDisabled .dijitInputContainer {
+	color: #767676;
+}
+
+/*Stop the comboButton arrow from becoming jumpy on hover*/
+.claro .dijitToolbar .dijitComboButtonHover .dijitDownArrowButton {
+	padding-left: 1px;
+}
+
+.claro .bux-toolbar .dijitToolbar .dijitComboButtonHover .dijitDownArrowButton {
+	padding: 2px;
+}
+
+.claro .bux-toolbar .dijitToolbar .dijitComboButtonHover .dijitDownArrowButton.dijitDownArrowButtonHover {
+	padding: 1px;
+}
+
+.claro .dijitToolbar .dijitComboButtonHover .dijitDownArrowButtonHover {
+	padding-left: 1px;
+	padding-right: 1px;
+}
+
+.icdUI .dijitButtonDisabled .dijitButtonNode {
+	color: #767676;
+}
+
+.claro .dijitCheckBox, .claro .dijitCheckBoxIcon, .claro .dijitRadio, .claro .dijitRadioIcon {
+	background-image: none;
+	background-image: url(images/controls/checkboxRadioButtonStates.png);
+}
+
+.claro .dijitCheckBoxDisabled, .claro .dijitCheckBox.dijitCheckBoxDisabled {
+	background-position: -64px center;
+}
+
+.claro .dijitCheckBox.dijitCheckBoxChecked.dijitCheckBoxDisabled{
+	background-position: -48px center;
+}
+
+.claro .dijitCheckBox.dijitCheckBoxChecked, .claro .dijitToggleButtonChecked .dijitCheckBoxIcon {
+	background-position: 0 center;
+}
+
+.claro .dijitCheckBox, .claro .dijitToggleButton .dijitCheckBoxIcon {
+	background-position: -80px center;
+}
+
+.claro .dijitCheckBoxHover {
+	background-position: -16px center;
+}
+
+.icdUI.claro .dijitRadio.dijitRadioChecked {
+	background-position: -192px center;
+}
+
+.icdUI.claro .dijitRadio.dijitRadioChecked.dijitRadioCheckedHover {
+	background-position: -272px center;
+}
+
+.icdUI.claro .dijitRadio {
+	background-position: -288px center;
+}
+
+.icdUI.claro .dijitRadio.dijitRadioHover {
+	background-position: -208px center;
+}
+
+.claro .dijitSelectHover .dijitArrowButton,
+.claro .dijitSelectFocused .dijitArrowButton,
+.claro .dijitSelectHover .dijitButtonContents{
+	background-color:#ffffff;
+}
+
+/* -- A11Y -- */
+
+.buxCheckBoxPartialCheckedA11Y {
+	display: none;
+}
+
+.dijit_a11y .buxCheckBoxPartialChecked .buxCheckBoxPartialCheckedA11Y,
+.dijit_a11y .buxCheckBoxPartialCheckedHover .buxCheckBoxPartialCheckedA11Y,
+.dijit_a11y .buxCheckBoxPartialCheckedDisabled .buxCheckBoxPartialCheckedA11Y {
+	width: 16px;
+	height: 16px;
+	border: none;
+	display: block;
+}
+
+.dijit_a11y .buxCheckBoxPartialChecked .dijitCheckBoxInput,
+.dijit_a11y .buxCheckBoxPartialCheckedHover .dijitCheckBoxInput,
+.dijit_a11y .buxCheckBoxPartialCheckedDisabled .dijitCheckBoxInput,
+.dijit_a11y .bux-check-on,
+.dijit_a11y .bux-check-off,
+.dijit_a11y .bux-check-mixed,
+.dijit_a11y .bux-connect-collapse,
+.dijit_a11y .bux-connect-expand,
+.a11y-bux-control-container,
+.a11y-bux-check-on,
+.a11y-bux-check-off,
+.a11y-bux-check-mixed,
+.a11y-bux-connect-collapse,
+.a11y-bux-connect-expand {
+	display: none;
+}
+
+.dijit_a11y .a11y-bux-control-container,
+.dijit_a11y .a11y-bux-check-on,
+.dijit_a11y .a11y-bux-check-off,
+.dijit_a11y .a11y-bux-check-mixed,
+.dijit_a11y .a11y-bux-connect-collapse,
+.dijit_a11y .a11y-bux-connect-expand {
+	display: inline-block;
+	background-color: #b3b3b3;
+	cursor: pointer;
+}
+
+.dijit_a11y .buxFilterDialogA11yLabel {
+	margin-left: 2px;
+}
+
+.dijit_a11y .a11y-bux-connect-collapse,
+.dijit_a11y .a11y-bux-connect-expand {
+	border: 1px solid;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.dijit_a11y .buxValuePicker {
+	padding: 1px;
+}
+
+.dijit_a11y .buxValuePicker .dijitButtonNode {
+	height: auto;
+}
+
+.dijit_a11y .buxValuePicker {
+	width: auto !important;
+}
+
+.dijit_a11y .dijitDisabled .dijitButtonNode {
+	opacity: 0.6;
+}
+
+.dijit_a11y .dijitTextBox {
+	border-color: #000000;
+}
+
+.dijit_a11y .icdImagePickerDialog .dijitDialogPaneContent .dijitContentPane {
+	overflow-x: hidden;
+}

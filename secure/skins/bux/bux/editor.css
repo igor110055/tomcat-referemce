@@ -1,0 +1,43 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+.RichTextEditable {
+	border: 0px none;
+}
+
+.icdUI .dijitEditorIFrameContainer {
+	padding: 0px;
+}
+
+.dj_gecko .bux-toolbar .dijitComboBox {
+	width: auto !important;
+	max-width: 165px;
+}
+
+.dj_gecko.dijit_a11y .bux-toolbar .dijitComboBox {
+	width: 15em !important;
+	max-width: 165px;
+}
+
+.icdUI .dijitEditor {
+	border: none;
+}
+
+.icdUI .dijitEditor,
+.icdUI .dijitEditor blockquote {
+	border: none;
+}
+
+/*Skin section*/
+.icdUI .dijitEditor .dijitEditorIFrameContainer {
+	background-image: none !important;
+}
+

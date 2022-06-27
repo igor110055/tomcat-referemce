@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
++========================================================================+
+ *| Licensed Materials - Property of IBM 
+ *| 
+ *| IBM Cognos Products: BUX
+ *| 
+ *| (C) Copyright IBM Corp. 2009, 2011
+|
+| US Government Users Restricted Rights - Use, duplication or
+| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+|
++========================================================================+
+-->
+<bindings xmlns="http://www.mozilla.org/xbl" xmlns:xbl="http://www.mozilla.org/xbl" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <binding id="text_overflow_ellipsis">
+        <content>
+            <xul:window>
+                <xul:description crop="end" xbl:inherits="value=xbl:text">
+                    <children/>
+                </xul:description>
+            </xul:window>
+        </content>
+    </binding>
+</bindings>

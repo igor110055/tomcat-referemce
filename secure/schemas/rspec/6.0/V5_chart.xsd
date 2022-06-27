@@ -1,0 +1,3323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2014
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+--> 
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5_style.xsd"/>
+	<xs:include schemaLocation="V5_layoutbase.xsd"/>
+	<xs:group name="chartElement">
+		<xs:annotation>
+			<xs:documentation>Contains all the chart elements</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="pieChart"/>
+			<xs:element ref="paretoChart"/>
+			<xs:element ref="scatterChart"/>
+			<xs:element ref="polarChart"/>
+			<xs:element ref="radarChart"/>
+			<xs:element ref="progressiveChart"/>
+			<xs:element ref="combinationChart"/>
+			<xs:element ref="bubbleChart"/>
+			<xs:element ref="threeDCombinationChart"/>
+			<xs:element ref="threeDScatterChart"/>
+			<xs:element ref="gaugeChart"/>
+			<xs:element ref="mapChart"/>
+			<xs:element ref="metricsChart"/>
+			<xs:element ref="marimekkoChart"/>
+			<xs:element ref="winLossChart"/>
+		</xs:choice>
+	</xs:group>
+	<xs:element name="fillEffects" type="FillEffectsType">
+		<xs:annotation>
+			<xs:documentation>Defines how the background of this portion of the chart is filled in.  This can either be a gradient, color or pattern.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="pieChart">
+		<xs:annotation>
+			<xs:documentation>This element represents one or more pies and pie slices based on the data used to create it.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="pies" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Each row will result in a new pie chart.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="pieSlices" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Each row will result in a new slice in each of the pies.  Each slice will also appear in the legend.  There is no axis definition associated with the pie slices.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element name="pieLabels" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>This element represents the labels that will be drawn if multiple pies are rendered.  If this element does not exist, no labels will be rendred.  This, with the axis title, can be considered similar to the ordinal axis of other charts.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+							<xs:element ref="reportDrills" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+						<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+						<xs:attributeGroup ref="CategoryTrunction"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="axisTitle" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="chartSuppress" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attribute name="holeSize" type="xs:nonNegativeInteger" default="0"/>
+			<xs:attribute name="depth" type="xs:nonNegativeInteger" default="0"/>
+			<xs:attribute name="showPieLabels" default="none">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="inside"/>
+						<xs:enumeration value="outside"/>
+						<xs:enumeration value="outsideWithLines"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="showPieValues" default="none">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="inside"/>
+						<xs:enumeration value="outside"/>
+						<xs:enumeration value="outsideWithLines"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="ShowValuesAsPercent"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attribute name="avoidLabelCollision" type="xs:boolean" default="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="radarChart">
+		<xs:annotation>
+			<xs:documentation>For a radar chart, the radius of each point along each radar line is determined by the measure.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="points" minOccurs="0"/>
+				<xs:element name="radialClusters" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Each radial point in the chart will be for a single member.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="radialMeasure" minOccurs="0"/>
+				<xs:element ref="numericalAxisRadial" minOccurs="0"/>
+				<xs:element ref="baselines" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="markers" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="ordinalAxis" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="chartSuppress" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="SpiderEffects"/>
+			<xs:attribute name="radarType" default="line">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="line"/>
+						<xs:enumeration value="area"/>
+						<xs:enumeration value="stackedArea"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="PointChartDataPointAttributes"/>
+			<xs:attributeGroup ref="ShowValuesAndLocation"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveChart">
+		<xs:annotation>
+			<xs:documentation>Progressive chart can also be called a waterfall chart. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="progressiveBars" minOccurs="0"/>
+				<xs:element name="numericalAxisProgressive" type="MeasureAxisType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Represents the numerical axis for the progressive chart.  If it is not present, no axis labels, axis titles or gridlines will be drawn.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="total" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The presence of this element indicates that there should be a full bar rendered a the end of the bars to indicate the overall total.  The dataSource represents the label for this member.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="totalColumnColor" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Represents the color, gradient or pattern of the total column on the progressive chart.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:choice>
+										<xs:element ref="chartPattern"/>
+										<xs:element ref="chartColor"/>
+										<xs:element ref="chartGradient"/>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="totalColumnLabel" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>This defines the label to be rendered for the total column.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="chartContents" minOccurs="0"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="propertyList" minOccurs="0"/>
+							<xs:element ref="style" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="firstColumnColor" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines the color, gradient or pattern to be used for the first column in the progressive chart.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="chartColor"/>
+							<xs:element ref="chartGradient"/>
+							<xs:element ref="chartPattern"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="positiveColumnColor" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines the color, gradient or pattern to be used for columns in the progressive chart that represent positive values.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="chartColor"/>
+							<xs:element ref="chartGradient"/>
+							<xs:element ref="chartPattern"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="negativeColumnColor" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines the color, gradient or pattern to be used for columns in the progressive chart that represent negative values.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="chartColor"/>
+							<xs:element ref="chartGradient"/>
+							<xs:element ref="chartPattern"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="baselines" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="markers" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="ordinalAxis" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="connectLines" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="chartSuppress" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="VisualEffects"/>
+			<xs:attribute name="orientation" default="vertical">
+				<xs:annotation>
+					<xs:documentation source="doc_att_orientation_chart"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="vertical"/>
+						<xs:enumeration value="horizontal"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="ShowValuesAndLocation"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="RotatedLabels"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="combinationChart">
+		<xs:annotation>
+			<xs:documentation>The combination chart can display many measures.  Each measure can be rendered as a line, area or bar.  The chart can have 2 measures axis and can be rendered bipolar if it has two axis.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="commonClusters" minOccurs="0"/>
+				<xs:element ref="combinationChartTypes" minOccurs="0"/>
+				<xs:element ref="baselines" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="markers" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="numericalAxisY1" minOccurs="0"/>
+				<xs:element ref="numericalAxisY2" minOccurs="0"/>
+				<xs:element ref="ordinalAxis" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="chartSuppress" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="RotatedLabels"/>
+			<xs:attributeGroup ref="MatchSeriesColor"/>
+			<xs:attributeGroup ref="VisualEffects"/>
+			<xs:attribute name="orientation" default="vertical">
+				<xs:annotation>
+					<xs:documentation source="doc_att_orientation_chart"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="vertical"/>
+						<xs:enumeration value="horizontal"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="AxisY2"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="paretoChart">
+		<xs:annotation>
+			<xs:documentation>This element represents a pareto chart which is basically a bar chart with an accumulation line.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="cumulationLine" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The presence of this element indicates whether or not a cumulation line is rendered.  The chartContents indicates whether or not text is associated with the line.  The cumulation line is plotted against the Y2 axis shows values between 0 and 100%.  If the stacked100MeasureAxis element is not present, a default will be generated.  Data item references will appear at the overall level of both edges in the QRD.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="cumulationAxis" minOccurs="0">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="axisTitle" minOccurs="0"/>
+										<xs:element ref="gridlines" minOccurs="0"/>
+										<xs:element ref="minorGridlines" minOccurs="0"/>
+										<xs:element ref="axisLine" minOccurs="0"/>
+										<xs:element ref="style" minOccurs="0"/>
+										<xs:element ref="conditionalStyles" minOccurs="0"/>
+										<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="min" type="xs:float">
+										<xs:annotation>
+											<xs:documentation source="doc_att_min_chart"/>
+											<xs:documentation source="rn_deprecated_5.0"/>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="max" type="xs:float">
+										<xs:annotation>
+											<xs:documentation source="doc_att_max_chart"/>
+											<xs:documentation source="rn_deprecated_5.0"/>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="scaleInterval" type="xs:float"/>
+									<xs:attribute name="scale" default="linear">
+										<xs:annotation>
+											<xs:documentation source="doc_att_scale_chart"/>
+											<xs:documentation source="rn_deprecated_5.0"/>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:NMTOKEN">
+												<xs:enumeration value="linear"/>
+												<xs:enumeration value="log"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="sameRangeAllInstances" type="xs:boolean" default="true">
+										<xs:annotation>
+											<xs:documentation source="rn_deprecated_5.0"/>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="includeZeroForAutoScale" type="xs:boolean" default="true">
+										<xs:annotation>
+											<xs:documentation source="rn_deprecated_5.0"/>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="showAxisLabels" type="xs:boolean" default="true"/>
+									<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="cumulationLabel" minOccurs="0">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="chartContents" minOccurs="0"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+						<xs:attributeGroup ref="DataPointAttributes"/>
+						<xs:attributeGroup ref="LineStyles"/>
+						<xs:attributeGroup ref="ShowValuesBoolean"/>
+						<xs:attributeGroup ref="DisplayDataLocation"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="paretoBars" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Bars for a pareto chart are similar to those of a bar chart except that that axis must be stacked.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="paretoBarClusters" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Represents the clusters in a pareto chart.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="baselines" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="markers" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="ordinalAxis" minOccurs="0"/>
+				<xs:element name="numericalAxisPareto" type="MeasureAxisType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Axis defintion for a pareto chart.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="connectLines" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="chartSuppress" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="RotatedLabels"/>
+			<xs:attributeGroup ref="VisualEffects"/>
+			<xs:attribute name="orientation" default="vertical">
+				<xs:annotation>
+					<xs:documentation source="doc_att_orientation_chart"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="vertical"/>
+						<xs:enumeration value="horizontal"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="ShowValuesAndLocation"/>
+			<xs:attributeGroup ref="ShowAbsoluteValues"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="marimekkoChart">
+		<xs:annotation>
+			<xs:documentation>This element represents a marimekko chart which is basically a bar chart where the width of the bars has meaning.</xs:documentation>
+			<xs:documentation source="rn_added_5.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="marimekkoBars" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_5.0"/>
+						<xs:documentation>Bars for a pareto chart are similar to those of a bar chart except that that axis must be stacked.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="marimekkoBarClusters" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_5.0"/>
+						<xs:documentation>Represents the clusters in a pareto chart.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="baselines" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="markers" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="ordinalAxis" minOccurs="0"/>
+				<xs:element ref="numericalAxisY" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="chartSuppress" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="VisualEffects"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attribute name="showMarimekkoValues" default="none">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="actual"/>
+						<xs:enumeration value="percent"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="marimekkoTotals" type="xs:boolean" default="true"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="winLossChart">
+		<xs:annotation>
+			<xs:documentation>This element represents a win / loss chart.  Data comes into this chart and is converted to either a 1 or -1 and optional 0 based on the winLossValue.  If the data point is greater than the winLossValue it is converted to a 1, all other values are converted to -1.  If allowTies is set to true, data points that exactly equal the winLossValue are converted to 0.   </xs:documentation>
+			<xs:documentation source="rn_added_5.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="winLossBars" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_5.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element name="winColor">
+					<xs:annotation>
+						<xs:documentation source="rn_added_5.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="chartColor"/>
+							<xs:element ref="chartPattern"/>
+							<xs:element ref="chartGradient"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="lossColor">
+					<xs:annotation>
+						<xs:documentation source="rn_added_5.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="chartColor"/>
+							<xs:element ref="chartPattern"/>
+							<xs:element ref="chartGradient"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="winLossChartMeasure" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="chartSuppress" minOccurs="0"/>
+				<xs:element ref="axisLine" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attribute name="orientation" default="vertical">
+				<xs:annotation>
+					<xs:documentation source="doc_att_orientation_chart"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="vertical"/>
+						<xs:enumeration value="horizontal"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attribute name="winLossValue" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="allowTies" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="scatterChart">
+		<xs:annotation>
+			<xs:documentation>The scatter chart is an x-y graph that requires exactly two measures.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="points" minOccurs="0"/>
+				<xs:element ref="pointClusters" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="pointXMeasure" minOccurs="0"/>
+				<xs:element ref="pointYMeasure" minOccurs="0"/>
+				<xs:element ref="numericalAxisX" minOccurs="0"/>
+				<xs:element ref="numericalAxisY" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="pointChartMarkers" minOccurs="0"/>
+				<xs:element ref="pointChartBaselines" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="regressionLine" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="chartSuppress" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="PointChartDataPointAttributes"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+			<xs:attributeGroup ref="ShowPointValues"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bubbleChart">
+		<xs:annotation>
+			<xs:documentation>Bubble chart shows 3 measures, one for the x and y axis and one for the size of each bubble.  Can also be used to represent the 1.x quadrantChart.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="points" minOccurs="0"/>
+				<xs:element ref="pointClusters" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="pointXMeasure" minOccurs="0"/>
+				<xs:element ref="pointYMeasure" minOccurs="0"/>
+				<xs:element name="bubbleMeasure" type="ChartMeasureType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Measure that indicates the size of each bubble.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="numericalAxisX" minOccurs="0"/>
+				<xs:element ref="numericalAxisY" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="pointChartMarkers" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="pointChartBaselines" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="regressionLine" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="chartSuppress" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="PointChartDataShape"/>
+			<xs:attributeGroup ref="ShowBubblePointValues"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+			<xs:attribute name="bubbleSizing" default="minimumBased">
+				<xs:annotation>
+					<xs:documentation source="Determines how the bubble size is computed. minimumBased will assign the smallest bubble to the minimum data value. zeroBased will compute the bubble size relative to 0. (Excel 2002 compatible) zeroBasedWithNegativesOutlines will show negative bubbles as hollow, with an outline. They will get larger as they get further from 0. zeroBasedWithNegativesOutlines is compatible with Excel 2007."/>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="minimumBased"/>
+						<xs:enumeration value="zeroBased"/>
+						<xs:enumeration value="zeroBasedWithNegativesOutlined"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="polarChart">
+		<xs:annotation>
+			<xs:documentation>The polar chart is a two measure graph.  One measure for the radius of points and one measure for the angular position of the point.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="radialMeasure" minOccurs="0"/>
+				<xs:element name="angularMeasure" type="ChartMeasureType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Measure that defines the angle of each point.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="numericalAxisAngular" type="MeasureAxisType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Represents the angular axis of the chart.  If this element is not present, no axis line, grid lines, axis labels or axis titles will be drawn.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="numericalAxisRadial" minOccurs="0"/>
+				<xs:element ref="points" minOccurs="0"/>
+				<xs:element ref="pointClusters" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="pointChartMarkers" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="pointChartBaselines" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="chartSuppress" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="SpiderEffects"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="PointChartDataPointAttributes"/>
+			<xs:attributeGroup ref="ShowPointValues"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="threeDCombinationChart">
+		<xs:annotation>
+			<xs:documentation>Three D or 3D Axis chart.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="commonClusters" minOccurs="0"/>
+				<xs:element name="threeDCombinationChartTypes" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines the collection of things to draw on the combination chart.  This includes any number of bars, lines and areas in any order. </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice maxOccurs="unbounded">
+								<xs:element name="threeDBar">
+									<xs:annotation>
+										<xs:documentation>Represents the bars of a 3D combo chart.</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:all>
+											<xs:element ref="chartNodes" minOccurs="0"/>
+										</xs:all>
+										<xs:attributeGroup ref="BorderProperties"/>
+										<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="threeDLine">
+									<xs:annotation>
+										<xs:documentation>Represents the lines of a 3D combo chart.</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:all>
+											<xs:element ref="chartNodes" minOccurs="0"/>
+										</xs:all>
+										<xs:attributeGroup ref="BorderProperties"/>
+										<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="threeDArea">
+									<xs:annotation>
+										<xs:documentation>Represents the areas of a 3D combo chart.</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:all>
+											<xs:element ref="chartNodes" minOccurs="0"/>
+										</xs:all>
+										<xs:attributeGroup ref="BorderProperties"/>
+										<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element name="numericalAxis" type="MeasureAxisType" minOccurs="0"/>
+				<xs:element name="threeDComboBaselines" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Collection of baselines to be rendered in the 3D combination chart.  Baselines in 3D combo charts have special limitaions; they do not have a label and can only be rendered against the numerical Z axis.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="threeDComboBaseline" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Definition of a baseline in a 3D Combo chart.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="threeDBaselinePosition" minOccurs="0"/>
+										<xs:element ref="style" minOccurs="0"/>
+										<xs:element ref="conditionalStyles" minOccurs="0"/>
+										<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+										<xs:element ref="masterDetailLinks" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refQuery" type="xs:string" use="optional"/>
+									<xs:attributeGroup ref="LineStyles"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ordinalAxisX" type="OrdinalAxisType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Ordinal Axis definition.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ordinalAxisY" type="OrdinalAxisType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Ordinal Axis definition.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="chartSuppress" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="viewingAngle"/>
+			<xs:attribute name="matchSeriesColor" type="xs:boolean" default="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="threeDScatterChart">
+		<xs:annotation>
+			<xs:documentation>This is 3D version of the scatter chart.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="points" minOccurs="0"/>
+				<xs:element ref="pointClusters" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="pointXMeasure" minOccurs="0"/>
+				<xs:element ref="pointYMeasure" minOccurs="0"/>
+				<xs:element name="pointZMeasure" type="ChartMeasureType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Measure that will run in the Z-plane on the graph.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="numericalAxisX" minOccurs="0"/>
+				<xs:element ref="numericalAxisY" minOccurs="0"/>
+				<xs:element name="numericalAxisZ" type="MeasureAxisType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Represents the Z axis of the chart.  If this element is not present, no axisline, gridlines, axis labels or axis titles will be drawn.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element name="threeDScatterBaselines" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Represents the list of baselines to draw in a 3D Scatter chart.  These baselines have special restrictions; they can only be positioned on the numerical Z Axis.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="threeDScatterBaseline" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Represents a baseline on a 3D Scatter chart.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:choice>
+										<xs:element ref="threeDBaselinePosition" minOccurs="0"/>
+										<xs:element ref="style" minOccurs="0"/>
+										<xs:element ref="conditionalStyles" minOccurs="0"/>
+										<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+										<xs:element ref="masterDetailLinks" minOccurs="0"/>
+									</xs:choice>
+									<xs:attribute name="refQuery" type="xs:string"/>
+									<xs:attributeGroup ref="LineStyles"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="chartSuppress" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="viewingAngle"/>
+			<xs:attribute name="showFeelers" type="xs:boolean" default="true"/>
+			<xs:attributeGroup ref="PointChartDataPointAttributes"/>
+			<xs:attributeGroup ref="ShowPointValues"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gaugeChart">
+		<xs:annotation>
+			<xs:documentation>This element represents one or more gauges.  It is similar in capability to a pie chart.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="gauges" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Each row will result in a new gauge chart.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="indicators" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Each row will result in a indicator (needle) in each of the gauges.  Each indicator will also appear in the legend.  There is no axis definition associated with the  indicators.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element name="gaugeLabels" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>This element represents the labels that will be drawn if multiple pies are rendered.  If this element does not exist, no labels will be rendred.  This, with the axis title, can be considered similar to the ordinal axis of other charts.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+							<xs:element ref="reportDrills" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+						<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+						<xs:attributeGroup ref="CategoryTrunction"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="axisTitle" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element name="gaugeNumericalAxis" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Represents the ranged arc of the gauge chart.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="gridlines" minOccurs="0"/>
+							<xs:element ref="minorGridlines" minOccurs="0"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="min" type="xs:float">
+							<xs:annotation>
+								<xs:documentation source="doc_att_min_chart"/>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="max" type="xs:float">
+							<xs:annotation>
+								<xs:documentation source="doc_att_max_chart"/>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="scaleInterval" type="xs:float"/>
+						<xs:attribute name="scale" default="linear">
+							<xs:annotation>
+								<xs:documentation source="doc_att_scale_chart"/>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="linear"/>
+									<xs:enumeration value="log"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="sameRangeAllInstances" type="xs:boolean" default="true"/>
+						<xs:attribute name="includeZeroForAutoScale" type="xs:boolean" default="true"/>
+						<xs:attribute name="class" type="xs:string">
+							<xs:annotation>
+								<xs:documentation source="rn_deprecated_4.0"/>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="gaugePalette" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Palette that controls the look of the dialog portion of a gauge.  You can do a tachometer effect, green, yellow and red.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="continuousChartPalette"/>
+							<xs:element name="discreteGaugePalette">
+								<xs:annotation>
+									<xs:documentation>Describes a list of discrete palette entries.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="discreteGaugePaletteEntry" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Defines a single discrete palette entrie.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="discreteGaugePaletteValue" type="xs:float" use="optional"/>
+												<xs:attribute name="discreteGaugePaletteColor" type="ColorType" default="black"/>
+												<xs:attribute name="transparency" default="0">
+													<xs:annotation>
+														<xs:documentation source="rn_added_5.0"/>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:minInclusive value="0"/>
+															<xs:maxInclusive value="100"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+						<xs:attribute name="percentValues" type="xs:boolean" default="true"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="chartSuppress" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attribute name="faceColor" type="ColorType" default="white"/>
+			<xs:attribute name="faceTransparency" default="0">
+				<xs:annotation>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="dialOutlineColor" type="ColorType" default="black"/>
+			<xs:attribute name="dialOutlineTransparency" default="0">
+				<xs:annotation>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="mapChart">
+		<xs:annotation>
+			<xs:documentation>This element represents a map chart.  Colored regions, colored points and point sizes indicate measure values.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element name="pointLayer" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Points to a layer that has defined points.  The color and the size of each point is determined by their respective measure.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+							<xs:element name="pointSizeMeasure" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Measure that controls the size of the points.  If this element is not present, all points will be drawn the same size.  If this element is present, the point size on the pointLayer is ignored.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="ChartMeasureType">
+											<xs:attribute name="minPointSize" type="xs:decimal" default="5"/>
+											<xs:attribute name="maxPointSize" type="xs:decimal" default="30"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="pointMeasure" type="ChartMeasureType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Measure that controls the color of each point.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="numericChartPalette" minOccurs="0"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+							<xs:element ref="mapChartDrills" minOccurs="0"/>
+							<xs:element name="mapPointLocation" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Location information from the model used to match region feature names in the map.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="mapPointRefinementLocation" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Location information from the model that is used to qualify the parent element.  For example, if the parent element is set to city, this could set to country for extra qualification.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="conditionalChartColors" minOccurs="0"/>
+							<xs:element name="pointSizeLegendTitle" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>This defines a title within the legend above the palette for the point size.  If this element is not defined, no additional title is drawn.  If no legend is drawn, this element is ignored.  Styling for this element is inherited from the legend title element.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="chartContents" minOccurs="0"/>
+										<xs:element ref="masterDetailLinks" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refQuery" type="xs:string"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="pointColorLegendTitle" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>This defines a title within the legend above the palette for the point color.  If this element is not defined, no additional title is drawn.  If no legend is drawn, this element is ignored.  Styling for this element is inherited from the legend title element.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="chartContents" minOccurs="0"/>
+										<xs:element ref="masterDetailLinks" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refQuery" type="xs:string"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="fillEffects" minOccurs="0"/>
+						</xs:all>
+						<xs:attributeGroup ref="MapLayerProperties"/>
+						<xs:attributeGroup ref="MapDataLayerProperties"/>
+						<xs:attributeGroup ref="ShowMapValuesAndLabels"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="regionLayer" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Points to a layer in the map that has defined regions.  Each region will be colored differently based on the measure.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+							<xs:element name="regionMeasure" type="ChartMeasureType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Measure that controls the color of each region.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="regionColorLegendTitle" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>This defines a title within the legend above the palette for the region color.  If this element is not defined, no additional title is drawn.  If no legend is drawn, this element is ignored.  Styling for this element is inherited from the legend title element.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="chartContents" minOccurs="0"/>
+										<xs:element ref="masterDetailLinks" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refQuery" type="xs:string"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="mapRegionLocation" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Location information from the model used to match region feature names in the map.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="mapRegionRefinementLocation" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Location information from the model that is used to qualify the parent element.  For example, if the parent element is set to city, this could set to country for extra qualification.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="numericChartPalette" minOccurs="0"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+							<xs:element ref="mapChartDrills" minOccurs="0"/>
+							<xs:element ref="conditionalChartColors" minOccurs="0"/>
+							<xs:element ref="fillEffects" minOccurs="0"/>
+						</xs:all>
+						<xs:attributeGroup ref="MapLayerProperties"/>
+						<xs:attributeGroup ref="MapDataLayerProperties"/>
+						<xs:attributeGroup ref="ShowMapValuesAndLabels"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="displayLayers" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Collection of layers that are shown purely for display purposes, i.e., they are not data driven.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="displayLayer" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Layer that is shown only for display purposes.  This could be a set of rivers or municipal boundries.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="style" minOccurs="0"/>
+										<xs:element ref="conditionalStyles" minOccurs="0"/>
+										<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+										<xs:element ref="fillEffects" minOccurs="0"/>
+									</xs:all>
+									<xs:attributeGroup ref="MapLayerProperties"/>
+									<xs:attributeGroup ref="ShowLabelsBoolean"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="mapDictionary" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Use the dictionary if the string in the data does not exactly match the string in the map.  For example, if you want China to match People's Republic of China, use the dictionary.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="mapDictionaryEntry" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Forces a match between data strings and map feature names.  Most useful in the case of errors in the data or the map.  For example, if the map has a feature TRONTO and the data has TORONTO, define a map entry for both and they will be treated the same.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="dataName" type="xs:string" use="required"/>
+									<xs:attribute name="locale" type="xs:string"/>
+									<xs:attribute name="mapName" type="xs:string" use="required"/>
+									<xs:attribute name="mapRefinementName" type="xs:string"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="axisTitle" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="chartSuppress" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attribute name="refMap" type="xs:string" use="required"/>
+			<xs:attribute name="noDataFeaturesSize" type="xs:decimal" default="5"/>
+			<xs:attribute name="allowUnplottedData" type="xs:boolean" default="false"/>
+			<xs:attribute name="dataLocale" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>This attribute defines what locale the data is in.  This is important in maps because the server needs to know which names in the map file to try and match with the data.  Normally this does not need to be set since the default will work.  However, if the data is in english and the run locale is set to russian, depending on the map, you could run into trouble.  In this case you would set the data locale to be english.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="expandFeatures" type="xs:boolean" default="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="metricsChart">
+		<xs:annotation>
+			<xs:documentation>This is same as the metrics manager history chart.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="commonClusters" minOccurs="0"/>
+				<xs:element ref="combinationChartTypes" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element name="toleranceMeasure" type="ChartMeasureType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>This element represents the tolerance range of tolerance marker.  If this element is not presence, no tolerance will be drawn.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="targetMeasure" type="ChartMeasureType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>This element represents the target range or tolerance marker.  If this element is not presence, no marker will be drawn and the chart will essentially be a simple combination chart.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="baselines" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="markers" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="numericalAxisY1" minOccurs="0"/>
+				<xs:element ref="ordinalAxis" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element name="targetLabel" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>This is the label for the target range that will be drawn in the legend.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartContents" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="toleranceLabel" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>This is the label for the tolernace range that will be drawn in the legend.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartContents" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="diamondLabel" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>This is the label for the target diamond marker that will be drawn in the legend.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartContents" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="chartSuppress" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="VisualEffects"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+			<xs:attribute name="toleranceColor" type="ColorType" default="green"/>
+			<xs:attribute name="toleranceTransparency" default="0">
+				<xs:annotation>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="targetRange" type="xs:decimal" default="50"/>
+			<xs:attribute name="targetColor" type="ColorType" default="#FFC800"/>
+			<xs:attribute name="targetTransparency" default="0">
+				<xs:annotation>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="markerColor" type="ColorType" default="green"/>
+			<xs:attribute name="markerTransparency" default="0">
+				<xs:annotation>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="targetBorderColor" type="ColorType" default="black"/>
+			<xs:attribute name="targetBorderTransparency" default="0">
+				<xs:annotation>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="performancePattern" default="onTarget">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="onTarget"/>
+						<xs:enumeration value="belowTarget"/>
+						<xs:enumeration value="aboveTarget"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="skew" type="xs:decimal" default="100"/>
+			<xs:attribute name="showTargetMarker" type="xs:boolean" default="true"/>
+			<xs:attribute name="targetMarkerPosition" default="first">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="first"/>
+						<xs:enumeration value="center">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_center_targetMarkerPosition"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ordinalAxis" type="OrdinalAxisType">
+		<xs:annotation>
+			<xs:documentation>Defines the axis line for a non-numeric axis.  Styling is applied to axis line.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="baselines">
+		<xs:annotation>
+			<xs:documentation>Collection of baselines to draw on the chart.  The baselines can be either horizontal or vertical.  The position of the baseline can be determined by a static value, an expression or a specific member.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="baseline" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Each baseline can be data driven from another query.  If refQuery is not present, it is assumed to apply to the query of the chart.  If the baseline is data driven and multiple rows are returned for the this value, the value of the first row will be used rather than returning an error.  Data items referenced here will go into the overall level of both edges in the QRD unless it comes from a different query in which case it will have its own QRD.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="baselinePosition" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Indicates what value the baseline will be drawn at.  Note that it is possible to draw a baseline at a specific member, like 'Canada', for example.  This will be done by either specifying the correctstatic value or by the correct expression.  The author tool should prevent the creation of meaningless baselines, if possible.  For example, drawing a vertical baseline at 'Canada' on a scatter chart has no meaning.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:choice>
+										<xs:element ref="numericPosition"/>
+										<xs:element ref="memberPosition"/>
+									</xs:choice>
+									<xs:attributeGroup ref="UseNumericalAxis"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="baselineLabel" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+							<xs:element ref="masterDetailLinks" minOccurs="0"/>
+						</xs:all>
+						<xs:attributeGroup ref="BaselineAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="notes">
+		<xs:annotation>
+			<xs:documentation>Collection of notes to draw on the chart</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="note" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>The datasource defines the contents of the note.  It is required since there is no point in having a note without text of some sort.  If the value of the note is data driven, it can come from another query.  If the refQuery of this element is empty or not present, the query for the chart is assumed.  If multiple rows are returned for a data driven note, the value of the first row will be used rather than returning an error.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+							<xs:element name="noteContent" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Defines the contents of the note.  This is similar to the baseline label and the marker label.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="chartContents"/>
+										<xs:element ref="style" minOccurs="0"/>
+										<xs:element ref="masterDetailLinks" minOccurs="0"/>
+										<xs:element ref="conditionalStyles" minOccurs="0"/>
+										<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+									</xs:all>
+									<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+									<xs:attribute name="refQuery" type="xs:string" use="optional"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="noteBorder" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>This element represents the borders on a note.  If this element is not present, no border will be drawn on the note.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attributeGroup ref="LineStyleAttribute"/>
+									<xs:attribute name="color" type="ColorType" default="black"/>
+									<xs:attribute name="transparency" default="0">
+										<xs:annotation>
+											<xs:documentation source="rn_added_5.0"/>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:minInclusive value="0"/>
+												<xs:maxInclusive value="100"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="bottom" type="xs:nonNegativeInteger" default="0"/>
+						<xs:attribute name="left" type="xs:nonNegativeInteger" default="0"/>
+						<xs:attribute name="height" type="xs:positiveInteger" default="35">
+							<xs:annotation>
+								<xs:documentation source="doc_att_height_chart"/>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="width" type="xs:positiveInteger" default="150"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pointChartMarkers">
+		<xs:annotation>
+			<xs:documentation>Collection of markers for a point chart</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="pointChartMarker" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Defines a marker for a point chart.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="markerLabel" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+							<xs:element name="pointChartMarkerPosition">
+								<xs:annotation>
+									<xs:documentation>Defines the position of a marker in a point chart.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="XPosition"/>
+										<xs:element ref="YPosition"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+							<xs:element ref="masterDetailLinks" minOccurs="0"/>
+						</xs:all>
+						<xs:attributeGroup ref="DataPointAttributes"/>
+						<xs:attribute name="dataPointColor" type="ColorType" default="black"/>
+						<xs:attribute name="refQuery" type="xs:string"/>
+						<xs:attribute name="dataPointTransparency" default="0">
+							<xs:annotation>
+								<xs:documentation source="rn_added_5.0"/>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:decimal">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="100"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="markerTextLocation" default="chart">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="chart"/>
+						<xs:enumeration value="legend"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="markers">
+		<xs:annotation>
+			<xs:documentation>Common definition of markers to draw on the chart.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="marker" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>The datasource for the marker label  defines that text that maybe associated with.  It is optional since text is not required.  Data references will be added to the lowest level of both edges in the QRD.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="markerPosition">
+								<xs:annotation>
+									<xs:documentation>This controls where the marker will be drawn on the chart.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="memberPosition"/>
+										<xs:element ref="numericPosition"/>
+									</xs:all>
+									<xs:attributeGroup ref="UseNumericalAxis"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="markerLabel" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+							<xs:element ref="masterDetailLinks" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="dataPointColor" type="ColorType" default="black"/>
+						<xs:attributeGroup ref="DataPointAttributes"/>
+						<xs:attribute name="refQuery" type="xs:string"/>
+						<xs:attribute name="dataPointTransparency" default="0">
+							<xs:annotation>
+								<xs:documentation source="rn_added_5.0"/>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:decimal">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="100"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="markerTextLocation" default="chart">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="chart"/>
+						<xs:enumeration value="legend"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="legend">
+		<xs:annotation>
+			<xs:documentation>Common definition for a chart legend.  If this element  is not present in the chart no legend will be rendered.  The associated style and conditional style will affect each row in the legend.  Report Drills defined here applies to the items in the legend contents, i.e., each row of the legend.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element name="legendPosition">
+					<xs:annotation>
+						<xs:documentation>Controls where the legend will appear.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="relativePosition">
+								<xs:annotation>
+									<xs:documentation>Positions the chart by setting an enumeration value.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="legendPosition" default="right">
+										<xs:simpleType>
+											<xs:restriction base="xs:NMTOKEN">
+												<xs:enumeration value="right"/>
+												<xs:enumeration value="left"/>
+												<xs:enumeration value="bottom"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="absolutePosition">
+								<xs:annotation>
+									<xs:documentation>Positions the legend by setting the pixel position of the top left corner of the legend.  This position is in chart co-ordinates.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="topLegendPosition" type="xs:nonNegativeInteger" default="50"/>
+									<xs:attribute name="leftLegendPosition" type="xs:nonNegativeInteger" default="0"/>
+									<xs:attribute name="rightLegendPosition" type="xs:nonNegativeInteger" default="50"/>
+									<xs:attribute name="bottomLegendPosition" type="xs:nonNegativeInteger" default="0"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="legendTitle" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Represents the legend title.  If this element does not exist, no legend title will be generated.  If it exists, and its contents are empty, a default one will be generated.  Data references will be added to the overall level of both edges in the QRD.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="ChartTitleType">
+								<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="autoFontResizing" type="xs:boolean" default="true"/>
+			<xs:attribute name="allowTruncation" type="xs:boolean" default="true"/>
+			<xs:attribute name="truncationText" type="xs:string" default="..."/>
+			<xs:attribute name="maxCharacters" type="xs:positiveInteger" default="48"/>
+			<xs:attribute name="separator" type="xs:string" default=" - ">
+				<xs:annotation>
+					<xs:documentation>This is used to separate multiple levels in the legend.  For example, if the legend must show country, city and qty / margin, the default separator could be used to show Canada-Ottawa-Qty.  If the chartContents is defined, this separator is not used since they author is explicitly saying what they want and would include a text item for the separator if so desired.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attribute name="showLegendValues" default="none">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="first">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_first_showLegendValues"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="last"/>
+						<xs:enumeration value="min">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_min_showLegendValues"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="max">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_max_showLegendValues"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartTitle">
+		<xs:annotation>
+			<xs:documentation>Title to display on the chart</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ChartTitleType">
+					<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartSubTitle">
+		<xs:annotation>
+			<xs:documentation>Sub title to diplay in the chart</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ChartTitleType">
+					<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartGradient">
+		<xs:annotation>
+			<xs:documentation>Defines a color gradient</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="direction" default="down">
+				<xs:annotation>
+					<xs:documentation source="doc_att_direction_chart"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="up">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_direction_up"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="down">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_direction_down"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="left">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_direction_left"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="right">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_direction_right"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fromColor" type="ColorType" default="black"/>
+			<xs:attribute name="toColor" type="ColorType" default="white"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartColor">
+		<xs:annotation>
+			<xs:documentation>Defines a color</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="value" default="black">
+				<xs:annotation>
+					<xs:documentation source="doc_att_chartColor_value"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="ColorType"/>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartPattern">
+		<xs:annotation>
+			<xs:documentation>Defines a background pattern.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="patternType" default="horizontal">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="horizontal">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_patternType_horizontal"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="vertical">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_patternType_vertical"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="forwardDiagonal"/>
+						<xs:enumeration value="backwardDiagonal"/>
+						<xs:enumeration value="cross"/>
+						<xs:enumeration value="diagonalCross"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="foregroundColor" type="ColorType" default="black"/>
+			<xs:attribute name="backgroundColor" type="ColorType" default="white"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartPalette">
+		<xs:annotation>
+			<xs:documentation>Defines a palette for the chart.  It contains an ordered list of gradients and / or colors.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="chartGradient"/>
+					<xs:element ref="chartColor"/>
+					<xs:element ref="chartPattern"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartNode">
+		<xs:annotation>
+			<xs:documentation>One edge of the chart.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="chartNodeMembers">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="chartNodeMember" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Styling of chart node members must be done by applying style to the appropriate containing element.  Typically this will either be an ordinalAxis or the legend.  The child style element is only used for data formating of display values.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="chartContents" minOccurs="0"/>
+										<xs:element ref="chartLabel" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+										<xs:element ref="sortList" minOccurs="0"/>
+										<xs:element ref="XMLAttributes" minOccurs="0"/>
+										<xs:element ref="style" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+									<xs:attributeGroup ref="SolveOrderAttributes"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="chartNestedNodes" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="chartNode" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartFooter">
+		<xs:annotation>
+			<xs:documentation>Defines a footer that is rendered as part of the chart.  In the end it is simply a piece of stylized text.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ChartTitleType">
+					<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartBody">
+		<xs:annotation>
+			<xs:documentation>Defines the body of the chart itself.  The style of the body can be set independently of the chart itself.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveBars">
+		<xs:annotation>
+			<xs:documentation>Bar definition for the progressive Chart.  The child chartContents node applies to the labels of each bar.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartNodes" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gridlines">
+		<xs:annotation>
+			<xs:documentation>The presence of this element means that gridlines should be drawn for the appropriate axis.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attributeGroup ref="LineStyles"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pointXMeasure" type="ChartMeasureType">
+		<xs:annotation>
+			<xs:documentation>Measure that will run horizontally on the graph.  The style is only for formatting display values. </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="pointYMeasure" type="ChartMeasureType">
+		<xs:annotation>
+			<xs:documentation>Measure that will run vertically on the graph.  The style is only to allow data formatting of display values.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="points">
+		<xs:annotation>
+			<xs:documentation>Each row defines a single point that will appear in each cluster.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartNodes"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pointClusters">
+		<xs:annotation>
+			<xs:documentation>Each row defines a cluster of points.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartNodes"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="axisTitle">
+		<xs:annotation>
+			<xs:documentation>Represents the title drawn for the axis.  If this element is not present, no title will be drawn, if it is present but empty (no dataSource) a default title is drawn.  Data references will be added to the overall level of both edges in the QRD.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ChartTitleType">
+					<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="conditionalChartColors">
+		<xs:annotation>
+			<xs:documentation>Contains a sequence of conditional colors.  If the condition is true, that color or gradient is used for the relevant piece of chart (bar, point, etc...)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="conditionalChartColor" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Conditional define a color for a piece of chart.  Canada (or Fred) is red.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="chartColor"/>
+							<xs:element ref="chartGradient"/>
+							<xs:element ref="chartPattern"/>
+						</xs:choice>
+						<xs:attributeGroup ref="ConditionalPartAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attributeGroup ref="ConditionalOwnerAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartContents">
+		<xs:annotation>
+			<xs:documentation>Defines the contents for this item.  It could contain multiple pieces of text that can be styled individually.  For example, in the legend, it will be possible to show 'Canada $357,98' by including two chartTextItems.  If this element is not present, then no labels or legend items will be rendered.  If the contents of it are empty, then the default will be generated.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="chartTextItem" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Defines one piece of text to display.  For a chart, this will typically be a legend item, legend title, axis label or axis title.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="conditionalDataSources" minOccurs="0"/>
+							<xs:element ref="dataSource"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commonClusters">
+		<xs:annotation>
+			<xs:documentation>Common axis for all items in the combination chart.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartNodes"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartNodes">
+		<xs:annotation>
+			<xs:documentation>Collection of nodes for this part of the graph.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="chartNode" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="radialMeasure" type="ChartMeasureType">
+		<xs:annotation>
+			<xs:documentation>Measure that defines the radius of each point.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="bar">
+		<xs:annotation>
+			<xs:documentation>Represents the bars of a combination chart.  The connecting lines element will only be applied if the valueType of the bar is 'stacked'.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartNodes" minOccurs="0"/>
+				<xs:element ref="connectLines" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="UseNumericalAxis"/>
+			<xs:attributeGroup ref="ChartValueType"/>
+			<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+			<xs:attributeGroup ref="ShowAbsoluteValues"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="line">
+		<xs:annotation>
+			<xs:documentation>Represents the lines of a combination chart.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartNodes" minOccurs="0"/>
+				<xs:element name="highMarker" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Marker that is drawn for the highest value in this line.  Its position is the highest numeric value in the series and the corresponding ordinal value.</xs:documentation>
+						<xs:documentation source="rn_added_5.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attributeGroup ref="DataPointAttributes"/>
+						<xs:attribute name="dataPointColor" type="ColorType" default="black"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="lowMarker" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Marker that is drawn for the lowest value in the line.  Its position is the lowest numerical value for the line and the corresponding oridnal value.</xs:documentation>
+						<xs:documentation source="rn_added_5.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="dataPointColor" type="ColorType" default="black"/>
+						<xs:attributeGroup ref="DataPointAttributes"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="openMarker" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Marker that is drawn for the first non-null value in the line.  Its position is the first ordinal value and the numeric value that corresponds to that ordinal.</xs:documentation>
+						<xs:documentation source="rn_added_5.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="dataPointColor" type="ColorType" default="black"/>
+						<xs:attributeGroup ref="DataPointAttributes"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="closeMarker" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Marker that is drawn for he last non-null value in the line.  It's position is the last ordinal value and the numeric value that corresponds to that ordinal.</xs:documentation>
+						<xs:documentation source="rn_added_5.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="dataPointColor" type="ColorType" default="black"/>
+						<xs:attributeGroup ref="DataPointAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attributeGroup ref="UseNumericalAxis"/>
+			<xs:attributeGroup ref="ChartValueType"/>
+			<xs:attribute name="showLine" type="xs:boolean" default="true"/>
+			<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+			<xs:attributeGroup ref="ShowAbsoluteValues"/>
+			<xs:attributeGroup ref="PointChartDataPointAttributes"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="LineStylesNoColor"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+			<xs:attribute name="lineType" default="pointToPoint">
+				<xs:annotation>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="pointToPoint"/>
+						<xs:enumeration value="stepBetweenPoints"/>
+						<xs:enumeration value="stepAtPoint"/>
+						<xs:enumeration value="smooth"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="area">
+		<xs:annotation>
+			<xs:documentation>Represents the areas of a combination chart.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartNodes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="UseNumericalAxis"/>
+			<xs:attributeGroup ref="ChartValueType"/>
+			<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="ShowAbsoluteValues"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+			<xs:attribute name="areaType" default="pointToPoint">
+				<xs:annotation>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="pointToPoint"/>
+						<xs:enumeration value="smooth"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="numericalAxisY1">
+		<xs:annotation>
+			<xs:documentation>Primary Y Axis</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="MeasureAxisType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="numericalAxisY2">
+		<xs:annotation>
+			<xs:documentation>Secondary Y Axis</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="MeasureAxisType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="numericPosition">
+		<xs:annotation>
+			<xs:documentation>The position is a numeric value on a numeric axis.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ChartDynamicValueType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="memberPosition" type="MemberPositionType">
+		<xs:annotation>
+			<xs:documentation>The position is given by the member returned by the datasource.  If this is a static value, such as Canada, it should be matched by string comparison.  The offset is relative to that member.  Negative values mean to the left and position values mean to the right.  This is a percentage value.  50 means  half way to the member to the immediate right.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="numericalAxisX" type="MeasureAxisType">
+		<xs:annotation>
+			<xs:documentation>Represents the X Axis of the chart.  If this element is not present, no axis line, gridlines, axis labels or axis title will be drawn.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="numericalAxisY" type="MeasureAxisType">
+		<xs:annotation>
+			<xs:documentation>Represents the Y Axis of the chart.  If this element is not present, no axis line, gridlines, axis labels or axis title will be drawn.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="numericalAxisRadial" type="MeasureAxisType">
+		<xs:annotation>
+			<xs:documentation>Represents the radial axis of the polar chart.  If this element is not present no axis line, grid lines, axis label or axis title will be drawn.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="baselineLabel">
+		<xs:annotation>
+			<xs:documentation>Label that will be shown with the rendered baseline.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartContents"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="threeDBaselinePosition" type="ChartDynamicValueType">
+		<xs:annotation>
+			<xs:documentation>Three D Baselines can only be positioned numerically on the Z Axis.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="markerLabel">
+		<xs:annotation>
+			<xs:documentation>This is the label that may be displayed with the marker.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartContents"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pointChartBaselines">
+		<xs:annotation>
+			<xs:documentation>Collection of point chart related baselines</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="pointChartBaseline" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Defines a baseline for a point chart.  Baselines can only be positioned on a point chart by specifying two numeric values.  The style and conditional style specified on the baseline is applied to its label (if defined).</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="baselineLabel" minOccurs="0"/>
+							<xs:element ref="conditionalRender" minOccurs="0"/>
+							<xs:element name="pointChartBaselinePosition" type="ChartDynamicValueType">
+								<xs:annotation>
+									<xs:documentation>Container element for the position of a pointChartBaseline.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+							<xs:element ref="masterDetailLinks" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+						<xs:attributeGroup ref="BaselineAttributes"/>
+						<xs:attribute name="pointChartAxis" default="xAxis">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="xAxis"/>
+									<xs:enumeration value="yAxis"/>
+									<xs:enumeration value="radialAxis"/>
+									<xs:enumeration value="angularAxis"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="XPosition" type="ChartDynamicValueType">
+		<xs:annotation>
+			<xs:documentation>Position along the X or Radial axis of a point chart.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="YPosition" type="ChartDynamicValueType">
+		<xs:annotation>
+			<xs:documentation>Position along the y or angular axis of a point chart.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="defaultChartMeasure" type="ChartMeasureType">
+		<xs:annotation>
+			<xs:documentation>This element identifies the default measure to be used for a chart. If the measures of  the chart cannot be determined by what is being rendered on the edges, then the default measure will be rendered.  The style is appropriate only for data formating of values.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="winLossChartMeasure" type="ChartMeasureType">
+		<xs:annotation>
+			<xs:documentation source="rn_added_5.0"/>
+			<xs:documentation>This element identifies the actual measure for a bullet chart.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="connectLines">
+		<xs:annotation>
+			<xs:documentation>The presence of this element indicates that connecting lines will be drawn between the bars.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attributeGroup ref="LineStyles"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="numericChartPalette">
+		<xs:annotation>
+			<xs:documentation>Co0ntrols the colors used in the chart based on a numeric range.  The percentValues attributes indicates whether the pallete values are percentages or absolute values.  If percentages, it represents a percent of the span of all the measure values.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="discreteChartPalette">
+					<xs:annotation>
+						<xs:documentation>This is an ordered list of palette entires.  Determining which one to use for a point or region depends on the current measure value and the attribute paletteValue.  If the measure value is lower then the first enty, that palette is used.  If the value is between the first and second value, the second entry is used and so forth.  Note that the value on the last entry is not used if set.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="discreteChartPaletteEntry" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Defines an entry in the palette.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:choice>
+										<xs:element ref="chartGradient"/>
+										<xs:element ref="chartPattern"/>
+										<xs:element ref="chartColor"/>
+									</xs:choice>
+									<xs:attribute name="paletteValue" type="xs:float" use="optional"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="continuousChartPalette"/>
+			</xs:choice>
+			<xs:attribute name="percentValues" type="xs:boolean" default="true"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="mapChartDrills">
+		<xs:annotation>
+			<xs:documentation>This defines a set of drill throughs for each feature in this layer.  This will allow the author to define a different drill through target report for each state, for example.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="mapChartDrill" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Defines a drill through for one feature.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="reportDrills" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="featureId" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="minorGridlines">
+		<xs:annotation>
+			<xs:documentation>This element represents minor gridlines.  The attribute numberOfMinorGridlines controls how many are drawn between each major gridline.  Zero means no minor gridlines, two means two between each gridline.  If this element is not present, no minor gridlines will be drawn.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="numberOfMinorGridlines" type="xs:nonNegativeInteger" default="0"/>
+			<xs:attributeGroup ref="LineStyles"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="regressionLine">
+		<xs:annotation>
+			<xs:documentation>This represents one regression line in a chart.  The regression line can be drawn for the data of all series, one regression line can be drawn for each series or one regression line can be drawn for a specific series.  The drawForSeries attribute controls this.  All means one line for all series, each means one line for each series and speicfic means that it will be drawn for the series identified by the string attribute specificSeries.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="regressionLinePosition">
+					<xs:annotation>
+						<xs:documentation>Defines how the regression line is position on the chart.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="commonLog">
+								<xs:annotation>
+									<xs:documentation>Uses a common log regression.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="naturalLog">
+								<xs:annotation>
+									<xs:documentation>Uses a natural log regression.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="linear">
+								<xs:annotation>
+									<xs:documentation>Uses linear regression.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="exponential">
+								<xs:annotation>
+									<xs:documentation>Uses exponential regression.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="polynomialFit">
+								<xs:annotation>
+									<xs:documentation>Fits a polynomial curve to the data.  The exponent attribute indicates the highest exponent of the fit equation.  For example, if set to 3, the equation used would be y=Ax^3 + Bx^2 + Cx + D</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="exponent" type="xs:positiveInteger" default="1"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="regressionLineLabel" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Label that will be will be shown in the legend for the regression line.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartContents" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="propertyList" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="numberOfRegressionLines" default="oneForAllData">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="oneForAllData"/>
+						<xs:enumeration value="oneForEachSeries"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="LineStyles"/>
+			<xs:attribute name="showInLegend" type="xs:boolean" default="true"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="combinationChartTypes">
+		<xs:annotation>
+			<xs:documentation>Defines the things that are rendered in the chart.  This could include any combination, in any order, of bars, lines, or areas.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="bar"/>
+					<xs:element ref="line"/>
+					<xs:element ref="area"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="axisLine">
+		<xs:annotation>
+			<xs:documentation>The presence of this element indicates that an axis line should be rendered.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attributeGroup ref="LineStyles"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="continuousChartPalette">
+		<xs:annotation>
+			<xs:documentation>Defines a continuous chart palette.   The color used from the palette is determined by a linear interpolation between the colors in the palette based on a measure value.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="continuousChartPaletteEntry" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Defines an entry in the palette.  If the measure value is equal to the value of paletteEntryValue, this color will be used.  Note that this is an ordered list and the value of the attribute paletteEntryValue must increase.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="paletteEntryValue" type="xs:float" use="required"/>
+						<xs:attribute name="paletteEntryColor" type="ColorType" default="black"/>
+						<xs:attribute name="transparency" default="0">
+							<xs:annotation>
+								<xs:documentation source="rn_added_5.0"/>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:decimal">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="100"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartLabel">
+		<xs:annotation>
+			<xs:documentation>Defines the label for this item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartContents" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="percentAlongAxis">
+		<xs:annotation>
+			<xs:documentation>Percentage along the axis.  50% will be the middle of the axis.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="percentAlongAxis" type="xs:decimal" default="50"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="FillEffectsType">
+		<xs:choice>
+			<xs:element ref="chartGradient"/>
+			<xs:element ref="chartPattern"/>
+			<xs:element ref="chartColor"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="ChartMeasureType">
+		<xs:annotation>
+			<xs:documentation>Definition of a measure used within a chart.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element ref="style" minOccurs="0"/>
+			<xs:element ref="conditionalStyles" minOccurs="0"/>
+			<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+			<xs:element ref="chartLabel" minOccurs="0"/>
+		</xs:all>
+		<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+		<xs:attributeGroup ref="SolveOrderAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="ChartTitleType">
+		<xs:annotation>
+			<xs:documentation>Generic type that represents a title on a chart.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element ref="chartContents" minOccurs="0"/>
+			<xs:element ref="style" minOccurs="0"/>
+			<xs:element ref="conditionalStyles" minOccurs="0"/>
+			<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+			<xs:element ref="XMLAttributes" minOccurs="0"/>
+			<xs:element ref="propertyList" minOccurs="0"/>
+			<xs:element ref="masterDetailLinks" minOccurs="0"/>
+		</xs:all>
+		<xs:attribute name="refQuery" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="ChartDynamicValueType">
+		<xs:annotation>
+			<xs:documentation>Complex type to define special chart values.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="dataSource"/>
+			<xs:element name="mean">
+				<xs:annotation>
+					<xs:documentation>Mean of the data, adjusted by the number of standard deviations (+ or -)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="numberOfStddev" type="xs:decimal" default="0"/>
+					<xs:attribute name="comboIndex" type="xs:nonNegativeInteger" default="0"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="limit">
+				<xs:annotation>
+					<xs:documentation>Mininum or maximum of the data.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="limitType" default="max">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="min"/>
+								<xs:enumeration value="max"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="comboIndex" type="xs:nonNegativeInteger" default="0"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="percentile">
+				<xs:annotation>
+					<xs:documentation>Percentile of the data</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="percentile" type="xs:decimal" default="50"/>
+					<xs:attribute name="comboIndex" type="xs:nonNegativeInteger" default="0"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="percentAlongAxis"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="MeasureAxisType">
+		<xs:annotation>
+			<xs:documentation>Allows selection of an appropriate axis type.  The style element is primarily for data formating.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element ref="axisTitle" minOccurs="0"/>
+			<xs:element ref="gridlines" minOccurs="0"/>
+			<xs:element ref="minorGridlines" minOccurs="0"/>
+			<xs:element ref="axisLine" minOccurs="0"/>
+			<xs:element ref="style" minOccurs="0"/>
+			<xs:element ref="conditionalStyles" minOccurs="0"/>
+			<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+		</xs:all>
+		<xs:attributeGroup ref="MeasureAxisAttributes"/>
+		<xs:attribute name="includeZeroForAutoScale" type="xs:boolean" default="true"/>
+		<xs:attribute name="showAxisLabels" type="xs:boolean" default="true"/>
+		<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="EmptyType">
+		<xs:annotation>
+			<xs:documentation>This defines an empty complex type.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="OrdinalAxisType">
+		<xs:annotation>
+			<xs:documentation>Type that represents an ordinal or discrete axis.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element ref="style" minOccurs="0"/>
+			<xs:element ref="conditionalStyles" minOccurs="0"/>
+			<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+			<xs:element ref="axisTitle" minOccurs="0"/>
+			<xs:element ref="reportDrills" minOccurs="0"/>
+			<xs:element ref="gridlines" minOccurs="0"/>
+			<xs:element ref="minorGridlines" minOccurs="0"/>
+			<xs:element ref="axisLine" minOccurs="0"/>
+			<xs:element name="labelControl" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Controls how labels are rendered</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="autoLabelControl">
+							<xs:annotation>
+								<xs:documentation>Specifying this element allows the server to control how the labels are rendered.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="allowRotate45DegreesForCategoryLabels" type="xs:boolean" default="true"/>
+								<xs:attribute name="allowRotate90DegreesForCategoryLabels" type="xs:boolean" default="true"/>
+								<xs:attribute name="allowStaggerForCategoryLabels" type="xs:boolean" default="true"/>
+								<xs:attribute name="allowSkipForCategoryLabels" type="xs:boolean" default="true"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="manualLabelControl">
+							<xs:annotation>
+								<xs:documentation>Specifying this element allows the author more control over the labels.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="displayFrequency" type="xs:integer" default="5"/>
+								<xs:attribute name="firstLabel" type="xs:integer" default="1"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+		<xs:attribute name="categoryitemMaxCharacters" type="xs:positiveInteger" default="48"/>
+		<xs:attribute name="categoryitemEnableTruncation" type="xs:boolean" default="true"/>
+		<xs:attribute name="truncationText" type="xs:string" default="..."/>
+		<xs:attribute name="showAxisLabels" type="xs:boolean" default="true"/>
+		<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="MemberPositionType">
+		<xs:annotation>
+			<xs:documentation>The position is given by the member returned by the datasource.  If this is a static value, such as Canada, it should be matched by string comparison.  The offset is relative to that member.  Negative values mean to the left and position values mean to the right.  This is a percentage value.  50 means  half way to the member to the immediate right.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="reportExpression"/>
+			<xs:element ref="percentAlongAxis"/>
+			<xs:element name="memberIndex">
+				<xs:annotation>
+					<xs:documentation source="rn_added_5.0"/>
+					<xs:documentation>One based index of the member.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType mixed="false">
+					<xs:attribute name="memberIndex" type="xs:unsignedInt" default="1"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="memberOffset" type="xs:decimal" default="0"/>
+	</xs:complexType>
+	<xs:attributeGroup name="StandardChartAttributes">
+		<xs:annotation>
+			<xs:documentation>Common set of chart attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="refQuery" type="xs:string" use="required"/>
+		<xs:attributeGroup ref="CommonLayoutAttributes"/>
+		<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+		<xs:attribute name="showTooltips" type="xs:boolean" default="false"/>
+		<xs:attributeGroup ref="NoPageWhenNoDataAttributes"/>
+		<xs:attribute name="maxHotspots" type="xs:nonNegativeInteger"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ChartValueType">
+		<xs:annotation>
+			<xs:documentation>Indicates whether the values are stacked, absolute or stacked 100%</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="valueType" default="absolute">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="absolute"/>
+					<xs:enumeration value="stacked"/>
+					<xs:enumeration value="stacked100Percent"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AxisY2">
+		<xs:attribute name="axisY2Position" default="dual">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="dual"/>
+					<xs:enumeration value="bipolar"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="BaselineAttributes">
+		<xs:annotation>
+			<xs:documentation>Common Attributes for baselines</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="refQuery" type="xs:string" use="optional"/>
+		<xs:attribute name="showInLegend" type="xs:boolean" default="true"/>
+		<xs:attributeGroup ref="LineStyles"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="MeasureAxisAttributes">
+		<xs:annotation>
+			<xs:documentation>Common Attributes for a measure axis</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="min" type="xs:float">
+			<xs:annotation>
+				<xs:documentation source="doc_att_min_chart"/>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="max" type="xs:float">
+			<xs:annotation>
+				<xs:documentation source="doc_att_max_chart"/>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="scaleInterval" type="xs:float"/>
+		<xs:attribute name="scale" default="linear">
+			<xs:annotation>
+				<xs:documentation source="doc_att_scale_chart"/>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="linear"/>
+					<xs:enumeration value="log"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="sameRangeAllInstances" type="xs:boolean" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="VisualEffects">
+		<xs:annotation>
+			<xs:documentation>Visual affects for controlling the 2.5D look of some charts.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="depth" type="xs:nonNegativeInteger" default="0"/>
+		<xs:attribute name="visualAngle" type="xs:nonNegativeInteger" default="45"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="SpiderEffects">
+		<xs:annotation>
+			<xs:documentation>Indicates whether or not to use spider effects.  For polar type charts, indicates whether the arcs are cut or not.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="useSpiderEffects" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DataPointShape">
+		<xs:attribute name="dataPointShape" default="plainX">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="circle"/>
+					<xs:enumeration value="square"/>
+					<xs:enumeration value="house"/>
+					<xs:enumeration value="hexagon"/>
+					<xs:enumeration value="pentagon"/>
+					<xs:enumeration value="diamond"/>
+					<xs:enumeration value="triangle"/>
+					<xs:enumeration value="downTriangle"/>
+					<xs:enumeration value="rightTriangle"/>
+					<xs:enumeration value="leftTriangle"/>
+					<xs:enumeration value="skewLeftTriangle"/>
+					<xs:enumeration value="skewRightTriangle"/>
+					<xs:enumeration value="downSkewLeftTriangle"/>
+					<xs:enumeration value="downSkewRightTriangle"/>
+					<xs:enumeration value="verticalLine"/>
+					<xs:enumeration value="horizontalLine"/>
+					<xs:enumeration value="plus"/>
+					<xs:enumeration value="fatPlus"/>
+					<xs:enumeration value="star90"/>
+					<xs:enumeration value="pentagram"/>
+					<xs:enumeration value="star"/>
+					<xs:enumeration value="skewedStar"/>
+					<xs:enumeration value="plainX"/>
+					<xs:enumeration value="softX"/>
+					<xs:enumeration value="fatX"/>
+					<xs:enumeration value="spikedX"/>
+					<xs:enumeration value="castle"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DataPointAttributes">
+		<xs:annotation>
+			<xs:documentation>Common set of attributes for data points.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="dataPointSize" type="xs:decimal" default="0"/>
+		<xs:attributeGroup ref="DataPointShape"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="LineStyles">
+		<xs:annotation>
+			<xs:documentation>Common definition of a line style</xs:documentation>
+		</xs:annotation>
+		<xs:attributeGroup ref="LineStylesNoColor"/>
+		<xs:attribute name="color" type="ColorType" default="black"/>
+		<xs:attribute name="transparency" default="0">
+			<xs:annotation>
+				<xs:documentation source="rn_added_5.0"/>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:decimal">
+					<xs:minInclusive value="0"/>
+					<xs:maxInclusive value="100"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="LineStylesNoColor">
+		<xs:annotation>
+			<xs:documentation>Common definition of a line style</xs:documentation>
+		</xs:annotation>
+		<xs:attributeGroup ref="LineStyleAttribute"/>
+		<xs:attribute name="weight" type="xs:decimal" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="viewingAngle">
+		<xs:annotation>
+			<xs:documentation>Defines the set of enumerations for a viewing angle.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="threeDViewingAngle" default="standard">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="standard"/>
+					<xs:enumeration value="thickStandard"/>
+					<xs:enumeration value="lowThin"/>
+					<xs:enumeration value="near1x3"/>
+					<xs:enumeration value="tallFar"/>
+					<xs:enumeration value="groupView"/>
+					<xs:enumeration value="nearView"/>
+					<xs:enumeration value="seriesView"/>
+					<xs:enumeration value="groupStretch"/>
+					<xs:enumeration value="seriesStretch"/>
+					<xs:enumeration value="birdsEye"/>
+					<xs:enumeration value="lowHigh"/>
+					<xs:enumeration value="lowLow"/>
+					<xs:enumeration value="tallDistortion"/>
+					<xs:enumeration value="lowDistort"/>
+					<xs:enumeration value="isometric"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="LineAttributes">
+		<xs:annotation>
+			<xs:documentation>Attributes common to line graphs.</xs:documentation>
+		</xs:annotation>
+		<xs:attributeGroup ref="LineStyles"/>
+		<xs:attributeGroup ref="DataPointAttributes"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="LineAttributesNoColor">
+		<xs:annotation>
+			<xs:documentation>Attributes common to line graphs.</xs:documentation>
+		</xs:annotation>
+		<xs:attributeGroup ref="LineStylesNoColor"/>
+		<xs:attributeGroup ref="DataPointAttributes"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="MatchSeriesColor">
+		<xs:annotation>
+			<xs:documentation>Used in combination charts</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="matchSeriesColor" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="UseNumericalAxis">
+		<xs:annotation>
+			<xs:documentation>Which axis does this thing point to.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="useNumericalAxis" default="numericalAxisY1">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="numericalAxisY1"/>
+					<xs:enumeration value="numericalAxisY2"/>
+					<xs:enumeration value="xAxis"/>
+					<xs:enumeration value="yAxis"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DisplayDataLocation">
+		<xs:annotation>
+			<xs:documentation>Attribute to show data values</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="displayDataLocation" default="centered">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="insideAtTop"/>
+					<xs:enumeration value="outsideAtTop"/>
+					<xs:enumeration value="insideAtBottom"/>
+					<xs:enumeration value="outsideAtBottom"/>
+					<xs:enumeration value="centered"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="CategoryTrunction">
+		<xs:annotation>
+			<xs:documentation>Attributes to control the truncation of categoyr items.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="categoryitemMaxCharacters" type="xs:positiveInteger" default="48"/>
+		<xs:attribute name="categoryitemEnableTruncation" type="xs:boolean" default="true"/>
+		<xs:attribute name="truncationText" type="xs:string" default="..."/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowValuesAsPercent">
+		<xs:annotation>
+			<xs:documentation>Attribute to indicate that display values should be shown as percentages.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="showValuesAsPercent" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowAbsoluteValues">
+		<xs:annotation>
+			<xs:documentation>Attribute to indicate that display values are absolute values and not the cumulative values.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="showAbsoluteValues" type="xs:boolean" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PointChartDataShape">
+		<xs:annotation>
+			<xs:documentation>Attribute for point charts that has two extra enumeration values in it.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="pointChartDataPointShape" default="series">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="series"/>
+					<xs:enumeration value="category"/>
+					<xs:enumeration value="circle"/>
+					<xs:enumeration value="square"/>
+					<xs:enumeration value="house"/>
+					<xs:enumeration value="hexagon"/>
+					<xs:enumeration value="pentagon"/>
+					<xs:enumeration value="diamond"/>
+					<xs:enumeration value="triangle"/>
+					<xs:enumeration value="downTriangle"/>
+					<xs:enumeration value="rightTriangle"/>
+					<xs:enumeration value="leftTriangle"/>
+					<xs:enumeration value="skewLeftTriangle"/>
+					<xs:enumeration value="skewRightTriangle"/>
+					<xs:enumeration value="downSkewLeftTriangle"/>
+					<xs:enumeration value="downSkewRightTriangle"/>
+					<xs:enumeration value="verticalLine"/>
+					<xs:enumeration value="horizontalLine"/>
+					<xs:enumeration value="plus"/>
+					<xs:enumeration value="fatPlus"/>
+					<xs:enumeration value="star90"/>
+					<xs:enumeration value="pentagram"/>
+					<xs:enumeration value="star"/>
+					<xs:enumeration value="skewedStar"/>
+					<xs:enumeration value="plainX"/>
+					<xs:enumeration value="softX"/>
+					<xs:enumeration value="fatX"/>
+					<xs:enumeration value="spikedX"/>
+					<xs:enumeration value="castle"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PointChartDataPointAttributes">
+		<xs:annotation>
+			<xs:documentation>Attributes for point charts that.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="dataPointSize" type="xs:decimal" default="6"/>
+		<xs:attributeGroup ref="PointChartDataShape"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="BorderProperties">
+		<xs:annotation>
+			<xs:documentation>Attributes to define borders on pie slices, bars, etc...</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="showBorders" type="xs:boolean" default="false"/>
+		<xs:attribute name="borderColor" type="ColorType" default="black"/>
+		<xs:attribute name="borderTransparency" default="0">
+			<xs:annotation>
+				<xs:documentation source="rn_added_5.0"/>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:decimal">
+					<xs:minInclusive value="0"/>
+					<xs:maxInclusive value="100"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="MapLayerProperties">
+		<xs:annotation>
+			<xs:documentation>Properties common to all map layers.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="refLayer" type="xs:string" use="required"/>
+		<xs:attributeGroup ref="BorderProperties"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowValuesBoolean">
+		<xs:annotation>
+			<xs:documentation>Attribute to control the display of values</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowValuesAndLocation">
+		<xs:annotation>
+			<xs:documentation>Attributes to show location and presence of display values.</xs:documentation>
+		</xs:annotation>
+		<xs:attributeGroup ref="ShowValuesBoolean"/>
+		<xs:attributeGroup ref="DisplayDataLocation"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowLabelsBoolean">
+		<xs:attribute name="showLabels" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="MapDataLayerProperties">
+		<xs:annotation>
+			<xs:documentation>Attributes related to data driven map layers.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="showNoDataFeatures" type="xs:boolean" default="true">
+			<xs:annotation>
+				<xs:documentation>Indicates whether or not features that do not have corresponding data are rendered.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="showDataRangeInLegend" type="xs:boolean" default="true">
+			<xs:annotation>
+				<xs:documentation>Ensures that the full range of data is included in the legend.  If set to false, only the values from the palette will be shown.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="LineStyleAttribute">
+		<xs:annotation>
+			<xs:documentation>Attribute that is a shared definition of a line style.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="lineStyle" default="solid">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="solid"/>
+					<xs:enumeration value="dash"/>
+					<xs:enumeration value="dot"/>
+					<xs:enumeration value="dotdash"/>
+					<xs:enumeration value="dashdotdot"/>
+					<xs:enumeration value="mediumdash"/>
+					<xs:enumeration value="shortdash"/>
+					<xs:enumeration value="longdash"/>
+					<xs:enumeration value="longdot"/>
+					<xs:enumeration value="dotdotdot"/>
+					<xs:enumeration value="dashdashdot"/>
+					<xs:enumeration value="dashdashdotdot"/>
+					<xs:enumeration value="longdashdot"/>
+					<xs:enumeration value="longdashdotdot"/>
+					<xs:enumeration value="longdashdashdot"/>
+					<xs:enumeration value="longdashdashdotdot"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowPointValues">
+		<xs:attribute name="showPointValues" default="none">
+			<xs:annotation>
+				<xs:documentation>Shows the measure values/labels for the points in the charts.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="valuesAndLabels"/>
+					<xs:enumeration value="valuesOnly"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showPointValuesForPoints" default="none">
+			<xs:annotation>
+				<xs:documentation>Shows the point (legend) values/labels for the points in the charts.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="valuesAndLabels">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_valuesAndLabels_showPointValuesForPoints"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="valuesOnly">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_valuesOnly_showPointValuesForPoints"/>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showPointValuesForPointClusters" default="none">
+			<xs:annotation>
+				<xs:documentation>Shows the point cluster (category) values/labels for the points in the charts.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="valuesAndLabels">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_valuesAndLabels_showPointValuesForPointClusters"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="valuesOnly">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_valuesOnly_showPointValuesForPointClusters"/>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowBubblePointValues">
+		<xs:attribute name="showBubblePointValues" default="none">
+			<xs:annotation>
+				<xs:documentation>Shows the measure values/labels for the points in the charts.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="valuesAndLabels">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_valuesAndLabels_showBubblePointValues"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="valuesOnly"/>
+					<xs:enumeration value="sizeValueAndLabel"/>
+					<xs:enumeration value="sizeValueOnly"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showPointValuesForPoints" default="none">
+			<xs:annotation>
+				<xs:documentation>Shows the point (legend) values/labels for the points in the charts.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="valuesAndLabels">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_valuesAndLabels_showPointValuesForPoints"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="valuesOnly">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_valuesOnly_showPointValuesForPoints"/>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showPointValuesForPointClusters" default="none">
+			<xs:annotation>
+				<xs:documentation>Shows the point cluster (category) values/labels for the points in the charts.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="valuesAndLabels">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_valuesAndLabels_showPointValuesForPointClusters"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="valuesOnly">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_valuesOnly_showPointValuesForPointClusters"/>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowMapValuesAndLabels">
+		<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+		<xs:attribute name="showLabels" type="xs:boolean" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="RotatedLabels">
+		<xs:annotation>
+			<xs:documentation>Attribute to control whether or not labels are rotated with the chart.  This may help make labels easier to read on rotated charts.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="rotateLabelsWithChart" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+</xs:schema>

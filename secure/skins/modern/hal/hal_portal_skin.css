@@ -1,0 +1,552 @@
+@charset "UTF-8";
+
+/*
+  	Licensed Materials  - Property of IBM
+  	IBM Cognos Products: hal
+ 	(C) Copyright IBM Corp. 2003, 2014
+  	US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+ 
+/*
+	Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+	Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+*/
+
+DIV.clsToolbar,
+DIV.clsDlgToolbar,
+DIV.clsMenubar,
+.clsMenuItem,
+TABLE.clsModalDlg,
+TABLE.clsModelessDlg,
+TABLE.clsModelessInfoDlg,
+TD.clsModalDlgBody,
+TD.clsModelessDlgBody,
+BUTTON.clsDlgButton,
+BUTTON.clsDlgButton_hover,
+TD.clsMenubarItem,
+TD.clsMenubarItem_up,
+TD.clsMenubarItem_down,
+TD.clsToolbarButton,
+TD.clsToolbarButton_up,
+TD.clsToolbarButton_down,
+TD.clsToolbarButton_stuck,
+BUTTON.clsCoolButton,
+BUTTON.clsCoolButton_hover,
+BUTTON.clsCoolButton_pressed,
+BUTTON.clsBigCoolButton,
+BUTTON.clsBigCoolButton_hover,
+BUTTON.clsBigCoolButton_pressed,
+.clsMenuPopup,
+.clsMenuItem,
+.clsMenuItem_selected,
+TABLE.clsTabBox,
+TABLE.clsButtonBarHorizontal,
+TABLE.clsButtonBarVertical,
+DIV.clsTreeView,
+DIV.clsListView,
+DIV.clsListView_dropdown,
+.clsPropertySheetContainer,
+TABLE.clsComboBox,
+TABLE.clsPropertySheet,
+.clsToolDlgHeader_active,
+.clsModalDlgHeader_active,
+.clsModalDlgHeader_inactive,
+.clsModelessDlgHeader_active,
+.clsModelessDlgHeader_inactive,
+.clsModelessInfoDlgHeader_active,
+.clsModelessInfoDlgHeader_inactive,
+.clsDialogText,
+INPUT,
+DIV.clsPaneHeader_active,
+DIV.clsPaneHeader_inactive,
+DIV.clsPaneHeader_active SPAN,
+DIV.clsPaneHeader_inactive SPAN,
+DIV.clsTabPanels,
+DIV.clsBottomTabPanels,
+#idHALStartupDialog
+{
+	font-family: Tahoma, Arial, 'MS UI Gothic', Gulim, SimSun, PMingLiU, Raghu8, 'Arial Unicode MS', 'Andale WT', sans-serif;
+	font-size: 8pt;
+}
+
+BUTTON,
+DIV.clsMenubar,
+DIV.clsToolbar,
+DIV.clsDlgToolbar,
+TD.clsMenubarItem,
+TD.clsToolbarButton,
+.clsMenuPopup,
+.clsPopupDialog,
+.clsMenuItem,
+TD.clsExplorerButton,
+.clsBigButtonBar,
+BUTTON.clsBigCoolButton,
+TD.clsToolbarButton,
+{
+	background-color: #E7E7E7;
+}
+
+TD.clsTabBox_inactive,
+TD.clsTabBox_active,
+TD.clsTabBox_inactive_hover,
+TD.clsTabBox_active_hover,
+TD.clsBottomTabBox_inactive,
+TD.clsBottomTabBox_active,
+TD.clsBottomTabBox_inactive_hover,
+TD.clsBottomTabBox_active_hover,
+DIV.clsTabPanels,
+DIV.clsBottomTabPanels,
+TABLE.clsModalDlg,
+TABLE.clsModelessDlg,
+BUTTON.clsDlgButton,
+BUTTON.clsDlgButton_hover
+{
+	background-color: white;
+}
+
+BUTTON.clsXButton_active,
+BUTTON.clsDlgButton,
+BUTTON.clsDlgButton_hover
+{
+	cursor: pointer;
+}
+
+BUTTON.clsDlgButton,
+BUTTON.clsDlgButton_hover
+{
+	font-size: 14px;
+	margin-left: 0px;
+	margin-right: 5px;
+}
+
+BUTTON.clsCoolButton_hover,
+TD.clsMenubarItem_up,
+TD.clsToolbarButton_up,
+BUTTON.clsCoolButton_pressed,
+TD.clsMenubarItem_down,
+TD.clsToolbarButton_down,
+TD.clsToolbarButton_stuck,
+.clsMenuItem_selected,
+DIV.clsPaneHeader_inactive,
+.clsListItem_hover,
+.clsTreeNode_hover,
+TD.clsPropertySheetLabel_active,
+.clsModalDlgHeader_inactive,
+.clsModelessDlgHeader_inactive,
+BUTTON.clsXButton_inactive,
+TD.clsTabBox_active_hover,
+TD.clsBottomTabBox_active_hover,
+BUTTON.clsBigCoolButton_hover,
+TD.clsMenubarItem_up,
+TD.clsToolbarButton_up,
+BUTTON.clsBigCoolButton_pressed,
+TD.clsMenubarItem_down,
+TD.clsToolbarButton_down
+{
+	background-color: #C6C6D7;
+}
+
+.clsListItem_tb_selected,
+.clsListItem_colorCell_selected
+{
+	border: 1px solid black;
+	background-color: #CCCCE3;
+}
+
+.clsListItem_tb_hover,
+.clsListItem_colorCell_hover
+{
+	border: 1px solid black;
+	background-color: #C6C6D7;
+}
+
+DIV.clsDlgMsgBoxButtonBar,
+DIV.clsDlgButtonBar
+{
+	margin-top: 10px;
+	background-color: #CCCCE3;
+	border: 1px solid #CCCCCC;
+	padding: 5px;
+	text-align: left;
+}
+
+TD.clsTabBox_inactive,
+TD.clsBottomTabBox_inactive,
+TD.clsTabBox_inactive_hover,
+TD.clsBottomTabBox_inactive_hover
+{
+	color: #0000CC;
+	text-decoration: underline;
+	background-color: #F3F3F3;
+}
+
+BUTTON.clsCoolButton_hover,
+TD.clsMenubarItem_up,
+TD.clsToolbarButton_up,
+BUTTON.clsCoolButton_pressed,
+TD.clsMenubarItem_down,
+TD.clsToolbarButton_down,
+TD.clsToolbarButton_stuck,
+BUTTON.clsBigCoolButton_hover,
+TD.clsMenubarItem_up,
+TD.clsToolbarButton_up,
+BUTTON.clsBigCoolButton_pressed,
+TD.clsMenubarItem_down,
+TD.clsToolbarButton_down
+{
+	border-top: solid #666699 1px;
+	border-left: solid #666699 1px;
+	border-right: solid #666699 1px;
+	border-bottom: solid #666699 1px;
+}
+
+TD.clsPropertySheetLabel_inactive,
+TD.clsPropertySheetLabel_active,
+BUTTON.clsDlgButton,
+BUTTON.clsDlgButton_hover,
+TD.clsTabBox_active_hover,
+TD.clsBottomTabBox_inactive_hover,
+TD.clsBottomTabBox_active_hover,
+.clsBigButtonBar,
+BUTTON.clsBigCoolButton,
+TD.clsToolbarButton,
+BUTTON.clsBigCoolButton_hover,
+TD.clsMenubarItem_up,
+TD.clsToolbarButton_up,
+BUTTON.clsBigCoolButton_pressed,
+TD.clsMenubarItem_down,
+TD.clsToolbarButton_down,
+.clsMenuItem_selected,
+DIV.clsTreeView,
+DIV.clsListView,
+.clsListItem_normal,
+.clsListItem_hover,
+.clsTreeNode_normal,
+.clsTreeNode_hover
+{
+	color: black;
+}
+
+DIV.clsPaneHeader_active,
+DIV.clsPaneHeader_active SPAN,
+.clsModalDlgHeader_active,
+.clsModelessDlgHeader_active,
+.clsListItem_selected,
+.clsTreeNode_selected,
+.clsToolDlgHeader_active
+{
+	color: white;
+}
+
+HR,
+BUTTON.clsCoolButton,
+TD.clsToolbarButton,
+BUTTON.clsBigCoolButton,
+TD.clsToolbarButton,
+.clsListItem_colorCell_normal
+{
+	border: 1px solid white;
+}
+
+.clsListItem_selected,
+.clsTreeNode_selected
+{
+	background-color: black;
+}
+
+DIV.clsTreeView,
+DIV.clsListView,
+TD.clsPropertySheetLabel_inactive
+{
+	background-color: white;
+}
+
+DIV.clsPaneHeader_inactive,
+DIV.clsPaneHeader_inactive SPAN,
+.clsModalDlgHeader_inactive,
+.clsModelessDlgHeader_inactive
+{
+	color: white;
+}
+
+DIV.clsPaneHeader_active,
+.clsModalDlgHeader_active,
+.clsModelessDlgHeader_active,
+.clsToolDlgHeader_active,
+#idHALStartupBar
+{
+	background-color: #666699;
+	font-weight: bold;
+}
+
+.clsModalDlgHeader_active,
+.clsModelessDlgHeader_active
+{
+	cursor: move;
+	height: 19px;
+}
+
+BUTTON.clsXButton_active,
+BUTTON.clsXButton_inactive
+{
+	border: none;
+	border-bottom: 1px solid #666699;
+	background-color: transparent;
+	background-image: url(images/x_white.gif);
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+BUTTON.clsXButtonInfo_active,
+BUTTON.clsXButtonInfo_inactive,
+BUTTON.clsXButtonInfo_hover
+{
+	border: none;
+	background-color: infobackground;
+	background-image: url(images/x.gif);
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+IMG.clsXButton
+{
+	display: none;
+}
+
+#idHALStartupBarContainer
+{
+	border: 1px solid black;
+}
+
+#idHALStartupDialog
+{
+	border: 1px solid #CCCCCC;
+	background-color: #F3F3F3;
+}
+
+#idHALStartupBlocker
+{
+	background-color: white;
+}
+
+FIELDSET,
+BUTTON.clsDlgButton,
+BUTTON.clsDlgButton_hover,
+BUTTON.clsColorButton,
+BUTTON.clsDotDotDotButton,
+BUTTON.clsDlgButtonDropDownArrow,
+BUTTON.clsDotDotDotPropertyButton,
+.clsPopupDialog,
+DIV.clsTreeView,
+DIV.clsListView,
+.clsBigButtonBar,
+.clsPropertySheetContainer,
+.clsInsetBorder
+{
+	border: 1px solid #999999;
+}
+
+TD.clsMenubarItem_down
+{
+	padding: 2px 5px 2px 4px;
+}
+
+TD.clsToolbarButton_down,
+TD.clsToolbarButton_stuck
+{
+	padding: 2px 3px 2px 3px;
+}
+
+DIV.clsToolbarSeparator
+{
+	border: none;
+	background-image: url(images/tool_sep_dot_line_banner_blk.gif);
+	background-repeat: no-repeat;
+	background-position: left;
+}
+
+.clsMenuPopup,
+.clsPopupDialog
+{
+	border: 1px solid #666699;
+}
+
+.clsSubMenuPopupRight
+{
+	margin-left: 1px;
+}
+
+.clsSubMenuPopupLeft
+{
+	margin-left: -1px;
+}
+
+DIV.clsPaneHeader_active,
+DIV.clsPaneHeader_inactive
+{
+	border: 1px solid #CCCCE3;
+}
+
+DIV.clsPaneHeader_inactive
+{
+	border: 1px solid white;
+}
+
+.clsListItem_tb_normal
+{
+	border-color: white;
+}
+
+.clsModalDlgHeader_inactive,
+.clsModelessDlgHeader_inactive
+{
+	font-weight: bold;
+}
+
+IMG.clsXButton
+{
+	margin: 1px 1px 1px 2px;
+}
+
+BUTTON.clsDotDotDotButton,
+BUTTON.clsDlgButtonDropDownArrow,
+BUTTON.clsDotDotDotPropertyButton
+{
+	padding: 1px;
+}
+
+TD.clsTabBox_inactive,
+TD.clsTabBox_inactive_hover
+{
+	font-weight: normal;
+	text-decoration: underline;
+	color: black;
+	background-color: white;
+	padding: 4px 10px 3px 10px;
+	border-top: none;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	border-left: none;
+	cursor: pointer;
+}
+
+TD.clsTabBox_active,
+TD.clsTabBox_active_hover
+{
+	font-weight: bold;
+	color: black;
+	background-color: white;
+	padding: 3px 10px 4px 10px;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: none;
+	border-left: 1px solid #CCCCCC;
+}
+
+TD.clsBottomTabBox_inactive,
+TD.clsBottomTabBox_active,
+TD.clsBottomTabBox_inactive_hover,
+TD.clsBottomTabBox_active_hover
+{
+	border-bottom: 1px solid #999999;
+	border-left: 1px solid #999999;
+	border-right: 1px solid #999999;
+}
+
+HR,
+TD.clsBottomTabBox_inactive,
+TD.clsBottomTabBox_inactive_hover
+{
+	border-top: 1px solid #999999;
+}
+
+TD.clsTabBoxLast
+{
+	border-bottom: 1px solid #CCCCCC;
+}
+TD.clsBottomTabBoxLast
+{
+	border-top: 1px solid #999999;
+}
+
+DIV.clsBottomTabPanelsPopup
+{
+	border: 1px solid #999999 !important;
+	border-bottom-style: none !important;
+}
+
+DIV.clsTabPanels,
+DIV.clsBottomTabPanels
+{
+	border: none;
+}
+
+TABLE.clsModelessDlg,
+TABLE.clsModelessInfoDlg,
+TABLE.clsModalDlg
+{
+	border: 1px solid black;
+}
+
+DIV.clsPropertyDescriptionBox
+{
+	border: 1px solid gray;
+}
+
+.clsHyperlink,
+.clsHyperlink_hover
+{
+	color: #0000CC;
+}
+
+DIV.clsMenubar,
+TD.clsMenubarItem
+{
+	background-color: black;
+}
+
+TD.clsMenubarItem,
+TD.clsMenubarItem_up,
+TD.clsMenubarItem_down
+{
+	font-weight: bold;
+}
+
+TD.clsMenubarItem
+{
+	color: white;
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+TD.clsMenubarItemLast
+{
+	background-image: url(images/menubar_background.gif);
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+DIV.clsMenubar
+{
+	border-top: 1px solid #E7E7E7;
+	border-right: 1px solid #E7E7E7;
+	border-bottom: 2px solid #DEAC77;
+	border-left: 1px solid #E7E7E7;
+}
+DIV.clsToolbar
+{
+	border-top: 1px solid #DEAC77;
+}
+
+BUTTON[HAL_disabled="true"],
+*[HAL_disabled="true"]
+{
+	color: graytext;
+}
+
+TABLE.clsPropertyPane
+{
+	background-color: white;
+}

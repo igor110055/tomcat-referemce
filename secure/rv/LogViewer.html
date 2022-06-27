@@ -1,0 +1,834 @@
+<!--
+  Licensed Materials - Property of IBM
+  IBM Cognos Products: Viewer
+  (C) Copyright IBM Corp. 2013
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<html lang="en">
+	<head>
+		<meta http-equiv=Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<meta name="copyright" content="(C) Copyright IBM Corporation and its licensors 2013."/>
+		<meta name="trademark" content="IBM, the IBM logo, and Cognos are trademarks of IBM Corp., registered in many jurisdictions worldwide."/>
+		<title>Cognos Viewer - Log Viewer</title>
+		<link rel="stylesheet" type="text/css" href="../dojo17/dijit/themes/claro/claro.css"/>
+		<link rel="stylesheet" type="text/css" href="../dojo17/dojo/resources/dojo.css"/>
+		<script type="text/javascript" src="../dojo17/dojo/dojo.js" data-dojo-config="parseOnLoad: true"></script>
+
+		<style>
+			html, body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				overflow:hidden;
+			}
+
+			#borderContainerTwo {
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+		
+		<script language="javascript">
+dojo.require("dijit.form.Button");
+dojo.require("dijit.form.DropDownButton");
+dojo.require("dijit.DropDownMenu");
+dojo.require("dijit.MenuItem");
+dojo.require("dijit.CheckedMenuItem");
+dojo.require("dijit.Tree");
+dojo.require("dojo.store.Memory");
+dojo.require("dojo.data.ItemFileWriteStore");
+dojo.require("dijit.Dialog");
+dojo.require("dojo._base.json");
+dojo.require("dijit.tree.TreeStoreModel");
+dojo.require("dojo.parser");
+dojo.require("dijit.layout.ContentPane");
+dojo.require("dijit.layout.BorderContainer");
+dojo.require("dijit.layout.TabContainer");
+dojo.require("dijit.layout.AccordionContainer");
+dojo.require("dijit.layout.AccordionPane");
+dojo.require("dijit.form.ToggleButton");
+dojo.require("dijit.Menu");
+dojo.require("dojox.charting.Chart");
+dojo.require("dojox.charting.axis2d.Default");
+dojo.require("dojox.charting.plot2d.StackedBars");
+dojo.require("dojox.charting.plot2d.ClusteredBars");
+dojo.require("dojox.charting.action2d.Tooltip");
+dojo.require("dojo.store.Observable");
+dojo.require("dojox.charting.StoreSeries");
+
+var gAutoQueryLogs = true;
+var gStoreRootObj = null;
+var gDataStore = null;
+var gChartData = null;
+var gCharts = [];
+var gChartSeriesCount = 0;
+var gComponents = [
+		{id : "VIEWER", color : "#5E75A6"},
+		{id : "SOAP", color : "#A33E3E"},
+		{id : "RAP", color : "#6FA33E"},
+		{id : "Other", color : "#FF6600"}
+	];
+var gGateway = null;
+
+var gCurrentStoreParent = null;
+var gCurrentJsonObj = null;
+var gLastSelectedTreeNode = null;
+
+if (document.location.search.match(/\bgateway=([^&?]*)/)) {
+	gGateway = RegExp.$1;
+}
+
+var gWebContentRoot = null;
+if (document.location.search.match(/\bwebContentRoot=([^&?]*)/)) {
+	gWebContentRoot = RegExp.$1;
+}
+
+dojo.ready(function() {
+	gDataStore = new dojo.data.ItemFileWriteStore({data: {identifier: "id", label: "label", items:[{"id":"root", "label":"Viewer Logs", children : []}]}});
+	
+	// Get the root here, we only need to get it once
+	gDataStore.fetchItemByIdentity({
+		identity: "root",
+		onItem: dojo.hitch(gDataStore, function(item) { gStoreRootObj = item; })
+	});
+
+	var treeModel = new dijit.tree.TreeStoreModel({store: gDataStore});
+		 
+	var tree = new dijit.Tree({model: treeModel}, 'treeNode'); 
+	tree.startup();
+	tree.onClick = onTreeClicked;
+	dojo.style(dojo.byId('treeNode'), {height: '100%'});
+	
+	var menu = dijit.byId("tree_menu");
+	menu.bindDomNode(tree.domNode);
+	dojo.connect(menu, "_openMyself", this, function(e){
+		gLastSelectedTreeNode = dijit.getEnclosingWidget(e.target).item;
+	});		
+}); 
+
+/**
+	Handle the onClick event on the tree control
+*/
+function onTreeClicked(item) {
+	gLastSelectedTreeNode = item ? item : gLastSelectedTreeNode;
+	if (gLastSelectedTreeNode.content) {
+		if (gLastSelectedTreeNode.label[0] == "timing.log") {
+			dijit.byId("showOneChart").setDisabled(true);
+			showTimingChart("[ [{'chartLabel':'Timings'}]" + "," + gLastSelectedTreeNode.content[0] + "]", false);
+		}
+		else if (dijit.byId("tabContainer").selectedChildWidget == dijit.byId('xmlViewTab')) {
+			showXml();
+		}
+		else {
+			dijit.byId("tabContainer").selectChild(dijit.byId("textViewTab"));
+			showText();
+		}
+	}
+	else if (gLastSelectedTreeNode.id[0].indexOf("sessionTiming") == 0) {
+		dijit.byId("showOneChart").setDisabled(false);
+		var parentId = gLastSelectedTreeNode.id[0].substring("sessionTiming".length);
+		gDataStore.fetchItemByIdentity({
+			identity: parentId,
+			onItem: displaySessionTimings
+		});		
+	}
+}
+
+/**
+	Get all the timing info for the Report Session
+*/
+function displaySessionTimings(item) {
+	if (item) {
+		var timings = getAllTimings(item);
+		showTimingChart("[" + timings + "]", true);
+	}
+}
+
+/**
+	Loops through all the children to find all the timing.log files
+*/
+function getAllTimings(item, parentLabel) {
+	var result = "";
+	
+	if (item && item.children) {
+		for (var i=0; i < item.children.length; i++) {
+			var temp = getAllTimings(item.children[i], item.label[0]);
+			if (temp.length > 0 && result.length > 0) {
+				result += ",";
+			}
+			result += temp;
+		}
+	}
+	else if (item.label[0] == "timing.log" && item.content) {
+		if (result.length > 0) {
+			result += ",";
+		}
+		if (!parentLabel) {
+			parentLabel = "Unknonw";
+		}
+		
+		result += "[{'chartLabel':'";
+		result += parentLabel;
+		result += "'}],";
+		result += item.content[0];
+	}
+	
+	return result;
+}
+
+/**
+	User clicked on a client log
+*/
+function onClientLogsClick(value) {
+	if (dijit.byId("tabContainer").selectedChildWidget == dijit.byId('textViewTab')) {
+		showText();
+	}
+	else {
+		showXml();
+	}
+};
+
+function createCookie(cookieName, value) {
+	var path = gWebContentRoot ? 'path=' + gWebContentRoot : '';
+	document.cookie = cookieName + '=' + value + ';'+ path;
+}
+
+function deleteCookie(cookieName) {
+	var path = gWebContentRoot ? 'path=' + gWebContentRoot : '';
+	document.cookie = cookieName + '=;' + path;
+}
+
+function clearCookies(clearAll) {
+	deleteCookie('viewerLogs');
+	deleteCookie("captureViewerClientLogs");
+	if (clearAll) {
+		deleteCookie("returnIntermediateXML");
+		deleteCookie("reportHtml");
+	}
+}
+
+function toggleIntermediateXMLCookie() {
+	if (dijit.byId("intermediateXML").checked) {
+		createCookie("returnIntermediateXML", "true");
+	}
+	else {
+		deleteCookie("returnIntermediateXML");
+	}
+}
+
+function toggleReturnReportHTML() {
+	if (dijit.byId("reportHtml").checked) {
+		createCookie("reportHtml", "true");
+	}
+	else {
+		deleteCookie("reportHtml");
+	}
+}
+
+function toggleClientLogsCookie() {
+	if (dijit.byId("captureClientLogs").checked) {
+		createCookie("captureViewerClientLogs", "true");
+	}
+	else {
+		deleteCookie("captureViewerClientLogs");
+	}
+}
+
+function toggleNullPointerCookie() {
+	if (dijit.byId("nullPointer").checked) {
+		createCookie("throwFault", "true");
+	}
+	else {
+		deleteCookie("throwFault");
+	}	
+}
+
+function toggleQD() {
+	if (dijit.byId("DQ").checked) {
+		createCookie("useDQForReportRun", "true");
+	}
+	else {
+		deleteCookie("useDQForReportRun");
+	}		
+}
+
+/**
+	Pings the server to see if there are any new logs to display
+*/
+function getJSONLogs(forced) {
+	if (!gAutoQueryLogs) {
+		return;
+	}
+	var args = {
+		url: gGateway,
+		sync: false,
+		handleAs: "json",
+		preventCache: true,
+		content: {
+			"b_action" : "cognosViewer",
+			"ui.action" : "getJSONLogs",
+			"cv.responseFormat" : "JSON"
+		},
+		error: dojo.hitch(this, function(response) {
+			alert(response.message + "\n" + response.description);
+			}),
+		load: dojo.hitch(this, function(response, ioArgs) {
+			var responseContentType = ioArgs.xhr.getResponseHeader("Content-Type");
+			if (responseContentType && responseContentType.indexOf("text/html") != -1 && response && response.match(/<ERROR_CODE>CAM_PASSPORT_ERROR<\/ERROR_CODE>/)) {
+				alert('passport timeout');
+			} else {
+				updateTree(response);
+			}
+		})
+	};
+	
+	dojo.xhrPost(args);
+	
+	if (!forced) {
+	var interval = dojo.byId('interval') ? dojo.byId('interval').value * 1000 : 10000;
+		if (interval > 1000) {
+			setTimeout(getJSONLogs, interval);
+		}
+		else {
+			setTimeout(getJSONLogs, 10000);
+		}
+	}
+}
+
+/**
+	User pasted JSON logs, update the tree with them
+*/
+function updateTreeFromPastedLogs() {
+	var jsonString = dojo.byId("pastedLogsTextArea").value;
+	var json = dojo.fromJson(jsonString);
+	updateTree(json);
+}
+
+/**
+	Loops through all the children and update the tree
+*/
+function updateTree(json) {
+	if (!json) {
+		return;
+	}
+	
+	var clientLogs = dojo.byId("clientLogs");
+	
+	for (var i=0; i < json.length; i++) {
+		if (json[i].clientLog) {
+			for (var x=0; x < json[i].logs.length; x++) {
+				var clientLog = json[i].logs[x];
+				var option = document.createElement("option");
+				option.innerHTML = clientLog.label;
+				option.value = clientLog.content;
+				clientLogs.appendChild(option);				
+			} 
+		}
+		else {
+			updateTreeNode(gStoreRootObj, json[i]);
+		}
+	}
+	gDataStore.save();
+}
+
+/**
+	While updating the tree we check if the item is already available,
+	if not then we add it.
+*/
+function foundItem(item) {
+	// Keep a reference to the current object
+	var currentObj = gCurrentJsonObj;
+
+	if (!item) {
+		var obj = {id:currentObj.id,label:currentObj.label};
+		if (currentObj.label == "Report Session") {
+			if (!currentObj.children) {
+				currentObj.children = [];
+			}
+			
+			currentObj.children.splice(0,0,{
+				id : "sessionTiming" + currentObj.id,
+				label : "Timing.log"
+			});
+		}
+		if (currentObj.children) {
+			obj.children = [];
+		}
+		
+		if (currentObj.content) {
+			obj.content = currentObj.content;
+		}
+
+		var newItem = gDataStore.newItem(obj, {parent:gCurrentStoreParent, attribute : "children"});
+		if (typeof currentObj.children != "undefined") {
+			for (var i=0; i < currentObj.children.length; i++) { 
+				updateTreeNode(newItem, currentObj.children[i]);
+			}
+		}
+	}
+	else if (currentObj.children) {
+		for (var i=0; i < currentObj.children.length; i++) { 
+			updateTreeNode(item, currentObj.children[i]);
+		}
+	}		
+}
+
+/**
+	Updates the dataStore/tree
+*/
+function updateTreeNode(parent, newObj) {
+	 if (!newObj || !newObj.id) {
+		return;
+	}
+	
+	// Need to set the params as globals so they can be used in the onItem callback
+	gCurrentStoreParent = parent;
+	gCurrentJsonObj = newObj;
+	
+	gDataStore.fetchItemByIdentity({
+		identity: newObj.id,
+		onItem: foundItem
+	});
+};
+
+/**
+	Show a dialog so the user can paste logs
+*/
+function promptForLogs() {
+	dojo.byId("pastedLogsTextArea").value = '';
+	dijit.byId("pasteLogsDialog").show();
+}
+
+function hidePasteDialog() {
+	dijit.byId("pasteLogsDialog").hide();
+	dojo.byId("pastedLogsTextArea").value = '';
+}
+
+/**
+	hides the copy logs dialog
+*/
+function hideCopyDialog() {
+	dijit.byId("copyLogsDialog").hide();
+	dojo.byId('copyLogsTextArea').value = '';
+}
+
+function showCopyLogsDialog(json) {
+	var copyTextArea = dojo.byId('copyLogsTextArea');
+	copyTextArea.value = json;
+	dijit.byId("copyLogsDialog").show();
+	copyTextArea.select();
+}
+
+/**
+	Shows the select log file in text format
+*/
+function showText() {
+	// If the server logs are selected
+	if (dijit.byId("serverLogsAccordion").selected) {
+		if (gLastSelectedTreeNode && gLastSelectedTreeNode.content) {
+			dojo.byId('textView').value = gLastSelectedTreeNode.content;
+		}
+	}
+	else {
+		var select = dojo.byId("clientLogs");
+		dojo.byId('textView').value = select.options && select.selectedIndex ?  select.options[select.selectedIndex].value : "";
+	}
+}
+
+/**
+	Creates an iframe for the XML view. Note we have to delete/create
+	it everytime because of an IE issue.
+*/
+function createIFrame() {
+	deleteIframe();
+	
+	var iframe = document.createElement("iframe");
+	iframe.id="xmlView";
+	iframe.name="xmlView";
+	iframe.src="about:blank";
+	iframe.style.height = "100%";
+	iframe.style.width = "100%";
+	
+	dojo.byId("xmlViewTab").appendChild(iframe);
+}
+
+function deleteIframe() {
+	if (dojo.byId("xmlView")) {
+		dojo.byId("xmlView").parentNode.removeChild(dojo.byId("xmlView"));
+	}
+}
+
+/**
+	Shows the selected log file in a pretty-printed XML format
+*/
+function showXml() {
+	createIFrame(); 
+	
+	var xmlOutput = "";
+	// If the server logs are selected
+	if (dijit.byId("serverLogsAccordion").selected) {
+		if (gLastSelectedTreeNode && gLastSelectedTreeNode.content) {
+			xmlOutput = gLastSelectedTreeNode.content;
+		}
+	}
+	// Client logs
+	else {
+		var select = dojo.byId("clientLogs");
+		xmlOutput = select.options && select.selectedIndex ?  select.options[select.selectedIndex].value : "";
+	}
+	
+	if (xmlOutput && xmlOutput.length > 0) {
+		document.getElementsByName("XMLOutput")[0].value = xmlOutput;
+		document.getElementById("xmlViewForm").action = gGateway;
+		document.getElementById("xmlViewForm").submit();
+	}
+}
+
+/**
+	Turn on/off logging
+*/
+function toggleLogging(val) {
+	if (val == true) {
+		gAutoQueryLogs = true;
+		createCookie('viewerLogs', 'true');
+		this.set('label', 'Stop Logging');
+		toggleClientLogsCookie();
+		getJSONLogs();
+	}
+	else {
+		gAutoQueryLogs = false;
+		clearCookies(false);
+		this.set('label', 'Start Logging');
+	}
+}
+
+/**
+	Deletes the selected tree item
+*/
+function deleteSelectedTreeNode() {
+	if (!gLastSelectedTreeNode) {
+		return;
+	}
+
+	gDataStore.fetchItemByIdentity({
+		identity: gLastSelectedTreeNode.id,
+		onItem: deleteItemFromStore
+	});
+}
+
+function deleteItemFromStore(item) {
+	if (!item) {
+		return;
+	}
+
+	// Need to recursively delete the children
+	while (item.children && item.children[0]) {
+		gDataStore.fetchItemByIdentity({
+			identity: item.children[0].id,
+			onItem: deleteItemFromStore
+		});
+	}
+	
+	if (item.id != "root") {
+		gDataStore.deleteItem(item);	
+	}
+	
+	gDataStore.save();
+}
+
+/**
+	Transforms the data into a JSON string. Was not able to use dojo.toJson
+	because of circular references.
+*/
+function copyLogsToClipboard() {
+	var json = "[";
+	if (gStoreRootObj.children) {
+		for (var i=0; i < gStoreRootObj.children.length; i++) {
+			if (i > 0) {
+				json += ',';
+			}		
+			json += toJson(gStoreRootObj.children[i]);
+		}
+	}
+	json += "]";
+	showCopyLogsDialog(json);
+}
+
+function copySelectedNodeToJson() {
+	if (!gLastSelectedTreeNode) {
+		return;
+	}
+	
+	if (gLastSelectedTreeNode.id[0] == "root") {
+		copyLogsToClipboard();
+	}
+	
+	var json = "[" + toJson(gLastSelectedTreeNode) + "]";
+	showCopyLogsDialog(json);
+}
+
+/**
+	dojo.toJson returns an error when done on the entire object, build it ourselves
+*/
+function toJson(treeNode) {
+	var json = "{";
+	json += '"id":' + dojo.toJson(treeNode.id[0]);
+	json += ',"label":' + dojo.toJson(treeNode.label[0]);
+	if (treeNode.content) {
+		json += ',"content":' + dojo.toJson(treeNode.content[0]);
+	}
+	if (treeNode.children) {
+		json += ',"children":[';
+		for (var i=0; i < treeNode.children.length; i++) {
+			if (i > 0) {
+				json += ',';
+			}
+			json += toJson(treeNode.children[i]);
+		}
+		json += ']';
+	}
+	json += '}';
+	
+	return json;
+}
+
+/**
+	For session times switches between one chart and many charts
+*/
+function toggleShowOneChart(val) {
+	if (val == true) {
+		this.set('label', 'Show Multiple Charts');
+	}
+	else {
+		this.set('label', 'Show One Chart');
+	}
+	
+	onTreeClicked();
+}
+
+/**
+	Creates a dojo chart to show the times
+*/
+function createTimingChart(index, chartLabel) {
+	var div = document.createElement("div");
+	div.id = "timingChart" + index;
+	div.style.width = "95%";
+	div.style.height = "200px";
+	div.style.padding = "20px";
+
+	dojo.byId("timingTab").appendChild(div);
+
+	var chart = new dojox.charting.Chart("timingChart" + index, {
+      title: chartLabel,
+      titlePos: "top",
+      titleGap: 25,
+      titleFont: "normal normal normal 15pt Arial",
+      titleFontColor: "#063053"
+	});
+	  
+	chart.addAxis("x", {title: "Time in Milliseconds", titleOrientation:"away", min: 0});
+	chart.addAxis("y", {minorTicks: false, vertical: true, labels: [{value: 1, text: "Viewer"}, {value: 2, text: "SOAP"}, {value: 3, text: "RAP"}, {value: 4, text: "Other"}] });
+
+	chart.addPlot("default", {
+		type: "StackedBars",
+		gap : 5,
+		maxBarSize : 15
+	})
+	
+	var tooltip = new dojox.charting.action2d.Tooltip( chart, "default", {        
+		text : function(point) {
+		return point.run.data[point.index] + " ms";
+		}   
+	}); 
+	
+	chart.render();
+	
+	return chart;
+}
+
+function showTimingChart(content, forReportSession) {
+	dijit.byId("tabContainer").selectChild(dijit.byId("timingTab"));
+	
+	content = dojo.fromJson(content);
+
+	gChartData = [];
+	
+	var store = dojo.store.Observable(new dojo.store.Memory({data:{items:gChartData}}));
+		
+	// Always keep one chart around
+	while (gCharts.length > 0) {
+		chartObj = gCharts.pop();
+		chartObj.destroy();
+		
+		document.getElementById("timingChart" + gCharts.length).parentNode.removeChild(document.getElementById("timingChart" + gCharts.length));
+	}
+
+	gCharts = [];
+	
+	gChartSeriesCount = 0;
+	
+	var chartIndex = 0;
+	var endTime = 0;
+	
+	for (var i=0; i < content.length; i++) {
+		if (i==0) {
+			var chartLabel = dijit.byId("showOneChart").checked && forReportSession === true ? "Report Session" : content[i][0].chartLabel;
+			gCharts.push(createTimingChart(0, chartLabel));
+		}
+		else if (i > 0 && !dijit.byId("showOneChart").checked) {
+			chartIndex++;
+			gCharts.push(createTimingChart(chartIndex, content[i][0].chartLabel));
+		}
+		i++;
+		var currentTime = 0;
+		var action = content[i];
+		var startTime = action[action.length-1].startTime;
+		var totalTime = action[action.length-1].elapsedTime;
+		
+		if (i > 1 && dijit.byId("showOneChart").checked) {
+			// White space
+			for (var ii=0; ii < gComponents.length; ii++) {
+				gChartData.push({value:startTime - endTime, type:gChartSeriesCount});
+			}
+			gCharts[chartIndex].addSeries(gChartSeriesCount, new dojox.charting.StoreSeries(store, { query: { type: gChartSeriesCount } }, "value"), {stroke: {color: "white"},fill: "white"});
+			gChartSeriesCount++;
+		}
+
+		
+		for (var y=0; y < action.length; y++) {
+			var event = action[y];
+			var eventStartTime = event.startTime - startTime;
+
+			addEventToChart(store, chartIndex, event.elapsedTime, event.id);
+			
+			currentTime += event.elapsedTime;
+		}
+		
+		endTime = action[action.length-1].endTime;
+	}
+	
+	for (var i = 0; i < gCharts.length; i++) {
+		var chart = gCharts[i];
+		chart.render();
+	}
+}
+
+function addEventToChart(store, chartIndex, duration, component) {
+	// White space
+	for (var i=0; i < gComponents.length; i++) {
+		gChartData.push({value:component != gComponents[i].id ? duration : 0, type:gChartSeriesCount});
+	}
+	gCharts[chartIndex].addSeries(gChartSeriesCount, new dojox.charting.StoreSeries(store, { query: { type: gChartSeriesCount } }, "value"), {stroke: {color: "white"},fill: "white"});
+	
+	gChartSeriesCount++;
+	
+	var componentIndex = 0;
+	// Draw the bar
+	for (var i=0; i < gComponents.length; i++) {
+		gChartData.push({value:component == gComponents[i].id ? duration : 0, type:gChartSeriesCount});
+		if (component == gComponents[i].id) {
+			componentIndex = i; 
+		}
+	}
+	gCharts[chartIndex].addSeries(gChartSeriesCount, new dojox.charting.StoreSeries(store, { query: { type: gChartSeriesCount } }, "value"), {stroke: {color: "white"},fill: gComponents[componentIndex].color});
+	
+	gChartSeriesCount++;
+}
+
+		</script>
+</head>
+<body class="claro" onload="createCookie('viewerLogs', 'true'); getJSONLogs()" onunload="clearCookies(true);">
+	<div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="gutters:true, liveSplitters:false" id="borderContainerTwo">
+		<div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top', splitter:false" style="background-color: #063053; background-image: linear-gradient(#063053, #395873, #5C7C99);">
+			<div style="float:left; font-size: 20px; color: white; font-weight: bold">Cognos Viewer Debugger</div>
+			<!-- Toolbar -->
+			<div style="float:right;">
+				<span style="font-size: 12px; color: white; font-weight: bold"">
+					Refresh rate&nbsp;<input style="width:35px" type="text" name="interval" id="interval" value="10"/>&nbsp;(Seconds)&nbsp;&nbsp;&nbsp;
+				</span>				
+				<button data-dojo-type="dijit/form/Button" type="button">Get Logs
+					<script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">getJSONLogs(true);</script>
+				</button>	
+				<button data-dojo-type="dijit/form/ToggleButton" data-dojo-props="onChange: toggleLogging, checked: true">
+					Stop Logging
+				</button>			
+				<button data-dojo-type="dijit/form/Button" type="button">Load from Clipboard
+					<script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">promptForLogs();</script>
+				</button>	
+				<button data-dojo-type="dijit/form/Button" type="button">Save to Clipboard
+					<script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">copyLogsToClipboard();</script>
+				</button>
+				<div data-dojo-type="dijit/form/DropDownButton">
+					<span>Options</span>
+					<div data-dojo-type="dijit/DropDownMenu" id="optionsMenu">
+						<div data-dojo-type="dijit/CheckedMenuItem" data-dojo-props="onClick:function(){toggleReturnReportHTML();}" id="reportHtml">Report HTML</div>
+						<div data-dojo-type="dijit/CheckedMenuItem" data-dojo-props="onClick:function(){toggleIntermediateXMLCookie();}" id="intermediateXML">Intermediate XML</div>
+						<div data-dojo-type="dijit/CheckedMenuItem" data-dojo-props="onClick:function(){toggleClientLogsCookie();}" id="captureClientLogs">Capture Client Logs</div>
+						<div data-dojo-type="dijit/CheckedMenuItem" data-dojo-props="onClick:function(){toggleNullPointerCookie();}" id="nullPointer">Cause NULL pointer exception</div>
+						<div data-dojo-type="dijit/CheckedMenuItem" data-dojo-props="onClick:function(){toggleQD();}" id="DQ">Force DQ</div>
+					</div>
+				</div>				
+			</div>
+		</div>
+		<!-- Accordion for server/client logs -->
+		<div data-dojo-type="dijit/layout/AccordionContainer" data-dojo-props="minSize:20, region:'leading', splitter:true" style="width: 300px;" id="leftAccordion">
+			<div data-dojo-type="dijit/layout/AccordionPane" title="Server Logs" id="serverLogsAccordion">
+				<div id="treeNode" style="overflow : auto;"></div>
+			</div>
+			<div data-dojo-type="dijit/layout/AccordionPane" title="Client Logs" id="clientLogsAccordion">			
+				<select onclick="onClientLogsClick(this.value)" name="clientLogs" multiple="false" id="clientLogs" style="width: 100%; height: 100%;">
+				</select>
+			</div>
+		</div>
+		<!-- Different views text/xml/chart -->
+		<div id="tabContainer" data-dojo-type="dijit/layout/TabContainer" data-dojo-props="region:'center', tabStrip:true">
+			<div id="textViewTab" onShow="showText()" data-dojo-type="dijit/layout/ContentPane" title="&nbsp;&nbsp;&nbsp;Text&nbsp;&nbsp;&nbsp;" selected="true">
+				<textarea rows="8" cols="70" id="textView" style="height:100%; width:100%" value=""></textarea>
+			</div>
+			<div id="xmlViewTab" onShow="showXml()" onHide="deleteIframe()" data-dojo-type="dijit/layout/ContentPane" title="&nbsp;&nbsp;&nbsp;XML&nbsp;&nbsp;&nbsp;">
+			</div>
+			<div id="timingTab" data-dojo-type="dijit/layout/ContentPane" title="&nbsp;&nbsp;&nbsp;Timing&nbsp;&nbsp;&nbsp;">
+				<button id="showOneChart" data-dojo-type="dijit/form/ToggleButton" data-dojo-props="onChange: toggleShowOneChart, checked: false">
+					Show One Chart
+				</button>				
+			</div>			
+		</div>
+	</div>
+	<!-- Paste logs dialog -->
+	<div class="dijitHidden">
+		<div data-dojo-type="dijit.Dialog" style="width:600px;" data-dojo-props="title:'Load from Clipboard'" id="pasteLogsDialog">
+			<textarea rows="12" cols="70" id="pastedLogsTextArea"></textarea> 
+			<p/>
+			<button data-dojo-type="dijit/form/Button" type="button">Cancel
+				<script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">hidePasteDialog();</script>
+			</button>
+			<button data-dojo-type="dijit/form/Button" type="button">Load
+				<script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">updateTreeFromPastedLogs();hidePasteDialog();</script>
+			</button>	
+		</div>
+	</div>
+	<!-- Copy logs dialog -->
+	<div class="dijitHidden">
+		<div data-dojo-type="dijit.Dialog" style="width:600px;" data-dojo-props="title:'Copy to Clipboard'" id="copyLogsDialog">
+			<textarea rows="12" cols="70" id="copyLogsTextArea"></textarea>
+			<p/>
+			<button data-dojo-type="dijit/form/Button" type="button">&nbsp;&nbsp;Ok&nbsp;&nbsp;
+				<script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">hideCopyDialog();</script>
+			</button>
+		</div>
+	</div>	
+	<form action="" method="post" target="xmlView" id="xmlViewForm">
+		<input type="hidden" name="b_action" value="cognosViewer"/>
+		<input type="hidden" name="ui.action" value="noOp"/>
+		<input type="hidden" name="cv.responseFormat" value="xml"/>
+		<input type="hidden" name="XMLOutput" value=""/>
+	</form>
+	<ul data-dojo-type="dijit.Menu" id="tree_menu" style="display: none; padding: 5px;">
+		<li data-dojo-type="dijit.MenuItem" data-dojo-props="onClick:function(){deleteSelectedTreeNode();}">Delete</li>
+		<li data-dojo-type="dijit.MenuItem" data-dojo-props="onClick:function(){copySelectedNodeToJson();}">Copy to Clipboard</li>
+	</ul>	
+</body>
+</html>

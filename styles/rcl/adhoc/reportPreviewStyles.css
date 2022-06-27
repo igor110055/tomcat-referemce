@@ -1,0 +1,193 @@
+/**
+
+ Copyright 2001-2005, Focus Technologies LLC.
+ All rights reserved.
+
+ **/
+
+/**
+ * Date: Mar 24, 2006
+ * Time: 8:37:53 AM
+ *
+ * author: Chad Rainey, crainey@seekfocus.com
+ *
+ */
+
+td.reportTitle                   /* the report title */
+{
+   border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+   text-align: center;
+   font-weight: bold;
+}
+
+table.previewTable               /* the preview table */
+{
+
+}
+
+td.headerRow                     /* the header table row containing the column names */
+{
+   padding: 5px;
+   border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+   text-align: center;
+}
+
+tr.headerRow                     /* the header table row containing the column names */
+{
+   vertical-align: bottom;
+}
+
+.headerRowColumnPropertyText     /* the text such as "{group}" or "{total}" in a header row cell */
+{
+   font-size: .7em;
+   color: #666699;
+}
+
+td.sectionBreak                  /* section break cell at the top of the report preview */
+{
+   border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+   text-align: center;
+}
+
+td.pageBreak
+{
+   font-size: .8em;
+}
+
+tr.pageBreak
+{
+   vertical-align: top;
+   text-align: center;
+}
+
+td.nonAggregationCell            /* a normal table cell */
+{
+   font-size: .8em;
+   border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+   text-align: center;
+}
+
+td.aggregationCell               /* a table cell that is in an aggregation row */
+{
+   font-size: .8em;
+   color: #666666;
+   background-color: #F8F8F8;
+   border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+   text-align: center;
+}
+
+td.bottomAggregateRow            /* summary aggregation row at bottom of the report */
+{
+   font-size: .9em;
+   color: #000000;
+   background-color: #FFFFFF;
+   border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+   text-align: center;
+
+}
+
+tr.crosstabHeaderRow             /* header row */
+{
+
+}
+
+td.columnEdgeHeader              /* used in crosstab report preview */
+{
+   padding: 5px;
+   border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+   text-align: center;
+}
+
+td.columnEdgeHeaderAggregation   /* a column edge header that is an aggregation section */
+{
+   padding: 5px;
+   border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+   text-align: center;
+   font-style: italic;
+   font-weight: bold;
+   background-color: #F8F8F8;
+}
+
+td.measuresHeaderDiv             /* * used in crosstab report preview: the measures header row */
+{
+   padding: 5px;
+   border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+   text-align: center;
+}
+
+td.measuresHeaderDivAggregation  /* used in crosstab report preview: the measures header row where there is aggregation */
+{
+   padding: 5px;
+   border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+   text-align: center;
+   font-style: italic;
+   font-weight: bold;
+   background-color: #F8F8F8;
+}
+
+tr.rowEdge                       /* a row edge row */
+{
+
+}
+
+td.rowEdge                      /* a non-aggregation row edge group cell */
+{
+   padding: 5px;
+   border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+   text-align: center;
+}
+
+td.rowEdgeAggregation          /* a row that has aggregation */
+{
+   padding: 5px;
+   border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+   text-align: center;
+   font-style: italic;
+   font-weight: bold;
+   background-color: #F8F8F8;
+}
+
+td.bodyCell                    /* a cell in the body of the report */
+{
+   border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+   text-align: center;
+   font-size: .8em;
+   color: #999999;
+}
+
+td.bodyCellAggregation         /* a cell in the body of the report that is apart of an aggregation section */
+{
+   border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+   text-align: center;
+   font-weight: bold;
+   font-size: .8em;
+   background-color: #F8F8F8;
+}

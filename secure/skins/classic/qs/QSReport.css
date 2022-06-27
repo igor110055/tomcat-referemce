@@ -1,0 +1,193 @@
+@charset "UTF-8";
+/****************************************************************
+** Licensed Materials - Property of IBM
+**
+** BI and PM: qs
+**
+** (C) Copyright IBM Corp. 2001, 2017
+**
+** US Government Users Restricted Rights - Use, duplication or 
+** disclosure restricted by GSA ADP Schedule Contract with 
+** IBM Corp.
+*****************************************************************/
+/*
+Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+*/
+
+/* The following imported css file is to shrink down the text on the screen to 'normal' size.  It also
+   contains classes and IDs that are common between QSReport.css and RVReport.css
+*/
+@import url(QSRVCommon.css);
+
+/*
+	The following classes are used by the context menu in QueryStudio.
+*/
+
+DIV.menuItem,
+DIV.menuLink
+{
+	font-family:  Tahoma, arial, geneva, helvetica, sans-serif;	
+	font-weight: normal;
+	font-size: 70%;
+	color: #0000CC;
+}
+
+DIV.menuLink
+{
+	text-decoration: underline;
+}
+
+.contextMenuItem,
+.contextMenuItemOver
+{
+	font-family:  Tahoma, arial, geneva, helvetica, sans-serif;	
+	font-size: 70%;
+	color: #0000CC;
+	text-decoration: underline;
+	padding: 2px 15px 2px 5px;
+}
+
+.contextMenuItemOver
+{
+	cursor: pointer;
+	cursor: hand;
+	background-color:#CCCCEE;
+}
+
+.contextMenuBox
+{
+	background-color:#FFFFFF;
+	border: 1px solid #0000CC;
+}
+
+/*
+Styles for report titles and subtitles. 
+Needed because there are links in QueryStudio.
+*/
+
+.reportSubtitleStyle
+{
+	color: #336699;
+}
+
+.filterSubtitleStyle
+{
+	color: #336699;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.tt,
+.st
+{
+	cursor: pointer;
+	cursor: hand;
+}
+
+#busyIndicator
+{
+	cursor: default;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	z-index:50;
+}
+
+.pf 
+{
+	font-weight: normal;
+	color: #000000;
+}
+
+.reportBody
+{
+	background-color: #FFFFFF;
+}
+
+#reportFrame
+{
+	vertical-align: top;
+}
+
+.startPageText
+{
+	font-weight: normal;
+	font-size: 70%;
+	color: #FFFFFF;
+}
+
+.startPageTextOver
+{
+	font-weight: normal;
+	font-size: 70%;
+	color: #FFFFFF;
+}
+
+.startPageTable
+{
+	margin-top: 7px;
+	border-collapse: collapse;
+	width: 66%;
+	height: 25%;
+}
+
+.startPageListColumnTitle
+{
+	padding: 3px 5px;
+	border: 1px solid #092978;
+	line-break: strict;
+	background-color: #092978;
+	color: #ffffff;
+}
+
+.startPageListColumnTitleOver
+{
+	padding: 3px 5px;
+	border: 1px solid #666699;
+	line-break: strict;
+	background-color: #000000;
+	color: #ffffff;
+}
+
+.startPageListColumn
+{
+	padding: 3px 5px;
+	border-color: #666666;
+	border-width: 0px 1px 1px;
+	border-style: dashed;
+	line-break: strict;
+	background-color: #c3d1df;
+}
+
+.startPageListColumnOver
+{
+	padding: 3px 5px;
+	border-color: #666666;
+	border-width: 0px 1px 1px;
+	border-style: dashed;
+	line-break: strict;
+	background-color: #336699;
+	color: #ffffff;
+}
+
+.onDragOver
+{
+	background-color: #336699;
+	color: #ffffff;
+}
+
+.clsCaretInsert
+{
+	padding: 2px;
+	border: 1px solid #999999;
+	background-color: white;
+}
+
+.lt
+{
+	color: white;
+	background-color: #092978 !important;
+}

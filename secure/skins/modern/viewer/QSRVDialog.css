@@ -1,0 +1,155 @@
+@charset "UTF-8";
+/*
+  Licensed Materials - Property of IBM
+  IBM Cognos Products: Viewer
+  (C) Copyright IBM Corp. 2001, 2011
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+.clsDialogButtonOver
+{
+	height: 22px;
+	border: 1px solid #666699;
+	background-color: #cccce3;
+	cursor: hand;
+}
+
+.clsTextDisable
+{
+	color: #808080;
+}
+
+.clsFilterSelected
+{
+	background-color: #e8ecf4;
+}
+
+.clsFilterOperator
+{
+	color: black;
+	text-decoration: none;
+	white-space: nowrap;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.clsFilterRowIcon
+{
+	border: 1px solid #cccccc;
+	padding: 1px;
+
+	cursor: pointer;
+	cursor: hand;
+}
+
+.clsFilterSelected .clsFilterRowIcon
+{
+	border: 1px solid #666699;
+	background-color: #cccce3;
+}
+
+.clsNullOptions
+{
+	min-width: 250px;
+}
+
+.dialogButton
+{
+	border: 1px solid #cccccc;
+	padding: 2px;
+}
+
+.dialogButtonOver
+{
+	border: 1px solid #666699;
+	background-color: #cccce3;
+	padding: 2px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.mainHeader3
+{
+	background-color: #ffffff;
+}
+
+.clsMenu
+{
+	display: inline;
+	background-color: white;
+	border: 2px outset threedhighlight;
+	position:absolute;
+	padding: 2px 2px 2px 2px;
+	overflow: visible;
+	cursor: default;
+	left: 0px;
+	top:0px;
+	margin:0px;
+}
+
+.menuItem_normal
+{
+	font-size: 70%;
+	background-color: white;
+	border: 1px solid white;
+	color:blue;
+	text-decoration: underline;
+}
+
+.menuItem_hover
+{
+	font-size: 70%;
+	background-color: #e8ecf4;
+	border: 1px solid #99aacc;
+	color:blue;
+	text-decoration: underline;
+}
+
+.menuItem_pressed
+{
+	font-size: 70%;
+	background-color: #e8ecf4;
+	border: 1px solid #ffffff;
+	color:blue;
+	text-decoration: underline;
+}
+
+.menuItem_disabled
+{
+	font-size: 70%;
+	background-color: white;
+	border: 1px solid white;
+	color:lightgrey;
+	text-decoration: underline;
+}
+
+/* Color Picker Swatch */
+.colorSwatch
+{
+	background-color: #e3e3e3;
+	border: 1px solid;
+	border-color: #cccccc;
+}
+/* Color Picker - used when 'white' is selected */
+.colorSwatchWhite
+{
+	background-color: #ffffff;
+	border: 1px solid;
+	border-color: #000000;
+}
+/* Color Picker - used when no color has been selected */
+.colorSwatchDefault
+{
+	background-color: #ffffff;
+	border: 1px solid;
+	border-color: #ffffff;
+}
+
+/* Used in the custom groups select boxes */
+#available_values,
+#group_names,
+#group_values
+{
+	font-size: 8pt;
+}

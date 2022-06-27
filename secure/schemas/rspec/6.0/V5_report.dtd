@@ -1,0 +1,2611 @@
+<!--
+  Licensed Materials - Property of IBM
+  IBM Cognos Products: rspec
+  (C) Copyright IBM Corp. 2003, 2014
+  US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!ELEMENT modelPath (#PCDATA)>
+<!ELEMENT sortList (sortItem)+>
+<!ELEMENT sortItem EMPTY>
+<!ATTLIST sortItem
+	refDataItem CDATA #REQUIRED
+	sortOrder (ascending | descending) "ascending"
+>
+<!ELEMENT format EMPTY>
+<!ATTLIST format
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	whenSecurityError CDATA #IMPLIED
+	whenNotApplicable CDATA #IMPLIED
+	whenAnyError CDATA #IMPLIED
+>
+<!ELEMENT stringFormat EMPTY>
+<!ATTLIST stringFormat
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	whenSecurityError CDATA #IMPLIED
+	whenNotApplicable CDATA #IMPLIED
+	whenAnyError CDATA #IMPLIED
+>
+<!ELEMENT dateFormat EMPTY>
+<!ATTLIST dateFormat
+	whenZero CDATA #IMPLIED
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	whenSecurityError CDATA #IMPLIED
+	whenNotApplicable CDATA #IMPLIED
+	whenAnyError CDATA #IMPLIED
+	showYears (false | true | hideCentury | showCentury) #IMPLIED
+	showMonths (false | true | 1-digit | 2-digits | shortName | fullName) #IMPLIED
+	dateSeparator CDATA #IMPLIED
+	dateStyle (short | medium | long | full) #IMPLIED
+	displayOrder (YMD | MDY | DMY) #IMPLIED
+	showDays (false | true | 1-digit | 2-digits | Julian) #IMPLIED
+	showWeekday (false | true | shortName | fullName) #IMPLIED
+	showEra  (true | false) #IMPLIED
+	calendar (Gregorian | Imperial) #IMPLIED
+>
+<!ELEMENT timeFormat EMPTY>
+<!ATTLIST timeFormat
+	whenZero CDATA #IMPLIED
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	whenSecurityError CDATA #IMPLIED
+	whenNotApplicable CDATA #IMPLIED
+	whenAnyError CDATA #IMPLIED
+	timeStyle (short | long | full) #IMPLIED
+	showAmPm  (true | false) #IMPLIED
+	showTimeZone  (true | false) #IMPLIED
+	clock (12-hour | 24-hour) #IMPLIED
+	decimalDelimiter CDATA #IMPLIED
+	showHours (false | true | 1-digit | 2-digits) #IMPLIED
+	showMinutes (false | true | 1-digit | 2-digits) #IMPLIED
+	showSeconds (false | true | 1-digit | 2-digits) #IMPLIED
+	showMilliseconds (false | true | 1-digit | 2-digits | 3-digits) #IMPLIED
+	timeSeparator CDATA #IMPLIED
+>
+<!ELEMENT dateTimeFormat EMPTY>
+<!ATTLIST dateTimeFormat
+	whenZero CDATA #IMPLIED
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	whenSecurityError CDATA #IMPLIED
+	whenNotApplicable CDATA #IMPLIED
+	whenAnyError CDATA #IMPLIED
+	showYears (false | true | hideCentury | showCentury) #IMPLIED
+	showMonths (false | true | 1-digit | 2-digits | shortName | fullName) #IMPLIED
+	dateSeparator CDATA #IMPLIED
+	dateStyle (short | medium | long | full) #IMPLIED
+	displayOrder (YMD | MDY | DMY) #IMPLIED
+	showDays (false | true | 1-digit | 2-digits | Julian) #IMPLIED
+	showWeekday (false | true | shortName | fullName) #IMPLIED
+	showEra  (true | false) #IMPLIED
+	calendar (Gregorian | Imperial) #IMPLIED
+	timeStyle (short | long | full) #IMPLIED
+	showAmPm  (true | false) #IMPLIED
+	showTimeZone  (true | false) #IMPLIED
+	clock (12-hour | 24-hour) #IMPLIED
+	decimalDelimiter CDATA #IMPLIED
+	showHours (false | true | 1-digit | 2-digits) #IMPLIED
+	showMinutes (false | true | 1-digit | 2-digits) #IMPLIED
+	showSeconds (false | true | 1-digit | 2-digits) #IMPLIED
+	showMilliseconds (false | true | 1-digit | 2-digits | 3-digits) #IMPLIED
+	timeSeparator CDATA #IMPLIED
+>
+<!ELEMENT intervalFormat EMPTY>
+<!ATTLIST intervalFormat
+	units (time | days | hours | minutes | seconds | milliseconds) #IMPLIED
+	showDays (false | true | 1-digit | 2-digits | Julian) #IMPLIED
+	showYears  (true | false) #IMPLIED
+	showMonths  (true | false) #IMPLIED
+	dateSeparator CDATA #IMPLIED
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	whenSecurityError CDATA #IMPLIED
+	whenNotApplicable CDATA #IMPLIED
+	whenAnyError CDATA #IMPLIED
+	showHours (false | true | 1-digit | 2-digits) #IMPLIED
+	showMinutes (false | true | 1-digit | 2-digits) #IMPLIED
+	showSeconds (false | true | 1-digit | 2-digits) #IMPLIED
+	showMilliseconds (false | true | 1-digit | 2-digits | 3-digits) #IMPLIED
+	timeSeparator CDATA #IMPLIED
+	decimalSize CDATA #IMPLIED
+	decimalDelimiter CDATA #IMPLIED
+	sign CDATA #IMPLIED
+	useTrailingSign  (true | false) #IMPLIED
+	maxDigits CDATA #IMPLIED
+	minDigits CDATA #IMPLIED
+	paddingCharacter CDATA #IMPLIED
+	scale CDATA #IMPLIED
+	useGrouping  (true | false) #IMPLIED
+	groupDelimiter CDATA #IMPLIED
+	groupSize CDATA #IMPLIED
+	groupSecondarySize CDATA #IMPLIED
+	whenNegative CDATA #IMPLIED
+	whenZero CDATA #IMPLIED
+	whenDivideZero CDATA #IMPLIED
+	whenNumericOverflow CDATA #IMPLIED
+>
+<!ELEMENT numberFormat EMPTY>
+<!ATTLIST numberFormat
+	useScientific  (true | false) #IMPLIED
+	exponentSize CDATA #IMPLIED
+	exponentSymbol CDATA #IMPLIED
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	whenSecurityError CDATA #IMPLIED
+	whenNotApplicable CDATA #IMPLIED
+	whenAnyError CDATA #IMPLIED
+	decimalSize CDATA #IMPLIED
+	decimalDelimiter CDATA #IMPLIED
+	sign CDATA #IMPLIED
+	useTrailingSign  (true | false) #IMPLIED
+	maxDigits CDATA #IMPLIED
+	minDigits CDATA #IMPLIED
+	paddingCharacter CDATA #IMPLIED
+	scale CDATA #IMPLIED
+	useGrouping  (true | false) #IMPLIED
+	groupDelimiter CDATA #IMPLIED
+	groupSize CDATA #IMPLIED
+	groupSecondarySize CDATA #IMPLIED
+	whenNegative CDATA #IMPLIED
+	whenZero CDATA #IMPLIED
+	whenDivideZero CDATA #IMPLIED
+	whenNumericOverflow CDATA #IMPLIED
+>
+<!ELEMENT currencyFormat EMPTY>
+<!ATTLIST currencyFormat
+	currencyCode CDATA #IMPLIED
+	currencySymbol CDATA #IMPLIED
+	intlCurrencySymbol CDATA #IMPLIED
+	useIntlSymbol  (true | false) #IMPLIED
+	useTrailingSymbol  (true | false) #IMPLIED
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	whenSecurityError CDATA #IMPLIED
+	whenNotApplicable CDATA #IMPLIED
+	whenAnyError CDATA #IMPLIED
+	decimalSize CDATA #IMPLIED
+	decimalDelimiter CDATA #IMPLIED
+	sign CDATA #IMPLIED
+	useTrailingSign  (true | false) #IMPLIED
+	maxDigits CDATA #IMPLIED
+	minDigits CDATA #IMPLIED
+	paddingCharacter CDATA #IMPLIED
+	scale CDATA #IMPLIED
+	useGrouping  (true | false) #IMPLIED
+	groupDelimiter CDATA #IMPLIED
+	groupSize CDATA #IMPLIED
+	groupSecondarySize CDATA #IMPLIED
+	whenNegative CDATA #IMPLIED
+	whenZero CDATA #IMPLIED
+	whenDivideZero CDATA #IMPLIED
+	whenNumericOverflow CDATA #IMPLIED
+>
+<!ELEMENT percentFormat EMPTY>
+<!ATTLIST percentFormat
+	percentSymbol CDATA #IMPLIED
+	percentScale CDATA #IMPLIED
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	whenSecurityError CDATA #IMPLIED
+	whenNotApplicable CDATA #IMPLIED
+	whenAnyError CDATA #IMPLIED
+	decimalSize CDATA #IMPLIED
+	decimalDelimiter CDATA #IMPLIED
+	sign CDATA #IMPLIED
+	useTrailingSign  (true | false) #IMPLIED
+	maxDigits CDATA #IMPLIED
+	minDigits CDATA #IMPLIED
+	paddingCharacter CDATA #IMPLIED
+	scale CDATA #IMPLIED
+	useGrouping  (true | false) #IMPLIED
+	groupDelimiter CDATA #IMPLIED
+	groupSize CDATA #IMPLIED
+	groupSecondarySize CDATA #IMPLIED
+	whenNegative CDATA #IMPLIED
+	whenZero CDATA #IMPLIED
+	whenDivideZero CDATA #IMPLIED
+	whenNumericOverflow CDATA #IMPLIED
+>
+<!ELEMENT style (CSS? | dataFormat? | defaultStyles? | generatedBackground?)*>
+<!ELEMENT conditionalStyles (conditionalStyleCases | conditionalStyleDefault)+>
+<!ELEMENT CSS EMPTY>
+<!ATTLIST CSS
+	value CDATA #REQUIRED
+>
+<!ELEMENT dataFormat (numberFormat | percentFormat | currencyFormat | stringFormat | dateFormat | dateTimeFormat | timeFormat | intervalFormat | format)>
+<!ELEMENT defaultStyles (defaultStyle+)>
+<!ELEMENT generatedBackground (border? | dropShadow? | backgroundImages? | fill?)*>
+<!ELEMENT gradientColor EMPTY>
+<!ATTLIST gradientColor
+	gradientColor CDATA "black"
+	colorPosition CDATA "0"
+	transparency CDATA "0"
+>
+<!ELEMENT conditionalRender (renderFor*)>
+<!ATTLIST conditionalRender
+	refVariable CDATA #REQUIRED
+>
+<!ELEMENT XMLAttributes (XMLAttribute)+>
+<!ELEMENT dataSource (staticValue | dataItemValue | reportExpression | dataItemLabel | memberCaption | cellValue)>
+<!ELEMENT conditionalDataSources (conditionalDataSource+)>
+<!ATTLIST conditionalDataSources
+	refVariable CDATA #REQUIRED
+>
+<!ELEMENT reportExpression (#PCDATA)>
+<!ATTLIST reportExpression
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT reportCondition (#PCDATA)>
+<!ATTLIST reportCondition
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT defaultMeasure EMPTY>
+<!ATTLIST defaultMeasure
+	refDataItem CDATA #REQUIRED
+	solveOrder CDATA #IMPLIED
+>
+<!ELEMENT reportDrills (reportDrill+)>
+<!ELEMENT masterDetailLinks (masterDetailLink*)>
+<!ELEMENT reportPath (XMLAttributes?)>
+<!ATTLIST reportPath
+	path CDATA #REQUIRED
+>
+<!ELEMENT dataItemContext EMPTY>
+<!ATTLIST dataItemContext
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT parameterContext EMPTY>
+<!ATTLIST parameterContext
+	parameter CDATA #REQUIRED
+>
+<!ELEMENT propertyList (propertyItem+)>
+<!ELEMENT namedConditionalStyles ((advancedConditionalStyle | rangeConditionalStyle | stringsConditionalStyle)+)>
+<!ELEMENT conditionalStyleRefs (conditionalStyleRef+)>
+<!ELEMENT conditionalDataItem EMPTY>
+<!ATTLIST conditionalDataItem
+	refQuery CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT styleDefault (style?)>
+<!ELEMENT containerDropShadow EMPTY>
+<!ATTLIST containerDropShadow
+	shadowColor CDATA "gray"
+	offsetX CDATA "5"
+	offsetY CDATA "5"
+	transparency CDATA "0"
+>
+<!ELEMENT pageGradient EMPTY>
+<!ATTLIST pageGradient
+	direction (up | down | left | right) "down"
+	fromColor CDATA "white"
+	toColor CDATA "gray"
+>
+<!ELEMENT listSuppress EMPTY>
+<!ATTLIST listSuppress
+	nulls  (true | false) "true"
+	zero  (true | false) "true"
+	divByZero  (true | false) "true"
+	overflow  (true | false) "true"
+>
+<!ELEMENT crosstabSuppress EMPTY>
+<!ATTLIST crosstabSuppress
+	type (rows | columns | rowsAndColumns) "rowsAndColumns"
+	nulls  (true | false) "true"
+	zero  (true | false) "true"
+	divByZero  (true | false) "true"
+	overflow  (true | false) "true"
+>
+<!ELEMENT chartSuppress EMPTY>
+<!ATTLIST chartSuppress
+	type (categories | series | categoriesAndSeries) "categoriesAndSeries"
+	nulls  (true | false) "true"
+	zero  (true | false) "true"
+	divByZero  (true | false) "true"
+	overflow  (true | false) "true"
+>
+<!ELEMENT styleValue (#PCDATA)>
+<!ATTLIST styleValue
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT defaultSelections (defaultSimpleSelection | defaultRangeSelection)*>
+<!ELEMENT useItem (displayItem?)>
+<!ATTLIST useItem
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT selectOptions (selectOption+)>
+<!ATTLIST selectOptions
+	refVariable CDATA #IMPLIED
+>
+<!ELEMENT defaultSimpleSelection (#PCDATA)>
+<!ELEMENT fillEffects (chartGradient | chartPattern | chartColor)>
+<!ELEMENT pieChart (pies? | pieSlices? | notes? | chartSubTitle? | chartTitle? | chartFooter? | chartBody? | chartPalette? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | conditionalChartColors? | legend? | reportDrills? | pieLabels? | axisTitle? | defaultChartMeasure? | masterDetailLinks? | noDataHandler? | fillEffects? | chartSuppress?)*>
+<!ATTLIST pieChart
+	refQuery CDATA #REQUIRED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	showTooltips  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	maxHotspots CDATA #IMPLIED
+	holeSize CDATA "0"
+	depth CDATA "0"
+	showPieLabels (none | inside | outside | outsideWithLines) "none"
+	showPieValues (none | inside | outside | outsideWithLines) "none"
+	showValuesAsPercent  (true | false) "false"
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	avoidLabelCollision  (true | false) "false"
+>
+<!ELEMENT radarChart (points? | radialClusters? | radialMeasure? | numericalAxisRadial? | baselines? | chartBody? | chartFooter? | chartPalette? | chartSubTitle? | chartTitle? | markers? | notes? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | conditionalChartColors? | legend? | ordinalAxis? | reportDrills? | masterDetailLinks? | noDataHandler? | fillEffects? | chartSuppress?)*>
+<!ATTLIST radarChart
+	refQuery CDATA #REQUIRED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	showTooltips  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	maxHotspots CDATA #IMPLIED
+	useSpiderEffects  (true | false) "false"
+	radarType (line | area | stackedArea) "line"
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	dataPointSize CDATA "6"
+	pointChartDataPointShape (series | category | circle | square | house | hexagon | pentagon | diamond | triangle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | verticalLine | horizontalLine | plus | fatPlus | star90 | pentagram | star | skewedStar | plainX | softX | fatX | spikedX | castle) "series"
+	showValues  (true | false) "false"
+	displayDataLocation (insideAtTop | outsideAtTop | insideAtBottom | outsideAtBottom | centered) "centered"
+>
+<!ELEMENT progressiveChart (progressiveBars? | numericalAxisProgressive? | total? | firstColumnColor? | positiveColumnColor? | negativeColumnColor? | chartBody? | baselines? | chartFooter? | chartPalette? | chartSubTitle? | chartTitle? | markers? | notes? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | conditionalChartColors? | ordinalAxis? | reportDrills? | connectLines? | defaultChartMeasure? | masterDetailLinks? | noDataHandler? | fillEffects? | chartSuppress?)*>
+<!ATTLIST progressiveChart
+	refQuery CDATA #REQUIRED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	showTooltips  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	maxHotspots CDATA #IMPLIED
+	depth CDATA "0"
+	visualAngle CDATA "45"
+	orientation (vertical | horizontal) "vertical"
+	showValues  (true | false) "false"
+	displayDataLocation (insideAtTop | outsideAtTop | insideAtBottom | outsideAtBottom | centered) "centered"
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	rotateLabelsWithChart  (true | false) "false"
+>
+<!ELEMENT combinationChart (commonClusters? | combinationChartTypes? | baselines? | chartBody? | chartFooter? | chartPalette? | chartSubTitle? | chartTitle? | markers? | notes? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | conditionalChartColors? | legend? | numericalAxisY1? | numericalAxisY2? | ordinalAxis? | reportDrills? | defaultChartMeasure? | masterDetailLinks? | noDataHandler? | fillEffects? | chartSuppress?)*>
+<!ATTLIST combinationChart
+	refQuery CDATA #REQUIRED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	showTooltips  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	maxHotspots CDATA #IMPLIED
+	rotateLabelsWithChart  (true | false) "false"
+	matchSeriesColor  (true | false) "false"
+	depth CDATA "0"
+	visualAngle CDATA "45"
+	orientation (vertical | horizontal) "vertical"
+	axisY2Position (dual | bipolar) "dual"
+	displayDataLocation (insideAtTop | outsideAtTop | insideAtBottom | outsideAtBottom | centered) "centered"
+>
+<!ELEMENT paretoChart (cumulationLine? | paretoBars? | paretoBarClusters? | baselines? | notes? | markers? | chartBody? | chartFooter? | chartSubTitle? | chartTitle? | chartPalette? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | conditionalChartColors? | legend? | ordinalAxis? | numericalAxisPareto? | reportDrills? | connectLines? | defaultChartMeasure? | masterDetailLinks? | noDataHandler? | fillEffects? | chartSuppress?)*>
+<!ATTLIST paretoChart
+	refQuery CDATA #REQUIRED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	showTooltips  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	maxHotspots CDATA #IMPLIED
+	rotateLabelsWithChart  (true | false) "false"
+	depth CDATA "0"
+	visualAngle CDATA "45"
+	orientation (vertical | horizontal) "vertical"
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	showValues  (true | false) "false"
+	displayDataLocation (insideAtTop | outsideAtTop | insideAtBottom | outsideAtBottom | centered) "centered"
+	showAbsoluteValues  (true | false) "true"
+>
+<!ELEMENT marimekkoChart (marimekkoBars? | marimekkoBarClusters? | baselines? | notes? | markers? | chartBody? | chartFooter? | chartSubTitle? | chartTitle? | chartPalette? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | conditionalChartColors? | legend? | ordinalAxis? | numericalAxisY? | reportDrills? | defaultChartMeasure? | masterDetailLinks? | noDataHandler? | chartSuppress?)*>
+<!ATTLIST marimekkoChart
+	refQuery CDATA #REQUIRED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	showTooltips  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	maxHotspots CDATA #IMPLIED
+	depth CDATA "0"
+	visualAngle CDATA "45"
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	showMarimekkoValues (none | actual | percent) "none"
+	marimekkoTotals  (true | false) "true"
+>
+<!ELEMENT winLossChart (winLossBars? | chartBody? | chartFooter? | chartSubTitle? | chartTitle? | style? | conditionalStyles? | winColor | lossColor | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | reportDrills? | defaultChartMeasure? | winLossChartMeasure? | masterDetailLinks? | noDataHandler? | chartSuppress? | axisLine?)+>
+<!ATTLIST winLossChart
+	refQuery CDATA #REQUIRED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	showTooltips  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	maxHotspots CDATA #IMPLIED
+	orientation (vertical | horizontal) "vertical"
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	winLossValue CDATA "0"
+	allowTies  (true | false) "false"
+>
+<!ELEMENT scatterChart (points? | pointClusters? | chartBody? | chartFooter? | defaultChartMeasure? | pointXMeasure? | pointYMeasure? | numericalAxisX? | numericalAxisY? | chartPalette? | chartSubTitle? | chartTitle? | notes? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | legend? | reportDrills? | pointChartMarkers? | pointChartBaselines? | conditionalChartColors? | masterDetailLinks? | regressionLine? | noDataHandler? | fillEffects? | chartSuppress?)*>
+<!ATTLIST scatterChart
+	refQuery CDATA #REQUIRED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	showTooltips  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	maxHotspots CDATA #IMPLIED
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	dataPointSize CDATA "6"
+	pointChartDataPointShape (series | category | circle | square | house | hexagon | pentagon | diamond | triangle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | verticalLine | horizontalLine | plus | fatPlus | star90 | pentagram | star | skewedStar | plainX | softX | fatX | spikedX | castle) "series"
+	displayDataLocation (insideAtTop | outsideAtTop | insideAtBottom | outsideAtBottom | centered) "centered"
+	showPointValues (none | valuesAndLabels | valuesOnly) "none"
+	showPointValuesForPoints (none | valuesAndLabels | valuesOnly) "none"
+	showPointValuesForPointClusters (none | valuesAndLabels | valuesOnly) "none"
+>
+<!ELEMENT bubbleChart (points? | pointClusters? | defaultChartMeasure? | pointXMeasure? | pointYMeasure? | bubbleMeasure? | numericalAxisX? | numericalAxisY? | chartBody? | chartFooter? | chartPalette? | chartSubTitle? | chartTitle? | notes? | pointChartMarkers? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | legend? | reportDrills? | pointChartBaselines? | conditionalChartColors? | masterDetailLinks? | regressionLine? | noDataHandler? | fillEffects? | chartSuppress?)*>
+<!ATTLIST bubbleChart
+	refQuery CDATA #REQUIRED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	showTooltips  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	maxHotspots CDATA #IMPLIED
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	pointChartDataPointShape (series | category | circle | square | house | hexagon | pentagon | diamond | triangle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | verticalLine | horizontalLine | plus | fatPlus | star90 | pentagram | star | skewedStar | plainX | softX | fatX | spikedX | castle) "series"
+	showBubblePointValues (none | valuesAndLabels | valuesOnly | sizeValueAndLabel | sizeValueOnly) "none"
+	showPointValuesForPoints (none | valuesAndLabels | valuesOnly) "none"
+	showPointValuesForPointClusters (none | valuesAndLabels | valuesOnly) "none"
+	displayDataLocation (insideAtTop | outsideAtTop | insideAtBottom | outsideAtBottom | centered) "centered"
+	bubbleSizing (minimumBased | zeroBased | zeroBasedWithNegativesOutlined) "minimumBased"
+>
+<!ELEMENT polarChart (defaultChartMeasure? | radialMeasure? | angularMeasure? | numericalAxisAngular? | numericalAxisRadial? | points? | pointClusters? | chartBody? | chartFooter? | chartPalette? | chartSubTitle? | chartTitle? | pointChartMarkers? | notes? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | legend? | reportDrills? | pointChartBaselines? | conditionalChartColors? | masterDetailLinks? | noDataHandler? | fillEffects? | chartSuppress?)*>
+<!ATTLIST polarChart
+	refQuery CDATA #REQUIRED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	showTooltips  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	maxHotspots CDATA #IMPLIED
+	useSpiderEffects  (true | false) "false"
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	dataPointSize CDATA "6"
+	pointChartDataPointShape (series | category | circle | square | house | hexagon | pentagon | diamond | triangle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | verticalLine | horizontalLine | plus | fatPlus | star90 | pentagram | star | skewedStar | plainX | softX | fatX | spikedX | castle) "series"
+	showPointValues (none | valuesAndLabels | valuesOnly) "none"
+	showPointValuesForPoints (none | valuesAndLabels | valuesOnly) "none"
+	showPointValuesForPointClusters (none | valuesAndLabels | valuesOnly) "none"
+	displayDataLocation (insideAtTop | outsideAtTop | insideAtBottom | outsideAtBottom | centered) "centered"
+>
+<!ELEMENT threeDCombinationChart (commonClusters? | threeDCombinationChartTypes? | chartTitle? | chartSubTitle? | chartBody? | chartFooter? | chartPalette? | notes? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | conditionalChartColors? | reportDrills? | numericalAxis? | threeDComboBaselines? | ordinalAxisX? | ordinalAxisY? | defaultChartMeasure? | masterDetailLinks? | noDataHandler? | fillEffects? | chartSuppress?)*>
+<!ATTLIST threeDCombinationChart
+	refQuery CDATA #REQUIRED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	showTooltips  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	maxHotspots CDATA #IMPLIED
+	threeDViewingAngle (standard | thickStandard | lowThin | near1x3 | tallFar | groupView | nearView | seriesView | groupStretch | seriesStretch | birdsEye | lowHigh | lowLow | tallDistortion | lowDistort | isometric) "standard"
+	matchSeriesColor  (true | false) "false"
+>
+<!ELEMENT threeDScatterChart (points? | pointClusters? | defaultChartMeasure? | pointXMeasure? | pointYMeasure? | pointZMeasure? | numericalAxisX? | numericalAxisY? | numericalAxisZ? | chartBody? | chartFooter? | chartPalette? | chartSubTitle? | chartTitle? | notes? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | threeDScatterBaselines? | legend? | reportDrills? | conditionalChartColors? | masterDetailLinks? | noDataHandler? | fillEffects? | chartSuppress?)*>
+<!ATTLIST threeDScatterChart
+	refQuery CDATA #REQUIRED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	showTooltips  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	maxHotspots CDATA #IMPLIED
+	threeDViewingAngle (standard | thickStandard | lowThin | near1x3 | tallFar | groupView | nearView | seriesView | groupStretch | seriesStretch | birdsEye | lowHigh | lowLow | tallDistortion | lowDistort | isometric) "standard"
+	showFeelers  (true | false) "true"
+	dataPointSize CDATA "6"
+	pointChartDataPointShape (series | category | circle | square | house | hexagon | pentagon | diamond | triangle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | verticalLine | horizontalLine | plus | fatPlus | star90 | pentagram | star | skewedStar | plainX | softX | fatX | spikedX | castle) "series"
+	showPointValues (none | valuesAndLabels | valuesOnly) "none"
+	showPointValuesForPoints (none | valuesAndLabels | valuesOnly) "none"
+	showPointValuesForPointClusters (none | valuesAndLabels | valuesOnly) "none"
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+>
+<!ELEMENT gaugeChart (gauges? | indicators? | notes? | chartSubTitle? | chartTitle? | chartFooter? | chartBody? | chartPalette? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | conditionalChartColors? | legend? | reportDrills? | gaugeLabels? | axisTitle? | defaultChartMeasure? | masterDetailLinks? | gaugeNumericalAxis? | gaugePalette? | noDataHandler? | fillEffects? | chartSuppress?)*>
+<!ATTLIST gaugeChart
+	refQuery CDATA #REQUIRED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	showTooltips  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	maxHotspots CDATA #IMPLIED
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	faceColor CDATA "white"
+	faceTransparency CDATA "0"
+	dialOutlineColor CDATA "black"
+	dialOutlineTransparency CDATA "0"
+>
+<!ELEMENT mapChart (notes? | chartSubTitle? | chartTitle? | chartFooter? | chartBody? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | legend? | masterDetailLinks? | pointLayer? | regionLayer? | displayLayers? | mapDictionary? | axisTitle? | reportDrills? | noDataHandler? | fillEffects? | chartSuppress?)*>
+<!ATTLIST mapChart
+	refQuery CDATA #REQUIRED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	showTooltips  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	maxHotspots CDATA #IMPLIED
+	refMap CDATA #REQUIRED
+	noDataFeaturesSize CDATA "5"
+	allowUnplottedData  (true | false) "false"
+	dataLocale CDATA #IMPLIED
+	expandFeatures  (true | false) "false"
+>
+<!ELEMENT metricsChart (commonClusters? | combinationChartTypes? | defaultChartMeasure? | toleranceMeasure? | targetMeasure? | baselines? | chartBody? | chartFooter? | chartPalette? | chartSubTitle? | chartTitle? | markers? | notes? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | conditionalChartColors? | legend? | numericalAxisY1? | ordinalAxis? | reportDrills? | masterDetailLinks? | targetLabel? | toleranceLabel? | diamondLabel? | noDataHandler? | fillEffects? | chartSuppress?)*>
+<!ATTLIST metricsChart
+	refQuery CDATA #REQUIRED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	showTooltips  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	maxHotspots CDATA #IMPLIED
+	depth CDATA "0"
+	visualAngle CDATA "45"
+	displayDataLocation (insideAtTop | outsideAtTop | insideAtBottom | outsideAtBottom | centered) "centered"
+	toleranceColor CDATA "green"
+	toleranceTransparency CDATA "0"
+	targetRange CDATA "50"
+	targetColor CDATA "#FFC800"
+	targetTransparency CDATA "0"
+	markerColor CDATA "green"
+	markerTransparency CDATA "0"
+	targetBorderColor CDATA "black"
+	targetBorderTransparency CDATA "0"
+	performancePattern (onTarget | belowTarget | aboveTarget) "onTarget"
+	skew CDATA "100"
+	showTargetMarker  (true | false) "true"
+	targetMarkerPosition (first | center) "first"
+>
+<!ELEMENT ordinalAxis (style? | conditionalStyles? | conditionalStyleRefs? | axisTitle? | reportDrills? | gridlines? | minorGridlines? | axisLine? | labelControl?)*>
+<!ATTLIST ordinalAxis
+	categoryitemMaxCharacters CDATA "48"
+	categoryitemEnableTruncation  (true | false) "true"
+	truncationText CDATA "..."
+	showAxisLabels  (true | false) "true"
+	class CDATA #IMPLIED
+>
+<!ELEMENT baselines (baseline+)>
+<!ELEMENT notes (note+)>
+<!ELEMENT pointChartMarkers (pointChartMarker+)>
+<!ATTLIST pointChartMarkers
+	markerTextLocation (none | chart | legend) "chart"
+>
+<!ELEMENT markers (marker+)>
+<!ATTLIST markers
+	markerTextLocation (none | chart | legend) "chart"
+>
+<!ELEMENT legend (style? | conditionalStyles? | conditionalStyleRefs? | legendPosition | legendTitle? | reportDrills? | fillEffects?)+>
+<!ATTLIST legend
+	autoFontResizing  (true | false) "true"
+	allowTruncation  (true | false) "true"
+	truncationText CDATA "..."
+	maxCharacters CDATA "48"
+	separator CDATA " - "
+	class CDATA #IMPLIED
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	showLegendValues (none | first | last | min | max) "none"
+>
+<!ELEMENT chartTitle (chartContents? | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes? | propertyList? | masterDetailLinks?)*>
+<!ATTLIST chartTitle
+	class CDATA #IMPLIED
+	refQuery CDATA #IMPLIED
+>
+<!ELEMENT chartSubTitle (chartContents? | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes? | propertyList? | masterDetailLinks?)*>
+<!ATTLIST chartSubTitle
+	class CDATA #IMPLIED
+	refQuery CDATA #IMPLIED
+>
+<!ELEMENT chartGradient EMPTY>
+<!ATTLIST chartGradient
+	direction (up | down | left | right) "down"
+	fromColor CDATA "black"
+	toColor CDATA "white"
+>
+<!ELEMENT chartColor EMPTY>
+<!ATTLIST chartColor
+	value CDATA "black"
+>
+<!ELEMENT chartPattern EMPTY>
+<!ATTLIST chartPattern
+	patternType (horizontal | vertical | forwardDiagonal | backwardDiagonal | cross | diagonalCross) "horizontal"
+	foregroundColor CDATA "black"
+	backgroundColor CDATA "white"
+>
+<!ELEMENT chartPalette ((chartGradient | chartColor | chartPattern)+)>
+<!ELEMENT chartNode (chartNodeMembers | chartNestedNodes?)+>
+<!ELEMENT chartFooter (chartContents? | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes? | propertyList? | masterDetailLinks?)*>
+<!ATTLIST chartFooter
+	class CDATA #IMPLIED
+	refQuery CDATA #IMPLIED
+>
+<!ELEMENT chartBody (style? | conditionalStyles? | conditionalStyleRefs? | fillEffects?)*>
+<!ATTLIST chartBody
+	class CDATA #IMPLIED
+>
+<!ELEMENT progressiveBars (chartNodes?)>
+<!ELEMENT gridlines EMPTY>
+<!ATTLIST gridlines
+	lineStyle (solid | dash | dot | dotdash | dashdotdot | mediumdash | shortdash | longdash | longdot | dotdotdot | dashdashdot | dashdashdotdot | longdashdot | longdashdotdot | longdashdashdot | longdashdashdotdot) "solid"
+	weight CDATA "0"
+	color CDATA "black"
+	transparency CDATA "0"
+>
+<!ELEMENT pointXMeasure (style? | conditionalStyles? | conditionalStyleRefs? | chartLabel?)*>
+<!ATTLIST pointXMeasure
+	refDataItem CDATA #REQUIRED
+	solveOrder CDATA #IMPLIED
+>
+<!ELEMENT pointYMeasure (style? | conditionalStyles? | conditionalStyleRefs? | chartLabel?)*>
+<!ATTLIST pointYMeasure
+	refDataItem CDATA #REQUIRED
+	solveOrder CDATA #IMPLIED
+>
+<!ELEMENT points (chartNodes)>
+<!ELEMENT pointClusters (chartNodes)>
+<!ELEMENT axisTitle (chartContents? | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes? | propertyList? | masterDetailLinks?)*>
+<!ATTLIST axisTitle
+	class CDATA #IMPLIED
+	refQuery CDATA #IMPLIED
+>
+<!ELEMENT conditionalChartColors (conditionalChartColor+)>
+<!ATTLIST conditionalChartColors
+	refVariable CDATA #REQUIRED
+>
+<!ELEMENT chartContents (chartTextItem*)>
+<!ELEMENT commonClusters (chartNodes)>
+<!ELEMENT chartNodes (chartNode+)>
+<!ELEMENT radialMeasure (style? | conditionalStyles? | conditionalStyleRefs? | chartLabel?)*>
+<!ATTLIST radialMeasure
+	refDataItem CDATA #REQUIRED
+	solveOrder CDATA #IMPLIED
+>
+<!ELEMENT bar (chartNodes? | connectLines?)*>
+<!ATTLIST bar
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	useNumericalAxis (numericalAxisY1 | numericalAxisY2 | xAxis | yAxis) "numericalAxisY1"
+	valueType (absolute | stacked | stacked100Percent) "absolute"
+	showValues  (true | false) "false"
+	showAbsoluteValues  (true | false) "true"
+	displayDataLocation (insideAtTop | outsideAtTop | insideAtBottom | outsideAtBottom | centered) "centered"
+>
+<!ELEMENT line (chartNodes? | highMarker? | lowMarker? | openMarker? | closeMarker?)*>
+<!ATTLIST line
+	useNumericalAxis (numericalAxisY1 | numericalAxisY2 | xAxis | yAxis) "numericalAxisY1"
+	valueType (absolute | stacked | stacked100Percent) "absolute"
+	showLine  (true | false) "true"
+	showValues  (true | false) "false"
+	showAbsoluteValues  (true | false) "true"
+	dataPointSize CDATA "6"
+	pointChartDataPointShape (series | category | circle | square | house | hexagon | pentagon | diamond | triangle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | verticalLine | horizontalLine | plus | fatPlus | star90 | pentagram | star | skewedStar | plainX | softX | fatX | spikedX | castle) "series"
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	lineStyle (solid | dash | dot | dotdash | dashdotdot | mediumdash | shortdash | longdash | longdot | dotdotdot | dashdashdot | dashdashdotdot | longdashdot | longdashdotdot | longdashdashdot | longdashdashdotdot) "solid"
+	weight CDATA "0"
+	displayDataLocation (insideAtTop | outsideAtTop | insideAtBottom | outsideAtBottom | centered) "centered"
+	lineType (pointToPoint | stepBetweenPoints | stepAtPoint | smooth) "pointToPoint"
+>
+<!ELEMENT area (chartNodes?)>
+<!ATTLIST area
+	useNumericalAxis (numericalAxisY1 | numericalAxisY2 | xAxis | yAxis) "numericalAxisY1"
+	valueType (absolute | stacked | stacked100Percent) "absolute"
+	showValues  (true | false) "false"
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	showAbsoluteValues  (true | false) "true"
+	displayDataLocation (insideAtTop | outsideAtTop | insideAtBottom | outsideAtBottom | centered) "centered"
+	areaType (pointToPoint | smooth) "pointToPoint"
+>
+<!ELEMENT numericalAxisY1 (axisTitle? | gridlines? | minorGridlines? | axisLine? | style? | conditionalStyles? | conditionalStyleRefs?)*>
+<!ATTLIST numericalAxisY1
+	min CDATA #IMPLIED
+	max CDATA #IMPLIED
+	scaleInterval CDATA #IMPLIED
+	scale (linear | log) "linear"
+	sameRangeAllInstances  (true | false) "true"
+	includeZeroForAutoScale  (true | false) "true"
+	showAxisLabels  (true | false) "true"
+	class CDATA #IMPLIED
+>
+<!ELEMENT numericalAxisY2 (axisTitle? | gridlines? | minorGridlines? | axisLine? | style? | conditionalStyles? | conditionalStyleRefs?)*>
+<!ATTLIST numericalAxisY2
+	min CDATA #IMPLIED
+	max CDATA #IMPLIED
+	scaleInterval CDATA #IMPLIED
+	scale (linear | log) "linear"
+	sameRangeAllInstances  (true | false) "true"
+	includeZeroForAutoScale  (true | false) "true"
+	showAxisLabels  (true | false) "true"
+	class CDATA #IMPLIED
+>
+<!ELEMENT numericPosition (dataSource | mean | limit | percentile | percentAlongAxis)>
+<!ELEMENT memberPosition (reportExpression | percentAlongAxis | memberIndex)>
+<!ATTLIST memberPosition
+	memberOffset CDATA "0"
+>
+<!ELEMENT numericalAxisX (axisTitle? | gridlines? | minorGridlines? | axisLine? | style? | conditionalStyles? | conditionalStyleRefs?)*>
+<!ATTLIST numericalAxisX
+	min CDATA #IMPLIED
+	max CDATA #IMPLIED
+	scaleInterval CDATA #IMPLIED
+	scale (linear | log) "linear"
+	sameRangeAllInstances  (true | false) "true"
+	includeZeroForAutoScale  (true | false) "true"
+	showAxisLabels  (true | false) "true"
+	class CDATA #IMPLIED
+>
+<!ELEMENT numericalAxisY (axisTitle? | gridlines? | minorGridlines? | axisLine? | style? | conditionalStyles? | conditionalStyleRefs?)*>
+<!ATTLIST numericalAxisY
+	min CDATA #IMPLIED
+	max CDATA #IMPLIED
+	scaleInterval CDATA #IMPLIED
+	scale (linear | log) "linear"
+	sameRangeAllInstances  (true | false) "true"
+	includeZeroForAutoScale  (true | false) "true"
+	showAxisLabels  (true | false) "true"
+	class CDATA #IMPLIED
+>
+<!ELEMENT numericalAxisRadial (axisTitle? | gridlines? | minorGridlines? | axisLine? | style? | conditionalStyles? | conditionalStyleRefs?)*>
+<!ATTLIST numericalAxisRadial
+	min CDATA #IMPLIED
+	max CDATA #IMPLIED
+	scaleInterval CDATA #IMPLIED
+	scale (linear | log) "linear"
+	sameRangeAllInstances  (true | false) "true"
+	includeZeroForAutoScale  (true | false) "true"
+	showAxisLabels  (true | false) "true"
+	class CDATA #IMPLIED
+>
+<!ELEMENT baselineLabel (chartContents)>
+<!ELEMENT threeDBaselinePosition (dataSource | mean | limit | percentile | percentAlongAxis)>
+<!ELEMENT markerLabel (chartContents)>
+<!ELEMENT pointChartBaselines (pointChartBaseline+)>
+<!ELEMENT XPosition (dataSource | mean | limit | percentile | percentAlongAxis)>
+<!ELEMENT YPosition (dataSource | mean | limit | percentile | percentAlongAxis)>
+<!ELEMENT defaultChartMeasure (style? | conditionalStyles? | conditionalStyleRefs? | chartLabel?)*>
+<!ATTLIST defaultChartMeasure
+	refDataItem CDATA #REQUIRED
+	solveOrder CDATA #IMPLIED
+>
+<!ELEMENT winLossChartMeasure (style? | conditionalStyles? | conditionalStyleRefs? | chartLabel?)*>
+<!ATTLIST winLossChartMeasure
+	refDataItem CDATA #REQUIRED
+	solveOrder CDATA #IMPLIED
+>
+<!ELEMENT connectLines EMPTY>
+<!ATTLIST connectLines
+	lineStyle (solid | dash | dot | dotdash | dashdotdot | mediumdash | shortdash | longdash | longdot | dotdotdot | dashdashdot | dashdashdotdot | longdashdot | longdashdotdot | longdashdashdot | longdashdashdotdot) "solid"
+	weight CDATA "0"
+	color CDATA "black"
+	transparency CDATA "0"
+>
+<!ELEMENT numericChartPalette (discreteChartPalette | continuousChartPalette)>
+<!ATTLIST numericChartPalette
+	percentValues  (true | false) "true"
+>
+<!ELEMENT mapChartDrills (mapChartDrill+)>
+<!ELEMENT minorGridlines EMPTY>
+<!ATTLIST minorGridlines
+	numberOfMinorGridlines CDATA "0"
+	lineStyle (solid | dash | dot | dotdash | dashdotdot | mediumdash | shortdash | longdash | longdot | dotdotdot | dashdashdot | dashdashdotdot | longdashdot | longdashdotdot | longdashdashdot | longdashdashdotdot) "solid"
+	weight CDATA "0"
+	color CDATA "black"
+	transparency CDATA "0"
+>
+<!ELEMENT regressionLine (regressionLinePosition | regressionLineLabel? | XMLAttributes? | style? | conditionalStyles? | conditionalStyleRefs? | propertyList?)+>
+<!ATTLIST regressionLine
+	numberOfRegressionLines (oneForAllData | oneForEachSeries) "oneForAllData"
+	lineStyle (solid | dash | dot | dotdash | dashdotdot | mediumdash | shortdash | longdash | longdot | dotdotdot | dashdashdot | dashdashdotdot | longdashdot | longdashdotdot | longdashdashdot | longdashdashdotdot) "solid"
+	weight CDATA "0"
+	color CDATA "black"
+	transparency CDATA "0"
+	showInLegend  (true | false) "true"
+>
+<!ELEMENT combinationChartTypes ((bar | line | area)+)>
+<!ELEMENT axisLine EMPTY>
+<!ATTLIST axisLine
+	lineStyle (solid | dash | dot | dotdash | dashdotdot | mediumdash | shortdash | longdash | longdot | dotdotdot | dashdashdot | dashdashdotdot | longdashdot | longdashdotdot | longdashdashdot | longdashdashdotdot) "solid"
+	weight CDATA "0"
+	color CDATA "black"
+	transparency CDATA "0"
+>
+<!ELEMENT continuousChartPalette (continuousChartPaletteEntry+)>
+<!ELEMENT chartLabel (chartContents?)>
+<!ELEMENT percentAlongAxis EMPTY>
+<!ATTLIST percentAlongAxis
+	percentAlongAxis CDATA "50"
+>
+<!ELEMENT source (model | queryRef | sqlQuery | mdxQuery | queryOperation | joinOperation)>
+<!ELEMENT dimensionInfo (dimensions? | factList?)*>
+<!ELEMENT levels (level*)>
+<!ELEMENT level (keys | attributes? | sortList? | caption? | calculatedMembers?)+>
+<!ATTLIST level
+	name CDATA #REQUIRED
+>
+<!ELEMENT levelRef EMPTY>
+<!ATTLIST levelRef
+	refLevel CDATA #REQUIRED
+>
+<!ELEMENT queryRef EMPTY>
+<!ATTLIST queryRef
+	refQuery CDATA #REQUIRED
+>
+<!ELEMENT filterExpression (#PCDATA)>
+<!ATTLIST filterExpression
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT calculatedMembers (calculatedMember*)>
+<!ELEMENT dataItem (expression)>
+<!ATTLIST dataItem
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+	aggregate (none | automatic | summarize | total | minimum | maximum | average | count | calculated | countDistinct | standardDeviation | variance | median | notApplicable) "automatic"
+	rollupAggregate (none | automatic | summarize | total | minimum | maximum | average | count | calculated | countDistinct | standardDeviation | variance | median) "automatic"
+	sort (ascending | descending | none) "none"
+	detail (automatic | true | false) "automatic"
+	naInCalcMemberContext  (true | false) "false"
+	solveOrder CDATA #IMPLIED
+	onInaccessibleMember (substituteNull | substituteDefault | substituteError) #IMPLIED
+>
+<!ELEMENT slicerMemberSet (#PCDATA)>
+<!ATTLIST slicerMemberSet
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT joinOperation (joinFilter | joinOperands)+>
+<!ELEMENT joinOperand (queryRef?)>
+<!ATTLIST joinOperand
+	cardinality (1:N | 1:1 | 0:N | 0:1) "1:N"
+>
+<!ELEMENT calculatedMember (calculatedMembers?)>
+<!ATTLIST calculatedMember
+	name CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+	caption CDATA #IMPLIED
+>
+<!ELEMENT executionOptimization EMPTY>
+<!ATTLIST executionOptimization
+	value (allRows | firstRow) #REQUIRED
+>
+<!ELEMENT memberSet (memberSets?)>
+<!ATTLIST memberSet
+	name CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT localCache EMPTY>
+<!ATTLIST localCache
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT expression (#PCDATA)>
+<!ATTLIST expression
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT query (source | selection | detailFilters? | summaryFilters? | dimensionInfo? | slicer? | queryHints? | memberSetStructure?)+>
+<!ATTLIST query
+	name CDATA #REQUIRED
+>
+<!ELEMENT selection ((dataItem | dataItemMember | dataItemCalculatedMember | dataItemMemberProperty | dataItemMeasure | dataItemCalculatedMeasure | dataItemSet | dataItemChildrenSet | dataItemSetExpression | dataItemLevelSet | dataItemHierarchySet | dataItemNamedSet | dataItemTuple)*)>
+<!ATTLIST selection
+	autoSummary  (true | false) "true"
+>
+<!ELEMENT slicer ((slicerMemberSet+) | (contextSlice+))>
+<!ELEMENT dmLevel (LUN | itemCaption)+>
+<!ELEMENT dmMember (MUN | itemCaption)+>
+<!ELEMENT dmMembers (dmMember+)>
+<!ELEMENT dmTuple ((dmTuplePart | dmTuplePartDataItemRef)+)>
+<!ELEMENT dmMemberProperty (MPUN | itemCaption)+>
+<!ELEMENT itemCaption (#PCDATA)>
+<!ATTLIST itemCaption
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT setSorting (dmTuple | dmMemberProperty)?>
+<!ATTLIST setSorting
+	ascending  (true | false) "true"
+	breakHierarchy  (true | false) "true"
+>
+<!ELEMENT dmHierarchy (HUN | itemCaption)+>
+<!ELEMENT dmDimension (DUN | itemCaption)+>
+<!ELEMENT HUN (#PCDATA)>
+<!ATTLIST HUN
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT MUN (#PCDATA)>
+<!ATTLIST MUN
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT DUN (#PCDATA)>
+<!ATTLIST DUN
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT layouts (layout | conditionalLayouts?)+>
+<!ELEMENT pageSet (pageOverallGroup? | pageGroups? | detailPages | masterDetailLinks? | propertyList? | sortList?)+>
+<!ATTLIST pageSet
+	name CDATA #REQUIRED
+	refQuery CDATA #REQUIRED
+	resetPageNumber CDATA #IMPLIED
+	resetPageCount CDATA #IMPLIED
+>
+<!ELEMENT page (pageBody | pageHeader? | pageFooter? | conditionalRender? | style? | conditionalStyles? | conditionalStyleRefs? | propertyList? | masterDetailLinks? | XMLAttributes? | pageSetup? | pageSections? | pageGradient?)+>
+<!ATTLIST page
+	name CDATA #REQUIRED
+	refQuery CDATA #IMPLIED
+	horizontalPageCounter  (true | false) "false"
+	class CDATA #IMPLIED
+	resetPageNumber CDATA #IMPLIED
+	resetPageCount CDATA #IMPLIED
+>
+<!ELEMENT list (listColumns? | listColumnStyle? | listColumnTitleStyle? | listColumnBodyStyle? | listOverallGroup? | listGroups? | propertyList? | sortList? | listPageHeader? | listPageFooter? | masterDetailLinks? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | noDataHandler? | containerDropShadow? | listSuppress?)*>
+<!ATTLIST list
+	refQuery CDATA #REQUIRED
+	rowsPerPage CDATA #IMPLIED
+	cellHeightBehavior (minimal | stretch) "minimal"
+	showColumnTitles (hide | startOfList | startOfDetails | startOfFirstDetailsOnPage) "startOfList"
+	pageBreakText  (true | false) "true"
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	keepWithHeader CDATA #IMPLIED
+	keepWithFooter CDATA #IMPLIED
+	horizontalPagination  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	shareResultSet  (true | false) "false"
+>
+<!ELEMENT crosstab (crosstabColumns? | crosstabRows? | crosstabFactCell? | defaultMeasure? | crosstabCorner? | crosstabIntersections? | crosstabRowNodeStyle? | crosstabColumnNodeStyle? | masterDetailLinks? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | noDataHandler? | containerDropShadow? | crosstabSuppress?)*>
+<!ATTLIST crosstab
+	refQuery CDATA #REQUIRED
+	rowsPerPage CDATA #IMPLIED
+	factCellStylePrecedence (rows | columns) "rows"
+	pageBreakText  (true | false) "true"
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	horizontalPagination  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+>
+<!ELEMENT repeaterTable (repeaterTableCell | repeaterGroups? | propertyList? | sortList? | masterDetailLinks? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | noDataHandler? | containerDropShadow? | listSuppress?)+>
+<!ATTLIST repeaterTable
+	refQuery CDATA #REQUIRED
+	across CDATA #IMPLIED
+	down CDATA #IMPLIED
+	direction (lr-tb | tb-lr) "lr-tb"
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	shareResultSet  (true | false) "false"
+>
+<!ELEMENT repeater (contents | repeaterGroups? | propertyList? | sortList? | conditionalRender? | XMLAttributes? | masterDetailLinks? | noDataHandler? | listSuppress?)+>
+<!ATTLIST repeater
+	refQuery CDATA #REQUIRED
+	rowsPerPage CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	renderPageWhenEmpty  (true | false) "true"
+	shareResultSet  (true | false) "false"
+>
+<!ELEMENT burst (burstGroups | burstRecipient | burstLabel?)+>
+<!ATTLIST burst
+	refQuery CDATA #REQUIRED
+>
+<!ELEMENT repeaterGroups (repeaterGroup+)>
+<!ELEMENT reportVariables (reportVariable+)>
+<!ELEMENT classStyles (classStyle+)>
+<!ELEMENT drillBehavior (drillQueryBehavior*)>
+<!ATTLIST drillBehavior
+	drillUpDown  (true | false) "false"
+	modelBasedDrillThru  (true | false) "false"
+>
+<!ELEMENT drillSetsBehavior (linkedDrillItemSets)>
+<!ELEMENT noDataHandler (contents)>
+<!ELEMENT contents ((list | crosstab | repeaterTable | repeater | singleton | block | table | textItem | pageSectionText | contextItemText | pageNumber | rowNumber | date | time | image | hyperlink | button | promptButton | HTMLItem | richTextItem | bookmark | fieldSet | conditionalBlocks | layoutComponentRef | CMMMap | asOfTime | TOC | TOCEntry | (pieChart | paretoChart | scatterChart | polarChart | radarChart | progressiveChart | combinationChart | bubbleChart | threeDCombinationChart | threeDScatterChart | gaugeChart | mapChart | metricsChart | marimekkoChart | winLossChart) | (textBox | selectDate | selectDateTime | selectTime | selectInterval | selectValue | selectWithSearch | selectWithTree | generatedPrompt) | customContent)*)>
+<!ELEMENT rowCellsStyle (style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)*>
+<!ATTLIST rowCellsStyle
+	class CDATA #IMPLIED
+>
+<!ELEMENT factCellStyle (style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)*>
+<!ATTLIST factCellStyle
+	class CDATA #IMPLIED
+>
+<!ELEMENT factCell (contents? | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)*>
+<!ATTLIST factCell
+	class CDATA #IMPLIED
+>
+<!ELEMENT variableValue EMPTY>
+<!ATTLIST variableValue
+	value CDATA #REQUIRED
+>
+<!ELEMENT headerPages ((page | pageSet)+)>
+<!ELEMENT footerPages ((page | pageSet)+)>
+<!ELEMENT listRows (listRow+)>
+<!ELEMENT listHeader (listRows | rowCellsStyle? | XMLAttributes? | propertyList?)+>
+<!ATTLIST listHeader
+	repeatEveryPage  (true | false) "false"
+>
+<!ELEMENT listFooter (listRows | rowCellsStyle? | XMLAttributes? | propertyList?)+>
+<!ATTLIST listFooter
+	pushToBottom  (true | false) "false"
+>
+<!ELEMENT pageSetup (namedPaper | customPaper)?>
+<!ATTLIST pageSetup
+	orientation (portrait | landscape) "portrait"
+>
+<!ELEMENT pageSectionText (HUN | style? | XMLAttributes?)+>
+<!ELEMENT contextItemText (HUN | style? | XMLAttributes?)+>
+<!ATTLIST contextItemText
+	refQuery CDATA #REQUIRED
+	separator CDATA ", "
+>
+<!ELEMENT pageNumber (style? | XMLAttributes?)*>
+<!ATTLIST pageNumber
+	beforeText CDATA #IMPLIED
+	beforeVerticalText CDATA #IMPLIED
+	verticalType (number | lowerCaseRoman | upperCaseRoman | range) "number"
+	afterVerticalText CDATA #IMPLIED
+	separatorText CDATA #IMPLIED
+	horizontalPageCounter  (true | false) "false"
+	horizontalPagination  (true | false) "false"
+	beforeHorizontalText CDATA #IMPLIED
+	horizontalType (none | number | lowerCaseLetter | upperCaseLetter | range | upperCaseRoman | lowerCaseRoman) "none"
+	verticalRangeSeparator CDATA #IMPLIED
+	horizontalRangeSeparator CDATA #IMPLIED
+	afterHorizontalText CDATA #IMPLIED
+	afterText CDATA #IMPLIED
+>
+<!ELEMENT rowNumber (style? | XMLAttributes?)*>
+<!ELEMENT date (style? | XMLAttributes?)*>
+<!ELEMENT time (style? | XMLAttributes?)*>
+<!ELEMENT customProperties (customProperty+)>
+<!ELEMENT customContent (customEdges? | customDefaultMeasure? | customProperties? | masterDetailLinks? | customSuppress? | XMLAttributes?)*>
+<!ATTLIST customContent
+	name CDATA #IMPLIED
+	plugin CDATA #IMPLIED
+	pluginLabel CDATA #IMPLIED
+	command CDATA #IMPLIED
+	commandLabel CDATA #IMPLIED
+	refQuery CDATA #IMPLIED
+>
+<!ELEMENT customNodes (customNode+)>
+<!ELEMENT report (modelPath? | layouts | queries? | classStyles? | burst? | reportVariables? | drillBehavior? | XMLAttributes? | upgradeInfo? | namedConditionalStyles? | drillSetsBehavior?)+>
+<!ATTLIST report
+	xmlns CDATA #IMPLIED
+	expressionLocale NMTOKEN #REQUIRED
+	template  (true | false) "false"
+	useStyleVersion (none | 1) #IMPLIED
+	interactivePageBreakByFrame  (true | false) #IMPLIED
+	ignoreFilterContext  (true | false) "false"
+	paginateHTMLOutput  (true | false) "true"
+	use1xCSVExport  (true | false) "false"
+>
+<!ELEMENT conditionalStyleCases (conditionalStyle+)>
+<!ATTLIST conditionalStyleCases
+	refVariable CDATA #REQUIRED
+>
+<!ELEMENT conditionalStyleDefault (CSS? | dataFormat? | generatedBackground?)*>
+<!ELEMENT defaultStyle EMPTY>
+<!ATTLIST defaultStyle
+	refStyle CDATA #REQUIRED
+>
+<!ELEMENT border EMPTY>
+<!ATTLIST border
+	borderColor CDATA "gray"
+	borderStyle (solid | double | dotted | dashed | groove | ridge | inset | outset) "solid"
+	borderWidth CDATA "1pt"
+	cornerRadius CDATA "0pt"
+	allowTransparentBleed  (true | false) "false"
+>
+<!ELEMENT dropShadow EMPTY>
+<!ATTLIST dropShadow
+	shadowColor CDATA "gray"
+	thickness CDATA "5px"
+	transparency CDATA "0"
+>
+<!ELEMENT backgroundImages (backgroundImage+)>
+<!ELEMENT fill (linearGradient | radialLineGradient | radialRectangleGradient | pattern | fillColor)>
+<!ELEMENT renderFor EMPTY>
+<!ATTLIST renderFor
+	refVariableValue CDATA #REQUIRED
+>
+<!ELEMENT XMLAttribute EMPTY>
+<!ATTLIST XMLAttribute
+	name CDATA #REQUIRED
+	value CDATA #REQUIRED
+	render  (true | false) "true"
+	output (no | XML | HTML) "XML"
+>
+<!ELEMENT staticValue (#PCDATA)>
+<!ATTLIST staticValue
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT dataItemValue EMPTY>
+<!ATTLIST dataItemValue
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT dataItemLabel EMPTY>
+<!ATTLIST dataItemLabel
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT memberCaption EMPTY>
+<!ELEMENT cellValue EMPTY>
+<!ELEMENT conditionalDataSource (staticValue | dataItemValue | reportExpression | dataItemLabel | memberCaption | cellValue)>
+<!ATTLIST conditionalDataSource
+	refVariableValue CDATA #REQUIRED
+>
+<!ELEMENT reportDrill (drillTarget? | bookmarkRef? | drillLabel)+>
+<!ATTLIST reportDrill
+	name CDATA #REQUIRED
+>
+<!ELEMENT masterDetailLink (masterContext | detailContext)+>
+<!ELEMENT propertyItem EMPTY>
+<!ATTLIST propertyItem
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT advancedConditionalStyle (styleCases? | styleDefault?)*>
+<!ATTLIST advancedConditionalStyle
+	name CDATA #REQUIRED
+>
+<!ELEMENT rangeConditionalStyle (conditionalDataItem | styleRanges? | styleRangeRemaining? | styleDefault?)+>
+<!ATTLIST rangeConditionalStyle
+	name CDATA #REQUIRED
+	type (number | date | dateTime | time | interval) #REQUIRED
+>
+<!ELEMENT stringsConditionalStyle (conditionalDataItem | stringConditions? | styleDefault?)+>
+<!ATTLIST stringsConditionalStyle
+	name CDATA #REQUIRED
+>
+<!ELEMENT conditionalStyleRef EMPTY>
+<!ATTLIST conditionalStyleRef
+	refConditionalStyle CDATA #REQUIRED
+>
+<!ELEMENT defaultRangeSelection EMPTY>
+<!ATTLIST defaultRangeSelection
+	min CDATA #IMPLIED
+	max CDATA #IMPLIED
+>
+<!ELEMENT displayItem EMPTY>
+<!ATTLIST displayItem
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT selectOption (displayValue? | conditionalDisplayValues?)*>
+<!ATTLIST selectOption
+	useValue CDATA #REQUIRED
+>
+<!ELEMENT pies (chartNodes)>
+<!ELEMENT pieSlices (chartNodes)>
+<!ELEMENT pieLabels (style? | conditionalStyles? | conditionalStyleRefs? | reportDrills? | XMLAttributes?)*>
+<!ATTLIST pieLabels
+	class CDATA #IMPLIED
+	categoryitemMaxCharacters CDATA "48"
+	categoryitemEnableTruncation  (true | false) "true"
+	truncationText CDATA "..."
+>
+<!ELEMENT radialClusters (chartNodes)>
+<!ELEMENT numericalAxisProgressive (axisTitle? | gridlines? | minorGridlines? | axisLine? | style? | conditionalStyles? | conditionalStyleRefs?)*>
+<!ATTLIST numericalAxisProgressive
+	min CDATA #IMPLIED
+	max CDATA #IMPLIED
+	scaleInterval CDATA #IMPLIED
+	scale (linear | log) "linear"
+	sameRangeAllInstances  (true | false) "true"
+	includeZeroForAutoScale  (true | false) "true"
+	showAxisLabels  (true | false) "true"
+	class CDATA #IMPLIED
+>
+<!ELEMENT total (totalColumnColor? | totalColumnLabel? | propertyList? | style?)*>
+<!ELEMENT firstColumnColor (chartColor | chartGradient | chartPattern)>
+<!ELEMENT positiveColumnColor (chartColor | chartGradient | chartPattern)>
+<!ELEMENT negativeColumnColor (chartColor | chartGradient | chartPattern)>
+<!ELEMENT cumulationLine (cumulationAxis? | cumulationLabel? | propertyList?)*>
+<!ATTLIST cumulationLine
+	dataPointSize CDATA "0"
+	dataPointShape (circle | square | house | hexagon | pentagon | diamond | triangle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | verticalLine | horizontalLine | plus | fatPlus | star90 | pentagram | star | skewedStar | plainX | softX | fatX | spikedX | castle) "plainX"
+	lineStyle (solid | dash | dot | dotdash | dashdotdot | mediumdash | shortdash | longdash | longdot | dotdotdot | dashdashdot | dashdashdotdot | longdashdot | longdashdotdot | longdashdashdot | longdashdashdotdot) "solid"
+	weight CDATA "0"
+	color CDATA "black"
+	transparency CDATA "0"
+	showValues  (true | false) "false"
+	displayDataLocation (insideAtTop | outsideAtTop | insideAtBottom | outsideAtBottom | centered) "centered"
+>
+<!ELEMENT paretoBars (chartNodes)>
+<!ELEMENT paretoBarClusters (chartNodes)>
+<!ELEMENT numericalAxisPareto (axisTitle? | gridlines? | minorGridlines? | axisLine? | style? | conditionalStyles? | conditionalStyleRefs?)*>
+<!ATTLIST numericalAxisPareto
+	min CDATA #IMPLIED
+	max CDATA #IMPLIED
+	scaleInterval CDATA #IMPLIED
+	scale (linear | log) "linear"
+	sameRangeAllInstances  (true | false) "true"
+	includeZeroForAutoScale  (true | false) "true"
+	showAxisLabels  (true | false) "true"
+	class CDATA #IMPLIED
+>
+<!ELEMENT marimekkoBars (chartNodes)>
+<!ELEMENT marimekkoBarClusters (chartNodes)>
+<!ELEMENT winLossBars (chartNodes)>
+<!ELEMENT winColor (chartColor | chartPattern | chartGradient)>
+<!ELEMENT lossColor (chartColor | chartPattern | chartGradient)>
+<!ELEMENT bubbleMeasure (style? | conditionalStyles? | conditionalStyleRefs? | chartLabel?)*>
+<!ATTLIST bubbleMeasure
+	refDataItem CDATA #REQUIRED
+	solveOrder CDATA #IMPLIED
+>
+<!ELEMENT angularMeasure (style? | conditionalStyles? | conditionalStyleRefs? | chartLabel?)*>
+<!ATTLIST angularMeasure
+	refDataItem CDATA #REQUIRED
+	solveOrder CDATA #IMPLIED
+>
+<!ELEMENT numericalAxisAngular (axisTitle? | gridlines? | minorGridlines? | axisLine? | style? | conditionalStyles? | conditionalStyleRefs?)*>
+<!ATTLIST numericalAxisAngular
+	min CDATA #IMPLIED
+	max CDATA #IMPLIED
+	scaleInterval CDATA #IMPLIED
+	scale (linear | log) "linear"
+	sameRangeAllInstances  (true | false) "true"
+	includeZeroForAutoScale  (true | false) "true"
+	showAxisLabels  (true | false) "true"
+	class CDATA #IMPLIED
+>
+<!ELEMENT threeDCombinationChartTypes ((threeDBar | threeDLine | threeDArea)+)>
+<!ELEMENT numericalAxis (axisTitle? | gridlines? | minorGridlines? | axisLine? | style? | conditionalStyles? | conditionalStyleRefs?)*>
+<!ATTLIST numericalAxis
+	min CDATA #IMPLIED
+	max CDATA #IMPLIED
+	scaleInterval CDATA #IMPLIED
+	scale (linear | log) "linear"
+	sameRangeAllInstances  (true | false) "true"
+	includeZeroForAutoScale  (true | false) "true"
+	showAxisLabels  (true | false) "true"
+	class CDATA #IMPLIED
+>
+<!ELEMENT threeDComboBaselines (threeDComboBaseline+)>
+<!ELEMENT ordinalAxisX (style? | conditionalStyles? | conditionalStyleRefs? | axisTitle? | reportDrills? | gridlines? | minorGridlines? | axisLine? | labelControl?)*>
+<!ATTLIST ordinalAxisX
+	categoryitemMaxCharacters CDATA "48"
+	categoryitemEnableTruncation  (true | false) "true"
+	truncationText CDATA "..."
+	showAxisLabels  (true | false) "true"
+	class CDATA #IMPLIED
+>
+<!ELEMENT ordinalAxisY (style? | conditionalStyles? | conditionalStyleRefs? | axisTitle? | reportDrills? | gridlines? | minorGridlines? | axisLine? | labelControl?)*>
+<!ATTLIST ordinalAxisY
+	categoryitemMaxCharacters CDATA "48"
+	categoryitemEnableTruncation  (true | false) "true"
+	truncationText CDATA "..."
+	showAxisLabels  (true | false) "true"
+	class CDATA #IMPLIED
+>
+<!ELEMENT pointZMeasure (style? | conditionalStyles? | conditionalStyleRefs? | chartLabel?)*>
+<!ATTLIST pointZMeasure
+	refDataItem CDATA #REQUIRED
+	solveOrder CDATA #IMPLIED
+>
+<!ELEMENT numericalAxisZ (axisTitle? | gridlines? | minorGridlines? | axisLine? | style? | conditionalStyles? | conditionalStyleRefs?)*>
+<!ATTLIST numericalAxisZ
+	min CDATA #IMPLIED
+	max CDATA #IMPLIED
+	scaleInterval CDATA #IMPLIED
+	scale (linear | log) "linear"
+	sameRangeAllInstances  (true | false) "true"
+	includeZeroForAutoScale  (true | false) "true"
+	showAxisLabels  (true | false) "true"
+	class CDATA #IMPLIED
+>
+<!ELEMENT threeDScatterBaselines (threeDScatterBaseline+)>
+<!ELEMENT gauges (chartNodes)>
+<!ELEMENT indicators (chartNodes)>
+<!ELEMENT gaugeLabels (style? | conditionalStyles? | conditionalStyleRefs? | reportDrills? | XMLAttributes?)*>
+<!ATTLIST gaugeLabels
+	class CDATA #IMPLIED
+	categoryitemMaxCharacters CDATA "48"
+	categoryitemEnableTruncation  (true | false) "true"
+	truncationText CDATA "..."
+>
+<!ELEMENT gaugeNumericalAxis (gridlines? | minorGridlines? | style? | conditionalStyles? | conditionalStyleRefs?)*>
+<!ATTLIST gaugeNumericalAxis
+	min CDATA #IMPLIED
+	max CDATA #IMPLIED
+	scaleInterval CDATA #IMPLIED
+	scale (linear | log) "linear"
+	sameRangeAllInstances  (true | false) "true"
+	includeZeroForAutoScale  (true | false) "true"
+	class CDATA #IMPLIED
+>
+<!ELEMENT gaugePalette (continuousChartPalette | discreteGaugePalette)>
+<!ATTLIST gaugePalette
+	percentValues  (true | false) "true"
+>
+<!ELEMENT pointLayer (defaultChartMeasure? | pointSizeMeasure? | pointMeasure? | numericChartPalette? | style? | conditionalStyles? | conditionalStyleRefs? | mapChartDrills? | mapPointLocation? | conditionalChartColors? | pointSizeLegendTitle? | pointColorLegendTitle? | fillEffects?)*>
+<!ATTLIST pointLayer
+	refLayer CDATA #REQUIRED
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	showNoDataFeatures  (true | false) "true"
+	showDataRangeInLegend  (true | false) "true"
+	showValues  (true | false) "false"
+	showLabels  (true | false) "true"
+>
+<!ELEMENT regionLayer (defaultChartMeasure? | regionMeasure? | regionColorLegendTitle? | mapRegionLocation? | numericChartPalette? | style? | conditionalStyles? | conditionalStyleRefs? | mapChartDrills? | conditionalChartColors? | fillEffects?)*>
+<!ATTLIST regionLayer
+	refLayer CDATA #REQUIRED
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	showNoDataFeatures  (true | false) "true"
+	showDataRangeInLegend  (true | false) "true"
+	showValues  (true | false) "false"
+	showLabels  (true | false) "true"
+>
+<!ELEMENT displayLayers (displayLayer+)>
+<!ELEMENT mapDictionary (mapDictionaryEntry+)>
+<!ELEMENT toleranceMeasure (style? | conditionalStyles? | conditionalStyleRefs? | chartLabel?)*>
+<!ATTLIST toleranceMeasure
+	refDataItem CDATA #REQUIRED
+	solveOrder CDATA #IMPLIED
+>
+<!ELEMENT targetMeasure (style? | conditionalStyles? | conditionalStyleRefs? | chartLabel?)*>
+<!ATTLIST targetMeasure
+	refDataItem CDATA #REQUIRED
+	solveOrder CDATA #IMPLIED
+>
+<!ELEMENT targetLabel (chartContents? | propertyList?)*>
+<!ELEMENT toleranceLabel (chartContents? | propertyList?)*>
+<!ELEMENT diamondLabel (chartContents? | propertyList?)*>
+<!ELEMENT labelControl (autoLabelControl | manualLabelControl)>
+<!ELEMENT baseline (baselinePosition? | baselineLabel? | XMLAttributes? | style? | conditionalStyles? | conditionalStyleRefs? | propertyList? | masterDetailLinks?)*>
+<!ATTLIST baseline
+	refQuery CDATA #IMPLIED
+	showInLegend  (true | false) "true"
+	lineStyle (solid | dash | dot | dotdash | dashdotdot | mediumdash | shortdash | longdash | longdot | dotdotdot | dashdashdot | dashdashdotdot | longdashdot | longdashdotdot | longdashdashdot | longdashdashdotdot) "solid"
+	weight CDATA "0"
+	color CDATA "black"
+	transparency CDATA "0"
+>
+<!ELEMENT note (XMLAttributes? | noteContent? | noteBorder?)*>
+<!ATTLIST note
+	bottom CDATA "0"
+	left CDATA "0"
+	height CDATA "35"
+	width CDATA "150"
+>
+<!ELEMENT pointChartMarker (markerLabel? | XMLAttributes? | pointChartMarkerPosition | style? | conditionalStyles? | conditionalStyleRefs? | propertyList? | masterDetailLinks?)+>
+<!ATTLIST pointChartMarker
+	dataPointSize CDATA "0"
+	dataPointShape (circle | square | house | hexagon | pentagon | diamond | triangle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | verticalLine | horizontalLine | plus | fatPlus | star90 | pentagram | star | skewedStar | plainX | softX | fatX | spikedX | castle) "plainX"
+	dataPointColor CDATA "black"
+	refQuery CDATA #IMPLIED
+	dataPointTransparency CDATA "0"
+>
+<!ELEMENT marker (markerPosition | markerLabel? | XMLAttributes? | style? | conditionalStyles? | conditionalStyleRefs? | propertyList? | masterDetailLinks?)+>
+<!ATTLIST marker
+	dataPointColor CDATA "black"
+	dataPointSize CDATA "0"
+	dataPointShape (circle | square | house | hexagon | pentagon | diamond | triangle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | verticalLine | horizontalLine | plus | fatPlus | star90 | pentagram | star | skewedStar | plainX | softX | fatX | spikedX | castle) "plainX"
+	refQuery CDATA #IMPLIED
+	dataPointTransparency CDATA "0"
+>
+<!ELEMENT legendPosition (relativePosition | absolutePosition)>
+<!ELEMENT legendTitle (chartContents? | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes? | propertyList? | masterDetailLinks?)*>
+<!ATTLIST legendTitle
+	class CDATA #IMPLIED
+	refQuery CDATA #IMPLIED
+>
+<!ELEMENT chartNodeMembers (chartNodeMember+)>
+<!ELEMENT chartNestedNodes (chartNode+)>
+<!ELEMENT conditionalChartColor (chartColor | chartGradient | chartPattern)>
+<!ATTLIST conditionalChartColor
+	refVariableValue CDATA #REQUIRED
+>
+<!ELEMENT chartTextItem (conditionalDataSources? | dataSource | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)+>
+<!ELEMENT highMarker EMPTY>
+<!ATTLIST highMarker
+	dataPointSize CDATA "0"
+	dataPointShape (circle | square | house | hexagon | pentagon | diamond | triangle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | verticalLine | horizontalLine | plus | fatPlus | star90 | pentagram | star | skewedStar | plainX | softX | fatX | spikedX | castle) "plainX"
+	dataPointColor CDATA "black"
+>
+<!ELEMENT lowMarker EMPTY>
+<!ATTLIST lowMarker
+	dataPointColor CDATA "black"
+	dataPointSize CDATA "0"
+	dataPointShape (circle | square | house | hexagon | pentagon | diamond | triangle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | verticalLine | horizontalLine | plus | fatPlus | star90 | pentagram | star | skewedStar | plainX | softX | fatX | spikedX | castle) "plainX"
+>
+<!ELEMENT openMarker EMPTY>
+<!ATTLIST openMarker
+	dataPointColor CDATA "black"
+	dataPointSize CDATA "0"
+	dataPointShape (circle | square | house | hexagon | pentagon | diamond | triangle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | verticalLine | horizontalLine | plus | fatPlus | star90 | pentagram | star | skewedStar | plainX | softX | fatX | spikedX | castle) "plainX"
+>
+<!ELEMENT closeMarker EMPTY>
+<!ATTLIST closeMarker
+	dataPointColor CDATA "black"
+	dataPointSize CDATA "0"
+	dataPointShape (circle | square | house | hexagon | pentagon | diamond | triangle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | verticalLine | horizontalLine | plus | fatPlus | star90 | pentagram | star | skewedStar | plainX | softX | fatX | spikedX | castle) "plainX"
+>
+<!ELEMENT mean EMPTY>
+<!ATTLIST mean
+	numberOfStddev CDATA "0"
+	comboIndex CDATA "0"
+>
+<!ELEMENT limit EMPTY>
+<!ATTLIST limit
+	limitType (min | max) "max"
+	comboIndex CDATA "0"
+>
+<!ELEMENT percentile EMPTY>
+<!ATTLIST percentile
+	percentile CDATA "50"
+	comboIndex CDATA "0"
+>
+<!ELEMENT memberIndex EMPTY>
+<!ATTLIST memberIndex
+	memberIndex CDATA "1"
+>
+<!ELEMENT pointChartBaseline (baselineLabel? | conditionalRender? | pointChartBaselinePosition | XMLAttributes? | masterDetailLinks? | propertyList?)+>
+<!ATTLIST pointChartBaseline
+	refQuery CDATA #IMPLIED
+	showInLegend  (true | false) "true"
+	lineStyle (solid | dash | dot | dotdash | dashdotdot | mediumdash | shortdash | longdash | longdot | dotdotdot | dashdashdot | dashdashdotdot | longdashdot | longdashdotdot | longdashdashdot | longdashdashdotdot) "solid"
+	weight CDATA "0"
+	color CDATA "black"
+	transparency CDATA "0"
+	pointChartAxis (xAxis | yAxis | radialAxis | angularAxis) "xAxis"
+>
+<!ELEMENT discreteChartPalette (discreteChartPaletteEntry+)>
+<!ELEMENT mapChartDrill (reportDrills? | XMLAttributes?)*>
+<!ATTLIST mapChartDrill
+	featureId CDATA #REQUIRED
+>
+<!ELEMENT regressionLinePosition (commonLog | naturalLog | linear | exponential | polynomialFit)>
+<!ELEMENT regressionLineLabel (chartContents?)>
+<!ELEMENT continuousChartPaletteEntry EMPTY>
+<!ATTLIST continuousChartPaletteEntry
+	paletteEntryValue CDATA #REQUIRED
+	paletteEntryColor CDATA "black"
+	transparency CDATA "0"
+>
+<!ELEMENT model EMPTY>
+<!ELEMENT sqlQuery (sqlText | mdProjectedItems?)+>
+<!ATTLIST sqlQuery
+	name CDATA #REQUIRED
+	dataSource CDATA #REQUIRED
+	type (cogSQL | native | passThrough) "native"
+>
+<!ELEMENT mdxQuery (mdxText | mdDimensionalInfo?)+>
+<!ATTLIST mdxQuery
+	name CDATA #REQUIRED
+	dataSource CDATA #REQUIRED
+	catalog CDATA #IMPLIED
+>
+<!ELEMENT queryOperation (queryRefs | projectionList)+>
+<!ATTLIST queryOperation
+	name CDATA #REQUIRED
+	setOperation (UNION | INTERSECT | EXCEPT) "UNION"
+	duplicates (remove | preserve) "remove"
+>
+<!ELEMENT dimensions (dimension+)>
+<!ELEMENT factList (fact+)>
+<!ELEMENT keys (key*)>
+<!ELEMENT attributes (attribute*)>
+<!ELEMENT caption EMPTY>
+<!ATTLIST caption
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT joinFilter (filterExpression)>
+<!ELEMENT joinOperands (joinOperand,joinOperand)>
+<!ELEMENT memberSets (memberSet+)>
+<!ELEMENT detailFilters (detailFilter+)>
+<!ELEMENT summaryFilters (summaryFilter+)>
+<!ELEMENT queryHints (avoidZeroDiv? | autoSort? | executionOptimization? | queryProcessing? | outerJoinAllowed? | crossProductAllowed? | suppress? | rollupProcessing? | maxRowsRetrieved? | maxTablesPerQuery? | maxQueryExecutionTime? | maxTextBlobCharacters? | useSQLWithClause? | localCache? | useV4Interpretation? | executionMethod? | useForParameterInfo? | useSQLJoinSyntax? | useAggregateCache? | useSAPMUNAsBusinessKey? | cacheServerQuery? | useSQLParameters?)*>
+<!ELEMENT memberSetStructure (memberSet*)>
+<!ELEMENT dataItemMember (dmMember | dmDimension | dmHierarchy)+>
+<!ATTLIST dataItemMember
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+	onInaccessibleMember (substituteNull | substituteDefault | substituteError) #IMPLIED
+>
+<!ELEMENT dataItemCalculatedMember (expression | dmDimension | dmHierarchy)+>
+<!ATTLIST dataItemCalculatedMember
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+	naInCalcMemberContext  (true | false) "false"
+	solveOrder CDATA #IMPLIED
+	onInaccessibleMember (substituteNull | substituteDefault | substituteError) #IMPLIED
+>
+<!ELEMENT dataItemMemberProperty (dmMemberProperty | dmDimension | dmHierarchy | dmLevel?)+>
+<!ATTLIST dataItemMemberProperty
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+>
+<!ELEMENT dataItemMeasure (dmMember | dmDimension)+>
+<!ATTLIST dataItemMeasure
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+	onInaccessibleMember (substituteNull | substituteDefault | substituteError) #IMPLIED
+>
+<!ELEMENT dataItemCalculatedMeasure (expression | dmDimension)+>
+<!ATTLIST dataItemCalculatedMeasure
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+	naInCalcMemberContext  (true | false) "false"
+	solveOrder CDATA #IMPLIED
+	onInaccessibleMember (substituteNull | substituteDefault | substituteError) #IMPLIED
+>
+<!ELEMENT dataItemSet (dmMembers | dmDimension | dmHierarchy | setSorting?)+>
+<!ATTLIST dataItemSet
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+	onInaccessibleMember (substituteNull | substituteDefault | substituteError) #IMPLIED
+>
+<!ELEMENT dataItemChildrenSet (dmMember | dmDimension | dmHierarchy | setSorting?)+>
+<!ATTLIST dataItemChildrenSet
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+	onInaccessibleMember (substituteNull | substituteDefault | substituteError) #IMPLIED
+>
+<!ELEMENT dataItemSetExpression (expression | dmDimension | dmHierarchy | setSorting?)+>
+<!ATTLIST dataItemSetExpression
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+	onInaccessibleMember (substituteNull | substituteDefault | substituteError) #IMPLIED
+>
+<!ELEMENT dataItemLevelSet (dmLevel | dmDimension | dmHierarchy | setSorting?)+>
+<!ATTLIST dataItemLevelSet
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+	onInaccessibleMember (substituteNull | substituteDefault | substituteError) #IMPLIED
+>
+<!ELEMENT dataItemHierarchySet (dmDimension | dmHierarchy | setSorting?)+>
+<!ATTLIST dataItemHierarchySet
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+	rootMembersOnly  (true | false) "false"
+	onInaccessibleMember (substituteNull | substituteDefault | substituteError) #IMPLIED
+>
+<!ELEMENT dataItemNamedSet (NSUN | dmDimension | dmHierarchy? | setSorting?)+>
+<!ATTLIST dataItemNamedSet
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+	onInaccessibleMember (substituteNull | substituteDefault | substituteError) #IMPLIED
+>
+<!ELEMENT dataItemTuple (dmTuple | dmDimension | dmHierarchy?)+>
+<!ATTLIST dataItemTuple
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+	onInaccessibleMember (substituteNull | substituteDefault | substituteError) #IMPLIED
+>
+<!ELEMENT contextSlice (dmDimension | dmHierarchy | dmLevel? | contextSliceDefinition | parameterizedSlice?)+>
+<!ELEMENT LUN (#PCDATA)>
+<!ATTLIST LUN
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT dmTuplePart (dmMember | dmDimension | dmHierarchy?)+>
+<!ELEMENT dmTuplePartDataItemRef EMPTY>
+<!ATTLIST dmTuplePartDataItemRef
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT MPUN (#PCDATA)>
+<!ATTLIST MPUN
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT layout (reportPages? | promptPages? | defaultDataFormats? | pageSetup?)*>
+<!ELEMENT conditionalLayouts (conditionalLayout+)>
+<!ATTLIST conditionalLayouts
+	refVariable CDATA #REQUIRED
+>
+<!ELEMENT pageOverallGroup (headerPages? | footerPages? | propertyList?)*>
+<!ELEMENT pageGroups (pageGroup+)>
+<!ELEMENT detailPages ((page | pageSet)*)>
+<!ELEMENT pageBody (contents | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)+>
+<!ATTLIST pageBody
+	class CDATA #IMPLIED
+>
+<!ELEMENT pageHeader (contents | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)+>
+<!ATTLIST pageHeader
+	class CDATA #IMPLIED
+>
+<!ELEMENT pageFooter (contents | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)+>
+<!ATTLIST pageFooter
+	class CDATA #IMPLIED
+>
+<!ELEMENT pageSections (pageSection+)>
+<!ELEMENT listColumns (listColumn+)>
+<!ELEMENT listColumnStyle (style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)*>
+<!ATTLIST listColumnStyle
+	class CDATA #IMPLIED
+>
+<!ELEMENT listColumnTitleStyle (style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)*>
+<!ATTLIST listColumnTitleStyle
+	class CDATA #IMPLIED
+>
+<!ELEMENT listColumnBodyStyle (style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)*>
+<!ATTLIST listColumnBodyStyle
+	class CDATA #IMPLIED
+>
+<!ELEMENT listOverallGroup (listHeader? | listFooter? | propertyList?)*>
+<!ELEMENT listGroups (listGroup+)>
+<!ELEMENT listPageHeader (listRows | rowCellsStyle? | XMLAttributes?)+>
+<!ATTLIST listPageHeader
+	afterOverallHeader  (true | false) "false"
+>
+<!ELEMENT listPageFooter (listRows | rowCellsStyle? | XMLAttributes?)+>
+<!ATTLIST listPageFooter
+	pushToBottom  (true | false) "false"
+>
+<!ELEMENT crosstabColumns (crosstabNode+)>
+<!ELEMENT crosstabRows (crosstabNode+)>
+<!ELEMENT crosstabFactCell (contents | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)+>
+<!ATTLIST crosstabFactCell
+	applySingleDefaultStyle  (true | false) "false"
+	template  (true | false) "false"
+	class CDATA #IMPLIED
+>
+<!ELEMENT crosstabCorner (contents | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)+>
+<!ATTLIST crosstabCorner
+	class CDATA #IMPLIED
+>
+<!ELEMENT crosstabIntersections (crosstabIntersection+)>
+<!ELEMENT crosstabRowNodeStyle (style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)*>
+<!ATTLIST crosstabRowNodeStyle
+	class CDATA #IMPLIED
+>
+<!ELEMENT crosstabColumnNodeStyle (style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)*>
+<!ATTLIST crosstabColumnNodeStyle
+	class CDATA #IMPLIED
+>
+<!ELEMENT repeaterTableCell (contents | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes?)+>
+<!ATTLIST repeaterTableCell
+	class CDATA #IMPLIED
+>
+<!ELEMENT burstGroups (burstGroup+)>
+<!ELEMENT burstRecipient (masterDetailLinks?)>
+<!ATTLIST burstRecipient
+	refQuery CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+	type (auto | email | directory) "auto"
+>
+<!ELEMENT burstLabel EMPTY>
+<!ATTLIST burstLabel
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT repeaterGroup (sortList? | propertyList?)*>
+<!ATTLIST repeaterGroup
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT reportVariable (reportExpression | variableValues? | XMLAttributes?)+>
+<!ATTLIST reportVariable
+	name CDATA #REQUIRED
+	type (string | boolean | locale) #REQUIRED
+>
+<!ELEMENT classStyle (CSS? | generatedBackground?)*>
+<!ATTLIST classStyle
+	name CDATA #REQUIRED
+	label CDATA #IMPLIED
+	description CDATA #IMPLIED
+>
+<!ELEMENT drillQueryBehavior (drillDataItemBehavior+)>
+<!ATTLIST drillQueryBehavior
+	refQuery CDATA #REQUIRED
+>
+<!ELEMENT linkedDrillItemSets (linkedDrillItemSet+)>
+<!ELEMENT singleton (contents | conditionalRender? | XMLAttributes? | propertyList?)+>
+<!ATTLIST singleton
+	refQuery CDATA #REQUIRED
+	name CDATA #IMPLIED
+>
+<!ELEMENT block (contents | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes?)+>
+<!ATTLIST block
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+>
+<!ELEMENT table (tableRows | conditionalStyles? | conditionalStyleRefs? | XMLAttributes? | style? | conditionalRender? | containerDropShadow?)+>
+<!ATTLIST table
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+	repeatOnPageBreak  (true | false) "true"
+	allowPageBreaksWithinRow  (true | false) "true"
+>
+<!ELEMENT textItem (dataSource | conditionalDataSources? | reportDrills? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | generatedText?)+>
+<!ATTLIST textItem
+	maxCharacters CDATA #IMPLIED
+	useDetailValue  (true | false) "false"
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+>
+<!ELEMENT image (dataSource | conditionalDataSources? | reportDrills? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes?)+>
+<!ATTLIST image
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+>
+<!ELEMENT hyperlink (contents | dataSource | conditionalDataSources? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes?)+>
+<!ATTLIST hyperlink
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+>
+<!ELEMENT button (contents | dataSource | conditionalDataSources? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes?)+>
+<!ATTLIST button
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+>
+<!ELEMENT promptButton (contents | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes?)+>
+<!ATTLIST promptButton
+	type (back | cancel | next | finish | reprompt) #IMPLIED
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+>
+<!ELEMENT HTMLItem (dataSource | conditionalDataSources? | conditionalRender? | XMLAttributes?)+>
+<!ATTLIST HTMLItem
+	name CDATA #IMPLIED
+	description CDATA #IMPLIED
+>
+<!ELEMENT richTextItem (dataSource | conditionalDataSources? | conditionalRender? | XMLAttributes?)+>
+<!ATTLIST richTextItem
+	name CDATA #IMPLIED
+	description CDATA #IMPLIED
+>
+<!ELEMENT bookmark (dataSource | XMLAttributes?)+>
+<!ELEMENT fieldSet (contents | fieldSetCaption | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes?)+>
+<!ATTLIST fieldSet
+	showCaption (left | right | center | hide) "left"
+	class CDATA #IMPLIED
+	name CDATA #IMPLIED
+>
+<!ELEMENT conditionalBlocks (conditionalBlockCases? | conditionalBlockDefault | XMLAttributes?)+>
+<!ATTLIST conditionalBlocks
+	name CDATA #IMPLIED
+>
+<!ELEMENT layoutComponentRef (reportPath? | layoutComponent? | layoutComponentOverrides? | XMLAttributes?)*>
+<!ATTLIST layoutComponentRef
+	refLayoutElement CDATA #REQUIRED
+>
+<!ELEMENT CMMMap EMPTY>
+<!ATTLIST CMMMap
+	cmmID CDATA #REQUIRED
+	description CDATA #IMPLIED
+>
+<!ELEMENT asOfTime (reportExpression)>
+<!ELEMENT TOC (style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes? | noDataHandler?)*>
+<!ATTLIST TOC
+	class CDATA #IMPLIED
+	renderPageWhenEmpty  (true | false) "true"
+	tocName CDATA #REQUIRED
+>
+<!ELEMENT TOCEntry (contents | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes?)+>
+<!ATTLIST TOCEntry
+	class CDATA #IMPLIED
+	headingLevel CDATA "1"
+	refToc CDATA #REQUIRED
+>
+<!ELEMENT textBox (style? | defaultSelections? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes?)*>
+<!ATTLIST textBox
+	parameter CDATA #IMPLIED
+	required  (true | false) "true"
+	hideAdornments  (true | false) "false"
+	multiSelect  (true | false) "false"
+	range  (true | false) "false"
+	allowIsMissing  (true | false) "false"
+	numbersOnly  (true | false) "false"
+	multiLine  (true | false) "false"
+	hideText  (true | false) "false"
+	name CDATA #IMPLIED
+	showThousandSeparator  (true | false) "false"
+>
+<!ELEMENT selectDate (style? | conditionalStyles? | conditionalStyleRefs? | defaultSelections? | conditionalRender? | XMLAttributes?)*>
+<!ATTLIST selectDate
+	parameter CDATA #IMPLIED
+	required  (true | false) "true"
+	hideAdornments  (true | false) "false"
+	calendar (Gregorian | Imperial) "Gregorian"
+	firstDate CDATA #IMPLIED
+	lastDate CDATA #IMPLIED
+	allowIsMissing  (true | false) "false"
+	multiSelect  (true | false) "false"
+	range  (true | false) "false"
+	selectDateUI (calendar | editBox) "calendar"
+	name CDATA #IMPLIED
+>
+<!ELEMENT selectDateTime (style? | conditionalStyles? | conditionalStyleRefs? | defaultSelections? | conditionalRender? | XMLAttributes?)*>
+<!ATTLIST selectDateTime
+	parameter CDATA #IMPLIED
+	required  (true | false) "true"
+	hideAdornments  (true | false) "false"
+	allowIsMissing  (true | false) "false"
+	multiSelect  (true | false) "false"
+	range  (true | false) "false"
+	clockMode (static | live) "static"
+	showSeconds  (true | false) "false"
+	showMilliseconds  (true | false) "false"
+	calendar (Gregorian | Imperial) "Gregorian"
+	firstDate CDATA #IMPLIED
+	lastDate CDATA #IMPLIED
+	selectDateTimeUI (calendar | editBox) "calendar"
+	name CDATA #IMPLIED
+>
+<!ELEMENT selectTime (style? | conditionalStyles? | conditionalStyleRefs? | defaultSelections? | conditionalRender? | XMLAttributes?)*>
+<!ATTLIST selectTime
+	clockMode (static | live) "static"
+	showSeconds  (true | false) "false"
+	showMilliseconds  (true | false) "false"
+	parameter CDATA #IMPLIED
+	required  (true | false) "true"
+	hideAdornments  (true | false) "false"
+	allowIsMissing  (true | false) "false"
+	multiSelect  (true | false) "false"
+	range  (true | false) "false"
+	selectTimeUI (clock | editBox) "clock"
+	name CDATA #IMPLIED
+>
+<!ELEMENT selectInterval (style? | conditionalStyles? | conditionalStyleRefs? | defaultSelections? | conditionalRender? | XMLAttributes?)*>
+<!ATTLIST selectInterval
+	parameter CDATA #IMPLIED
+	required  (true | false) "true"
+	hideAdornments  (true | false) "false"
+	allowIsMissing  (true | false) "false"
+	multiSelect  (true | false) "false"
+	range  (true | false) "false"
+	showSeconds  (true | false) "false"
+	showMilliseconds  (true | false) "false"
+	name CDATA #IMPLIED
+>
+<!ELEMENT selectValue (style? | conditionalStyles? | conditionalStyleRefs? | defaultSelections? | useItem? | selectOptions? | conditionalRender? | sortList? | XMLAttributes? | propertyList?)*>
+<!ATTLIST selectValue
+	parameter CDATA #IMPLIED
+	required  (true | false) "true"
+	hideAdornments  (true | false) "false"
+	rowsPerPage CDATA "5000"
+	cascadeOn CDATA #IMPLIED
+	allowIsMissing  (true | false) "false"
+	multiSelect  (true | false) "false"
+	range  (true | false) "false"
+	selectValueUI (dropdown | listBox | radioGroup | checkboxGroup) "dropdown"
+	name CDATA #IMPLIED
+	autoSubmit  (true | false) "false"
+	refQuery CDATA #IMPLIED
+	prePopulateIfParentOptional  (true | false) "false"
+>
+<!ELEMENT selectWithSearch (style? | conditionalStyles? | conditionalStyleRefs? | useItem? | conditionalRender? | XMLAttributes? | sortList? | selectOptions? | propertyList?)*>
+<!ATTLIST selectWithSearch
+	parameter CDATA #IMPLIED
+	required  (true | false) "true"
+	hideAdornments  (true | false) "false"
+	rowsPerPage CDATA "5000"
+	cascadeOn CDATA #IMPLIED
+	allowIsMissing  (true | false) "false"
+	multiSelect  (true | false) "false"
+	name CDATA #IMPLIED
+	refQuery CDATA #IMPLIED
+	caseInsensitiveIsDefault  (true | false) "true"
+>
+<!ELEMENT selectWithTree (selectWithTreeItem? | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | sortList? | XMLAttributes? | defaultTreeSelections?)*>
+<!ATTLIST selectWithTree
+	selectTreeUI (normalTree | compressedTree | dropdown | cascadingPrompt) "normalTree"
+	parameter CDATA #IMPLIED
+	required  (true | false) "true"
+	hideAdornments  (true | false) "false"
+	rowsPerPage CDATA "5000"
+	cascadeOn CDATA #IMPLIED
+	multiSelect  (true | false) "false"
+	name CDATA #IMPLIED
+	refQuery CDATA #IMPLIED
+	prePopulateIfParentOptional  (true | false) "false"
+	prePopulateLevels CDATA "1"
+>
+<!ELEMENT generatedPrompt (XMLAttributes?)>
+<!ATTLIST generatedPrompt
+	parameter CDATA #IMPLIED
+	required  (true | false) "true"
+	hideAdornments  (true | false) "false"
+	name CDATA #IMPLIED
+>
+<!ELEMENT listRow (rowCells | rowCellsStyle? | XMLAttributes?)+>
+<!ELEMENT namedPaper EMPTY>
+<!ATTLIST namedPaper
+	name CDATA #REQUIRED
+>
+<!ELEMENT customPaper EMPTY>
+<!ATTLIST customPaper
+	width CDATA #REQUIRED
+	height CDATA #REQUIRED
+	unit (in | cm) "in"
+>
+<!ELEMENT customProperty (#PCDATA)>
+<!ATTLIST customProperty
+	xml:space (default | preserve) "preserve"
+	name CDATA #REQUIRED
+>
+<!ELEMENT customEdges (customEdge?,customEdge?)>
+<!ELEMENT customDefaultMeasure (customProperties? | XMLAttributes?)*>
+<!ATTLIST customDefaultMeasure
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT customSuppress EMPTY>
+<!ATTLIST customSuppress
+	type (rows | columns | rowsAndColumns) "rowsAndColumns"
+	nulls  (true | false) "true"
+	zero  (true | false) "true"
+	divByZero  (true | false) "true"
+	overflow  (true | false) "true"
+>
+<!ELEMENT customNode (customProperties? | customNodes? | XMLAttributes?)*>
+<!ATTLIST customNode
+	refDataItem CDATA #IMPLIED
+>
+<!ELEMENT queries (query)+>
+<!ELEMENT upgradeInfo (upgradedSpec? | upgradeMessages?)*>
+<!ELEMENT conditionalStyle (CSS? | dataFormat? | generatedBackground?)*>
+<!ATTLIST conditionalStyle
+	refVariableValue CDATA #REQUIRED
+>
+<!ELEMENT backgroundImage (backgroundImagePosition)>
+<!ATTLIST backgroundImage
+	URL CDATA #REQUIRED
+	transparency CDATA "0"
+>
+<!ELEMENT linearGradient (gradientColor+)>
+<!ATTLIST linearGradient
+	gradientAngle CDATA "0"
+>
+<!ELEMENT radialLineGradient (gradientColor+)>
+<!ATTLIST radialLineGradient
+	focusX1Position CDATA "50%"
+	focusY1Position CDATA "50%"
+	focusX2Position CDATA "50%"
+	focusY2Position CDATA "50%"
+	focusInnerRadius CDATA "0px"
+	focusOuterRadius CDATA "0px"
+>
+<!ELEMENT radialRectangleGradient (gradientColor+)>
+<!ATTLIST radialRectangleGradient
+	focusSize CDATA "50"
+>
+<!ELEMENT pattern EMPTY>
+<!ATTLIST pattern
+	foregroundColor CDATA "black"
+	backgroundColor CDATA "transparent"
+	patternType (horizontal | vertical | forwardDiagonal | backwardDiagonal | cross | diagonalCross) "horizontal"
+	transparency CDATA "0"
+>
+<!ELEMENT fillColor EMPTY>
+<!ATTLIST fillColor
+	transparency CDATA "0"
+	color CDATA "black"
+>
+<!ELEMENT drillTarget (reportPath | drillLinks?)+>
+<!ATTLIST drillTarget
+	showInNewWindow  (true | false) "false"
+	method (edit | execute | view) #IMPLIED
+	outputFormat (CSV | HTML | HTMLFragment | PDF | XHTML | XLS | XLWA | singleXLS | spreadsheetML | XML) #IMPLIED
+	prompt (yes | no | target) "no"
+	sendFilterContext  (true | false) "false"
+>
+<!ELEMENT bookmarkRef (dataSource)>
+<!ELEMENT drillLabel (dataSource | conditionalDataSources?)+>
+<!ELEMENT masterContext (dataItemContext)>
+<!ELEMENT detailContext (dataItemContext | parameterContext)>
+<!ELEMENT styleCases (styleCase+)>
+<!ELEMENT styleRanges (styleRange+)>
+<!ELEMENT styleRangeRemaining (style?)>
+<!ELEMENT stringConditions ((stringValueList | stringCriteria)+)>
+<!ELEMENT displayValue (#PCDATA)>
+<!ATTLIST displayValue
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT conditionalDisplayValues (conditionalDisplayValue+)>
+<!ELEMENT totalColumnColor (chartPattern | chartColor | chartGradient)>
+<!ELEMENT totalColumnLabel (chartContents?)>
+<!ELEMENT cumulationAxis (axisTitle? | gridlines? | minorGridlines? | axisLine? | style? | conditionalStyles? | conditionalStyleRefs?)*>
+<!ATTLIST cumulationAxis
+	min CDATA #IMPLIED
+	max CDATA #IMPLIED
+	scaleInterval CDATA #IMPLIED
+	scale (linear | log) "linear"
+	sameRangeAllInstances  (true | false) "true"
+	includeZeroForAutoScale  (true | false) "true"
+	showAxisLabels  (true | false) "true"
+	class CDATA #IMPLIED
+>
+<!ELEMENT cumulationLabel (chartContents?)>
+<!ELEMENT threeDBar (chartNodes?)>
+<!ATTLIST threeDBar
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	showValues  (true | false) "false"
+>
+<!ELEMENT threeDLine (chartNodes?)>
+<!ATTLIST threeDLine
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	showValues  (true | false) "false"
+>
+<!ELEMENT threeDArea (chartNodes?)>
+<!ATTLIST threeDArea
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	showValues  (true | false) "false"
+>
+<!ELEMENT threeDComboBaseline (threeDBaselinePosition? | style? | conditionalStyles? | conditionalStyleRefs? | propertyList? | masterDetailLinks?)*>
+<!ATTLIST threeDComboBaseline
+	refQuery CDATA #IMPLIED
+	lineStyle (solid | dash | dot | dotdash | dashdotdot | mediumdash | shortdash | longdash | longdot | dotdotdot | dashdashdot | dashdashdotdot | longdashdot | longdashdotdot | longdashdashdot | longdashdashdotdot) "solid"
+	weight CDATA "0"
+	color CDATA "black"
+	transparency CDATA "0"
+>
+<!ELEMENT threeDScatterBaseline (threeDBaselinePosition? | style? | conditionalStyles? | conditionalStyleRefs? | propertyList? | masterDetailLinks?)>
+<!ATTLIST threeDScatterBaseline
+	refQuery CDATA #IMPLIED
+	lineStyle (solid | dash | dot | dotdash | dashdotdot | mediumdash | shortdash | longdash | longdot | dotdotdot | dashdashdot | dashdashdotdot | longdashdot | longdashdotdot | longdashdashdot | longdashdashdotdot) "solid"
+	weight CDATA "0"
+	color CDATA "black"
+	transparency CDATA "0"
+>
+<!ELEMENT discreteGaugePalette (discreteGaugePaletteEntry+)>
+<!ELEMENT pointSizeMeasure (style? | conditionalStyles? | conditionalStyleRefs? | chartLabel?)*>
+<!ATTLIST pointSizeMeasure
+	minPointSize CDATA "5"
+	maxPointSize CDATA "30"
+	refDataItem CDATA #REQUIRED
+	solveOrder CDATA #IMPLIED
+>
+<!ELEMENT pointMeasure (style? | conditionalStyles? | conditionalStyleRefs? | chartLabel?)*>
+<!ATTLIST pointMeasure
+	refDataItem CDATA #REQUIRED
+	solveOrder CDATA #IMPLIED
+>
+<!ELEMENT mapPointLocation (mapPointRefinementLocation?)>
+<!ATTLIST mapPointLocation
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT pointSizeLegendTitle (chartContents? | masterDetailLinks? | propertyList?)*>
+<!ATTLIST pointSizeLegendTitle
+	refQuery CDATA #IMPLIED
+>
+<!ELEMENT pointColorLegendTitle (chartContents? | masterDetailLinks? | propertyList?)*>
+<!ATTLIST pointColorLegendTitle
+	refQuery CDATA #IMPLIED
+>
+<!ELEMENT regionMeasure (style? | conditionalStyles? | conditionalStyleRefs? | chartLabel?)*>
+<!ATTLIST regionMeasure
+	refDataItem CDATA #REQUIRED
+	solveOrder CDATA #IMPLIED
+>
+<!ELEMENT regionColorLegendTitle (chartContents? | masterDetailLinks? | propertyList?)*>
+<!ATTLIST regionColorLegendTitle
+	refQuery CDATA #IMPLIED
+>
+<!ELEMENT mapRegionLocation (mapRegionRefinementLocation?)>
+<!ATTLIST mapRegionLocation
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT displayLayer (style? | conditionalStyles? | conditionalStyleRefs? | fillEffects?)*>
+<!ATTLIST displayLayer
+	refLayer CDATA #REQUIRED
+	showBorders  (true | false) "false"
+	borderColor CDATA "black"
+	borderTransparency CDATA "0"
+	showLabels  (true | false) "false"
+>
+<!ELEMENT mapDictionaryEntry EMPTY>
+<!ATTLIST mapDictionaryEntry
+	dataName CDATA #REQUIRED
+	locale CDATA #IMPLIED
+	mapName CDATA #REQUIRED
+	mapRefinementName CDATA #IMPLIED
+>
+<!ELEMENT autoLabelControl EMPTY>
+<!ATTLIST autoLabelControl
+	allowRotate45DegreesForCategoryLabels  (true | false) "true"
+	allowRotate90DegreesForCategoryLabels  (true | false) "true"
+	allowStaggerForCategoryLabels  (true | false) "true"
+	allowSkipForCategoryLabels  (true | false) "true"
+>
+<!ELEMENT manualLabelControl EMPTY>
+<!ATTLIST manualLabelControl
+	displayFrequency CDATA "5"
+	firstLabel CDATA "1"
+>
+<!ELEMENT baselinePosition (numericPosition | memberPosition)>
+<!ATTLIST baselinePosition
+	useNumericalAxis (numericalAxisY1 | numericalAxisY2 | xAxis | yAxis) "numericalAxisY1"
+>
+<!ELEMENT noteContent (chartContents | style? | masterDetailLinks? | conditionalStyles? | conditionalStyleRefs? | propertyList?)+>
+<!ATTLIST noteContent
+	class CDATA #IMPLIED
+	refQuery CDATA #IMPLIED
+>
+<!ELEMENT noteBorder EMPTY>
+<!ATTLIST noteBorder
+	lineStyle (solid | dash | dot | dotdash | dashdotdot | mediumdash | shortdash | longdash | longdot | dotdotdot | dashdashdot | dashdashdotdot | longdashdot | longdashdotdot | longdashdashdot | longdashdashdotdot) "solid"
+	color CDATA "black"
+	transparency CDATA "0"
+>
+<!ELEMENT pointChartMarkerPosition (XPosition | YPosition)+>
+<!ELEMENT markerPosition (memberPosition | numericPosition)+>
+<!ATTLIST markerPosition
+	useNumericalAxis (numericalAxisY1 | numericalAxisY2 | xAxis | yAxis) "numericalAxisY1"
+>
+<!ELEMENT relativePosition EMPTY>
+<!ATTLIST relativePosition
+	legendPosition (right | left | bottom) "right"
+>
+<!ELEMENT absolutePosition EMPTY>
+<!ATTLIST absolutePosition
+	topLegendPosition CDATA "50"
+	leftLegendPosition CDATA "0"
+	rightLegendPosition CDATA "50"
+	bottomLegendPosition CDATA "0"
+>
+<!ELEMENT chartNodeMember (chartContents? | chartLabel? | propertyList? | sortList? | XMLAttributes? | style?)*>
+<!ATTLIST chartNodeMember
+	refDataItem CDATA #REQUIRED
+	solveOrder CDATA #IMPLIED
+>
+<!ELEMENT pointChartBaselinePosition (dataSource | mean | limit | percentile | percentAlongAxis)>
+<!ELEMENT discreteChartPaletteEntry (chartGradient | chartPattern | chartColor)>
+<!ATTLIST discreteChartPaletteEntry
+	paletteValue CDATA #IMPLIED
+>
+<!ELEMENT commonLog EMPTY>
+<!ELEMENT naturalLog EMPTY>
+<!ELEMENT linear EMPTY>
+<!ELEMENT exponential EMPTY>
+<!ELEMENT polynomialFit EMPTY>
+<!ATTLIST polynomialFit
+	exponent CDATA "1"
+>
+<!ELEMENT sqlText (#PCDATA)>
+<!ATTLIST sqlText
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT mdProjectedItems (mdProjectedItem*)>
+<!ELEMENT mdxText (#PCDATA)>
+<!ATTLIST mdxText
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT mdDimensionalInfo (mdDimensions? | mdFacts?)*>
+<!ELEMENT queryRefs (queryRef*)>
+<!ELEMENT projectionList (queryItem*)>
+<!ATTLIST projectionList
+	autoGenerated  (true | false) "false"
+>
+<!ELEMENT dimension (levels? | hierarchies?)*>
+<!ATTLIST dimension
+	name CDATA #REQUIRED
+>
+<!ELEMENT fact (scope?)>
+<!ATTLIST fact
+	name CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT key EMPTY>
+<!ATTLIST key
+	name CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT attribute EMPTY>
+<!ATTLIST attribute
+	name CDATA #REQUIRED
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT detailFilter (filterExpression)>
+<!ATTLIST detailFilter
+	use (required | optional | prohibited) "required"
+	postAutoAggregation  (true | false) "false"
+>
+<!ELEMENT summaryFilter (filterExpression | summaryFilterLevels?)+>
+<!ATTLIST summaryFilter
+	use (required | optional | prohibited) "required"
+>
+<!ELEMENT avoidZeroDiv EMPTY>
+<!ATTLIST avoidZeroDiv
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT autoSort EMPTY>
+<!ATTLIST autoSort
+	value (none | all | minimal) #REQUIRED
+>
+<!ELEMENT queryProcessing EMPTY>
+<!ATTLIST queryProcessing
+	value (databaseOnly | minimizeLocal) #REQUIRED
+>
+<!ELEMENT outerJoinAllowed EMPTY>
+<!ATTLIST outerJoinAllowed
+	value (allow | warn | deny) #REQUIRED
+>
+<!ELEMENT crossProductAllowed EMPTY>
+<!ATTLIST crossProductAllowed
+	value (allow | warn | deny) #REQUIRED
+>
+<!ELEMENT suppress EMPTY>
+<!ATTLIST suppress
+	value (none | nulls) #REQUIRED
+>
+<!ELEMENT rollupProcessing EMPTY>
+<!ATTLIST rollupProcessing
+	value (extended | database | local) #REQUIRED
+>
+<!ELEMENT maxRowsRetrieved EMPTY>
+<!ATTLIST maxRowsRetrieved
+	value CDATA #IMPLIED
+>
+<!ELEMENT maxTablesPerQuery EMPTY>
+<!ATTLIST maxTablesPerQuery
+	value CDATA #IMPLIED
+>
+<!ELEMENT maxQueryExecutionTime EMPTY>
+<!ATTLIST maxQueryExecutionTime
+	value CDATA #IMPLIED
+>
+<!ELEMENT maxTextBlobCharacters EMPTY>
+<!ATTLIST maxTextBlobCharacters
+	value CDATA #IMPLIED
+>
+<!ELEMENT useSQLWithClause EMPTY>
+<!ATTLIST useSQLWithClause
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT useV4Interpretation EMPTY>
+<!ATTLIST useV4Interpretation
+	value  (true | false) "false"
+>
+<!ELEMENT executionMethod EMPTY>
+<!ATTLIST executionMethod
+	value (sequential | concurrent) #REQUIRED
+>
+<!ELEMENT useForParameterInfo EMPTY>
+<!ATTLIST useForParameterInfo
+	value  (true | false) "false"
+>
+<!ELEMENT useSQLJoinSyntax EMPTY>
+<!ATTLIST useSQLJoinSyntax
+	value (implicit | explicit) #REQUIRED
+>
+<!ELEMENT useAggregateCache EMPTY>
+<!ATTLIST useAggregateCache
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT useSAPMUNAsBusinessKey EMPTY>
+<!ATTLIST useSAPMUNAsBusinessKey
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT cacheServerQuery EMPTY>
+<!ATTLIST cacheServerQuery
+	value  (true | false) #REQUIRED
+>
+<!ELEMENT useSQLParameters EMPTY>
+<!ATTLIST useSQLParameters
+	value (marker | literal) #REQUIRED
+>
+<!ELEMENT NSUN (#PCDATA)>
+<!ATTLIST NSUN
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT contextSliceDefinition (dmMembers)>
+<!ELEMENT parameterizedSlice EMPTY>
+<!ATTLIST parameterizedSlice
+	type (hierarchy | level) #REQUIRED
+	singleMember  (true | false) "false"
+>
+<!ELEMENT reportPages ((page | pageSet)+)>
+<!ELEMENT promptPages (page+)>
+<!ELEMENT defaultDataFormats (numberFormat? | percentFormat? | currencyFormat? | dateFormat? | dateTimeFormat? | timeFormat? | intervalFormat? | stringFormat?)*>
+<!ELEMENT conditionalLayout (reportPages? | promptPages? | defaultDataFormats? | pageSetup?)*>
+<!ATTLIST conditionalLayout
+	refVariableValue CDATA #REQUIRED
+>
+<!ELEMENT pageGroup (headerPages? | footerPages? | propertyList? | sortList?)*>
+<!ATTLIST pageGroup
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT pageSection (dmDimension | dmHierarchy | pageSectionDefinition)+>
+<!ELEMENT listColumn (listColumnTitle | listColumnBody | style? | conditionalStyles? | conditionalStyleRefs? | conditionalRender? | XMLAttributes?)+>
+<!ATTLIST listColumn
+	repeatEveryPage  (true | false) "false"
+>
+<!ELEMENT listGroup (listHeader? | listFooter? | propertyList? | sortList? | XMLAttributes?)*>
+<!ATTLIST listGroup
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT crosstabNode (crosstabNodeMembers | crosstabNestedNodes?)+>
+<!ELEMENT crosstabIntersection (contents? | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)*>
+<!ATTLIST crosstabIntersection
+	row CDATA #REQUIRED
+	column CDATA #REQUIRED
+	class CDATA #IMPLIED
+>
+<!ELEMENT burstGroup (sortList?)>
+<!ATTLIST burstGroup
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT variableValues ((variableValue | variableValueGroup)+)>
+<!ELEMENT drillDataItemBehavior (drillUpBehavior? | drillDownBehavior?)*>
+<!ATTLIST drillDataItemBehavior
+	refDataItem CDATA #REQUIRED
+	disableDrillUp  (true | false) "false"
+	disableDrillDown  (true | false) "false"
+>
+<!ELEMENT linkedDrillItemSet (linkedDrillItem+)>
+<!ATTLIST linkedDrillItemSet
+	name CDATA #REQUIRED
+>
+<!ELEMENT tableRows (tableRow+)>
+<!ELEMENT generatedText (pageSectionText | contextItemText | pageNumber | rowNumber | date | time)>
+<!ELEMENT fieldSetCaption (contents | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)+>
+<!ELEMENT conditionalBlockCases (conditionalBlock+)>
+<!ATTLIST conditionalBlockCases
+	refVariable CDATA #REQUIRED
+>
+<!ELEMENT conditionalBlockDefault (contents | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)+>
+<!ATTLIST conditionalBlockDefault
+	class CDATA #IMPLIED
+>
+<!ELEMENT layoutComponent (list | crosstab | repeaterTable | repeater | singleton | block | table | textItem | pageSectionText | contextItemText | pageNumber | rowNumber | date | time | image | hyperlink | button | promptButton | HTMLItem | richTextItem | bookmark | fieldSet | conditionalBlocks | layoutComponentRef | CMMMap | asOfTime | TOC | TOCEntry | (pieChart | paretoChart | scatterChart | polarChart | radarChart | progressiveChart | combinationChart | bubbleChart | threeDCombinationChart | threeDScatterChart | gaugeChart | mapChart | metricsChart | marimekkoChart | winLossChart) | (textBox | selectDate | selectDateTime | selectTime | selectInterval | selectValue | selectWithSearch | selectWithTree | generatedPrompt) | customContent)>
+<!ELEMENT layoutComponentOverrides (layoutComponentOverride+)>
+<!ELEMENT selectWithTreeItem EMPTY>
+<!ATTLIST selectWithTreeItem
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT defaultTreeSelections (defaultTreeSelection+)>
+<!ELEMENT rowCells (rowCell+)>
+<!ELEMENT customEdge (customNodes? | customProperties? | XMLAttributes?)*>
+<!ATTLIST customEdge
+	edgeName CDATA #REQUIRED
+>
+<!ELEMENT upgradedSpec (#PCDATA)>
+<!ATTLIST upgradedSpec
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT upgradeMessages (upgradeMessage+)>
+<!ELEMENT backgroundImagePosition (automaticPosition | manualPosition | stretchPosition)>
+<!ELEMENT drillLinks (drillLink+)>
+<!ELEMENT styleCase (reportCondition | style?)+>
+<!ELEMENT styleRange (style?)>
+<!ATTLIST styleRange
+	value CDATA #REQUIRED
+	inclusive  (true | false) "false"
+>
+<!ELEMENT stringValueList (styleValues | style?)+>
+<!ATTLIST stringValueList
+	selectedValues  (true | false) "true"
+>
+<!ELEMENT stringCriteria (styleValue | style?)+>
+<!ATTLIST stringCriteria
+	operator (contains | like | beginsWith | endsWith | notContains | notLike | notEndsWith | notBeginsWith) #REQUIRED
+>
+<!ELEMENT conditionalDisplayValue (#PCDATA)>
+<!ATTLIST conditionalDisplayValue
+	xml:space (default | preserve) "preserve"
+	refVariableValue CDATA #REQUIRED
+>
+<!ELEMENT discreteGaugePaletteEntry EMPTY>
+<!ATTLIST discreteGaugePaletteEntry
+	discreteGaugePaletteValue CDATA #IMPLIED
+	discreteGaugePaletteColor CDATA "black"
+	transparency CDATA "0"
+>
+<!ELEMENT mapPointRefinementLocation EMPTY>
+<!ATTLIST mapPointRefinementLocation
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT mapRegionRefinementLocation EMPTY>
+<!ATTLIST mapRegionRefinementLocation
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT mdProjectedItem EMPTY>
+<!ATTLIST mdProjectedItem
+	name CDATA #REQUIRED
+>
+<!ELEMENT mdDimensions (mdDimension+)>
+<!ELEMENT mdFacts (mdFact+)>
+<!ELEMENT queryItem EMPTY>
+<!ATTLIST queryItem
+	name CDATA #REQUIRED
+>
+<!ELEMENT hierarchies ((levelHierarchy | memberHierarchy)*)>
+<!ELEMENT scope ((scopeDimension | scopeHierarchy | scopeLevel)+)>
+<!ELEMENT summaryFilterLevels (summaryFilterLevel+)>
+<!ELEMENT pageSectionDefinition (dmMembers)>
+<!ELEMENT listColumnTitle (contents | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)+>
+<!ATTLIST listColumnTitle
+	class CDATA #IMPLIED
+>
+<!ELEMENT listColumnBody (contents | listColumnRowSpan? | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)+>
+<!ATTLIST listColumnBody
+	class CDATA #IMPLIED
+>
+<!ELEMENT crosstabNodeMembers ((crosstabNodeMember | crosstabSpacer)+)>
+<!ELEMENT crosstabNestedNodes (crosstabNode+)>
+<!ELEMENT variableValueGroup (variableValue+)>
+<!ATTLIST variableValueGroup
+	value CDATA #REQUIRED
+>
+<!ELEMENT drillUpBehavior (drillSimpleType | drillChange | drillChangeToDepthBasedExpression | drillAncestor)>
+<!ELEMENT drillDownBehavior (drillSimpleType | drillChange | drillChangeToDepthBasedExpression | drillAncestor)>
+<!ELEMENT linkedDrillItem EMPTY>
+<!ATTLIST linkedDrillItem
+	refDataItem CDATA #REQUIRED
+	refQuery CDATA #REQUIRED
+>
+<!ELEMENT tableRow (tableCells | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)+>
+<!ATTLIST tableRow
+	class CDATA #IMPLIED
+>
+<!ELEMENT conditionalBlock (contents | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)+>
+<!ATTLIST conditionalBlock
+	refVariableValue CDATA #REQUIRED
+	class CDATA #IMPLIED
+>
+<!ELEMENT layoutComponentOverride (list | crosstab | repeaterTable | repeater | singleton | block | table | textItem | pageSectionText | contextItemText | pageNumber | rowNumber | date | time | image | hyperlink | button | promptButton | HTMLItem | richTextItem | bookmark | fieldSet | conditionalBlocks | layoutComponentRef | CMMMap | asOfTime | TOC | TOCEntry | (pieChart | paretoChart | scatterChart | polarChart | radarChart | progressiveChart | combinationChart | bubbleChart | threeDCombinationChart | threeDScatterChart | gaugeChart | mapChart | metricsChart | marimekkoChart | winLossChart) | (textBox | selectDate | selectDateTime | selectTime | selectInterval | selectValue | selectWithSearch | selectWithTree | generatedPrompt) | customContent)?>
+<!ATTLIST layoutComponentOverride
+	refLayoutElement CDATA #REQUIRED
+>
+<!ELEMENT defaultTreeSelection (#PCDATA)>
+<!ELEMENT rowCell (contents | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)+>
+<!ATTLIST rowCell
+	colSpan CDATA "1"
+	class CDATA #IMPLIED
+>
+<!ELEMENT upgradeMessage (#PCDATA)>
+<!ATTLIST upgradeMessage
+	messageId NMTOKEN #IMPLIED
+	type (error | warning | info) #REQUIRED
+>
+<!ELEMENT automaticPosition EMPTY>
+<!ATTLIST automaticPosition
+	automaticPosition (leftTop | centerTop | rightTop | leftMiddle | centerMiddle | rightMiddle | leftBottom | centerBottom | rightBottom) "leftTop"
+	tile  (true | false) "false"
+>
+<!ELEMENT manualPosition EMPTY>
+<!ATTLIST manualPosition
+	positionX CDATA "0px"
+	positionY CDATA "0px"
+	tile  (true | false) "false"
+>
+<!ELEMENT stretchPosition EMPTY>
+<!ELEMENT drillLink (drillSourceContext? | drillTargetContext)+>
+<!ELEMENT styleValues (styleValue+)>
+<!ELEMENT mdDimension (mdHierarchy)>
+<!ATTLIST mdDimension
+	name CDATA #REQUIRED
+>
+<!ELEMENT mdFact EMPTY>
+<!ATTLIST mdFact
+	name CDATA #REQUIRED
+>
+<!ELEMENT levelHierarchy (levelRef*)>
+<!ATTLIST levelHierarchy
+	name CDATA #REQUIRED
+>
+<!ELEMENT memberHierarchy (calculatedMembers?)?>
+<!ATTLIST memberHierarchy
+	name CDATA #REQUIRED
+>
+<!ELEMENT scopeDimension EMPTY>
+<!ATTLIST scopeDimension
+	refDimension CDATA #REQUIRED
+>
+<!ELEMENT scopeHierarchy EMPTY>
+<!ATTLIST scopeHierarchy
+	refHierarchy CDATA #REQUIRED
+>
+<!ELEMENT scopeLevel EMPTY>
+<!ATTLIST scopeLevel
+	refLevel CDATA #REQUIRED
+>
+<!ELEMENT summaryFilterLevel EMPTY>
+<!ATTLIST summaryFilterLevel
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT listColumnRowSpan EMPTY>
+<!ATTLIST listColumnRowSpan
+	refDataItem CDATA #IMPLIED
+>
+<!ELEMENT crosstabNodeMember (contents | style? | conditionalStyles? | conditionalStyleRefs? | factCellStyle? | factCell? | propertyList? | sortList? | XMLAttributes? | indentation?)+>
+<!ATTLIST crosstabNodeMember
+	refDataItem CDATA #REQUIRED
+	indentationLength CDATA #IMPLIED
+	indentationStartLevel CDATA #IMPLIED
+	class CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	keepWithNext CDATA #IMPLIED
+	keepWithPrevious CDATA #IMPLIED
+	solveOrder CDATA #IMPLIED
+	edgeLocation CDATA #IMPLIED
+>
+<!ELEMENT crosstabSpacer (contents | style? | conditionalStyles? | conditionalStyleRefs? | factCell? | XMLAttributes?)+>
+<!ATTLIST crosstabSpacer
+	renderFactCells  (true | false) "false"
+	class CDATA #IMPLIED
+	repeatEveryPage  (true | false) "false"
+	keepWithNext CDATA #IMPLIED
+	keepWithPrevious CDATA #IMPLIED
+	edgeLocation CDATA #IMPLIED
+>
+<!ELEMENT drillSimpleType EMPTY>
+<!ATTLIST drillSimpleType
+	type (preserve | emptySet | replaceItem | replaceExpression) #REQUIRED
+>
+<!ELEMENT drillChange EMPTY>
+<!ATTLIST drillChange
+	refDataItem CDATA #REQUIRED
+>
+<!ELEMENT drillChangeToDepthBasedExpression EMPTY>
+<!ATTLIST drillChangeToDepthBasedExpression
+	depthOffset CDATA #REQUIRED
+>
+<!ELEMENT drillAncestor EMPTY>
+<!ATTLIST drillAncestor
+	depthOffset CDATA #REQUIRED
+>
+<!ELEMENT tableCells (tableCell+)>
+<!ELEMENT drillSourceContext (dataItemContext | parameterContext)>
+<!ATTLIST drillSourceContext
+	propertyToPass (memberUniqueName | memberCaption | parentUniqueName | levelUniqueName | hierarchyUniqueName | dimensionUniqueName | businessKey) #IMPLIED
+>
+<!ELEMENT drillTargetContext (parameterContext)>
+<!ELEMENT mdHierarchy (mdLevel*)>
+<!ATTLIST mdHierarchy
+	name CDATA #REQUIRED
+>
+<!ELEMENT indentation EMPTY>
+<!ATTLIST indentation
+	type (level | relative) #REQUIRED
+	outdent  (true | false) "false"
+	indentationLength CDATA #REQUIRED
+	indentationUnits (px | in | cm | mm | pt | pc | em | ex) "px"
+	startLevel CDATA #IMPLIED
+>
+<!ELEMENT tableCell (contents | style? | conditionalStyles? | conditionalStyleRefs? | XMLAttributes?)+>
+<!ATTLIST tableCell
+	class CDATA #IMPLIED
+	colSpan CDATA "1"
+>
+<!ELEMENT mdLevel EMPTY>
+<!ATTLIST mdLevel
+	name CDATA #REQUIRED
+>

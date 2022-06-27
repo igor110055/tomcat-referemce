@@ -1,0 +1,83 @@
+/*
+ IE Version
+*/
+
+div.grid {
+   border-style:solid;
+   border-width: 1px 1px 1px 1px;
+   border-color: ThreeDLightShadow ThreeDDarkShadow ThreeDDarkShadow ThreeDLightShadow;
+}
+
+div.gridHeader {
+   background-color:ThreeDFace;
+}
+
+div.gridBody {
+   overflow:auto;
+}
+
+div.colHeader {
+   display:inline;
+   position:relative;
+   background-color:ThreeDFace;
+   font-weight:normal;
+
+
+   border-style: solid;
+   border-width: 2px;
+   border-color: ThreeDHighlight ThreeDDarkShadow ThreeDDarkShadow ThreeDHighlight;
+}
+
+
+div.headerRow {
+   display:block;
+}
+
+div.headerRow *.sortable {
+   cursor:pointer;
+}
+
+div.gridHeader div.headerRow div.sorted {
+   background-color: #FCF9E8 !important;
+}
+
+
+div.row {
+   display:block;
+}
+
+div.cell {
+   display: inline;
+   margin:0px;
+   position:relative;
+
+   padding: 1px 2px 1px 2px;
+
+
+   border-style: solid;
+   border-width: 1px 1px 1px 1px;
+   border-color: ThreeDHighlight ThreeDDarkShadow ThreeDHighlight ThreeDHighlight;
+
+   /* deal with overly large cell text... */
+   overflow:hidden;
+   text-overflow: ellipsis;
+   white-space:nowrap;
+}
+
+
+div.gridBody div.selected {
+   background-color: Highlight !important;
+   color: HighlightText !important;
+}
+
+
+div.gridBody div.selected div.cell {
+   background-color: Highlight !important;
+   color: HighlightText !important;
+
+   border-style: solid;
+   border-width: 1px 1px 1px 1px;
+   border-color: Highlight;
+}
+
+

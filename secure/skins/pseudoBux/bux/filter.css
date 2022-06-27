@@ -1,0 +1,861 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+/*layout section*/
+.buxFilterSliderThumbnail,
+.buxFilterCheckboxThumbnail {
+	width: 64px;
+	height: 64px;
+}
+
+.buxFilterSelect {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.buxFilterSelectValueCheckboxSelectAll {
+	padding-bottom: 5px;
+}
+
+.buxFilterSelectHorizontal .buxFilterSelectSelectControl,
+.buxFilterSelectHorizontal .buxFilterSelectCheckboxControl {
+	white-space: nowrap;
+}
+.buxFilterRow {
+	white-space: nowrap;
+}
+.blankRow label{
+  visibility: hidden;
+}
+.buxFilterBorderResize .buxFilterRow.dijitInline{
+	border-right: 2px solid #cccccc;
+	padding-right: 3px;
+}
+.buxFilterBorderResize .blankRow.buxFilterRow.dijitInline{
+	height: 16px;
+	z-index: 1;
+}
+
+.buxFilterSelectHorizontal .buxFilterRow {
+	padding-right: 10px;
+}
+
+.buxFilterSelectFlow .buxFilterRow {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.buxFilterSelectFlow .buxFilterRow label {
+	display: inline-block;
+}
+
+.buxFilterSelectHorizontal .buxFilterRow.buxFilterRowLast {
+	padding-right: 0px;
+}
+
+/* Auto resize workaround, IE doesn't reserve enough width to stop wrapping */
+.dj_ie .nowrapForAutoResize .buxFilterSelectFlow .buxFilterRow.buxFilterRowLast {
+	padding-right: 10px;
+}
+
+.buxFilterRow label {
+	outline: 1px solid transparent;
+}
+
+.buxSelectValueButtonsContainer {
+	padding-top: 5px;
+	text-align: left;
+	white-space: nowrap;
+}
+
+.buxFilterSelectHorizontal .buxSelectValueButtonsContainer,
+.buxFilterSelectFlow .buxSelectValueButtonsContainer {
+	text-align: left;
+	
+}
+
+.buxFilterSelectFlow .buxSelectValueButtonsAlignRight.buxSelectValueButtonsContainer {
+	text-align: left;
+}
+
+.filterSelectDeselectAllContainer {
+	white-space: nowrap;
+	padding-bottom: 5px;
+	padding-right: 5px;
+}
+
+.buxFilterSelectSelectControl {
+	width: 98%;
+}
+
+.nowrapForAutoResize .buxFilterSelectSelectControl {
+	width: auto;
+}
+
+.buxFilterSortContainer {
+	background: none repeat scroll 0 0 transparent !important;
+	border: 0 none !important;
+}
+
+.buxFilterSlider {
+	position: relative;
+	overflow: hidden;
+}
+
+.buxHorizontalSlider .buxFilterSlider .buxFilterSliderLabels {
+	height: 1em;
+	white-space: nowrap;
+}
+
+.buxVerticalSlider .buxFilterSlider .buxFilterSliderLabels {
+	height: 100%;
+	white-space: normal;
+}
+
+.buxVerticalSlider .dijitRuleLabelV {
+	display: inline-block;
+	position: relative;
+}
+
+.buxVerticalSlider .dijitRuleContainerV {
+	line-height: inherit;
+}
+
+.dj_ie .buxVerticalSlider .dijitRuleLabelContainerV {
+	margin-top: 0px;
+}
+
+.buxHorizontalSlider .buxFilterSlider .buxFilterSliderRule {
+	height: 12px;
+}
+
+.buxVerticalSlider .buxFilterSlider .buxFilterSliderRule {
+	width: 12px;
+}
+
+.buxFilterSlider .buxFilterSliderBottomLabel {
+	font-size: 1em;
+	padding-top: 5px;
+	height: 1.2em;
+	text-align: center;
+	position: absolute;
+}
+
+.buxVerticalSlider .buxFilterSlider .buxFilterSliderBottomLabel {
+	height: 2.4em;
+	width: 100%;
+	left: 0px;
+}
+
+.buxFilterSlider .buxFilterSliderBottomLabelSpacer {
+	padding-top: 5px;
+	height: 1.2em;
+}
+
+.buxVerticalSlider .buxFilterSlider .buxFilterSliderBottomLabelSpacer {
+	height: 2.4em;
+}
+
+.buxFilterSliderTooltip {
+	position: absolute;
+	padding: 2px;
+	z-index: 2001;
+}
+
+.buxFilterConfigFilterValue {
+	height: 150px;
+	width: 524px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.buxFilterConfigFilterValueHeader {
+	float: left;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+.buxFilterConfigFilterValueMergeHeader {
+	float: right;
+	color: black;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+.buxFilterConfigFilterValueTable .buxListHeader {
+	height: 23px;
+	word-break: break-all;
+	word-break: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+}
+
+.buxFilterConfigFilterValueAreaDiscrete,
+.buxFilterConfigFilterValueAreaRange,
+.buxFilterConfigFilterValueAreaSpacer {
+	min-height: 170px;
+	position: relative;
+}
+
+.buxFilterConfigDiscreteValues {
+	width: 200px;
+	height: 100px;
+	overflow: auto;
+	padding-right: 1px;
+}
+
+.buxFilterConfigDiscreteValuesTable {
+	overflow: hidden;
+	width: 100%;
+}
+
+.buxFilterConfigLink {
+	padding-left: 4px;
+}
+
+.buxFilterConfigRangeInput {
+	width: 140px;
+}
+
+.buxFilterConfigFilterValueTable {
+	table-layout: fixed;
+	width: 100%;
+}
+
+.buxFilterConfigFilterValueTableHeader {
+	height: 1.1em;
+	vertical-align: middle;
+	padding-left: 5px;
+}
+
+.buxFilterConfigFilterValueTableHeaderLeft {
+	height: 1.1em;
+	vertical-align: middle;
+}
+
+.buxFilterConfigFilterValueTableBody {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.buxFilterConfigFilterItemName {
+	overflow: hidden;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 5px;
+}
+
+.buxFilterConfigFilterWidgetName {
+	display: block;
+	cursor: default;
+	overflow: hidden;
+}
+
+.buxFilterConfigFilterWidgetName_AriaDescription {
+	height: 0px;
+	overflow: hidden;
+}
+
+.buxFilterConfigFilterRangeRightColumn {
+	width: 160px;
+}
+
+.buxFilterConfigFilterRangeSpacer {
+	width: 100%;
+	height: 5px;
+}
+
+.buxFilterConfigAutoUpdate {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.buxValueCheckBoxCell {
+	vertical-align: top;
+	padding: 2px 2px 0px 1px;
+	width: 15px;
+}
+
+.buxSelectValueGoButtonContainer {
+	margin-bottom: 2px;
+}
+
+.buxFilterConfigLoading {
+	z-index: 10;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.buxFilterConfigDetailAreaArrow {
+	background: url("images/dialog/blue_right_arrow.png") no-repeat 220px center;
+}
+
+.buxFilterLoadingBacking {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 100;
+}
+
+.buxFilterLoadingContainer {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	z-index: 101;
+}
+
+.buxFilterLoadingContainer .icdDialogButtonBar,
+.buxFilterConfigLoading .icdDialogButtonBar {
+	text-align: center;
+}
+
+.buxFilterLoadingIndicator,
+.buxFilterConfigLoadingIndicator {
+	height: 32px;
+	width: 34px;
+}
+
+.buxFilterDetailArea,
+.buxFilterDetailLabel {
+	width: 524px;
+}
+
+.buxFilterHideDetails .buxFilterDetailArea,
+.buxFilterHideDetails .buxFilterConfigFilterValueMergeHeader {
+	display: none;
+}
+
+.buxFilterHideDetails .buxFilterConfigFilterValueHeader {
+	float: none;
+}
+
+.buxFilterDetailArea .dijitTitlePaneContentOuter {
+	border: none;
+}
+
+.buxFilterDetailArea .dijitTitlePaneTitle {
+	background: none;
+}
+
+.buxFilterDetailArea .dijitTitlePaneContentInner {
+	padding-left:0px;
+	padding-right:0px;
+}
+
+.buxFilterDetailArea .dijitTitlePane .dijitTitlePaneTextNode {
+	margin-left: 0px;
+}
+
+.buxFilterMoreOptionsContainer {
+	margin-top: 10px;
+}
+
+.dj_gecko .buxFilterMoreOptionsContainer {
+	margin-top: 9px !important;
+	padding-top: 1px;
+}
+
+/*skin section */
+.buxFilterDetailArea .dijitTitlePaneTitle {
+	border-left: none;
+	border-top: none;
+	border-right: none;
+	border-bottom: 1px solid #cccccc;
+}
+
+.buxFilterDetailArea .dijitTitlePane .dijitClosed .dijitArrowNode {
+	background-position: center center;
+	background-image: url(images/dialog/dialog_icon_triangle.png);
+}
+
+
+.buxFilterDetailArea .dijitTitlePane .dijitOpen .dijitArrowNode {
+	background-position: center center;
+	background-image: url(images/dialog/dialog_icon_triangle_up.png);
+}
+
+.buxFilterDetailArea .dijitTitlePane .dijitArrowNode {
+	width: 16px;
+	height: 16px;
+}
+
+.buxFilterSliderThumbnail {
+	background: none no-repeat center top;
+	background-image: url(images/filter/icon_portlet_slider_64.gif);
+}
+
+.buxFilterCheckboxThumbnail {
+	background: none no-repeat center top;
+	background-image: url(images/filter/icon_portlet_checkboxlist_64.gif);
+}
+
+.buxFilterLabel {
+	font-size: 1em;
+	padding-top: 3px;
+	padding-bottom: 5px;
+	color: #444444;
+}
+
+.claro .dijitSlider .dijitSliderProgressBarH {
+	border: 0px;
+	background: none repeat-x top left;
+	background-image: url("images/filter/slider_full.png");
+}
+
+.claro .dijitSlider .dijitSliderProgressBarV {
+	border: 0px;
+	background: none repeat-y top left;
+	background-image: url("images/filter/slider_full_v.png");
+}
+
+.icdUI .buxFilterSliderPoint div.dijitSliderProgressBarH,
+.icdUI .buxFilterSliderPoint .dijitSliderFocused div.dijitSliderProgressBarH {
+	background-image: none;
+	background-image: url("images/filter/slider_empty.png");
+	background-color: transparent;
+}
+
+.icdUI .buxFilterSliderPoint div.dijitSliderProgressBarV,
+.icdUI .buxFilterSliderPoint .dijitSliderFocused div.dijitSliderProgressBarV {
+	background-image: none;
+	background-image: url("images/filter/slider_empty_v.png");
+	background-color: transparent;
+}
+
+.icdUI .buxFilterSlider .dijitSliderBarH {
+	height: 7px;
+}
+
+.icdUI .buxFilterSlider .dijitSliderBarV {
+	width: 7px;
+}
+
+.icdUI .buxFilterSlider .dijitSliderProgressBarH {
+	height: 29px;
+	top: -11px;
+	background-position: 0px 11px !important;
+}
+
+.icdUI .buxFilterSlider .dojoxRangeSlider .dijitSliderProgressBarV {
+	width: 29px !important;
+	left: -11px;
+	background-position: 11px 0px !important;
+}
+
+.icdUI .buxFilterSliderPoint .dijitSliderProgressBarH .dijitSliderMoveableH {
+	top: 11px;
+}
+
+.icdUI .buxFilterSliderPoint .dijitSliderImageHandleH {
+	left: 9px !important;
+	top: -5px !important;
+}
+
+.icdUI .buxFilterSlider .dijitSliderImageHandleH {
+	width: 17px;
+	height: 18px;
+	left: 0;
+	top: 0;
+	background: none no-repeat center top;
+	background-image: url(images/filter/slider_thumb.png);
+}
+
+.icdUI .buxFilterSlider .dijitSliderImageHandleV {
+	background: none no-repeat left center;
+	background-image: url(images/filter/slider_thumb_v.png);
+}
+
+.icdUI .buxFilterSliderPoint .buxSliderMobile .dijitSliderMoveableH .dijitSliderImageHandleH.buxSliderLeftHandle {
+	width: 44px;
+	height: 44px;
+	top: 0px !important;
+	left: 0px: important;
+	background-position: 10px 13px;
+}
+
+.icdUI .buxFilterSliderPoint .buxSliderMobile .dijitSliderMoveableV .dijitSliderImageHandleV.buxSliderLeftHandle {
+	width: 44px;
+	height: 44px;
+	top: -22px !important;
+	background-position: 14px 14px;
+}
+
+.icdUI .buxFilterSlider .buxSliderMobile .dijitSliderMoveableH.buxSliderLeftHandle .dijitSliderImageHandleH {
+	left: 22px;
+	top: 14px;
+}
+
+.icdUI .buxFilterSlider .buxSliderMobile .dijitSliderMoveableH.buxSliderRightHandle .dijitSliderImageHandleH {
+	left: 6px;
+	top: 14px;
+}
+
+.icdUI .dojoxRangeSlider .dijitSliderMoveableH {
+	margin-left: -8px;
+	margin-top: -4px
+}
+
+.icdUI .buxFilterSliderPoint .buxSliderMobile .dijitSliderMoveableH {
+	width: 44px;
+	height: 44px;
+	margin-top: -18px;
+	margin-right: -17px;
+}
+
+.icdUI .dojoxRangeSlider.buxSliderMobile .dijitSliderMoveableH.buxSliderLeftHandle {
+	width: 44px;
+	height: 44px;
+	margin-left: -30px;
+	margin-top: -18px;
+}
+
+.icdUI .dojoxRangeSlider.buxSliderMobile .dijitSliderMoveableH.buxSliderRightHandle {
+	width: 44px;
+	height: 44px;
+	margin-left: -14px;
+	margin-top: -18px;
+}
+
+.icdUI .dojoxRangeSlider.buxSliderMobile .dijitSliderMoveableV.buxSliderRightHandle,
+.icdUI .dojoxRangeSlider.buxSliderMobile .dijitSliderMoveableV.buxSliderLeftHandle {
+	height: 44px;
+	width: 44px;
+	left: 0px !important;
+	margin-left: -22px;
+	margin-top: -22px;
+}
+
+.icdUI .buxFilterSlider .buxSliderMobile .dijitSliderMoveableV.buxSliderRightHandle .dijitSliderImageHandleV,
+.icdUI .buxFilterSlider .buxSliderMobile .dijitSliderMoveableV.buxSliderLeftHandle .dijitSliderImageHandleV {
+	left: 17px;
+	top: 14px;
+}
+
+.icdUI .buxFilterSlider .dijitSliderBumperH {
+	height: 7px;
+	border: 0px;
+}
+
+.icdUI .buxFilterSlider .dijitSliderBumperV {
+	width: 7px;
+	border: 0px;
+}
+
+.icdUI .buxFilterSlider .buxFilterSliderRule .dijitRuleMarkH {
+	height: 4px;
+	margin-top: 3px;
+}
+
+.icdUI .buxFilterSlider .buxFilterSliderRule .dijitRuleMarkV {
+	width: 4px;
+	margin-left: 3px;
+}
+
+.buxFilterSelectMobileContainer {
+	position: relative;
+}
+
+.buxFilterSelectMobileContainer .buxFilterSelectSelectControl {
+	opacity: 0;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	-webkit-appearance: listbox;
+}
+
+.buxFilterSelectMobileCheckNode {
+	height: 16px;
+	width: 15px;
+	padding-right: 2px;
+}
+
+.icdUI .buxFilterSlider .dijitSliderLeftBumper {
+	border: 0px;
+	background: url("images/filter/slider_edge_left_empty.png") no-repeat top right !important;
+}
+
+.icdUI .buxFilterSlider .dijitSliderRightBumper {
+	background: none no-repeat top left;
+	background-image: url("images/filter/slider_edge_right.png");
+	border: 0px;
+}
+
+.icdUI .buxFilterSlider .dijitSliderTopBumper {
+	border: 0px;
+	background: url("images/filter/slider_edge_top.png") no-repeat bottom left !important;
+}
+
+.icdUI .buxFilterSlider .dijitSliderBottomBumper {
+	background: url("images/filter/slider_edge_bottom_empty.png") no-repeat top left !important;
+	border: 0px;
+}
+
+.icdUI .buxFilterSlider .dijitSliderRemainingBarH {
+	border: 0px;
+	background: none repeat-x top left;
+	background-image: url("images/filter/slider_empty.png");
+}
+
+.icdUI .buxFilterSlider .dijitSliderRemainingBarV {
+	border: 0px;
+	background: none repeat-y top left;
+	background-image: url("images/filter/slider_empty_v.png");
+}
+
+.icdUI .buxFilterSlider .dijitSliderFocused .dijitSliderProgressBarH {
+	background: none repeat-x top left;
+	background-image: url("images/filter/slider_full_focus.png");
+}
+
+.icdUI .buxFilterSlider .dijitSliderFocused .dijitSliderProgressBarV {
+	background: none repeat-y top left;
+	background-image: url("images/filter/slider_full_focus_v.png");
+}
+
+.icdUI .buxFilterSlider .dijitSliderProgressBarH:focus {
+	background-image: none;
+	background-image: url("images/filter/slider_full_range_focus.png");
+}
+
+.icdUI .buxFilterSlider .dijitSliderProgressBarV:focus {
+	background-image: none;
+	background-image: url("images/filter/slider_full_range_focus_v.png");
+}
+
+.icdUI .buxFilterSlider .dijitSliderFocused .dijitSliderImageHandleH {
+	background-image: none;
+	background-image: url("images/filter/slider_thumb_focus.png");
+}
+
+.icdUI .buxFilterSlider .dijitSliderFocused .dijitSliderImageHandleV {
+	background-image: none;
+	background-image: url("images/filter/slider_thumb_focus_v.png");
+}
+
+.icdUI .buxFilterSlider .buxFilterSliderHashWithLabel {
+	border-color: #000000 !important;
+}
+
+.icdUI .buxFilterSlider .buxFilterSliderLabels .dijitRuleLabelContainerH,
+.icdUI .buxFilterSlider .buxFilterSliderLabels .dijitRuleLabelContainerV {
+	font-size: 0.8em;
+	color: #000000;
+}
+
+.icdUI .buxFilterSlider .buxFilterSliderRule .dijitRuleMarkH,
+.icdUI .buxFilterSlider .buxFilterSliderRule .dijitRuleMarkV
+ {
+	border-color: #cccccc;
+}
+
+.buxFilterSliderTooltip {
+	border: 1px solid #cccccc;
+	background: none repeat-x top left;
+	background-image: url("images/filter/slider_tooltip_background.png");
+	background-color: #ffffff;
+}
+
+.buxFilterConfigFilterValue,
+.buxFilterConfigDiscreteValues {
+	border: 1px solid #cccccc;
+	position: relative;
+}
+
+.buxFilterConfigFilterValueTableHeader {
+	border-left: 1px solid #cccccc;
+}
+
+.buxFilterConfigRangeInputInactive {
+	color: #000000;
+	font-style: italic;
+}
+
+.buxFilterConfigFilterValueRowDisabled {
+	color: #767676;
+}
+
+.buxFilterConfigFilterValueRowSelected {
+	background-color: #dfedfb;
+}
+
+.buxFilterConfigFilterWidgetName:hover {
+	background-color: #b6cfd9;
+}
+
+.buxFilterSelectSelectControl {
+	border: 1px solid  #ebf5fe;
+}
+
+.buxFilterLoadingBacking {
+	background-color: #ffffff;
+	-moz-opacity: 0.8;
+	opacity: 0.8;
+	filter: alpha(opacity = 80);
+}
+
+.buxFilterLoadingIndicator,
+.buxFilterConfigLoadingIndicator {
+	background-image: none;
+	background-image: url(images/action_busy_32x32.gif);
+	background-repeat: no-repeat;
+}
+
+.buxFilterConfigFilterValueTableHeaderRow td {
+	background-image:none;
+	background-image: -moz-linear-gradient(top, #ebf5fe 0%, #d6dfe7 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebf5fe), color-stop(100%,#d6dfe7));
+	background-image: -webkit-linear-gradient(top, #ebf5fe 0%, #d6dfe7 100%);
+	background-image: -o-linear-gradient(top, #ebf5fe 0%, #d6dfe7 100%);
+	background-image: -ms-linear-gradient(top, #ebf5fe 0%, #d6dfe7 100%);
+	background-image: linear-gradient(to bottom, #ebf5fe 0%, #d6dfe7 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf5fe', endColorstr='#d6dfe7',GradientType=0 );
+	zoom: 1;
+	border-bottom: 1px solid #cccccc;
+}
+
+.buxFilterSelectAllImage,
+.buxFilterDeselectAllImage {
+	width: 24px;
+	height: 24px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.buxFilterSelectAllImage {
+	background-image: none;
+	background-image: url("images/filter/action_select.png");
+}
+
+.buxFilterDeselectAllImage {
+	background-image: none;
+	background-image: url("images/filter/action_deselect.png");
+}
+
+.buxFilterSelectMobileCheckNodeChecked {
+	background-image: none;
+	background-image: url("images/filter/select_mobile_selection.png");
+}
+
+.buxFilterSliderIOSControlButton {
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	opacity: 0;
+	z-index: 100;
+}
+
+.buxHorizontalSlider .buxFilterSliderIOSControlButtonIncrementMin {
+	left: 0px;
+	top: 0px;
+}
+
+.buxHorizontalSlider .buxFilterSliderIOSControlButtonDecrementMin {
+	left: 10px;
+	top: 0px;
+}
+
+.buxHorizontalSlider .buxFilterSliderIOSControlButtonIncrementMax {
+	left: 0px;
+	top: 10px;
+}
+
+.buxHorizontalSlider .buxFilterSliderIOSControlButtonDecrementMax {
+	left: 10px;
+	top: 10px;
+}
+
+.buxVerticalSlider .buxFilterSliderIOSControlButtonIncrementMin {
+	right: 20px;
+	top: 20px;
+}
+
+.buxVerticalSlider .buxFilterSliderIOSControlButtonDecrementMin {
+	right: 10px;
+	top: 20px;
+}
+
+.buxVerticalSlider .buxFilterSliderIOSControlButtonIncrementMax {
+	right: 20px;
+	top: 30px;
+}
+
+.buxVerticalSlider .buxFilterSliderIOSControlButtonDecrementMax {
+	right: 10px;
+	top: 30px;
+}
+
+.buxFilterSliderIOSControlButtonIcon {
+	width:5px;
+	height:5px;
+}
+/* -- A11Y -- */
+
+.dijit_a11y .buxFilterConfigFilterValueTableHeaderRow td {
+	border-bottom: 1px solid;
+}
+
+.dijit_a11y .buxFilterConfigFilterValueRowSelected td {
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+}
+
+.dijit_a11y .buxFilterConfigLink {
+	text-decoration: underline;
+}
+
+.dijit_a11y .buxFilterSlider .dijitSliderProgressBarH {
+	border: 3px solid;
+}
+
+.dijit_a11y .buxFilterSliderPoint .dijitSliderProgressBarH {
+	border: none;
+}
+
+.dijit_a11y .buxFilterSlider .dojoxRangeSliderBarContainer,
+.dijit_a11y .buxFilterSlider .dijitSliderBarContainerH {
+	border: 1px solid;
+}
+
+.dj_ie .dijit_a11y .buxFilterSlider .dijitSliderBarContainerH,
+.dj_ie .dijit_a11y .buxFilterSlider .dojoxRangeSliderBarContainer {
+	height: 7px;
+}
+
+.dj_ie .dijit_a11y .buxFilterSlider .dijitSliderBarContainerv {
+	width: 7px;
+}
+
+.dijit_a11y .buxFilterSlider .dijitSliderImageHandleH {
+	top: -2px;
+}
+
+.dijit_a11y .buxFilterSliderPoint .dijitSliderImageHandleH {
+	top: -5px;
+}
+
+.dijit_a11y .buxFilterSlider .buxFilterSliderBottomLabel {
+	background-color: transparent !important;
+}
+
+.dijit_a11y .buxFilterSliderUnconfiguredMessage {
+	display: block !important;
+}
+
+.dijit_a11y .buxFilterRow label {
+	outline: none !important;
+}

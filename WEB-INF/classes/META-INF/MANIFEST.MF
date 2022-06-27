@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.0
+Created-By: 11.0.3+7 (AdoptOpenJDK)
+Changeset: 9460
+Svn-Root: https://scm.motio.com/rcl2/branches/code.appfuse/rcl/release
+ -2.15
+Class-Path: rcl-dao.jar rcl-toolkit.jar rcl-service.jar
+

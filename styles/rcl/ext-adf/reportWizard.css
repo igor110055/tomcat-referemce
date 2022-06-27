@@ -1,0 +1,80 @@
+
+/* Model tree icons. */
+.wizard-icon-namespace { background-image: url('../../../images/md/namespace.gif') !important; }
+.wizard-icon-querySubject { background-image: url('../../../images/md/querySubject.gif') !important; }
+.wizard-icon-queryItemMeasure { background-image: url('../../../images/md/queryItemMeasure.gif') !important; }
+.wizard-icon-queryItemAttribute { background-image: url('../../../images/md/queryItemAttribute.gif') !important; }
+.wizard-icon-calculation { background-image: url('../../../images/md/calculation.gif') !important; }
+.wizard-icon-filter { background-image: url('../../../images/md/filter.gif') !important; }
+.wizard-icon-dimension { background-image: url('../../../images/md/dimension.gif') !important; }
+.wizard-icon-hierarchy { background-image: url('../../../images/md/hierarchy.gif') !important; }
+.wizard-icon-level { background-image: url('../../../images/md/level.gif') !important; }
+.wizard-icon-queryItemMeasure { background-image: url('../../../images/md/queryItemMeasure.gif') !important; }
+.wizard-icon-member { background-image: url('../../../images/md/member.gif') !important; }
+
+.wizard-icon-dataItemAttribute{background-image: url('../../../images/md/dataItem.gif') !important;};
+.wizard-icon-dataItemAggregate{background-image: url('../../../images/md/dataItem_aggregate.gif') !important;};
+.wizard-icon-dataItemCalculated{background-image: url('../../../images/md/dataItem_calculated.gif') !important;};
+
+/* Function tree icons. */
+.wizard-icon-operator { background-image: url('../../../images/md/operator.gif') !important; }
+.wizard-icon-summary { background-image: url('../../../images/md/summary.gif') !important; }
+.wizard-icon-literal { background-image: url('../../../images/md/literal.gif') !important; }
+.wizard-icon-function { background-image: url('../../../images/md/function.gif') !important; }
+
+.wizard-icon-previous { background-image: url('../../../images/triangleLeft.gif') !important; }
+.wizard-icon-next {
+   background-image: url('../../../images/triangleRight.gif') !important;
+}
+
+.wizard-icon-model-tab {
+   height: 20;
+   background-image: url('../../../images/tab_source.gif');
+   background-position:center center !important;
+}
+/*.wizard-icon-model-tab {*/
+   /*height: 20 !important;*/
+   /*background-image: url('../../../images/triangleRight.gif') !important;*/
+   /*background-position:center center !important;*/
+/*}*/
+
+.wizard-icon-columns-tab {
+   height: 20;
+   background-image: url('../../../images/tab_dataItems.gif');
+   background-position:center center !important;
+}
+
+.wizard-icon-functions-tab {
+   height: 20;
+   background-image: url('../../../images/tab_functions.gif');
+   background-position:center center !important;
+}
+
+
+.wizardBarText {
+   text-decoration: none;
+   color: black;
+   font-family: Verdana, Helvetica, sans-serif;
+   font-size:11px;
+}
+
+.wizardSummaryText {
+   text-decoration: none;
+   color: black;
+   font-family: Verdana, Helvetica, sans-serif;
+   font-size:11px;
+}
+
+
+/* Override the EXTJS css styles for unordered lists.*/
+ul.wizardSummaryList {
+   list-style-type: disc;
+   margin-left: 20px;
+
+}
+
+li.wizardSummaryListItem {
+   /*color: orangered;*/
+   list-style-type: disc;
+   margin-left: 15px;
+}

@@ -1,0 +1,67 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+.bux-aboutBox-Dialog .dijitDialogPaneContent {
+	padding: 0px;
+}
+
+.bux-aboutBox-Dialog .dijitDialogPaneActionBar {
+	margin: 0px;
+}
+
+.buxAboutBoxBackground {
+	width: 376px;
+	height: 320px;
+	overflow: auto;
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+
+.buxAboutBoxLogo {
+	padding: 12px 16px 5px 16px;
+}
+
+.buxAboutBoxProductName {
+	padding: 10px 16px 3px;
+	font-size: 16px;
+}
+
+.buxAboutBoxVersion {
+	padding: 10px 16px 2px;
+	font-size: 10px;
+}
+
+.buxAboutBoxLegalSatementCopyright {
+	padding: 15px 16px 0px;
+	font-size: 9px;
+}
+
+.buxAboutBoxLegalStatement {
+	padding: 0px 16px 2px;
+	font-size: 9px;
+}
+
+.buxAboutBoxLegalStatement {
+	padding: 2px 16px;
+	font-size: 9px;
+}
+
+.buxAboutBoxBuildNumber,
+.buxAboutBoxReleaseNumber {
+	padding: 2px 16px;
+	font-size: 9px;
+}
+
+.buxAboutBoxBackground {
+	background-image: none;
+	background-image: url(images/about/about_background.gif);
+	background-color: #ffffff;
+}

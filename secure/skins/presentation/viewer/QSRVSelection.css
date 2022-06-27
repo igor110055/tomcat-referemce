@@ -1,0 +1,82 @@
+@charset "UTF-8";
+/*
+  Licensed Materials - Property of IBM
+  IBM Cognos Products: Viewer
+  (C) Copyright IBM Corp. 2001, 2012
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+.primarySelection
+{
+	background-image: url("../common/images/selection_primary.png");
+}
+
+.primarySelectionBoders
+{
+	position : absolute;
+	border : 1px solid #eb8032;
+	display : none;
+}
+
+.secondarySelection
+{
+	background-image: url("../common/images/selection_secondary.png");
+}
+
+.secondarySelectionRegion
+{
+	position:absolute;
+	display:block;
+	visibility:visible;
+	opacity:0.5;
+	filter:alpha(opacity=50);
+	z-index:-1;
+	background-image: url("../../../common/images/selection_secondary.png");
+}
+
+.sortIconHidden
+{
+	vertical-align:top;
+	visibility:hidden;
+	width:16px;
+	height:18px;
+}
+
+.sortIconVisible
+{
+	vertical-align:top;
+	visibility:visible;
+	width:16px;
+	height:18px;
+}
+
+.sortIconOver
+{
+	cursor: pointer;
+	cursor: hand;
+}
+
+.hoverSelection
+{
+	color: #000000 !important;
+	background-color: #A4BED2 !important;
+}
+
+.cutSelection
+{
+	color: #666666 !important;
+	background-color: #CCCCCC !important;
+}
+
+.cutSelectionRegion
+{
+	position:absolute;
+	display:block;
+	visibility:visible;
+	opacity:0.5;
+	filter:alpha(opacity=50);
+	color: #666666 !important;
+	z-index:0;
+	background-color: #CCCCCC !important;
+}

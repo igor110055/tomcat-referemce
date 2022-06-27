@@ -1,0 +1,887 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2017, 2019
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rspec="http://developer.cognos.com/schemas/report/15.1/" xmlns:rspecExtension="http://developer.cognos.com/schemas/rspecExtension/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5_layout.xsd"/>
+	<xs:element name="reportDataStores">
+		<xs:annotation>
+			<xs:documentation>data stores defined for the report, all data stores are global</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="reportDataStore" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="dsSource">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="dsV5Query">
+											<xs:annotation>
+												<xs:documentation>Constructs a data store from the result of a V5 query. For bursting purposes only, this could be a detail of the bursting master query.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="dsV5Edges" minOccurs="0">
+														<xs:annotation>
+															<xs:appinfo source="reserved"/>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="dsV5Edge" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:appinfo source="reserved"/>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:all>
+																			<xs:element name="dsV5Levels">
+																				<xs:annotation>
+																					<xs:appinfo source="reserved"/>
+																				</xs:annotation>
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="dsV5Level" maxOccurs="unbounded">
+																							<xs:annotation>
+																								<xs:documentation>Represents a nesting level in the edge</xs:documentation>
+																								<xs:appinfo source="reserved"/>
+																							</xs:annotation>
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element name="dsV5LevelItem" maxOccurs="unbounded">
+																										<xs:annotation>
+																											<xs:documentation>Represents an item that makes up the level, these items are unioned to make up the level.</xs:documentation>
+																											<xs:appinfo source="reserved"/>
+																										</xs:annotation>
+																										<xs:complexType>
+																											<xs:all>
+																												<xs:element ref="sortList" minOccurs="0"/>
+																												<xs:element ref="dataFormat" minOccurs="0"/>
+																												<xs:element ref="XMLAttributes" minOccurs="0"/>
+																											</xs:all>
+																											<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+																											<xs:attribute name="outputType" use="optional">
+																												<xs:annotation>
+																													<xs:documentation>Determines whether the server should generate and package an image into the Active Report and return the image URL as the column value.</xs:documentation>
+																												</xs:annotation>
+																												<xs:simpleType>
+																													<xs:restriction base="xs:string">
+																														<xs:enumeration value="image"/>
+																													</xs:restriction>
+																												</xs:simpleType>
+																											</xs:attribute>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																								<xs:attribute name="name" type="xs:string"/>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:all>
+																		<xs:attribute name="name" type="xs:string" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+														<xs:unique name="dsV5EdgeUniqueness">
+															<xs:selector xpath="dsV5Edge"/>
+															<xs:field xpath="@name"/>
+														</xs:unique>
+														<xs:unique name="dsV5LevelUniqueness">
+															<xs:selector xpath=".//dsV5Level"/>
+															<xs:field xpath="@name"/>
+														</xs:unique>
+													</xs:element>
+													<xs:element name="dsV5FactEdge" minOccurs="0">
+														<xs:annotation>
+															<xs:appinfo source="reserved"/>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:all>
+																<xs:element name="dsV5Facts">
+																	<xs:annotation>
+																		<xs:appinfo source="reserved"/>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="dsV5Fact" maxOccurs="unbounded">
+																				<xs:annotation>
+																					<xs:appinfo source="reserved"/>
+																				</xs:annotation>
+																				<xs:complexType>
+																					<xs:all>
+																						<xs:element ref="XMLAttributes" minOccurs="0"/>
+																					</xs:all>
+																					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+																					<xs:attribute name="decimal" type="xs:boolean" default="false"/>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																	<xs:unique name="dataStoreV5FactUniqueness">
+																		<xs:selector xpath="dsV5Fact"/>
+																		<xs:field xpath="@refDataItem"/>
+																	</xs:unique>
+																</xs:element>
+															</xs:all>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="dsV5DefaultMeasure" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>The default measure for the query. This allows queries that do not have measures for the fact edge to resolve to a value.</xs:documentation>
+															<xs:appinfo source="reserved"/>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+															<xs:attribute name="decimal" type="xs:boolean" default="false"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element ref="masterDetailLinks" minOccurs="0"/>
+													<xs:element ref="XMLAttributes" minOccurs="0"/>
+												</xs:all>
+												<xs:attribute name="refQuery" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="dsV5ListQuery">
+											<xs:annotation>
+												<xs:documentation>Constructs a data store from the result of a list style V5 query. For bursting purposes only, this could be a detail of the bursting master query.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="dsV5DataItems" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="dsV5DataItem" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation>dsColumnType will determine whether the resulting column in the data store is indexed or a value. The default is to let the server determine it based on the data. dataFormat only applies to indexed columns and decimal only applies to numeric columns.</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:all>
+																			<xs:element ref="dataFormat" minOccurs="0"/>
+																			<xs:element ref="XMLAttributes" minOccurs="0"/>
+																		</xs:all>
+																		<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+																		<xs:attribute name="dsColumnType" default="auto">
+																			<xs:simpleType>
+																				<xs:restriction base="xs:string">
+																					<xs:enumeration value="auto"/>
+																					<xs:enumeration value="indexed"/>
+																					<xs:enumeration value="value"/>
+																				</xs:restriction>
+																			</xs:simpleType>
+																		</xs:attribute>
+																		<xs:attribute name="decimal" type="xs:boolean" default="false"/>
+																		<xs:attribute name="outputType" use="optional">
+																			<xs:annotation>
+																				<xs:documentation>Determines whether the server should generate and package an image into the Active Report and return the image URL as the column value.</xs:documentation>
+																			</xs:annotation>
+																			<xs:simpleType>
+																				<xs:restriction base="xs:string">
+																					<xs:enumeration value="image"/>
+																				</xs:restriction>
+																			</xs:simpleType>
+																		</xs:attribute>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+														<xs:unique name="dsDataItemUniqueness">
+															<xs:selector xpath="dsV5DataItem"/>
+															<xs:field xpath="@refDataItem"/>
+														</xs:unique>
+													</xs:element>
+													<xs:element ref="masterDetailLinks" minOccurs="0"/>
+													<xs:element ref="XMLAttributes" minOccurs="0"/>
+												</xs:all>
+												<xs:attribute name="refQuery" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="dsJSON">
+											<xs:annotation>
+												<xs:documentation>Contains the JSON that represents a dataStore. This will be useful to convert existing MHT to standalone report specs that do not require the model/database connections.</xs:documentation>
+												<xs:appinfo source="reserved"/>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="TextType"/>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="dsURL">
+											<xs:annotation>
+												<xs:documentation>Load the data store from a URL. This could be loaded server or client side.
+
+This is for future use, so do not implement for now.</xs:documentation>
+												<xs:appinfo source="reserved"/>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="url" type="xs:string" use="required"/>
+												<xs:attribute name="serverLoad" type="xs:boolean" default="false"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="dsRefDataStore">
+											<xs:complexType>
+												<xs:attribute name="refDataStore" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="dsFilters" minOccurs="0"/>
+							<xs:element name="dsProjections" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="dsProjection" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Specifies what columns should be projected into the resulting datastore. Use rollupMethod to indicate whether a column should be grouped or rolled up</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="refDsColumn" type="xs:string" use="required"/>
+												<xs:attribute name="rollupMethod" use="required">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="total"/>
+															<xs:enumeration value="minimum"/>
+															<xs:enumeration value="maximum"/>
+															<xs:enumeration value="average"/>
+															<xs:enumeration value="group"/>
+															<xs:enumeration value="unique"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+								<xs:unique name="dsProjectionsUniqueness">
+									<xs:selector xpath="*"/>
+									<xs:field xpath="@refDsColumn"/>
+								</xs:unique>
+							</xs:element>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:unique name="dataStoreUniqueness">
+			<xs:selector xpath="*"/>
+			<xs:field xpath="@name"/>
+		</xs:unique>
+		<xs:key name="dataStoreKey">
+			<xs:selector xpath="rspec:reportDataStore"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:keyref name="dataStoreKeyRef" refer="dataStoreKey">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@refDataStore"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:group name="reportControls">
+		<xs:choice>
+			<xs:element name="vizControl">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="vcDataSets" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="vcDataSet" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:all>
+												<xs:element name="vcSlots" minOccurs="0">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="vcSlotData" maxOccurs="unbounded">
+																<xs:complexType>
+																	<xs:all>
+																		<xs:element name="vcSlotDsColumns" minOccurs="0">
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="vcSlotDsColumn" maxOccurs="unbounded">
+																						<xs:annotation>
+																							<xs:documentation>If the rollupMethod attribute is set, then this is a value other wise it is categorical</xs:documentation>
+																						</xs:annotation>
+																						<xs:complexType>
+																							<xs:all>
+																								<xs:element name="vcValueFormat" minOccurs="0">
+																									<xs:annotation>
+																										<xs:documentation>Client side data formatting for any values that are associated with this column. If this is a value then its value will be formatted, otherwise any value in context will be.</xs:documentation>
+																									</xs:annotation>
+																									<xs:complexType>
+																										<xs:all>
+																											<xs:element ref="dataFormat"/>
+																										</xs:all>
+																									</xs:complexType>
+																								</xs:element>
+																								<xs:element ref="XMLAttributes" minOccurs="0"/>
+																							</xs:all>
+																							<xs:attribute name="refDsColumn" type="xs:string" use="required"/>
+																							<xs:attribute name="rollupMethod">
+																								<xs:simpleType>
+																									<xs:restriction base="xs:string">
+																										<xs:enumeration value="total"/>
+																										<xs:enumeration value="minimum"/>
+																										<xs:enumeration value="maximum"/>
+																										<xs:enumeration value="average"/>
+																									</xs:restriction>
+																								</xs:simpleType>
+																							</xs:attribute>
+																							<xs:attribute name="dsSort">
+																								<xs:simpleType>
+																									<xs:restriction base="xs:string">
+																										<xs:enumeration value="ascending"/>
+																										<xs:enumeration value="descending"/>
+																									</xs:restriction>
+																								</xs:simpleType>
+																							</xs:attribute>
+																						</xs:complexType>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																		<xs:element name="vcSlotDomain" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>NOTE: Maybe this should be on the vcSlotDsColumn.
+
+Specifies the domain of the data being rendered and whether it is discrete(categorical) or scalar(value). This has an affect on what type and the range of axis being rendered in the vizualization. The default if not specified is all possible values for discrete and nothing specified for scalar.</xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:choice>
+																					<xs:element name="vcDiscreteUsed">
+																						<xs:annotation>
+																							<xs:documentation>Domain will only include values that are used in the visualization</xs:documentation>
+																						</xs:annotation>
+																						<xs:complexType/>
+																					</xs:element>
+																					<xs:element name="vcScalarComputed">
+																						<xs:complexType>
+																							<xs:attribute name="rangeData" use="required">
+																								<xs:annotation>
+																									<xs:documentation>The min/max range of the value field generated will the one of
+- full set of values generated for all details in a master/detail
+- set of values generate for an individual detail in a master/detail  (if there is not master, then master and detail are the same)
+- set of values that is visible for the user for the viz (in a non AR report, this is the same as detail</xs:documentation>
+																								</xs:annotation>
+																								<xs:simpleType>
+																									<xs:restriction base="xs:string">
+																										<xs:enumeration value="all">
+																											<xs:annotation>
+																												<xs:documentation source="doc_enum_all_vizValueRangeComputed"/>
+																											</xs:annotation>
+																										</xs:enumeration>
+																										<xs:enumeration value="allDetails"/>
+																										<xs:enumeration value="filtered">
+																											<xs:annotation>
+																												<xs:documentation source="doc_enum_filtered_vizValueRangeComputed"/>
+																											</xs:annotation>
+																										</xs:enumeration>
+																									</xs:restriction>
+																								</xs:simpleType>
+																							</xs:attribute>
+																							<xs:attribute name="rangeIncludesZero" type="xs:boolean" default="true">
+																								<xs:annotation>
+																									<xs:documentation>Ensure that the min/max range generated for this field will always contain 0</xs:documentation>
+																								</xs:annotation>
+																							</xs:attribute>
+																						</xs:complexType>
+																					</xs:element>
+																					<xs:element name="vcScalarSpecified">
+																						<xs:complexType>
+																							<xs:attribute name="min" type="xs:decimal" use="required"/>
+																							<xs:attribute name="max" type="xs:decimal" use="required"/>
+																						</xs:complexType>
+																					</xs:element>
+																				</xs:choice>
+																			</xs:complexType>
+																		</xs:element>
+																		<xs:element name="vcSlotLabel" type="LocalizedTextType" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>Defines a label for the element to be used as the slot label. When not specified the label will be determined from the default labels for the associated data items.</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="vcEmptySlotValue" type="LocalizedTextType" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>When a categorical slot is empty, a single value will be generated for it, this element defines the value to be displayed. When not specified the label will either be empty, or if there is a single value slot, show its label.</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element ref="XMLAttributes" minOccurs="0"/>
+																	</xs:all>
+																	<xs:attribute name="geoCode" type="xs:boolean"/>
+																	<xs:attribute name="idSlot" type="xs:string" use="required"/>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element ref="dsFilters" minOccurs="0"/>
+												<xs:element ref="XMLAttributes" minOccurs="0"/>
+												<xs:element ref="reportDrills" minOccurs="0"/>
+											</xs:all>
+											<xs:attribute name="idDataSet" type="xs:string" use="required">
+												<xs:annotation>
+													<xs:documentation>id for the data set definition in the RAVE spec</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+											<xs:attribute name="refDataStore" type="xs:string" use="optional"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="vizPropertyValues" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="alternateText" minOccurs="0"/>
+						<xs:element ref="setParameters" minOccurs="0"/>
+						<xs:element name="style" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>subtype</xs:appinfo>
+								<xs:documentation source="doc_ele_style_dataFormat"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:all>
+									<xs:element ref="dataFormat" minOccurs="0"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="name" type="xs:string" use="required"/>
+					<xs:attribute name="type" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>Indicates the type of the chart e.g. vis.ibm.com.bubblechart</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="render" default="client">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="client"/>
+								<xs:enumeration value="server"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="autoChart" type="xs:boolean" default="false">
+						<xs:annotation>
+							<xs:documentation>When chart data is changed it will automatically suggest the most appropriate chart type.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="listControl">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="lcColumns" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="lcColumn" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:all>
+												<xs:element name="lcColumnTitle">
+													<xs:annotation>
+														<xs:appinfo source="reserved"/>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:all>
+															<xs:element ref="style" minOccurs="0"/>
+															<xs:element name="lcColumnTitleLabel" type="LocalizedTextType" minOccurs="0">
+																<xs:annotation>
+																	<xs:appinfo source="reserved"/>
+																</xs:annotation>
+															</xs:element>
+															<xs:element ref="XMLAttributes" minOccurs="0"/>
+														</xs:all>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="lcColumnBody">
+													<xs:annotation>
+														<xs:appinfo source="reserved"/>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:all>
+															<xs:element ref="style" minOccurs="0"/>
+															<xs:element ref="XMLAttributes" minOccurs="0"/>
+														</xs:all>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="lcColumnHierarchy" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Future: allow drill up/down behavior on a list column</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="lcColumnLevel" maxOccurs="unbounded">
+																<xs:complexType>
+																	<xs:attribute name="refDsColumn" type="xs:string" use="required"/>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element ref="XMLAttributes" minOccurs="0"/>
+											</xs:all>
+											<xs:attribute name="refDsColumn" type="xs:string" use="required"/>
+											<xs:attribute name="rollupMethod">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="total"/>
+														<xs:enumeration value="minimum"/>
+														<xs:enumeration value="maximum"/>
+														<xs:enumeration value="average"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+											<xs:attribute name="width" type="xs:nonNegativeInteger" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="lcColumnBodiesStyle" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo source="reserved"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="style" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>subtype</xs:appinfo>
+											<xs:documentation>Allows for CSS styling only.</xs:documentation>
+											<xs:documentation source="doc_ele_style_appdeck"/>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:all>
+												<xs:element ref="CSS" minOccurs="0"/>
+											</xs:all>
+										</xs:complexType>
+									</xs:element>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="lcColumnTitlesStyle" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo source="reserved"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="style" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>subtype</xs:appinfo>
+											<xs:documentation>Allows for CSS styling only.</xs:documentation>
+											<xs:documentation source="doc_ele_style_appdeck"/>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:all>
+												<xs:element ref="CSS" minOccurs="0"/>
+											</xs:all>
+										</xs:complexType>
+									</xs:element>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="lcSummaryFooter" minOccurs="0">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="lcSummaryRows" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="lcSummaryRow" minOccurs="0" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:all>
+															<xs:element name="style" minOccurs="0">
+																<xs:annotation>
+																	<xs:appinfo>subtype</xs:appinfo>
+																	<xs:documentation source="doc_ele_style_dataFormat"/>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:all>
+																		<xs:element ref="CSS" minOccurs="0"/>
+																	</xs:all>
+																</xs:complexType>
+															</xs:element>
+															<xs:element ref="XMLAttributes" minOccurs="0"/>
+														</xs:all>
+														<xs:attribute name="summaryMethod" default="total">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="total"/>
+																	<xs:enumeration value="minimum"/>
+																	<xs:enumeration value="maximum"/>
+																	<xs:enumeration value="average"/>
+																	<xs:enumeration value="count"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="style" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo>subtype</xs:appinfo>
+											<xs:documentation source="doc_ele_style_dataFormat"/>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:all>
+												<xs:element ref="CSS" minOccurs="0"/>
+											</xs:all>
+										</xs:complexType>
+									</xs:element>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="lcBorders" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo source="reserved"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="lcExternalBorders" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo source="reserved"/>
+										</xs:annotation>
+										<xs:complexType/>
+									</xs:element>
+									<xs:element name="lcVerticalBorders" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo source="reserved"/>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="color" type="xs:string"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="lcHorizontalBorders" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo source="reserved"/>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="color" type="xs:string"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="lcColumnTitleBorder" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo source="reserved"/>
+										</xs:annotation>
+										<xs:complexType/>
+									</xs:element>
+									<xs:element name="lcFooterBorders" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo source="reserved"/>
+										</xs:annotation>
+										<xs:complexType/>
+									</xs:element>
+									<xs:element name="lcBodyBorder" minOccurs="0">
+										<xs:annotation>
+											<xs:appinfo source="reserved"/>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="color" type="xs:string"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:all>
+								<xs:attribute name="borderColor" type="ColorType"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="lcRowStyleSequence" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo source="reserved"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="lcRowStyle" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:appinfo source="reserved"/>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="color" type="xs:string"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="summaryText" minOccurs="0"/>
+						<xs:element ref="setParameters" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element name="lcSorting" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="lcSort" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:attribute name="refDsColumn" type="xs:string" use="required"/>
+											<xs:attribute name="ascending" type="xs:boolean"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+					<xs:attribute name="name" type="xs:string" use="required"/>
+					<xs:attribute name="refDataStore" type="xs:string" use="optional"/>
+					<xs:attribute name="rowHeight" type="xs:nonNegativeInteger" use="required"/>
+					<xs:attribute name="scrollableAreaHeight" type="xs:nonNegativeInteger" use="required"/>
+					<xs:attribute name="showColumnTitles" type="xs:boolean" default="true"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dropDownList">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="listItemLabel" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="refDsColumn" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="listItemIcon" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="refDsColumn" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="setParameters" minOccurs="0"/>
+						<xs:element name="style" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>subtype</xs:appinfo>
+								<xs:documentation>Allows for CSS styling only.</xs:documentation>
+								<xs:documentation source="doc_ele_style_appdeck"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:all>
+									<xs:element ref="CSS" minOccurs="0"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="appTextStyle" minOccurs="0"/>
+						<xs:element ref="reportDataStoreRowSort" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="name" type="xs:string" use="required"/>
+					<xs:attribute name="refDataStore" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:element name="setParameters">
+		<xs:annotation>
+			<xs:documentation>How to set parameterrs when a value is selected</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="setParameterToColValue">
+						<xs:complexType>
+							<xs:attribute name="parameter" type="xs:string" use="required"/>
+							<xs:attribute name="refDsColumn" type="xs:string" use="required"/>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="reportDataStoreRowSort">
+		<xs:annotation>
+			<xs:documentation>How the rows should be sorted in the data store</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="dsRowSortColumn" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="refDsColumn" type="xs:string" use="required"/>
+						<xs:attribute name="ascending" type="xs:boolean" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:unique name="dsRowSortUniqueness">
+			<xs:selector xpath="*"/>
+			<xs:field xpath="@refDsColumn"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="dsFilters">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="dsFilter" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="dsFilterDefinition">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="dsFilterAdvanced" type="ExpressionType">
+											<xs:annotation>
+												<xs:documentation>Future use: define filter through a javascript boolean expression. Access data through DataStore interface. e.g. DataStore.Value("ProductLine"), DataStore.ValueIn("ProductLine", ["Camping Equipment", "Golf Equipement"]). Parameters are like V5? e.g.  ?Param1?</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:sequence>
+											<xs:choice maxOccurs="unbounded">
+												<xs:element name="dsFilterIn">
+													<xs:annotation>
+														<xs:documentation>If filter is parameterized, the filterInValues are ignored.</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:all>
+															<xs:element name="dsFilterInValues" minOccurs="0">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="dsFilterInValue" type="TextType" maxOccurs="unbounded"/>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+															<xs:element ref="XMLAttributes" minOccurs="0"/>
+														</xs:all>
+														<xs:attribute name="refDsColumn" type="xs:string" use="required"/>
+														<xs:attribute name="not" type="xs:boolean" default="false"/>
+														<xs:attribute name="parameter" type="xs:string" use="optional"/>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="dsFilterCompare">
+													<xs:complexType>
+														<xs:all>
+															<xs:element name="dsFilterCompareValue" type="TextType" minOccurs="0"/>
+															<xs:element ref="XMLAttributes" minOccurs="0"/>
+														</xs:all>
+														<xs:attribute name="refDsColumn" type="xs:string" use="required"/>
+														<xs:attribute name="operator" use="required">
+															<xs:annotation>
+																<xs:documentation source="doc_att_filterCondition_operator"/>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="greaterThan"/>
+																	<xs:enumeration value="greaterThanEqual"/>
+																	<xs:enumeration value="lessThan"/>
+																	<xs:enumeration value="lessThanEqual"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+														<xs:attribute name="parameter" type="xs:string" use="optional"/>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="dsFilterRange">
+													<xs:annotation>
+														<xs:documentation>does not support parameter. Use dsFilterCompare instead</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:all>
+															<xs:element name="dsFilterFromValue" type="TextType"/>
+															<xs:element name="dsFilterToValue" type="TextType"/>
+															<xs:element ref="XMLAttributes" minOccurs="0"/>
+														</xs:all>
+														<xs:attribute name="refDsColumn" type="xs:string" use="required"/>
+														<xs:attribute name="not" type="xs:boolean" default="false"/>
+													</xs:complexType>
+												</xs:element>
+											</xs:choice>
+										</xs:sequence>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="rollupFilter" type="xs:boolean" default="false"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,91 @@
+#reiTop {
+   width:100%;
+   height:90px;
+}
+
+#reiCenterContent {
+   /* width & height are set at runtime via JS, these are just defaults */
+   overflow:auto;
+   padding:5px 2px 5px 2px;
+
+}
+
+#reiBottom {
+   width:100%;
+   height:30px;
+   padding:5px 0px 5px 0px;
+}
+
+
+#promptIframe {
+   width:100%;
+   height:99%;
+}
+
+
+div.pageBanner {
+   background-color:#4A7DAD;
+
+   border: 1px solid #333333;
+
+   padding:5px;
+   width:100%;
+   height: 20px;
+   margin-bottom:3px;
+
+   font-family:Arial, Helvetica, sans-serif;
+   font-size:10pt;
+   font-weight: bold;
+   color: white;
+}
+
+#rwBottomButtons {
+   width:100%;
+   text-align:center;
+   clear:both;
+   display:block;
+   left:0px;
+}
+
+#rwBottomButtons input{
+   width: auto;
+}
+
+
+.layoutSection
+{
+   background-color: #F8F9FF;
+   height: 100%;
+   border: 1px solid #C2C9DC;
+}
+
+
+
+select {
+   font-family: Verdana, Helvetica, sans-serif;
+   font-size: 11px;
+   white-space: nowrap;
+}
+
+
+#currentSelectionInfoContainer {
+   margin: 5px 0px 0px 0px;
+   border-width: 0px 1px 1px 1px;
+   border-style:none;
+   border-color:#AAAAAA;
+   width:100%;
+}
+
+#currentSelectionInfo {
+   padding:3px;
+   height:90px;
+   background-color: rgb(255,255,220);
+   overflow:auto;
+   border: 1px solid #AAAAAA;
+}
+
+a.wizardBarText {
+   text-decoration: none;
+   color: black;
+}
+

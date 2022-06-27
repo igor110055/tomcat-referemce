@@ -1,0 +1,43 @@
+/* IE6 Specific CSS Hacks.... */
+
+
+/*-------------------------------------------------------
+  workspace.css hacks
+  -------------------------------------------------------*/
+
+body.workspace {
+
+   /* this is really just to account for the drop shadow'd nav menu which is offset
+   by 14 px... we want the tops of the workspace and the nave menu to line up. */
+   padding-top: 14px;
+
+   margin:0px;
+}
+
+/*-------------------------------------------------------
+  browseReportInstances.css hacks
+  -------------------------------------------------------*/
+
+#bodyDiv #contentShell #rerGrid {
+   width:727px;
+}
+
+#bodyDiv #contentShell #rerGrid div.grid {
+   border-width: 1px 1px 1px 1px;
+   border-color: ThreeDLightShadow ThreeDLightShadow  ThreeDDarkShadow ThreeDLightShadow;
+}
+
+
+/*-------------------------------------------------------
+  browseSchedules.css hacks
+  -------------------------------------------------------*/
+
+#bodyDiv #contentShell #scheduleGrid {
+   width:844px;
+}
+
+#bodyDiv #contentShell #scheduleGrid div.grid {
+   border-width: 1px 1px 1px 1px;
+   border-color: ThreeDLightShadow ThreeDLightShadow  ThreeDDarkShadow ThreeDLightShadow;
+}
+

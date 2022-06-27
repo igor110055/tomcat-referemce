@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="
+        http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.5.0.xsd
+   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+   http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+
+    <!--
+    ##########################################################################
+      JMS Related...
+    ##########################################################################
+    -->
+
+
+    <!--
+    ##########################################################################
+      Services...
+    ##########################################################################
+    -->
+
+
+    <!-- Transaction template for Managers, from:
+   http://blog.exis.com/colin/archives/2004/07/31/concise-transaction-definitions-spring-11/ -->
+    <bean id="txProxyTemplate" abstract="true"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager">
+            <ref bean="rclTransactionManager"/>
+        </property>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED</prop>
+                <prop key="get">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="list">PROPAGATION_REQUIRED,readOnly</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="sampleMessageListener" parent="authenticationAwareMessageListener"
+          class="com.focus.rclcustomer.service.impl.SampleMessageListener">
+    </bean>
+    <bean id="sampleMessageContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="destination" ref="sampleQueue"/>
+        <property name="sessionTransacted" value="true"/>
+        <property name="messageListener" ref="sampleMessageListener"/>
+    </bean>
+    <amq:queue id="sampleQueue" physicalName="com.motio.adf.SampleQueue"/>
+    <bean id="sampleTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory">
+            <bean class="org.springframework.jms.connection.SingleConnectionFactory">
+                <property name="targetConnectionFactory" ref="connectionFactory"/>
+            </bean>
+        </property>
+        <property name="defaultDestination" ref="sampleQueue"/>
+        <property name="sessionTransacted" value="true"/>
+    </bean>
+
+    <bean id="sampleService" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.focus.rclcustomer.service.impl.SampleService">
+                <property name="jmsQueue" ref="sampleTemplate"/>
+                <property name="sampleDomainClassDao">
+                    <ref bean="sampleDomainClassDao"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <!--sample rest service-->
+
+    <bean id="customer-provider-base" abstract="true" parent="provider-base">
+        <property name="extraClass">
+            <list merge="true">
+                <!--<value>com.baml.mercury.reporting.vo.MetaDataTreeNodeCollection</value>-->
+            </list>
+        </property>
+    </bean>
+    <bean id="c-jaxb" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider" parent="customer-provider-base"/>
+    <bean id="c-json" class="org.apache.cxf.jaxrs.provider.json.JSONProvider" parent="customer-provider-base">
+        <property name="attributesToElements" value="true"/>
+        <property name="serializeAsArray" value="true"/>
+    </bean>
+
+    <jaxrs:server id="rsCustomer" address="/e">
+        <jaxrs:serviceBeans>
+            <bean class="com.focus.rclcustomer.rest.SampleRestService" parent="restBase"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <ref bean="c-json"/>
+            <ref bean="c-jaxb"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+
+</beans>

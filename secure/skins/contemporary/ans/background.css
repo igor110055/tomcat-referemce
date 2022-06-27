@@ -1,0 +1,412 @@
+@charset "UTF-8";
+/*
+	Licensed Materials - Property of IBM
+	IBM Cognos Products: ans
+	(C) Copyright IBM Corp. 2005, 2010
+	US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+
+
+.menubar
+{
+	position: absolute;
+	overflow: hidden;
+	padding: 0px;
+	background-color: #FFFFFF;
+	border-bottom: #000000 1px solid;
+}
+
+.menubar_content_div
+{
+	border: #000000 1px solid;
+	border-bottom: #68AF30 2px solid;
+	background-image: url(../../../skins/contemporary/ans/images/title_bar_grapic_studios.gif);
+	background-repeat:no-repeat;
+	background-color:#B3E283;
+	padding: 2px;
+	width: 100%;	
+	
+}
+
+.menu, .menu_hover, .menu_pressed
+{
+	cursor: pointer;
+	cursor: hand;
+	font-size: 8pt;
+	padding: 3px;
+	padding-left: 6px;
+	padding-right: 6px;
+	color: #000000;
+	display: inline-block;
+	font-family: Tahoma;
+	font-weight: bold;
+	
+}
+
+.menu_hover
+{
+	background-color: #d6e0cd;
+	border: 1px solid #669966;
+	color:#000000;
+	padding: 2px;
+	padding-left: 5px;
+	padding-right: 5px;
+
+}
+
+.menu_pressed
+{
+	padding: 2px;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #d6e0cd;
+	border: 1px solid #000000;
+	color:#336666;
+}
+
+.main_toolbar
+{
+	position: absolute;
+	white-space: nowrap;
+	padding: 2px;
+	background-color: #f3f3f3;
+	border-bottom: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	overflow: hidden;
+}
+.toolbar_button, .toolbar_button_hover, .toolbar_button_disabled, .toolbar_button_on,
+.toolbar_button_off,.toolbar_button_on_hover, .toolbar_dropdown_button, .toolbar_dropdown_button_hover,
+.toolbar_button_pressed, .toolbar_dropdown_button_pressed
+{
+	border : 1px solid #f3f3f3;
+	background-color: #f3f3f3;
+	padding : 1px;	
+	/* pointer for standards compliant browsers, hand for ie 5.5*/
+	cursor: pointer;
+	cursor: hand;
+	display: inline;
+}
+
+.toolbar_button_on
+{
+	border-color:#cccccc;
+	background-color:#cccce3;
+}
+
+.toolbar_button_disabled
+{
+	cursor:default;
+}
+
+.toolbar_button_on_hover
+{
+	border-color:#336699;
+	background-color:#bec8dc;
+}
+.toolbar_arrow, .toolbar_arrow_hover, .toolbar_arrow_pressed, .toolbar_arrow_combo, .toolbar_arrow_combo_hover, .toolbar_arrow_combo_pressed
+{
+	background-color: #f3f3f3;
+	border : 1px solid #f3f3f3;
+	display: inline-block;
+	padding: 1px;
+	cursor: pointer;
+	cursor: hand;
+}
+.toolbar_arrow, .toolbar_arrow_hover, .toolbar_arrow_pressed
+{
+	border-left-width: 0px;	
+}
+
+.toolbar_button_hover, .toolbar_dropdown_button_hover, .toolbar_arrow_hover, .toolbar_arrow_combo_hover
+{
+	border : 1px solid #336699;
+	background-color: #d6e0cd;
+}
+
+.toolbar_button_pressed, .toolbar_arrow_pressed, .toolbar_dropdown_button_pressed, .toolbar_arrow_combo_pressed
+{
+	border : 1px solid #336699;
+	background-color: #c3d5b4;
+}
+
+
+.toolbar_arrow_hover, .toolbar_arrow_pressed
+{
+	border-left-width: 0px;
+}
+
+.toolbar_dropdown_button, .toolbar_dropdown_button_hover, .toolbar_dropdown_button_pressed
+{
+	border-right: none;
+}
+
+.toolbar_group_sep
+{
+	height: 20px;
+	width: 12px;
+}
+	
+.tab_div, .tab_div_reportOption, .tab_div_NS, .tab_div_reportOption_NS
+{
+	position:relative;
+	text-align: left;
+	position:absolute;
+	padding: 0px 0px 0px 0px;
+	overflow: hidden;
+	background-color : transparent;
+}
+
+.tab_div_reportOption
+{
+	margin-top: -10px;
+}
+
+.tab_div_NS, .tab_div_reportOption_NS
+{
+	margin-left:-3px;
+	margin-top:-3px;
+}
+
+.tab_td_selected, .top_tab_td_selected
+{
+	text-align: left;
+	white-space: nowrap;
+	border-collapse : collapse;	
+	font-family: Tahoma;
+	font-size: 70%;
+	font-weight: bold;		
+	color: #000000;	
+	background-color: #ffffff;
+	padding: 3px 15px 3px 15px;
+
+	border-right : 1px solid #000000;	
+}
+
+.tab_td_selected
+{
+	border-bottom : 1px solid #000000;
+}
+
+.top_tab_td_selected
+{
+	border-top : 1px solid #000000;
+}
+
+.tab_td_none_selected, .top_tab_td_none_selected,.top_tab_dummy_td_none_selected,.tab_dummy_td_none_selected
+{
+	text-align: left;
+	color: #000000;
+	padding: 3px 15px 3px 15px;
+	white-space: nowrap;
+	border-collapse : collapse;	
+	text-decoration: underline;
+	font-family: Tahoma;
+	font-size: 70%;
+	font-weight: normal;
+	text-decoration: underline;		
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	<!--[if IE]>
+		background-color: #f8d088;
+	<![endif]-->	
+}
+.top_tab_dummy_td_none_selected{
+	border-top: 0px;
+	border-right: 0px;
+	background-color: transparent;
+
+}
+.tab_dummy_td_none_selected {
+	border-bottom: 0px;
+	border-right: 0px;
+	background-color: transparent;
+}
+
+.tab_td_none_selected
+{
+	border-top : 1px solid #000000;
+}
+
+.top_tab_td_none_selected
+{
+	border-bottom : 1px solid #000000;
+}
+
+.tab_right_border
+{
+	border-right: 1px solid #000000;
+}
+
+.tab_left_border
+{
+	border-left: 1px solid #000000;
+}
+/**********************************************************
+* toggle bar, dim viewer title bar, property pane title bar
+************************************************************/
+.ToggleBar, .DlgTitleBar, .ToggleBar_NS, .DlgTitleBar_NS
+{
+	overflow: hidden;
+	table-layout: fixed;
+	white-space:nowrap;
+	font-family: Tahoma;
+	font-size: 70%;
+	font-weight: bold;		
+	color: #000000;	
+	background-color: #b3e283;
+	padding: 3px;
+	border : 1px solid;
+	border-color : #336666;
+}
+
+.ToggleBar_NS, .DlgTitleBar_NS
+{
+	padding: 0px;	
+}
+
+.ToggleBarTitle,.DlgTitle
+{
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.ToggleBarArrow,.DlgCloseIcon
+{
+	text-align: right;
+	border-style: solid;
+	/*default to same border color as toggle bar*/
+	border-color: #b3e283;
+	border-width: 1px;
+	cursor: pointer;
+	cursor: hand;
+}
+.dialogFunctionLink
+{
+	text-decoration : underline;
+	font-size: 8pt;
+	text-align: right;
+	color: blue;
+	cursor: hand;
+}
+.dialogbuttons,.blockproppanebutton
+{
+	border-top: 1px solid #bec8dc;
+	border-right: 1px solid #999999;
+	border-left: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	background-color: #D6E0CD;
+	width: 100%;
+	padding: 2px 3px 2px 3px;
+}
+
+.dialogButton_hover, .dialogButton_hover_NS
+{
+	background-color: #D6E0CD;
+}
+
+
+.InfoContainer
+{
+	background-color: #e7e7e7;
+	border-width: 0px 1px 1px 1px;
+	border-style: solid;
+	border-color : #b3e283; 	
+	overflow: auto;
+	overflow-x: hidden;
+
+}
+.ins_obj_title_bar{
+	overflow: hidden;
+	font-family: Tahoma;
+	font-size: 70%;
+	font-weight: bold;		
+	color: #000000;	
+	background-color: #b3e283;
+	padding: 3px;
+	border : 1px solid;
+	border-color : #336666;
+}
+
+/**********************************************
+* Context Menu Style
+***********************************************/
+
+.contextMenu_body, .contextMenu_body_NS
+{
+	background-color: white;
+	padding: 3px;
+	border: 1px solid #669966;
+	font-size: 8pt;
+	position: absolute;
+
+	visibility: visible;
+	left: -1000px;
+	cursor: default;
+	display: block;
+	overflow-y: auto;
+}
+
+.contextMenu_body_NS
+{
+	overflow: auto;
+	padding-right: 3px;	
+}
+
+				
+.contextMenu_item, .contextMenu_item_with_submenu, .contextMenu_item_over , .contextMenu_item_with_submenu_over,
+.contextMenu_item_disabled, .contextMenu_item_disabled_over, .contextMenu_item_default_over, .contextMenu_item_default,
+.contextMenu_item_NS, .contextMenu_item_with_submenu_NS, .contextMenu_item_over_NS, .contextMenu_item_with_submenu_over_NS,
+.contextMenu_item_disabled_NS, .contextMenu_item_disabled_over_NS, .contextMenu_item_default_over_NS, .contextMenu_item_default_NS 
+{
+	font-size: 8pt;
+	padding: 1px 0px 1px 3px;
+	border: 1px solid #FFFFFF	;
+	white-space: nowrap;
+	text-align: left;
+	cursor: default;
+	text-decoration: underline;
+	background-color: white;
+	color: #0000CC;			
+}
+
+.contextMenu_item_NS, .contextMenu_item_with_submenu_NS, .contextMenu_item_over_NS, .contextMenu_item_with_submenu_over_NS,
+.contextMenu_item_disabled_NS, .contextMenu_item_disabled_over_NS, .contextMenu_item_default_over_NS, .contextMenu_item_default_NS 
+{
+	margin-left : 0px;
+	margin-right : 15px;	
+}
+
+.contextMenu_item_over,.contextMenu_item_with_submenu_over,.contextMenu_item_over_NS,.contextMenu_item_with_submenu_over_NS 
+{
+	cursor: pointer;
+	cursor: hand;
+	border: 1px solid #669966;
+	background-color: #d6e0cd;
+
+}
+
+.contextMenu_item_disabled,.contextMenu_item_disabled_NS
+{
+	color: graytext;
+	white-space: nowrap;
+	text-decoration: none;
+}
+.contextMenu_item_disabled_over, .contextMenu_item_disabled_over_NS 
+{
+	color: graytext;
+	text-decoration: none;
+}
+.contextMenu_item_default, .contextMenu_item_default_NS
+{
+	font-weight : bold;
+}
+.contextMenu_item_default_over,.contextMenu_item_default_over_NS
+{
+	cursor: pointer;
+	cursor: hand;
+	font-weight : bold;
+	border: 1px solid #669966;
+	background-color: #d6e0cd;
+}

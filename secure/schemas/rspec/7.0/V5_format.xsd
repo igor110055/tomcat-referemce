@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2014
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+--> 
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="format">
+		<xs:annotation>
+			<xs:documentation>Defines a pattern to be appied to data values for presentation to the user for a report item. Text content of any format element is an example of the output generated from this format specification.</xs:documentation>
+			<xs:documentation source="ebnf/EBNF_LayoutPatterns.xml#NumericFormatPatterns"/>
+			<xs:documentation source="ebnf/EBNF_LayoutPatterns.xml#DateTimeFormatPatterns"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="stringFormat">
+		<xs:annotation>
+			<xs:documentation>Defines the attributes of the general string format.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dateFormat">
+		<xs:annotation>
+			<xs:documentation>Defines attributes of the general date format.</xs:documentation>
+			<xs:documentation source="ebnf/EBNF_LayoutPatterns.xml#DateFormat"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="whenZero" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Characters to be displayed when date value is zero. If omitted, zeroes are displayed.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+			<xs:attributeGroup ref="CommonDateFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="timeFormat">
+		<xs:annotation>
+			<xs:documentation>Defines attributes of the general time format.</xs:documentation>
+			<xs:documentation source="ebnf/EBNF_LayoutPatterns.xml#TimeFormat"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="whenZero" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Characters to be displayed when time value is zero. If omitted, zeroes are displayed.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+			<xs:attributeGroup ref="CommonTimeFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dateTimeFormat">
+		<xs:annotation>
+			<xs:documentation>Defines attributes of the general date and time format.</xs:documentation>
+			<xs:documentation source="ebnf/EBNF_LayoutPatterns.xml#DateTimeFormat"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="whenZero" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Characters to be displayed when date and time values are zero. If omitted, zeroes are displayed.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+			<xs:attributeGroup ref="CommonDateFormatAttributes"/>
+			<xs:attributeGroup ref="CommonTimeFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="intervalFormat">
+		<xs:annotation>
+			<xs:documentation>Days interval value may be converted into days, hours, minutes, seconds, or milliseconds and displayed as a decimal number. On the other hand, the day, hour, minute, second and/or millisecond components of a days interval value may be displayed independently. Months interval is displayed as years and months, delimited by date separator. Formatting a days interval value with months format attributes will result in rendering of whenZero attribute; likewise, a months interval value formatted with days format attributes.</xs:documentation>
+			<xs:documentation source="ebnf/EBNF_LayoutPatterns.xml#intervalFormat"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="units">
+				<xs:annotation>
+					<xs:documentation>Describes units of measure for displayed decimal number. This attribute will be ignored if any day or time components are shown. Default value is inherited from user's locale.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="time">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_time_units"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="days"/>
+						<xs:enumeration value="hours"/>
+						<xs:enumeration value="minutes"/>
+						<xs:enumeration value="seconds"/>
+						<xs:enumeration value="milliseconds"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="showDays">
+				<xs:annotation>
+					<xs:documentation>Controls display of days in date value. When "false", days are hidden. When true, 1-digit day of month shown in date value. When 1 digit or 2 digits, 1- or 2-digit day of month will be shown, respectively. When "Julian", 3-digit day of year will be shown. Default value is inherited from user's locale.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="false">
+							<xs:annotation>
+								<xs:documentation>Hide days of the month.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="true">
+							<xs:annotation>
+								<xs:documentation>Show 1-digit day of month.</xs:documentation>
+								<xs:documentation source="doc_enum_true_days"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="1-digit">
+							<xs:annotation>
+								<xs:documentation>Show 1-digit day of month.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="2-digits">
+							<xs:annotation>
+								<xs:documentation>Show 2-digit day of month.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Julian">
+							<xs:annotation>
+								<xs:documentation>Show 3-digit day of year, also known as the Julian format.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="showYears" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Controls display of years component of year-month interval. When ‘true’, count of years will be displayed. Default value is inherited from user's locale.</xs:documentation>
+					<xs:documentation source="doc_att_showYears_interval"/>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="showMonths" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Controls display of months component of year-month interval. When ‘true’, count of months will be displayed. Default value is inherited from user's locale.</xs:documentation>
+					<xs:documentation source="doc_att_showMonths_interval"/>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="dateSeparator" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Characters to be displayed between year and month components of a year-month interval. Default value is inherited from user's locale.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+			<xs:attributeGroup ref="CommonIntervalFormatAttributes"/>
+			<xs:attributeGroup ref="DecimalFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="numberFormat">
+		<xs:annotation>
+			<xs:documentation>Defines attributes of the decimal numeric format. In addition to the attributes for an integer numeric format, decimal format supports decimal digits, delimiter and scientific notation.</xs:documentation>
+			<xs:documentation source="ebnf/EBNF_LayoutPatterns.xml#NumberFormat"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="useScientific" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Boolean flag to render value in scientific notation; that is, "0.123 E+03". When true, numeric value will be rendered in scientific notation. Otherwise, value will be rendered in decimal format whenever possible, as suggested by the precision attribute. Default value is inherited from user's locale.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="exponentSize" type="xs:nonNegativeInteger">
+				<xs:annotation>
+					<xs:documentation>Count of digits to be displayed following the exponent symbol when rendering in scientific notation. Default value is inherited from user's locale.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="exponentSymbol" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Character(s) to be displayed as exponent symbol when rendering in scientific notation. Will be rendered following numeric value (mantissa), separated by a space. If a space is desired between symbol and exponent value, it should be included in this attribute. Default value is inherited from user's locale.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+			<xs:attributeGroup ref="DecimalFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="currencyFormat">
+		<xs:annotation>
+			<xs:documentation>Defines attributes of a numeric currency format.</xs:documentation>
+			<xs:documentation source="ebnf/EBNF_LayoutPatterns.xml#NumberFormat"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="currencyCode" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique code that identifies currency. ISO 4217 country code is recommended. When omitted, currency is identified by what the query engine can infer from the model for the dataItem and if nothing then it uses the currency associated with the user's content locale.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="currencySymbol" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Character code to be displayed to identify local currency of numeric value. These character will be precede the numeric value and any [leading] sign. If a blank character is desired between numeric value and this symbol, it should be specified in this attribute. Default value is inherited from user's locale.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="intlCurrencySymbol" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Character code to be displayed to identify international currency of numeric value. These character will be precede the numeric value and any [leading] sign. If a blank character is desired between numeric value and this symbol, it should be specified in this attribute. Default value is inherited from user's locale.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="useIntlSymbol" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>When "true", international currency symbol will be used instead of local currency symbol. Default value is inherited from user's locale.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="useTrailingSymbol" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>When "true", characters in [international] currency symbol attribute will be appended to the numeric value and any trailing sign. Any whitespace characters at end of chosen symbol attribute value will be rendered between numeric value and trailing sign. Default value is inherited from user's locale.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+			<xs:attributeGroup ref="DecimalFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="percentFormat">
+		<xs:annotation>
+			<xs:documentation>Defines attributes of a numeric percentage or per mille format.</xs:documentation>
+			<xs:documentation source="ebnf/EBNF_LayoutPatterns.xml#NumberFormat"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="percentSymbol" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Characters to be displayed to identify precent or per mille value. These characters will be appended to the numeric value and any trailing sign. If a blank character is desired between numeric value and this trailing symbol, it should be specified in this attribute. If omitted, symbol will be inherited from user's locale.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="percentScale" type="xs:nonPositiveInteger">
+				<xs:annotation>
+					<xs:documentation>Scale to be applied to value after formatting.  If omitted, no percent scale will be applied and the value will formatted according the normal decimal positioning associated with the percent (or permille) symbol.
+</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+			<xs:attributeGroup ref="DecimalFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="CommonFormatAttributes">
+		<xs:attribute name="pattern" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Presentation format expressions are based on ICU format patterns. For additional information on ICU format patterns, refer to [http://oss.software.ibm.com/icu/userguide/index.html]</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="whenMissing" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Characters to be displayed when value to be formatted is missing. If omitted, an empty string is displayed.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="whenSecurityError" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Characters to be displayed when value to be formatted is was not available for security reasons. If omitted, the server default is returned.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="whenNotApplicable" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Characters to be displayed when value to be formatted is was not applicable. If omitted, the server default is returned.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="whenAnyError" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Characters to be displayed when value to be formatted is was not available because of an error. This setting is overridden by the more specific error condition formattings (e.g. whenSecurityError). If omitted, the server default is returned.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="CommonDateFormatAttributes">
+		<xs:annotation>
+			<xs:documentation>These attributes define the properties of a date format.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="showYears">
+			<xs:annotation>
+				<xs:documentation>Controls display of years component. When “false”, years are hidden. When "true", 2-digit years are shown in date value. When "hide century", last two digits of years component are shown (i.e. century excluded). When "show century", all digits of years component are shown (i.e. century included). Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+						<xs:annotation>
+							<xs:documentation>Hide year value.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="true">
+						<xs:annotation>
+							<xs:documentation>Show 1-, 2- or 4-digit year value, depending upon locale and chosen calendar. Year-month interval values will show as many digits for year as required.</xs:documentation>
+							<xs:documentation source="doc_enum_true_years"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="hideCentury">
+						<xs:annotation>
+							<xs:documentation>Show last 2 digits of year value (century excluded).</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="showCentury">
+						<xs:annotation>
+							<xs:documentation>Show all digits of year value (century included).</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showMonths">
+			<xs:annotation>
+				<xs:documentation>Controls display of months component. When “false”, months are hidden. When "true", 1-digit months are shown in date value. When “1 digit” or “2 digits”, 1- or 2- digit months are shown. When "short name", abbreviated month names are shown. When "full name", full month names are shown. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+						<xs:annotation>
+							<xs:documentation>Hide month value.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="true">
+						<xs:annotation>
+							<xs:documentation>Show 1- or 2-digit month value, based upon locale.</xs:documentation>
+							<xs:documentation source="doc_enum_true_months"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="1-digit">
+						<xs:annotation>
+							<xs:documentation>Show 1-digit month value.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="2-digits">
+						<xs:annotation>
+							<xs:documentation>Show 2-digit month value.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="shortName">
+						<xs:annotation>
+							<xs:documentation>Show abbreviated month name.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="fullName">
+						<xs:annotation>
+							<xs:documentation>Show full month name.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="dateSeparator" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Characters to be displayed between year, month and day components of a date. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dateStyle">
+			<xs:annotation>
+				<xs:documentation>Predefined date format.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="short"/>
+					<xs:enumeration value="medium"/>
+					<xs:enumeration value="long"/>
+					<xs:enumeration value="full"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="displayOrder">
+			<xs:annotation>
+				<xs:documentation>Controls display order of day, month, year, weekday and era components in a date value. Single characters are used to denote position without intervening whitespace: "Y" is the year, "M" the month, "D" the day, "W" the weekday, and "E" the era. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="YMD"/>
+					<xs:enumeration value="MDY"/>
+					<xs:enumeration value="DMY"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showDays">
+			<xs:annotation>
+				<xs:documentation>Controls display of days in date value. When "false", days are hidden. When true, 1-digit day of month shown in date value. When 1 digit or 2 digits, 1- or 2-digit day of month will be shown, respectively. When "Julian", 3-digit day of year will be shown. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+						<xs:annotation>
+							<xs:documentation>Hide days of the month.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="true">
+						<xs:annotation>
+							<xs:documentation>Show 1-digit day of month.</xs:documentation>
+							<xs:documentation source="doc_enum_true_days"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="1-digit">
+						<xs:annotation>
+							<xs:documentation>Show 1-digit day of month.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="2-digits">
+						<xs:annotation>
+							<xs:documentation>Show 2-digit day of month.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="Julian">
+						<xs:annotation>
+							<xs:documentation>Show 3-digit day of year, also known as the Julian format.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showWeekday">
+			<xs:annotation>
+				<xs:documentation>Controls display of weekday in date value. Position of the weekday name depends upon locale and chosen display order. When "false", weekday is hidden. When “true”, abbreviated (short) or full weekday name will be shown in date value, depending upon locale preferences. When “short name”, abbreviated weekday name will be shown. When "full name", complete weekday name will be shown. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+						<xs:annotation>
+							<xs:documentation>Hide weekday name.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="true">
+						<xs:annotation>
+							<xs:documentation>Show short/full weekday name, depending upon locale.</xs:documentation>
+							<xs:documentation source="doc_enum_true_weekday"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="shortName">
+						<xs:annotation>
+							<xs:documentation>Show abbreviated weekday name.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="fullName">
+						<xs:annotation>
+							<xs:documentation>Show full weekday name.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showEra" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Controls display of era in date value, whose position depends upon locale and calendar. When "false", era is hidden. When “true”, era name will be shown in date value. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="calendar">
+			<xs:annotation>
+				<xs:documentation>Identifies the desired calendar to be presented. Date values will be mapped to the selected calendar before formatting. Default calendar is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Gregorian">
+						<xs:annotation>
+							<xs:documentation>This is the calendar that most North Americans and Europeans will recognize.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="Imperial">
+						<xs:annotation>
+							<xs:documentation>The Japanese Imperial calendar.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="CommonIntervalFormatAttributes">
+		<xs:annotation>
+			<xs:documentation>These attributes define the properties of a time format.</xs:documentation>
+			<xs:documentation>[KF:Jan02] These attributes are defined within an attribute group so that they may be reused for time, date-time and interval formats.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="showHours">
+			<xs:annotation>
+				<xs:documentation>Controls display of hour component. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+						<xs:annotation>
+							<xs:documentation>Hide hours.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="true">
+						<xs:annotation>
+							<xs:documentation>Show 1-digit hours for 12-hour clock and 2-digit hours for 24-hour clock.</xs:documentation>
+							<xs:documentation>[KF:Sep02] Under Japanese locale, 1-digit hours should be shown.</xs:documentation>
+							<xs:documentation source="doc_enum_true_hours"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="1-digit">
+						<xs:annotation>
+							<xs:documentation>Show 1-digit hour, regardless of clock.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="2-digits">
+						<xs:annotation>
+							<xs:documentation>Show 2-digit hour, regardless of clock.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showMinutes">
+			<xs:annotation>
+				<xs:documentation>Controls display of minutes component. When ‘true’, minutes are shown in time value. When “false”, minutes are hidden. When “M” or “MM”, 1- or 2-digit values will be shown, respectively. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+						<xs:annotation>
+							<xs:documentation>Do not show minutes.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="true">
+						<xs:annotation>
+							<xs:documentation>Show 2-digit minutes.</xs:documentation>
+							<xs:documentation>[KF:Sep02] Under Japanese locale, 1-digit minutes should be shown.</xs:documentation>
+							<xs:documentation source="doc_enum_true_minutes"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="1-digit">
+						<xs:annotation>
+							<xs:documentation>Show 1-digit minutes.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="2-digits">
+						<xs:annotation>
+							<xs:documentation>Show 2-digit minutes.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showSeconds">
+			<xs:annotation>
+				<xs:documentation>Controls display of seconds component. When ‘true’, seconds are shown in time value. When “false”, only hours and minutes are shown. When “1 digit” or “2 digits”, 1- or 2-digit values will be shown, respectively. Default value is inherited from user's locale.</xs:documentation>
+				<xs:documentation source="doc_att_showSeconds_format"/>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+						<xs:annotation>
+							<xs:documentation>Hide seconds and milliseconds.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="true">
+						<xs:annotation>
+							<xs:documentation>Show 2-digit seconds for any clock.</xs:documentation>
+							<xs:documentation>[KF:Sep02] Under Japanese locale, 1-digit seconds should be shown.</xs:documentation>
+							<xs:documentation source="doc_enum_true_seconds"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="1-digit">
+						<xs:annotation>
+							<xs:documentation>Show 1-digit seconds.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="2-digits">
+						<xs:annotation>
+							<xs:documentation>Show 2-digit seconds.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showMilliseconds">
+			<xs:annotation>
+				<xs:documentation>Controls display of milliseconds component. This attribute will be ignored if seconds are not shown (see 'showSeconds' attribute). When ‘true’, 3-digit milliseconds are shown in time value. When “false”, milliseconds are hidden. When “S”,  “SS” or “SSS”, milliseconds will be shown to 1, 2 or 3 decimal places of precision. Default value is inherited from user's locale.</xs:documentation>
+				<xs:documentation source="doc_att_showMilliseconds_format"/>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+						<xs:annotation>
+							<xs:documentation>Hide milliseconds.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="true">
+						<xs:annotation>
+							<xs:documentation>Show 3-digit milliseconds for any clock.</xs:documentation>
+							<xs:documentation>[KF:Sep02] Even under Japanese locale, 3-digit milliseconds should be shown.</xs:documentation>
+							<xs:documentation source="doc_enum_true_milliseconds"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="1-digit">
+						<xs:annotation>
+							<xs:documentation>Show 1-digit milliseconds.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="2-digits">
+						<xs:annotation>
+							<xs:documentation>Show 2-digit milliseconds.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="3-digits">
+						<xs:annotation>
+							<xs:documentation>Show 3-digit milliseconds.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="timeSeparator" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Characters to be displayed between hour, minute and second components of a time. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="CommonTimeFormatAttributes">
+		<xs:annotation>
+			<xs:documentation>These attributes define the common properties of a time format.</xs:documentation>
+			<xs:documentation>[KF:Jan02] These attributes are defined within an attribute group so that they may be reused for time and date-time formats.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="timeStyle">
+			<xs:annotation>
+				<xs:documentation>Predefined time format.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="short"/>
+					<xs:enumeration value="long"/>
+					<xs:enumeration value="full"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showAmPm" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Controls display of AM / PM component. When ‘true’, “am” or “pm” will be appended to 12-hour clock values. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="showTimeZone" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Controls display of time zone in time value. When "false", time zone is hidden. When “true”, time zone will be shown in time value. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="clock">
+			<xs:annotation>
+				<xs:documentation>Controls display of time value in 12-hour or 24-hour format. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="12-hour">
+						<xs:annotation>
+							<xs:documentation>This is the AM/PM format.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="24-hour">
+						<xs:annotation>
+							<xs:documentation>This is the military format.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="decimalDelimiter" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Character delimiter between seconds and milliseconds. Also known as a "decimal point", this delimiter is applicable only when milliseconds are presented. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attributeGroup ref="CommonIntervalFormatAttributes"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="IntegerFormatAttributes">
+		<xs:attribute name="sign" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Specifies which character or characters to display before negative numeric values. To display a space between a negative sign and the numeric value, specify it in this attribute. The default value will be inherited from the user's locale.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="useTrailingSign" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>When "true", the characters indicated by "sign" attribute will be appended to numeric value. Any whitespace characters at end of sign attribute value will be rendered between numeric value and [trailing] sign. When "false", sign attribute value will precede numeric value. Default value will be inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="maxDigits" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>Maximum count of digits to be displayed on the left-hand side of decimal point. If value exceeds this limitation, scientific notation will be used. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="minDigits" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>Minimum count of digits to be displayed on the left-hand side of decimal point. If value to be formatted has fewer digits than this limitation, padding characters will be applied to left side of formatted value until minimum digit count is achieved. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="paddingCharacter" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>When magnitude of value is less than minimum digits attribute, padding characters will be prepended to value until minimum digits restriction is satisfied. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="scale" type="xs:short">
+			<xs:annotation>
+				<xs:documentation>Number of digits to shift decimal place from actual location for formatting purposes. This attribute is handy when displaying values in "thousands of dollars", or when whole numbers are stored in the database, but they actually represent values with X decimal places. Positive values shift the decimal place to the right, whereas negative values shift the decimal point to the left. Default value is inherited from database column.</xs:documentation>
+				<xs:documentation source="doc_att_format_scale"/>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="useGrouping" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>When "true", grouping delimiter is applied as defined by grouping size attributes. Default value will be inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="groupDelimiter" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Character delimiter for digit groups. Also known as "thousands separator", this delimiter is applicable only when digit grouping is enabled (i.e. groupDigits attribute is non-zero). Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="groupSize" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>This is the primary grouping size, which represents the count of digits left of the decimal point to be grouped together and separated by groupDelimiter character. Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="groupSecondarySize" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>Some locales support a secondary grouping size that is applied to the left of the primary group. If specified, this attribute is the count of digits left of [primary] digit group that should be grouped together and separated by groupDelimiter character. If omitted, seconday grouping of digits is same as primary grouping [see groupSize attribute].</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="whenNegative" type="xs:string">
+			<xs:annotation>
+				<xs:documentation source="http://www-124.ibm.com/icu/apiref/classDecimalFormat.html#_details">Negative numeric format; 'pattern' attribute is used for positive numbers. Some restrictions apply (see http://www-124.ibm.com/icu/apiref/classDecimalFormat.html#_details).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="whenZero" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Characters to be displayed when numeric value is zero. If omitted, significance attribute determines number of zeroes to display.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DecimalFormatAttributes">
+		<xs:attribute name="decimalSize" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>Count of digits to be displayed to right of decimal point. If omitted, fractional [decimal] digits will be displayed as required.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="decimalDelimiter" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Character delimiter between whole and fractional components of a floating-point number. Also known as "decimal point", this delimiter is applicable only when fractional digits are presented (i.e. decimals attribute is non-zero). Default value is inherited from user's locale.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attributeGroup ref="IntegerFormatAttributes"/>
+		<xs:attribute name="whenDivideZero" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Characters to be displayed when numeric value is the result of a division by zero. If omitted, the server default is returned.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="whenNumericOverflow" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Characters to be displayed when numeric value is the result of a numeric overflow. If omitted, the server default is returned.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+</xs:schema>

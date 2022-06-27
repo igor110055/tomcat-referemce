@@ -1,0 +1,89 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: Viewer
+ *| (C) Copyright IBM Corp. 2014
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *|
+ *+------------------------------------------------------------------------+
+ */
+ 
+.drillCursor{cursor: url("../skins/classic/viewer/images/actin_drill_down.cur");}
+.drillUpCursor{cursor: url("../skins/corporate/viewer/images/action_drill_up.cur");}
+.drillThroughCursor{cursor:hand;}
+.noDrillCursor{cursor:default;}
+.busyUpdatingStr{padding-right:5px;line-height:15px;color: #000000;vertical-align:middle;}
+.busyBody{font-family: Tahoma, arial, geneva, helvetica, sans-serif;background-color: #FFFFFF;color: #000000;}
+.ls > .textItem,.lt > .textItem,.lc > .textItem,.lm > .textItem,.lh > .textItem,.lf > .textItem,.ih > .textItem,.if > .textItem,.is > .textItem,.oh > .textItem,.of > .textItem,.os > .textItem,.sc > .textItem,.sb > .textItem,.sh > .textItem,.sf > .textItem,.ss > .textItem,.xt > .textItem,.xm > .textItem,.ml > .textItem,.mv > .textItem,.cl > .textItem,.cv > .textItem,.sl > .textItem,.sv > .textItem,.hl > .textItem,.hv > .textItem,.nl > .textItem,.nv > .textItem,.xl > .textItem,.xv > .textItem,.il > .textItem,.iv > .textItem,.ol > .textItem,.ov > .textItem,.dm > .textItem{cursor: default;}
+.skip a{position: absolute;overflow: hidden;width: 0;height: 0;}@charset "UTF-8";.primarySelection{background-image: url("../common/images/selection_primary.png");}
+.primarySelectionBoders{position : absolute;border : 1px solid #eb8032;display : none;}
+.secondarySelection{background-image: url("../common/images/selection_secondary.png");}
+.secondarySelectionRegion{position:absolute;display:block;visibility:visible;opacity:0.5;filter:alpha(opacity=50);z-index:-1;background-image: url("../../../common/images/selection_secondary.png");}
+.sortIconHidden{vertical-align:top;visibility:hidden;width:16px;height:18px;}
+.sortIconVisible{vertical-align:top;visibility:visible;width:16px;height:18px;}
+.sortIconOver{cursor: pointer;cursor: hand;}
+.hoverSelection{color: #000000 !important;background-color: #A4BED2 !important;}
+.cutSelection{color: #666666 !important;background-color: #CCCCCC !important;}
+.cutSelectionRegion{position:absolute;display:block;visibility:visible;opacity:0.5;filter:alpha(opacity=50);color: #666666 !important;z-index:0;background-color: #CCCCCC !important;}
+
+.ct_verticalLine{border-top : 1px solid #B5BCC7;display : block;position : absolute;z-index : 2;width : 40000px;left : 0px;}
+.ct_controlBottom .ct_verticalLine{top: 0px;}
+.ct_controlTop .ct_verticalLine{bottom: 0px;}
+.ct_wrapperDiv{overflow : hidden;width : 100%;position : relative;z-index : 1;}
+.ct_controlBottom .ct_wrapperDiv{padding-top : 2px;}
+.ct_controlTop .ct_wrapperDiv{margin-bottom : 2px;}
+.ct_control{background-color : #F5F5F5;overflow : hidden;text-align : left;display: block;width : 40000px;position : absolute;}
+.ct_controlTop .ct_control{padding-top: 1px;}
+.ct_controlBottom .ct_control{padding-bottom: 3px;}
+.ct_control .ct_outerDiv{float : left;min-width : 75px;margin-right : 1px;cursor : pointer;white-space : nowrap;background-color : #FFFFFF;border : 1px solid #B5BCC7;position : relative;display : block;}
+.ct_controlBottom .ct_control .ct_outerDiv{border-radius : 0 0 2px 2px;margin-bottom : 1px;margin-top : -1px;}
+.ct_controlTop .ct_control .ct_outerDiv{border-radius : 2px 2px 0 0;margin-top : 1px;margin-bottom : -1px;}
+.ct_controlBottom .ct_control .ct_highlight{border-bottom-width : 2px;border-bottom-color : #008ABF;border-radius : 0 0 3px 3px;margin-bottom : 0px;}
+.ct_controlTop .ct_control .ct_highlight{border-top-width : 2px;border-top-color : #008ABF;border-radius : 3px 3px 0 0;margin-top : 0px;}
+.ct_controlBottom .ct_control .ct_selected{z-index : 30;border-top : 1px solid #FFFFFF;}
+.ct_controlTop .ct_control .ct_selected{z-index : 3;border-bottom : 1px solid #FFFFFF;}
+.ct_control .ct_content{text-align : center;margin : 3px 6px 7px;}
+.ct_control .ct_text{min-height : 15px;vertical-align : middle;text-align : center;color : #444444;font-size : 12px;font-family : Arial,Verdana,'Arial Unicode MS','Andale WT','MS UI Gothic','MS PGothic','Apple Gothic',Gulim,SimSun,PMingLiU,Raghu8,sans-serif !important;}
+.ct_scroll{width : 20px;position : absolute;z-index : 100;display : block;background-color : #F5F5F5;}
+.ct_scroll .ct_scrollButton{background-repeat : no-repeat;background-position : center;border : 1px solid #B5BCC7;z-index : 101;height : 100%;}
+.ct_controlBottom .ct_scroll{top : 4px;border-bottom : 2px solid #FFFFFF;}
+.ct_controlTop .ct_scroll{top : 0px;border-top : 2px solid #FFFFFF;}
+.ct_scroll .ct_scrollDisabled .ct_scrollButton{background-color: #F5F5F5;}
+.ct_scroll .ct_scrollEnabled .ct_scrollButton{background-color: #E5F2FE;}
+.ct_wrapperDiv .a11y .ct_scrollDisabled .ct_scrollButton{text-align : center;vertical-align : middle;opacity : 0.5;-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";}
+.ct_wrapperDiv .a11y .ct_scrollEnabled .ct_scrollButton{text-align : center;vertical-align : middle;}
+.ct_wrapperDiv .ct_left .ct_scrollDisabled .ct_scrollButton{background-image:url(../../../skins/corporate/shared/images/action_scroll_left_disabled.gif);}
+.ct_wrapperDiv .ct_left .ct_scrollEnabled .ct_scrollButton{background-image:url(../../../skins/corporate/shared/images/action_scroll_left.gif);}
+.ct_wrapperDiv .ct_right .ct_scrollDisabled .ct_scrollButton{background-image:url(../../../skins/corporate/shared/images/action_scroll_right_disabled.gif);}
+.ct_wrapperDiv .ct_right .ct_scrollEnabled .ct_scrollButton{background-image:url(../../../skins/corporate/shared/images/action_scroll_right.gif);}
+@charset "UTF-8";body, textarea, input, select{font-family: Tahoma, arial, geneva, helvetica, sans-serif;}
+@media print{.topRow{ display: none }
+.pageControls{ display: none }
+.RVContent{ overflow: visible }
+.RVReport{ position: static; }
+.viewer{ overflow : visible !important; }
+.mainViewerTD{ height : auto !important; }
+.mainViewerTable{ height : auto !important; }
+}
+html.viewer{height: 100%;}
+body.viewer{height: 100%;margin: 0px;}
+.formWarpRequest{margin: 0px;height: 100%;}
+.mainViewerTable{border-spacing : 0;border : 0px;height : 100%;width : 100%;padding : 0px;table-layout : fixed;}
+.mainViewerTD{height : 100%;width : 100%;padding : 0px;}
+.RVContent{overflow: auto;left : 0px;top : 0px;width : 100%;height : 100%;border : 0px;position : relative;}
+.RVReport{position: absolute;width : 100%;height : 100%;}
+.RVContentFragment{width : 100%;height : 100%;border : 0px;}
+.RVReportFragment{width : 100%;height : 100%;}
+.viewerNavigation{width : 100%;display : none;height : 16px;padding : 0px;}
+.RVReport a{text-decoration: underline;}
+.dl{text-decoration: underline;cursor: pointer !important;}
+.viewerWorkingDialog{border : 1px solid #000000;border-spacing : 0;box-shadow : 1px 1px 2px #999999;font-size : 70%;}
+.workingDialogDiv{width :350px;}
+.workingDialogInnerTable{border-spacing : 0;padding : 0px;width : 300px;border : 0px;text-align : left;padding-top : 5px;padding-bottom : 5px;}
+.workingDialogLinks{border-width : 1px 0px 1px 0px;border-style : solid;border-color : black;}
+.workingDialogOptions{padding-top : 3px;padding-left :10px;padding-bottom : 10px;display : none;}
+.workingDialogCancelButton{padding-right : 10px;padding-left : 10px;padding-top : 2px;padding-bottom : 3px;}
+.aboutOkButton{border : 1px solid #999999;cursor : pointer;fontWeight : normal;padding : 7px 0px 7px 0px;position : absolute;tabIndex : 0;font-size : 80%;bottom : 40px;left : 20px;}
+.rtl .aboutOkButton{right : 20px;}

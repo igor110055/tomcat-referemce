@@ -1,0 +1,217 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: Viewer
+ *| (C) Copyright IBM Corp. 2014
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *|
+ *+------------------------------------------------------------------------+
+ */
+ 
+.editContent{background-position:-272px;}
+.refresh{background-position:-592px;}
+.printAsPDF{background-position:-528px;}
+.pdf{background-position:-352px;}
+.excel2007{background-position:-320px;}
+.excel2002{background-position:-304px;}
+.excelSingleSheet{background-position:-336px;}
+.csv{background-position:-288px;}
+.xml{background-position:-368px;}
+.drillDown{background-position:-160px;}
+.drillDownDisabled{background-position:-176px;}
+.drillUp{background-position:-224px;}
+.drillUpDisabled{background-position:-240px;}
+.filter{background-position:-384px;}
+.filterDisabled{background-position:-1392px;}
+.sort{background-position:-688px;}
+.sortDisabled{background-position:-1408px;}
+.sortAscending{background-position:-704px;}
+.sortDescending{background-position:-720px;}
+.calculate{background-position:-16px;}
+.calculateDisabled{background-position:-1168px;}
+.group{background-position:-416px;}
+.groupDisabled{background-position:-1424px;}
+.chartTypes{background-position:-32px;}
+.chartTypesDisabled{background-position:-1440px;}
+.changePalette{background-position:-48px;}
+.disabledChangePalette,.dijitDisabled .changePalette{background-position:-64px;}
+.changePaletteClassic{background-position:-896px;}
+.changePaletteContemporary{background-position:-912px;}
+.changePaletteContrast{background-position:-1456px;}
+.changePaletteCorporate{background-position:-928px;}
+.changePaletteDefault{background-position:-944px;}
+.changePaletteDynamic{background-position:-960px;}
+.changePaletteExcel{background-position:-976px;}
+.changePaletteExcel2007{background-position:-1376px;}
+.changePaletteFlow{background-position:-992px;}
+.changePaletteGradients{background-position:-1008px;}
+.changePaletteGreyScale{background-position:-1024px;}
+.changePaletteLegacy{background-position:-944px;}
+.changePaletteMetro{background-position:-1040px;}
+.changePaletteMixed{background-position:-1056px;}
+.changePaletteModern{background-position:-1072px;}
+.changePalettePatterns{background-position:-1088px;}
+.changePaletteChartPalette{background-position:-1104px;}
+.annotation{background-position:-80px;}
+.disabledAnnotation{background-position:-1536px;}
+.DeleteAnnotation,.DeleteWidgetAnnotation{background-position:-96px;}
+.EditAnnotation,.EditWidgetAnnotation{background-position:-112px;}
+.NewAnnotation,.NewWidgetAnnotation{background-position:-128px;}
+.goto{background-position: -192px;}
+.dijitDisabled .goto{background-position: -208px;}
+.selectionFilterEnabled{background-position: -1712px;}
+.selectionFilter{background-position: -1728px;}
+.undo{background-position: -736px;}
+.undoDisabled{background-position: -752px;}
+.redo{background-position: -560px;}
+.redoDisabled{background-position: -576px;}
+.rename{background-position: -624px;}
+.renameDisabled{background-position: -640px;}
+.AdditionCalculation{background-position: -816px;}
+.DivisionCalculation{background-position: -832px;}
+.MultiplicationCalculation{background-position: -848px;}
+.PercentDifferenceCalculation{background-position: -864px;}
+.SubtractionCalculation{background-position: -880px;}
+.moveLeft{background-position: -464px;}
+.dijitMenuItemDisabled .moveLeft{background-position: -480px;}
+.moveRight{background-position: -496px;}
+.dijitMenuItemDisabled .moveRight{background-position: -512px;}
+.swap{background-position: -1504px;}
+.disabledSwap{background-position: -1520px;}
+.freezeColumnHeadings{background-position: -1568px;}
+.freezeRowHeadings{background-position: -1552px;}
+.editContent,.refresh,.printAsPDF,.pdf,.excel2007,.excel2002,.excelSingleSheet,.csv,.xml,.drillDown,.drillDownDisabled,.drillUp,.drillUpDisabled,.filter,.filterDisabled,.sort,.sortDisabled,.sortAscending,.sortDescending,.calculate,.calculateDisabled,.group,.groupDisabled,.chartTypes,.chartTypesDisabled,.changePalette,.disabledChangePalette,.changePaletteClassic,.changePaletteContemporary,.changePaletteContrast,.changePaletteCorporate,.changePaletteDefault,.changePaletteDynamic,.changePaletteExcel,.changePaletteExcel2007,.changePaletteFlow,.changePaletteGradients,.changePaletteGreyScale,.changePaletteLegacy,.changePaletteMetro,.changePaletteMixed,.changePaletteModern,.changePalettePatterns,.changePaletteChartPalette,.annotation,.disabledAnnotation,.DeleteAnnotation,.DeleteWidgetAnnotation,.EditDeleteAnnotation,.EditAnnotation,.EditWidgetAnnotation,.NewAnnotation,.NewWidgetAnnotation,.goto,.undo,.undoDisabled,.redo,.redoDisabled,.rename,.renameDisabled,.AdditionCalculation,.SubtractionCalculation,.MultiplicationCalculation,.PercentDifferenceCalculation,.DivisionCalculation,.moveLeft,.moveRight,.swap,.disabledSwap,.freezeRowHeadings,.freezeColumnHeadings,.selectionFilter,.selectionFilterEnabled{background-image : url(./images/on_demand_toolbar_and_context_menu_strip.png);}
+.dj_ie6 .editContent,.dj_ie6 .refresh,.dj_ie6 .printAsPDF,.dj_ie6 .pdf,.dj_ie6 .excel2007,.dj_ie6 .excel2002,.dj_ie6 .excelSingleSheet,.dj_ie6 .csv,.dj_ie6 .xml,.dj_ie6 .drillDown,.dj_ie6 .drillDownDisabled,.dj_ie6 .drillUp,.dj_ie6 .drillUpDisabled,.dj_ie6 .filter,.dj_ie6 .sort,.dj_ie6 .sortAscending,.dj_ie6 .sortDescending,.dj_ie6 .calculate,.dj_ie6 .group,.dj_ie6 .chartTypes,.dj_ie6 .changePalette,.dj_ie6 .disabledChangePalette,.dj_ie6 .changePaletteClassic,.dj_ie6 .changePaletteContemporary,.dj_ie6 .changePaletteContrast,.dj_ie6 .changePaletteCorporate,.dj_ie6 .changePaletteDefault,.dj_ie6 .changePaletteDynamic,.dj_ie6 .changePaletteExcel,.dj_ie6 .changePaletteExcel2007,.dj_ie6 .changePaletteFlow,.dj_ie6 .changePaletteGradients,.dj_ie6 .changePaletteGreyScale,.dj_ie6 .changePaletteLegacy,.dj_ie6 .changePaletteMetro,.dj_ie6 .changePaletteMixed,.dj_ie6 .changePaletteModern,.dj_ie6 .changePalettePatterns,.dj_ie6 .changePaletteChartPalette,.dj_ie6 .annotation,.dj_ie6 .DeleteAnnotation,.dj_ie6 .EditDeleteAnnotation,.dj_ie6 .EditAnnotation,.dj_ie6 .EditWidgetAnnotation,.dj_ie6 .NewAnnotation,.dj_ie6 .NewWidgetAnnotation,.dj_ie6 .goto,.dj_ie6 .undo,.dj_ie6 .undoDisabled,.dj_ie6 .redo,.dj_ie6 .redoDisabled,.dj_ie6 .rename,.dj_ie6 .renameDisabled,.dj_ie6 .AdditionCalculation,.dj_ie6 .SubtractionCalculation,.dj_ie6 .MultiplicationCalculation,.dj_ie6 .PercentDifferenceCalculation,.dj_ie6 .DivisionCalculation,.dj_ie6 .moveLeft,.dj_ie6 .moveRight,.dj_ie6 .selectionFilter,.dj_ie6 .selectionFilterEnabled{background-image : url(./images/on_demand_toolbar_and_context_menu_strip.gif);}
+.ChartTypeBar{background-image : url(./images/charts/bar.gif);}
+.ChartTypeColumn{background-image : url(./images/charts/column.gif);}
+.ChartTypeLine{background-image : url(./images/charts/line.gif);}
+.ChartTypeArea{background-image : url(./images/charts/area.gif);}
+.ChartTypeGauge{background-image : url(./images/charts/gauge.gif);}
+.ChartTypePie{background-image : url(./images/charts/pie.gif);}
+.ChartTypeScatter{background-image : url(./images/charts/scatter.gif);}
+.ChartTypeBubble{background-image : url(./images/charts/bubble.gif);}
+.ChartTypePoint{background-image : url(./images/charts/point.jpg);}
+.ChartTypeCrosstab{background-image : url(./images/charts/crosstab.gif);}
+.ChartTypeList{background-image : url(./images/charts/list.gif);}
+.ChartTypeCombination{background-image : url(./images/charts/v2_combinationChart.gif);}
+.ChartTypeBullet{background-image : url(./images/charts/v2_bulletChart.gif);}
+.ChartTypeRadar{background-image : url(./images/charts/radarChart.gif);}
+.ChartTypePareto{background-image : url(./images/charts/v2_paretoChart.gif);}
+.ChartTypeProgressive{background-image :url(./images/charts/v2_progressiveChart.gif);}
+.ChartTypeMarimekko{background-image :url(./images/charts/marimekkochart.gif);}
+.ChartTypeStackedBar{background-image :url(./images/charts/v2_stackedBarChart.gif);}
+.ChartTypeStackedColumn{background-image :url(./images/charts/v2_stackedColumnChart.gif);}
+.watchNewVersions{background-image : url(./images/action_subscribe.gif);}
+.deleteNotification{background-image : url(./images/action_remove_from_list.gif);}
+.addNotification{background-image : url(./images/action_add_to_list.gif);}
+.newSubscription{background-image : url(./images/action_new_subscription.gif);}
+.watchRule{background-image : url(./images/icon_subscription.gif);}
+.modifySubscription{background-image : url(./images/action_edit.gif);}
+.deleteSubscription{background-image : url(./images/action_delete.gif);}
+.loading{background-image : url(./images/action_busy.gif);}
+.runReport{background-image : url(../ps/portal/images/action_run.gif);}
+.menuItemChecked{background-image : url(./images/round_check.gif);}
+.dijit_a11y .menuItemSelected{font-weight: bold;padding:0 !important;border-right:none !important;border-top:none !important;border-bottom:none !important;}
+.glossary{background-image : url(./images/action_glossary.gif);}
+.lineage{background-image : url(./images/action_lineage.gif);}
+.changePaletteJazz{background-image : url(./images/jazz.gif);}
+.excel2000{background-image : url(./images/action_view_excel_2000.gif);}
+.viewer-wait-dialog{background-color : #ffffff;}
+.customCursor{z-index: 1000;display: none;background-color: transparent;border-style: none
+}
+.dropCaret{z-index: 999;padding: 0px;border-color: #999999;border-style: solid;border-width: 1px;background-color: white;display: none;position: absolute;text-align: center;}
+.executionCursor{z-index: 1001;display: inline;background-color: transparent;border-style: none;position: absolute;left: 0px;top: 0px;}
+.bibi{font-weight:bold;}
+.buaContainer{display : none;position : absolute;top : 0;left : 0;z-index : 6005;padding : 4px;margin : 4px;border : 1px solid #8D8D8D;}
+.buaIframe{width: 100%;height: 100%;z-index:6004;}
+.blocker{position:absolute;left: 0px;top: 0px;width: 100%;height: 100%;background-color: #808080;filter: alpha(opacity=60);z-index: 6001;opacity: 0.6;}
+.reportBlocker{position:absolute;left: 0px;top: 0px;width: 100%;height: 100%;filter: alpha(opacity=50);opacity: 0.5;background-image: url(./images/blank.gif);background-color: #808080;display : none;z-index: 6000;}
+.dijit_a11y .viewer-wait-dialog{border: 1px solid black;}
+.new-info-indicator{position: absolute;top: 0px;right: 0px;z-index: 2;}
+.inlineDialog{position: absolute;top: 5px;right: 5px;left: 5px;bottom: 5px;overflow: auto;margin: 4px;padding: 3px;z-index: 100;}
+.inlineDialog .dijitTitlePaneContentInner{overflow: auto;}
+.inlineDialog .bux-InformationDialog-detail-section .dijitTitlePaneContentOuterClosed,.inlineDialog .bux-InformationDialog-detail-section .dijitTitlePaneContentOuterOpen{background:none repeat scroll 0 0 #FFFFFF;border-right:1px solid;border-style:solid;border-width:1px;border-color:#98B2C1;border-bottom: 0px solid;}
+.inlineDialog .bux-InformationDialog-detail-section .dijitTitlePaneContentOuterOpen{border-bottom: 1px solid;}
+.inlineDialog-background-error, .widget_load_background, .report-blocker{background-color: #FFFFFF;}
+.inlineDialog-background-error, .report-blocker{opacity: 0.6;filter: alpha(opacity=60);position: absolute;top: 5px;bottom: 5px;left: 5px;right: 5px;z-index: 99;}
+.report-blocker{opacity: 0.0;filter: alpha(opacity=0);position: absolute;top: 5px;bottom: 5px;left: 5px;right: 5px;z-index: 99;}
+.reportInfoIcon{padding-right: 2px;padding-top: 2px;}
+.buxReport TABLE{font-weight: normal;}
+.buxReport{height : 100%;}
+.buxReport IMG{display: inline-block;}
+.dj_ie .buxReport TABLE{text-align: left;}
+.dj_ie .buxReport SPAN:not(.hy){display: inline-block; text-decoration:inherit;}
+.dj_ie .buxReport TD{text-decoration:inherit;}
+.buxReport .pg * td,.buxReport .pp * td,.buxReport .pg * th,.buxReport .pp * th{-moz-box-sizing: content-box !important;}
+.buxReport .expandButton{cursor: pointer;display: inline-block;height: 16px;width: 16px;vertical-align: middle;}
+.buxReport .expandButton.expand{background-image: url("../skins/bux/bux/images/tree/tree_closed.png");}
+.dj_rtl .buxReport .expandButton.expand{background-image: url("../skins/bux/bux/images/tree/tree_closed_rtl.png");}
+.buxReport .expandButton.collapse{background-image: url("../skins/bux/bux/images/tree/tree_open.png");}
+.expandButtonCaption,.dj_ie .buxReport .expandButtonCaption{display: none;}
+.dijit_a11y .expandButtonCaption{display: inline !important;}
+.icdUI .v10 td.fp, .icdUI .v10 table.fp{background-color: inherit;background-image: none;border: 0 none;white-space: nowrap;}
+.dj_ie .v10 td.fp, .dj_ie .v10 table.fp{background-color: transparent;}
+.icdUI .clsInsertRemoveTable{width: auto;min-width: 20px;}
+.icdUI .clsInsertRemoveButton span, .icdUI .clsInsertRemoveButton[disabled] span, .icdUI .clsInsertRemoveButtonOver span{display: none;}
+.icdUI .clsInsertImgDisabled{background-image : url(images/insert_dis.gif);}
+.icdUI .clsRemoveImgDisabled{background-image : url(images/remove_dis.gif);}
+.icdUI .clsPrompt_a11y .clsInsertRemoveButton span,.icdUI .clsPrompt_a11y .clsInsertRemoveButton[disabled] span,.icdUI .clsPrompt_a11y .clsInsertRemoveButtonOver span{display: inline;}
+html>body.icdUI .clsPrompt_a11y .clsInsertRemoveButton, html>body.icdUI .clsPrompt_a11y .clsInsertRemoveButton[disabled], html>body.icdUI .clsPrompt_a11y .clsInsertRemoveButtonOver{min-width: 100%;}
+html>body.icdUI .clsInsertRemoveButton, html>body.icdUI .clsInsertRemoveButton[disabled], html>body.icdUI .clsInsertRemoveButtonOver{width: auto;min-width: 20px;}
+.icdUI .clsInsertRemoveButtonOver{cursor: pointer;}
+.icdUI .v10 .clsTextWidget:focus, .icdUI .v10 .clsSwsEditBox:focus, .icdUI .v10 .clsSelectDateEditBox:focus, .icdUI .v10 .clsSelectDateYearEditBox:focus, .icdUI .clsSelectDateEditBox:focus, .icdUI .clsSelectDateYearEditBox:focus, .icdUI .v10 .pcl:focus{background-color: #FFFFFF;}
+.icdUI .v10 .clsColon{border: 0 none;}
+.icdUI .v10 .pp .tt{text-decoration: none;font-size: 12px;color: #4389B8;}
+.icdUI .v10 .pp .ta{text-align: left;}
+.dj_ie .clsSelectTimeEditBox{min-width: auto;}
+.icdUI .v10 .clsCheckBoxList, .icdUI .v10 .clsRadioGroupList{border: 1px solid #5DA5D2;-moz-border-right-colors: none;-moz-border-bottom-colors: none;padding-right:18px;}
+.dj_ie .icdUI .v10 .clsCheckBoxList, .dj_ie .icdUI .v10 .clsRadioGroupList{padding-right:1px;}
+.dj_ie SPAN.dijitExpandoText{display: none;}
+.dijit_a11y SPAN.dijitExpandoText{display: inline;}
+.dj_ie .clsTreePane .dijitCheckBox{height:18px;}
+.icdUI .v10 .dijitCheckBoxMixed{background-position: -48px 50%;}
+.dijit_a11y .clsTreeLevel{margin:2px 0;}
+.icdUI .clsTreeNodeIcon{width:4px;height:4px;background-position: center;background-repeat: no-repeat;background-image : url(images/blank.gif);}
+.icdUI .clsTreeLineIcon{width:16px;height:16px;background-position: center;background-repeat: no-repeat;background-image : url(images/blank.gif);}
+.dijit_a11y .clsTreeLineIcon{width:22px;}
+.dj_ie #loadingBuaTools .icdBorder{border: #769dc0 1px solid;}
+.sortIconHidden{vertical-align:top;visibility:hidden;width:16px;height:18px;}
+.sortIconVisible{vertical-align:top;visibility:visible;width:16px;height:18px;}
+.sortIconOver{cursor: pointer;cursor: hand;}
+.icdUI .hoverSelection{color: #000000 !important;background-color: #A4BED2 !important;}
+.icdUI .v10 button.bp{min-width : auto;background-image: url("../reportstyles/images/button_bg.png");filter : "progid:DXImageTransform.Microsoft.gradient(enabled=false)" !important;}
+@media print{.icdUI .v10 button.bp, .icdUI .v10 button.bph, .icdUI .v10 button.bpd, .icdUI .v10 button.clsPromptButton, .icdUI .v10 button.clsInsertRemoveButton, .icdUI .v10 .clsToolbarButton, .icdUI .clsToolbarButton, .icdUI .v10 a.clsLink, .clsOptions, .clsErrorRequired, .dialogClose, .clsFeedbackWidgetParseError{display: none !important;}
+.clsTextWidgetParseError{border-bottom: none !important;}
+}
+.dj_rtl .new-info-indicator{position: relative;left: 0;}
+@charset "UTF-8";body, textarea, input, select{font-family: Tahoma, arial, geneva, helvetica, sans-serif;}
+@media print{.topRow{ display: none }
+.pageControls{ display: none }
+.RVContent{ overflow: visible }
+.RVReport{ position: static; }
+.viewer{ overflow : visible !important; }
+.mainViewerTD{ height : auto !important; }
+.mainViewerTable{ height : auto !important; }
+}
+html.viewer{height: 100%;}
+body.viewer{height: 100%;margin: 0px;}
+.formWarpRequest{margin: 0px;height: 100%;}
+.mainViewerTable{border-spacing : 0;border : 0px;height : 100%;width : 100%;padding : 0px;table-layout : fixed;}
+.mainViewerTD{height : 100%;width : 100%;padding : 0px;}
+.RVContent{overflow: auto;left : 0px;top : 0px;width : 100%;height : 100%;border : 0px;position : relative;}
+.RVReport{position: absolute;width : 100%;height : 100%;}
+.RVContentFragment{width : 100%;height : 100%;border : 0px;}
+.RVReportFragment{width : 100%;height : 100%;}
+.viewerNavigation{width : 100%;display : none;height : 16px;padding : 0px;}
+.RVReport a{text-decoration: underline;}
+.dl{text-decoration: underline;cursor: pointer !important;}
+.viewerWorkingDialog{border : 1px solid #000000;border-spacing : 0;box-shadow : 1px 1px 2px #999999;font-size : 70%;}
+.workingDialogDiv{width :350px;}
+.workingDialogInnerTable{border-spacing : 0;padding : 0px;width : 300px;border : 0px;text-align : left;padding-top : 5px;padding-bottom : 5px;}
+.workingDialogLinks{border-width : 1px 0px 1px 0px;border-style : solid;border-color : black;}
+.workingDialogOptions{padding-top : 3px;padding-left :10px;padding-bottom : 10px;display : none;}
+.workingDialogCancelButton{padding-right : 10px;padding-left : 10px;padding-top : 2px;padding-bottom : 3px;}
+.aboutOkButton{border : 1px solid #999999;cursor : pointer;fontWeight : normal;padding : 7px 0px 7px 0px;position : absolute;tabIndex : 0;font-size : 80%;bottom : 40px;left : 20px;}
+.rtl .aboutOkButton{right : 20px;}

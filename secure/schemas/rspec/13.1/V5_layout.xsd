@@ -1,0 +1,2051 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2014
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5_layoutbase.xsd"/>
+	<xs:include schemaLocation="V5_style.xsd"/>
+	<xs:include schemaLocation="V5_chart.xsd"/>
+	<xs:include schemaLocation="V5_prompt.xsd"/>
+	<xs:include schemaLocation="V5_reportQuery.xsd"/>
+	<xs:include schemaLocation="V5_modQuery.xsd"/>
+	<xs:include schemaLocation="V5_app.xsd"/>
+	<xs:group name="layoutElement">
+		<xs:choice>
+			<xs:element ref="list"/>
+			<xs:element ref="crosstab"/>
+			<xs:element ref="repeaterTable"/>
+			<xs:element ref="repeater"/>
+			<xs:element name="singleton">
+				<xs:annotation>
+					<xs:documentation>All singleton elements that have the same refQuery attribute in the layout will share the same QRD. The data item references within the singleton will be projected as details in the QRD. Only the first row of the result set will be used when rendering the singleton.Similar to the repeater element, the singleton element renders no structure (i.e. no HTML is rendered for it).
+</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="contents"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element ref="propertyList" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="refQuery" type="xs:string" use="required"/>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+					<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="block">
+				<xs:annotation>
+					<xs:documentation>A Block represents a set of elements in a layout. It behaves similarly to a div or paragraph in HTML and MS Word. It follows the HTML definition of a div element.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="contents"/>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="CommonLayoutAttributes"/>
+					<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="table">
+				<xs:annotation>
+					<xs:documentation>Equivalenet to an HTML TABLE.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="tableRows">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="tableRow" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Equivalent to an HTML TR.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:all>
+												<xs:element name="tableCells">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="tableCell" maxOccurs="unbounded">
+																<xs:annotation>
+																	<xs:documentation>Equivalent to an HTML TD.</xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:complexContent>
+																		<xs:extension base="GenericContainerSubElementType">
+																			<xs:attribute name="colSpan" type="xs:positiveInteger" default="1">
+																				<xs:annotation>
+																					<xs:documentation>Count of columns the cell should span</xs:documentation>
+																				</xs:annotation>
+																			</xs:attribute>
+																			<xs:attribute name="tableHeader" type="xs:boolean" default="false"/>
+																		</xs:extension>
+																	</xs:complexContent>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element ref="style" minOccurs="0"/>
+												<xs:element ref="conditionalStyles" minOccurs="0"/>
+												<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+												<xs:element ref="XMLAttributes" minOccurs="0"/>
+											</xs:all>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="containerDropShadow" minOccurs="0"/>
+						<xs:element ref="summaryText" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="CommonLayoutAttributes"/>
+					<xs:attribute name="repeatOnPageBreak" type="xs:boolean" default="true">
+						<xs:annotation>
+							<xs:documentation>This property will control whether the table will repeat the rendering for the previous rows when it is broken across pages.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="allowPageBreaksWithinRow" type="xs:boolean" default="true">
+						<xs:annotation>
+							<xs:documentation>Determines whether the cell contents of a table row are allowed to break between pages.  This option only applies to PDF output.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="textItem">
+				<xs:annotation>
+					<xs:documentation>This element is used to render text in the layout. The text to render is determined by the data source of the element. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dataSource"/>
+						<xs:element ref="conditionalDataSources" minOccurs="0"/>
+						<xs:element ref="reportDrills" minOccurs="0"/>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="maxCharacters" type="xs:positiveInteger" use="optional">
+						<xs:annotation>
+							<xs:documentation>The maximum number of characters that should be rendered. Default: Render all characters.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="useDetailValue" type="xs:boolean" default="false">
+						<xs:annotation>
+							<xs:documentation>This attribute affects the rendering of textItems that occur on a page but not inside of a list or repeater frame and if the page and list query context are the same.
+If the value is true it will render the value for the last detail row of the list if the text item occurs in the page footer or the first detail row if it is outside the page footer.
+If the value is false it will render the value for the current row the page is being rendered for.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="labelFor" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>If this text item is used as a label for a prompt input, set the refLayoutElement attribute to the prompt's name. 
+							This will allow server to generate a label for element so that screen reader is able to associate and read out the label for the for prompt input.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attributeGroup ref="CommonLayoutAttributes"/>
+					<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="pageSectionText"/>
+			<xs:element ref="contextItemText"/>
+			<xs:element ref="pageNumber"/>
+			<xs:element ref="rowNumber"/>
+			<xs:element ref="date"/>
+			<xs:element ref="time"/>
+			<xs:element name="image">
+				<xs:annotation>
+					<xs:documentation>This element is used to render an image in the layout. The URL for the image is determined by the data source of the element. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dataSource"/>
+						<xs:element ref="conditionalDataSources" minOccurs="0"/>
+						<xs:element ref="reportDrills" minOccurs="0"/>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="alternateText" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="CommonLayoutAttributes"/>
+					<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="hyperlink">
+				<xs:annotation>
+					<xs:documentation>This element represents an HTML style anchor(hyperlink). The hyperlink dataSource defines the URL to be used for the hyperlink. The hyperlink also is a layout container and has layout elements contained within it.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="contents"/>
+						<xs:element ref="dataSource"/>
+						<xs:element ref="conditionalDataSources" minOccurs="0"/>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="CommonLayoutAttributes"/>
+					<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="button">
+				<xs:annotation>
+					<xs:documentation>This element represents an HTML style button hyperlink. The hyperlink dataSource defines the URL to be used for the hyperlink. The hyperlink also is a layout container and has layout elements contained within it.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="contents"/>
+						<xs:element ref="dataSource"/>
+						<xs:element ref="conditionalDataSources" minOccurs="0"/>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="CommonLayoutAttributes"/>
+					<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="promptButton">
+				<xs:annotation>
+					<xs:documentation>This element represents an HTML style button. The button can be used on a prompt page to intiate the navigation from page to page (e.g. next, previous). The prompt button also is a layout container and optionally has layout elements contained within it.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="contents"/>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="type">
+						<xs:annotation>
+							<xs:documentation>Identifies the type of then prompt button. If their are not contents to the prompt button, they type will dictate what text is rendered as the prompt button label.</xs:documentation>
+							<xs:documentation source="doc_att_type_promptButton"/>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="back"/>
+								<xs:enumeration value="cancel"/>
+								<xs:enumeration value="next"/>
+								<xs:enumeration value="finish"/>
+								<xs:enumeration value="reprompt"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="CommonLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="HTMLItem">
+				<xs:annotation>
+					<xs:documentation>This element is used to render HTML in the layout. The HTML may come from either a static or dynamic source. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dataSource"/>
+						<xs:element ref="conditionalDataSources" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+					<xs:attributeGroup ref="DescriptionLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="richTextItem">
+				<xs:annotation>
+					<xs:documentation>This element is used to render HTML in the layout. The HTML may come from either a static or dynamic source. The difference between this element and HTMLItem is that a richTextIem will render in PDF whereas an HTMLItem will not. As well, the value for a richTextItem must validate against V5_richText.dtd.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dataSource"/>
+						<xs:element ref="conditionalDataSources" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+					<xs:attributeGroup ref="DescriptionLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="bookmark">
+				<xs:annotation>
+					<xs:documentation>A bookmark alllows for linking to a location in the rendered layout. The name of the bookmark is determined by its dataSource. It is the equivalent of a named anchor in HTML. (e.g. <A NAME="MyBookmark"/>)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dataSource"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fieldSet">
+				<xs:annotation>
+					<xs:documentation>A fieldSet is the equivalent of a group box in a windows app. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="contents"/>
+						<xs:element name="fieldSetCaption" type="GenericContainerSubElementType"/>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="showCaption" default="left">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="left">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_left_showCaption"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="right">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_right_showCaption"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="center"/>
+								<xs:enumeration value="hide">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_showCaption_hide"/>
+									</xs:annotation>
+								</xs:enumeration>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="CommonLayoutAttributes"/>
+					<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="conditionalBlocks">
+				<xs:annotation>
+					<xs:documentation>This element will conditionally render one block (conditionalBlock) from a set of blocks. Any styling applied to this element will be appied to each conditionalBlock when  rendered.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="conditionalBlockCases" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="conditionalBlock" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:complexContent>
+												<xs:extension base="GenericContainerSubElementType">
+													<xs:attributeGroup ref="ConditionalPartAttributes"/>
+													<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+												</xs:extension>
+											</xs:complexContent>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attributeGroup ref="ConditionalOwnerAttributes"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="conditionalBlockDefault">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="GenericContainerSubElementType">
+										<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="layoutComponentRef">
+				<xs:annotation>
+					<xs:documentation>The element is used to reference a named layout element from within this report or another report. The layout element will be rendered in its place with no containing structure.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="reportPath" minOccurs="0"/>
+						<xs:element name="layoutComponent" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>If the component referenced is in another report, then this optional element may be used to hold a copy of the referenced component. When rendering, this copy will be used if available. This component allows for design time references versus run time references.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:group ref="layoutElement"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="layoutComponentOverrides" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Optionally, any named layout element within the layout component being referenced may be overridden with a different layout element. </xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="layoutComponentOverride" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:group ref="layoutElement" minOccurs="0"/>
+											<xs:attribute name="refLayoutElement" type="xs:string" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="refLayoutElement" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CMMMap">
+				<xs:annotation>
+					<xs:documentation>Identifies a map in Metrics Manager (CMM). The cmmID attribute identifies the map in CMM and is used  by the server to construct a full CMM request.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="alternateText" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="cmmID" type="xs:string" use="required"/>
+					<xs:attributeGroup ref="DescriptionLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="asOfTime">
+				<xs:annotation>
+					<xs:documentation>This element is used to determine the value to use for the asOfTime property in the object model. The value of the first asOfTime encountered during rendering  will be used to set the asOfTime preoprety in the BAOM.
+More...</xs:documentation>
+					<xs:documentation>Any report output is a snapshot of data at a particular point in time. Some reports reflect the snapshot of data at the time the report is run. However, most production reports reflect a particular time period, which is often described by the last day of that period; for example, the last day of the month for a monthly report. In that case, even though the August Monthly report is run on September 5 (when all the data have been vetted), the report actually reflects a month-long time period that ends on the last day of August. It is required that the output reflect the last [business] day in August, rather than the actual run date of September 5.
+This element allows the report author to define the value to be used for the asOfTime report object property, as well as the return value for the asOfDate() and asOfTime() report functions. The value is defined via a report expression, and is most likely derived from a query item or a prompt value. The result of this asOfTime report expression must be date-time. If this element is omitted, the system time at the beginning of report execution will be used. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="reportExpression"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TOC">
+				<xs:annotation>
+					<xs:documentation>The TOC behaves like a block element except that its contents are generated by the collection of all the TOCEntry instances that reference this TOC that are generated in the redered output after this element.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element ref="noDataHandler" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="NoPageWhenNoDataAttributes"/>
+					<xs:attribute name="tocName" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>A name that identifies the TOC. The TOCEntry  elements will contain a reference to the TOC they belong to.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="TOCEntry"/>
+			<xs:element name="queryFilterBlock">
+				<xs:annotation>
+					<xs:documentation>The queryFilterBlock produces a block containing blocks with text describing each filter for the query according to the display parameters.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="refQuery" type="xs:string" use="required"/>
+					<xs:attribute name="detailFilterDisplay" default="all">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="none"/>
+								<xs:enumeration value="all"/>
+								<xs:enumeration value="changeableInViewer"/>
+								<xs:enumeration value="notChangeableInViewer"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="summaryFilterDisplay" default="all">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="none"/>
+								<xs:enumeration value="all"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:group ref="chartElement"/>
+			<xs:group ref="promptElement"/>
+			<xs:group ref="applicationElements"/>
+		</xs:choice>
+	</xs:group>
+	<xs:element name="layouts">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="layout"/>
+				<xs:element name="conditionalLayouts" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="conditionalLayout" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="LayoutType">
+											<xs:attributeGroup ref="ConditionalPartAttributes"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attributeGroup ref="ConditionalOwnerAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="layout" type="LayoutType"/>
+	<xs:element name="pageSet">
+		<xs:annotation>
+			<xs:documentation>A page set allows for the controlling of the rendering of the pages and/or pageSets it contains. The pages (or child page sets) are rendered according to a grouping structure defined for the page set.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="pageOverallGroup" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines the overall group of the page set (i.e. start of data, end of data)</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="headerPages" minOccurs="0"/>
+							<xs:element ref="footerPages" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="pageGroups" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines the grouping structure of the page set.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="pageGroup" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Defines a group in the page set.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="headerPages" minOccurs="0"/>
+										<xs:element ref="footerPages" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+										<xs:element ref="sortList" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="detailPages">
+					<xs:annotation>
+						<xs:documentation>Detail pages are rendered within the lowest level grouping of the page set. All detail rows from the page set query within the lowest level grouping are available for rendering. If there are no page groupings, then the detail pages will be rendered for each row of the result set. The detail page may contain layout elements that use the same query as the pageSet.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice minOccurs="0" maxOccurs="unbounded">
+								<xs:element ref="page"/>
+								<xs:element ref="pageSet"/>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="propertyList" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="ResetPageAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="page">
+		<xs:annotation>
+			<xs:documentation>The refQuery attribute of page has the following behavior:
+
+If the page contains a list that references the same query as the page, then the page will behave like the list page header in that it will render the value for the first row rendered in the list. The rendering of the list itself will be unaffected by this. 
+
+If the page does not contain a list that references the same query, then a singleton result set will be generated for the page and only the first row will be used for rendering elements on the page. 
+
+If the refQuery attribute is defined then the page can have a propertyList, otherwise the propertyList is ignored.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="pageBody">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="GenericContainerSubElementType"/>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="pageHeader" minOccurs="0">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="GenericContainerSubElementType"/>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="pageFooter" minOccurs="0">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="GenericContainerSubElementType"/>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="propertyList" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="pageSetup" minOccurs="0"/>
+				<xs:element name="pageSections" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="pageSection" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="dmDimension"/>
+										<xs:element ref="dmHierarchy"/>
+										<xs:element name="pageSectionDefinition">
+											<xs:complexType>
+												<xs:choice>
+													<xs:element ref="dmMembers"/>
+												</xs:choice>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="pageGradient" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="refQuery" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The refQuery attribute of page has the following behavior:
+
+If the page contains a list that references the same query as the page, then the page will behave like the list page header in that it will render the value for the first row rendered in the list. The rendering of the list itself will be unaffected by this. 
+
+If the page does not contain a list that references the same query, then a singleton result set will be generated for the page and only the first row will be used for rendering elements on the page. If the refQuery attribute is defined then the page can have a propertyList.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="horizontalPageCounter" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation>Inidicates whether this page has a horizontal page counter. If it does then horizontal pages will increment separately from the main page counter e.g. 1a, 1b, 1c instead of 1, 2, 3 if the page has 3 page breaks horizontally.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="ResetPageAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bookletItem">
+		<xs:annotation>
+			<xs:documentation>A booklet item is used to create booklets which are reports that contain other reports.  The pages of the referenced report are rendered as if they were part of the page sequence of the containing report.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="reportPath"/>
+				<xs:element ref="TOCEntry" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="resolvePromptPages" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation>Indicates if the authored prompt pages for the booklet item should be resolved.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="parameterHandling" default="ignore">
+				<xs:annotation>
+					<xs:documentation>Identifies how booklet item persisted parameters are used. When set to ignore, the booklet item parameters are ignored.  When set to use, all of the booklet item parameters are merged with the booklet parameters.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="ignore"/>
+						<xs:enumeration value="use"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="rollupTOC" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation>Indicates if the table of contents for the booklet item should be rolluped into booklet.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="startHeadingLevel" default="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:positiveInteger">
+						<xs:maxInclusive value="99"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="ResetPageAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="list">
+		<xs:annotation>
+			<xs:documentation>A list is used to present query results in a list fashion.
+
+If a listColumnBody in the list contains another frame that uses the same query as this list, then the grouping strucutre of this list will section the inner frame. A frame that uses the same query anywhere else in the list will get its own result set.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="listColumns" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines the columns that are to be rendered for this list.  A list column may render the values of 0 or more member sets from the query. There is not a 1 to 1 relationship between a list column and a member set from a query.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="listColumn" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Defines a list column.  </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="listColumnTitle">
+											<xs:annotation>
+												<xs:documentation>Defines the column title of the column.
+
+The precedence of styling is: 
+class style, 
+listColumnStyle, 
+listColumnTitleStyle, 
+listColumn,  
+style, 
+conditionalStyles.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:all>
+													<xs:element ref="contents"/>
+													<xs:element ref="style" minOccurs="0"/>
+													<xs:element ref="conditionalStyles" minOccurs="0"/>
+													<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+													<xs:element ref="XMLAttributes" minOccurs="0"/>
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="listColumnBody">
+											<xs:annotation>
+												<xs:documentation>Defines the column body of the column. Any styling applies to the listColumnBody but also any header/footer cell that spans only this column. 
+
+The precedence of styling is:
+class style, 
+listColumnStyle, 
+listColumnBodyStyle, 
+listColumn,  
+style, 
+conditionalStyles.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:all>
+													<xs:element ref="contents"/>
+													<xs:element name="listColumnRowSpan" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Indicates that the column cells should span the rows of the indicated group. If refDataItem is omitted, then cells should span all rows (i.e. the overall group).</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:attribute name="refDataItem" type="xs:string" use="optional"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element ref="style" minOccurs="0"/>
+													<xs:element ref="conditionalStyles" minOccurs="0"/>
+													<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+													<xs:element ref="XMLAttributes" minOccurs="0"/>
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+										<xs:element ref="style" minOccurs="0"/>
+										<xs:element ref="conditionalStyles" minOccurs="0"/>
+										<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+										<xs:element ref="conditionalRender" minOccurs="0"/>
+										<xs:element ref="appListColumnProperties" minOccurs="0"/>
+										<xs:element ref="XMLAttributes" minOccurs="0"/>
+									</xs:all>
+									<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+									<xs:attribute name="render" type="xs:boolean" default="true"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="listColumnStyle" type="GenericLayoutStyleType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines a style which is applied individually to all listColumn elements.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="listColumnTitleStyle" type="GenericLayoutStyleType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines a style which is applied individually to all listColumnTitle elements.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="listColumnBodyStyle" type="GenericLayoutStyleType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines a style which is applied  individually to all listColumnBody elements.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="listOverallGroup" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="listHeader" minOccurs="0"/>
+							<xs:element ref="listFooter" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="listGroups" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines the grouping structure of the list. This includes the header and footer definitions as well.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="listGroup" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="listHeader" minOccurs="0"/>
+										<xs:element ref="listFooter" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+										<xs:element ref="sortList" minOccurs="0"/>
+										<xs:element ref="XMLAttributes" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="propertyList" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element name="listPageHeader" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>This element represents a header in the list that will appear on every page rendered. It occurs after the column titles and before the overal group header of the list.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="ListHFType">
+								<xs:attribute name="afterOverallHeader" type="xs:boolean" default="false"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="listPageFooter" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>This element represents a footer in the list that will appear on every page rendered. It occurs after all details and other footers of the list.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="ListHFType">
+								<xs:attributeGroup ref="PushToBottom"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="containerDropShadow" minOccurs="0"/>
+				<xs:element ref="listSuppress" minOccurs="0"/>
+				<xs:element ref="summaryText" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appListProperties" minOccurs="0"/>
+				<xs:element name="sectionsFrame" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="refFrame" type="xs:string" use="required"/>
+						<xs:attribute name="sectionedEdge" default="rows">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="rows"/>
+									<xs:enumeration value="columns"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attribute name="rowsPerPage" type="xs:positiveInteger">
+				<xs:annotation>
+					<xs:documentation>Denotes the maximum number of rows to appear on each page. Used to allocate vertical space on a page body between two or more competing frames.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="cellHeightBehavior" default="minimal">
+				<xs:annotation>
+					<xs:documentation>Controls height of cells in the frame. When 'minimal', the cell will grow to the minimal height that is required to render the result. When 'stretch', the cell is stretched to cover the height of the entire frame. Default: Minimal.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="minimal">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_minimal_cellHeightBehavior"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="stretch"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="showColumnTitles" default="startOfList">
+				<xs:annotation>
+					<xs:documentation>Determines where or whether column titles should be displayed. If displayed, the column titles can appear at the beginning of the list ("startOfList") on each page or only after headings ("startOfDetails"), if headings exist and at the start of the first details on the page using "startOfFirstDetailsOnPage". Column titles can be simulated using headers. To prevent column titles from being displayed, set to "hide". Default: startOfList.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="hide">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_showColumnTitles_hide"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="startOfList"/>
+						<xs:enumeration value="startOfDetails"/>
+						<xs:enumeration value="startOfFirstDetailsOnPage"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="pageBreakText" type="xs:boolean" default="true">
+				<xs:annotation>
+					<xs:documentation>Indicates whether or not large text items are allowed to be split across more then one page.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonLayoutAttributes"/>
+			<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+			<xs:attributeGroup ref="KeepWithAttributes"/>
+			<xs:attributeGroup ref="HorizontalPaginationAttributes"/>
+			<xs:attributeGroup ref="NoPageWhenNoDataAttributes"/>
+			<xs:attributeGroup ref="ShareResultSet"/>
+			<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+			<xs:attributeGroup ref="LayoutTable"/>
+			<xs:attributeGroup ref="AppDrillToRefAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="crosstab">
+		<xs:annotation>
+			<xs:documentation>A crosstab is used to render the data from a query in a crosstab fashion.
+
+A crosstab cannot contain an embedded  frame (e.g. list, crosstab, chart or repeater elements)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="crosstabColumns" type="CrosstabNodeListType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines the column members  of the crosstab.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="crosstabRows" type="CrosstabNodeListType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines the row members of the crosstab.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="crosstabFactCell" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Describes the contents of the  fact cells of the crosstab. There is only one fact cell definition for the crosstab, regardless of how many measures there are.
+
+The class attribute is overridden by a class set on an applied factCellStyle element.
+
+The styles are applied in the following order:
+
+- style element
+- factCellStyle from outer level to inner level
+- conditionaStyle
+</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="contents"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+							<xs:element ref="appCrosstabFactCellProperties" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="applySingleDefaultStyle" type="xs:boolean" default="false">
+							<xs:annotation>
+								<xs:documentation>If this element has mutliple class styles applied to it this flag determine whether all of them are applied or only the last one is applied.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="template" type="xs:boolean" default="false">
+							<xs:annotation>
+								<xs:documentation>When true the server will generate one inner cell for the crosstab that spans all of the row and column cell. This cell will have no scope, so the contents cannot contain any data when template="true".
+</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="defaultMeasure" minOccurs="0"/>
+				<xs:element name="crosstabCorner" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>This element represents the top left had corner of the crosstab.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="GenericContainerSubElementType"/>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="crosstabIntersections" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="crosstabIntersection" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>This element allows for the optional defintion of the cell contents and/or style at a specified row/column intersection. Its definition will be similar to the crosstabFactCell element except the the contents sub-element will be optional instead of required.
+The crosstabIntersection element can only be defined between the leaf members of each edge, all other definitions will be ignored.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="contents" minOccurs="0"/>
+										<xs:element ref="style" minOccurs="0"/>
+										<xs:element ref="conditionalStyles" minOccurs="0"/>
+										<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+										<xs:element ref="XMLAttributes" minOccurs="0"/>
+										<xs:element ref="appCrosstabIntersectionProperties" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="row" type="xs:string" use="required"/>
+									<xs:attribute name="column" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="crosstabRowNodeStyle" type="GenericLayoutStyleType" minOccurs="0"/>
+				<xs:element name="crosstabColumnNodeStyle" type="GenericLayoutStyleType" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="containerDropShadow" minOccurs="0"/>
+				<xs:element ref="crosstabSuppress" minOccurs="0"/>
+				<xs:element ref="summaryText" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appCrosstabProperties" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attribute name="rowsPerPage" type="xs:positiveInteger">
+				<xs:annotation>
+					<xs:documentation>Denotes the maximum number of rows to appear on each page. Used to allocate vertical space on a page body between two or more competing frames.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="factCellStylePrecedence" default="rows">
+				<xs:annotation>
+					<xs:documentation>Indicates the precedence of whether the row cell styling is applied before or after the column cell styling.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="rows"/>
+						<xs:enumeration value="columns"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="pageBreakText" type="xs:boolean" default="true">
+				<xs:annotation>
+					<xs:documentation>Indicates whether or not large text items are allowed to be split across more then one page.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonLayoutAttributes"/>
+			<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+			<xs:attributeGroup ref="HorizontalPaginationAttributes"/>
+			<xs:attributeGroup ref="NoPageWhenNoDataAttributes"/>
+			<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+			<xs:attributeGroup ref="LayoutTable"/>
+			<xs:attributeGroup ref="AppDrillToRefAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="repeaterTable">
+		<xs:annotation>
+			<xs:documentation>The element will generate a table by going through the results of the query. If there is a grouping structure defined, then a table cell will be generated for each instance of the lowest level group. If no grouping structure is defined, then a table cell will be generated for each row.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="repeaterTableCell">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="contents"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+							<xs:element ref="conditionalRender" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="repeaterGroups" minOccurs="0"/>
+				<xs:element ref="propertyList" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="containerDropShadow" minOccurs="0"/>
+				<xs:element ref="listSuppress" minOccurs="0"/>
+				<xs:element ref="summaryText" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDataRepeaterTableProperties" minOccurs="0"/>
+				<xs:element ref="appRepeaterTableCellDefinition" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attribute name="across" type="xs:positiveInteger">
+				<xs:annotation>
+					<xs:documentation>The number of times across (columns) that the frame contents should be rendered. Default: infinite.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="down" type="xs:positiveInteger">
+				<xs:annotation>
+					<xs:documentation>The number of times down (rows) that the frame contents should be rendered. Default: infinite.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="direction" default="lr-tb">
+				<xs:annotation>
+					<xs:documentation>When 'lr-tb', the frame will render left to right then top to bottom.
+When 'tb-lr', frame will render top to bottom then left to right.</xs:documentation>
+					<xs:documentation source="doc_att_direction_layout"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="lr-tb"/>
+						<xs:enumeration value="tb-lr"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonLayoutAttributes"/>
+			<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+			<xs:attributeGroup ref="NoPageWhenNoDataAttributes"/>
+			<xs:attributeGroup ref="ShareResultSet"/>
+			<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+			<xs:attributeGroup ref="LayoutTable"/>
+			<xs:attributeGroup ref="AppDrillToRefAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="LayoutTable">
+		<xs:attribute name="layoutTable" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:element name="repeater">
+		<xs:annotation>
+			<xs:documentation>The element simply repeats it's contents with no wrapping layout strucutre. It iterates through the data in the same manner as repeaterTable does.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="contents"/>
+				<xs:element ref="repeaterGroups" minOccurs="0"/>
+				<xs:element ref="propertyList" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="noDataHandler" minOccurs="0"/>
+				<xs:element ref="listSuppress" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attribute name="rowsPerPage" type="xs:positiveInteger"/>
+			<xs:attributeGroup ref="NameLayoutAttributes"/>
+			<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+			<xs:attributeGroup ref="NoPageWhenNoDataAttributes"/>
+			<xs:attributeGroup ref="ShareResultSet"/>
+			<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="burst">
+		<xs:annotation>
+			<xs:documentation>The element specifies how the report can be bursted if it needs to be bursted. If this element is not specified, then the report cannot be bursted. The burst is controlled by the query indicated.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="burstGroups">
+					<xs:annotation>
+						<xs:documentation>Describes the grouping structure to be used for the burst. A burst will occur for every instance of the lowest level group.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="burstGroup" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="sortList" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="burstRecipient">
+					<xs:annotation>
+						<xs:documentation>Describes what recipients are to recieve each burst. The query that determines the recipients may be the same query as the burst, or it may come from another query in which case it will be a detail of the burst query. </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="masterDetailLinks" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="refQuery" type="xs:string" use="required"/>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+						<xs:attribute name="type" default="auto">
+							<xs:annotation>
+								<xs:documentation>Specifies the type of the burst recipient.</xs:documentation>
+								<xs:documentation source="doc_att_type_burstRecipient"/>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="auto"/>
+									<xs:enumeration value="email"/>
+									<xs:enumeration value="directory"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="burstLabel" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Identifies the data item to use as a label for each burst.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="repeaterGroups">
+		<xs:annotation>
+			<xs:documentation>Defines the grouping structure used by the repeater.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="repeaterGroup" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="sortList" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="reportVariables">
+		<xs:annotation>
+			<xs:documentation>Defines variables that can be used in the layout for conditional elements (e.g. style, dataSource).</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="reportVariable" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="reportExpression"/>
+							<xs:element name="variableValues" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>This element describes the return values that can be expected from the evaluation of the report variable.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:choice maxOccurs="unbounded">
+											<xs:element ref="variableValue"/>
+											<xs:element name="variableValueGroup">
+												<xs:annotation>
+													<xs:documentation>This element allows for multiple return values to be grouped and retuned as a single value.</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element ref="variableValue" maxOccurs="unbounded"/>
+													</xs:sequence>
+													<xs:attribute name="value" type="xs:string" use="required">
+														<xs:annotation>
+															<xs:documentation source="doc_att_value_variableValue"/>
+														</xs:annotation>
+													</xs:attribute>
+												</xs:complexType>
+											</xs:element>
+										</xs:choice>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="type" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc_att_type_reportVariable"/>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="string"/>
+									<xs:enumeration value="boolean"/>
+									<xs:enumeration value="locale"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="classStyles">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="classStyle" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>This element represents a class style. The name attribute identifies the class name that can be used in the layout. The label  is optional, and is only used to show a meaningful name in the UI.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="CSS" minOccurs="0"/>
+							<xs:element ref="generatedBackground" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="label" type="xs:string" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc_att_label_layout"/>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attributeGroup ref="DescriptionLayoutAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="drillBehavior">
+		<xs:annotation>
+			<xs:documentation>This element is used to define the behavior of the  queries during drill up and down operations.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="drillQueryBehavior" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="drillDataItemBehavior" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>This element is used to control how this data item will behave during a drill up or down operation.
+
+Drill up/down capabilities can be disabled using the disableDrillUp /disableDrillDown properties. A value of false means that the dataItem will and drill if it makes sense.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="drillUpBehavior" type="DrillBehaviorType" minOccurs="0"/>
+										<xs:element name="drillDownBehavior" type="DrillBehaviorType" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+									<xs:attribute name="disableDrillUp" type="xs:boolean" default="false"/>
+									<xs:attribute name="disableDrillDown" type="xs:boolean" default="false"/>
+									<xs:attribute name="drillColumnTitle" default="memberCaption">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="memberCaption">
+													<xs:annotation>
+														<xs:documentation source="doc_enum_drillColumnTitle_memberCaption"/>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="levelLabel"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="refQuery" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="drillUpDown" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation>Determine whether this report will allow drill up/down operations.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="modelBasedDrillThru" type="xs:boolean" default="true">
+				<xs:annotation>
+					<xs:documentation>Determine whether this report will allow model based drill through operations.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="drillSetsBehavior">
+		<xs:annotation>
+			<xs:documentation>This element is used to link data items across queries for drill up/down operations.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="linkedDrillItemSets">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="linkedDrillItemSet" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="linkedDrillItem" minOccurs="2" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+												<xs:attribute name="refQuery" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="name" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="noDataHandler">
+		<xs:annotation>
+			<xs:documentation>Container whos content is rendered when the associated data container has no data.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="contents"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="LayoutType">
+		<xs:annotation>
+			<xs:documentation>A layout is comprised of pages. These pages are orgainized into pageSets which are rendered in the order they occur.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="reportPages" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The report pages is made up  of a list of pages and pageSets. They are rendered in the order in which they are listed.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice maxOccurs="unbounded">
+							<xs:element ref="page"/>
+							<xs:element ref="pageSet"/>
+							<xs:element ref="bookletItem"/>
+						</xs:choice>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="promptPages" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="page" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="defaultDataFormats" minOccurs="0"/>
+			<xs:element ref="pageSetup" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="GenericContainerSubElementType">
+		<xs:all>
+			<xs:element ref="contents"/>
+			<xs:element ref="style" minOccurs="0"/>
+			<xs:element ref="conditionalStyles" minOccurs="0"/>
+			<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+			<xs:element ref="XMLAttributes" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="GenericContainerElementType">
+		<xs:all>
+			<xs:element ref="contents"/>
+			<xs:element ref="style" minOccurs="0"/>
+			<xs:element ref="conditionalStyles" minOccurs="0"/>
+			<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+			<xs:element ref="conditionalRender" minOccurs="0"/>
+			<xs:element ref="XMLAttributes" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="ListHFType">
+		<xs:all>
+			<xs:element ref="listRows"/>
+			<xs:element ref="rowCellsStyle" minOccurs="0"/>
+			<xs:element ref="XMLAttributes" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="ListGroupHFType">
+		<xs:all>
+			<xs:element ref="listRows"/>
+			<xs:element ref="rowCellsStyle" minOccurs="0"/>
+			<xs:element ref="XMLAttributes" minOccurs="0"/>
+			<xs:element ref="propertyList" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="CrosstabNodeListType">
+		<xs:sequence>
+			<xs:element name="crosstabNode" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Describes a node (or nesting group) on an edge. It is defined by one or more members sets and spacers that are unioned together and  optionally 1 or more crosstab nodes that will be nested within.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="crosstabNodeMembers">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:choice maxOccurs="unbounded">
+										<xs:element name="crosstabNodeMember">
+											<xs:annotation>
+												<xs:documentation>Describes a member in the crosstab node. 
+
+The precedence of styling  is as follows:
+
+class style,
+crosstabColumnNodeStyle or crosstabRowNodeStyle,
+style,
+conditionalStyles</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:all>
+													<xs:element ref="contents"/>
+													<xs:element ref="style" minOccurs="0"/>
+													<xs:element ref="conditionalStyles" minOccurs="0"/>
+													<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+													<xs:element ref="factCell" minOccurs="0"/>
+													<xs:element ref="propertyList" minOccurs="0"/>
+													<xs:element ref="sortList" minOccurs="0"/>
+													<xs:element ref="XMLAttributes" minOccurs="0"/>
+													<xs:element ref="appCrosstabNodeMemberProperties" minOccurs="0"/>
+													<xs:element name="indentation" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Defines how this node member will be indented in the crosstab.</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:attribute name="type" use="required">
+																<xs:annotation>
+																	<xs:documentation source="doc_att_type_indentation"/>
+																</xs:annotation>
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:enumeration value="level"/>
+																		<xs:enumeration value="relative"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+															<xs:attribute name="outdent" type="xs:boolean" default="false"/>
+															<xs:attribute name="indentationLength" use="required">
+																<xs:simpleType>
+																	<xs:restriction base="xs:decimal">
+																		<xs:minInclusive value="0"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+															<xs:attribute name="indentationUnits" default="px">
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:enumeration value="px"/>
+																		<xs:enumeration value="in"/>
+																		<xs:enumeration value="cm"/>
+																		<xs:enumeration value="mm"/>
+																		<xs:enumeration value="pt"/>
+																		<xs:enumeration value="pc"/>
+																		<xs:enumeration value="em"/>
+																		<xs:enumeration value="ex"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+															<xs:attribute name="startLevel" type="xs:positiveInteger"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:all>
+												<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+												<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+												<xs:attributeGroup ref="KeepWithNextPrevAttributes"/>
+												<xs:attributeGroup ref="SolveOrderAttributes"/>
+												<xs:attributeGroup ref="CrosstabEdgeLocation"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="crosstabSpacer">
+											<xs:annotation>
+												<xs:documentation>The element allows for the insertion of  non-data cells on an edge of a crosstab.
+
+The precedence of styling  is as follows:
+
+class style,
+crosstabColumnNodeStyle or crosstabRowNodeStyle,
+style,
+conditionalStyles</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:all>
+													<xs:element ref="contents"/>
+													<xs:element ref="style" minOccurs="0"/>
+													<xs:element ref="conditionalStyles" minOccurs="0"/>
+													<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+													<xs:element ref="factCell" minOccurs="0"/>
+													<xs:element ref="XMLAttributes" minOccurs="0"/>
+													<xs:element ref="appCrosstabNodeMemberProperties" minOccurs="0"/>
+												</xs:all>
+												<xs:attribute name="renderFactCells" type="xs:boolean" default="false">
+													<xs:annotation>
+														<xs:documentation> rn_internal_4.0</xs:documentation>
+														<xs:documentation>When true the contents of the fact cells for the spacer will be rendered. The crosstabSpacer element will have the scoping of the element at the level before it, if there is no element at the level before then the spacer will have no scope, unless it has no items nested below it, in which case it will be scoped to the defaultMeasure of the crosstab.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+												<xs:attributeGroup ref="KeepWithNextPrevAttributes"/>
+												<xs:attributeGroup ref="CrosstabEdgeLocation"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element ref="appCrosstabSummary"/>
+									</xs:choice>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="crosstabNestedNodes" type="CrosstabNodeListType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Describes the crosstab nodes that are nested with this node.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DrillBehaviorType">
+		<xs:choice>
+			<xs:element name="drillSimpleType">
+				<xs:annotation>
+					<xs:documentation>The values are as follows:
+
+preserve : use this data item in the drill report
+
+emptySet : set data item to an empty set
+
+replaceItem : replace this data item with children of the parent of the selected drill value. Default for the lowest level on an edge.
+
+replaceExpression : replace this data item with the expression children of the selected item. Default for the parent of the lowest level on an edge.
+
+</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="type" use="required">
+						<xs:annotation>
+							<xs:documentation source="doc_att_type_drillSimpleType"/>
+							<xs:documentation>The values are as follows:
+
+preserve : use this data item in the drill report
+
+
+
+emptySet : set data item to an empty set
+
+
+
+replaceItem : replace this data item with children of the parent of the selected drill value. Default for the lowest level on an edge.
+
+
+replaceExpression : replace this data item with the expression children of the selected item. Default for the parent of the lowest level on an edge.
+
+
+changeExpression : set the data item expression to a specific data item.
+</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="preserve">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_preserve_type"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="emptySet"/>
+								<xs:enumeration value="replaceItem"/>
+								<xs:enumeration value="replaceExpression"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="drillChange">
+				<xs:annotation>
+					<xs:documentation>Replace the dataItem expression with a reference to this dataItem.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="drillChangeToDepthBasedExpression">
+				<xs:annotation>
+					<xs:documentation>Changes the expression to be a descendant of parent expression with the appropriate depth
+</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="depthOffset" type="xs:integer" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="drillAncestor">
+				<xs:annotation>
+					<xs:documentation>Parent of the data item at the next lower level. Default for any grandparent (or higher) of the lowest level on an edge.
+
+</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="depthOffset" type="xs:integer" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="contents">
+		<xs:annotation>
+			<xs:documentation>Defines the contents of the container.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="layoutElement" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="rowCellsStyle" type="GenericLayoutStyleType"/>
+	<xs:element name="factCell">
+		<xs:annotation>
+			<xs:documentation>This element allows for the optional defintion of the cell contents and/or style at a specified row/column intersection. Its definition will be similar to the crosstabFactCell element except the the contents sub-element will be optional instead of required. The factCellStylePrecedence attribute of the crosstab will be used to determine the precedence for both the style and content application of the factCell element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="contents" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="appCrosstabNodeMemberFactCellProperties" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="variableValue">
+		<xs:complexType>
+			<xs:attribute name="value" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation source="doc_att_value_variableValue"/>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="headerPages">
+		<xs:annotation>
+			<xs:documentation>Contains the list of pages (in order) that will be rendered at the start of the group. Only the first row of group of the page set query is available for rendering.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="page"/>
+					<xs:element ref="pageSet"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="footerPages">
+		<xs:annotation>
+			<xs:documentation>Contains the list of pages (in order) that will be rendered at the start of the group. Only the last row of group of the page set query is available for rendering.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="page"/>
+					<xs:element ref="pageSet"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listRows">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="listRow" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="rowCells">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="rowCell" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="GenericContainerSubElementType">
+														<xs:attribute name="colSpan" type="xs:positiveInteger" default="1"/>
+														<xs:attribute name="tableHeader" type="xs:boolean" default="false"/>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="rowCellsStyle" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+							<xs:element ref="appListRowProperties" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listHeader">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ListGroupHFType">
+					<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listFooter">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ListGroupHFType">
+					<xs:attributeGroup ref="PushToBottom"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pageSetup">
+		<xs:complexType>
+			<xs:choice minOccurs="0">
+				<xs:element name="namedPaper">
+					<xs:complexType>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="customPaper">
+					<xs:complexType>
+						<xs:attribute name="width" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc_att_width_layout"/>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:decimal">
+									<xs:minExclusive value="0"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="height" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc_att_height_layout"/>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:decimal">
+									<xs:minExclusive value="0"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="unit" default="in">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="in"/>
+									<xs:enumeration value="cm"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="orientation" default="portrait">
+				<xs:annotation>
+					<xs:documentation source="doc_att_orientation_layout"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="portrait"/>
+						<xs:enumeration value="landscape"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="CrosstabEdgeLocation">
+		<xs:attribute name="edgeLocation" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Uniquely identifies a node member or spacer on an edge of the crosstab. This attribute is used by the crosstabIntersection element to uniquely identify the intersection of elements from each edge.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShareResultSet">
+		<xs:attribute name="shareResultSet" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:annotation>
+		<xs:documentation>Notes:</xs:documentation>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>Sectioning behavior</xs:documentation>
+		<xs:documentation>In the V5 report specification, in certain circumstances an element that reference the same query will share one result set. This sharing is done by one element sectioning the other according to where the content is in the parents grouping structure. Sectioing will work as follows: </xs:documentation>
+		<xs:documentation>burst, pageSet, list, repeater and repeaterTable elements can be used to section other layout elements using the same query. Sectioning will only occur if the contained element is in a detail area. For pageSet, this means that a sectioned frame can only exist in the detailPages. For a list, this means a sectioned frame can only exist in a listColumnBody. If an element is using the same query but not in a secitioning relationship/area you get a different QRD.
+</xs:documentation>
+		<xs:documentation>pageSet, list, repeater, and repeaterTable can be sectioned by a sectioning element.
+</xs:documentation>
+		<xs:documentation>sectioning of a pageSet, list, repeater or repeaterTable would simply add the sectioning groups as higher level groupings of the sectioned frame in the QRD
+</xs:documentation>
+		<xs:documentation>crosstabs and charts cannot be sectioned in Bering. The report server should return a validation error if it encounters a crosstab or chart that is sectioned in the report spec. Post Bering, we will consider making the sectioning approach for crosstabs and charts an option. For example, crosstab would have an option to choose whether to section the rows, columns or entire crosstab (separate edge in QRD). A pie chart would have an option to choose whether to section the pies, pie slices or entire chart. When the RSVP team is implementing sectioning they should keep this in mind so that we do not preclude it in the future.
+</xs:documentation>
+	</xs:annotation>
+	<xs:element name="pageSectionText">
+		<xs:annotation>
+			<xs:documentation>Represents the text associated with a page section item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="HUN"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="contextItemText">
+		<xs:annotation>
+			<xs:documentation>Represents text associated with a context area item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="HUN"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attribute name="separator" type="xs:string" default=", ">
+				<xs:annotation>
+					<xs:documentation>If there are multiple members in the context, then this string will be used to separate them.</xs:documentation>
+					<xs:documentation source="doc_att_separator_context"/>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pageNumber">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="beforeText" type="xs:string" use="optional"/>
+			<xs:attribute name="beforeVerticalText" type="xs:string" use="optional"/>
+			<xs:attribute name="verticalType" default="number">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="number">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_number_verticalType"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="lowerCaseRoman"/>
+						<xs:enumeration value="upperCaseRoman"/>
+						<xs:enumeration value="range"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="afterVerticalText" type="xs:string" use="optional"/>
+			<xs:attribute name="separatorText" type="xs:string" use="optional"/>
+			<xs:attribute name="horizontalPageCounter" type="xs:boolean" default="false"/>
+			<xs:attribute name="horizontalPagination" type="xs:boolean" default="false"/>
+			<xs:attribute name="beforeHorizontalText" type="xs:string" use="optional"/>
+			<xs:attribute name="horizontalType" default="none">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="number">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_number_horizontalType"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="lowerCaseLetter"/>
+						<xs:enumeration value="upperCaseLetter"/>
+						<xs:enumeration value="range"/>
+						<xs:enumeration value="upperCaseRoman"/>
+						<xs:enumeration value="lowerCaseRoman"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="verticalRangeSeparator" type="xs:string" use="optional"/>
+			<xs:attribute name="horizontalRangeSeparator" type="xs:string" use="optional"/>
+			<xs:attribute name="afterHorizontalText" type="xs:string" use="optional"/>
+			<xs:attribute name="afterText" type="xs:string" use="optional"/>
+			<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="rowNumber">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="date">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="time">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="summaryText" type="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>Represents the summary text avaiilable for table like elements. This is primarily used to provide accessibility to table elements in a report.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="defaultDataFormats">
+		<xs:annotation>
+			<xs:documentation>This defines the default data formatting rules to be used in the layout. Each data type can have a default data format.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="numberFormat" minOccurs="0"/>
+				<xs:element ref="percentFormat" minOccurs="0"/>
+				<xs:element ref="currencyFormat" minOccurs="0"/>
+				<xs:element ref="dateFormat" minOccurs="0"/>
+				<xs:element ref="dateTimeFormat" minOccurs="0"/>
+				<xs:element ref="timeFormat" minOccurs="0"/>
+				<xs:element ref="intervalFormat" minOccurs="0"/>
+				<xs:element ref="stringFormat" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TOCEntry">
+		<xs:annotation>
+			<xs:documentation>The TOCEntry element acts a both a bookmark in the layout for an entry in the TOC and the contents of that entry.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="GenericContainerElementType">
+					<xs:attribute name="headingLevel" default="1">
+						<xs:simpleType>
+							<xs:restriction base="xs:positiveInteger">
+								<xs:maxInclusive value="99"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="refToc" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>Reference to the TOC that this entry belongs to.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

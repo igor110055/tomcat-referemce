@@ -1,0 +1,442 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+/*Layout section*/
+.bux-guidancePageContainer-outer {
+	vertical-align: middle;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+.bux-guidancePage-div {
+	position: relative;
+}
+
+.bux-guidancePage-hideScroll {
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+.bux-guidancePage-main-title {
+	position: absolute;
+	left: 60px;
+	top: 210px;
+}
+
+.bux-guidancePage-sections {
+	position: absolute;
+	left: 0px;
+	top: 387px;
+}
+
+.bux-guidancePage-outer {
+	margin: 5px 8px;
+	padding-left: 22px;
+	height: 190px;
+	border: 1px green;
+	background-repeat: no-repeat;
+}
+
+.bux-guidancePage-inner {
+	width: 550px;
+	background-repeat: repeat-x;
+}
+
+.bux-guidancePage-thumbnails-stripe {
+	width: 870px;
+	height: 152px;
+	margin: 18px 0px;
+	background-repeat: no-repeat;
+	text-align: left;
+}
+
+.bux-guidancePage-thumbnail-span-inner {
+	width: 130px;
+	height: 128px;
+	padding-left: 1px;
+}
+
+.dj_ie .bux-guidancePage-thumbnail-span-inner {
+	margin-top: 1px;
+}
+
+.bux-guidancePage-thumbnail-span-inner * {
+	vertical-align: middle;
+}
+
+.dj_ie .bux-guidancePage-thumbnail-span-inner span {
+	height: 100%;
+	width: 1px;
+}
+
+.bux-guidancePage-thumbnail-span-inner {
+	vertical-align: middle;
+	text-align: center;
+}
+
+.bux-guidancePage-empty-thumbnail-span {
+	width: 128px;
+	height: 130px;
+	display: block;
+	cursor: default;
+}
+
+.bux-guidancePage-empty-favorite-help {
+	width: 375px;
+	height: 145px;
+	margin-left: 0px;
+	vertical-align: middle;
+	display: inline-block;
+	overflow: hidden;
+}
+
+.bux-guidancePage-empty-favorite-help .buxBannerMarkAsFavoriteButton {
+	padding: 8px;
+	margin: 3px;
+}
+
+.dj_ie7 .bux-guidancePage-empty-favorite-help .buxBannerMarkAsFavoriteButton {
+	padding: 0 8px;
+}
+
+.bux-thumbnail-loading {
+	z-index: 10;
+	margin: 2px;
+}
+
+.bux-thumbnail-frame {
+	height: 130px;
+	width: 130px;
+	position: absolute;
+}
+
+.bux-guidancePage-thumbnail-span {
+	height: auto;
+	margin-right: 20px;
+	margin-left: 0px;
+	vertical-align: middle;
+	overflow: hidden;
+	vertical-align: top;
+}
+
+.bux-guidancePage-thumbnail-span:hover {
+	cursor: pointer;
+}
+
+.bux-guidancePage-thumbnail-span:hover .bux-guidancePage-thumbnail-title {
+	text-decoration: underline;
+}
+
+.bux-guidancePage-thumbnail-title {
+	text-align: center;
+	padding-top: 4px;
+	white-space: nowrap;
+}
+
+.bux-guidancePage-moreButton-container {
+	cursor: pointer;
+	position: absolute;
+	right: 20px;
+	top: 95px;
+}
+
+.bux-guidancePage-CBT-container {
+	position: absolute;
+	top: 393px;
+	left: 594px;
+	width: 340px;
+	height: 210px;
+}
+
+.bux-guidancePage-CBT-ViewAll {
+	position: absolute;
+	right: 21px;
+	top: 8px;
+	font-size: 58%;
+	cursor: pointer;
+	color:#00649d;
+}
+
+.bux-guidancePage-CBT-ViewAll:hover {
+	text-decoration: underline;
+}
+
+.bux-guidancePage-CBT-stripe {
+	text-align: left;
+	padding-top: 4px;
+	white-space: nowrap;
+	height: 182px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.bux-guidancePage-CBT-Item-container {
+	vertical-align: top;
+	text-align: left;
+	display: block;
+	overflow: hidden;
+	cursor: pointer;
+	margin-top: 12px;
+}
+
+.bux-guidancePage-CBT-Item-container:focus {
+	border: 1px dotted black;
+}
+
+.bux-guidancePage-CBT-item-text {
+	display: inline-block;
+	text-align: left;
+	padding-left: 12px;
+	vertical-align: top;
+	white-space: normal;
+	width: 175px;
+}
+
+.bux-guidancePage-CBT-Item-thumbnail-dashboard-style {
+	background-image: none;
+	background-image: url(images/guidancePage/dashboard_style.png);
+}
+
+.bux-guidancePage-CBT-Item-thumbnail-dashboard-style:hover {
+	background-image: none;
+	background-image: url(images/guidancePage/dashboard_style.png);
+}
+
+.bux-guidancePage-CBT-Item-thumbnail-preference {
+	background-image: none;
+	background-image: url(images/guidancePage/preference_big.png);
+}
+
+.bux-guidancePage-CBT-Item-thumbnail-preference:hover {
+	background-image: none;
+	background-image: url(images/guidancePage/preference_big.png);
+}
+
+.bux-guidancePage-CBT-item {
+	display: inline-block;
+	height: 75px;
+	width: 125px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.bux-guidancePage-CBT-item-spacer {
+	display: block;
+	height: 5px;
+	width: 1px;
+}
+
+.bux-guidancePage-createDashboard-button-container {
+	position: absolute;
+	left: 55px;
+	top: 250px
+}
+
+.icdHideGettingStartedLargeButtonCells {
+	display: none;
+}
+
+.icdGettingStartedLargeButton,
+.icdGettingStartedLargeButton .dijitButtonContents,
+.icdGettingStartedLargeButton .dijitButtonNode {
+	width: 100%;
+	height: auto;
+}
+
+.dj_ie .icdGettingStartedLargeButtonCells {
+	padding-right: 15px;
+	padding-bottom: 8px;
+}
+
+.icdGettingStartedLargeButton .dijitButtonContents {
+	vertical-align: middle;
+}
+
+.icdGettingStartedLargeButton .dijitButtonText {
+	height: 100%;
+	padding-top: 3px;
+}
+
+.icdGettingStartedLargeButton .dijitButtonContents {
+	text-align: left;
+	padding-left: 6px;
+	width: 95%;
+}
+/*Skin section*/
+.bux-guidancePageContainer-outer {
+	background-color: #f5f5f5;
+	background-image: none;
+	background-image: url(images/guidancePage/startpage_bg.png);
+	background-repeat: repeat-x;
+	background-position: left center;
+}
+
+.bux-guidancePage-empty-thumbnail-span {
+	border: 1px solid silver;
+	background-image: none;
+	background-position: center center;
+	background-repeat: no-repeat;
+	-moz-border-radius: 3px;
+	-moz-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.25);
+}
+
+.bux-guidancePage-main-title {
+	color: #444444;
+	font-size: 2em;
+}
+
+.bux-guidancePage {
+	height: 615px;
+	width: 944px;
+	background-image: none;
+	background-image: url(images/guidancePage/startpage_main.png);
+	background-repeat: no-repeat;
+}
+
+.bux-guidancePage-section-title {
+	text-align: left;
+}
+
+.bux-guidancePage-empty-favorite-help {
+	color: #444444;
+	font-weight: bold;
+}
+
+.bux-guidancePage-thumbnail-title {
+	font-size: 1em;
+	color: #444444;
+	font-weight: normal;
+}
+
+.claro .bux-guidancePage-moreButton-container .dijitButton .dijitButtonNode,
+.claro .bux-guidancePage-moreButton-container .dijitButtonHover .dijitButtonNode,
+.claro .bux-guidancePage-moreButton-container .dijitButtonActive .dijitButtonNode {
+	background: none;
+	border: none;
+	-moz-box-shadow: none;
+	filter: none;
+}
+
+.bux-guidancePage-more-icon {
+	background-image: none;
+	background-image: url(images/guidancePage/more_button.png);
+	background-repeat: no-repeat;
+	background-position: top;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.bux-guidancePage-moreButton .dijitButtonText {
+	color: #00649d;
+	cursor: pointer;
+}
+
+.bux-guidancePage-moreButton-container .dijitButtonHover .dijitButtonText,
+.bux-guidancePage-moreButton-container .dijitButtonActive .dijitButtonText {
+	text-decoration: underline;
+}
+
+.dijitButtonHover .bux-guidancePage-more-icon {
+	background-position: bottom;
+}
+
+.bux-guidancePage-CBT-item-title {
+	color: #00649d;
+	font-weight: bold;
+}
+
+.bux-guidancePage-CBT-item-description {
+	color: #777777;
+}
+
+.bux-guidancePage-CBT-item {
+	border: 1px solid #ededed;
+	background-color: #ffffff;
+}
+
+.bux-guidancePage-CBT-item:hover {
+	border: 1px solid #dbdbdb;
+	cursor: pointer;
+}
+
+.bux-guidancePage-section-title {
+	font-size: 1.5em;
+	color: #444444;
+}
+
+.icdGettingStartedLargeButton .dijitButtonContents{
+	font-size: 1.5em;
+	color: #222222;
+}
+
+.icdGettingStartedLargeButton .dijitButtonNode {
+	-moz-border-radius: 10px !important;
+}
+
+.icdGettingStartedPageNewIcon,
+.icdGettingStartedPageOpenIcon {
+	background-image: none;
+	background-image: url(images/guidancePage/gettingstarted_button_strip.png);
+	background-repeat: no-repeat;
+	width: 23px;
+	height: 24px;
+}
+
+.icdGettingStartedPageNewIcon {
+	background-position: 0 0;
+}
+
+.icdGettingStartedPageOpenIcon {
+	background-position: -24px;
+}
+
+
+/* -- A11Y -- */
+
+.dijit_a11y .bux-guidancePage-empty-thumbnail-span {
+	border: solid 1px;
+}
+
+.dijit_a11y .bux-guidancePage-div {
+	border: solid 1px;
+	background: #000000;
+}
+
+.dijit_a11y .bux-guidancePage-thumbnail-span {
+	padding-left: 3px;
+}
+
+.dijit_a11y .bux-guidancePage-thumbnail-span-inner {
+	border: solid 1px;
+	padding: 1px;
+}
+
+.bux-guidancePage-CBT-item-image {
+	display: none;
+}
+
+.dijit_a11y .bux-guidancePage-CBT-item-image {
+	display: block;
+	margin-left: -1px;
+	margin-top: -1px;
+}
+
+.dijit_a11y .bux-guidancePage-CBT-item:hover {
+	border: solid 3px;
+	height: 70px;
+	widows: 94px;
+}
+
+.dijit_a11y .bux-thumbnail-frame {
+	background: transparent !important;
+}

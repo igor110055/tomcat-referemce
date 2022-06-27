@@ -1,0 +1,89 @@
+div.dashboardWidget {
+   border: 1px solid black;
+   width:700px;
+   margin:4px;
+}
+
+div.dashboardWidgetHeader {
+   background-image: url('../../images/dashboardWidgetHeader-blue.gif');
+   background-repeat:repeat-x;
+}
+
+div.dashboardWidgetBody  {
+   height: 381px;
+
+}
+
+div.minimized div.dashboardWidgetBody {
+   display:none;
+}
+
+div.dashboardWidgetBody iframe {
+   width:698px;
+   height:381px;
+}
+
+
+div.dashboardWidgetHeader table{
+   width:100%;
+}
+
+div.dashboardWidgetHeader td.minMax {
+   width:20px;
+}
+
+div.dashboardWidgetHeader td.title {
+   width:300px;
+}
+div.dashboardWidgetHeader td.commands {
+   text-align:right;
+}
+
+
+
+
+/* minimized widget, min/max div */
+div.minimized div.dashboardWidgetHeader div.minMax {
+   padding: 0px 3px 0px 3px;
+   display:inline;
+   cursor:pointer;
+}
+
+/* normal widget, min/max div */
+div.dashboardWidgetHeader div.minMax {
+   padding: 0px 3px 0px 3px;
+   
+   display:inline;
+   cursor:pointer;
+}
+
+
+
+
+
+div.dashboardWidgetHeader div.dashboardWidgetTitle {
+}
+
+div.dashboardWidgetHeader div.dashboardWidgetCommands {
+   text-align: right;
+   padding-right:10px;
+   display:none;
+}
+
+div.dashboardWidgetHeader div.dashboardWidgetCommands a {
+   text-decoration:none;
+   color:white;
+   background-color:transparent;
+}
+
+div.dashboardWidgetHeader div.dashboardWidgetCommands a:hover {
+   text-decoration:none;
+   color:black;
+   background-color:transparent;
+}
+
+div.dashboardWidgetHeader div.dashboardWidgetCommands a:visited {
+   text-decoration:none;
+   color:white;
+   background-color:transparent;
+}

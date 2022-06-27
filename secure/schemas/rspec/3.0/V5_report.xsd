@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	IBM Cognos Products: rspec
+	(C) Copyright IBM Corp. 2003, 2014
+	US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+--> 
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema xmlns="http://developer.cognos.com/schemas/report/3.0/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://developer.cognos.com/schemas/report/3.0/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5_base.xsd"/>
+	<xs:include schemaLocation="V5_layoutbase.xsd"/>
+	<xs:include schemaLocation="V5_format.xsd"/>
+	<xs:include schemaLocation="V5_style.xsd"/>
+	<xs:include schemaLocation="V5_prompt.xsd"/>
+	<xs:include schemaLocation="V5_chart.xsd"/>
+	<xs:include schemaLocation="V5_layout.xsd"/>
+	<xs:include schemaLocation="V5Query.xsd"/>
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation>This element contains the entire report specification. The expressionLocale attribute indicates the locale of all report and query expressions in the report. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="modelPath" minOccurs="0"/>
+				<xs:element ref="layouts"/>
+				<xs:element name="queries" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence maxOccurs="unbounded">
+							<xs:element ref="query"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="classStyles" minOccurs="0"/>
+				<xs:element ref="burst" minOccurs="0"/>
+				<xs:element ref="reportVariables" minOccurs="0"/>
+				<xs:element ref="drillBehavior" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element name="upgradeInfo" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="upgradedSpec" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:whiteSpace value="preserve"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="upgradeMessages" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="upgradeMessage" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="type" use="required">
+															<xs:annotation>
+																<xs:documentation source="doc_att_type_upgradeMessage"/>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="error"/>
+																	<xs:enumeration value="warning"/>
+																	<xs:enumeration value="info"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attribute name="expressionLocale" type="xs:language" use="required"/>
+			<xs:attribute name="template" type="xs:boolean" default="false"/>
+			<xs:attribute name="useStyleVersion">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="interactivePageBreakByFrame" type="xs:boolean" default="false"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

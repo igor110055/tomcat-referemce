@@ -1,0 +1,219 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="Copyright" content="Copyright (C) 2007 Cognos Incorporated. All Rights Reserved.">
+<meta name="Trademark" content="Cognos (R) is a trademark of Cognos Incorporated.">
+<link xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" rel="stylesheet" type="text/css"
+      href="../schemas/GlobalReportStyles.css">
+<title>transient-29767AD5-F52F-FAB4-9C4E-5AA71FEB8DEB</title>
+<script xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" language="javascript" type="text/javascript">
+
+function isIE()
+{
+   return (navigator.userAgent.indexOf('MSIE') != -1);
+}
+
+function getNavVer()
+{
+   if (isIE())
+   {
+      var temp = navigator.userAgent.split('MSIE');
+      return parseFloat(temp[1]);
+   }
+   else
+   {
+
+      var temp = navigator.userAgent.split('\/');
+      return parseFloat(temp[temp.length - 1]);
+   }
+}
+
+function preprint()
+{
+   if (isIE() && getNavVer() >= 5.5 && getNavVer() < 7.0)
+   {
+      var alltags = document.images;
+
+      for (var i = 0; i < alltags.length; i++)
+      {
+         if (alltags[i].className == 'ch')
+         {
+            if (alltags[i].srcbackup)
+            {
+               alltags[i].src = alltags[i].srcbackup;
+            }
+         }
+      }
+   }
+}
+
+function postprint()
+{
+   if (isIE() && getNavVer() >= 5.5 && getNavVer() < 7.0)
+   {
+      var alltags = document.images;
+
+      for (var i = 0; i < alltags.length; i++)
+      {
+         if (alltags[i].className == 'ch')
+         {
+            if (alltags[i].srcbackup)
+            {
+               alltags[i].src = '../ps/images/space.gif';
+            }
+         }
+      }
+   }
+}
+
+if (isIE() && getNavVer() >= 5.5 && getNavVer() < 7.0)
+{
+   window.onbeforeprint = preprint;
+   window.onafterprint = postprint;
+}
+
+function displayChart(imageName, imgSrc, useScale)
+{
+   imgSrc = "/rcl/secure/actions/" + imgSrc;
+   if (isIE() && getNavVer() >= 5.5 && getNavVer() < 7.0)
+   {
+      var oImg = document.images[imageName];
+      var strOldImg;
+      if (imgSrc.length > 1)
+      {
+         strOldImg = imgSrc;
+      }
+      else
+      {
+         strOldImg = oImg.src;
+      }
+
+      var imgURL = strOldImg;
+      oImg.srcbackup = imgURL;
+
+
+      strOldImg = strOldImg.replace(new RegExp(/%/g), "%25");
+		// BUG: IE's display filter parser is broken and incorrectly sees any closing
+      // brackets contained in an href as the end of a filter expression .. so we need to escape them
+      strOldImg = strOldImg.replace(/\x28/g, "%28");
+      strOldImg = strOldImg.replace(/\x29/g, "%29");
+
+      var strSizing = useScale ? "scale" : "crop";
+      if (oImg.className && oImg.className == "CMMMap")
+      {
+         strSizing = "image";
+      }
+
+
+      oImg.src = '../ps/images/space.gif';
+      oImg.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + strOldImg + "',sizingMethod='" + strSizing + "');";
+
+   }
+   else
+   {
+      if (imgSrc.length > 1)
+      {
+         document.images[imageName].src = imgSrc;
+      }
+   }
+}
+
+
+function getSearchStringArgs()
+{
+   var args = new Object();
+   var query = location.search.substring(1);
+   var pairs = query.split("&");
+   for (var i = 0; i < pairs.length; i++)
+   {
+      var pos = pairs[i].indexOf('=');
+      if (pos == -1) continue;
+      var argname = pairs[i].substring(0, pos);
+      if (argname == "search")
+      {
+         var value = pairs[i].substring(pos + 1);
+         args[argname] = value;
+         break;
+      }
+   }
+   return args;
+}
+var gateway = location.protocol + "//" + location.host + location.pathname;
+var startMethod = "SM=query&search=";
+var searchDelimeter = "?";
+var endMethod = "&SA=propEnum,properties&ITEM=data&EA=&SS=queryOptions,options&dataEncoding=MIME&ES=&EM=";
+var searchStringArgs = getSearchStringArgs();
+var searchPathToOutput = searchStringArgs["search"];
+</script>
+</head>
+<body topmargin="0" leftmargin="0" style="background-color: #FFFFFF;">
+<table xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" cellpadding="0" cellspacing="0" border="0" class="pg">
+   <tr class="tableRow">
+      <td style="padding-bottom:10px;" class="ph">
+         <div class="ta"><span class="tt">Block Chart Test</span></div>
+      </td>
+   </tr>
+   <tr class="tableRow">
+      <td class="pb">
+         <div style="text-align:center;" class="block">
+            <div class="adfMarker_Block_1" style="display:none"></div>
+            <div>block1</div>
+            <span style="display:block;" class="ct">Margin by Product Line / Type</span>
+
+            <div class="adfMarker_Chart_1" style="display:none"></div>
+            <img name="chartN07260E38.0DD131C4"
+                 style="padding-left:5px; padding-right:5px; padding-top:5px; padding-bottom:5px;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;"
+                 class="ch" width="500" height="350">
+            <script language="javascript" type="text/javascript">
+               displayChart("chartN07260E38.0DD131C4", "reportAttachment.do?reportOutputId=14&attachmentId=0", false);
+            </script>
+         </div>
+         <div style="text-align:center;margin-top:30px;" class="block">
+            <div class="adfMarker_Block_2" style="display:none"></div>
+            <div>block2</div>
+            <span style="display:block;" class="ct">Gross Profit by Product Line, Over Time</span>
+
+            <div class="adfMarker_Chart_2" style="display:none"></div>
+            <img name="chartN07260E38.0DD132CC"
+                 style="padding-left:5px; padding-right:5px; padding-top:5px; padding-bottom:5px;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;"
+                 class="ch" width="500" height="350">
+            <script language="javascript" type="text/javascript">
+               displayChart("chartN07260E38.0DD132CC", "reportAttachment.do?reportOutputId=14&attachmentId=1", false);
+            </script>
+         </div>
+         <link rel="stylesheet" type="text/css" href="/rcl/scripts/rcl/reportOutputJs/ReportOutputUi.css"/>
+         <script type="text/javascript" src="/rcl/scripts/lib/ext/adapter/ext/ext-base.js"></script>
+         <script type="text/javascript" src="/rcl/scripts/lib/ext/ext-all-debug.js"></script>
+         <script type="text/javascript" src="/rcl/scripts/rcl/reportOutputJs/ReportOutputUi.js"></script>
+         <script type="text/javascript" src="/rcl/scripts/rcl/reportOutputJs/ReportOutput-hooks.js"></script>
+
+         <script type="text/javascript">
+            var reportOutputUiController = new ReportOutputUiController();
+            Ext.EventManager.onDocumentReady(reportOutputUiController.onDocumentReady, reportOutputUiController, true);
+            var reportSpecContainer = null;
+            reportSpecContainer = reportOutputUiController.addContainer(new ReportSpecContainer('Chart_1', 'chart'));
+            reportSpecContainer = reportOutputUiController.addContainer(new ReportSpecContainer('Chart_2', 'chart'));
+            reportSpecContainer = reportOutputUiController.addContainer(new ReportSpecContainer('Block_1', 'block'));
+            reportSpecContainer = reportOutputUiController.addContainer(new ReportSpecContainer('Block_2', 'block'));
+         </script>
+
+      </td>
+   </tr>
+   <tr class="tableRow">
+      <td style="padding-top:10px;" class="pf">
+         <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+            <tr class="tableRow">
+               <td style="vertical-align:top;text-align:left;width:25%;" class="tableCell" colspan="1"><span
+                       class="textItem">May 4, 2008</span></td>
+               <td style="vertical-align:top;text-align:center;width:50%;" class="tableCell" colspan="1"><span
+                       class="textItem">-&nbsp;</span><span class="textItem">1</span><span
+                       class="textItem">&nbsp;-</span></td>
+               <td style="vertical-align:top;text-align:right;width:25%;" class="tableCell" colspan="1"><span
+                       class="textItem">3:09:22 PM</span></td>
+            </tr>
+         </table>
+      </td>
+   </tr>
+</table>
+</body>
+</html>

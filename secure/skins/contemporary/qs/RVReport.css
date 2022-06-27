@@ -1,0 +1,45 @@
+@charset "UTF-8";
+/****************************************************************
+** Licensed Materials - Property of IBM
+**
+** BI and PM: qs
+**
+** (C) Copyright IBM Corp. 2001, 2017
+**
+** US Government Users Restricted Rights - Use, duplication or 
+** disclosure restricted by GSA ADP Schedule Contract with 
+** IBM Corp.
+*****************************************************************/
+/*
+Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+*/
+
+/* The following imported css file is to shrink down the text on the screen to 'normal' size.  It also
+   contains classes and IDs that are common between QSReport.css and RVReport.css
+*/
+@import url(QSRVCommon.css);
+
+body, textarea, input, select
+{	
+	font-family:  Tahoma, arial, geneva, helvetica, sans-serif;	
+}
+
+/*   uses MS UI Gothic first which renders the Japanese Yen sign correctly
+body, textarea, input	, select
+{	
+	font-family: 'MS UI Gothic', Tahoma, arial, geneva, helvetica, sans-serif;	
+}
+*/
+
+@media print {
+	.topRow { display: none }
+	.pageControls { display: none }
+	.RVContent { overflow: visible }
+	#RVContent { position: static; }
+}
+
+@media screen {
+	.RVContent { overflow: auto }
+	#RVContent { position: absolute; }
+}

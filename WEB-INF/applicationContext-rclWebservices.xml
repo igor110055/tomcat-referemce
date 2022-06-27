@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:cxf="http://cxf.apache.org/core"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="
+   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+   http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+   http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+   http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+
+
+    <bean id="messageLogger" class="com.focus.rcl.MessageLogger">
+        <constructor-arg type="java.lang.String" value="soap-messages.log"/>
+    </bean>
+
+    <bean id="logInbound" class="org.apache.cxf.interceptor.LoggingInInterceptor">
+        <constructor-arg ref="messageLogger"/>
+        <property name="limit" value="16777216"/>
+    </bean>
+    <bean id="logOutbound" class="org.apache.cxf.interceptor.LoggingOutInterceptor">
+        <constructor-arg ref="messageLogger"/>
+        <property name="limit" value="16777216"/>
+    </bean>
+
+    <bean id="hibernateExport" class="com.focus.rcl.HibernateExportInterceptor">
+        <property name="sessionFactory" ref="rclSessionFactory">
+        </property>
+    </bean>
+    <bean id="sessionInterceptor" class="com.focus.rcl.UserSessionInterceptor">
+        <constructor-arg type="java.lang.String" value="pre-invoke"/>
+    </bean>
+
+    <cxf:bus>
+        <cxf:inInterceptors>
+            <!--<ref bean="logInbound"/>-->
+
+        </cxf:inInterceptors>
+        <cxf:outInterceptors>
+            <!--<ref bean="hibernateExport"/>-->
+            <!--<ref bean="logOutbound"/>-->
+        </cxf:outInterceptors>
+        <cxf:inFaultInterceptors>
+            <!--<ref bean="logOutbound"/>-->
+        </cxf:inFaultInterceptors>
+    </cxf:bus>
+
+
+    <!--WEB SERVICE SECURITY CONFIGURATION GOES HERE-->
+    <bean id="passwordCallback" class="com.focus.rcl.wssecurity.PasswordCallback">
+        <property name="rclUserService">
+            <ref bean="userService"/>
+        </property>
+    </bean>
+
+    <bean id="wss4jIn" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+        <constructor-arg>
+            <map>
+                <entry key="action" value="UsernameToken Timestamp"/>
+                <!--<entry key="passwordType" value="PasswordDigest"/>-->
+                <entry key="passwordType" value="PasswordText"/>
+                <entry>
+                    <key>
+                        <value>passwordCallbackRef</value>
+                    </key>
+                    <ref bean="passwordCallback"/>
+                </entry>
+                <!--<entry key="signaturePropFile" value="sign.properties"></entry>-->
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!--WEB SERVICE IMPLEMENATION BEANS GO HERE-->
+
+    <bean id="wsBase" abstract="true" class="com.focus.rcl.ws.AbstractWebService">
+        <property name="userDao">
+            <ref bean="userDao"/>
+        </property>
+    </bean>
+
+    <bean id="wsUserImpl" class="com.focus.rcl.ws.WsUser" parent="wsBase">
+        <property name="userService">
+            <ref bean="userService"/>
+        </property>
+        <property name="organizationService">
+            <ref bean="organizationService"/>
+        </property>
+    </bean>
+
+    <bean id="wsOrganizationImpl" class="com.focus.rcl.ws.WsOrganization" parent="wsBase">
+        <property name="organizationService">
+            <ref bean="organizationService"/>
+        </property>
+    </bean>
+
+    <tx:advice id="txAdvice" transaction-manager="rclTransactionManager">
+        <tx:attributes>
+            <tx:method name="*"/>
+            <tx:method name="submit*" propagation="NEVER"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--<aop:config>-->
+    <!--<aop:pointcut id="webServiceOperation" expression="execution(* com.focus.rcl.ws.Ws*.*(..))"/>-->
+    <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="webServiceOperation"/>-->
+    <!--</aop:config>-->
+
+    <bean id="wsContentManagementImpl" class="com.focus.rcl.ws.WsContentManagement" parent="wsBase">
+        <property name="contentManagementService">
+            <ref bean="contentManagementService"/>
+        </property>
+    </bean>
+
+    <bean id="wsReportImpl" class="com.focus.rcl.ws.WsReport" parent="wsBase">
+        <property name="reportService">
+            <ref bean="reportService"/>
+        </property>
+        <property name="contentManagementService">
+            <ref bean="contentManagementService"/>
+        </property>
+    </bean>
+
+    <bean id="wsSecurityImpl" class="com.focus.rcl.ws.WsSecurity" parent="wsBase">
+        <property name="passwordCallback">
+            <ref bean="passwordCallback"/>
+        </property>
+    </bean>
+
+
+    <!--WEB SERVICE ENDPOINT CONFIGURATION GOES HERE-->
+    <jaxws:endpoint id="wsUser" implementor="#wsUserImpl" address="/User">
+        <jaxws:inInterceptors>
+            <ref bean="sessionInterceptor"/>
+            <bean class="org.apache.cxf.binding.soap.saaj.SAAJInInterceptor"/>
+            <ref bean="wss4jIn"/>
+        </jaxws:inInterceptors>
+    </jaxws:endpoint>
+
+    <bean id="localTransportFactory" class="org.apache.cxf.transport.local.LocalTransportFactory" lazy-init="false">
+        <property name="transportIds">
+            <list>
+                <value>http://cxf.apache.org/transports/local</value>
+                <value>http://schemas.xmlsoap.org/soap/http</value>
+                <value>http://schemas.xmlsoap.org/wsdl/soap/http</value>
+            </list>
+        </property>
+    </bean>
+
+    <jaxws:endpoint id="wsContentManagement" implementor="#wsContentManagementImpl"
+                    address="/ContentManagement">
+        <jaxws:inInterceptors>
+            <ref bean="sessionInterceptor"/>
+            <bean class="org.apache.cxf.binding.soap.saaj.SAAJInInterceptor"/>
+            <ref bean="wss4jIn"/>
+        </jaxws:inInterceptors>
+    </jaxws:endpoint>
+
+    <jaxws:endpoint id="wsReport" implementor="#wsReportImpl" address="/Report">
+        <jaxws:inInterceptors>
+            <ref bean="sessionInterceptor"/>
+            <bean class="org.apache.cxf.binding.soap.saaj.SAAJInInterceptor"/>
+            <ref bean="wss4jIn"/>
+        </jaxws:inInterceptors>
+    </jaxws:endpoint>
+
+    <jaxws:endpoint id="wsOrganization" implementor="#wsOrganizationImpl" address="/Organization">
+        <jaxws:inInterceptors>
+            <ref bean="sessionInterceptor"/>
+            <bean class="org.apache.cxf.binding.soap.saaj.SAAJInInterceptor"/>
+            <ref bean="wss4jIn"/>
+        </jaxws:inInterceptors>
+    </jaxws:endpoint>
+
+
+    <bean id="loginPasswordCallback" class="com.focus.rcl.wssecurity.LookupPasswordCallback">
+        <property name="rclUserDao">
+            <ref bean="userDao"/>
+        </property>
+    </bean>
+
+
+    <jaxws:endpoint id="wsSecurity" implementor="#wsSecurityImpl" address="/Security">
+        <jaxws:inInterceptors>
+            <ref bean="sessionInterceptor"/>
+        </jaxws:inInterceptors>
+        <jaxws:outInterceptors>
+            <bean class="org.apache.cxf.binding.soap.saaj.SAAJOutInterceptor"/>
+            <bean class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
+                <constructor-arg>
+                    <map>
+                        <entry key="action" value="UsernameToken Timestamp"/>
+                        <entry key="passwordType" value="PasswordText"/>
+                        <entry>
+                            <key>
+                                <value>passwordCallbackRef</value>
+                            </key>
+                            <ref bean="loginPasswordCallback"/>
+                        </entry>
+                    </map>
+                </constructor-arg>
+            </bean>
+        </jaxws:outInterceptors>
+    </jaxws:endpoint>
+
+    <bean id="restBase" abstract="true" class="com.focus.rcl.rest.RestServiceBase">
+        <property name="userService" ref="userService"/>
+        <property name="contentManagementService" ref="contentManagementService"/>
+    </bean>
+
+    <bean id="executableServiceBase" abstract="true" class="com.focus.rcl.rest.ExecutableServiceBase" parent="restBase">
+        <property name="reportService" ref="reportService"/>
+    </bean>
+
+    <!--The extra classes implement references of XmlAnyElement typed accessors.  If the are not referenced-->
+    <!--in here then the serialization mechanism (JAXB) has no knowledge of these classes and you'll get -->
+    <!--errors to this effect.  Bottom line.  Add polymorphic classes here -->
+    <bean id="provider-base" abstract="true" class="org.apache.cxf.jaxrs.provider.AbstractJAXBProvider">
+        <property name="singleJaxbContext" value="true"/>
+        <property name="extraClass">
+            <list merge="true">
+                <value>com.focus.rcl.core.FileTransferDeliveryPreference</value>
+                <value>com.focus.rcl.core.EmailDeliveryPreference</value>
+                <value>com.focus.rcl.core.DatabaseDeliveryPreference</value>
+                <value>com.focus.rcl.core.PrintDeliveryPreference</value>
+                <value>com.focus.rcl.core.DefaultReportParameter</value>
+                <value>com.focus.rcl.core.ConcreteReportParameterValue</value>
+                <value>com.focus.rcl.core.FuzzyReportParameterValue</value>
+                <value>com.focus.rcl.core.UnboundedEndRangeParameterValue</value>
+                <value>com.focus.rcl.core.UnboundedStartRangeParameterValue</value>
+                <value>com.focus.rcl.core.BoundedReportParameterValue</value>
+                <value>com.focus.rcl.core.InsertContentDirective</value>
+                <value>com.focus.rcl.core.SuppressContentDirective</value>
+                <value>com.focus.rcl.core.ConvertChartDirective</value>
+                <value>com.focus.rcl.core.GroupContentDirective</value>
+                <value>com.focus.rcl.core.MoveContentDirective</value>
+                <value>com.focus.rcl.core.RenameColumnDirective</value>
+                <value>com.focus.rcl.core.ModifyAggregateDirective</value>
+                <value>com.focus.rcl.core.RuntimeFilterExpression</value>
+                <value>com.focus.rcl.core.ComplexRuntimeFilterExpression</value>
+                <value>com.focus.rcl.core.CustomPrompt</value>
+                <value>com.focus.rcl.value.LocalizedDescription</value>
+                <value>com.focus.rcl.crn.config.CognosConfiguration</value>
+                <value>com.focus.rcl.crn.config.CognosInstance</value>
+                <value>com.focus.rcl.crn.config.CognosDispatcher</value>
+                <value>com.focus.rcl.crn.config.CognosGateway</value>
+                <value>com.focus.rcl.crn.config.NamedCognosCredential</value>
+                <value>com.focus.rcl.crn.reportspec.CrnList</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="jaxb" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider" parent="provider-base"/>
+
+    <bean id="json" class="org.apache.cxf.jaxrs.provider.json.JSONProvider" parent="provider-base">
+        <property name="attributesToElements" value="true"/>
+        <property name="serializeAsArray" value="true"/>
+    </bean>
+
+    <jaxrs:server id="rsReport" address="${jaxrs.report.address:/}">
+    <!--<jaxrs:server id="rsReport" address="local://transport">-->
+        <jaxrs:serviceBeans>
+            <bean class="com.focus.rcl.rest.ContentService" parent="restBase"/>
+            <bean class="com.focus.rcl.rest.FragmentService" parent="restBase"/>
+            <bean class="com.focus.rcl.rest.ReportProfileService" parent="executableServiceBase"/>
+            <bean class="com.focus.rcl.rest.ReportService" parent="executableServiceBase"/>
+            <bean class="com.focus.rcl.rest.FolderService" parent="restBase"/>
+            <bean class="com.focus.rcl.rest.InternalService" parent="restBase"/>
+            <bean class="com.focus.rcl.rest.UserService" parent="restBase"/>
+            <bean class="com.focus.rcl.rest.CognosConfigurationService" parent="restBase">
+                <property name="cognosConfigurationService" ref="cognosConfigurationService"/>
+            </bean>
+            <bean class="com.focus.rcl.rest.PromptService" parent="restBase"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <ref bean="jaxb"/>
+            <ref bean="json"/>
+        </jaxrs:providers>
+        <!--<jaxrs:outInterceptors>-->
+        <!--<ref bean="hibernateExport"/>-->
+        <!--</jaxrs:outInterceptors>-->
+    </jaxrs:server>
+
+
+
+
+</beans>

@@ -1,0 +1,173 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+/* Cognos bridged portlets styles*/
+/*layout section*/
+.icdUI div[fragmentid] td,th {
+	padding: 2px;
+}
+
+.portlet-table-header td {
+	padding: 0px !important;
+}
+
+.icdUI .portlet-form-field-label {
+	margin-left: 5px;
+}
+
+.icdUI .portlet-form-field {
+	margin-left: 0px;
+}
+
+.icdUI .cognos-form-footer {
+	margin-top: 10px;
+	height: 40px;
+}
+
+.icdUI .portlet-form-button {
+	height: 23px;
+}
+
+.icdUI .portlet-form-field .portlet-form-button[type] {
+	min-height: 18px;
+}
+/*skin section*/
+.icdUI .cognos-path {
+	color: #222222;
+}
+
+.icdUI .portlet-table-header {
+	color: #444444;
+	font-weight: bold;
+	background-color: #cccccc;
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #ffffff 0%, #efefef 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef));
+	background-image: -webkit-linear-gradient(top, #ffffff 0%, #efefef 100%);
+	background-image: -o-linear-gradient(top, #ffffff 0%, #efefef 100%);
+	background-image: -ms-linear-gradient(top, #ffffff 0%, #efefef 100%);
+	background-image: linear-gradient(to bottom, #ffffff 0%, #efefef 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#efefef',GradientType=0 );
+	zoom: 1;
+}
+
+.icdUI	.cognos-path .cognos-anchor,
+.icdUI .portlet-table-body .cognos-anchor,
+.icdUI .portlet-form-field .cognos-anchor,
+.icdUI	.portlet-font .cognos-anchor,
+.icdUI	.portlet-table-text .cognos-anchor,
+.icdUI	.portlet-table-alternate .cognos-anchor {
+	font-size: 102%;
+	color: #00649d;
+}
+
+.icdUI .portlet-msg-info {
+	color:  #222222;
+	white-space: normal;
+}
+
+.icdUI .portlet-form-field-label {
+	color: #444444;
+	font-weight: bold;
+}
+
+.icdUI .cognos-form-footer {
+	background-color: transparent;
+	border: none;
+	background-image: none;
+	background-image: url(images/fragments/layouts/images/footerBackground.gif);
+	background-repeat: repeat-x;
+}
+
+.icdUI .cognos-form-footer-area {
+	background-color: transparent;
+}
+
+.icdUI .portlet-form-button {
+	background-color: #f5f5f5;
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #f5f5f5 0%, #dedede 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f5f5), color-stop(100%,#dedede));
+	background-image: -webkit-linear-gradient(top, #f5f5f5 0%, #dedede 100%);
+	background-image: -o-linear-gradient(top, #f5f5f5 0%, #dedede 100%);
+	background-image: -ms-linear-gradient(top, #f5f5f5 0%, #dedede 100%);
+	background-image: linear-gradient(to bottom, #f5f5f5 0%, #dedede 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#dedede',GradientType=0 );
+	zoom: 1;
+	background-repeat: repeat-x;
+	color: #222222;
+	border: 1px solid #cccccc;
+	font-size: 1em;
+	font-weight: bold;
+}
+
+.dj_ie .icdUI .portlet-form-button {
+	padding-top: 2px;
+	border: 1px solid #cccccc;
+	/*This is a work around to a white space between border and background image
+		which looks to be an IE bug
+	*/
+	background-color: #cccccc;
+}
+
+.icdUI .portlet-form-button:hover {
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #f5f5f5 0%, #dedede 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f5f5), color-stop(100%,#dedede));
+	background-image: -webkit-linear-gradient(top, #f5f5f5 0%, #dedede 100%);
+	background-image: -o-linear-gradient(top, #f5f5f5 0%, #dedede 100%);
+	background-image: -ms-linear-gradient(top, #f5f5f5 0%, #dedede 100%);
+	background-image: linear-gradient(to bottom, #f5f5f5 0%, #dedede 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#dedede',GradientType=0 );
+	zoom: 1;
+}
+
+.icdUI .portlet-form-field select,
+.icdUI .portlet-form-input-field {
+	background-color: #ffffff;
+	border: 1px solid #999999;
+}
+
+.icdUI .portlet-section-alternate,
+.icdUI .portlet-table-alternate {
+	background-color: #ffffff;
+}
+
+.icdUI div[fragmentid] hr {
+	border-color: #cccccc;
+}
+
+.icdUI div[fragmentid] table[style="border: 1px solid black;"] {
+	border-color: #cccccc !important;
+}
+
+.icdUI .cognos-section-background {
+	background-color: transparent;
+}
+
+/* -- A11Y -- */
+
+.dijit_a11y .portlet-form-button {
+	background-color: #b3b3b3;
+	border: 1px solid #b3b3b3;
+	font-size: 1em;
+	font-weight: bold;
+	height: 23px;
+}
+
+.dijit_a11y .portlet-table-header>th,
+.dijit_a11y .portlet-table-header>td {
+	border-bottom: 1px solid  #000000;
+}
+
+.dijit_a11y .portlet-menu-item-hover {
+	font-weight: bold;
+}

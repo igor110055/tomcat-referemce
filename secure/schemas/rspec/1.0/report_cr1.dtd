@@ -1,0 +1,1533 @@
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2014
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+--> 
+
+<!ELEMENT BIQuery ((((tabularModel | tabularSet | tabularSQL | tabularReference))) | (cube | cubeReference)? | summary? | detailQuery* | ((designMode? | noDataMode? | avoidZeroDiv? | ((executionOptimization? | queryProcessing? | joinOptimization? | autoSort? | governor? | rollupProcessing?)+)?)+)?)+>
+<!ATTLIST BIQuery
+	name CDATA #REQUIRED
+>
+<!ELEMENT block (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST block
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	repeatEveryPage (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	showContinuation (true | false) "false"
+>
+<!ELEMENT dataItem ((expression)+)*>
+<!ATTLIST dataItem
+	name CDATA #REQUIRED
+	sort (ascending | descending | none) "none"
+	aggregate (automatic | none | summarize | total | minimum | maximum | average | count | any | averageNonZero | countDistinct | countNonZero | standardDeviation | variance | median | calculated | true | false) "automatic"
+	isHeader (true | false) "false"
+	key (true | false) "false"
+>
+<!ELEMENT dimension (((item | calculatedMember)*) | level)*>
+<!ATTLIST dimension
+	name CDATA #IMPLIED
+	refDimension CDATA #IMPLIED
+	overall (true | false) "true"
+>
+<!ELEMENT filter (condition | level)+>
+<!ATTLIST filter
+	use (required | optional | prohibited) "required"
+	summary (true | false) "false"
+>
+<!ELEMENT item EMPTY>
+<!ATTLIST item
+	refItem CDATA #REQUIRED
+	alias CDATA #IMPLIED
+	sort (ascending | descending | none) "none"
+	aggregate (automatic | none | summarize | total | minimum | maximum | average | count | any | averageNonZero | countDistinct | countNonZero | standardDeviation | variance | median | calculated | true | false) "automatic"
+	isHeader (true | false) "false"
+	key (true | false) "false"
+>
+<!ELEMENT left (modelSubject | ((tabularModel | tabularSet | tabularSQL | tabularReference)))+>
+<!ATTLIST left
+	refSubject CDATA #IMPLIED
+>
+<!ELEMENT level (((item | dataItem)+) | ((item | calculatedMember)*))*>
+<!ATTLIST level
+	name CDATA #IMPLIED
+	refLevel CDATA #IMPLIED
+	caption CDATA #IMPLIED
+>
+<!ELEMENT queryItemRef (((level | overall)+))*>
+<!ATTLIST queryItemRef
+	refItem CDATA #REQUIRED
+	frame IDREF #IMPLIED
+	content (label | value) "value"
+	xml:lang NMTOKEN #IMPLIED
+>
+<!ELEMENT right (modelSubject | ((tabularModel | tabularSet | tabularSQL | tabularReference)))+>
+<!ATTLIST right
+	refSubject CDATA #IMPLIED
+>
+<!ELEMENT title (((text | expression | queryItemRef)) | ((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST title
+	render (true | false) "true"
+	refVariable CDATA #IMPLIED
+>
+<!ELEMENT calculatedMember (#PCDATA)>
+<!ATTLIST calculatedMember
+	xml:lang NMTOKEN #IMPLIED
+	xml:space (default | preserve) "preserve"
+	solveOrder CDATA #IMPLIED
+	name CDATA #REQUIRED
+>
+<!ELEMENT color EMPTY>
+<!ATTLIST color
+	value CDATA #IMPLIED
+>
+<!ELEMENT cube (((dimension* | factList | dimension*)+ | dimension), filter*)*>
+<!ATTLIST cube
+	name CDATA #IMPLIED
+>
+<!ELEMENT cubeReference EMPTY>
+<!ATTLIST cubeReference
+	refQuery CDATA #REQUIRED
+	alias CDATA #IMPLIED
+>
+<!ELEMENT defaultSelections (defaultSelection)+>
+<!ELEMENT detailQuery (linkFilter+ | linkParameter+)*>
+<!ATTLIST detailQuery
+	refQuery CDATA #REQUIRED
+	alias CDATA #IMPLIED
+>
+<!ELEMENT displayValue EMPTY>
+<!ATTLIST displayValue
+	refVariableValue CDATA #IMPLIED
+	xml:lang NMTOKEN #IMPLIED
+	value CDATA #REQUIRED
+>
+<!ELEMENT drillTarget (drillParameter* | bookmarkRef? | label+)*>
+<!ATTLIST drillTarget
+	name CDATA #REQUIRED
+	path CDATA #IMPLIED
+	showInNewWindow (true | false) "false"
+	method (execute | view) "execute"
+	outputFormat (CSV | HTML | HTMLFragment | PDF | singleXLS | XHTML | XLS | XLWA | XML) #IMPLIED
+>
+<!ELEMENT factList (item | dataItem)+>
+<!ELEMENT formatConfiguration (formatList+)*>
+<!ATTLIST formatConfiguration
+	xml:lang NMTOKEN #IMPLIED
+>
+<!ELEMENT formatGroup ((stringFormat | numberFormat | currencyFormat | percentFormat | dateFormat | timeFormat | dateTimeFormat | intervalFormat | format)+)+>
+<!ELEMENT formatList (testValue?, ((stringFormat | numberFormat | currencyFormat | percentFormat | dateFormat | timeFormat | dateTimeFormat | intervalFormat | format)+)+)+>
+<!ATTLIST formatList
+	name CDATA #REQUIRED
+	xml:lang NMTOKEN #IMPLIED
+>
+<!ELEMENT generatedPrompt EMPTY>
+<!ATTLIST generatedPrompt
+	class CDATA #IMPLIED
+	parameter CDATA #IMPLIED
+	required (true | false) "true"
+	id ID #IMPLIED
+	hideAdornments (true | false) "false"
+>
+<!ELEMENT linkFilter (condition)+>
+<!ELEMENT linkParameter EMPTY>
+<!ATTLIST linkParameter
+	refItem CDATA #REQUIRED
+	parameter CDATA #REQUIRED
+>
+<!ELEMENT memberItemRef EMPTY>
+<!ATTLIST memberItemRef
+	refDimension CDATA #IMPLIED
+	refLevel CDATA #IMPLIED
+	content (caption | code | level) "caption"
+>
+<!ELEMENT pattern EMPTY>
+<!ATTLIST pattern
+	patternType (transparentCrossDiagonal | transparentCross | transparentBackDiagonal | transparentForwardDiagonal | transparentVertical | transparentHorizontal | solid | solidForwardDiagonal | solidBackDiagonal | solidCross | solidCrossDiagonal | solidVertical | solidHorizontal) "solid"
+	color1 CDATA #IMPLIED
+	color2 CDATA #IMPLIED
+>
+<!ELEMENT querySet (BIQuery)+>
+<!ATTLIST querySet
+	xml:lang NMTOKEN #IMPLIED
+>
+<!ELEMENT report (modelConnection? | querySet? | layoutList | burst? | variableList? | XMLAttribute? | asOfTime?)*>
+<!ATTLIST report
+	xml:lang NMTOKEN #IMPLIED
+	xmlns CDATA #IMPLIED
+>
+<!ELEMENT section (edgeHeader | sectionHeader | sectionBody | sectionFooter | edgeFooter | ((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST section
+	repeatEveryPage (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	refQuery CDATA #REQUIRED
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT selectDate (((style | conditionalStyle?)+) | defaultSelections?)*>
+<!ATTLIST selectDate
+	range (true | false) "false"
+	class CDATA #IMPLIED
+	parameter CDATA #IMPLIED
+	required (true | false) "true"
+	id ID #IMPLIED
+	hideAdornments (true | false) "false"
+	selectUI (calendar | editBox) "calendar"
+	calendar (Gregorian | Imperial) "Gregorian"
+	firstDate CDATA #IMPLIED
+	lastDate CDATA #IMPLIED
+	hoverColor CDATA #IMPLIED
+	invalidDateColor CDATA #IMPLIED
+	multiSelect (true | false) "false"
+>
+<!ELEMENT selectDateTime (((style | conditionalStyle?)+) | defaultSelections?)*>
+<!ATTLIST selectDateTime
+	range (true | false) "false"
+	class CDATA #IMPLIED
+	parameter CDATA #IMPLIED
+	required (true | false) "true"
+	id ID #IMPLIED
+	hideAdornments (true | false) "false"
+	selectUI (calendar | editBox) "calendar"
+	calendar (Gregorian | Imperial) "Gregorian"
+	firstDate CDATA #IMPLIED
+	lastDate CDATA #IMPLIED
+	hoverColor CDATA #IMPLIED
+	invalidDateColor CDATA #IMPLIED
+	showSeconds (true | false) "false"
+	showMilliseconds (true | false) "false"
+	mode (static | live) "static"
+	multiSelect (true | false) "false"
+>
+<!ELEMENT selectInterval (((style | conditionalStyle?)+) | defaultSelections?)*>
+<!ATTLIST selectInterval
+	range (true | false) "false"
+	class CDATA #IMPLIED
+	parameter CDATA #IMPLIED
+	required (true | false) "true"
+	id ID #IMPLIED
+	hideAdornments (true | false) "false"
+	showSeconds (true | false) "false"
+	showMilliseconds (true | false) "false"
+	multiSelect (true | false) "false"
+>
+<!ELEMENT selectOption (displayValue)*>
+<!ATTLIST selectOption
+	useValue CDATA #REQUIRED
+	selected CDATA #IMPLIED
+>
+<!ELEMENT selectOptions (selectOption)*>
+<!ATTLIST selectOptions
+	refVariable CDATA #IMPLIED
+>
+<!ELEMENT selectTime (((style | conditionalStyle?)+) | defaultSelections?)*>
+<!ATTLIST selectTime
+	range (true | false) "false"
+	class CDATA #IMPLIED
+	parameter CDATA #IMPLIED
+	required (true | false) "true"
+	id ID #IMPLIED
+	hideAdornments (true | false) "false"
+	showSeconds (true | false) "false"
+	showMilliseconds (true | false) "false"
+	selectUI (editBox | clock) "clock"
+	mode (static | live) "static"
+	multiSelect (true | false) "false"
+>
+<!ELEMENT selectValue (displayItem? | useItem | selectOptions | ((style | conditionalStyle?)+) | defaultSelections?)*>
+<!ATTLIST selectValue
+	range (true | false) "false"
+	class CDATA #IMPLIED
+	parameter CDATA #IMPLIED
+	required (true | false) "true"
+	id ID #IMPLIED
+	hideAdornments (true | false) "false"
+	selectUI (dropdown | listBox | radioGroup | checkboxGroup) "dropdown"
+	refQuery CDATA #IMPLIED
+	autoSubmit (true | false) "false"
+	cascadeOn CDATA #IMPLIED
+	multiSelect (true | false) "false"
+>
+<!ELEMENT selectWithSearch (((style | conditionalStyle?)+) | displayItem? | useItem | defaultSelections)*>
+<!ATTLIST selectWithSearch
+	range (true | false) "false"
+	class CDATA #IMPLIED
+	parameter CDATA #IMPLIED
+	required (true | false) "true"
+	id ID #IMPLIED
+	hideAdornments (true | false) "false"
+	refQuery CDATA #IMPLIED
+	cascadeOn CDATA #IMPLIED
+	multiSelect (true | false) "true"
+>
+<!ELEMENT summary (((dataCells | rowEdge | columnEdge | sectionEdge?)*) | MDX)*>
+<!ATTLIST summary
+	name CDATA #IMPLIED
+>
+<!ELEMENT tabularJoin (left | right | filter?)*>
+<!ELEMENT tabularModel (dataItem | filter | ((tabularModel | tabularSet | tabularSQL | tabularReference))* | tabularJoin)+>
+<!ATTLIST tabularModel
+	name CDATA #IMPLIED
+	autoSummary (true | false) "true"
+>
+<!ELEMENT tabularReference EMPTY>
+<!ATTLIST tabularReference
+	refQuery CDATA #REQUIRED
+	alias CDATA #IMPLIED
+>
+<!ELEMENT tabularSQL (SQL | dataItem*)*>
+<!ATTLIST tabularSQL
+	name CDATA #IMPLIED
+	idConnection CDATA #IMPLIED
+>
+<!ELEMENT tabularSet (left | right | dataItem*)*>
+<!ATTLIST tabularSet
+	setOperator (EXCEPT | INTERSECT | UNION) "UNION"
+	duplicateRows (preserve | remove) "remove"
+	name CDATA #IMPLIED
+>
+<!ELEMENT textBox (((style | conditionalStyle?)+) | defaultSelections?)*>
+<!ATTLIST textBox
+	range (true | false) "false"
+	class CDATA #IMPLIED
+	parameter CDATA #IMPLIED
+	required (true | false) "true"
+	id ID #IMPLIED
+	hideAdornments (true | false) "false"
+	hideText (true | false) "false"
+	multiLine (true | false) "false"
+	numbersOnly (true | false) "false"
+	multiSelect (true | false) "false"
+	showThousandSeparator (true | false) "true"
+>
+<!ELEMENT wash EMPTY>
+<!ATTLIST wash
+	washDirection (left | right | up | down) "down"
+	fromColor CDATA #IMPLIED
+	toColor CDATA #IMPLIED
+>
+<!ELEMENT designMode EMPTY>
+<!ATTLIST designMode
+	enabled (true | false) "true"
+>
+<!ELEMENT noDataMode EMPTY>
+<!ATTLIST noDataMode
+	enabled (true | false) "true"
+>
+<!ELEMENT avoidZeroDiv EMPTY>
+<!ATTLIST avoidZeroDiv
+	enabled (true | false) "true"
+>
+<!ELEMENT executionOptimization EMPTY>
+<!ATTLIST executionOptimization
+	strategy (AllRows | FirstRow | IncrementalExecution) #REQUIRED
+>
+<!ELEMENT queryProcessing EMPTY>
+<!ATTLIST queryProcessing
+	strategy (DatabaseOnly | MinimizeLocal) #REQUIRED
+>
+<!ELEMENT joinOptimization (modelJoin)*>
+<!ATTLIST joinOptimization
+	ordering (FactTablesLast | StraightestPath) #IMPLIED
+	localSort (NestedLoop | SortMerge) #IMPLIED
+>
+<!ELEMENT autoSort EMPTY>
+<!ATTLIST autoSort
+	enable (true | false | minimal) #REQUIRED
+>
+<!ELEMENT governor EMPTY>
+<!ATTLIST governor
+	name CDATA #REQUIRED
+	value CDATA #REQUIRED
+>
+<!ELEMENT rollupProcessing EMPTY>
+<!ATTLIST rollupProcessing
+	strategy (extended | database | local) #REQUIRED
+>
+<!ELEMENT list (overallHeader | listHeader | groupHeader | listColumnTitles | listColumns | groupFooter | listFooter | overallFooter | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST list
+	maxColumns CDATA #IMPLIED
+	maxRows CDATA #IMPLIED
+	cellHeightBehavior (minimal | stretch) "minimal"
+	showColumnTitles (hide | startOfList | startOfDetails) "startOfList"
+	repeatEveryPage (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	keepWithHeader CDATA "false"
+	keepWithFooter CDATA "false"
+	refQuery CDATA #REQUIRED
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT crosstab (crosstabLevel | crosstabFacts | crosstabMember | crosstabCell | crosstabColumns | crosstabRows | crosstabCorner | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST crosstab
+	maxColumns CDATA #IMPLIED
+	maxRows CDATA #IMPLIED
+	rowEdgeIncluded (true | false) "true"
+	columnEdgeIncluded (true | false) "true"
+	sectionEdgeIncluded (true | false) "true"
+	repeatEveryPage (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	factCellStylePrecedence (rows | columns) "rows"
+	keepWithHeader CDATA "false"
+	keepWithFooter CDATA "false"
+	refQuery CDATA #REQUIRED
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT chart (background | chartBody | title | subtitle | footer | statistics | marker | legend | note | axis | categoryItemTruncationText | chartLevel | chartMeasure | ((areaChart | barChart | bubbleChart | columnChart | combinationChart | lineChart | paretoChart | pieChart | polarChart | quadrantChart | radarChart | progressiveChart | scatterChart)) | ((style | XMLAttribute | conditionalStyle)*) | drillTarget)+>
+<!ATTLIST chart
+	maxCategories CDATA "32767"
+	maxSeries CDATA "32767"
+	chartWidth CDATA #IMPLIED
+	chartHeight CDATA #IMPLIED
+	dynamicGrowth (true | false) "true"
+	allowRotate45DegreesForCategoryLabels (true | false) "true"
+	allowRotate90DegreesForCategoryLabels (true | false) "true"
+	allowStaggerForCategoryLabels (true | false) "true"
+	allowSkipForCategoryLabels (true | false) "true"
+	allowWordWrapOnRotatedCategoryLabels (true | false) "false"
+	categoryitemMaxCharacters CDATA #IMPLIED
+	categoryitemEnableTruncation (true | false) "true"
+	showMarkers (none | legend | chart) "chart"
+	rowEdgeIncluded (true | false) "true"
+	columnEdgeIncluded (true | false) "true"
+	sectionEdgeIncluded (true | false) "true"
+	tooltips (true | false) "false"
+	repeatEveryPage (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	refQuery CDATA #REQUIRED
+	skipInterval CDATA "0"
+	startSkipInterval CDATA "1"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT repeater (((style | XMLAttribute | conditionalStyle)*) | repeaterBody)*>
+<!ATTLIST repeater
+	refLevel CDATA #IMPLIED
+	across CDATA #IMPLIED
+	down CDATA #IMPLIED
+	direction (lr-tb | tb-lr) "lr-tb"
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	showContinuation (true | false) "false"
+	refQuery CDATA #REQUIRED
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT layoutComponentRef (layoutComponentOverride?)*>
+<!ATTLIST layoutComponentRef
+	href CDATA #REQUIRED
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT fieldSet ((((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*, (caption)?)*>
+<!ATTLIST fieldSet
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	showCaption (left | right | center | hide) "left"
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+>
+<!ELEMENT table (tableRow, ((style | XMLAttribute | conditionalStyle)*)?)+>
+<!ATTLIST table
+	repeatEveryPage (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT conditionalBlockList (conditionalBlock)+>
+<!ATTLIST conditionalBlockList
+	refVariable CDATA #IMPLIED
+>
+<!ELEMENT textItem ((text | expression | queryItemRef | drillTarget) | ((style | XMLAttribute | conditionalStyle)*)?)+>
+<!ATTLIST textItem
+	refVariable CDATA #IMPLIED
+	maxCharacters CDATA #IMPLIED
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	showContinuation (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT image (((URL | expression | queryItemRef)) | ((style | XMLAttribute | conditionalStyle)*)? | drillTarget)*>
+<!ATTLIST image
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT hyperlink (((URL | expression | queryItemRef)) | (((table | block | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)))) | ((style | XMLAttribute | conditionalStyle)*))*)+>
+<!ATTLIST hyperlink
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	showContinuation (true | false) "false"
+>
+<!ELEMENT button (((URL | expression | queryItemRef)) | (((table | block | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)))) | ((style | XMLAttribute | conditionalStyle)*))*)+>
+<!ATTLIST button
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT promptButton (((table | block | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST promptButton
+	type (back | cancel | next | finish | reprompt) #IMPLIED
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT HTMLItem (HTML | expression | queryItemRef)*>
+<!ATTLIST HTMLItem
+	id ID #IMPLIED
+>
+<!ELEMENT XMLItem (XML | expression | queryItemRef)*>
+<!ATTLIST XMLItem
+	id ID #IMPLIED
+	render (true | false) "true"
+>
+<!ELEMENT bookmark (label | queryItemRef | expression)*>
+<!ELEMENT style (CSS | ((stringFormat | numberFormat | currencyFormat | percentFormat | dateFormat | timeFormat | dateTimeFormat | intervalFormat | format)+))*>
+<!ATTLIST style
+	refStyle CDATA #IMPLIED
+	refVariableValue CDATA #IMPLIED
+>
+<!ELEMENT XMLAttribute EMPTY>
+<!ATTLIST XMLAttribute
+	name CDATA #REQUIRED
+	value CDATA #REQUIRED
+	render (true | false) "true"
+>
+<!ELEMENT conditionalStyle (style)+>
+<!ATTLIST conditionalStyle
+	refVariable CDATA #REQUIRED
+>
+<!ELEMENT expression (#PCDATA)>
+<!ATTLIST expression
+	xml:lang NMTOKEN #IMPLIED
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT condition (#PCDATA)>
+<!ATTLIST condition
+	use (required | optional | prohibited) "required"
+	xml:lang NMTOKEN #IMPLIED
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT modelSubject EMPTY>
+<!ATTLIST modelSubject
+	refSubject CDATA #REQUIRED
+>
+<!ELEMENT overall EMPTY>
+<!ATTLIST overall
+	refEdge CDATA #IMPLIED
+>
+<!ELEMENT text (#PCDATA)>
+<!ATTLIST text
+	xml:lang NMTOKEN #IMPLIED
+	xml:space (default | preserve) "preserve"
+	refVariableValue CDATA #IMPLIED
+>
+<!ELEMENT defaultSelection (#PCDATA)>
+<!ELEMENT drillParameter (queryItemRef)*>
+<!ATTLIST drillParameter
+	name CDATA #REQUIRED
+	value CDATA #IMPLIED
+>
+<!ELEMENT bookmarkRef (label | queryItemRef | expression)*>
+<!ELEMENT label (#PCDATA)>
+<!ATTLIST label
+	xml:lang NMTOKEN #IMPLIED
+	xml:space (default | preserve) "preserve"
+	refVariableValue CDATA #IMPLIED
+>
+<!ELEMENT stringFormat (#PCDATA)>
+<!ATTLIST stringFormat
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	xml:lang NMTOKEN #IMPLIED
+	displayID CDATA #IMPLIED
+>
+<!ELEMENT numberFormat (#PCDATA)>
+<!ATTLIST numberFormat
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	xml:lang NMTOKEN #IMPLIED
+	displayID CDATA #IMPLIED
+	sign CDATA #IMPLIED
+	useTrailingSign CDATA #IMPLIED
+	maxDigits CDATA #IMPLIED
+	minDigits CDATA #IMPLIED
+	paddingCharacter CDATA #IMPLIED
+	scale CDATA #IMPLIED
+	useGrouping CDATA #IMPLIED
+	groupDelimiter CDATA #IMPLIED
+	groupSize CDATA #IMPLIED
+	groupSecondarySize CDATA #IMPLIED
+	whenNegative CDATA #IMPLIED
+	whenZero CDATA #IMPLIED
+	decimalSize CDATA #IMPLIED
+	decimalDelimiter CDATA #IMPLIED
+	exponentSize CDATA #IMPLIED
+	exponentSymbol CDATA #IMPLIED
+	useScientific CDATA #IMPLIED
+>
+<!ELEMENT currencyFormat (#PCDATA)>
+<!ATTLIST currencyFormat
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	xml:lang NMTOKEN #IMPLIED
+	displayID CDATA #IMPLIED
+	sign CDATA #IMPLIED
+	useTrailingSign CDATA #IMPLIED
+	maxDigits CDATA #IMPLIED
+	minDigits CDATA #IMPLIED
+	paddingCharacter CDATA #IMPLIED
+	scale CDATA #IMPLIED
+	useGrouping CDATA #IMPLIED
+	groupDelimiter CDATA #IMPLIED
+	groupSize CDATA #IMPLIED
+	groupSecondarySize CDATA #IMPLIED
+	whenNegative CDATA #IMPLIED
+	whenZero CDATA #IMPLIED
+	decimalSize CDATA #IMPLIED
+	decimalDelimiter CDATA #IMPLIED
+	currencyCode CDATA #IMPLIED
+	currencySymbol CDATA #IMPLIED
+	intlCurrencySymbol CDATA #IMPLIED
+	useIntlSymbol CDATA #IMPLIED
+	useTrailingSymbol CDATA #IMPLIED
+>
+<!ELEMENT percentFormat (#PCDATA)>
+<!ATTLIST percentFormat
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	xml:lang NMTOKEN #IMPLIED
+	displayID CDATA #IMPLIED
+	sign CDATA #IMPLIED
+	useTrailingSign CDATA #IMPLIED
+	maxDigits CDATA #IMPLIED
+	minDigits CDATA #IMPLIED
+	paddingCharacter CDATA #IMPLIED
+	scale CDATA #IMPLIED
+	useGrouping CDATA #IMPLIED
+	groupDelimiter CDATA #IMPLIED
+	groupSize CDATA #IMPLIED
+	groupSecondarySize CDATA #IMPLIED
+	whenNegative CDATA #IMPLIED
+	whenZero CDATA #IMPLIED
+	decimalSize CDATA #IMPLIED
+	decimalDelimiter CDATA #IMPLIED
+	percentSymbol CDATA #IMPLIED
+	percentScale CDATA #IMPLIED
+>
+<!ELEMENT dateFormat (#PCDATA)>
+<!ATTLIST dateFormat
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	xml:lang NMTOKEN #IMPLIED
+	displayID CDATA #IMPLIED
+	whenZero CDATA #IMPLIED
+	dateStyle (short | medium | long | full) #IMPLIED
+	displayOrder CDATA #IMPLIED
+	showDays (false | true | 1-digit | 2-digits | Julian) #IMPLIED
+	showWeekday (false | true | shortName | fullName) #IMPLIED
+	showEra CDATA #IMPLIED
+	calendar (Gregorian | Imperial) #IMPLIED
+	showYears (false | true | hideCentury | showCentury) #IMPLIED
+	showMonths (false | true | 1-digit | 2-digits | shortName | fullName) #IMPLIED
+	dateSeparator CDATA #IMPLIED
+>
+<!ELEMENT timeFormat (#PCDATA)>
+<!ATTLIST timeFormat
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	xml:lang NMTOKEN #IMPLIED
+	displayID CDATA #IMPLIED
+	whenZero CDATA #IMPLIED
+	showHours (false | true | 1-digit | 2-digits) #IMPLIED
+	showMinutes (false | true | 1-digit | 2-digits) #IMPLIED
+	showSeconds (false | true | 1-digit | 2-digits) #IMPLIED
+	showMilliseconds (false | true | 1-digit | 2-digits | 3-digits) #IMPLIED
+	timeSeparator CDATA #IMPLIED
+	timeStyle (short | long | full) #IMPLIED
+	showAmPm CDATA #IMPLIED
+	showTimeZone CDATA #IMPLIED
+	clock (12-hour | 24-hour) #IMPLIED
+	decimalDelimiter CDATA #IMPLIED
+>
+<!ELEMENT dateTimeFormat (#PCDATA)>
+<!ATTLIST dateTimeFormat
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	xml:lang NMTOKEN #IMPLIED
+	displayID CDATA #IMPLIED
+	whenZero CDATA #IMPLIED
+	dateStyle (short | medium | long | full) #IMPLIED
+	displayOrder CDATA #IMPLIED
+	showDays (false | true | 1-digit | 2-digits | Julian) #IMPLIED
+	showWeekday (false | true | shortName | fullName) #IMPLIED
+	showEra CDATA #IMPLIED
+	calendar (Gregorian | Imperial) #IMPLIED
+	showYears (false | true | hideCentury | showCentury) #IMPLIED
+	showMonths (false | true | 1-digit | 2-digits | shortName | fullName) #IMPLIED
+	dateSeparator CDATA #IMPLIED
+	timeStyle (short | long | full) #IMPLIED
+	showAmPm CDATA #IMPLIED
+	showTimeZone CDATA #IMPLIED
+	clock (12-hour | 24-hour) #IMPLIED
+	decimalDelimiter CDATA #IMPLIED
+	showHours (false | true | 1-digit | 2-digits) #IMPLIED
+	showMinutes (false | true | 1-digit | 2-digits) #IMPLIED
+	showSeconds (false | true | 1-digit | 2-digits) #IMPLIED
+	showMilliseconds (false | true | 1-digit | 2-digits | 3-digits) #IMPLIED
+	timeSeparator CDATA #IMPLIED
+>
+<!ELEMENT intervalFormat (#PCDATA)>
+<!ATTLIST intervalFormat
+	pattern CDATA #IMPLIED
+	whenMissing CDATA #IMPLIED
+	xml:lang NMTOKEN #IMPLIED
+	displayID CDATA #IMPLIED
+	sign CDATA #IMPLIED
+	useTrailingSign CDATA #IMPLIED
+	maxDigits CDATA #IMPLIED
+	minDigits CDATA #IMPLIED
+	paddingCharacter CDATA #IMPLIED
+	scale CDATA #IMPLIED
+	useGrouping CDATA #IMPLIED
+	groupDelimiter CDATA #IMPLIED
+	groupSize CDATA #IMPLIED
+	groupSecondarySize CDATA #IMPLIED
+	whenNegative CDATA #IMPLIED
+	whenZero CDATA #IMPLIED
+	decimalSize CDATA #IMPLIED
+	decimalDelimiter CDATA #IMPLIED
+	units (time | days | hours | minutes | seconds | milliseconds) #IMPLIED
+	showDays CDATA #IMPLIED
+	showHours (false | true | 1-digit | 2-digits) #IMPLIED
+	showMinutes (false | true | 1-digit | 2-digits) #IMPLIED
+	showSeconds (false | true | 1-digit | 2-digits) #IMPLIED
+	showMilliseconds (false | true | 1-digit | 2-digits | 3-digits) #IMPLIED
+	timeSeparator CDATA #IMPLIED
+	showYears CDATA #IMPLIED
+	showMonths CDATA #IMPLIED
+	dateSeparator CDATA #IMPLIED
+>
+<!ELEMENT format (#PCDATA)>
+<!ATTLIST format
+	pattern CDATA #REQUIRED
+	whenMissing CDATA #IMPLIED
+	xml:lang NMTOKEN #IMPLIED
+	displayID CDATA #IMPLIED
+>
+<!ELEMENT testValue (#PCDATA)>
+<!ELEMENT modelConnection EMPTY>
+<!ATTLIST modelConnection
+	id ID #IMPLIED
+	name CDATA #REQUIRED
+	src CDATA #IMPLIED
+>
+<!ELEMENT layoutList (layout)+>
+<!ATTLIST layoutList
+	refVariable CDATA #IMPLIED
+>
+<!ELEMENT burst (key | recipient)*>
+<!ELEMENT variableList (variable)+>
+<!ELEMENT asOfTime (expression)*>
+<!ELEMENT edgeHeader (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST edgeHeader
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	showContinuation (true | false) "false"
+	hideOnSingleDetail (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	keepWithNext CDATA "false"
+>
+<!ELEMENT sectionHeader (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST sectionHeader
+	refLevel CDATA #REQUIRED
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false | group) "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	showContinuation (true | false) "false"
+	hideOnSingleDetail (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	keepWithNext CDATA "false"
+>
+<!ELEMENT sectionBody (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST sectionBody
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	refLevel CDATA #IMPLIED
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	showContinuation (true | false) "false"
+>
+<!ELEMENT sectionFooter (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST sectionFooter
+	refLevel CDATA #REQUIRED
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false | group) "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	showContinuation (true | false) "false"
+	hideOnSingleDetail (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	keepWithPrevious CDATA "false"
+>
+<!ELEMENT edgeFooter (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST edgeFooter
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	showContinuation (true | false) "false"
+	hideOnSingleDetail (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	keepWithPrevious CDATA "false"
+>
+<!ELEMENT displayItem EMPTY>
+<!ATTLIST displayItem
+	refItem CDATA #REQUIRED
+>
+<!ELEMENT useItem EMPTY>
+<!ATTLIST useItem
+	refItem CDATA #REQUIRED
+>
+<!ELEMENT dataCells ((item | calculatedMember))+>
+<!ELEMENT rowEdge ((level | dimension | cellMembers? | MDX)+)*>
+<!ATTLIST rowEdge
+	name CDATA #IMPLIED
+>
+<!ELEMENT columnEdge ((level | dimension | cellMembers? | MDX)+)*>
+<!ATTLIST columnEdge
+	name CDATA #IMPLIED
+>
+<!ELEMENT sectionEdge ((level | dimension | cellMembers? | MDX)+)*>
+<!ATTLIST sectionEdge
+	name CDATA #IMPLIED
+>
+<!ELEMENT MDX (#PCDATA)>
+<!ATTLIST MDX
+	xml:lang NMTOKEN #IMPLIED
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT SQL (#PCDATA)>
+<!ATTLIST SQL
+	syntax (native | Cognos) "native"
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT modelJoin EMPTY>
+<!ATTLIST modelJoin
+	refJoin CDATA #IMPLIED
+	leftCardinality (0:1 | 0:N | 1:1 | 1:N) #IMPLIED
+	rightCardinality (0:1 | 0:N | 1:1 | 1:N) #IMPLIED
+>
+<!ELEMENT overallHeader (rowCells+, ((style | XMLAttribute | conditionalStyle)*)?)*>
+<!ATTLIST overallHeader
+	repeatEveryPage (true | false) "false"
+	hideOnSingleDetail (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	keepTogether (true | false | group) "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	keepWithNext CDATA "false"
+>
+<!ELEMENT listHeader (rowCells+, ((style | XMLAttribute | conditionalStyle)*)?)*>
+<!ATTLIST listHeader
+	repeatEveryPage (true | false) "false"
+	hideOnSingleDetail (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	keepTogether (true | false) "false"
+	keepWithNext CDATA "false"
+	afterOverallHeader (true | false) "false"
+>
+<!ELEMENT groupHeader (rowCells+, ((style | XMLAttribute | conditionalStyle)*)?)*>
+<!ATTLIST groupHeader
+	repeatEveryPage (true | false) "false"
+	hideOnSingleDetail (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	keepTogether (true | false | group) "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	refLevel CDATA #REQUIRED
+	keepWithNext CDATA "false"
+	showContinuation (true | false) "false"
+>
+<!ELEMENT listColumnTitles (listColumnTitle | ((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST listColumnTitles
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	keepWithNext CDATA "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT listColumns (listColumn | ((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST listColumns
+	keepTogether (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT groupFooter (rowCells+, ((style | XMLAttribute | conditionalStyle)*)?)*>
+<!ATTLIST groupFooter
+	repeatEveryPage (true | false) "false"
+	hideOnSingleDetail (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	keepTogether (true | false | group) "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	refLevel CDATA #REQUIRED
+	keepWithPrevious CDATA "false"
+	showContinuation (true | false) "false"
+	pushToBottom (true | false) "false"
+>
+<!ELEMENT listFooter (rowCells+, ((style | XMLAttribute | conditionalStyle)*)?)*>
+<!ATTLIST listFooter
+	repeatEveryPage (true | false) "false"
+	hideOnSingleDetail (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	keepTogether (true | false) "false"
+	keepWithPrevious CDATA "false"
+	pushToBottom (true | false) "false"
+>
+<!ELEMENT overallFooter (rowCells+, ((style | XMLAttribute | conditionalStyle)*)?)*>
+<!ATTLIST overallFooter
+	repeatEveryPage (true | false) "false"
+	hideOnSingleDetail (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	keepTogether (true | false | group) "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	keepWithPrevious CDATA "false"
+	pushToBottom (true | false) "false"
+>
+<!ELEMENT crosstabLevel (levelHeader | levelFooter | ((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST crosstabLevel
+	refLevel CDATA #REQUIRED
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false | group) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	showContinuation (true | false) "false"
+	hideOnSingleDetail (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT crosstabFacts (((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST crosstabFacts
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	keepWithNext CDATA "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT crosstabMember (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST crosstabMember
+	refLevel CDATA #IMPLIED
+	refMember CDATA #REQUIRED
+	keepTogether (true | false) "false"
+	keepWithNext CDATA "false"
+	showContinuation (true | false) "false"
+	hideOnSingleDetail (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT crosstabCell (level | overall | member | ((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST crosstabCell
+	keepTogether (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	showContinuation (true | false) "false"
+	hideOnSingleDetail (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT crosstabColumns (((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST crosstabColumns
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	keepWithNext CDATA "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT crosstabRows (((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST crosstabRows
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	keepWithNext CDATA "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT crosstabCorner (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST crosstabCorner
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	keepWithNext CDATA "false"
+>
+<!ELEMENT background (wash | pattern)*>
+<!ELEMENT chartBody (background | chartPalette | ((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST chartBody
+	showGridLines (true | false) "true"
+>
+<!ELEMENT subtitle (((text | expression | queryItemRef)) | ((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST subtitle
+	render (true | false) "true"
+	refVariable CDATA #IMPLIED
+>
+<!ELEMENT footer (((text | expression | queryItemRef)) | ((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST footer
+	render (true | false) "true"
+	refVariable CDATA #IMPLIED
+>
+<!ELEMENT statistics (chartText? | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST statistics
+	axisPosition (X | Y1 | Y2 | Y3 | Y4 | Z) "Y1"
+	function (baseLine) #REQUIRED
+	lineStyle (solid | dash | dot | dotDash | dashDotDot | mediumDash | shortDash | longDash | longDot | dotDotDot | dashDashDot | dashDashDotDot | longDashDot | longDashDotDot | longDashDashDot | longDashDashDotDot) "solid"
+	customValue CDATA #IMPLIED
+>
+<!ELEMENT marker (chartText? | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST marker
+	xPosition CDATA #REQUIRED
+	yPosition CDATA "0"
+	markerShape (star | plus | circle | diamond | spikedX | plainX | triangle | skewedStar | fatPlus | star90 | softX | piratePlus | fatX | castle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | square | hexagon | pentagon | house | pentagram | verticalLine | horizontalLine | rectangle | ellipse) "plainX"
+	markerSize CDATA "12"
+	axisPosition (X | Y1 | Y2 | Y3 | Y4 | Z) "Y1"
+>
+<!ELEMENT legend (background | title | itemTruncationText? | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST legend
+	valueInLegend (none | showMin | showMax | showFirst | showLast) "none"
+	itemMaxCharacters CDATA #IMPLIED
+	itemEnableTruncation (true | false) "true"
+	allowFontReduction (true | false) "true"
+	position (bottom | left | right) "right"
+	suppressTopLevelLabel (true | false) "false"
+	render (true | false) "true"
+>
+<!ELEMENT note (chartText? | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST note
+	noteTop CDATA "0"
+	noteLeft CDATA "0"
+	noteHeight CDATA "35"
+	noteWidth CDATA "50"
+	showBox (true | false) "true"
+	lineStyle (solid | dash | dot | dotDash | dashDotDot | mediumDash | shortDash | longDash | longDot | dotDotDot | dashDashDot | dashDashDotDot | longDashDot | longDashDotDot | longDashDashDot | longDashDashDotDot) "solid"
+>
+<!ELEMENT axis (title | labels | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST axis
+	axisPosition (X | Y1 | Y2 | Y3 | Y4 | Z) #REQUIRED
+	scaleMaximum CDATA #IMPLIED
+	scaleMinimum CDATA #IMPLIED
+	scaleInterval CDATA #IMPLIED
+	sharedMaximumValue (true | false) "true"
+	logarithmic (true | false) "false"
+	showAxisLine (true | false) "true"
+>
+<!ELEMENT categoryItemTruncationText (((text | expression | queryItemRef)))+>
+<!ATTLIST categoryItemTruncationText
+	render (true | false) "true"
+	refVariable CDATA #IMPLIED
+>
+<!ELEMENT chartLevel (chartText? | ((text | expression | queryItemRef)) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST chartLevel
+	refLevel CDATA #REQUIRED
+	render (true | false) "true"
+	refVariable CDATA #IMPLIED
+>
+<!ELEMENT chartMeasure (member | chartText? | ((style | XMLAttribute | conditionalStyle)*))+>
+<!ELEMENT areaChart EMPTY>
+<!ATTLIST areaChart
+	depth CDATA "50"
+	depthDirection CDATA "45"
+	standardType (absolute | clustered | standard | stacked | percent | 3DAxis) "standard"
+	showValues (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	viewingAngle (standard | thickStandard | lowThin | near1x3 | tallFar | groupView | nearGroup | seriesView | groupStretch | seriesStretch | birdsEye | lowHigh | lowLow | tallDistortion | floorDistort | Isometric) "standard"
+	stackedValuesAbsolute (true | false) "false"
+>
+<!ELEMENT barChart EMPTY>
+<!ATTLIST barChart
+	depth CDATA "50"
+	depthDirection CDATA "45"
+	standardType (absolute | clustered | standard | stacked | percent | 3DAxis) "standard"
+	showValues (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	viewingAngle (standard | thickStandard | lowThin | near1x3 | tallFar | groupView | nearGroup | seriesView | groupStretch | seriesStretch | birdsEye | lowHigh | lowLow | tallDistortion | floorDistort | Isometric) "standard"
+	connectLines (true | false) "false"
+	stackedValuesAbsolute (true | false) "false"
+>
+<!ELEMENT bubbleChart (xMeasure | yMeasure | sizeMeasure?)*>
+<!ATTLIST bubbleChart
+	markerShape (star | plus | circle | diamond | spikedX | plainX | triangle | skewedStar | fatPlus | star90 | softX | piratePlus | fatX | castle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | square | hexagon | pentagon | house | pentagram | verticalLine | horizontalLine | rectangle | ellipse) "circle"
+	markerSize CDATA "6"
+	showValues (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	showLabels (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	complex (true | false) "true"
+>
+<!ELEMENT columnChart EMPTY>
+<!ATTLIST columnChart
+	depth CDATA "50"
+	depthDirection CDATA "45"
+	standardType (absolute | clustered | standard | stacked | percent | 3DAxis) "standard"
+	showValues (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	viewingAngle (standard | thickStandard | lowThin | near1x3 | tallFar | groupView | nearGroup | seriesView | groupStretch | seriesStretch | birdsEye | lowHigh | lowLow | tallDistortion | floorDistort | Isometric) "standard"
+	connectLines (true | false) "false"
+	stackedValuesAbsolute (true | false) "false"
+>
+<!ELEMENT combinationChart (area | line | column)*>
+<!ATTLIST combinationChart
+	depth CDATA "0"
+	depthDirection CDATA "45"
+	standardType (absolute | clustered | standard | stacked | percent | 3DAxis) "standard"
+	viewingAngle (standard | thickStandard | lowThin | near1x3 | tallFar | groupView | nearGroup | seriesView | groupStretch | seriesStretch | birdsEye | lowHigh | lowLow | tallDistortion | floorDistort | Isometric) "standard"
+	axis (bipolar | dual | shared) "shared"
+	matchSeriesColor (true | false) "false"
+	stackedValuesAbsolute (true | false) "false"
+>
+<!ELEMENT lineChart EMPTY>
+<!ATTLIST lineChart
+	depth CDATA "50"
+	standardType (absolute | clustered | standard | stacked | percent | 3DAxis) "standard"
+	markerShape (star | plus | circle | diamond | spikedX | plainX | triangle | skewedStar | fatPlus | star90 | softX | piratePlus | fatX | castle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | square | hexagon | pentagon | house | pentagram | verticalLine | horizontalLine | rectangle | ellipse) "square"
+	markerSize CDATA "6"
+	showValues (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	viewingAngle (standard | thickStandard | lowThin | near1x3 | tallFar | groupView | nearGroup | seriesView | groupStretch | seriesStretch | birdsEye | lowHigh | lowLow | tallDistortion | floorDistort | Isometric) "standard"
+	stackedValuesAbsolute (true | false) "false"
+>
+<!ELEMENT paretoChart (cumulativeLine?)*>
+<!ATTLIST paretoChart
+	depth CDATA "50"
+	depthDirection CDATA "45"
+	paretoType (columnStacked | barStacked) "columnStacked"
+	showValues (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	viewingAngle (standard | thickStandard | lowThin | near1x3 | tallFar | groupView | nearGroup | seriesView | groupStretch | seriesStretch | birdsEye | lowHigh | lowLow | tallDistortion | floorDistort | Isometric) "standard"
+	connectLines (true | false) "false"
+>
+<!ELEMENT pieChart EMPTY>
+<!ATTLIST pieChart
+	depth CDATA "50"
+	ringHoleSize CDATA "0"
+	showPieLabels (none | onSlices | outsideSlices | outsideSlicesWithHeaderLines) "none"
+	showPercentage (true | false) "false"
+	showPieValues (none | onSlices | outsideSlices | outsideSlicesWithHeaderLines) "none"
+>
+<!ELEMENT polarChart (radiusMeasure | arcMeasure)*>
+<!ATTLIST polarChart
+	markerShape (star | plus | circle | diamond | spikedX | plainX | triangle | skewedStar | fatPlus | star90 | softX | piratePlus | fatX | castle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | square | hexagon | pentagon | house | pentagram | verticalLine | horizontalLine | rectangle | ellipse) "circle"
+	markerSize CDATA "6"
+	showValues (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	showLabels (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	spider (true | false) "false"
+	complex (true | false) "true"
+>
+<!ELEMENT quadrantChart (xMeasure | yMeasure | sizeMeasure?)*>
+<!ATTLIST quadrantChart
+	markerShape (star | plus | circle | diamond | spikedX | plainX | triangle | skewedStar | fatPlus | star90 | softX | piratePlus | fatX | castle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | square | hexagon | pentagon | house | pentagram | verticalLine | horizontalLine | rectangle | ellipse) "circle"
+	markerSize CDATA "6"
+	showValues (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	showLabels (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	xPosition CDATA "50"
+	yPosition CDATA "50"
+	complex (true | false) "true"
+>
+<!ELEMENT radarChart EMPTY>
+<!ATTLIST radarChart
+	radarType (absoluteLine | absoluteArea | stackedArea) "absoluteLine"
+	markerShape (star | plus | circle | diamond | spikedX | plainX | triangle | skewedStar | fatPlus | star90 | softX | piratePlus | fatX | castle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | square | hexagon | pentagon | house | pentagram | verticalLine | horizontalLine | rectangle | ellipse) "circle"
+	markerSize CDATA "6"
+	showValues (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	spider (true | false) "false"
+>
+<!ELEMENT progressiveChart (columnColor | totalColumn)*>
+<!ATTLIST progressiveChart
+	showValues (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	connectLines (true | false) "false"
+>
+<!ELEMENT scatterChart (xMeasure | yMeasure)*>
+<!ATTLIST scatterChart
+	scatterType (2D | 3D) "2D"
+	markerShape (star | plus | circle | diamond | spikedX | plainX | triangle | skewedStar | fatPlus | star90 | softX | piratePlus | fatX | castle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | square | hexagon | pentagon | house | pentagram | verticalLine | horizontalLine | rectangle | ellipse) "circle"
+	markerSize CDATA "6"
+	showValues (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	showLabels (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	viewingAngle (standard | thickStandard | lowThin | near1x3 | tallFar | groupView | nearGroup | seriesView | groupStretch | seriesStretch | birdsEye | lowHigh | lowLow | tallDistortion | floorDistort | Isometric) "standard"
+	complex (true | false) "true"
+>
+<!ELEMENT repeaterBody (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST repeaterBody
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	showContinuation (true | false) "false"
+>
+<!ELEMENT layoutComponentOverride (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST layoutComponentOverride
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	idContainer CDATA #REQUIRED
+>
+<!ELEMENT caption (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST caption
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT tableRow (tableCell | ((style | XMLAttribute | conditionalStyle)*)?)+>
+<!ATTLIST tableRow
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT conditionalBlock (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST conditionalBlock
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	refVariableValue CDATA #IMPLIED
+	repeatEveryPage (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+>
+<!ELEMENT URL EMPTY>
+<!ATTLIST URL
+	href CDATA #REQUIRED
+>
+<!ELEMENT HTML (#PCDATA)>
+<!ATTLIST HTML
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT XML (#PCDATA)>
+<!ATTLIST XML
+	xml:space (default | preserve) "preserve"
+>
+<!ELEMENT CSS EMPTY>
+<!ATTLIST CSS
+	value CDATA #REQUIRED
+	xml:lang NMTOKEN #IMPLIED
+>
+<!ELEMENT layout (pageSet | coverPageSet | promptPageList | pageSetup | ((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST layout
+	name CDATA #IMPLIED
+	localeList NMTOKENS #IMPLIED
+	refVariableValue CDATA #IMPLIED
+	refQuery CDATA #IMPLIED
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT key EMPTY>
+<!ATTLIST key
+	refQuery CDATA #REQUIRED
+	refLevel CDATA #REQUIRED
+	refItem CDATA #IMPLIED
+>
+<!ELEMENT recipient EMPTY>
+<!ATTLIST recipient
+	refQuery CDATA #REQUIRED
+	refItem CDATA #REQUIRED
+	type (auto | email | directory) #REQUIRED
+>
+<!ELEMENT variable (expression | variableValueList?)+>
+<!ATTLIST variable
+	name CDATA #REQUIRED
+	type (string | boolean | locale | number | date | dateTime | time | interval) #REQUIRED
+>
+<!ELEMENT cellMembers (#PCDATA)>
+<!ELEMENT rowCells (rowCell | ((style | XMLAttribute | conditionalStyle)*)?)*>
+<!ATTLIST rowCells
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	keepWithPrevious CDATA "false"
+	keepWithNext CDATA "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT listColumnTitle (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST listColumnTitle
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	keepTogether (true | false) "false"
+	showContinuation (true | false) "false"
+>
+<!ELEMENT listColumn (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST listColumn
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	refLevel CDATA #IMPLIED
+	keepTogether (true | false | group) "false"
+	showContinuation (true | false) "false"
+>
+<!ELEMENT levelHeader (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*) | levelCells)*>
+<!ATTLIST levelHeader
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	showContinuation (true | false) "false"
+	hideOnSingleDetail (true | false) "false"
+	keepWithNext CDATA "false"
+>
+<!ELEMENT levelFooter (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*) | levelCells)*>
+<!ATTLIST levelFooter
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	repeatEveryPage (true | false) "false"
+	keepTogether (true | false) "false"
+	pageBreak (true | false | after | before) "false"
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	showContinuation (true | false) "false"
+	hideOnSingleDetail (true | false) "false"
+	keepWithPrevious CDATA "false"
+>
+<!ELEMENT member EMPTY>
+<!ATTLIST member
+	refMember CDATA #REQUIRED
+>
+<!ELEMENT chartPalette (color | wash)+>
+<!ELEMENT chartText (((text | expression | queryItemRef)))+>
+<!ATTLIST chartText
+	render (true | false) "true"
+	refVariable CDATA #IMPLIED
+>
+<!ELEMENT itemTruncationText (((text | expression | queryItemRef)))+>
+<!ATTLIST itemTruncationText
+	render (true | false) "true"
+	refVariable CDATA #IMPLIED
+>
+<!ELEMENT labels (((style | XMLAttribute | conditionalStyle)*))*>
+<!ELEMENT xMeasure EMPTY>
+<!ATTLIST xMeasure
+	refMember CDATA #REQUIRED
+>
+<!ELEMENT yMeasure EMPTY>
+<!ATTLIST yMeasure
+	refMember CDATA #REQUIRED
+>
+<!ELEMENT sizeMeasure EMPTY>
+<!ATTLIST sizeMeasure
+	refMember CDATA #REQUIRED
+>
+<!ELEMENT area (chartMember)*>
+<!ATTLIST area
+	ordinal CDATA #IMPLIED
+	showValues (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+>
+<!ELEMENT line (chartMember)*>
+<!ATTLIST line
+	ordinal CDATA #IMPLIED
+	showValues (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	markerShape (star | plus | circle | diamond | spikedX | plainX | triangle | skewedStar | fatPlus | star90 | softX | piratePlus | fatX | castle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | square | hexagon | pentagon | house | pentagram | verticalLine | horizontalLine | rectangle | ellipse) "square"
+	markerSize CDATA "6"
+>
+<!ELEMENT column (chartMember)*>
+<!ATTLIST column
+	ordinal CDATA #IMPLIED
+	showValues (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+>
+<!ELEMENT cumulativeLine (chartText? | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST cumulativeLine
+	markerShape (star | plus | circle | diamond | spikedX | plainX | triangle | skewedStar | fatPlus | star90 | softX | piratePlus | fatX | castle | downTriangle | rightTriangle | leftTriangle | skewLeftTriangle | skewRightTriangle | downSkewLeftTriangle | downSkewRightTriangle | square | hexagon | pentagon | house | pentagram | verticalLine | horizontalLine | rectangle | ellipse) "circle"
+	markerSize CDATA "6"
+	showValues (none | center | insideMaximum | insideMinimum | outsideMaximum | outsideMinimum) "none"
+	lineStyle (solid | dash | dot | dotDash | dashDotDot | mediumDash | shortDash | longDash | longDot | dotDotDot | dashDashDot | dashDashDotDot | longDashDot | longDashDotDot | longDashDashDot | longDashDashDotDot) "solid"
+>
+<!ELEMENT radiusMeasure EMPTY>
+<!ATTLIST radiusMeasure
+	refMember CDATA #REQUIRED
+>
+<!ELEMENT arcMeasure EMPTY>
+<!ATTLIST arcMeasure
+	refMember CDATA #REQUIRED
+>
+<!ELEMENT columnColor (color | wash)*>
+<!ATTLIST columnColor
+	columnType (first | total | negativeValues | positiveValues) "total"
+>
+<!ELEMENT totalColumn (chartText?)*>
+<!ELEMENT tableCell (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST tableCell
+	colSpan CDATA "1"
+	showContinuation (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	rowSpan CDATA "1"
+>
+<!ELEMENT pageSet (page | headerPageList | footerPageList | ((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST pageSet
+	refLevel CDATA #IMPLIED
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT coverPageSet (page | headerPageList | footerPageList | ((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST coverPageSet
+	refLevel CDATA #IMPLIED
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT promptPageList (page)+>
+<!ATTLIST promptPageList
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+>
+<!ELEMENT pageSetup EMPTY>
+<!ATTLIST pageSetup
+	name CDATA #REQUIRED
+	orientation (portrait | landscape) #IMPLIED
+	maxColumns CDATA #IMPLIED
+	maxRows CDATA #IMPLIED
+	width CDATA #IMPLIED
+	height CDATA #IMPLIED
+	unit (in | cm) #IMPLIED
+>
+<!ELEMENT variableValueList (valueGroup | variableValue)+>
+<!ELEMENT rowCell (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST rowCell
+	colSpan CDATA "1"
+	showContinuation (true | false) "false"
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT levelCells (((style | XMLAttribute | conditionalStyle)*))*>
+<!ELEMENT chartMember EMPTY>
+<!ATTLIST chartMember
+	refLevel CDATA #IMPLIED
+	refMember CDATA #REQUIRED
+	axisPosition (X | Y1 | Y2 | Y3 | Y4 | Z) "Y1"
+>
+<!ELEMENT page (pageHeader | pageBody | pageFooter | ((style | XMLAttribute | conditionalStyle)*))+>
+<!ATTLIST page
+	name CDATA #REQUIRED
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+	refQuery CDATA #IMPLIED
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+>
+<!ELEMENT headerPageList (page)+>
+<!ATTLIST headerPageList
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+>
+<!ELEMENT footerPageList (page)+>
+<!ATTLIST footerPageList
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+>
+<!ELEMENT valueGroup (variableValue)+>
+<!ATTLIST valueGroup
+	value CDATA #REQUIRED
+>
+<!ELEMENT variableValue EMPTY>
+<!ATTLIST variableValue
+	value CDATA #REQUIRED
+>
+<!ELEMENT pageHeader (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST pageHeader
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+>
+<!ELEMENT pageBody (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST pageBody
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+>
+<!ELEMENT pageFooter (((list | crosstab | chart | repeater | layoutComponentRef | fieldSet | table | block | conditionalBlockList | ((textItem | image | hyperlink | button | promptButton | HTMLItem | XMLItem | bookmark)) | ((textBox | selectValue | selectWithSearch | selectDate | selectTime | selectDateTime | selectInterval | generatedPrompt)))) | ((style | XMLAttribute | conditionalStyle)*))*>
+<!ATTLIST pageFooter
+	id ID #IMPLIED
+	class CDATA #IMPLIED
+	resetPageNumber CDATA "false"
+	resetPageCount CDATA "false"
+>

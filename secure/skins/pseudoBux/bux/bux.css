@@ -1,0 +1,1657 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *|
+ *| IBM Cognos Products: BUX
+ *|
+ *| (C) Copyright IBM Corp. 2009, 2012
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *|
+ *+------------------------------------------------------------------------+
+ */
+
+html.dj_ie{overflow: hidden;}
+body{background-color: #ffffff;font-family: Arial, Verdana,'Arial Unicode MS','Andale WT','MS UI Gothic','MS PGothic','Apple Gothic',Gulim,SimSun,PMingLiU,Raghu8,sans-serif !important;padding: 0;margin: 0;}
+body a{color: #00649d;}
+.icdUI .dijitContentPane{padding: 0;cursor: default;}
+.claro .dijitTabContainerTop-dijitContentPane,.claro .dijitTabContainerLeft-dijitContentPane,.claro .dijitTabContainerBottom-dijitContentPane,.claro .dijitTabContainerRight-dijitContentPane,.claro .dijitAccordionContainer-dijitContentPane{padding: 8px;}
+.claro .dijitDialog .dijitTabContainerTop-dijitContentPane,.claro .dijitDialog .dijitTabContainerLeft-dijitContentPane,.claro .dijitDialog .dijitTabContainerBottom-dijitContentPane,.claro .dijitDialog .dijitTabContainerRight-dijitContentPane,.claro .dijitDialog .dijitAccordionContainer-dijitContentPane{padding-left: 0px;padding-right: 0px;}
+.icdUI .dojoxExpandoClosed .dojoxExpandoContent{display: none;}
+.icdUI .dijitMenuItemIcon{width: 16px;height: 16px;}
+.dijitOffScreen{width: 0px;overflow: hidden;}
+.icdUI .dojoDndAvatar{font-size: 100%;}
+.claro .dijitTabContainerBottom-tabs .dijitTabContent,.claro .dijitTabContainerTop-tabs .dijitTabContent{min-width: auto;}
+.claro .dijitTabContainerBottom-tabs .dijitTabContent{padding: 3px 6px 7px;}
+.claro .dijitTabContainerBottom-tabs .dijitTab,.claro .dijitTabContainerTop-tabs .dijitTab{min-width: 74px;}
+.claro .dijitComboBox .dijitArrowButtonInner{border: none;}
+.claro{font-size: 12px;}
+.claro .font_size_override{font-size: 1.33em;}
+.dojoDndHandle .dijitTreeRow, table.buxListPage div.dojoDndHandle{cursor: default;color:#222222;}
+.dojoxFloatingPaneTitle{white-space: normal;cursor:default;}
+.dijitBorderContainerNoGutter{position: static;}
+.claro .dijitDialogTitle{width:90% !important;}
+.icdUI .dijitEditor .dijitEditorIFrameContainer,.icdUI .dijitEditorHover .dijitEditorIFrameContainer,.icdUI .dijitEditorHover .dijitEditorIFrameContainer .dijitEditorIFrame,.icdUI .dijitEditorFocused .dijitEditorIFrameContainer,.icdUI .dijitEditorFocused .dijitEditorIFrameContainer .dijitEditorIFrame,.icdUI .dijitEditorIFrame{background-color: transparent;}
+.dijitButton, .dijitButtonNode{-webkit-transition-duration: 0s, 0s !important;}
+.claro .dijitTabContainerTop-tabs .dijitTabContent{padding-bottom: 2px;padding-top: 6px;}
+.claro .dijitTabListWrapper .dijitTabInnerDiv, .claro .dijitTabInnerDiv, .claro .dijitTabActive .dijitTabInnerDiv{background-color: #f5f5f5;color: #444444;}
+.claro .dijitTabListWrapper .dijitTabHover .dijitTabInnerDiv, .claro .dijitTabHover .dijitTabInnerDiv{background-color: #ffffff;color: #222222;}
+.claro .dijitLayoutContainer .dijitTreeRowSelected{background-color: #dfedfb;border: 1px solid transparent;background-image: none;color: #222222;}
+.claro .dijitLayoutContainer .dijitTreeRowSelected.dijitTreeRowHover{background-color: #c5dcf2;background-image: none;color: #222222;}
+.claro .dijitLayoutContainer .dijitTreeRowHover{background-color: #c5dcf2;background-image: none;border: 0px none;}
+.claro .dojoxExpandoPane .dijitDropDownButton .dijitButtonNode{background-color: transparent;border-radius: 3px;color: #222222;border: 1px solid #cccccc;}
+.claro .dijitPopup .dijitMenuItem{color: #222222;background-image: none;}
+.claro .dijitPopup .dijitMenuPassive .dijitMenuItemHover, .claro .dijitPopup .dijitMenuPassive .dijitMenuItemSelected, .claro .dijitPopup .dijitMenuActive .dijitMenuItemHover, .claro .dijitPopup .dijitMenuActive .dijitMenuItemSelected{background-color: #f8e2ba;}
+.claro .dijitPopup .dijitMenu{border: 1px solid #cccccc;}
+.claro .dijitDialog{border: 1px solid #000000;border-radius: 4px;padding: 15px 0px;background-color: #dfedfb;}
+.claro .dijitDialogPaneContent{background-color: #ffffff;}
+.claro .dijitTooltipContainer{border: 3px solid #999999;border-radius: 3px;background-image: none;}
+.claro .dijitButton .dijitButtonNode,.claro .dijitDropDownButton .dijitButtonNode,.claro .dijitComboButton .dijitButtonNode,.claro .dijitToggleButton .dijitButtonNode{background-color: transparent;background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );zoom: 1;border-color: #759dc0;color: #222222;border-radius:3px;font-weight: bold;}
+.claro .dijitButton.buxSecondaryButton .dijitButtonNode{font-weight: normal;}
+.claro .buxBannerbar .dijitToolbar .dijitButton .dijitButtonNode,.claro .buxBannerbar .dijitToolbar .dijitDropDownButton .dijitButtonNode,.claro .buxBannerbar .dijitToolbar .dijitComboButton .dijitButtonNode,.claro .buxBannerbar .dijitToolbar .dijitToggleButton .dijitButtonNode,.claro .buxBannerbar .dijitToolbar .dijitComboBox .dijitButtonNode,.claro .buxBannerbar .dijitToolbar .buxBannerBigButton.dijitHover .dijitButtonNode{height: 32px;}
+.claro .dijitToolbar .dijitButton .dijitButtonNode,.claro .dijitToolbar .dijitDropDownButton .dijitButtonNode,.claro .dijitToolbar .dijitComboButton .dijitButtonNode,.claro .dijitToolbar .dijitToggleButton .dijitButtonNode,.claro .dijitToolbar .dijitComboBox .dijitButtonNode{filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);}
+.claro .dijitButtonHover .dijitButtonNode,.claro .dijitDropDownButtonHover .dijitButtonNode,.claro .dijitComboButton .dijitButtonNodeHover,.claro .dijitComboButton .dijitDownArrowButtonHover,.claro .dijitToggleButtonHover .dijitButtonNode{background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#b9cee3));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #b9cee3 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#b9cee3',GradientType=0 );zoom: 1;}
+.claro .dijitTabListWrapper .dijitTabContainerBottom-tabs .dijitTabChecked .dijitTabContent,.claro .dijitTabContainerBottom .dijitTabActive .dijitTabInnerDiv .dijitTabContent{border-bottom-color: #cccccc;}
+.claro .dijitTabListWrapper .dijitTabHover .dijitTabContent,.claro .dijitTabContainerBottom .dijitTabHover .dijitTabInnerDiv .dijitTabContent{border-bottom-color: #c7adad;}
+.claro .dijitTabListWrapper .dijitTabContainerBottom-tabs .dijitTabChecked .dijitTabContent,.claro .dijitTabListWrapper .dijitTabHover .dijitTabContent,.claro .dijitTabContainerBottom .dijitTabHover .dijitTabInnerDiv .dijitTabContent,.claro .dijitTabContainerBottom .dijitTabActive .dijitTabInnerDiv .dijitTabContent{border-bottom-width: 2px;border-radius: 0 0 3px 3px;}
+.claro .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent,.claro .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent,.claro .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTabActive .dijitTabInnerDiv .dijitTabContent,.claro .dijitTabContainerTop-tabs .dijitTabActive .dijitTabInnerDiv .dijitTabContent{border-top-color: #cccccc;}
+.claro .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTabHover .dijitTabInnerDiv .dijitTabContent,.claro .dijitTabContainerTop-tabs .dijitTabHover .dijitTabInnerDiv .dijitTabContent{border-top-color: #c7adad;}
+.claro .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent,.claro .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent,.claro .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTabHover .dijitTabInnerDiv .dijitTabContent,.claro .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTabActive .dijitTabInnerDiv .dijitTabContent,.claro .dijitTabContainerTop-tabs .dijitTabHover .dijitTabInnerDiv .dijitTabContent,.claro .dijitTabContainerTop-tabs .dijitTabActive .dijitTabInnerDiv .dijitTabContent{border-top-width:2px;border-radius: 3px 3px 0 0;}
+.claro .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTabHover .dijitTabInnerDiv .dijitTabContent,.claro .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTabActive .dijitTabInnerDiv .dijitTabContent,.claro .dijitTabContainerTop-tabs .dijitTabHover .dijitTabInnerDiv .dijitTabContent,.claro .dijitTabContainerTop-tabs .dijitTabActive .dijitTabInnerDiv .dijitTabContent{border-bottom: 0px none;}
+.claro .dijitComboBox .dijitButtonNode{background-color: transparent;background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );zoom: 1;border-color: #759dc0;color: #222222;}
+.claro .dijitComboBoxOpenOnClickHover .dijitButtonNode, .claro .dijitComboBox .dijitDownArrowButtonHover{background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#b9cee3));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #b9cee3 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#b9cee3',GradientType=0 );zoom: 1;border-color: #759dc0;}
+.claro .dijitTextBoxHover{background-color:transparent;}
+.claro .dijitTextBoxHover, .claro .dijitTextBoxHover .dijitButtonNode, .claro .dijitTextBoxFocused, .claro .dijitTextBoxFocused .dijitButtonNode{border-color: #999999;}
+.claro .dijitComboBoxMenu .dijitMenuItemSelected, .claro .dijitComboBoxMenu .dijitMenuItemHover{background-color: #f8e2ba;}
+.icdUI .dojoxResizeHandleClone{left:-5px;}
+.buxMenuItemDescription{color: #777777;font-weight: normal;white-space: normal;width: 250px;}
+.buxMenuItemTitle{font-weight: bold;font-size: 0.92em;color: #444444;background-color: #ffffff;}
+.claro td.dijitMenuItemIconCell{padding: 0px 2px !important;}
+.claro td.dijitMenuItemLabel{padding-top: 3px !important;padding-bottom: 3px !important;}
+.buxMenuItemTitle .dijitMenuItemLabel{padding: 5px;}
+.claro .dijitMenuActive .dijitMenuItemHover, .claro .dijitMenuActive .dijitMenuItemSelected{background-color: #f8e2ba;border-color: #cc9850;}
+.dijitMenuItem{outline: none
+}
+.claro .dijitButtonDisabled *,.claro .dijitMenuItemDisabled *{color: #767676;}
+.claro .dijitMenuItemDisabled *{opacity: 1;}
+.claro .dijitMenuItemDisabledFocused *{color: #767676;}
+.text_overflow_ellipsis_ie{text-overflow: ellipsis;}
+.text_overflow_ellipsis{text-overflow: ellipsis;-moz-binding:url(./bux_ellipsis-xbl.xml#text_overflow_ellipsis);}
+.icdUI .buxEmptyArrowButtonInner{background-position: center !important;font-size:1px;height:12px !important;margin:0px !important;width:12px !important;}
+.dijit_a11y .buxEmptyArrowButtonInner{width:auto;height:auto;margin:2px;font-size:1em;}
+.dijit_a11y .contentpane-pulldown .dijitArrowButtonInner{display:block !important;font-size:1em;height:auto;width:auto;}
+.claro .dijitMenuExpand{background-image:none;background-image: url(images/menu/menu_icon_arrow.png);background-position: center center;height: 10px;width: 10px;}
+.bux-aboutBox-Dialog .dijitDialogPaneContent{padding: 0px;}
+.bux-aboutBox-Dialog .dijitDialogPaneActionBar{margin: 0px;}
+.buxAboutBoxBackground{width: 376px;height: 320px;overflow: auto;background-position: bottom right;background-repeat: no-repeat;}
+.buxAboutBoxLogo{padding: 12px 16px 5px 16px;}
+.buxAboutBoxProductName{padding: 10px 16px 3px;font-size: 16px;}
+.buxAboutBoxVersion{padding: 10px 16px 2px;font-size: 10px;}
+.buxAboutBoxLegalSatementCopyright{padding: 15px 16px 0px;font-size: 9px;}
+.buxAboutBoxLegalStatement{padding: 0px 16px 2px;font-size: 9px;}
+.buxAboutBoxLegalStatement{padding: 2px 16px;font-size: 9px;}
+.buxAboutBoxBuildNumber,.buxAboutBoxReleaseNumber{padding: 2px 16px;font-size: 9px;}
+.buxAboutBoxBackground{background-image: none;background-image: url(images/about/about_background.gif);background-color: #ffffff;}
+.buxBannerbar{height: 42px;color: #646464;width: 100%;}
+.buxBannerbar .buxBannerSection{vertical-align: middle;height: 38px;}
+.buxBannerBlueDotSection{background-repeat: no-repeat;background-position: 10px 3px !important;width: 50px;min-width: 50px;}
+.icdUI .buxBannerbar .buxBannerBlueDotSection .dijitToolbar{border-radius: 3px 3px 3px 3px;border-style: inset outset outset inset;border-width: 1px;box-shadow: 3px 3px 2px transparent;border-color:transparent;}
+.bannerWrapperTable{width: 100%;padding-left:5px;}
+.buxBannerBlueDotSection:hover{background-position: 10px -257px !important;}
+.buxBannerBlueDotSection .dijitToolbar .dijitDropDownButton,.buxBannerBlueDotSection .dijitToolbar .dijitDropDownButton .dijitButtonNode{margin: 0px !important;}
+.claro .buxBannerbar .buxBannerBlueDotSection .dijitToolbar .dijitDropDownButtonHover.buxBannerBigButton .dijitButtonNode,.dj_ie .claro .buxBannerbar .buxBannerBlueDotSection .dijitToolbar .dijitDropDownButtonHover.buxBannerBigButton .dijitButtonNode,.dj_ie .claro .buxBannerbar .buxBannerBlueDotSection .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode,.dj_ie .claro .buxBannerbar .buxBannerBlueDotSection .dijitToolbar .dijitToggleButtonHover .dijitButtonNode,.dj_ie .claro .buxBannerbar .buxBannerBlueDotSection .dijitToolbar .dijitButtonHover .dijitButtonNode{background-image: none !important;background-color: transparent !important;filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);}
+.buxBannerMainSectionLeft{background-position: 0px -50px !important;}
+.buxBannerMainSectionRight{background-position: 0px -50px !important;width: 0px;text-align: right;}
+.buxBannerMainToRightSection{background-position: -36px 0px !important;width: 17px;min-width: 17px;}
+.buxBannerRightSection{background-position: 0px -100px !important;width: 5px;padding-left: 0px;padding-right: 5px;text-align: right;}
+.icdUI .buxBannerBlueDotSection .dijitButtonNode{border-color: transparent !important;background-color: transparent !important;background-image: none !important;}
+.dj_ie .buxBannerbar .dijitToolbar .dijitButton,.dj_ie .buxBannerbar .dijitToolbar .dijitDropDownButton{margin: 0em 0.2em;}
+.buxBannerBigButton .dijitArrowButtonInner{display: none;}
+.buxBannerIcon{background-repeat: no-repeat;height: 16px;width: 16px;}
+.dj_ie .buxBannerEnvironmentTitle{margin-bottom: 3px;}
+.buxBannerSection .dijitToolbar .dijitToggleButton,.buxBannerSection .dijitToolbar .dijitButton,.buxBannerSection .dijitToolbar .dijitDropDownButton,.buxBannerSection .dijitToolbar .dijitComboButton{margin-left: 7px;height: 36px;}
+.icdUI .buxBannerSection .dijitToolbarSeparator{margin: 0 0 0 5px;height:10px;}
+.claro .buxBannerbar .dijitButtonText{padding: 0 6px;}
+.icdUI .buxBannerbar .dijitToolbar{background-color: transparent;background-image: none;border: none;white-space: nowrap;padding: 0px;height: 36px;line-height: 36px;}
+.buxBannerbar{background-color: #efefef;background-image: none;background-image: none, -moz-linear-gradient(top, #ffffff 0%, #cccccc 100%);background-image: none, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#cccccc));background-image: none, -webkit-linear-gradient(top, #ffffff 0%, #cccccc 100%);background-image: none, -o-linear-gradient(top, #ffffff 0%, #cccccc 100%);background-image: none, -ms-linear-gradient(top, #ffffff 0%, #cccccc 100%);background-image: none, linear-gradient(to bottom, #ffffff 0%, #cccccc 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=0 );zoom: 1;}
+.buxBannerbar .buxBannerSection{background-repeat: repeat-x;background-image: url(images/banner/bar_strip.png);background-attachment: scroll;border: medium none;}
+.bannerLip{background-color: #3d3d3d;height: 4px;}
+.buxBannerbar .dijitButtonText{font-weight: bold;color: #00649d;font-size: 1.05em;}
+.claro .buxBannerbar .dijitToolbar .dijitButtonHover .dijitButtonNode,.claro .buxBannerbar .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode,.claro .buxBannerbar .dijitToolbar .dijitToggleButtonHover .dijitButtonNode,.dj_ie .claro .buxBannerbar .dijitToolbar .dijitButtonHover .dijitButtonNode,.dj_ie .claro .buxBannerbar .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode,.dj_ie .claro .buxBannerbar .dijitToolbar .dijitToggleButtonHover .dijitButtonNode,.claro .buxBannerbar .dijitToolbar .dijitHover .dijitButtonNode{background-color: #efefef !important;border: 1px solid #cc9850 !important;background-image: none;background-image: none, -moz-linear-gradient(top, #ffffff 0%, #f8e2ba 100%);background-image: none, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f8e2ba));background-image: none, -webkit-linear-gradient(top, #ffffff 0%, #f8e2ba 100%);background-image: none, -o-linear-gradient(top, #ffffff 0%, #f8e2ba 100%);background-image: none, -ms-linear-gradient(top, #ffffff 0%, #f8e2ba 100%);background-image: none, linear-gradient(to bottom, #ffffff 0%, #f8e2ba 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f8e2ba',GradientType=0 );zoom: 1;}
+.claro .buxBannerbar .dijitToolbar .dijitButtonContents{height: 32px;padding: 0 2px;}
+.buxBannerBigButton .buxBannerIcon{width: 42px;}
+.buxBannerbar .dijitDisabled .dijitButtonText{color: #646464;}
+.buxBannerTextItem{font-weight: bold;font-size: 1em;color: #646464;cursor: default;padding-top: 1px;}
+.dj_ie .buxBannerEnvironmentTitle .buxBannerTextItem,.dj_ie .dijit_a11y .buxBannerEnvironmentTitle .buxBannerTextItem{font-size: 1em;}
+.buxBannerRootAdaptiveAnalytics,.buxBannerRootQueryStudio,.buxBannerRootPowerPlayStudio,.buxBannerRootAnalysisStudio,.buxBannerRootReportStudio,.buxBannerRootBUA,.buxBannerRootIBMCI,.buxBannerRootEventStudio,.buxBannerRootDrill,.buxBannerRootConnection,.buxBannerRootAdministration,.buxBannerMenuSave,.buxBannerMenuSaveAs,.buxBannerMenuPrint,.buxBannerMenuRefresh,.buxBannerMenuRefreshBlue,.buxBannerMenuNew,.buxBannerMenuOpen,.buxBannerMenuMailtoURL,.buxBannerMenuHome,.buxBannerMenuFitToWindow,.buxBannerMenuResizeAll,.buxBannerMenuAddTab,.buxBannerMenuDeleteTab,.buxBannerLotusConnections,.buxBannerLotusMyActivities,.buxBannerRootContributor,.buxBannerRootController,.buxBannerRootMetricStudio,.buxBannerButtonNewImage,.buxBannerButtonOpenImage,.buxBannerButtonSaveImage,.buxBannerButtonPrintImage,.buxBannerButtonDashboardViewImage,.buxBannerButtonHomeImage,.buxBannerButtonCollaboration,.buxBannerButtonCollaborationUpdate,.buxBannerButtonCollaborationNew,.buxBannerButtonCollaborationView,.buxBannerButtonReturn,.buxBannerButtonHelpImage,.buxBannerMarkAsFavoriteButton,.buxBannerRemoveFromFavoritesButton,.buxBannerButtonCollaborationNew,.buxBannerButtonCollaborationView,.buxBannerButtonMailtoURL,.buxBannerButtonAddImage{background-repeat: no-repeat;}
+.buxBannerRootAdaptiveAnalytics{background-position: -240px;}
+.buxBannerRootQueryStudio{background-position: -416px;}
+.buxBannerRootReportStudio{background-position: -432px;}
+.buxBannerRootEventStudio{background-position: -320px;}
+.buxBannerRootAnalysisStudio{background-position: -400px;}
+.buxBannerRootBUA{background-position: -224px;}
+.buxBannerRootIBMCI{background-position: -672px;}
+.buxBannerRootDrill{background-position: -304px;}
+.buxBannerRootConnection{background-position: -272px;}
+.buxBannerRootAdministration{background-position: -256px;}
+.buxBannerLotusConnections{background-position: 0px;}
+.buxBannerMenuNew{background-position: -64px;}
+.buxBannerMenuOpen{background-position: -80px;}
+.buxBannerMenuSave{background-position: -112px;}
+.dijitMenuItemDisabled .buxBannerMenuSave{background-position: -160px;}
+.buxBannerMenuSaveAs{background-position: -128px;}
+.dijitMenuItemDisabled .buxBannerMenuSaveAs{background-position: -144px
+}
+.buxBannerMenuPrint{background-position: -544px;}
+.dijitMenuItemDisabled .buxBannerMenuPrint{background-position: -544px
+}
+.buxBannerMenuRefresh{background-position: -96px;}
+.buxBannerMenuMailtoURL{background-position: -208px;}
+.buxBannerMenuHome{background-position: -32px;}
+.buxBannerMenuFitToWindow{background-position: -464px;}
+.buxBannerMenuResizeAll{background-position: -480px;}
+.dijitMenuItemDisabled .buxBannerMenuFitToWindow{background-position: -640px;}
+.dijitMenuItemDisabled .buxBannerMenuResizeAll{background-position: -656px;}
+.buxBannerMenuAddTab{background-position: -608px;}
+.dijitMenuItemDisabled .buxBannerMenuAddTab{background-position: -624px;}
+.buxBannerMenuDeleteTab{background-position: -576px;}
+.dijitMenuItemDisabled .buxBannerMenuDeleteTab{background-position: -592px;}
+.buxBannerRootContributor{background-position: -288px;}
+.buxBannerRootController{background-position: -176px;}
+.buxBannerRootMetricStudio{background-position: -336px;}
+.buxBannerRootPowerPlayStudio{background-position: -560px;}
+.buxBannerButtonCollaboration{background-position: 0px;}
+.buxBannerButtonCollaborationUpdate{background-position: -304px;}
+.buxBannerButtonCollaborationNew{background-position: -512px;}
+.buxBannerButtonCollaborationView{background-position: -528px;}
+.buxBannerButtonDashboardViewImage{background-position: -16px;}
+.buxBannerButtonAddImage{background-position: -272px;}
+.buxBannerButtonMailtoURL{background-position: -256px;}
+.buxBannerButtonPrintImage{background-position: -288px;}
+.dijitDisabled .buxBannerButtonDashboardViewImage{background-position: -240px;}
+.dijitDisabled .buxBannerButtonSaveImage{background-position: -160px;}
+.dijitDisabled .buxBannerButtonPrintImage{background-position: -288px;}
+.dijitDisabled .buxBannerButtonMailtoURL{background-position: -320px;}
+.buxBannerRemoveFromFavoritesButton{background-position: -32px;}
+.buxBannerButtonHelpImage{background-position: -48px;}
+.buxBannerButtonHomeImage{background-position: -64px;}
+.buxBannerButtonNewImage{background-position: -96px;}
+.buxBannerMarkAsFavoriteButton{background-image: none;background-image: url(images/icons/blue_bar_strip.png);background-position: -112px;}
+.buxBannerButtonOpenImage{background-position: -128px;}
+.buxBannerButtonSaveImage{background-position: -144px;}
+.buxBannerMenuRefreshBlue{background-position: -224px;}
+.buxBannerButtonReturn{background-position: -336px;}
+.buxBannerMenuHelp{background-position: -496px;}
+.buxBannerRootQueryStudio,.buxBannerRootAdaptiveAnalytics,.buxBannerRootAnalysisStudio,.buxBannerRootEventStudio,.buxBannerRootReportStudio,.buxBannerRootPowerPlayStudio,.buxBannerRootBUA,.buxBannerRootIBMCI,.buxBannerRootDrill,.buxBannerRootConnection,.buxBannerRootAdministration,.buxBannerMenuNew,.buxBannerMenuOpen,.buxBannerMenuSave,.buxBannerMenuSaveAs,.buxBannerMenuPrint,.buxBannerMenuRefresh,.buxBannerMenuMailtoURL,.buxBannerMenuHome,.buxBannerMenuFitToWindow,.buxBannerMenuResizeAll,.buxBannerMenuAddTab,.buxBannerMenuDeleteTab,.buxBannerMenuHelp,.buxBannerLotusConnections,.buxBannerButtonCollaborationNew,.buxBannerButtonCollaborationView,.buxBannerRootContributor,.buxBannerRootController,.buxBannerRootMetricStudio{background-image: none;background-image: url(images/icons/blue_menu_strip.png);}
+.buxBannerButtonNewImage,.buxBannerButtonOpenImage,.buxBannerButtonSaveImage,.buxBannerButtonPrintImage,.buxBannerButtonDashboardViewImage,.buxBannerButtonHomeImage,.buxBannerButtonCollaboration,.buxBannerButtonCollaborationUpdate,.buxBannerButtonHelpImage,.buxBannerRemoveFromFavoritesButton,.buxBannerButtonMailtoURL,.buxBannerMenuRefreshBlue,.buxBannerButtonAddImage,.buxBannerButtonReturn{background-image: none;background-image: url(images/icons/blue_bar_strip.png);height: 30px;}
+.dijit_a11y .buxBannerbar{border-bottom: 1px solid black;overflow-x: auto;overflow-y: hidden;height: 70px;}
+.dijit_a11y .buxBannerMainToRightSection .dijitDropDownButton .dijitButtonNode{border: 0 none;}
+.dijit_a11y .buxBannerIcon{display: none;}
+.dijit_a11y .buxBannerButton button{font-weight: normal;font-size: 1em;height: auto;vertical-align: top;padding-top: 0px;padding-bottom: 0px;}
+.dijit_a11y .dijitToolbar .dijitButton,.dijit_a11y .dijitToolbar .dijitToggleButton,.dijit_a11y .dijitToolbar .dijitDropDownButton{padding: 0px;}
+.dijit_a11y .buxBannerButton .dijitButtonNode{height: auto;}
+.dijit_a11y .buxBannerComboButton{font-weight: normal;height: auto;vertical-align: top;padding: 0px;}
+.dj_gecko .dijit_a11y .buxBannerComboButton .dijitButtonNode{height: auto;}
+.dijit_a11y .buxBannerBigButton{height: auto;}
+.dijit_a11y .buxBannerEnvironmentTitle .buxBannerTextItem{font-weight: bold;font-size: 1em;color: #646464;padding-top: 6px;}
+.dijit_a11y .buxBannerEnvironmentTitle .dijitButtonNode{border: 0px none !important;}
+.dijit_a11y .buxBannerbar{z-index: 998;}
+.dijit_a11y .buxBannerbar .dijitButtonNode button{height: 100%;}
+.icdUI .dojoxExpandoTitle{display: none;}
+.icdUI .icdSplitter-left,.icdUI .icdSplitter-right,.icdUI .icdSplitter-top,.icdUI .icdSplitter-bottom{z-index: 439;}
+.icdUI .dijitSplitterV .dijitSplitterThumb{left: 0;width: 5px;height: 51px !important;background-image: none;background-image: url(images/collapsablepane/border_button.png);}
+.icdUI .icdSplitter-left .icdSplitterOpen,.icdUI .icdSplitter-right .icdSplitterClose{background-position: 0 0 !important;}
+.icdUI .icdSplitter-left .icdSplitterOpen:hover,.icdUI .icdSplitter-right .icdSplitterClose:hover{background-position: -6px 0 !important;}
+.icdUI .icdSplitter-left .icdSplitterClose,.icdUI .icdSplitter-right .icdSplitterOpen{background-position: -12px 0 !important;}
+.icdUI .icdSplitter-left .icdSplitterClose:hover,.icdUI .icdSplitter-right .icdSplitterOpen:hover{background-position: -18px 0 !important;}
+.icdUI .dijitSplitterH .dijitSplitterThumb{top: 0;height: 5px;width: 51px !important;background-image: none;background-image: url(images/collapsablepane/border_button.png);}
+.icdUI .icdSplitter-top .icdSplitterOpen,.icdUI .icdSplitter-bottom .icdSplitterClose{background-position: 0 -51px !important;}
+.icdUI .icdSplitter-top .icdSplitterOpen:hover,.icdUI .icdSplitter-bottom .icdSplitterClose:hover{background-position: 0 -57px !important;}
+.icdUI .icdSplitter-top .icdSplitterClose,.icdUI .icdSplitter-bottom .icdSplitterOpen{background-position: 0 -63px !important;}
+.icdUI .icdSplitter-top .icdSplitterClose:hover,.icdUI .icdSplitter-bottom .icdSplitterOpen:hover{background-position: 0 -69px !important;}
+.icdSplitter-left .dijitSplitterThumb,.icdSplitter-right .dijitSplitterThumb,.icdSplitter-bottom .dijitSplitterThumb,.icdSplitter-top .dijitSplitterThumb{cursor: pointer !important;}
+.icdUI .dijitSplitterV,.icdUI .dijitSplitterVHover,.icdUI .dijitSplitterH,.icdUI .dijitSplitterHHover{background-image: none !important;background-color: #dfedfb;-moz-box-shadow: 0 0 11px #CECECE;}
+.icdUI .dijitSplitterV,.icdUI .dijitSplitterVHover{border-left: 1px solid #cccccc;}
+.icdUI .icdSplitter-left{border-right: 1px solid #cccccc !important;border-left: none !important;width: 5px !important;}
+.icdUI .icdSplitter-left{background-position: -2px 0 !important;}
+.icdUI .dijitSplitterH,.icdUI .dijitSplitterHHover{border-top: 1px solid #cccccc;border-bottom: 1px solid #cccccc;height: 6px;}
+.icdUI .icdSplitterCloseH,.icdUI .icdSplitterCloseV{cursor: default;}
+.icdUI .dijitSplitter .icdSplitterMobileTouchZone{background-color: transparent;background-image: none;}
+.icdUI .dijitSplitterV .icdSplitterMobileTouchZone{width: 30px;}
+.icdUI .dijitSplitterH .icdSplitterMobileTouchZone{height: 30px;}
+.icdUI .icdSplitterOpenV.icdSplitterMobile .icdSplitterMobileTouchZone{left: -13px;}
+.icdUI .icdSplitter-right.icdSplitterCloseV.icdSplitterMobile .icdSplitterMobileTouchZone{left: -25px;}
+.icdUI .icdSplitterOpenH.icdSplitterMobile .icdSplitterMobileTouchZone{top: -13px;}
+.icdUI .icdSplitter-bottom.icdSplitterCloseH.icdSplitterMobile .icdSplitterMobileTouchZone{top: -25px;}
+.icdSplitterOpenA11yArrowH,.icdSplitterCloseA11yArrowH,.icdSplitterOpenA11yArrowV,.icdSplitterCloseA11yArrowV{display: none;position: absolute;}
+.icdSplitterOpenA11yArrowH,.icdSplitterCloseA11yArrowH{left: 50%;top: -5px;}
+.icdSplitterOpenA11yArrowV,.icdSplitterCloseA11yArrowV{top: 50%;left: -3px;}
+.dijit_a11y .dijitSplitterH .icdSplitterOpen .icdSplitterOpenA11yArrowH,.dijit_a11y .dijitSplitterH .icdSplitterClose .icdSplitterCloseA11yArrowH,.dijit_a11y .dijitSplitterV .icdSplitterOpen .icdSplitterOpenA11yArrowV,.dijit_a11y .dijitSplitterV .icdSplitterClose .icdSplitterCloseA11yArrowV{display: block !important;}
+.dijit_a11y .dijitSplitterV,.dijit_a11y .dijitGutterV,.dijit_a11y .dijitSplitterV .dijitSplitterThumb{width: 18px !important;}
+.dijit_a11y .dijitSplitterH,.dijit_a11y .dijitGutterH,.dijit_a11y .dijitSplitterH .dijitSplitterThumb{height: 18px !important;}
+.dijit_a11y .dijitSplitterVHover,.dijit_a11y .dijitSplitterHHover{font-size: 100% !important;}
+html,body,#buxMainBC{width: 100%;height: 100%;overflow: hidden;padding: 0 0 0 0;margin: 0 0 0 0;}
+.icdUI div.icdWorkspace{height: 100%;width: 100%;padding: 0px;background-color: #ffffff;}
+.icdUI .icdWorkspace .dojoxExpandoClosed{border: none !important;}
+.icdUI div.icdWorkspace .icdSplitterOpenH{background-color: transparent;border: none;border-bottom: 1px solid #cccccc;height: 5px;}
+.icdUI div.icdWorkspace .icdSplitterCloseH,.icdUI div.icdWorkspace .dijitSplitterHHover{height: 6px;}
+.icdUI div.icdWorkspace .icdSplitterOpenV{background-color: transparent;border: none;border-left: 1px solid #cccccc;width: 5px;}
+.icdUI div.icdWorkspace .icdSplitterCloseV,.icdUI div.icdWorkspace .dijitSplitterVHover{width: 6px;}
+.icdUI div.icdWorkspace .dijitTabPaneWrapper{border-style: none;}
+.icdUI div.icdWorkspace .dijitTabListContainer-bottom,.icdUI div.icdWorkspace .dijitTabListContainer-top,.icdUI div.icdWorkspace .dijitTabListWrapper{background-color: #f5f5f5;}
+.icdUI div.icdWorkspace .icdSplitterCloseH,.icdUI div.icdWorkspace .icdSplitterCloseV,.icdUI div.icdWorkspace .dijitSplitterHover{background-image: none !important;background-color: #dfedfb;}
+.icdUI div.icdWorkspace .icdSplitterOpenV.dijitSplitterHover,.icdUI div.icdWorkspace .icdSplitterOpenH.dijitSplitterHover,.icdUI div.icdWorkspace .icdSplitterOpenV.icdSplitterMobile,.icdUI div.icdWorkspace .icdSplitterOpenH.icdSplitterMobile{border-style: solid;border: 1px solid #cccccc !important;}
+.icdUI div.icdWorkspace .dijitSplitter .dijitSplitterThumb{visibility: hidden;}
+.icdUI div.icdWorkspace .icdSplitterMobile .dijitSplitterThumb{visibility: visible;}
+.icdUI div.icdWorkspace .icdSplitterMobile{overflow: visible;z-index: 540 !important;}
+.icdUI div.icdWorkspace .icdSplitterCloseH .dijitSplitterThumb,.icdUI div.icdWorkspace .icdSplitterCloseV .dijitSplitterThumb,.icdUI div.icdWorkspace .dijitSplitterHover .dijitSplitterThumb{visibility: visible;}
+.buxCanvas{overflow: auto;height: 100%;}
+.buxCanvasHidden{display: block !important;visibility: hidden !important;position: absolute !important;top: -5000px !important;left: -5000px !important;}
+.buxCanvasDropZoneIndicator{text-align: center;}
+.buxCanvasDropZoneInner{position: relative;}
+.buxCanvasDropZoneUnderlay{position:absolute;top:0;left:0;bottom:0;right:0;background-color:transparent;z-index:100000;-moz-opacity: 0.01;opacity: 0.01;filter: alpha(opacity = 1);}
+.nowrapForAutoResize *{white-space: nowrap !important;}
+.nowrapForAutoResize *[style*="width"]{overflow-x: hidden !important;}
+.nowrapForAutoResizeWidthSet{overflow-x: hidden !important;}
+.nowrapForAutoResize .infoBar,.nowrapForAutoResize .infoBarFlyout{display: none;}
+div.widgetContainer div.nowrapForAutoResize div.dojoxFloatingPaneContent div.mm_Content div{overflow: visible;}
+.dijitTabCloseIcon{visibility: hidden;}
+.dijitTabChecked .dijitTabCloseIcon{visibility: visible;}
+.buxPagePreview{background-color: #FAFCFE;background-image: none;background-repeat: repeat-x;}
+.buxCanvasDropZoneIndicatorText{font-size: 13pt;color: #444444;padding-bottom: 2px;}
+.buxCanvasDropZoneIndicatorSubText{font-size: 10pt;color: #444444;}
+.buxCanvasDropZoneIndicatorImage{height: 200px;background: none center no-repeat;background-image: url(images/canvas/drag_r.png);}
+.dj_ie7 .buxCanvasDropZoneIndicatorImage{width: 340px;}
+.bux-contentpane-left .buxCanvasDropZoneIndicatorImage{background-image: none;background-image: url(images/canvas/drag_l.png);}
+.dojoxExpandoPane .buxGlobalAreaDropZoneIndicatorImage{height: 62px;background: none center no-repeat;background-image: url(images/canvas/drag_ga_r.png);}
+.bux-contentpane-left .dojoxExpandoPane .buxGlobalAreaDropZoneIndicatorImage{background-image: none;background-image: url(images/canvas/drag_ga_l.png);}
+.dj_ie7 .dojoxExpandoPane .buxCanvasDropZoneIndicatorImage,.dj_ie7 .dojoxExpandoPane .buxGlobalAreaDropZoneIndicatorImage{width: 95px;}
+.claro .dijitTabCloseButton{background-image: none;background-image: url(images/canvas/tab_icon_close.png);background-position: center right;}
+.claro .dijitTabCloseButtonHover{background-image: none;background-image: url(images/canvas/tab_icon_close_h.png);background-position: center right;}
+.claro .dijitTabStripMenuIcon{background-position: 0px 50%;background-image: none;background-image: url(images/canvas/tab_overflow.png);}
+.bux-cbn-dashboardnode-ap{width: 100%;}
+.bux-cbn-Pane{position: absolute;left: 0px;bottom: -400px;height: 400px;z-index: 997;overflow: hidden;}
+.bux-cbn-openClose-button{height: 6px;top: 1px;position: absolute;left: 50%;width: 51px;cursor: pointer;z-index: 1;}
+.bux-cbn-border{height: 10px;width: 100%;margin: 0;overflow: hidden;}
+.bux-cbn-activityTable td.bux-cbn-expandActivityButton{vertical-align: top;text-align: right;}
+.bux-cbn-activityTableCell{padding: 5px 2px;vertical-align: top;text-align: left;}
+.bux-cbn-activityTable h4{margin: 0px;}
+.bux-cbn-activityIcon{vertical-align: top;width: 20px;}
+.bux-cbn-nodeContainer{clear: both;}
+.bux-cbn-activityDetails{display: none;}
+.bux-cbn-activityDetails td{border-top: none;}
+.bux-cbn-table .bux-cbn-actions{clear: none;margin: 7px 0;white-space: nowrap;font-size: 0.9em;}
+.bux-cbn-content{margin-left: auto;margin-right: auto;overflow: auto;padding: 16px 20px 16px 20px;font-size: 100%;}
+.bux-cbn-history{margin-bottom: 10px;font-size: 90%;}
+.bux-cbn-button{height: 16px;width: 16px;cursor: pointer;background-repeat: no-repeat;}
+.bux-cbn-title{padding-left: 5px;padding-top: 2px;float: left;width: 30%;}
+.bux-cbn-toolbar{text-align: right;padding-right: 5px;}
+.bux-cbn-border{background-color: #ffffff;background-image: none;background-image: url(images/collaborationpane/collaborationpane_lo_m.png);background-position: left center;background-repeat: repeat-x;}
+.bux-cbn-closeButton{background-image: none;background-image: url(images/collaborationpane/icon_close_applbar.png);background-position: center;}
+.bux-cbn-refreshButton{background-image: none;background-image: url(images/icons/blue_bar_strip.png);background-position: -224px;}
+.bux-cbn-activityTable{width: 100%;}
+.bux-cbn-activityTableCell{border-top: 1px solid #cccccc;}
+.bux-cbn-content a:link,.bux-cbn-content a:visited{color: #00649d;text-decoration: none;}
+.bux-cbn-title{font-size: 130%;color: #444444;}
+.bux-comment-editBux{width: 250px;margin: 2px;resize: none;}
+.bux-comment-cell-indicator{height: 7px;width: 0px;float: right;margin-right: 0px;margin-top: -7px;}
+.bux-comment-cell-indicator-image{position: relative;left: -2px;}
+.bux-comment-widget-indicator{height: 9px;width: 9px;position: absolute;top: 0;right: 0;z-index: 9;margin: 1px;}
+.bux-comment-scrollable-content{max-height: 133px;overflow-y: auto;overflow-x: hidden;cursor: default;margin: 0 10px 10px;padding: 1px;}
+.bux-comment-editbox-container .dijitTextArea{min-height: 83px;width: 260px;}
+.bux-comment-editbox-container .dijitTextArea>div{min-height: 50px;max-height: 400px;}
+.bux-comment-editbox-container-label{display: none;}
+.bux-comment-cancel-button-container,.bux-comment-done-button-container{text-align: right;cursor: default;margin-top: 6px;}
+.bux-comment-cancel-button .dijitButtonNode button{height: 16px;width: 16px;}
+.bux-comment-cancel-button-text{display: none;}
+.bux-comment-cancel-button{display: block;}
+.bux-comment-action-strip{padding-left: 10px;}
+.bux-comment-action-strip button{background: 0;border: 0;color: #00649d;cursor: pointer;font-size: 0.83em;margin: 0;padding: 0;text-decoration: underline;vertical-align: top;}
+.dj_gecko .bux-comment-action-strip button,.dj_safari .bux-comment-action-strip button{margin-top: -2px;}
+.bux-comment-load-div{display: none;position: absolute;text-align: center;}
+.bux-comment-load-table{height: 100%;width: 100%;}
+.bux-comment-load-cell{text-align: center;vertical-align: middle;cursor: default;}
+.bux-comment-load-container{text-align: center;}
+.bux-comment-load{height: 34px;background-position: left;background-repeat: no-repeat;padding-left: 34px;padding-top: 17px;vertical-align: middle;background-image: none;background-image: url(images/action_busy_32x32.gif);}
+.editDisabled .dijitButton,.editDisabled .bux-comment-editBux{visibility: hidden;}
+.editDisabled .bux-comment-editcontrols-container{border: none;}
+.bux-comment-table{background-color: #ffffff;}
+.bux-comment-item-owner{font-weight: bold;font-size: 0.83em;color: #00649d;padding: 2px;vertical-align: top;}
+.bux-comment-item-date{font-weight: normal;font-size: 0.67em;color: #444444;padding: 2px;}
+.bux-comment-item-text{font-weight: normal;font-size: 0.83em;color: #444444;padding: 2px;width: 250px;}
+.bux-comment-editcontrols-container{border-bottom: 1px solid #e7e7e7;margin: 0 10px 10px;padding: 10px 0;}
+.icdUI .dijitButton.bux-comment-cancel-button .dijitButtonNode,.icdUI .bux-comment-cancel-button-container .dijitButtonHover .dijitButtonNode{background: none no-repeat;background-image: url(images/dialog/popupClose.png);border: none !important;height: 22px;width: 22px;padding: 1px !important;box-shadow: none;-moz-box-shadow: none !important;}
+.bux-comment-cancel-button .dijitButtonContents{height: 100%;}
+.dj_rtl .bux-comment-cancel-button-container,.dj_rtl .bux-comment-done-button-container{text-align: left;}
+.dj_rtl .bux-comment-cell-indicator{float: left;}
+.dj_rtl .bux-comment-widget-indicator{left: 0;float: left;position: relative;right: 20px;}
+.dijit_a11y .bux-comment-editcontrols-container{border: 1px solid black;}
+.dijit_a11y .bux-comment-cancel-button{font-size: inherit;}
+.dijit_a11y .bux-comment-cancel-button-text{display: inline;}
+#widgetBuxContentPane,#widgetBuxContentPane .mm_Content{height: 100%;}
+.bux-contentpane-border-container{height: 100%;width: 100%;}
+.bux-contentpane-border-container-hidden-search-section{padding-top:6px;}
+.bux-contentpane-stackcontainer-container{overflow: hidden !important;}
+.bux-contentpane-stackcontainer-inner{margin-top: 0px;overflow: auto;}
+span.bux-contentpane-stackcontainer-inner>div.dijitContentPaneSingleChild{overflow: visible;}
+.bux-contentpane-stackcontainer .dijitTreeIcon{width: 16px;height: 16px;}
+.icdContentpaneToolbarIcon{height: 16px;width: 16px;margin-top: 2px;}
+.icdUI .bux-contentpane-toolbar{vertical-align: top;white-space: nowrap;}
+.bux-views-item-image-thumbnail,.bux-views-item-image-list,.bux-views-item-image-tree{width: 14px;height: 18px;padding-left: 2px;text-align: left;}
+.icdContentpaneToolbarContainer{height: 54px !important;}
+.icdContentpaneToolbarContainer,.bux-contentpane-controls-section-center{overflow: hidden;height: 58px;padding-left: 0px !important;}
+.bux-contentpane-toolbar-left-section{float: left;}
+.bux-contentpane-left .bux-contentpane-toolbar-left-section{float: right;}
+.bux-contentpane-toolbar-right-section{float: right;}
+.bux-contentpane-stackcontainer-inner div.dijitContentPaneSingleChild,div.bux-contentpane-treeView{height: 100%;}
+.bux-contentpane-left .bux-contentpane-toolbar-right-section{float: left;}
+.icdUI .bux-contentpane-toolbar .dijitButtonText{text-align: right;padding: 0px;}
+.buxTreeView .bux-contentpane-toolbar-bottom,.buxListView .bux-contentpane-toolbar-bottom{display: none;}
+.icdUI .bux-contentpane-toolbar .dijitStackController{white-space: nowrap;}
+.bux-contentpane-toolbar-top,.bux-contentpane-toolbar-bottom{height: 50%;padding-right: 6px;padding-left: 2px;}
+.bux-contentpane-category-section{height: 33px;background-color: transparent;overflow: hidden;}
+.icdUI .icdFeedLocationPullDownMenu .dijitButtonText{text-align: left;overflow: hidden;}
+.icdUI table.icdFeedLocationPullDownMenu{margin-top: -2px;}
+.icdUI .icdFeedLocationPullDownMenu .dijitMenuItemLabel,.icdUI .icdFeedLocationPullDownMenu .dijitMenuItem td{padding: 3px 0px 0px 0px;}
+.icdUI .icdFeedLocationPullDownMenu .dijitMenuItemIcon{height: 0;width: 0;}
+.icdUI .icdFeedLocationPullDownMenu .dijitMenuSeparator .bux-menu-separator{padding-bottom: 2px;}
+.icdUI .icdFeedLocationPullDownMenu .dijitMenuItemLabel div{background-position: left top;background-repeat: no-repeat;}
+.icdContentPanePullDownMenuIcons{width: 16px;height: 16px;background-repeat: no-repeat;margin-right: 4px;margin-left: 2px;}
+.dj_ie .icdContentPanePullDownMenuIcons{height: 16px;}
+.dj_ie .icdUI .icdFeedLocationPullDownMenu .dijitMenuItemLabel div{background-position: left center;}
+.bux-contentpane-controls-section{overflow: hidden;height: 62px;}
+.buxTileView .bux-contentpane-controls-section,.buxDetailView .bux-contentpane-controls-section{height: 92px;}
+.buxDetailView .icdDisplayNoneInBuxDetailView{display: none !important;}
+.bux-toolbox-border-container .bux-contentpane-controls-section{height: 50px;}
+.bux-contentpane-controls-section .icdContentPaneToolboxTitle{left: 30px;position: absolute;bottom: 10px;z-index: 3;}
+.bux-contentpane-controls-section .bux-tools-icon{left: 10px;position: absolute;bottom: 10px;z-index: 3;}
+.bux-search-refinement-children{padding-left: 15px;}
+.bux-contentpane-search-section{height: 100%;overflow: hidden;padding: 5px;display:none;}
+.bux-contentpane-tab-section{overflow: hidden;}
+.bux-contentpane-right .bux-contentpane-tab-section{padding-right: 5px !important;}
+.bux-contentpane-left .bux-contentpane-tab-section{padding-left: 5px !important;}
+.contentPaneContextMenuViewCarousel,.contentPaneContextMenuViewThumbnail,.contentPaneContextMenuViewList,.contentPaneContextMenuViewTree{background-repeat: no-repeat;background-position: left;}
+.icdContentpaneTabContainer .dijitTabListContainer-bottom{width: 100%;}
+.icdTabLabel{white-space: nowrap;background-repeat: no-repeat;padding-left: 4px;overflow: hidden;}
+.icdUI .icdContentpaneTabContainer .dijitTabContainerBottom-dijitContentPane{padding: 0px;}
+.treeView-busyIndicator{position: absolute;width: 100%;height: 100%;}
+.waiAlert{width: 0;height: 0;overflow: hidden;position: absolute;}
+.bux-contentpane-controls-section .icdContentPaneToolboxTitle{font-weight: bold;font-size: 1.1em;}
+.bux-contentpane-controls-section,.icdContentpaneToolbarContainer,.bux-contentpane-border-container{background-color: #dfedfb !important;background-image: none !important;}
+.bux-contentpane-stackcontainer-container{border-top: 1px solid #cccccc;}
+.bux-contentpane-stackcontainer-inner,.bux-fileDialog-stackcontainer-inner,.buxListContainer{background-color: #ffffff;}
+.bux-search-refinement-pane{position: absolute;z-index: 400;width: 200px;}
+.bux-search-refinement-pane-inner{height: 100%;background-color: #f5f5f5;border: 1px solid #cccccc;padding-left: 4px;}
+.bux-search-refinement-section{padding-top: 10px;padding-bottom: 4px;}
+.bux-search-refinement-section-header{font-size: 11px;font-weight: bold;color: #000000;padding-bottom: 4px;}
+.bux-search-refinement-section-body{background-color: #FFFFFF;border: 1px solid #999999;padding: 3px;}
+.bux-search-refinement-section-body:hover{border: 1px solid #046fc0;}
+.bux-search-refinement-item-label{font-size: 12px;color: #444444;margin-bottom: 2px;display: inline-block;text-decoration: none;}
+.bux-search-refinement-item-label-active{color: #00649d;cursor: pointer;}
+.bux-search-refinement-item-count{padding-left: 5px;font-size: 12px;color: #777777;}
+.bux-content-search-field-table{width: 100%;height: 26px;}
+.bux-content-search-field-left{width: 17px;background-position: 0px -196px !important;}
+.bux-content-search-field-right{width: 20px;background-position: -31px -196px !important;}
+.bux-content-search-field-right-content{background-position: 0px -231px !important;background-repeat: no-repeat;width: 20px;height: 21px;margin-top: 2px;}
+.bux-content-search-field-section,.bux-content-search-field-right-content{background-image: url(images/banner/bar_strip.png);background-repeat: repeat-x;}
+.bux-content-search-field-middle{background-position: 0px -156px !important;padding-bottom: 1px;padding-top: 2px;text-align: left;width: 100%;}
+.bux-content-search-field-text,.bux-content-search-field-pretext{width: 100%;border: none;background: transparent;}
+.bux-content-search-field-pretext{color: #777777;}
+.bux-content-search-field-right-content-A11y{display: none;}
+.bux-content-search-field-left-content{width: 17px;height: 26px;margin-left: 5px;margin-top: 1px;background-image: none;background-image: url(images/icons/blue_bar_strip.png);background-repeat: no-repeat;background-position: -176px;}
+.claro .icdContentpaneTabContainer .dijitTabContent{color: #444444;font-weight: bold;font-size: 1em;}
+.claro .icdContentpaneTabContainer .dijitTabChecked .dijitTabContent{color: #444444;}
+.claro .icdContentpaneTabContainer .dijitTabContainerBottom-container{border: none;}
+.bux-contentpane-stackcontainer{border-left: 1px solid #cccccc;border-right: 1px solid #cccccc;}
+.bux-contentpane-right .bux-refine-results-button{background: none 1px 1px no-repeat;background-image: url(images/contentpane/action_icon_open.png);}
+.bux-contentpane-right .dijitToggleButtonChecked .bux-refine-results-button{background: none 1px 1px no-repeat;background-image: url(images/contentpane/action_icon_close.png);}
+.bux-contentpane-left .bux-refine-results-button{background: none 1px 1px no-repeat;background-image: url(images/contentpane/action_icon_close.png);}
+.bux-contentpane-left .dijitToggleButtonChecked .bux-refine-results-button{background: none 1px 1px no-repeat;background-image: url(images/contentpane/action_icon_open.png);}
+.icdUI span.bux-sort-default-icon{background-image: none;background-image: url(images/icons/action_sort.png);}
+.icdUI span.bux-sort-ascending-icon{background-image: none;background-image: url(images/icons/action_sort_ascending.png);}
+.icdUI span.bux-sort-descending-icon{background-image: none;background-image: url(images/icons/action_sort_descending.png);}
+.bux-search-results-icon,.bux-my-favorite-icon,.contentPaneContextMenuViewThumbnail,.contentPaneContextMenuViewList,.contentPaneContextMenuViewTree,.bux-views-item-image-thumbnail,.bux-views-item-image-list,.bux-views-item-image-tree,.bux-refresh-button,.bux-businesscard-icon,.bux-upOneLevel-icon,.bux-tools-icon,.bux-content-icon,.bux-myFolders-icon,.bux-new-folder-button{background: none no-repeat;background-image: url(images/icons/content_pane_toolbar_strip.png);}
+.bux-views-item-image-tree,.contentPaneContextMenuViewTree{background-position: -64px;}
+.contentPaneContextMenuViewThumbnail,.bux-views-item-image-thumbnail{background-position: -48px;}
+.contentPaneContextMenuViewList,.bux-views-item-image-list{background-position: -32px;}
+.bux-businesscard-icon{background-position: -80px;}
+.bux-upOneLevel-icon{background-position: -96px;}
+.dijitButtonDisabled .bux-upOneLevel-icon{background-position: -128px;}
+.bux-refresh-button{background-position: 0px;}
+.bux-my-favorite-icon{background-position: -16px 0px;}
+.bux-search-results-icon{background-position: -176px 0px;}
+.bux-tools-icon{background-position: -192px 0px;}
+.bux-content-icon{background-position: -176px 0px;}
+.bux-myFolders-icon{background-position: -144px 0px;}
+.bux-new-folder-button{background-position: -256px 0px;}
+.dijitButtonDisabled .bux-new-folder-button{background-position: -272px 0px;}
+.dijit_a11y .bux-content-search-field-right-content .bux-content-search-field-right-content-A11y{border: 3px solid;cursor: pointer;display: block;}
+.dijit_a11y .bux-content-search-field-middle{border: 1px solid;}
+.bux-sort-ascending-a11y{display: none;}
+.bux-sort-descending-a11y{display: none;}
+.dijit_a11y .icdContentpaneTabContainer{border-left: solid 1px;}
+.dijit_a11y .bux-contentpane-stackcontainer{border: solid 1px;}
+.dijit_a11y .bux-contentPane .dijitTab{border: dotted 1px;}
+.dijit_a11y .bux-contentPane .dijitTabChecked{border: solid 2px !important;}
+.dijit_a11y .bux-contentpane-controls-section-center{border: solid 1px;}
+.views-title{display: none;}
+.dijit_a11y .views-title{display: block;}
+.dijit_a11y .bux-views-item-image-list,.dijit_a11y .bux-views-item-image-tree,.dijit_a11y .bux-views-item-image-thumbnail{border: none;width: auto;}
+.dijit_a11y .bux-contentpane-toolbar .dijitToggleButton{width: auto;}
+.dijit_a11y .icdContentpaneToolbarContainer .dijitToolbar{border: none;}
+.dijit_a11y .bux-contentpane-controls-section-center{height: auto !important;}
+.bux-contentPane-a11y-label,.bux-contentPane-tree-view-a11y-label{display: none;}
+.dijit_a11y .bux-contentpane-toolbar{white-space: normal !important;height: auto !important;}
+.dijit_a11y .bux-contentpane-toolbar .dijitToggleButton,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButton,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButton .dijitRight,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButtonNode,.dijit_a11y .bux-contentpane-toolbar .dijitButton,.dijit_a11y .bux-contentpane-toolbar .dijitButton .dijitRight,.dijit_a11y .bux-contentpane-toolbar .dijitButtonNode,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButtonHover,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButtonChecked{height: auto !important;width: auto !important;}
+.dijit_a11y .bux-contentpane-toolbar .dijitToggleButtonHover{height: auto !important;width: auto !important;}
+.dijit_a11y .bux-contentpane-controls-section{height: auto !important;}
+.dijit_a11y .bux-contentpane-toolbar .dijitStackController{white-space: normal !important;}
+.dijit_a11y .bux-sort-ascending-icon .bux-sort-ascending-a11y{display: inline;}
+.dijit_a11y .bux-sort-descending-icon .bux-sort-descending-a11y{display: inline;}
+.dijit_a11y .contentpane-up-button{border: solid 1px;cursor: pointer;text-align: center;padding-top: 3px;}
+.contentpane-up-button-a11y-arrow{display: none;font-size: large;}
+.dijit_a11y .icdContentpaneToolbarContainer,.dijit_a11y .bux-contentpane-controls-section-center,.dijit_a11y .bux-contentpane-toolbar .dijitButton,.dijit_a11y .bux-contentpane-toolbar .dijitButtonHover,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButton,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButtonHover,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButtonChecked,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButton .dijitButtonNode,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButton .dijitRight{height: auto !important;}
+.buxListNodeExpandCell-Close-A11y,.buxListNodeExpandCell-Open-A11y,.buxListLoadNode-A11y{display: none;}
+.dijit_a11y .buxListNodeExpandCell-Open .buxListNodeExpandCell-Open-A11y,.dijit_a11y .buxListNodeExpandCell-Closed .buxListNodeExpandCell-Close-A11y,.dijit_a11y .contentpane-up-button-a11y-arrow{display: block;}
+.dijit_a11y .buxListLoadNode-A11y{display: block;left: 50%;position: absolute;top: 50%;}
+.dijit_a11y .bux-contentpane-controls-section .bux-tools-icon{top: 20px;padding-left: 10px;}
+.dijit_a11y .bux-toolbox-border-container .dijitContentPane{overflow: hidden;}
+.dj_ie .dijit_a11y .bux-contentpane-toolbar-top{padding-bottom: 8px;}
+.dijit_a11y .contentpane-pulldown-m{height: auto;}
+.dijit_a11y .bux-contentpane-category-section{height: auto;}
+.dijit_a11y .bux-toolbox-border-container .bux-contentpane-category-section{height: 45px;}
+.dijit_a11y .bux-pane-stackbutton,.dijit_a11y .bux-pane-stackbuttonChecked{width: auto;}
+.dijit_a11y .bux-contentpane-toolbar-top .bux-contentpane-toolbar{float: left;}
+.dijit_a11y .icdContentpaneTabContainer .dijitTabContainerBottom-spacer{margin-right: 0px;border-right: none;}
+.dijit_a11y .bux-search-refinement-item-label-active{text-decoration: underline;}
+.icdIcon16{width: 16px;height: 16px;background-repeat: no-repeat;}
+.icdIcon32{background-repeat: no-repeat;background-position: center center;min-height: 32px;min-width: 32px;height: 2em;width: 2em;}
+.bux-check-on,.bux-check-off,.bux-check-mixed{background-repeat: no-repeat;background-position: center left;padding-left: 20px;cursor: default;}
+.bux-connect-collapse,.bux-connect-expand{background-repeat: no-repeat;background-position: center left;width: 15px;height: 15px;}
+.bux-connect-tab-label{padding-top: 5px;padding-bottom: 5px;}
+.icdUI .bux-borderStylePicker .dijitButtonNode{min-width: 257px !important;}
+.icdUI .bux-borderStylePicker .dijitButtonText{min-width: 218px !important;}
+.icdUI .buxValuePicker,.icdUI .buxValuePicker .dijitComboBox{margin: 0px;width: 130px;vertical-align: top;}
+.buxValuePicker .dijitComboBox .dijitButtonNode{padding: 1px 0.1em;}
+.buxValuePicker .dijitButtonNode{height: 17px;}
+.bux-iconPicker,.bux-imagePickerNone{background-repeat: no-repeat;width: 16px;height: 16px;text-align: center;}
+.dj_ie .icdUI .dijitComboBoxMenuPopup{background-color: #ffffff;}
+.icdContentToolbar .bux-pane-stackbutton{vertical-align: middle;}
+.icdContentToolbar .dijitButtonNode{border: 0;}
+.bux-check-on{background-image: none;background-image: url(images/controls/checkbox_checked.gif);}
+.bux-check-off{background-image: none;background-image: url(images/controls/checkbox_unchecked.gif);}
+.bux-check-mixed{background-image: url(images/controls/checkbox_mixed.gif);}
+.bux-connect-collapse{background-image: none;background-image: url(images/tree/tree_closed.png);}
+.bux-connect-expand{background-image: none;background-image: url(images/tree/tree_open.png);}
+.bux-connect-tab-label{border-top: 1px solid #cccccc;background-repeat: repeat-x;font-weight: bold;}
+.bux-connect-row-expand .bux-connect-tab-label{background-image: none;background-image: url(images/dialog/eventFilterDialog/section_gradient_open.png);}
+.bux-connect-row-collapse .bux-connect-tab-label{background-image: none;background-image: url(images/dialog/eventFilterDialog/section_gradient_closed.png);}
+.icdColorPickerColorNode{border: 1px solid #8d8d8d;-moz-border-radius: 3px;min-width: 100px;padding-right: 2px;height: 12px;margin-top: 2px;display: inline-block;}
+.icdUI .dojoxColorPicker{background-color: transparent;border: none
+}
+.buxCheckBoxPartialChecked{background-position: -16px;}
+.buxCheckBoxPartialCheckedDisabled{background-position: -64px;}
+.buxCheckBoxPartialCheckedHover{background-position: -112px;}
+.dl{text-decoration: underline;cursor: pointer !important;}
+.claro .dijitArrowButtonInner{background-image: none;background-image: url(images/icons/blue_bar_strip.png);background-position: -192px;}
+.claro .dijitDisabled .dijitArrowButtonInner{background-position: -208px;}
+.claro .dijitToolbar .dijitButtonHover .dijitButtonNode,.claro .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode,.claro .dijitToolbar .dijitToggleButtonHover .dijitButtonNode,.dj_ie .claro .dijitToolbar .dijitButtonHover .dijitButtonNode,.dj_ie .claro .dijitToolbar .dijitDropDownButtonHover .dijitButtonNode,.dj_ie .claro .dijitToolbar .dijitToggleButtonHover .dijitButtonNode{background-color: #f8e2ba;border: 1px solid #cc9850;background-image: none;background-image: none, -moz-linear-gradient(top, #ffffff 0%, #f8e2ba 100%);background-image: none, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f8e2ba));background-image: none, -webkit-linear-gradient(top, #ffffff 0%, #f8e2ba 100%);background-image: none, -o-linear-gradient(top, #ffffff 0%, #f8e2ba 100%);background-image: none, -ms-linear-gradient(top, #ffffff 0%, #f8e2ba 100%);background-image: none, linear-gradient(to bottom, #ffffff 0%, #f8e2ba 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f8e2ba',GradientType=0 );zoom: 1;}
+.claro .dijitToolbar .dijitComboButton .dijitButtonNodeHover,.claro .dijitToolbar .dijitComboButton .dijitDownArrowButtonHover,.icdContentToolbar .bux-pane-stackbuttonChecked .dijitButtonNode,.icdUI .dijitToolbar .dijitToggleButtonChecked .dijitButtonNode,.icdUI .dijitToolbar .dijitButtonChecked .dijitButtonNode{background-image: none;background-color: #f8e2ba !important;border: 1px solid #cc9850 !important;}
+.icdUI .dijitToggleButtonChecked .dijitButtonNode,.icdUI .dijitButtonChecked .dijitButtonNode{background-image: none;background-image: -moz-linear-gradient(top, #f8e2ba 0%, #f8e2ba 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8e2ba), color-stop(100%,#f8e2ba));background-image: -webkit-linear-gradient(top, #f8e2ba 0%, #f8e2ba 100%);background-image: -o-linear-gradient(top, #f8e2ba 0%, #f8e2ba 100%);background-image: -ms-linear-gradient(top, #f8e2ba 0%, #f8e2ba 100%);background-image: linear-gradient(to bottom, #f8e2ba 0%, #f8e2ba 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8e2ba', endColorstr='#f8e2ba',GradientType=0 );zoom: 1;border: 1px solid #cc9850 !important;}
+.dj_ie .claro .dijitToolbar .dijitComboButton TD{position: relative;}
+.icdContentToolbar .bux-pane-stackbuttonChecked .dijitButtonNode{padding: 1px;}
+.claro .dijitToolbar .dijitButtonActive .dijitButtonNode,.claro .dijitToolbar .dijitDropDownButtonActive .dijitButtonNode,.claro .dijitToolbar .dijitDropDownButtonOpened .dijitButtonNode,.claro .dijitToolbar .dijitToggleButtonActive .dijitButtonNode{background-color: #e7e7e7;background-position: 0 0;border: 1px solid transparent;}
+.claro .buxBannerbar .dijitToolbar .dijitButtonActive .dijitButtonNode,.claro .buxBannerbar .dijitToolbar .dijitDropDownButtonActive .dijitButtonNode,.claro .buxBannerbar .dijitToolbar .dijitDropDownButtonOpened .dijitButtonNode,.claro .buxBannerbar .dijitToolbar .dijitToggleButtonActive .dijitButtonNode{background-image: none;background-image: none, -moz-linear-gradient(top, #777777 0%, #222222 100%);background-image: none, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#777777), color-stop(100%,#222222));background-image: none, -webkit-linear-gradient(top, #777777 0%, #222222 100%);background-image: none, -o-linear-gradient(top, #777777 0%, #222222 100%);background-image: none, -ms-linear-gradient(top, #777777 0%, #222222 100%);background-image: none, linear-gradient(to bottom, #777777 0%, #222222 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#777777', endColorstr='#222222',GradientType=0 );zoom: 1;background-color: transparent;background-position: 0 0;border: 1px solid #777777;}
+.claro .dijitToolbar .dijitComboButtonOpened .dijitDownArrowButton{background-color: #e7e7e7 !important;background-position: 0 0 !important;border: 1px solid transparent !important;}
+.claro .dijitToolbar .dijitComboButtonHover,.claro .dijitToolbar .dijitComboButtonActive,.claro .dijitToolbar .dijitComboButtonHover .dijitDownArrowButton{background-color: transparent;border: none;}
+.claro .dijitToolbar .dijitComboButton{-moz-border-radius: 2px 2px 2px 2px;}
+.claro .dijitToolbar .dijitComboButtonActive .dijitButtonNode,.claro .dijitToolbar .dijitComboButtonOpened .dijitButtonNode{background-color: #e7e7e7;background-position: 0 0;}
+.icdUI .dijitDropDownButtonDisabled .dijitButtonNode{color: #767676;}
+.icdUI .dijitComboBoxDisabled .dijitInputField{color: #767676;}
+.claro .dijitTextBoxDisabled,.claro .dijitTextBoxDisabled .dijitInputContainer{color: #767676;}
+.claro .dijitToolbar .dijitComboButtonHover .dijitDownArrowButton{padding-left: 1px;}
+.claro .bux-toolbar .dijitToolbar .dijitComboButtonHover .dijitDownArrowButton{padding: 2px;}
+.claro .bux-toolbar .dijitToolbar .dijitComboButtonHover .dijitDownArrowButton.dijitDownArrowButtonHover{padding: 1px;}
+.claro .dijitToolbar .dijitComboButtonHover .dijitDownArrowButtonHover{padding-left: 1px;padding-right: 1px;}
+.icdUI .dijitButtonDisabled .dijitButtonNode{color: #767676;}
+.claro .dijitCheckBox, .claro .dijitCheckBoxIcon, .claro .dijitRadio, .claro .dijitRadioIcon{background-image: none;background-image: url(images/controls/checkboxRadioButtonStates.png);}
+.claro .dijitCheckBoxDisabled, .claro .dijitCheckBox.dijitCheckBoxDisabled{background-position: -64px center;}
+.claro .dijitCheckBox.dijitCheckBoxChecked.dijitCheckBoxDisabled{background-position: -48px center;}
+.claro .dijitCheckBox.dijitCheckBoxChecked, .claro .dijitToggleButtonChecked .dijitCheckBoxIcon{background-position: 0 center;}
+.claro .dijitCheckBox, .claro .dijitToggleButton .dijitCheckBoxIcon{background-position: -80px center;}
+.claro .dijitCheckBoxHover{background-position: -16px center;}
+.icdUI.claro .dijitRadio.dijitRadioChecked{background-position: -192px center;}
+.icdUI.claro .dijitRadio.dijitRadioChecked.dijitRadioCheckedHover{background-position: -272px center;}
+.icdUI.claro .dijitRadio{background-position: -288px center;}
+.icdUI.claro .dijitRadio.dijitRadioHover{background-position: -208px center;}
+.claro .dijitSelectHover .dijitArrowButton,.claro .dijitSelectFocused .dijitArrowButton,.claro .dijitSelectHover .dijitButtonContents{background-color:#ffffff;}
+.buxCheckBoxPartialCheckedA11Y{display: none;}
+.dijit_a11y .buxCheckBoxPartialChecked .buxCheckBoxPartialCheckedA11Y,.dijit_a11y .buxCheckBoxPartialCheckedHover .buxCheckBoxPartialCheckedA11Y,.dijit_a11y .buxCheckBoxPartialCheckedDisabled .buxCheckBoxPartialCheckedA11Y{width: 16px;height: 16px;border: none;display: block;}
+.dijit_a11y .buxCheckBoxPartialChecked .dijitCheckBoxInput,.dijit_a11y .buxCheckBoxPartialCheckedHover .dijitCheckBoxInput,.dijit_a11y .buxCheckBoxPartialCheckedDisabled .dijitCheckBoxInput,.dijit_a11y .bux-check-on,.dijit_a11y .bux-check-off,.dijit_a11y .bux-check-mixed,.dijit_a11y .bux-connect-collapse,.dijit_a11y .bux-connect-expand,.a11y-bux-control-container,.a11y-bux-check-on,.a11y-bux-check-off,.a11y-bux-check-mixed,.a11y-bux-connect-collapse,.a11y-bux-connect-expand{display: none;}
+.dijit_a11y .a11y-bux-control-container,.dijit_a11y .a11y-bux-check-on,.dijit_a11y .a11y-bux-check-off,.dijit_a11y .a11y-bux-check-mixed,.dijit_a11y .a11y-bux-connect-collapse,.dijit_a11y .a11y-bux-connect-expand{display: inline-block;background-color: #b3b3b3;cursor: pointer;}
+.dijit_a11y .buxFilterDialogA11yLabel{margin-left: 2px;}
+.dijit_a11y .a11y-bux-connect-collapse,.dijit_a11y .a11y-bux-connect-expand{border: 1px solid;padding-left: 10px;padding-right: 10px;}
+.dijit_a11y .buxValuePicker{padding: 1px;}
+.dijit_a11y .buxValuePicker .dijitButtonNode{height: auto;}
+.dijit_a11y .buxValuePicker{width: auto !important;}
+.dijit_a11y .dijitDisabled .dijitButtonNode{opacity: 0.6;}
+.dijit_a11y .dijitTextBox{border-color: #000000;}
+.dijit_a11y .icdImagePickerDialog .dijitDialogPaneContent .dijitContentPane{overflow-x: hidden;}
+.bux-upgrade-warningDialog-widgetTitle{width: 150px;white-space: normal;}
+.bux-upgrade-warningDialog-msg{width: 250px;white-space: normal;}
+.bux-userPreferences-dialog{width: 550px;}
+.buxDialogScaleNineTable{border: none;background-color: transparent;}
+.buxDialog{background-color: #ffffff;padding: 9px 10px 14px 10px !important;}
+.dijitTooltip .buxDialog{padding: 0 !important;}
+.bux-baseDialog-ButtonIcon{margin-right: 1px;}
+.bux-resetButton-container{text-align: right;margin-top: 3px;}
+.bux-fileDialog{overflow: hidden;}
+.bux-fileDialog .dijitTreeLabel{margin: 0px;padding-left: 4px;}
+.bux-fileDialog .dijitDialogPaneContent{padding: 0px;}
+.bux-fileDialog .dijitDialogPaneActionBar{margin: 0px;}
+.bux-fileDialog-left-section-special-locations{vertical-align: top;min-width: 100px;overflow: hidden;padding: 10px 1px 5px 4px !important;}
+.bux-packageDialog .bux-fileDialog-left-section-special-locations{min-width: 110px;}
+.bux-fileDialog-button-cell{height: 100px;}
+.bux-fileDialog-big-button{min-width: 80px;min-height: 80px;width: 5em;height: 5em;margin-bottom: 10px;margin-left: 4px;}
+.bux-packageDialog .bux-fileDialog-big-button{min-width: 90px;}
+.bux-fileDialog-big-button .dijitButtonContents{min-width: 80px;min-height: 70px;width: 5em;height: 5em;padding-top: 10px;}
+.bux-packageDialog .bux-fileDialog-big-button .dijitButtonContents{min-width: 90px;}
+.bux-fileDialog-big-button .dijitButtonText{padding: 0 0.2em;white-space: normal;}
+.bux-fileDialog-right-section-content{min-width: 500px;width: 31.25em;}
+.bux-fileDialog-toolbar-section{height: auto;vertical-align: top;}
+.bux-fileDialog-toolbar-container-left{padding-right: 1px;padding-top: 3px;padding-bottom: 3px;padding-left: 135px;margin-left: -107px;}
+.dj_ie .bux-fileDialog-toolbar-container-left{position: absolute;margin-left: -113px;height: 23px;}
+.bux-fileDialog-toolbar-container{padding-right: 1px;padding-top: 3px;padding-bottom: 3px;padding-left: 4px;}
+.bux-fileDialog-table-container{height: 300px;width: 600px;}
+.bux-fileDialog-table-container .bux-fileDialog-table-container-list-label{width: 380px;}
+.bux-packageDialog .bux-fileDialog-table-container{height: 320px;width: 610px;}
+.dj_ie .bux-fileDialog-table-container .bux-contentpane-toolbar{padding-top: 0px;}
+.bux-fileDialog-toolbar-container .bux-contentpane-toolbar,.bux-fileDialog-toolbar-container-left .bux-contentpane-toolbar{height: auto;position: static;right: 0px;padding-top: 0px;}
+.bux-fileDialog-location-section{height: 28px;}
+.bux-fileDialog-location-section .dijitDropDownButton{margin: 0px;}
+.bux-location-sort-cell{width: 100%;text-align: right;}
+div.bux-fileDialog-stackcontainer-inner{overflow: auto;position: static;height: 100%;}
+.bux-fileDialog-stackcontainer .dijitTreeIcon{width: 16px;height: 16px;}
+.bux-fileDialog-treeView{height: 100%;margin-right: 1px;margin-left: 1px;}
+.bux-fileDialog-name-section{height: 50px;padding-left: 10px;padding-right: 10px;}
+.bux-savedialog-text-field{right: 0px;padding-left: 0px;padding-top: 0px;}
+.bux-fileDialog-name-textbox-cell{width: 100%;padding-right: 5px;}
+.bux-fileDialog-name-section-container{width: 430px;overflow: hidden;}
+.bux-fileDialog-name-section .dijitTextBox{margin-left: 5px;width: 420px;}
+.bux-DisplayOptionsDialog-Table{height: 350px;}
+.bux-DisplayOptionsDialog-Left{width: 200px;vertical-align: top;}
+.bux-DisplayOptionsDialog-Right{width: 400px;height: 350px;vertical-align: top;}
+.bux-DisplayOptionsDialog-Right-insert{width: 469px;height: 350px;overflow: auto;}
+.bux-DisplayOptionsDialog-Left-insert{height: 350px;width: 174px;padding-left: 1px;padding-right: 1px;margin-right: 5px;}
+.bux-DisplayOptionsDialog-CategorySelector{}
+.bux-DisplayOptionsDialog-CategorySelector .container{min-height: 20px;margin-top: 1px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 1px;padding-right: 2px;padding-bottom: 0px;padding-left: 4px;}
+.bux-DisplayOptionsDialog-CategorySelectorImage{border: 0px;vertical-align: middle;display: table-cell;float: left;}
+.bux-DisplayOptionsDialog-Left-insert .bux-DisplayOptionsDialog-CategorySelectorLabel{display: table-cell;padding-left: 3px;}
+.bux-DisplayOptionsDialog-CategoriesContainer{padding-bottom: 5px;}
+.bux-DisplayOptionsDialog-CategoryHeader{padding-top: 3px;padding-right: 6px;padding-bottom: 3px;padding-left: 6px;margin-left: 3px;margin-right: 3px;margin-top: 3px;margin-bottom: 3px;}
+.bux-DisplayOptionsDialog-displayType .container{padding-right: 3px;padding-left: 3px;padding-top: 2px;padding-bottom: 2px;margin-left: 3px;margin-bottom: 3px;}
+.bux-WorkingDialog .bux-InformationDialog{min-height: inherit;}
+.claro .dijitDialog.bux-WorkingDialog{background-color: #ffffff;}
+.bux-InformationDialog-standard{min-width: 200px;}
+.bux-InformationDialog-Icon{vertical-align: top;width: 32px;height: 32px;}
+.bux-InformationDialog-dialogTypeSection{display: none;}
+.icdUI .buxMessageNotificationOuter .dijitTitlePaneTextNode,.bux-InformationDialog-mainMessage{padding-left: 7px;padding-right: 7px;padding-top: 2px;padding-bottom: 2px;font-size: 1.25em;}
+.bux-InformationDialog-controlLabel{padding-left: 7px;padding-right: 7px;padding-top: 2px;padding-bottom: 2px;font-size: 1.25em;}
+.claro .dijitTitlePaneTitle{padding: 2px;}
+.claro .dijitTitlePaneTitleFocus{margin-top: 0px;padding-bottom: 0px;}
+.buxMessageNotificationOuter .dijitTitlePaneTextNode{vertical-align: middle;}
+.bux-informationDialog-info-icon,.bux-informationDialog-error-icon,.bux-informationDialog-warning-icon,.bux-informationDialog-working-icon{width: 32px;height: 32px;background-repeat: no-repeat;}
+.buxErrorNodeInner,.buxInfoNodeInner,.buxWarningNodeInner{display: none;}
+.buxMessageNotificationOuter{position: absolute;overflow: auto;top: 5px;left: 5px;right: 5px;bottom: 5px;z-index: 500;}
+.icdUI .icdIFrame .buxMessageNotificationOuter{position: relative;}
+.icdUI .buxMessageNotificationOuter .buxDialog{left: 0; right: 0; top: 0;display: block;overflow: auto;margin: 7px;}
+.buxMessageNotificationUnderlay{height: 100%;position: absolute;width: 100%;}
+.icdUI .buxMessageNotificationOuter .buxMessageNotificationUnderlay{background-color: #9EA7B2;opacity: 0.60;filter: alpha(opacity=60);}
+.bux-widgetPropertiesDialog{min-height: 80px;width: 320px;}
+.bux-widgetPropertiesDialog-ItemSpacing{padding-top: 6px;padding-bottom: 0px;}
+.bux-widgetPropertiesDialog-ItemNoSpacing{padding-top: 0px;padding-bottom: 0px;}
+.bux-widgetPropertiesDialog-HSpacer{height: 9px;}
+.tabsInvisible .dijitTabContainerTop-tabs{display: none;}
+.tabsInvisible .dijitTabContainerTop-spacer{border: 0px;}
+.tabsInvisible .dijitTabContainerTop-container{border: 0px;}
+.bux-appPropertiesDialog-tab-body{height: 430px;}
+.bux-dialog-sectionDivider-Separator{height: 1px;width: 100%;margin-left: 5px;margin-right: 5px;vertical-align: middle;}
+.bux-dialog-sectionDivider{width: 100%;white-space: nowrap;overflow: hidden;margin-bottom: 10px;margin-top: 10px;}
+.dj_gecko .bux-dialog-sectionDivider{margin-bottom: 9px !important;padding-bottom: 1px;margin-top: 9px !important;padding-top: 1px;}
+.icdAppPropertiesDialogTabContainer .dijitDropDownButton .dijitButtonNode{min-width: 120px;text-align: left;}
+.icdAppPropertiesDialogTabContainer .dijitDropDownButton .dijitButtonText{min-width: 80px;text-align: left;}
+.bux-dialog-controls-section{margin-left: 15px;margin-bottom: 15px;}
+.bux-dialog-controls-spacer{width: 7px;}
+.bux-appPropertiesDialog-previewBox{width: 100%;height: 250px;}
+.bux-appPropertiesDialog-previewBox .dojoxFloatingPaneTitle{cursor: default;min-height: 20px;}
+.bux-appPropertiesDialog-previewBox-content-container{width: 292px;height: 240px;margin: 3px;}
+.bux-appPropertiesDialog-previewBox-content-container{background-image: url(images/transparent_tile.png);background-repeat: repeat;}
+.bux-appPropertiesDialog-previewBox-content-container tbody{margin: 0px;padding: 0px;}
+.bux-appPropertiesDialog-previewBox-content{overflow: hidden;}
+.bux-appPropertiesDialog-previewBox-content div{height: 140px;}
+.bux-appPropertiesDialog-previewBox-title{margin-left: 3px;margin-right: 3px;margin-top: 3px;margin-bottom: -3px;overflow: visible;}
+.bux-SimplePromptDialog-text-field{width: 200px;}
+.bux-activitycreated-loading-container{width: 100%;}
+.bux-activitycreated-loading-container p{text-align: center;}
+.bux-activitycreated-loading-icon{display: block;margin-left: auto;margin-right: auto;padding-top: 218px;}
+.icdDialogButton .dijitIcon{height: 16px;}
+.icdDialogButtonBar{text-align: right;}
+.icdAppPropertiesDialogTabContainer{height: 500px;width: 640px;}
+.icdUI .dijitDialogTitle{display: inline-block;white-space: nowrap;overflow: hidden;}
+.icdUI .dijitDialogPaneContent{display: inline-block;}
+.icdUI .buxMessageNotificationOuter .buxDialog .dijitDialogPaneContent,.icdUI .buxMessageNotificationOuter .buxDialog .dijitTitlePaneContentInner{display: block;overflow: auto;padding: 2px;}
+.bux-dialog-description,.bux-InformationDialog-mainMessage,.icdUI .buxMessageNotificationOuter .buxDialog .dijitTitlePaneContentInner{white-space: pre-wrap;}
+.icdUI .icdDialogNoChrome .bux-dialog-blank{height: 0px;}
+.icdUI .icdDialogNoChrome .dijitDialogTitleBar{display: none;}
+.icdUI .icdDialogNoChrome .dijitDialogPaneContent{border: none;}
+.icdUI .icdDialogNoChrome .bux-InformationDialog-mainMessage{color: #444444;}
+.icdEmptyDialogMessage{vertical-align: middle;text-align: center;min-width: 400px;}
+.dj_ie .icdEmptyDialogMessage{width: 400px;}
+.dijitDialogPaneContent .imagePreviewArea{width: 350px;height: 250px;text-align: center;vertical-align: middle;border: 1px solid #000000;}
+.bux-manageTabs-tab-select{height: 200px;width: 400px;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-CategorySelectorImage{width: 16px;height: 16px;background-repeat: no-repeat;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-Left{width: 125px;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-CategorySelectorLabel{vertical-align: middle;color:
+;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-Left-insert{padding: 0px;margin: 0px;border-right: none;overflow-x: hidden;overflow-y: auto;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-Right-insert{height: 350px;overflow: hidden;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-Variations-Table{table-layout: fixed;width: 100%;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-variations-Left{width: 90px;vertical-align: top;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-variations-Left-insert{margin: 0;padding: 0;border-right: 1px solid #cccccc;height: 350px;width: 90px;text-align: center;overflow-x: hidden;overflow-y: auto;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-variations-Right{height: 197px;vertical-align: top;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-variations-Right-insert{border-bottom: 1px solid #cccccc;height: 197px;overflow: auto;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-variations-Bottom{height: 140px;vertical-align: top;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-variations-Bottom-insert{height: 153px;overflow: auto;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-variations-Bottom-insert .variationDescription{padding-top: 6px;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariationSelector{padding: 1px 2px;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariationSelector .container{width: 48px;padding: 4px 8px;height: 48px;cursor: pointer;margin-left: auto;margin-right: auto;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariationSelector .container.active{padding: 3px 8px;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table{width: 100%;border-collapse: collapse;}
+.dj_webkit .bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table{margin: 0px -1px;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .header{font-weight: bold;border-bottom: 1px solid #cccccc;padding: 7px 10px;white-space: nowrap;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .cell{border-bottom: 1px solid #cccccc;padding: 7px 10px;white-space: nowrap;cursor: pointer;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .cell.radioCell{padding-right: 5px;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .lastcell{width: 100%;}
+.bux-displaydialog-recommender-tab .description-title{padding: 8px 10px;font-size: 1em;font-weight: bold;color:
+;}
+.bux-displaydialog-recommender-tab .description-item{padding: 2px 10px;font-size: 0.92em;color: #444444;}
+.bux-displaydialog-recommender-tab .loadingBlanket{position: absolute;width: 603px;height: 350px;}
+.bux-displaydialog-recommender-tab .displayOptionsDialog-noReasons .bux-DisplayOptionsDialog-variations-Right,.bux-displaydialog-recommender-tab .displayOptionsDialog-noReasons .bux-DisplayOptionsDialog-variations-Right-insert{height: 285px;}
+.bux-displaydialog-recommender-tab .displayOptionsDialog-noReasons .bux-DisplayOptionsDialog-variations-Bottom{height: 56px;}
+.icdUI .icdFileDialogToolbar .dijitStackController .dijitButtonText{padding: 0px;}
+.icdIFrame .dijitDialogPaneContent{padding: 0px;}
+.bux-dialog-text,.bux-dialog-info{padding-left: 0px;padding-right: 7px;padding-top: 5px;padding-bottom: 5px;font-weight: normal;font-size: 1em;color: #444444;}
+.bux-label,.bux-dialog-label{padding-top: 2px;padding-bottom: 5px;font-weight: normal;font-size: 1em;color: #0070aa;white-space: nowrap;}
+.bux-dialog-label-wrap{white-space: normal;}
+.bux-widgetPropertiesDialog-labelCell{width: 100%;}
+.bux-control-text{color: #000000;font-size: 1em;font-weight: normal;white-space: nowrap;padding-bottom: 5px;}
+.bux-control-text-wrap{white-space: normal !important;}
+.bux-dialog-example-text,.bux-dialog-tip-text{width: auto;font-size: 1em;color: #444444;}
+.bux-dialog-tip-text{padding-left: 35px;}
+.bux-dialog-tip-icon{background-image: none;background-image: url('images/icons/tip_template.gif');background-repeat: no-repeat;background-position: 0px 6px;}
+.dj_ie .bux-label,.dj_ie .bux-dialog-label{font-size: 100%;}
+.bux-dialog-label{padding-left: 0px;padding-right: 7px;}
+.bux-dialog-blank{height: 12px;}
+.bux-dialog-field,.bux-field{padding-top: 2px;padding-bottom: 5px;font-weight: normal;font-size: 0.97em;color: #444444;}
+.bux-dialog-field{padding-left: 0px;padding-right: 7px;}
+.bux-dialog-description{padding-left: 7px;padding-right: 7px;padding-top: 2px;padding-bottom: 2px;font-weight: normal;font-size: 1em;color: #444444;}
+div.bux-InformationDialog .bux-dialog-description{padding: 7px 0;}
+.claro .bux-fileDialog .dijitToolbar{border-color: #cccccc;border-style: solid;border-width: 0 1px 1px;}
+.bux-fileDialog-big-button .dijitButtonText{font-weight: bold;font-size: 1em;}
+.claro .bux-fileDialog-left-section-special-locations .dijitButtonNode{background-color: transparent;border: none;background-image: none;-moz-box-shadow: none;filter: none;}
+.claro .bux-fileDialog-left-section-special-locations .dijitToggleButtonChecked .dijitButtonNode{background-color: #f8e2ba !important;border: 1px solid #cc9850 !important;padding: 1px 3px 3px 3px;}
+.claro .bux-fileDialog-left-section-special-locations .dijitButtonChecked .dijitButtonNode{padding: 3px;}
+.bux-fileDialog-name-section{background-color: transparent;}
+.bux-fileDialog-stackcontainer{border: solid 1px #cccccc;}
+.bux-fileDialog-name-section-table{height: 50px;margin-left: 5px;}
+.bux-fileDialog-big-button .dijitButtonText{color: #444444;}
+.bux-publicFolders32-icon{background-image: none;background-image: url(images/icons/icon_publicfolder_32.png);}
+.bux-myFolders32-icon{background-image: none;background-image: url(images/icons/icon_myfolder_32.png);}
+.bux-mruFolder32-icon{background-image: none;background-image: url(images/icons/icon_package_32.png);}
+.icdFileDialogToolbar{text-align: right;padding-right: 5px !important;}
+.bux-saveDialog-ButtonIcon{background-image: none;background-image: url(images/icons/blue_menu_strip.png);background-position: -112px;}
+.dijitButtonDisabled .bux-saveDialog-ButtonIcon{background-position: -160px;}
+.bux-openDialog-ButtonIcon{background-image: none;background-image: url(images/icons/blue_menu_strip.png);background-position: -80px;}
+.dijitButtonDisabled .bux-openDialog-ButtonIcon{background-image: none;background-image: url('images/icons/openbuttonIconDisabled.png');background-position: 0px;}
+.bux-DisplayOptionsDialog-Right-insert,.bux-DisplayOptionsDialog-Left-insert{border: 1px solid #cccccc;}
+.bux-DisplayOptionsDialog-CategorySelector .container,.bux-DisplayOptionsDialog-displayType .container{border: 1px solid white;text-decoration: none;color: #000000;cursor: pointer;}
+.bux-DisplayOptionsDialog-CategorySelector .hover,.bux-DisplayOptionsDialog-displayType .hover{border: 1px solid #cccccc;color: #444444;}
+.bux-DisplayOptionsDialog-CategorySelector .active,.bux-DisplayOptionsDialog-displayType .active,.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariationSelector .active,.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .active .cell,.bux-DisplayOptionsDialog-CategorySelector .ready,.bux-DisplayOptionsDialog-displayType .ready,.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariationSelector .ready,.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .ready .cell{border: 1px solid #cccccc;background-color: #dfedfb;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariationSelector .ready{border: 0px;}
+.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .active .cell,.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .ready .cell{color: #444444;}
+.bux-DisplayOptionsDialog-CategorySelector .hover,.bux-DisplayOptionsDialog-displayType .hover,.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariationSelector .hover,.bux-displaydialog-recommender-tab .bux-DisplayOptionsDialog-MajorVariation-table .hover .cell{background-color: #b6cfd9;}
+.bux-DisplayOptionsDialog-CategoryHeader{color:
+;border: none;border-top: 1px solid #cccccc;}
+.bux-DisplayOptionsDialog-displayTypeImage{border: 0px;}
+.icdUI .buxMessageNotificationOuter .dijitTitlePaneTextNode,.bux-InformationDialog-mainMessage,.bux-InformationDialog-controlLabel{color: #444444;}
+.bux-informationDialog-warning-icon{background-image: url(images/icons/icon_warning.png);}
+.bux-informationDialog-error-icon{background-image: url(images/icons/icon_error.png);}
+.bux-informationDialog-info-icon{background-image: url(images/icons/icon_info.png);}
+.bux-informationDialog-working-icon{background-image: none;background-image: url(images/action_busy_32x32.gif);}
+.icdUI .buxMessageNotificationOuter .dijitTitlePaneTitle,.icdUI .bux-InformationDialog .dijitTitlePaneTitle{background: none;border: none;}
+.claro .dijitTitlePaneContentOuter{border: 1px solid #000000;}
+.claro .dijitTitlePane .dijitArrowNode{width: 19px;height: 21px;}
+.claro .dijitTitlePane .dijitClosed .dijitArrowNode{background-position: center center;background-image: none;background-image: url(images/icons/action_expand.png);}
+.claro .dijitTitlePane .dijitOpen .dijitArrowNode{background-position: center center;background-image: none;background-image: url(images/icons/action_collapse.png);}
+.claro .buxMessageNotificationOuter .dijitTitlePaneTextNode,.bux-InformationDialog-mainMessage{color: #444444;font-size: 1.25em;padding: 2px 7px;}
+.bux-dialog-sectionDivider-Separator{border-top: 1px solid #cccccc;}
+.bux-dialog-sectionDivider-text{font-weight: normal;color: #444444;vertical-align: middle;}
+.bux-appPropertiesDialog-previewBox{border: 1px solid #000000;}
+.bux-imagePicker-backgroundPosition{border-collapse: separate;}
+.bux-imagePicker-backgroundPosition td{padding: 4px;border: 2px solid;border-color: transparent;}
+.bux-imagePicker{background-image: url(images/icons/image_picker.png);}
+.bux-imagePickerNone{background-image: url(images/icons/icon_none.png);}
+.bux-colorPicker{background-image: url(images/icons/color_picker.png);}
+.bux-colorPickerLine{background-image: url(images/icons/action_line_colour.png);}
+.bux-WidgetBorderPickerAll{background-image: url(images/icons/action_widget_border_all.png);}
+.bux-WidgetBorderPickerNone{background-image: url(images/icons/action_widget_border_none.png);}
+.bux-WidgetBorderPickerTitle{background-image: url(images/icons/action_portlet_content_title.png);}
+.bux-WidgetBorderPickerOutside{background-image: url(images/icons/action_portlet_content_outside.png);}
+.bux-WidgetBorderStylePickerDashed{background-image: url(images/icons/action_line_style_dashed.png);}
+.bux-WidgetBorderStylePickerDotted{background-image: url(images/icons/action_line_style_dotted.png);}
+.bux-WidgetBorderStylePickerDouble{background-image: url(images/icons/action_line_style_double.png);}
+.bux-WidgetBorderStylePickerGroove{background-image: url(images/icons/action_line_style_groove.png);}
+.bux-WidgetBorderStylePickerInset{background-image: url(images/icons/action_line_style_inset.png);}
+.bux-WidgetBorderStylePickerOutset{background-image: url(images/icons/action_line_style_outset.png);}
+.bux-WidgetBorderStylePickerRidge{background-image: url(images/icons/action_line_style_ridge.png);}
+.bux-WidgetBorderStylePickerSolid{background-image: url(images/icons/action_line_style_solid.png);}
+.bux-filter-slider-range-image,.bux-filter-slider-singleValue-image{background-repeat: no-repeat;background-position: top left;height: 30px;width: 95px;}
+.bux-filter-slider-range-image{background-image: url(images/dialog/props_graphic_range.png);}
+.bux-filter-slider-singleValue-image{background-image: url(images/dialog/props_graphic_single.png);}
+.icdBorder,.icdBorderPopup{-moz-border-radius: 5px 5px 5px 5px !important;-moz-box-shadow: 0 0 3px 3px rgba(118, 157, 192, 0.6) !important;}
+.bux-widgetPropertiesDialog-specific-section .dijitTabContainerTop-container{border: none;}
+.claro .dijitDialogTitle{color: #0070aa;font-size: 1.5em;font-weight: normal;}
+.claro .dijitDialogPaneActionBar{background-color: #dfedfb;border-top: 1px solid #cccccc;padding-top:15px;padding-bottom: 0;}
+.claro .bux-fileDialog .dijitDialogPaneActionBar{border-top: 0px none;}
+.claro .icdDialogButtonBar .dijitButton{margin-left: 5px;}
+.claro .icdDialogButtonBar .dijitButtonNode{background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );zoom: 1;background-color: transparent;color: #222222;font-size: 1em;font-weight: bold;min-width: 50px;padding-bottom: 3px;border-radius: 3px;border-color: #759dc0;}
+.claro .icdDialogButtonBar .dijitButtonHover .dijitButtonNode{background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#b9cee3));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #b9cee3 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#b9cee3',GradientType=0 );zoom: 1;color: #222222;border-color: #759dc0;}
+.claro .icdDialogButtonBar .dijitButtonDisabled .dijitButtonNode{background-position: 0 -75px;background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );zoom: 1;border-color: #759dc0;}
+.claro .icdDialogButtonBar .dijitDisabled .dijitButtonText{color: #767676;}
+.claro .dijitDialogTitleBar{background-color: #dfedfb;border: none;background-image: none;padding-bottom: 15px;padding-top: 0;}
+.claro .dijitDialogPaneContent{border-color: #cccccc;}
+.claro .dijitTabChecked .dijitTabInnerDiv{background-color: transparent;}
+.claro .dijitDialogCloseIcon{background-image: none;background-image: url(images/dialog/dialog_icon_close_strip.png);background-position: 0px 0px;width: 16px;height: 16px;display: none;}
+.claro .dijitDialogCloseIconHover{background-position: -16px 0px;}
+.claro .bux-manageTabs-order-button-container .dijitButtonNode{background-color: transparent;border: 1px solid transparent;background-image: none;-moz-box-shadow: none;box-shadow: none;-webkit-box-shadow: none;}
+.claro .bux-manageTabs-order-button-container .dijitButtonHover .dijitButtonNode{background-color: #f8e2ba;border: 1px solid #cc9850;}
+.bux-manageTabs-top-button-icon{background-position: 0px;}
+.bux-manageTabs-up-button-icon{background-position: -16px;}
+.bux-manageTabs-down-button-icon{background-position: -32px;}
+.bux-manageTabs-bottom-button-icon{background-position: -48px;}
+.bux-manageTabs-top-button-icon,.bux-manageTabs-up-button-icon,.bux-manageTabs-down-button-icon,.bux-manageTabs-bottom-button-icon{background-image: url('images/icons/list_move_buttons.png');background-repeat: no-repeat;width: 16px;height: 16px;margin-top: 2px;}
+.dj_rtl .claro .dijitDialogCloseIcon{right: auto;left: 5px;}
+.dj_rtl .claro .dijitDialogPaneActionBar{text-align: left;}
+.dijit_a11y .buxDialog{padding: 0 !important;border: 1px solid #000000 !important;}
+.dijit_a11y .buxDialog .dijitDialogTitleBar{background-repeat: repeat-x;background-color: #ffffff;padding: 0px 0 15px 0;white-space: nowrap;}
+.dijit_a11y .buxDialog .dijitDialogTitleBar{border-bottom: 1px solid #000000;}
+.dj_ie7 .dijit_a11y .dijitDialogTitle{font-size: 1em;}
+.dijit_a11y .bux-baseDialog-ButtonIcon{display: none;}
+.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitToggleButton,.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitToggleButton,.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitToggleButton .dijitRight,.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitToggleButtonNode,.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitButton,.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitButton .dijitRight,.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitButtonNode,.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitToggleButtonHover
+.dijit_a11y .bux-fileDialog-toolbar-container .bux-contentpane-toolbar .dijitToggleButtonChecked{height: auto !important;width: auto !important;}
+.dijit_a11y .bux-pulldown-icon-section{display: none;}
+.dj_ie7 .dijit_a11y .buxMessageNotificationOuter .dijitTitlePaneTextNode,.dj_ie7 .dijit_a11y .bux-InformationDialog-mainMessage{font-size: 1em;}
+.dj_ie .dijit_a11y .buxMessageNotificationOuter .dijitTitlePaneTextNode{vertical-align: middle;}
+.dj_ie7 .dijit_a11y .bux-dialog-description{font-size: 1em;}
+.dijit_a11y .bux-informationDialog-info-icon,.dijit_a11y .bux-informationDialog-error-icon,.dijit_a11y .bux-informationDialog-warning-icon{width: 45px;text-align: center;}
+.dijit_a11y .bux-informationDialog-info-icon .buxInfoNodeInner,.dijit_a11y .bux-informationDialog-error-icon .buxErrorNodeInner,.dijit_a11y .bux-informationDialog-warning-icon .buxWarningNodeInner{display: inline;font-size: 5em;}
+.dijit_a11y .bux-DisplayOptionsDialog-displayType .hover{border: 3px solid;}
+.dijit_a11y .bux-DisplayOptionsDialog-displayType .active,.dijit_a11y .bux-DisplayOptionsDialog-displayType .ready{border: 5px outset;}
+.dijit_a11y .bux-DisplayOptionsDialog-CategorySelector .hover{border: 2px solid;font-weight: bold;}
+.dijit_a11y .bux-DisplayOptionsDialog-CategorySelector .active,.dijit_a11y .bux-DisplayOptionsDialog-CategorySelector .ready{border: 3px outset;}
+.dj_ie7 .dijit_a11y .dijitTitlePaneContentInner{font-size: 1em;}
+.dijit_a11y .bux-iconPicker{display: none;}
+.dijit_a11y .buxDialog .dijitComboBox input{background: none !important;}
+.dijit_a11y .bux-imagePicker-backgroundPosition td:focus{border: 2px dashed;}
+.dijit_a11y .bux-baseDialog-Button-center{width: auto;}
+.dijit_a11y .dijitFocusedLabel{border: 1px dotted !important;}
+.dijit_a11y .bux-fileDialog-toolbar-container-left{border: none;padding-left: 4px;margin: 0px;}
+.dijit_a11y .bux-fileDialog-toolbar-container{border: none;}
+.dijit_a11y .bux-fileDialog-toolbar-container-left .contentpane-pulldown-l{left: -4px;}
+.dijit_a11y .buxDialogButtonBar{height: auto;}
+.dijit_a11y .bux-fileDialog-table-container{height: 500px;width: 800px;}
+.dijit_a11y .bux-packageDialog .bux-fileDialog-table-container{height: 520px;width: 820px;}
+.dijit_a11y .bux-packageDialog .bux-fileDialog-left-section-special-locations{min-width: 170px;}
+.dijit_a11y .bux-fileDialog-left-section-special-locations{min-width: 150px;}
+.RichTextEditable{border: 0px none;}
+.icdUI .dijitEditorIFrameContainer{padding: 0px;}
+.dj_gecko .bux-toolbar .dijitComboBox{width: auto !important;max-width: 165px;}
+.dj_gecko.dijit_a11y .bux-toolbar .dijitComboBox{width: 15em !important;max-width: 165px;}
+.icdUI .dijitEditor{border: none;}
+.icdUI .dijitEditor,.icdUI .dijitEditor blockquote{border: none;}
+.icdUI .dijitEditor .dijitEditorIFrameContainer{background-image: none !important;}
+.buxFilterSliderThumbnail,.buxFilterCheckboxThumbnail{width: 64px;height: 64px;}
+.buxFilterSelect{padding-left: 5px;padding-right: 5px;}
+.buxFilterSelectValueCheckboxSelectAll{padding-bottom: 5px;}
+.buxFilterSelectHorizontal .buxFilterSelectSelectControl,.buxFilterSelectHorizontal .buxFilterSelectCheckboxControl{white-space: nowrap;}
+.buxFilterRow{white-space: nowrap;}
+.blankRow label{visibility: hidden;}
+.buxFilterBorderResize .buxFilterRow.dijitInline{border-right: 2px solid #cccccc;padding-right: 3px;}
+.buxFilterBorderResize .blankRow.buxFilterRow.dijitInline{height: 16px;z-index: 1;}
+.buxFilterSelectHorizontal .buxFilterRow{padding-right: 10px;}
+.buxFilterSelectFlow .buxFilterRow{padding-left: 5px;padding-right: 5px;}
+.buxFilterSelectFlow .buxFilterRow label{display: inline-block;}
+.buxFilterSelectHorizontal .buxFilterRow.buxFilterRowLast{padding-right: 0px;}
+.dj_ie .nowrapForAutoResize .buxFilterSelectFlow .buxFilterRow.buxFilterRowLast{padding-right: 10px;}
+.buxFilterRow label{outline: 1px solid transparent;}
+.buxSelectValueButtonsContainer{padding-top: 5px;text-align: left;white-space: nowrap;}
+.buxFilterSelectHorizontal .buxSelectValueButtonsContainer,.buxFilterSelectFlow .buxSelectValueButtonsContainer{text-align: left;}
+.buxFilterSelectFlow .buxSelectValueButtonsAlignRight.buxSelectValueButtonsContainer{text-align: left;}
+.filterSelectDeselectAllContainer{white-space: nowrap;padding-bottom: 5px;padding-right: 5px;}
+.buxFilterSelectSelectControl{width: 98%;}
+.nowrapForAutoResize .buxFilterSelectSelectControl{width: auto;}
+.buxFilterSortContainer{background: none repeat scroll 0 0 transparent !important;border: 0 none !important;}
+.buxFilterSlider{position: relative;overflow: hidden;}
+.buxHorizontalSlider .buxFilterSlider .buxFilterSliderLabels{height: 1em;white-space: nowrap;}
+.buxVerticalSlider .buxFilterSlider .buxFilterSliderLabels{height: 100%;white-space: normal;}
+.buxVerticalSlider .dijitRuleLabelV{display: inline-block;position: relative;}
+.buxVerticalSlider .dijitRuleContainerV{line-height: inherit;}
+.dj_ie .buxVerticalSlider .dijitRuleLabelContainerV{margin-top: 0px;}
+.buxHorizontalSlider .buxFilterSlider .buxFilterSliderRule{height: 12px;}
+.buxVerticalSlider .buxFilterSlider .buxFilterSliderRule{width: 12px;}
+.buxFilterSlider .buxFilterSliderBottomLabel{font-size: 1em;padding-top: 5px;height: 1.2em;text-align: center;position: absolute;}
+.buxVerticalSlider .buxFilterSlider .buxFilterSliderBottomLabel{height: 2.4em;width: 100%;left: 0px;}
+.buxFilterSlider .buxFilterSliderBottomLabelSpacer{padding-top: 5px;height: 1.2em;}
+.buxVerticalSlider .buxFilterSlider .buxFilterSliderBottomLabelSpacer{height: 2.4em;}
+.buxFilterSliderTooltip{position: absolute;padding: 2px;z-index: 2001;}
+.buxFilterConfigFilterValue{height: 150px;width: 524px;overflow-y: auto;overflow-x: hidden;}
+.buxFilterConfigFilterValueHeader{float: left;padding-bottom: 5px;padding-top: 5px;}
+.buxFilterConfigFilterValueMergeHeader{float: right;color: black;padding-bottom: 5px;padding-top: 5px;}
+.buxFilterConfigFilterValueTable .buxListHeader{height: 23px;word-break: break-all;word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;}
+.buxFilterConfigFilterValueAreaDiscrete,.buxFilterConfigFilterValueAreaRange,.buxFilterConfigFilterValueAreaSpacer{min-height: 170px;position: relative;}
+.buxFilterConfigDiscreteValues{width: 200px;height: 100px;overflow: auto;padding-right: 1px;}
+.buxFilterConfigDiscreteValuesTable{overflow: hidden;width: 100%;}
+.buxFilterConfigLink{padding-left: 4px;}
+.buxFilterConfigRangeInput{width: 140px;}
+.buxFilterConfigFilterValueTable{table-layout: fixed;width: 100%;}
+.buxFilterConfigFilterValueTableHeader{height: 1.1em;vertical-align: middle;padding-left: 5px;}
+.buxFilterConfigFilterValueTableHeaderLeft{height: 1.1em;vertical-align: middle;}
+.buxFilterConfigFilterValueTableBody{overflow-x: hidden;overflow-y: auto;}
+.buxFilterConfigFilterItemName{overflow: hidden;padding-top: 1px;padding-bottom: 1px;padding-left: 5px;}
+.buxFilterConfigFilterWidgetName{display: block;cursor: default;overflow: hidden;}
+.buxFilterConfigFilterWidgetName_AriaDescription{height: 0px;overflow: hidden;}
+.buxFilterConfigFilterRangeRightColumn{width: 160px;}
+.buxFilterConfigFilterRangeSpacer{width: 100%;height: 5px;}
+.buxFilterConfigAutoUpdate{padding-top: 5px;padding-bottom: 5px;}
+.buxValueCheckBoxCell{vertical-align: top;padding: 2px 2px 0px 1px;width: 15px;}
+.buxSelectValueGoButtonContainer{margin-bottom: 2px;}
+.buxFilterConfigLoading{z-index: 10;margin: 0px;padding: 0px;position: absolute;width: 100%;height: 100%;}
+.buxFilterConfigDetailAreaArrow{background: url("images/dialog/blue_right_arrow.png") no-repeat 220px center;}
+.buxFilterLoadingBacking{position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index: 100;}
+.buxFilterLoadingContainer{position: absolute;width: 100%;height: 100%;top: 0;z-index: 101;}
+.buxFilterLoadingContainer .icdDialogButtonBar,.buxFilterConfigLoading .icdDialogButtonBar{text-align: center;}
+.buxFilterLoadingIndicator,.buxFilterConfigLoadingIndicator{height: 32px;width: 34px;}
+.buxFilterDetailArea,.buxFilterDetailLabel{width: 524px;}
+.buxFilterHideDetails .buxFilterDetailArea,.buxFilterHideDetails .buxFilterConfigFilterValueMergeHeader{display: none;}
+.buxFilterHideDetails .buxFilterConfigFilterValueHeader{float: none;}
+.buxFilterDetailArea .dijitTitlePaneContentOuter{border: none;}
+.buxFilterDetailArea .dijitTitlePaneTitle{background: none;}
+.buxFilterDetailArea .dijitTitlePaneContentInner{padding-left:0px;padding-right:0px;}
+.buxFilterDetailArea .dijitTitlePane .dijitTitlePaneTextNode{margin-left: 0px;}
+.buxFilterMoreOptionsContainer{margin-top: 10px;}
+.dj_gecko .buxFilterMoreOptionsContainer{margin-top: 9px !important;padding-top: 1px;}
+.buxFilterDetailArea .dijitTitlePaneTitle{border-left: none;border-top: none;border-right: none;border-bottom: 1px solid #cccccc;}
+.buxFilterDetailArea .dijitTitlePane .dijitClosed .dijitArrowNode{background-position: center center;background-image: url(images/dialog/dialog_icon_triangle.png);}
+.buxFilterDetailArea .dijitTitlePane .dijitOpen .dijitArrowNode{background-position: center center;background-image: url(images/dialog/dialog_icon_triangle_up.png);}
+.buxFilterDetailArea .dijitTitlePane .dijitArrowNode{width: 16px;height: 16px;}
+.buxFilterSliderThumbnail{background: none no-repeat center top;background-image: url(images/filter/icon_portlet_slider_64.gif);}
+.buxFilterCheckboxThumbnail{background: none no-repeat center top;background-image: url(images/filter/icon_portlet_checkboxlist_64.gif);}
+.buxFilterLabel{font-size: 1em;padding-top: 3px;padding-bottom: 5px;color: #444444;}
+.claro .dijitSlider .dijitSliderProgressBarH{border: 0px;background: none repeat-x top left;background-image: url("images/filter/slider_full.png");}
+.claro .dijitSlider .dijitSliderProgressBarV{border: 0px;background: none repeat-y top left;background-image: url("images/filter/slider_full_v.png");}
+.icdUI .buxFilterSliderPoint div.dijitSliderProgressBarH,.icdUI .buxFilterSliderPoint .dijitSliderFocused div.dijitSliderProgressBarH{background-image: none;background-image: url("images/filter/slider_empty.png");background-color: transparent;}
+.icdUI .buxFilterSliderPoint div.dijitSliderProgressBarV,.icdUI .buxFilterSliderPoint .dijitSliderFocused div.dijitSliderProgressBarV{background-image: none;background-image: url("images/filter/slider_empty_v.png");background-color: transparent;}
+.icdUI .buxFilterSlider .dijitSliderBarH{height: 7px;}
+.icdUI .buxFilterSlider .dijitSliderBarV{width: 7px;}
+.icdUI .buxFilterSlider .dijitSliderProgressBarH{height: 29px;top: -11px;background-position: 0px 11px !important;}
+.icdUI .buxFilterSlider .dojoxRangeSlider .dijitSliderProgressBarV{width: 29px !important;left: -11px;background-position: 11px 0px !important;}
+.icdUI .buxFilterSliderPoint .dijitSliderProgressBarH .dijitSliderMoveableH{top: 11px;}
+.icdUI .buxFilterSliderPoint .dijitSliderImageHandleH{left: 9px !important;top: -5px !important;}
+.icdUI .buxFilterSlider .dijitSliderImageHandleH{width: 17px;height: 18px;left: 0;top: 0;background: none no-repeat center top;background-image: url(images/filter/slider_thumb.png);}
+.icdUI .buxFilterSlider .dijitSliderImageHandleV{background: none no-repeat left center;background-image: url(images/filter/slider_thumb_v.png);}
+.icdUI .buxFilterSliderPoint .buxSliderMobile .dijitSliderMoveableH .dijitSliderImageHandleH.buxSliderLeftHandle{width: 44px;height: 44px;top: 0px !important;left: 0px: important;background-position: 10px 13px;}
+.icdUI .buxFilterSliderPoint .buxSliderMobile .dijitSliderMoveableV .dijitSliderImageHandleV.buxSliderLeftHandle{width: 44px;height: 44px;top: -22px !important;background-position: 14px 14px;}
+.icdUI .buxFilterSlider .buxSliderMobile .dijitSliderMoveableH.buxSliderLeftHandle .dijitSliderImageHandleH{left: 22px;top: 14px;}
+.icdUI .buxFilterSlider .buxSliderMobile .dijitSliderMoveableH.buxSliderRightHandle .dijitSliderImageHandleH{left: 6px;top: 14px;}
+.icdUI .dojoxRangeSlider .dijitSliderMoveableH{margin-left: -8px;margin-top: -4px
+}
+.icdUI .buxFilterSliderPoint .buxSliderMobile .dijitSliderMoveableH{width: 44px;height: 44px;margin-top: -18px;margin-right: -17px;}
+.icdUI .dojoxRangeSlider.buxSliderMobile .dijitSliderMoveableH.buxSliderLeftHandle{width: 44px;height: 44px;margin-left: -30px;margin-top: -18px;}
+.icdUI .dojoxRangeSlider.buxSliderMobile .dijitSliderMoveableH.buxSliderRightHandle{width: 44px;height: 44px;margin-left: -14px;margin-top: -18px;}
+.icdUI .dojoxRangeSlider.buxSliderMobile .dijitSliderMoveableV.buxSliderRightHandle,.icdUI .dojoxRangeSlider.buxSliderMobile .dijitSliderMoveableV.buxSliderLeftHandle{height: 44px;width: 44px;left: 0px !important;margin-left: -22px;margin-top: -22px;}
+.icdUI .buxFilterSlider .buxSliderMobile .dijitSliderMoveableV.buxSliderRightHandle .dijitSliderImageHandleV,.icdUI .buxFilterSlider .buxSliderMobile .dijitSliderMoveableV.buxSliderLeftHandle .dijitSliderImageHandleV{left: 17px;top: 14px;}
+.icdUI .buxFilterSlider .dijitSliderBumperH{height: 7px;border: 0px;}
+.icdUI .buxFilterSlider .dijitSliderBumperV{width: 7px;border: 0px;}
+.icdUI .buxFilterSlider .buxFilterSliderRule .dijitRuleMarkH{height: 4px;margin-top: 3px;}
+.icdUI .buxFilterSlider .buxFilterSliderRule .dijitRuleMarkV{width: 4px;margin-left: 3px;}
+.buxFilterSelectMobileContainer{position: relative;}
+.buxFilterSelectMobileContainer .buxFilterSelectSelectControl{opacity: 0;position: absolute;height: 100%;width: 100%;-webkit-appearance: listbox;}
+.buxFilterSelectMobileCheckNode{height: 16px;width: 15px;padding-right: 2px;}
+.icdUI .buxFilterSlider .dijitSliderLeftBumper{border: 0px;background: url("images/filter/slider_edge_left_empty.png") no-repeat top right !important;}
+.icdUI .buxFilterSlider .dijitSliderRightBumper{background: none no-repeat top left;background-image: url("images/filter/slider_edge_right.png");border: 0px;}
+.icdUI .buxFilterSlider .dijitSliderTopBumper{border: 0px;background: url("images/filter/slider_edge_top.png") no-repeat bottom left !important;}
+.icdUI .buxFilterSlider .dijitSliderBottomBumper{background: url("images/filter/slider_edge_bottom_empty.png") no-repeat top left !important;border: 0px;}
+.icdUI .buxFilterSlider .dijitSliderRemainingBarH{border: 0px;background: none repeat-x top left;background-image: url("images/filter/slider_empty.png");}
+.icdUI .buxFilterSlider .dijitSliderRemainingBarV{border: 0px;background: none repeat-y top left;background-image: url("images/filter/slider_empty_v.png");}
+.icdUI .buxFilterSlider .dijitSliderFocused .dijitSliderProgressBarH{background: none repeat-x top left;background-image: url("images/filter/slider_full_focus.png");}
+.icdUI .buxFilterSlider .dijitSliderFocused .dijitSliderProgressBarV{background: none repeat-y top left;background-image: url("images/filter/slider_full_focus_v.png");}
+.icdUI .buxFilterSlider .dijitSliderProgressBarH:focus{background-image: none;background-image: url("images/filter/slider_full_range_focus.png");}
+.icdUI .buxFilterSlider .dijitSliderProgressBarV:focus{background-image: none;background-image: url("images/filter/slider_full_range_focus_v.png");}
+.icdUI .buxFilterSlider .dijitSliderFocused .dijitSliderImageHandleH{background-image: none;background-image: url("images/filter/slider_thumb_focus.png");}
+.icdUI .buxFilterSlider .dijitSliderFocused .dijitSliderImageHandleV{background-image: none;background-image: url("images/filter/slider_thumb_focus_v.png");}
+.icdUI .buxFilterSlider .buxFilterSliderHashWithLabel{border-color: #000000 !important;}
+.icdUI .buxFilterSlider .buxFilterSliderLabels .dijitRuleLabelContainerH,.icdUI .buxFilterSlider .buxFilterSliderLabels .dijitRuleLabelContainerV{font-size: 0.8em;color: #000000;}
+.icdUI .buxFilterSlider .buxFilterSliderRule .dijitRuleMarkH,.icdUI .buxFilterSlider .buxFilterSliderRule .dijitRuleMarkV{border-color: #cccccc;}
+.buxFilterSliderTooltip{border: 1px solid #cccccc;background: none repeat-x top left;background-image: url("images/filter/slider_tooltip_background.png");background-color: #ffffff;}
+.buxFilterConfigFilterValue,.buxFilterConfigDiscreteValues{border: 1px solid #cccccc;position: relative;}
+.buxFilterConfigFilterValueTableHeader{border-left: 1px solid #cccccc;}
+.buxFilterConfigRangeInputInactive{color: #000000;font-style: italic;}
+.buxFilterConfigFilterValueRowDisabled{color: #767676;}
+.buxFilterConfigFilterValueRowSelected{background-color: #dfedfb;}
+.buxFilterConfigFilterWidgetName:hover{background-color: #b6cfd9;}
+.buxFilterSelectSelectControl{border: 1px solid #ebf5fe;}
+.buxFilterLoadingBacking{background-color: #ffffff;-moz-opacity: 0.8;opacity: 0.8;filter: alpha(opacity = 80);}
+.buxFilterLoadingIndicator,.buxFilterConfigLoadingIndicator{background-image: none;background-image: url(images/action_busy_32x32.gif);background-repeat: no-repeat;}
+.buxFilterConfigFilterValueTableHeaderRow td{background-image:none;background-image: -moz-linear-gradient(top, #ebf5fe 0%, #d6dfe7 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebf5fe), color-stop(100%,#d6dfe7));background-image: -webkit-linear-gradient(top, #ebf5fe 0%, #d6dfe7 100%);background-image: -o-linear-gradient(top, #ebf5fe 0%, #d6dfe7 100%);background-image: -ms-linear-gradient(top, #ebf5fe 0%, #d6dfe7 100%);background-image: linear-gradient(to bottom, #ebf5fe 0%, #d6dfe7 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf5fe', endColorstr='#d6dfe7',GradientType=0 );zoom: 1;border-bottom: 1px solid #cccccc;}
+.buxFilterSelectAllImage,.buxFilterDeselectAllImage{width: 24px;height: 24px;background-repeat: no-repeat;background-position: center center;}
+.buxFilterSelectAllImage{background-image: none;background-image: url("images/filter/action_select.png");}
+.buxFilterDeselectAllImage{background-image: none;background-image: url("images/filter/action_deselect.png");}
+.buxFilterSelectMobileCheckNodeChecked{background-image: none;background-image: url("images/filter/select_mobile_selection.png");}
+.buxFilterSliderIOSControlButton{width: 10px;height: 10px;position: absolute;opacity: 0;z-index: 100;}
+.buxHorizontalSlider .buxFilterSliderIOSControlButtonIncrementMin{left: 0px;top: 0px;}
+.buxHorizontalSlider .buxFilterSliderIOSControlButtonDecrementMin{left: 10px;top: 0px;}
+.buxHorizontalSlider .buxFilterSliderIOSControlButtonIncrementMax{left: 0px;top: 10px;}
+.buxHorizontalSlider .buxFilterSliderIOSControlButtonDecrementMax{left: 10px;top: 10px;}
+.buxVerticalSlider .buxFilterSliderIOSControlButtonIncrementMin{right: 20px;top: 20px;}
+.buxVerticalSlider .buxFilterSliderIOSControlButtonDecrementMin{right: 10px;top: 20px;}
+.buxVerticalSlider .buxFilterSliderIOSControlButtonIncrementMax{right: 20px;top: 30px;}
+.buxVerticalSlider .buxFilterSliderIOSControlButtonDecrementMax{right: 10px;top: 30px;}
+.buxFilterSliderIOSControlButtonIcon{width:5px;height:5px;}
+.dijit_a11y .buxFilterConfigFilterValueTableHeaderRow td{border-bottom: 1px solid;}
+.dijit_a11y .buxFilterConfigFilterValueRowSelected td{border-top: 1px solid;border-bottom: 1px solid;}
+.dijit_a11y .buxFilterConfigLink{text-decoration: underline;}
+.dijit_a11y .buxFilterSlider .dijitSliderProgressBarH{border: 3px solid;}
+.dijit_a11y .buxFilterSliderPoint .dijitSliderProgressBarH{border: none;}
+.dijit_a11y .buxFilterSlider .dojoxRangeSliderBarContainer,.dijit_a11y .buxFilterSlider .dijitSliderBarContainerH{border: 1px solid;}
+.dj_ie .dijit_a11y .buxFilterSlider .dijitSliderBarContainerH,.dj_ie .dijit_a11y .buxFilterSlider .dojoxRangeSliderBarContainer{height: 7px;}
+.dj_ie .dijit_a11y .buxFilterSlider .dijitSliderBarContainerv{width: 7px;}
+.dijit_a11y .buxFilterSlider .dijitSliderImageHandleH{top: -2px;}
+.dijit_a11y .buxFilterSliderPoint .dijitSliderImageHandleH{top: -5px;}
+.dijit_a11y .buxFilterSlider .buxFilterSliderBottomLabel{background-color: transparent !important;}
+.dijit_a11y .buxFilterSliderUnconfiguredMessage{display: block !important;}
+.dijit_a11y .buxFilterRow label{outline: none !important;}
+.bux-guidancePageContainer-outer{vertical-align: middle;position: absolute;height: 100%;width: 100%;}
+.bux-guidancePage-div{position: relative;}
+.bux-guidancePage-hideScroll{overflow-x: hidden;overflow-y: hidden;}
+.bux-guidancePage-main-title{position: absolute;left: 60px;top: 210px;}
+.bux-guidancePage-sections{position: absolute;left: 0px;top: 387px;}
+.bux-guidancePage-outer{margin: 5px 8px;padding-left: 22px;height: 190px;border: 1px green;background-repeat: no-repeat;}
+.bux-guidancePage-inner{width: 550px;background-repeat: repeat-x;}
+.bux-guidancePage-thumbnails-stripe{width: 870px;height: 152px;margin: 18px 0px;background-repeat: no-repeat;text-align: left;}
+.bux-guidancePage-thumbnail-span-inner{width: 130px;height: 128px;padding-left: 1px;}
+.dj_ie .bux-guidancePage-thumbnail-span-inner{margin-top: 1px;}
+.bux-guidancePage-thumbnail-span-inner *{vertical-align: middle;}
+.dj_ie .bux-guidancePage-thumbnail-span-inner span{height: 100%;width: 1px;}
+.bux-guidancePage-thumbnail-span-inner{vertical-align: middle;text-align: center;}
+.bux-guidancePage-empty-thumbnail-span{width: 128px;height: 130px;display: block;cursor: default;}
+.bux-guidancePage-empty-favorite-help{width: 375px;height: 145px;margin-left: 0px;vertical-align: middle;display: inline-block;overflow: hidden;}
+.bux-guidancePage-empty-favorite-help .buxBannerMarkAsFavoriteButton{padding: 8px;margin: 3px;}
+.dj_ie7 .bux-guidancePage-empty-favorite-help .buxBannerMarkAsFavoriteButton{padding: 0 8px;}
+.bux-thumbnail-loading{z-index: 10;margin: 2px;}
+.bux-thumbnail-frame{height: 130px;width: 130px;position: absolute;}
+.bux-guidancePage-thumbnail-span{height: auto;margin-right: 20px;margin-left: 0px;vertical-align: middle;overflow: hidden;vertical-align: top;}
+.bux-guidancePage-thumbnail-span:hover{cursor: pointer;}
+.bux-guidancePage-thumbnail-span:hover .bux-guidancePage-thumbnail-title{text-decoration: underline;}
+.bux-guidancePage-thumbnail-title{text-align: center;padding-top: 4px;white-space: nowrap;}
+.bux-guidancePage-moreButton-container{cursor: pointer;position: absolute;right: 20px;top: 95px;}
+.bux-guidancePage-CBT-container{position: absolute;top: 393px;left: 594px;width: 340px;height: 210px;}
+.bux-guidancePage-CBT-ViewAll{position: absolute;right: 21px;top: 8px;font-size: 58%;cursor: pointer;color:#00649d;}
+.bux-guidancePage-CBT-ViewAll:hover{text-decoration: underline;}
+.bux-guidancePage-CBT-stripe{text-align: left;padding-top: 4px;white-space: nowrap;height: 182px;overflow-x: hidden;overflow-y: auto;}
+.bux-guidancePage-CBT-Item-container{vertical-align: top;text-align: left;display: block;overflow: hidden;cursor: pointer;margin-top: 12px;}
+.bux-guidancePage-CBT-Item-container:focus{border: 1px dotted black;}
+.bux-guidancePage-CBT-item-text{display: inline-block;text-align: left;padding-left: 12px;vertical-align: top;white-space: normal;width: 175px;}
+.bux-guidancePage-CBT-Item-thumbnail-dashboard-style{background-image: none;background-image: url(images/guidancePage/dashboard_style.png);}
+.bux-guidancePage-CBT-Item-thumbnail-dashboard-style:hover{background-image: none;background-image: url(images/guidancePage/dashboard_style.png);}
+.bux-guidancePage-CBT-Item-thumbnail-preference{background-image: none;background-image: url(images/guidancePage/preference_big.png);}
+.bux-guidancePage-CBT-Item-thumbnail-preference:hover{background-image: none;background-image: url(images/guidancePage/preference_big.png);}
+.bux-guidancePage-CBT-item{display: inline-block;height: 75px;width: 125px;background-position: center;background-repeat: no-repeat;}
+.bux-guidancePage-CBT-item-spacer{display: block;height: 5px;width: 1px;}
+.bux-guidancePage-createDashboard-button-container{position: absolute;left: 55px;top: 250px
+}
+.icdHideGettingStartedLargeButtonCells{display: none;}
+.icdGettingStartedLargeButton,.icdGettingStartedLargeButton .dijitButtonContents,.icdGettingStartedLargeButton .dijitButtonNode{width: 100%;height: auto;}
+.dj_ie .icdGettingStartedLargeButtonCells{padding-right: 15px;padding-bottom: 8px;}
+.icdGettingStartedLargeButton .dijitButtonContents{vertical-align: middle;}
+.icdGettingStartedLargeButton .dijitButtonText{height: 100%;padding-top: 3px;}
+.icdGettingStartedLargeButton .dijitButtonContents{text-align: left;padding-left: 6px;width: 95%;}
+.bux-guidancePageContainer-outer{background-color: #f5f5f5;background-image: none;background-image: url(images/guidancePage/startpage_bg.png);background-repeat: repeat-x;background-position: left center;}
+.bux-guidancePage-empty-thumbnail-span{border: 1px solid silver;background-image: none;background-position: center center;background-repeat: no-repeat;-moz-border-radius: 3px;-moz-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.25);}
+.bux-guidancePage-main-title{color: #444444;font-size: 2em;}
+.bux-guidancePage{height: 615px;width: 944px;background-image: none;background-image: url(images/guidancePage/startpage_main.png);background-repeat: no-repeat;}
+.bux-guidancePage-section-title{text-align: left;}
+.bux-guidancePage-empty-favorite-help{color: #444444;font-weight: bold;}
+.bux-guidancePage-thumbnail-title{font-size: 1em;color: #444444;font-weight: normal;}
+.claro .bux-guidancePage-moreButton-container .dijitButton .dijitButtonNode,.claro .bux-guidancePage-moreButton-container .dijitButtonHover .dijitButtonNode,.claro .bux-guidancePage-moreButton-container .dijitButtonActive .dijitButtonNode{background: none;border: none;-moz-box-shadow: none;filter: none;}
+.bux-guidancePage-more-icon{background-image: none;background-image: url(images/guidancePage/more_button.png);background-repeat: no-repeat;background-position: top;width: 20px;height: 20px;cursor: pointer;}
+.bux-guidancePage-moreButton .dijitButtonText{color: #00649d;cursor: pointer;}
+.bux-guidancePage-moreButton-container .dijitButtonHover .dijitButtonText,.bux-guidancePage-moreButton-container .dijitButtonActive .dijitButtonText{text-decoration: underline;}
+.dijitButtonHover .bux-guidancePage-more-icon{background-position: bottom;}
+.bux-guidancePage-CBT-item-title{color: #00649d;font-weight: bold;}
+.bux-guidancePage-CBT-item-description{color: #777777;}
+.bux-guidancePage-CBT-item{border: 1px solid #ededed;background-color: #ffffff;}
+.bux-guidancePage-CBT-item:hover{border: 1px solid #dbdbdb;cursor: pointer;}
+.bux-guidancePage-section-title{font-size: 1.5em;color: #444444;}
+.icdGettingStartedLargeButton .dijitButtonContents{font-size: 1.5em;color: #222222;}
+.icdGettingStartedLargeButton .dijitButtonNode{-moz-border-radius: 10px !important;}
+.icdGettingStartedPageNewIcon,.icdGettingStartedPageOpenIcon{background-image: none;background-image: url(images/guidancePage/gettingstarted_button_strip.png);background-repeat: no-repeat;width: 23px;height: 24px;}
+.icdGettingStartedPageNewIcon{background-position: 0 0;}
+.icdGettingStartedPageOpenIcon{background-position: -24px;}
+.dijit_a11y .bux-guidancePage-empty-thumbnail-span{border: solid 1px;}
+.dijit_a11y .bux-guidancePage-div{border: solid 1px;background: #000000;}
+.dijit_a11y .bux-guidancePage-thumbnail-span{padding-left: 3px;}
+.dijit_a11y .bux-guidancePage-thumbnail-span-inner{border: solid 1px;padding: 1px;}
+.bux-guidancePage-CBT-item-image{display: none;}
+.dijit_a11y .bux-guidancePage-CBT-item-image{display: block;margin-left: -1px;margin-top: -1px;}
+.dijit_a11y .bux-guidancePage-CBT-item:hover{border: solid 3px;height: 70px;widows: 94px;}
+.dijit_a11y .bux-thumbnail-frame{background: transparent !important;}
+.infoBar, .infoBarFlyout{font-family: Tahoma;font-size: 8pt;}
+.infoBar{position: absolute;z-index: 10;}
+.infoBar.infoBarExpanded{min-width: 120px;}
+.infoBarFlyout{z-index: 1000;margin: 0px;padding: 0;position: relative;top: -4px;border: 1px solid #cccccc;background-color: #ffffff;}
+.infoBar table, .infoBarFlyout table{border-collapse: collapse;border-spacing: 0;}
+.infoBar td, .infoBarFlyout td, .infoBarFlyout tr{padding: 0;margin: 0;}
+.infoBarFlyout .bibi{color: #666666;}
+.dijit_a11y .infoBarExpanded{border: 1px solid;background-color: #FFF;}
+.buxWidgetNone .infoBarHeader, .buxWidgetHighlight .infoBarHeader{-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=45)";filter: alpha(opacity=45);opacity: 0.45;}
+.dijit_a11y .buxWidgetNone .infoBarHeader,.dijit_a11y .buxWidgetHighlight .infoBarHeader{-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";filter: alpha(opacity=100);opacity: 1;}
+.infoBarExpanded .infoBarHeader{-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";filter: alpha(opacity=100);opacity: 1;}
+.infoBarExpanded .infoBarHeaderDiv{width: auto;padding-bottom: 4px;}
+.infoBarHeaderDiv{min-height: 17px;width: 19px;background-color: #e7e7e7;border: 1px solid #cccccc;}
+.infoBarHeader{color: #444444;cursor: pointer;font-weight: bold;font-size: 9pt;}
+.infoBarHeaderNav{vertical-align: top;text-align: center;padding-top: 2px;width: 15px;}
+button.infoBarHeaderButton{height: 15px;width: 18px;float: left;}
+.infoBarHeaderText, .dj_ie .buxReport SPAN.infoBarHeaderText{font-weight: bold;display: none;}
+button.infoBarHeaderCloseButton{text-align: right;display: none;float: right;}
+.infoBarExpanded .infoBarHeaderText,.dj_ie .buxReport .infoBarExpanded SPAN.infoBarHeaderText,.infoBarExpanded .infoBarHeaderCloseButton{display: inline;}
+.dijit_a11y .infoBarHeaderButtonText,.dijit_a11y .infoBarCloseButtonText,.dijit_a11y .infoBarDeleteButtonText{display: inline !important;}
+.dijit_a11y .infoBarHeaderButtonText{font-weight: bold;}
+.dijit_a11y .infoBarHeaderNav{background-color: #FFF;border: 1px solid;}
+.dijit_a11y .infoBarExpanded .infoBarHeaderNav{border: none;}
+.infoBar button,.infoBarFlyout button{border: 0 none;padding: 0;margin: 0;background-color: transparent;cursor: pointer;}
+.infoBarFlyoutContent{padding: 3px;}
+.infoBarDeleteButton{height: 12px;width: 12px;}
+.dijit_a11y .infoBarDeleteButton{height: auto;width: auto;}
+.infoBarIconFilterApplied{background: transparent none no-repeat center center;background-image: url(../../../rv/images/infobar_filter_applied.gif);height: 15px;width: 12px;}
+.infoBarIconSortApplied{background: transparent none no-repeat center center;background-image: url(../../../rv/images/infobar_sort_applied.gif);height: 15px;width: 12px;}
+.infoBarIconFilterSortApplied{background: transparent none no-repeat center center;background-image: url(../../../rv/images/infobar_filtersort_applied.gif);height: 15px;width: 12px;}
+.dijit_a11y .infoBarIconFilterApplied,.dijit_a11y .infoBarIconSortApplied,.dijit_a11y .infoBarIconFilterSortApplied{display: none !important;}
+.infoBarIconClose{background: transparent none no-repeat center center;background-image: url(../../../rv/images/infobar_close.gif);height: 15px;width: 12px;}
+.infoBarIconDelete{background: transparent none no-repeat center center;background-image: url(../../../rv/images/infobar_delete.gif);height: 12px;width: 12px;}
+.dijit_a11y .infoBarIconDelete{display: none !important;}
+.dj_ff3 .infoBarIconDelete{margin-left: -2px;}
+.infoBarDetailRow table{width: 100%;}
+.infoBarDetailRow .infoBarRightIcon button{visibility: hidden;}
+.infoBarDetailRowHover .infoBarRightIcon button{visibility: visible;}
+td.infoBarLeftIcon{vertical-align: top;padding: 2px;}
+td.infoBarRightIcon{padding: 2px 3px 0 5px;text-align: right;vertical-align: top;}
+.infoBarDetailsText{height: 17px;}
+.infoBarDetailRow,.infoBarDetailsText,.infoBarLockedItems,.infoBarEditableItems{width: 100%;}
+td.infoBarLeft,td.infoBarRight{padding-left: 7px;}
+.infoBarEditableItems tr:first-child .infoBarDetailRow table,.infoBarLockedItems tr:first-child .infoBarDetailRow table{margin-top: 3px !important;}
+.infoBarEditableItems .infoBarDetailRowHover table{background: #F6DFB7 none repeat-x 0 0 !important;background-image: url(../../../rv/images/infobar_detail_hover.png);}
+.bux-comment-table .infoBar{position: static;margin: 0;width: 260px;font-family: Tahoma;font-size: 0.9em;color: #666666;background-color: #e7e7e7;border: 1px solid #cccccc;border-collapse: collapse;border-spacing: 0;}
+.bux-comment-table .infoBarExpanded{margin-bottom: 0px;background-color: #F5F5F5;border: 1px solid #cccccc;}
+.bux-comment-table .infoBarCollapsed{margin-bottom: 0px;border: 1px solid #cccccc;}
+.bux-comment-table .annoInfoBarHeader{background-color: #e7e7e7;}
+.bux-comment-table .annoInfoBarHeaderText{padding: 3px 0px 3px 2px;text-align: left;width: 220px;}
+.bux-comment-table .annoInfoBarHeaderControl{color: #acc9e7;text-align: right;padding-right: 5px;text-decoration: underline;cursor: pointer;width: 40px;}
+.bux-comment-table .annoInfoBarHeaderControl button{border: 0 none;padding: 0;background-color: transparent;cursor: pointer;}
+.bux-comment-table .annoInfoBarHeaderControl button:hover{color: #74a1d1;}
+.bux-comment-table .annoInfoBarDetails{margin: 5px 0;}
+.bux-comment-table td.infoBarLeft,.bux-comment-table td.infoBarRight{padding: 0;}
+.bux-comment-table td.infoBarLeftIcon{width: 16px;padding: 1px 0 0 2px;vertical-align: top;}
+.bux-comment-table .infoBarDetailsText{width: 100%;padding: 0 0 0 7px;}
+.icdUI div[fragmentid] td,th{padding: 2px;}
+.portlet-table-header td{padding: 0px !important;}
+.icdUI .portlet-form-field-label{margin-left: 5px;}
+.icdUI .portlet-form-field{margin-left: 0px;}
+.icdUI .cognos-form-footer{margin-top: 10px;height: 40px;}
+.icdUI .portlet-form-button{height: 23px;}
+.icdUI .portlet-form-field .portlet-form-button[type]{min-height: 18px;}
+.icdUI .cognos-path{color: #444444;}
+.icdUI .portlet-table-header{color: #444444;font-weight: bold;background-color: #ebf5fe;background-image: none;background-image: -moz-linear-gradient(top, #ebf5fe 0%, #d6dfe7 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebf5fe), color-stop(100%,#d6dfe7));background-image: -webkit-linear-gradient(top, #ebf5fe 0%, #d6dfe7 100%);background-image: -o-linear-gradient(top, #ebf5fe 0%, #d6dfe7 100%);background-image: -ms-linear-gradient(top, #ebf5fe 0%, #d6dfe7 100%);background-image: linear-gradient(to bottom, #ebf5fe 0%, #d6dfe7 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf5fe', endColorstr='#d6dfe7',GradientType=0 );zoom: 1;}
+.icdUI .cognos-path .cognos-anchor,.icdUI .portlet-table-body .cognos-anchor,.icdUI .portlet-form-field .cognos-anchor,.icdUI .portlet-font .cognos-anchor,.icdUI .portlet-table-text .cognos-anchor,.icdUI .portlet-table-alternate .cognos-anchor{font-size: 102%;color: #00649d;}
+.icdUI .portlet-msg-info{color: #444444;white-space: normal;}
+.icdUI .portlet-form-field-label{color: #000000;font-weight: bold;}
+.icdUI .cognos-form-footer{background-color: transparent;border: none;background-image: none;background-image: url(images/fragments/layouts/images/footerBackground.gif);background-repeat: repeat-x;}
+.icdUI .cognos-form-footer-area{background-color: transparent;}
+.icdUI .portlet-form-button{background-color: transparent;background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );zoom: 1;background-repeat: repeat-x;color: #222222;border: 1px solid #759dc0;font-size: 1em;font-weight: bold;}
+.dj_ie .icdUI .portlet-form-button{padding-top: 2px;border: 1px solid #759dc0;background-color: #759dc0;}
+.icdUI .portlet-form-button:hover{background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );zoom: 1;}
+.icdUI .portlet-form-field select,.icdUI .portlet-form-input-field{background-color: #ffffff;border: 1px solid #999999;}
+.icdUI .portlet-section-alternate,.icdUI .portlet-table-alternate{background-color: #ffffff;}
+.icdUI div[fragmentid] hr{border-color: #cccccc;}
+.icdUI div[fragmentid] table[style="border: 1px solid black;"]{border-color: #cccccc !important;}
+.icdUI .cognos-section-background{background-color: transparent;}
+.dijit_a11y .portlet-form-button{background-color: #b3b3b3;border: 1px solid #b3b3b3;font-size: 1em;font-weight: bold;height: 23px;}
+.dijit_a11y .portlet-table-header>th,.dijit_a11y .portlet-table-header>td{border-bottom: 1px solid #000000;}
+.dijit_a11y .portlet-menu-item-hover{font-weight: bold;}
+.icdUI .v10 td.clsControlLabel,.icdUI .v10 .clsFormLabel,.icdUI .v10 .clsDialogIntroduction,.icdUI .v10 .pl,.icdUI .v10 .clsLink,.icdUI .v10 .dialogHeaderText,.icdUI .v10 .dialogHeaderTitle,.icdUI .v10 .pc,.icdUI .v10 .clsTreeText,.icdUI .clsLink,.icdUI .clsControlLabel,.icdUI .clsDialogIntroduction,.icdUI .clsPromptButton,.icdUI .clsPromptButtonOver,.icdUI .clsPromptButton[disabled],.icdUI .clsInsertRemoveButton,.icdUI .clsInsertRemoveButton[disabled],.icdUI .clsInsertRemoveButtonOver{font-family: Tahoma;font-size: 100%;}
+.icdUI .v10 .clsFormLabel{color: #000000;}
+.icdUI .clsLink{font-size: 100% !important;text-decoration: underline;color: #00649d !important;}
+.icdUI .v10 .pdt{background-color: ;background-image: none;border: 1px solid #999999;}
+.icdUI .v10 td.clsControlLabel,.icdUI .v10 .pc,.icdUI .clsControlLabel{font-weight: normal;color: #444444;}
+.icdUI .clsDialogIntroduction{font-size: 90% !important;color: #444444 !important;}
+.icdUI .clsPromptButton,.icdUI .clsPromptButtonOver,.icdUI .clsPromptButton[disabled],.icdUI .clsInsertRemoveButton,.icdUI .clsInsertRemoveButton[disabled],.icdUI .clsInsertRemoveButtonOver{background-repeat: repeat-x;background-color: transparent;}
+.icdUI .clsPromptButton,.icdUI .clsInsertRemoveButton{border: 1px solid #759dc0;background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );zoom: 1;background-position: 0 0px;}
+.icdUI .clsPromptButtonOver,.icdUI .clsInsertRemoveButtonOver{border: 1px solid #759dc0;background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );zoom: 1;background-position: 0 -24px;}
+.icdUI .clsPromptButton{text-align: center;margin-right: 7px;}
+.icdUI .clsPromptButton[disabled],.icdUI .clsInsertRemoveButton[disabled]{border: 1px solid #759dc0;background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );zoom: 1;background-position: 0 -48px;}
+.icdUI .clsInsertRemoveButtonOver{cursor: pointer;}
+.icdUI .clsSwsEditBox{background-image: none;background-image: url(images/prompting/text_input_grad.gif);}
+.icdUI .v10 button.bp,.icdUI .v10 button.bph,.icdUI .v10 button.bpd,.icdUI .v10 button.clsPromptButton,.icdUI .v10 button.clsPromptButtonOver,.icdUI .v10 button.clsInsertRemoveButton{font-size:12px;font-family: Arial,Verdana,'Arial Unicode MS','Andale WT','MS UI Gothic','MS PGothic','Apple Gothic',Gulim,SimSun,PMingLiU,Raghu8,sans-serif !important;}
+.icdUI .v10 button.bp,.icdUI .v10 button.bph,.icdUI .v10 button.bpd,.icdUI .v10 button.clsPromptButton,.icdUI .v10 button.clsPromptButtonOver{background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );zoom: 1;background-color: transparent;border-color: #759dc0;border-width: 1px;border-style: solid;border-radius: 3px;color: #222222;font-size: 1em;font-weight: bold;min-width: 50px;padding-bottom: 3px;}
+.icdUI .v10 button.bpd{background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );zoom: 1;border-color: #759dc0;border-width: 1px;border-style: solid;border-radius: 3px;color: #767676;}
+.icdUI .v10 button.bph,.icdUI .v10 button.clsPromptButtonOver{background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#b9cee3));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #b9cee3 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#b9cee3',GradientType=0 );zoom: 1;color: #222222;border-color: #759dc0;border-width: 1px;border-style: solid;border-radius: 3px;}
+.icdUI .v10 .clsTextWidget,.icdUI .v10 .clsSwsEditBox,.icdUI .v10 .clsSelectDateEditBox,.icdUI .v10 .clsSelectDateYearEditBox,.icdUI .clsSelectDateEditBox,.icdUI .clsSelectDateYearEditBox,.icdUI .v10 .pcl,.icdUI .v10 .clsSelectTimeEditBox{background-image: none;background-color: #ffffff;border: 1px solid #999999;}
+.icdUI .v10 .clsTextWidget:hover,.icdUI .v10 .clsSwsEditBox:hover,.icdUI .v10 .clsSelectDateEditBox:hover,.icdUI .v10 .clsSelectDateYearEditBox:hover,.icdUI .clsSelectDateEditBox:hover,.icdUI .clsSelectDateYearEditBox:hover,.icdUI .v10 .pcl:hover,.icdUI .v10 .clsSelectTimeEditBox:hover{border: 1px solid #046fc0;}
+.icdUI .v10 .clsTextWidget:disabled,.icdUI .v10 .clsSwsEditBox:disabled,.icdUI .v10 .clsSelectDateEditBox:disabled,.icdUI .v10 .clsSelectDateYearEditBox:disabled,.icdUI .clsSelectDateEditBox:disabled,.icdUI .clsSelectDateYearEditBox:disabled,.icdUI .v10 .pcl:disabled,.icdUI .v10 .clsSelectTimeEditBox:disabled{color: 1px solid #767676;}
+.icdUI .v10 .clsSelectControl,.icdUI .v10 .clsPromptComponent select,.icdUI .v10 .clsPromptControl select{border: 1px solid #cccccc;background-color: #ffffff;color: #222222;}
+.icdUI .v10 .clsSelectControl:disabled,.icdUI .v10 .clsPromptControl:disabled select{color: #767676;}
+.icdUI .v10 .clsSelectControl:hover,.icdUI .v10 .clsPromptControl:hover select{border: 1px solid #cc9850;background-color: #ffffff;}
+.icdUI .v10 .clsSelectControl,.icdUI .v10 .clsCheckBoxRow,.icdUI .v10 .clsTreeText,.icdUI .v10 .clsReadOnlyText,.icdUI .v10 td.pb{font-size: 12px;font-family: Tahoma;font-size: 100%;}
+.icdUI .clsListControl,.icdUI .clsSelectControl,.icdUI .v10 .clsCheckBoxList,.icdUI .v10 .clsRadioGroupList{min-width: 4em;width: auto;}
+.icdUI .v10 .clsSelectControl option,.icdUI .v10 .clsPromptControl select{font-size:12px;font-family: Arial,Verdana,'Arial Unicode MS','Andale WT','MS UI Gothic','MS PGothic','Apple Gothic',Gulim,SimSun,PMingLiU,Raghu8,sans-serif !important;}
+.icdUI .clsSearchOptionsExpand{background-image: url("images/prompting/prompt_option_expand.gif");}
+.icdUI .clsPromptComponent .dijitRadio .dijitCheckBoxInput{opacity : 0.01;filter: alpha(opacity=0);}
+.icdUI .clsBtnTimeDown,.icdUI .clsBtnTimeUp{height: 7px;width: 15px;background-image: url("images/prompting/icon_time_down.gif");}
+.icdUI .clsBtnTimeUp{background-image: url("images/prompting/icon_time_up.gif");}
+.icdUI .clsBtnYearDown,.icdUI .clsBtnYearUp{height: 15px;width: 15px;background-image: url("images/prompting/icon_year_down.gif");}
+.icdUI .clsBtnYearUp{background-image: url("images/prompting/icon_year_up.gif");}
+.icdUI .v10 .clsToolbarButton,.icdUI .clsToolbarButton{background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );zoom: 1;background-color: transparent;border: 1px solid #759dc0;}
+.icdUI .v10 .clsToolbarButton_hover{background-image: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#b9cee3));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #b9cee3 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#b9cee3',GradientType=0 );zoom: 1;border: 1px solid #759dc0;}
+.icdUI .clsClockBlock{background-image: none;border: 1px solid #999999;margin-bottom: 10px;position: relative;text-align: center;width: 100%;}
+.icdUI .clsClock{background-color: #ffffff;height: 200px;margin: 0;position: relative;width: 140px;}
+.icdUI .clsClockDigits{color: #444444;font-size: 10px;left: 0;position: absolute;text-align: center;top: 0;}
+.icdUI .clsHourHand{background: none repeat scroll 0 0 #444444;font-size: 2px;height: 2px;position: absolute;width: 2px;}
+.icdUI .clsMinuteHand{background: none repeat scroll 0 0 #444444;font-size: 2px;height: 2px;position: absolute;width: 2px;}
+.icdUI .v10 .clsSelectDateCalendarDialog,.icdUI .clsSelectDateCalendarDialog,.icdUI .v10 .clsSelectDateCalendar{padding : 0;width : 170px;}
+.icdUI .v10 .clsSelectDateCalendar{background-color: #ffffff;border: 1px solid #999999;height:165px;margin-left: 5px;margin-top: 5px;}
+.icdUI .clsSelectDateCalendarDialog{height:152px;}
+.icdUI .v10 .clsSelectDateCalendarDialog{margin : 1px 0;}
+.icdUI .v10 .pw,.icdUI .v10 .pd,.icdUI .v10 .pds,.icdUI .v10 .clsSelectDateDaysOfWeek,.icdUI .v10 .clsSelectDateDays,.icdUI .v10 .clsSelectDateDaysSelected ,.icdUI .clsSelectDateDays,.icdUI .clsSelectDateDaysSelected{padding : 0 1px;border: 0 none;}
+.icdUI .v10 .pd,.icdUI .v10 .pds,.icdUI .v10 .clsSelectDateDays,.icdUI .v10 .clsSelectDateDaysSelected,.icdUI .clsSelectDateDays,.icdUI .clsSelectDateDaysSelected{font-size: 0.9em;}
+.icdUI .v10 .pw ,.icdUI .v10 .clsSelectDateDaysOfWeek,.icdUI .clsSelectDateDaysOfWeek{font-size: 0.8em;}
+.icdUI .v10 .clsSelectDateDaysOfWeek,.icdUI .clsSelectDateDaysOfWeek{background-color: #cccccc;background-image: none;}
+.icdUI .v10 .pm{background-color: #ffffff;color: #00649d;background-image: none;}
+.icdUI .v10 .pms{background-color: #b6cfd9;background-image: none;border: 1px solid #ffffff;}
+.icdUI .v10 .pd{background-color: #ffffff;color: #00649d;background-image: none;}
+.icdUI .v10 .pds{background-color: #b6cfd9;background-image: none;}
+.icdUI .clsSelectDateMonthsSelected{background-color: transparent;}
+.icdUI .v10 .clsSelectDateYears,.icdUI .clsSelectDateYears{background-color: ;}
+.icdUI .v10 .clsSelectDateYearEditBox,.icdUI .v10 .clsSelectDateYearEditBox:hover,.icdUI .clsSelectDateYearEditBox,.icdUI .clsSelectDateYearEditBox:hover{background-color: ;border: 0 none;}
+.dj_safari .icdUI .v10 .clsPromptComponent{width: auto;}
+.icdUI .v10 .clsPromptComponent{margin-top: 3px;}
+.icdUI .v10 .py .clsPromptComponent{margin-top: 0;}
+.icdUI .v10 .bp span,.icdUI .v10 .bph span,.icdUI .v10 .bpd span,.icdUI .v10 .clsPromptButton span,.icdUI .v10 .clsPromptButtonOver span,.icdUI .v10 .clsInsertRemoveButton span,.icdUI .v10 .clsInsertRemoveButtonOver span{padding: 0 0.1em;}
+.icdUI .v10 a.clsLink,.icdUI .v10 .clsDialogIntroduction{font-size: 12px !important;}
+.icdUI .v10 .pp{background-color: inherit;}
+.icdUI .v10 .clsSwsOptions{font-size: 12px;}
+.icdUI .clsOptions{cursor: pointer;padding: 0;vertical-align: bottom;width: 240px;}
+.icdUI .clsPromptComponent .dijitInline{display: inline-block;}
+.icdUI .clsSelectDateMonths{color: #00649d;}
+.icdUI .v10 .pa{height: 250px;width: 250px;background-color: #ffffff;border: 1px solid #999999;}
+.icdUI .clsPromptComponent .dijitTreeExpandoClosed{background-image: url("images/tree/tree_closed.png");}
+.icdUI .clsPromptComponent .dijitTreeExpandoOpened{background-image: url("images/tree/tree_open.png");}
+.icdUI .clsPromptComponent .dijitTreeExpandoClosedRTL{background-image: url("images/tree/tree_closed_rtl.png");}
+.icdUI .clsTreeText{font-size: 8pt;padding: 0 1px 0 3px;vertical-align: middle;cursor: pointer;margin: 0;background-color: #FF0000;}
+.icdUI .clsTreeNode_hover{background-color: #c5dcf2;color: #222222;}
+.icdUI .clsTreeNode_partial{color: #777777;}
+.icdUI .clsTreeNode_selected{background-color: #dfedfb;color: #222222;}
+.bux-search-refinement-item-icon{display: none;}
+.bux-search-refinement-item-icon-scorecard,.bux-search-refinement-item-icon-metric,.bux-search-refinement-item-icon-metrictype,.bux-search-refinement-item-icon-comment,.bux-search-refinement-item-icon-group,.bux-search-refinement-item-icon-grouptype,.bux-search-refinement-item-icon-model,.bux-search-refinement-item-icon-namespace,.bux-search-refinement-item-icon-hierarchy,.bux-search-refinement-item-icon-filter,.bux-search-refinement-item-icon-dimension,.bux-search-refinement-item-icon-level,.bux-search-refinement-item-icon-querysubject,.bux-search-refinement-item-icon-queryitem,.bux-search-refinement-item-icon-memberproperty,.bux-search-refinement-item-icon-queryitemfact,.bux-search-refinement-item-icon-queryitemdimension,.bux-search-refinement-item-icon-measuredimension,.bux-search-refinement-item-icon-measure,.bux-search-refinement-item-icon-account,.bux-search-refinement-item-icon-adminfolder,.bux-search-refinement-item-icon-agentdefinition,.bux-search-refinement-item-icon-agentdefinitionview,.bux-search-refinement-item-icon-analysis,.bux-search-refinement-item-icon-archivelocation,.bux-search-refinement-item-icon-basersstask,.bux-search-refinement-item-icon-urlrsstask,.bux-search-refinement-item-icon-capability,.bux-search-refinement-item-icon-configuration,.bux-search-refinement-item-icon-configurationfolder,.bux-search-refinement-item-icon-contact,.bux-search-refinement-item-icon-content,.bux-search-refinement-item-icon-contenttask,.bux-search-refinement-item-icon-indexupdatetask,.bux-search-refinement-item-icon-dashboard,.bux-search-refinement-item-icon-datasource,.bux-search-refinement-item-icon-datamovementtask,.bux-search-refinement-item-icon-datasourceconnection,.bux-search-refinement-item-icon-datasourcesignon,.bux-search-refinement-item-icon-directory,.bux-search-refinement-item-icon-dispatcher,.bux-search-refinement-item-icon-distributionlist,.bux-search-refinement-item-icon-document,.bux-search-refinement-item-icon-drillpath,.bux-search-refinement-item-icon-exportdeployment,.bux-search-refinement-item-icon-folder,.bux-search-refinement-item-icon-group,.bux-search-refinement-item-icon-importdeployment,.bux-search-refinement-item-icon-jobdefinition,.bux-search-refinement-item-icon-migrationtask,.bux-search-refinement-item-icon-model,.bux-search-refinement-item-icon-memo,.bux-search-refinement-item-icon-namespace,.bux-search-refinement-item-icon-namespacefolder,.bux-search-refinement-item-icon-package,.bux-search-refinement-item-icon-pagelet,.bux-search-refinement-item-icon-pagedefinition,.bux-search-refinement-item-icon-planningmacrotask,.bux-search-refinement-item-icon-planningtask,.bux-search-refinement-item-icon-portal,.bux-search-refinement-item-icon-portalpackage,.bux-search-refinement-item-icon-portalskin,.bux-search-refinement-item-icon-portalskinfolder,.bux-search-refinement-item-icon-portletfolder,.bux-search-refinement-item-icon-portletproducer,.bux-search-refinement-item-icon-portlet,.bux-search-refinement-item-icon-pfr,.bux-search-refinement-item-icon-powerplaycube,.bux-search-refinement-item-icon-powerplayreport,.bux-search-refinement-item-icon-powerplay8report,.bux-search-refinement-item-icon-powerplay8reportview,.bux-search-refinement-item-icon-printer,.bux-search-refinement-item-icon-query,.bux-search-refinement-item-icon-report,.bux-search-refinement-item-icon-reportview,.bux-search-refinement-item-icon-role,.bux-search-refinement-item-icon-root,.bux-search-refinement-item-icon-reportdataserviceagentdefinition,.bux-search-refinement-item-icon-securedfeature,.bux-search-refinement-item-icon-securedfunction,.bux-search-refinement-item-icon-shortcut,.bux-search-refinement-item-icon-shortcutrsstask,.bux-search-refinement-item-icon-shortcutagentrsstask,.bux-search-refinement-item-icon-storedproceduretask,.bux-search-refinement-item-icon-subscriptionfolder,.bux-search-refinement-item-icon-webservicetask,.bux-search-refinement-item-icon-url,.bux-search-refinement-item-icon-metricsfileimporttask,.bux-search-refinement-item-icon-metricsdatasourceetltask,.bux-search-refinement-item-icon-metricsexporttask,.bux-search-refinement-item-icon-metricsmaintenancetask,.bux-search-refinement-item-icon-reporttemplate,.bux-search-refinement-item-icon-uiprofile,.bux-search-refinement-item-icon-agentservice,.bux-search-refinement-item-icon-batchreportservice,.bux-search-refinement-item-icon-contentmanagerservice,.bux-search-refinement-item-icon-datamovementservice,.bux-search-refinement-item-icon-deliveryservice,.bux-search-refinement-item-icon-eventmanagementservice,.bux-search-refinement-item-icon-indexdataservice,.bux-search-refinement-item-icon-indexsearchservice,.bux-search-refinement-item-icon-indexupdateservice,.bux-search-refinement-item-icon-jobservice,.bux-search-refinement-item-icon-logservice,.bux-search-refinement-item-icon-metricsmanagerservice,.bux-search-refinement-item-icon-migrationservice,.bux-search-refinement-item-icon-metadataservice,.bux-search-refinement-item-icon-mobileservice,.bux-search-refinement-item-icon-dataintegrationservice,.bux-search-refinement-item-icon-monitorservice,.bux-search-refinement-item-icon-planningadministrationconsoleservice,.bux-search-refinement-item-icon-planningdataservice,.bux-search-refinement-item-icon-planningruntimeservice,.bux-search-refinement-item-icon-planningtaskservice,.bux-search-refinement-item-icon-presentationservice,.bux-search-refinement-item-icon-reportdataservice,.bux-search-refinement-item-icon-reportservice,.bux-search-refinement-item-icon-powerplayservice,.bux-search-refinement-item-icon-systemservice,.bux-search-refinement-item-icon-list,.bux-search-refinement-item-icon-crosstab,.bux-search-refinement-item-icon-bubblechart,.bux-search-refinement-item-icon-combinationchart,.bux-search-refinement-item-icon-gaugechart,.bux-search-refinement-item-icon-mapchart,.bux-search-refinement-item-icon-metricschart,.bux-search-refinement-item-icon-threedcombinationchart,.bux-search-refinement-item-icon-threedscatterchart,.bux-search-refinement-item-icon-paretochart,.bux-search-refinement-item-icon-piechart,.bux-search-refinement-item-icon-polarchart,.bux-search-refinement-item-icon-progressivechart,.bux-search-refinement-item-icon-radarchart,.bux-search-refinement-item-icon-scatterchart,.bux-search-refinement-item-icon-winlosschart,.bux-search-refinement-item-icon-user,.bux-search-refinement-item-icon-date,.bux-search-refinement-item-icon-barchart,.bux-search-refinement-item-icon-linechart,.bux-search-refinement-item-icon-areachart,.bux-search-refinement-item-icon-marimekkochart,.bux-search-refinement-item-icon-interactivereport,.bux-search-refinement-item-icon-bulletchart{display: inline-block;width: 16px;height: 16px;padding-bottom: 1px;padding-right: 2px;vertical-align: middle;}
+.bux-search-refinement-item-icon-account{background: url(../../../ps/portal/images/icon_user.gif) no-repeat;}
+.bux-search-refinement-item-icon-adminfolder{background: url(../../../ps/portal/images/icon_folder.gif) no-repeat;}
+.bux-search-refinement-item-icon-agentdefinition{background: url(../../../ps/portal/images/icon_agent.gif) no-repeat;}
+.bux-search-refinement-item-icon-agentdefinitionview{background: url(../../../ps/portal/images/icon_agent_sub.gif) no-repeat;}
+.bux-search-refinement-item-icon-analysis{background: url(../../../ps/portal/images/icon_ps_analysis.gif) no-repeat;}
+.bux-search-refinement-item-icon-archivelocation{background: url(../../../ps/portal/images/icon_file_system_location.gif) no-repeat;}
+.bux-search-refinement-item-icon-basersstask{background: url(../../../ps/portal/images/icon_URL_delivery.gif) no-repeat;}
+.bux-search-refinement-item-icon-urlrsstask{background: url(../../../ps/portal/images/icon_newsitem.gif) no-repeat;}
+.bux-search-refinement-item-icon-capability{background: url(../../../ps/portal/images/icon_built_in_folder.gif) no-repeat;}
+.bux-search-refinement-item-icon-configuration{background: url(../../../ps/portal/images/icon_built_in_folder.gif) no-repeat;}
+.bux-search-refinement-item-icon-configurationfolder{background: url(../../../ps/portal/images/icon_configuration_folder.gif) no-repeat;}
+.bux-search-refinement-item-icon-contact{background: url(../../../ps/portal/images/icon_contact.gif) no-repeat;}
+.bux-search-refinement-item-icon-content{background: url(../../../ps/portal/images/icon_publicfolder.gif) no-repeat;}
+.bux-search-refinement-item-icon-contenttask{background: url(../../../ps/portal/images/icon_admin_task.gif) no-repeat;}
+.bux-search-refinement-item-icon-indexupdatetask{background: url(../../../ps/portal/images/icon_index_update.gif) no-repeat;}
+.bux-search-refinement-item-icon-dashboard{background: url(../../../ps/portal/images/icon_dashboard.gif) no-repeat;}
+.bux-search-refinement-item-icon-datasource{background: url(../../../ps/portal/images/icon_data_source.gif) no-repeat;}
+.bux-search-refinement-item-icon-datamovementtask{background: url(../../../ps/portal/images/icon_data_movement.gif) no-repeat;}
+.bux-search-refinement-item-icon-datasourceconnection{background: url(../../../ps/portal/images/icon_data_source_connection.gif) no-repeat;}
+.bux-search-refinement-item-icon-datasourcesignon{background: url(../../../ps/portal/images/icon_signon.gif) no-repeat;}
+.bux-search-refinement-item-icon-directory{background: url(../../../ps/portal/images/icon_built_in_folder.gif) no-repeat;}
+.bux-search-refinement-item-icon-dispatcher{background: url(../../../ps/portal/images/icon_dispatcher.gif) no-repeat;}
+.bux-search-refinement-item-icon-distributionlist{background: url(../../../ps/portal/images/icon_distribution_list.gif) no-repeat;}
+.bux-search-refinement-item-icon-document{background: url(../../../ps/portal/images/icon_document_coc.gif) no-repeat;}
+.bux-search-refinement-item-icon-drillpath{background: url(../../../ps/portal/images/icon_drill_through.gif) no-repeat;}
+.bux-search-refinement-item-icon-exportdeployment{background: url(../../../ps/portal/images/icon_export.gif) no-repeat;}
+.bux-search-refinement-item-icon-folder{background: url(../../../ps/portal/images/icon_folder.gif) no-repeat;}
+.bux-search-refinement-item-icon-group{background: url(../../../ps/portal/images/icon_user_group.gif) no-repeat;}
+.bux-search-refinement-item-icon-importdeployment{background: url(../../../ps/portal/images/icon_import.gif) no-repeat;}
+.bux-search-refinement-item-icon-jobdefinition{background: url(../../../ps/portal/images/icon_job.gif) no-repeat;}
+.bux-search-refinement-item-icon-migrationtask{background: url(../../../ps/portal/images/icon_migration.gif) no-repeat;}
+.bux-search-refinement-item-icon-model{background: url(../../../ps/portal/images/icon_model.gif) no-repeat;}
+.bux-search-refinement-item-icon-memo{background: url(../../../ps/portal/images/icon_email.gif) no-repeat;}
+.bux-search-refinement-item-icon-namespace{background: url(../../../ps/portal/images/icon_namespace.gif) no-repeat;}
+.bux-search-refinement-item-icon-namespacefolder{background: url(../../../ps/portal/images/icon_folder.gif) no-repeat;}
+.bux-search-refinement-item-icon-package{background: url(../../../ps/portal/images/icon_package.gif) no-repeat;}
+.bux-search-refinement-item-icon-pagelet{background: url(../../../ps/portal/images/icon_page.gif) no-repeat;}
+.bux-search-refinement-item-icon-pagedefinition{background: url(../../../ps/portal/images/icon_paper_size.gif) no-repeat;}
+.bux-search-refinement-item-icon-planningmacrotask{background: url(../../../ps/portal/images/icon_planning_macro.gif) no-repeat;}
+.bux-search-refinement-item-icon-planningtask{background: url(../../../ps/portal/images/icon_planning_task.gif) no-repeat;}
+.bux-search-refinement-item-icon-portal{background: url(../../../ps/portal/images/icon_portal.gif) no-repeat;}
+.bux-search-refinement-item-icon-portalpackage{background: url(../../../ps/portal/images/icon_portalPackage.gif) no-repeat;}
+.bux-search-refinement-item-icon-portalskin{background: url(../../../ps/portal/images/icon_style_portal.gif) no-repeat;}
+.bux-search-refinement-item-icon-portalskinfolder{background: url(../../../ps/portal/images/icon_folder.gif) no-repeat;}
+.bux-search-refinement-item-icon-portletfolder{background: url(../../../ps/portal/images/icon_folder.gif) no-repeat;}
+.bux-search-refinement-item-icon-portletproducer{background: url(../../../ps/portal/images/icon_portlet_group.gif) no-repeat;}
+.bux-search-refinement-item-icon-portlet{background: url(../../../ps/portal/images/icon_portlet.gif) no-repeat;}
+.bux-search-refinement-item-icon-pfr{background: url(../../../ps/portal/images/icon_myfolder.gif) no-repeat;}
+.bux-search-refinement-item-icon-powerplaycube{background: url(../../../ps/portal/images/icon_pp_report.gif) no-repeat;}
+.bux-search-refinement-item-icon-powerplayreport{background: url(../../../ps/portal/images/icon_pp_report.gif) no-repeat;}
+.bux-search-refinement-item-icon-powerplay8report{background: url(../../../ps/portal/images/icon_pp8_report.gif) no-repeat;}
+.bux-search-refinement-item-icon-powerplay8reportview{background: url(../../../ps/portal/images/icon_pp8_report_sub.gif) no-repeat;}
+.bux-search-refinement-item-icon-printer{background: url(../../../ps/portal/images/icon_printer.gif) no-repeat;}
+.bux-search-refinement-item-icon-query{background: url(../../../ps/portal/images/icon_qs_query.gif) no-repeat;}
+.bux-search-refinement-item-icon-report{background: url(../../../ps/portal/images/icon_rs_report.gif) no-repeat;}
+.bux-search-refinement-item-icon-reportview{background: url(../../../ps/portal/images/icon_report_sub.gif) no-repeat;}
+.bux-search-refinement-item-icon-role{background: url(../../../ps/portal/images/icon_user_role.gif) no-repeat;}
+.bux-search-refinement-item-icon-root{background: url(../../../ps/portal/images/icon_built_in_folder.gif) no-repeat;}
+.bux-search-refinement-item-icon-reportdataserviceagentdefinition{background: url(../../../ps/portal/images/icon_subscription.gif) no-repeat;}
+.bux-search-refinement-item-icon-securedfeature{background: url(../../../ps/portal/images/icon_secured_feature.gif) no-repeat;}
+.bux-search-refinement-item-icon-securedfunction{background: url(../../../ps/portal/images/icon_secured_function.gif) no-repeat;}
+.bux-search-refinement-item-icon-shortcut{background: url(../../../ps/portal/images/icon_ref.gif) no-repeat;}
+.bux-search-refinement-item-icon-shortcutrsstask{background: url(../../../ps/portal/images/icon_newsitem.gif) no-repeat;}
+.bux-search-refinement-item-icon-shortcutagentrsstask{background: url(../../../ps/portal/images/icon_newsitem.gif) no-repeat;}
+.bux-search-refinement-item-icon-storedproceduretask{background: url(../../../ps/portal/images/icon_SQL_writeback.gif) no-repeat;}
+.bux-search-refinement-item-icon-subscriptionfolder{background: url(../../../ps/portal/images/icon_folder.gif) no-repeat;}
+.bux-search-refinement-item-icon-webservicetask{background: url(../../../ps/portal/images/icon_web_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-url{background: url(../../../ps/portal/images/icon_url.gif) no-repeat;}
+.bux-search-refinement-item-icon-metricsfileimporttask{background: url(../../../ps/portal/images/icon_metrics_import_from_file.gif) no-repeat;}
+.bux-search-refinement-item-icon-metricsdatasourceetltask{background: url(../../../ps/portal/images/icon_metrics_import_from_data_source.gif) no-repeat;}
+.bux-search-refinement-item-icon-metricsexporttask{background: url(../../../ps/portal/images/icon_metrics_export_to_file.gif) no-repeat;}
+.bux-search-refinement-item-icon-metricsmaintenancetask{background: url(../../../ps/portal/images/icon_metrics_maintenance.gif) no-repeat;}
+.bux-search-refinement-item-icon-reporttemplate{background: url(../../../ps/portal/images/icon_report_template.gif) no-repeat;}
+.bux-search-refinement-item-icon-uiprofile{background: url(../../../ps/portal/images/icon_user_interface_profiles.gif) no-repeat;}
+.bux-search-refinement-item-icon-agentservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-batchreportservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-contentmanagerservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-datamovementservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-deliveryservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-eventmanagementservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-indexdataservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-indexsearchservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-indexupdateservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-jobservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-logservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-metricsmanagerservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-migrationservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-metadataservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-mobileservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-dataintegrationservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-monitorservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-planningadministrationconsoleservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-planningdataservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-planningruntimeservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-planningtaskservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-presentationservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-reportdataservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-reportservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-powerplayservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-systemservice{background: url(../../../ps/portal/images/icon_service.gif) no-repeat;}
+.bux-search-refinement-item-icon-scorecard{background: url(../../../alp/images/icon_scorecard.gif) no-repeat;}
+.bux-search-refinement-item-icon-metric{background: url(../../../alp/images/icon_metrics_16.gif) no-repeat;}
+.bux-search-refinement-item-icon-metrictype{background: url(../../../alp/images/icon_metrictype.gif) no-repeat;}
+.bux-search-refinement-item-icon-comment{background: url(../../../alp/images/icon_comment.gif) no-repeat;}
+.bux-search-refinement-item-icon-group{background: url(../../../alp/images/icon_groups.gif) no-repeat;}
+.bux-search-refinement-item-icon-grouptype{background: url(../../../alp/images/icon_grouptype.gif) no-repeat;}
+.bux-search-refinement-item-icon-model{background: url(../../../ps/portal/images/metadatatree/package.gif) no-repeat;}
+.bux-search-refinement-item-icon-namespace{background: url(../../../ps/portal/images/metadatatree/namespace.gif) no-repeat;}
+.bux-search-refinement-item-icon-hierarchy{background: url(../../../ps/portal/images/metadatatree/hierarchy.gif) no-repeat;}
+.bux-search-refinement-item-icon-filter{background: url(../../../ps/portal/images/metadatatree/filter.gif) no-repeat;}
+.bux-search-refinement-item-icon-dimension{background: url(../../../ps/portal/images/metadatatree/dimension.gif) no-repeat;}
+.bux-search-refinement-item-icon-level{background: url(../../../ps/portal/images/metadatatree/level.gif) no-repeat;}
+.bux-search-refinement-item-icon-querysubject{background: url(../../../ps/portal/images/metadatatree/query_subject.gif) no-repeat;}
+.bux-search-refinement-item-icon-queryitem{background: url(../../../ps/portal/images/metadatatree/metadata_attribute.gif) no-repeat;}
+.bux-search-refinement-item-icon-memberproperty{background: url(../../../ps/portal/images/metadatatree/metadata_attribute.gif) no-repeat;}
+.bux-search-refinement-item-icon-queryitemfact{background: url(../../../ps/portal/images/metadatatree/query_item_fact.gif) no-repeat;}
+.bux-search-refinement-item-icon-queryitemdimension{background: url(../../../ps/portal/images/metadatatree/query_item_dimension.gif) no-repeat;}
+.bux-search-refinement-item-icon-measuredimension{background: url(../../../ps/portal/images/metadatatree/measure_dimension.gif) no-repeat;}
+.bux-search-refinement-item-icon-measure{background: url(../../../ps/portal/images/metadatatree/metadata_measure.gif) no-repeat;}
+.bux-search-refinement-item-icon-list{background: url(../../../icd/feeds/images/icon_list.gif) no-repeat;}
+.bux-search-refinement-item-icon-crosstab{background: url(../../../icd/feeds/images/icon_crosstab.gif) no-repeat;}
+.bux-search-refinement-item-icon-bubblechart{background: url(../../../icd/feeds/images/icon_bubblechart.gif) no-repeat;}
+.bux-search-refinement-item-icon-combinationchart{background: url(../../../icd/feeds/images/icon_combinationchart.gif) no-repeat;}
+.bux-search-refinement-item-icon-gaugechart{background: url(../../../icd/feeds/images/icon_gaugechart.gif) no-repeat;}
+.bux-search-refinement-item-icon-mapchart{background: url(../../../icd/feeds/images/icon_mapchart.gif) no-repeat;}
+.bux-search-refinement-item-icon-metricschart{background: url(../../../icd/feeds/images/icon_metricschart.gif) no-repeat;}
+.bux-search-refinement-item-icon-threedcombinationchart{background: url(../../../icd/feeds/images/icon_threedcombinationchart.gif) no-repeat;}
+.bux-search-refinement-item-icon-threedscatterchart{background: url(../../../icd/feeds/images/icon_threedscatterchart.gif) no-repeat;}
+.bux-search-refinement-item-icon-paretochart{background: url(../../../icd/feeds/images/icon_paretochart.gif) no-repeat;}
+.bux-search-refinement-item-icon-piechart{background: url(../../../icd/feeds/images/icon_piechart.gif) no-repeat;}
+.bux-search-refinement-item-icon-polarchart{background: url(../../../icd/feeds/images/icon_polarchart.gif) no-repeat;}
+.bux-search-refinement-item-icon-progressivechart{background: url(../../../icd/feeds/images/icon_progressivechart.gif) no-repeat;}
+.bux-search-refinement-item-icon-radarchart{background: url(../../../icd/feeds/images/icon_radarchart.gif) no-repeat;}
+.bux-search-refinement-item-icon-scatterchart{background: url(../../../icd/feeds/images/icon_scatterchart.gif) no-repeat;}
+.bux-search-refinement-item-icon-winlosschart{background: url(../../../icd/feeds/images/icon_winlosschart.gif) no-repeat;}
+.bux-search-refinement-item-icon-user{background: url(../../../ps/portal/images/icon_user.gif) no-repeat;}
+.bux-search-refinement-item-icon-date{background: url(../../../pat/images/date.gif) no-repeat;}
+.bux-search-refinement-item-icon-barchart{background: url(../../../pat/images/barChart.gif) no-repeat;}
+.bux-search-refinement-item-icon-linechart{background: url(../../../pat/images/lineChart.gif) no-repeat;}
+.bux-search-refinement-item-icon-areachart{background: url(../../../pat/images/area.gif) no-repeat;}
+.bux-search-refinement-item-icon-marimekkochart{background: url(../../../ccs/images/marimekkoChart_icon.gif) no-repeat;}
+.bux-search-refinement-item-icon-bulletchart{background: url(../../../pat/images/v2_bulletChart.gif) no-repeat;}
+.bux-search-refinement-item-icon-interactivereport{background: url(../../../icd/feeds/images/icon_interactive_report.gif) no-repeat;}
+.bux-toolbar{position: absolute;top: 200px;left: 200px;height: 30px;overflow: hidden;}
+.dj_ie .bux-toolbar{padding-right: 2px;}
+.bux-toolbar-inner{position: absolute;top: 30px;left: 0px;padding-left: 0px !important;}
+.bux-toolbar table{border-collapse: collapse;}
+.bux-toolbar td{white-space: nowrap;}
+.bux-toolbar-dropdown-section{padding-left: 3px;width: 25px;height: 30px;overflow: hidden;}
+.bux-toolbar-dropdown-section .dijitDropDownButton{margin-top: -1px;}
+.icdUI .bux-toolbar-tools-section .dijitToolbarSeparator{height: 15px;}
+.icdUI .buxBannerSection .dijitToolbarSeparator{margin: 0 0 0 5px;}
+.bux-toolbar-tools-section,.bux-toolbar-edit-section{height: 30px;overflow: hidden;vertical-align: top;}
+.bux-toolbar-edit-section-r{width: 12px;height: 30px;}
+.bux-toolbar-edit-section{width: 36px;height: 30px;text-align: right;}
+.bux-toolbar-tools{margin-top: 2px;margin-left: 3px;background: transparent !important;border: none !important;cursor: default;}
+.dj_ie .bux-toolbar-tools{white-space: nowrap;vertical-align: middle;}
+.bux-toolbar-chevron-button .dijitArrowButtonInner{display: none;}
+.bux-toolbar-chevron-button .dijitArrowButtonChar{display: none;}
+.dj_ie .bux-toolbar-edit-buttons button{width: 100%;}
+.bux-toolbar-inner{border-radius: 10px 10px 0 0;-moz-border-radius: 10px 10px 0 0;-moz-box-shadow: inset 0px 1px 3px white;}
+.dj_ie .bux-toolbar-inner{padding-top: 0px !important;}
+.icdUI .bux-toolbar .dijitToolbar{background-color: #ebf5fe;border: 1px solid #cccccc;border-radius: 0px;background-image: none;background-image: -moz-linear-gradient(top, #ffffff 0%, #ebf5fe 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ebf5fe));background-image: -webkit-linear-gradient(top, #ffffff 0%, #ebf5fe 100%);background-image: -o-linear-gradient(top, #ffffff 0%, #ebf5fe 100%);background-image: -ms-linear-gradient(top, #ffffff 0%, #ebf5fe 100%);background-image: linear-gradient(to bottom, #ffffff 0%, #ebf5fe 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ebf5fe',GradientType=0 );zoom: 1;padding-top: 1px;}
+.bux-toolbar-chevron-show-button{width: 16px;height: 16px;background-image: none;background-image: url(images/menu/action_menu_show.gif);}
+.bux-toolbar-chevron-hide-button{width: 16px;height: 16px;background-image: none;background-image: url(images/menu/action_menu_hide.gif);}
+.claro .bux-toolbar-dropdown-section .dijitArrowButtonInner{background-image: none;background-image: url("images/widget_toolbar/odtb.png");background-position: 0 0;background-repeat: no-repeat;height: 25px;width: 25px
+}
+.claro .bux-toolbar-dropdown-section .dijitDropDownButtonHover .dijitArrowButtonInner{background-position: -25px 0;}
+.claro .dijitToolbar .bux-toolbar-dropdown-section .dijitButtonNode,.claro .dijitToolbar .bux-toolbar-dropdown-section .dijitDropDownButtonHover .dijitButtonNode,.claro .dijitToolbar .bux-toolbar-dropdown-section .dijitDropDownButtonActive .dijitButtonNode,.claro .dijitToolbar .bux-toolbar-dropdown-section .dijitDropDownButtonOpened .dijitButtonNode{background-color: transparent;border: none;padding: 1px;background-image: none;filter: none;-moz-border-radius: 10px;}
+.claro .dijitToolbar .bux-toolbar-dropdown-section .dijitButtonContents{padding: 0px;}
+.bux-onDemandUI-icon{background-repeat: no-repeat;background-position: center center;width: 16px;height: 16px;}
+.bux-toolbar-editcancel-icon{background-image: none;background-image: url(images/dialog/dialog_icon_close_strip.png);background-position: 0px;}
+.bux-toolbar-autoresize{background-position: 0px;}
+.bux-toolbar-delete{background-position: -144px;}
+.bux-toolbar-rename{background-position: -624px;}
+.bux-toolbar-edit-icon{background-position: -272px;}
+.bux-toolbar-more-icon{background-position: -1488px;}
+.bux-toolbar-maximize-icon{background-position: -400px;}
+.bux-toolbar-listento{background-position: -432px;}
+.bux-properties-icon{background-position: -544px;}
+.bux-toolbar-remove{background-position: -608px;}
+.bux-toolbar-restoredown-icon{background-position: -656px;}
+.bux-toolbar-sendtoback{background-position: -672px;}
+.dijitMenuItemDisabled .bux-toolbar-autoresize{background-position: -1680px;}
+.dijitMenuItemDisabled .bux-toolbar-sendtoback{background-position: -1696px;}
+.bux-toolbar-autoresize,.bux-toolbar-delete,.bux-toolbar-rename,.bux-toolbar-sendtoback,.bux-toolbar-listento,.bux-toolbar-remove,.bux-properties-icon,.bux-toolbar-maximize-icon,.bux-toolbar-restoredown-icon,.bux-toolbar-edit-icon,.bux-toolbar-more-icon{background-image: none;background-image: url(images/icons/on_demand_toolbar_and_context_menu_strip.png);}
+.bux-toolbar-icon{background-image: none;background-image: url(images/icons/undefined.png);}
+.dijit_a11y .bux_bluedot_ArrowButtonChar{height: 5px;left: 12px;position: absolute;top: 8px;width: 5px;}
+.dijit_a11y .bux-toolbar-tools .dijitToolbarSeparator{border: 1px solid;height: 25px;margin: 3px;width: 0;padding: 0px;}
+.dijit_a11y .bux-toolbar-dropdown-section{height: 25px;width: 25px;}
+.dijit_a11y .bux-toolbar-tools{margin-top: 0px;}
+.dijit_a11y .bux-toolbar .dijitButton,.dijit_a11y .bux-toolbar .dijitDropDownButton,.dijit_a11y .bux-toolbar .dijitComboButton{margin: 0px;padding: 0px;}
+.dijit_a11y .bux-toolbar-dropdown-spacer{width: 30px !important;height: 20px;}
+.dj_ie .dijit_a11y .bux-toolbar-tools .dijitButton,.dj_ie .dijit_a11y .bux-toolbar-tools .dijitDropDownButton{height: auto !important;vertical-align: top;}
+.dijit_a11y .bux-toolbar-tools .dijitButton button{width: auto !important;}
+.dijit_a11y .bux-toolbar-tools .dijitDropDownButton button{width: auto !important;}
+.dj_ie .dijit_a11y .bux-toolbar-tools .dijitButton button{width: 100% !important;}
+.dj_ie .dijit_a11y .bux-toolbar-tools .dijitDropDownButton button{width: 100% !important;}
+.dijit_a11y .bux-toolbar-tools-section,.dijit_a11y .bux-toolbar-edit-section{width: 100px;}
+.dijit_a11y .bux-toolbar-edit-section-r{width: auto;}
+.dijit_a11y .bux-toolbar{height: 45px;}
+.dijit_a11y .bux-toolbar-inner{background: white !important;border: none !important;}
+.dijit_a11y .bux-toolbar,.dijit_a11y .bux-toolbar-inner{overflow: visible;}
+.dijit_a11y .bux-toolbar,.dijit_a11y .bux-toolbar-inner,.dijit_a11y .bux-toolbar-inner table,.dijit_a11y .bux-toolbar-inner td{background-color: white !important;}
+.icdUI .dijitTooltipContainer{padding: 1px;}
+.claro .bux-tooltip-table .dijitToolbar,.bux-tooltip-title{padding-bottom: 4px;padding-left: 5px;}
+.claro .bux-businesscard-table .dijitToolbar,.bux-businesscard-title{padding-bottom: 6px;padding-left: 8px;padding-right: 6px;}
+.bux-tooltip-title,.bux-businesscard-title{min-height: 26px;vertical-align: middle;}
+.bux-tooltip-text{padding: 5px;}
+.bux-tooltip-help-image{background-position-x: center;background-position-y: center;background-repeat: no-repeat;height: 16px;width: 20px;}
+.dj_ie .bux-tooltip-help-image{background-position-y: 2px;background-position-x: left;height: 18px;}
+.bux-tooltip-help{text-align: right;padding: 2px;}
+.bux-tooltip-help-link{vertical-align: bottom;}
+.dj_ie .bux-tooltip-help-link{vertical-align: top;}
+.bux-tooltip-table{width: 200px;}
+.bux-businesscard-table{width: 400px;}
+.bux-businesscard-image{width: 95px;height: 95px;}
+.buxThumbnail{background-repeat: no-repeat;background-position: center;white-space: nowrap;}
+.buxThumbnailImage{background-position: center center;background-repeat: no-repeat;}
+.bux-businesscard-thumbnail{padding-left: 8px;padding-top: 8px;padding-bottom: 8px;vertical-align: top;width: 107px;}
+.bux-businesscard-itemtable{padding-top: 3px;padding-left: 7px;padding-right: 7px;padding-bottom: 2px;vertical-align: top;text-align: left;}
+.bux-businesscard-item-header{padding-right: 7px;padding-bottom: 4px;vertical-align: top;white-space: nowrap;}
+.bux-businesscard-item-text{min-width: 240px;padding-bottom: 4px;vertical-align: top;}
+.buxTooltipBelow,.buxTooltipBelowMiddle{padding-top: 16px;}
+.buxTooltipAbove,.buxTooltipAboveMiddle{padding-bottom: 14px;}
+.icdUI .buxTooltipLeft,.icdUI .buxTooltipLeftMiddle{padding-right: 12px;}
+.icdUI .buxTooltipRight,.icdUI .buxTooltipRightMiddle{padding-left: 12px;}
+.dj_ie .bux-masterTooltip{margin-left: 4px;}
+.icdBusinessCardText{width: 240px;overflow: hidden;text-overflow: ellipsis;max-height: 90px;}
+.bux-tooltip-title,.bux-businesscard-title{font-weight: bold;color: #0070aa;}
+.claro .bux-tooltip-table .dijitToolbar,.claro .bux-businesscard-table .dijitToolbar{background-color: #ffffff;border-bottom: 0px none;}
+.bux-tooltip-title{font-size: 100%;}
+.bux-tooltip-text{font-weight: normal;font-size: 100%;color:#444444;}
+.bux-tooltip-help-link{font-weight: normal;text-decoration: underline;font-size: 11pt;color: #0070aa;}
+.bux-tooltip-table,.bux-businesscard-table{background-color: #ffffff;}
+.bux-businesscard-image{border-width: 1px;border-style: solid;border-color: #cccccc;}
+.bux-businesscard-item-header{font-weight: normal;color: #444444;}
+.bux-businesscard-item-text{font-weight: normal;color: #444444;}
+.bux-businesscard-item-email,.bux-businesscard-more{text-decoration: underline;}
+.bux-tooltip-help-image{background-image: none;background-image: url(images/tooltip/tooltip_icon_help.png);}
+.claro.icdUI .dijitTooltipConnector{background-image: none;background-image: url(images/tooltip/tooltip.png);height: 18px;}
+.claro .dijitTooltipBelow .dijitTooltipConnector{background-position: -18px 0;left: 10px;top: -2px;width: 18px;}
+.claro .dijitTooltipLeft .dijitTooltipConnector{background-position: -36px 0;right: 0;width: 17px;}
+.claro .dijitTooltipRight .dijitTooltipConnector{background-position: -54px 0;left: 0;width: 17px;}
+.claro .dijitTooltipAbove .dijitTooltipConnector{background-position: 0 0;bottom: -2px;left: 10px;width: 18px;}
+.claro .dijitTooltipABRight .dijitTooltipConnector{right: 10px;}
+.buxTooltipConnector-LeftMiddle-A11y,.buxTooltipConnector-RightMiddle-A11y,.buxTooltipConnector-AboveMiddle-A11y,.buxTooltipConnector-BelowMiddle-A11y{display: none;position: absolute;background: transparent !important;}
+.dj_ie .dijit_a11y .bux-businesscard-image{width: 99px;height: 99px;}
+.dijit_a11y .bux-businesscard-title{border-bottom: solid 2px;}
+.dijit_a11y .dijitTooltip{background: transparent !important;}
+.dijit_a11y .buxTooltipLeftMiddle .buxTooltipConnector-LeftMiddle-A11y,.dijit_a11y .buxTooltipRightMiddle .buxTooltipConnector-RightMiddle-A11y{display: block;top: 30%;font-size: xx-large;margin-left: -7px;}
+.dijit_a11y .buxTooltipLeftMiddle .bux-businesscard .buxTooltipConnector-LeftMiddle-A11y,.dijit_a11y .buxTooltipRightMiddle .bux-businesscard .buxTooltipConnector-RightMiddle-A11y{top: 38%;}
+.dj_ie .dijit_a11y .buxTooltipLeftMiddle .buxTooltipConnector-LeftMiddle-A11y,.dj_ie .dijit_a11y .buxTooltipRightMiddle .buxTooltipConnector-RightMiddle-A11y{top: 15%;}
+.dijit_a11y .buxTooltipAboveMiddle .buxTooltipConnector-AboveMiddle-A11y,.dijit_a11y .buxTooltipBelowMiddle .buxTooltipConnector-BelowMiddle-A11y{display: block;left: 45%;font-size: x-large;margin-top: -3px;}
+.dijit_a11y .buxTooltipBelow .buxTooltipConnector-BelowMiddle-A11y{display: block;left: 5%;font-size: x-large;margin-top: -3px;}
+.dijit_a11y .bux-tooltip-title{background-position: top;border-bottom: 1px solid #000000;}
+.buxList_ListView .buxListNode{padding-top: 1px;padding-bottom: 1px;display: block;}
+.buxList_DetailView .dijitTreeRow{padding-bottom: 10px;}
+.buxListThumbLabel{display: block;text-align: center;overflow: hidden;width: 100px;}
+.buxListContainer{height: 100%;overflow: visible;}
+.buxListContainer .buxListPage .buxListHeaderRow,.buxListContainer .buxListPage .buxListHeader DIV{min-height: 23px;height: 1.44em;}
+.buxListPage{height: 100%;width: 100%;padding: 1px;table-layout: fixed;}
+.buxListPageContainer{vertical-align: top;height: 100%;overflow-x: hidden;overflow-y: auto;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
+.buxListPagePaginationControls{height: 35px;padding-left: 10px;}
+.buxListPagePaginationControlsFocusNode{width: 98%;}
+.buxListThumbContainer{width: 102px;height: 103px;padding-left: 4px;padding-top: 4px;background-position: center center;background-repeat: no-repeat;}
+.buxListLoadNode{width: 100%;height: 100%;background-position: center center;background-repeat: no-repeat;}
+.buxListContainerBackdrop{position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;overflow: hidden;}
+.dj_ie .bux-fileDialog-stackcontainer-inner .buxListContainerBackdrop{height: 225px;}
+.buxListNodeImageCell{width: 16px;}
+.buxListNodeExpandCell{width: 16px;vertical-align: top;}
+.buxListRelevanceTextCell{text-align: right;vertical-align: middle;width: 40px;height: 0px;}
+.buxListRelevanceGraphCell{vertical-align: middle;width: 30px;height: 0px;}
+.buxListRelevanceCell-Graph{vertical-align: middle;}
+.buxListRelevanceCell-Graph-Table{height: 4px;width: 30px;}
+.buxListDateStamp{white-space: nowrap;}
+.dj_ie .buxListDateStamp{padding-right: 18px;}
+.buxListHeader .buxListHeaderCell{padding: 0 10px;line-height: 23px;cursor: pointer;width: 100%;}
+.bux-fileDialog .buxListHeader .buxListHeaderCell{cursor: default;}
+.buxListHeaderCellIcon{display: inline-block;width: 16px;height: 16px;vertical-align: text-bottom;}
+.dj_ff .buxListHeader .buxListHeaderCell{width: 0px;}
+.buxListHeader{background-repeat: repeat;min-height: 23px;height: 1.44em;padding-right: 1px;}
+.buxListHeader .buxListContentTable,.buxListHeader .buxSearchContentTable{margin: 0;padding: 0;}
+.toolboxPane .buxListHeader,.toolboxPane .buxListDateStamp{display: none;}
+.buxListNodeCell{vertical-align: top;}
+.buxList_TileView img.bux-thumbnail-loading{vertical-align: top;}
+.buxThumbnailCentered{vertical-align: middle;text-align: center;}
+.buxThumbnailError{background-image: none;background-image: url(images/icons/icon_unknown_64.gif);}
+.buxListNodeCell .dijitTreeLabel{white-space: nowrap;display: inline-block;overflow: hidden;}
+.buxDetailView-label .dijitTreeLabel{width: 100%;}
+.buxListNodeExpandCell-Closed,.buxListNodeExpandCell-Open,.buxListNodeExpandCell-Loading{display: inline-block;width: 16px;height: 16px;background-position: center center;background-repeat: no-repeat;}
+.buxListNodeExpandCell-None{display: inline-block;width: 16px;height: 16px;}
+.buxListContentTable{width: 100%;}
+.buxSearchContentTable{width: 100%;table-layout: fixed;}
+.buxListNode .dijitTreeContent{display: inline-block;width: 100%;}
+.bux-fileDialog-stackcontainer-inner .buxListPageContainer{overflow-x: hidden;overflow-y: auto;}
+.bux-pagination-first,.bux-pagination-previous,.bux-pagination-next,.bux-pagination-last{height: 20px;width: 20px;}
+.buxListPagePaginationControls .dijitButtonNode,.buxListPagePaginationControls .dijitButtonNode .dijitButtonDisabled{padding: 0px;margin: 0px;border: 0px;background: transparent;}
+.buxListPagePaginationControls .dijitButton{margin-left: 1px;margin-right: 1px;vertical-align: top;}
+.bux-pagination-label{padding-left: 5px;padding-right: 5px;text-align: center;}
+.buxListNoResults{vertical-align: middle;text-align: center;font-style: italic;font-size: 12px;width: 100%;height: 100%;}
+.buxThumbnailNode .dijitTreeContent{width: 102px;}
+#buxMainBC .dijitTree{overflow: visible !important;}
+.buxListDescription{font-size: 11px;font-weight: normal;color: #000000;white-space: normal;margin: 0 4px;padding-top: 2px;}
+.buxDetailView-label{font-size: 12px;font-weight: bold;color: #000000;white-space: normal;}
+.buxListThumbContainer{background-image: url(images/contentpane/pane_thumb.png);}
+.buxList_TileView .buxListNode .dijitTreeContent{width: 102px;}
+.buxListLoadNode{background-color: transparent;}
+.buxListRelevanceCell-Text{font-size: 12px;width: 100%;height: 100%;color: #777777;padding-left: 7px;padding-right: 4px;}
+.buxListRelevanceCell-Graph-full{border: 1px solid #cccccc;background-color: #b6cfd9;}
+.buxListRelevanceCell-Graph-empty{border-top: 1px solid #cccccc;border-bottom: 1px solid #cccccc;background-color: #cccccc;}
+.buxListHeader .buxListSubsequentHeaderCell{border-left: 1px solid #cccccc;white-space: nowrap;}
+.buxListHeader{background-image: none;background-image: url(images/contentpane/pane_list_columns.png);}
+.buxListNodeExpandCell-Closed{background-image: none;background-image: url(images/tree/tree_closed.png);}
+.buxListNodeExpandCell-Open{background-image: none;background-image: url(images/tree/tree_open.png);}
+.buxListNodeExpandCell-Loading{background-image: none;background-image: url(images/action_busy.gif);}
+.buxListSeparator{width: 100%;height: 15px;background: none center repeat-x;background-image: url(images/contentpane/divider.png);}
+.buxListLabel{vertical-align: middle;font-size: 12px;font-weight: bold;color: #000000;padding: 5px;height: 20px;}
+.claro .dijitTreeExpandoLoading{background-image: none;background-image: url(images/action_busy.gif);width: 16px;height: 16px;background-position: center center;background-repeat: no-repeat;}
+.claro .dijitTreeExpando{border-color: transparent;}
+.claro .dijitTreeExpando,.claro .dijitTreeExpandoClosed,.claro .dijitTreeExpandoClosed:hover,.claro .dijitTreeExpandoOpened,.claro .dijitTreeExpandoOpened:hover{background-position: left !important;}
+.claro .dijitTreeExpandoClosed{background-image: none;background-image: url(images/tree/tree_closed.png);}
+.claro .dijitTreeExpandoOpened{background-image: none;background-image: url(images/tree/tree_open.png);}
+.bux-pagination-first{background: none no-repeat;background-image: url(images/contentpane/action_page_first.png);}
+.bux-pagination-previous{background: none no-repeat;background-image: url(images/contentpane/action_page_back.png);}
+.bux-pagination-next{background: none no-repeat;background-image: url(images/contentpane/action_page_next.png);}
+.bux-pagination-last{background: none no-repeat;background-image: url(images/contentpane/action_page_last.png);}
+.dijitDisabled .bux-pagination-first{background: none no-repeat;background-image: url(images/contentpane/action_page_first_dis.png);}
+.dijitDisabled .bux-pagination-previous{background: none no-repeat;background-image: url(images/contentpane/action_page_back_dis.png);}
+.dijitDisabled .bux-pagination-next{background: none no-repeat;background-image: url(images/contentpane/action_page_next_dis.png);}
+.dijitDisabled .bux-pagination-last{background: none no-repeat;background-image: url(images/contentpane/action_page_last_dis.png);}
+.claro .dijitTreeRowSelected{padding: 3px 1px 1px 0px;}
+.claro .dijitTreeRowHover{border: none;margin-left: 1px;padding: 4px 2px 2px 0px;}
+.claro .buxListPagePaginationControls .dijitButtonNode{background: none;background-color: transparent;border: none;-moz-box-shadow: none;}
+.dijit_a11y .dijitTreeExpando{display: none !important;}
+.dijit_a11y .buxListHeader .buxListHeaderCell .bux-sort-ascending-icon,.dijit_a11y .buxListHeader .buxListHeaderCell .bux-sort-ascending-icon span,.dijit_a11y .buxListHeader .buxListHeaderCell .bux-sort-descending-icon,.dijit_a11y .buxListHeader .buxListHeaderCell .bux-sort-descending-icon span{padding-right: 0px;}
+.dijit_a11y .buxListHeader{border-bottom: 1px solid;}
+.dijit_a11y .buxListThumbContainer{border: 1px solid;}
+.dj_ie .dijit_a11y .dijitTreeContent{zoom: 1;}
+.dj_ie .dijit_a11y .dijitExpandoText{zoom: 1;margin-right: 5px;}
+.buxListNodeExpandCell-HighContrast{display: none;}
+.dijit_a11y .buxListNodeExpandCell-HighContrast{display: inline-block;}
+.bux-utilities-content{padding: 4px 4px;}
+.bux-utilities-desc{padding-left: 1em;}
+.bux-utilities-logo{padding: 2px 2px;}
+.bux-utilities-image-tile{visibility: hidden;}
+.dijit_a11y .bux-utilities-image-tile{visibility: visible;}
+.bux-utilities-iframe-blanket{background-color: transparent;position: absolute;border: none;}
+.bux-utilities-actionBtn-image-cursor{cursor: pointer;}
+.bux-utilities-title{font-weight: bold;color: #00649d;}
+.bux-utilities-time{padding-left: 1em;font-size: 0.9em;color: #777777;}
+.bux-utilities-alternate{background-color: none;background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );zoom: 1;}
+.bux-utilities-categories{padding-left: 1em;font-weight: bold;}
+.icdUI .buxFloatingPane{background: transparent;border: none;}
+.bux-MaximizedMode .dijitDialogUnderlay{position: absolute;height: 100%;width: 100%;left: 0;top: 0;}
+.buxFloatingPane .widgetContainer{padding: 0;}
+.buxWidgetHighlight .widget_resizerHandleVert,.buxWidgetHighlight .widget_resizerHandleHoriz{display: none;}
+.bux-MaximizedMode .widget-border,.bux-MaximizedMode .widget-corner,.bux-MaximizedMode .bux-toolbar,.bux-MaximizedMode .widget_resizerHandleVert,.bux-MaximizedMode .widget_resizerHandleHoriz{cursor: default !important;}
+.widget_resizerHandleHoriz{height: 8px;width: 28px;visibility: hidden;}
+.widget_resizerHandleVert{height: 28px;width: 8px;visibility: hidden;}
+.widget-movable{cursor: move;}
+div.buxWidgetActive div.widget_resizerHandleHoriz,div.buxWidgetActive div.widget_resizerHandleVert{visibility: visible;}
+.widget-border,.widget-corner{position: absolute;}
+.wb-top,.wb-bottom{text-align: center;height: 6px;left: 0;right: 0;}
+.wb-top{top: 0;}
+.wb-bottom{bottom: 0;}
+.wb-left,.wb-right{width: 6px;top: 0;bottom: 0;vertical-align: middle;}
+.wb-left{left: 0px;}
+.wb-right{right: 0px;margin-left: -7px;}
+.widget-corner{width: 8px;height: 8px;z-index: 1;}
+.wc-TL{top: 0px;left: 0px;}
+.wc-TR{top: 0px;right: 0px;}
+.wc-BL{bottom: 0px;left: 0px;}
+.wc-BR{bottom: 0px;right: 0px;}
+.buxFloatingPane .dojoxFloatingPaneCanvas{background: transparent;position: relative;display: block;}
+div.buxFloatingPane div.icdPaneResizeHandleR{cursor: e-resize;}
+div.buxFloatingPane div.icdPaneResizeHandleBL{cursor: sw-resize;}
+div.buxFloatingPane div.icdPaneResizeHandleB{cursor: s-resize;}
+div.buxFloatingPane div.icdPaneResizeHandleBR{cursor: se-resize;}
+.buxFloatingPane .mm_iWidget,.buxFloatingPane .mm_Content{height: 100%;}
+.buxFloatingPane .v10 td.pb{padding: 1px;}
+.buxFloatingPane .dojoxFloatingPaneContent{background: transparent;width: auto;height: 100%;outline: none;}
+.buxWidgetFrame{width: 100%;table-layout: fixed;}
+div.dijitTitleNode{overflow: hidden;}
+.tundra .dojoxFloatingPaneTitle{padding: 0px 4px;white-space: normal;border: none;padding-top: 3px;padding-bottom: 3px;}
+.icdUI .buxWidgetTitleInnactive .dojoxFloatingPaneTitle{visibility: hidden;}
+.icdUI .buxWidgetTitleNone .dojoxFloatingPaneTitle{display: none;}
+.buxGuidelineH{background-repeat: repeat-x;position: absolute;}
+.buxGuidelineV{background-repeat: repeat-y;position: absolute;}
+.buxDragAndDropError{padding-left: 36px;height: 32px;padding-top: 10px;background-repeat: no-repeat;background-position: left;font-size: 12pt;}
+.buxDragAndDropMiddle{width: 128px;height: 128px;background-repeat: no-repeat;background-position: 50% 50%;}
+.widget_loadContainerOuter{height: 100%;width: 100%;}
+.widget_loadContainer{vertical-align: middle;}
+.widget_loadContainerInsert{text-align: center;}
+.dojoxFloatingPaneContent{overflow: visible !important;}
+.dojoxFloatingPaneCanvas{overflow: auto !important;}
+.hiddenScrollBars .dojoxFloatingPaneCanvas{overflow: hidden !important;}
+.autoResizeScrollbars .dojoxFloatingPaneCanvas{overflow: visible !important;}
+.mm_Definition,.mm_ItemSet,.mm_ReceivedEvent,.mm_SourceEvent,.mm_Item,.mm_TargetEvent{display: none;}
+td.mainViewerHeader3{background-color: transparent !important;}
+.widget_load{height: 34px;background-position: left;background-repeat: no-repeat;padding-left: 34px;padding-top: 17px;vertical-align: middle;}
+.widgetDndBlanket{position: absolute;top: 0px;left: 0px;}
+.dj_ie .widgetDndBlanket{background-color: white;filter: alpha(opacity = 0);}
+.bux-widget-overlap{position: absolute;background-color: #ffffff;-moz-opacity: 0.9;opacity: 0.9;filter: alpha(opacity = 90);}
+.widget_resizerHandleHoriz{background-image: none;background-image: url(images/widget/border2.png);background-repeat: no-repeat;background-position: 0px -31px;}
+.widget_resizerHandleVert{background-repeat: no-repeat;background-image: none;background-image: url(images/widget/border.png);background-position: -73px;}
+.icdUI .buxFloatingPane{-webkit-box-shadow: none;}
+.icdUI div.buxWidgetActive{-webkit-box-shadow: 0px 3px 6px #777777;}
+.buxWidgetActive{-moz-box-shadow: 0 3px 6px #777777;box-shadow: 0px 3px 6px #777777;}
+.buxWidgetActive .wb-top,.buxWidgetHighlight .wb-top{border-top: 1px solid #8d8d8d;}
+.buxWidgetActive .wb-left,.buxWidgetHighlight .wb-left{border-left: 1px solid #8d8d8d;}
+.buxWidgetActive .wb-right,.buxWidgetHighlight .wb-right{border-right: 1px solid #8d8d8d;}
+.buxWidgetActive .wb-bottom,.buxWidgetHighlight .wb-bottom{border-bottom: 1px solid #8d8d8d;}
+.buxFloatingPaneMaximized .buxFloatingPaneCanvasMaximized{background: #ffffff;}
+.buxGuidelineH{background-image: none;background-image: url('images/canvas/guidelineH.png');}
+.buxGuidelineV{background-image: none;background-image: url('images/canvas/guidelineV.png');}
+.buxDragAndDropError{background-image: none;background-image: url('images/cursor_nodrop.gif');}
+.buxDragAndDropMiddle-loading,.widget_load{background-image: none;background-image: url(images/action_busy_32x32.gif);}
+.dijit_a11y .buxGuidelineH{border-bottom: dashed 1px;}
+.dijit_a11y .buxGuidelineV{border-left: dashed 1px;}
+.dijit_a11y .widget_a11y_border{margin: 1px;}
+.dijit_a11y .buxWidgetActive .widget_a11y_border{margin: 1px;border: solid;}
+.dijit_a11y .buxWidgetHighlight .widget_a11y_border{border: dotted 2px;margin: 1px;}
+.dijit_a11y .widget_dnd_a11y_border,.dijit_a11y .buxWidgetInnactive .widget_a11y_border{border: none;}
+.dijit_a11y .buxWidgetTitleActive .dojoxFloatingPaneTitle{border: solid 1px;}
+.dijit_a11y .buxWidgetTitleHighlight .dojoxFloatingPaneTitle{border: dotted 2px;}
+.dijit_a11y .buxWidgetTitleInnactive .dojoxFloatingPaneTitle{border: dotted 1px;}
+.dj_ie .dijit_a11y .buxWidgetActive .wb-bottom{border: solid 3px;margin-top: -7px;}
+.dijit_a11y .widget_b_grabber{margin-top: 2px;margin-bottom: -9px;}
+.dijit_a11y .widget_t_grabber{margin-top: -5px;margin-bottom: 3px;}
+.dijit_a11y .buxWidgetActive .widget_resizerHandleHoriz{border: solid 3px;height: 1px;}
+.dijit_a11y .buxWidgetActive .widget_resizerHandleVert{border: solid 3px;width: 1px;}
+.dijit_a11y .icdPaneResizeHandleR{margin-left: -1px;}
+.dijit_a11y .buxFloatingPane{padding: 5px;padding-right: 10px;padding-bottom: 10px;}
+.dijit_a11y .buxWidgetActive .widget-corner{border: solid 5px;width: 6px;height: 6px;}
+.dijit_a11y .wc-BR{bottom: 0px;right: 0px;}
+.dijit_a11y .wc-BL{bottom: 0px;left: 0px;}
+.dijit_a11y .wc-TR{top: 0px;right: 0px;}
+.dijit_a11y .wc-TL{top: 0px;left: 0px;}
+.dj_ie .dijit_a11y .buxWidgetInnactive .widget-corner{display: none;}
+.dijit_a11y .buxDialog .bux-widget-overlap{z-index: 1;}
+.dj_ie .dijit_a11y .widget-corner,.dj_ie .dijit_a11y .widget-border{display: none;}
+.dj_ie .dijit_a11y .buxWidgetActive .widget-corner,.dj_ie .dijit_a11y .buxWidgetActive .widget-border{display: block;}

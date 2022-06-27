@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<!--
+  Licensed Materials - Property of IBM
+  IBM Cognos Products: Viewer
+  (C) Copyright IBM Corp. 2001, 2011
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<html>
+<head>
+	<title>&nbsp;</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="Copyright" content="(C) Copyright IBM Corporation and its licensors 2001, 2015.">
+	<meta name="Trademark" content="IBM, the IBM logo, and Cognos are trademarks of IBM Corp., registered in many jurisdictions worldwide.">
+	<meta name="Trademark" content="Cognos and the Cognos logo are trademarks of Cognos Incorporated.">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+	<script type="text/javascript" src="../common/framework/notification/CObserver.js"></script>
+	<script type="text/javascript" src="../common/framework/util/CDictionary.js"></script>
+	<script type="text/javascript" src="./common.js"></script>
+	<script type="text/javascript" src="./CCognosViewerUtilities.js"></script>
+	<script type="text/javascript" src="./viewer.standalone.core.js"></script>
+
+	<script type="text/javascript">
+	<!--	
+		var sLocation = document.location.search;
+		var cvId = "";
+		if (sLocation.match(/\bcv\.id=([^&?]*)/))
+		{
+			cvId = RegExp.$1;
+		}	
+		
+		window.viewerId = cvId;
+		
+		var gAsynchRequest = window.parent["AsynchRequestObject"];			
+		var gScriptLoader = new CScriptLoader(gAsynchRequest.m_webContentRoot);
+		
+		window["oCV" + cvId] = new CCognosViewer(cvId, gAsynchRequest.m_gateway); 
+		
+		// set the conversation - needed by a tree prompt to expand the tree nodes
+		window["oCV" + cvId].setConversation(gAsynchRequest.getConversation());
+		
+		// hijack the send request, and redirect back to the asynch request object with the prompt values
+		window["oCV" + cvId].dispatchRequest = function(request) {
+			var promptParameters = {};
+			var aParameters = request.getFormFields().keys();
+			for (var idxParameter = 0; idxParameter < aParameters.length; idxParameter++) {
+				if(aParameters[idxParameter].indexOf("p_") == 0) {
+					promptParameters[aParameters[idxParameter]] = request.getFormField(aParameters[idxParameter]);				
+				}
+			}
+			
+			gAsynchRequest.promptPageOkCallback(promptParameters);
+		};
+		window["oCV" + cvId].cancel = function() {
+			gAsynchRequest.promptPageCancelCallback({});		
+		};
+		
+		window["oCVSC" + cvId] = new CSelectionController(cvId, window["oCV" + cvId]);
+		
+		function isIE() {
+			return (navigator.userAgent.indexOf('MSIE') != -1 || navigator.userAgent.indexOf('Trident') != -1);
+		}
+		
+		function showPromptPage() {
+			try {
+				var form = document.createElement("form");
+				form.setAttribute("action", "");
+				form.setAttribute("id", "formWarpRequest" + window.viewerId);
+				form.setAttribute("name", "formWarpRequest" + window.viewerId);
+				form.setAttribute("method", "POST");
+				form.style.height = "100%";
+				form.style.margin = "0px";
+				
+				document.body.appendChild(form);
+				
+				var promptDiv = document.createElement("div");
+				promptDiv.setAttribute("id", "promptDiv");
+				
+				form.appendChild(promptDiv);
+			
+				var sHtml = gAsynchRequest.getPromptHTMLFragment();
+				
+				sHtml = gScriptLoader.loadCSS(sHtml, promptDiv, false);
+				
+				if (isIE()) {
+					// IE specific 'fix' where if sHTML has script tags at the beginning they won't be loaded into the DOM. Adding
+					// a valid tag first causes all subsequent scripts to be loaded into the DOM.
+					sHtml = "<span style='display:none'>&nbsp;</span>" + sHtml;
+				}				
+				
+				promptDiv.innerHTML = sHtml;
+				gScriptLoader.loadAll(promptDiv, null, window.viewerId, false);
+
+				// add the tracking information to the form where the prompting toolkit looks for it
+				var oTracking = document.createElement("input");
+				oTracking.setAttribute("type", "hidden");
+				oTracking.setAttribute("name", "m_tracking");
+				oTracking.setAttribute("value", gAsynchRequest.getTracking());
+				document.getElementById("formWarpRequest").appendChild(oTracking);
+			} catch(exception) {
+				if (console) {
+					console.log("error: %o", exception);
+				}
+			}
+		};
+		
+		function gVWEvent(sId, evt, sEvent) {
+			var oCV = window['oCV' + sId];
+			if (oCV && typeof oCV.getViewerWidget != "undefined") {
+				var iWidget = oCV.getViewerWidget();
+				if (iWidget) {
+					iWidget[sEvent](evt);
+				}
+			}
+		}		
+	//-->
+	</script>
+</head>
+<body onload="showPromptPage();">
+</body>
+</html>

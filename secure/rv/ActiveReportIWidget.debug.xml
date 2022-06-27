@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ +========================================================================+
+ | IBM Confidential
+ | OCO Source Materials
+ | IBM Cognos Products: Viewer
+ | (C) Copyright IBM Corp. 2012, 2015
+ |
+ | The source code for this program is not published or otherwise
+ | divested of its trade secrets, irrespective of what has been deposited
+ | with the U.S. Copyright Office.
+ +========================================================================+
+-->
+<iw:iwidget name="active_report"
+			xmlns:iw="http://www.ibm.com/xmlns/prod/iWidget"
+			iScope="ActiveReportIWidget"
+			supportedModes="view"
+			mode="view">
+		<iw:itemSet id="attributes" private="true">
+				<iw:item id="copyright" value="(c) 2011 IBM Corp. All rights reserved"/>
+				<iw:item id="version" value="1.0.0.0.0"/>
+		</iw:itemSet>
+		<iw:itemSet id="idescriptor">
+			<iw:item id="unsupportedBrowsers" readOnly="true" value="0"/>
+			<iw:item id="minimumHeight" readOnly="false" value="27"/>
+		</iw:itemSet>
+		<iw:itemSet id="buxuserprofile" private="false">
+			<iw:item id="copyright" value="(c) 2011, 2011 IBM Corp. All rights reserved"/>
+			<iw:item id="version" value="1.0.0.0.0"/>
+			<iw:item id="currentUserRole" readOnly="false" value="assemble"/>
+		</iw:itemSet>
+
+		<iw:resource uri="../rv/cwViewer.css"/>
+
+		<iw:resource uri="../rv/cvDebug.js"/>
+
+		<iw:resource uri="../common/framework/util/CViewerHelper.js"/>
+		<iw:resource uri="../common/framework/notification/CObserver.js"/>
+
+		<iw:resource uri="../common/framework/objectModel/parameters.js"/>
+		<iw:resource uri="../common/framework/util/XMLParser.js"/>
+		<iw:resource uri="../common/framework/util/CDictionary.js"/>
+
+		<iw:resource uri="../rv/res/viewer_en.js"/>
+
+		<iw:resource uri="../rv/serverrequest/ajaxWrappers/XmlHttpObject.js"/>
+		<iw:resource uri="../rv/serverrequest/ajaxWrappers/AsynchRequest.js"/>
+		<iw:resource uri="../rv/serverrequest/ajaxWrappers/AsynchDATARequest.js"/>
+		<iw:resource uri="../rv/serverrequest/ajaxWrappers/AsynchJSONRequest.js"/>
+
+		<iw:resource uri="../rv/serverrequest/handlers/IFaultDialog.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/ILogOnDialog.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/IPromptDialog.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/IRequestHandler.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/IRequestIndicator.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/BaseRequestHandler.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/iWidget/FaultDialog.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/iWidget/ModalFaultDialog.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/iWidget/GlobalPromptFaultDialog.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/iWidget/FaultMessageDialog.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/iWidget/WarningMessageDialog.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/iWidget/LogOnDialog.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/iWidget/LogOnHandler.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/iWidget/PromptDialog.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/iWidget/WorkingDialog.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/iWidget/BaseRequestExecutedIndicator.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/iWidget/RequestExecutedIndicator.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/iWidget/RequestHandler.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/iWidget/ModalFaultMessageDialog.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/iWidget/ModalInfoMessageDialog.js"/>
+		<iw:resource uri="../rv/serverrequest/handlers/iWidget/MissingMemberFaultDialog.js"/>
+
+		<iw:resource uri="../rv/serverrequest/requests/ViewerDispatcher.js"/>
+		<iw:resource uri="../rv/serverrequest/requests/DispatcherEntry.js"/>
+		<iw:resource uri="../rv/serverrequest/requests/DataDispatcherEntry.js"/>
+		<iw:resource uri="../rv/serverrequest/requests/JSONDispatcherEntry.js"/>
+		<iw:resource uri="../rv/serverrequest/requests/AsynchDataDispatcherEntry.js"/>
+		<iw:resource uri="../rv/serverrequest/requests/AsynchJSONDispatcherEntry.js"/>
+		<iw:resource uri="../rv/serverrequest/requests/ReportDispatcherEntry.js"/>
+		<iw:resource uri="../rv/serverrequest/requests/HiddenIframeDispatcherEntry.js"/>
+		<iw:resource uri="../rv/serverrequest/requests/iWidget/ViewerDispatcherEntry.js"/>
+
+		<iw:resource uri="../rv/delayedload/DelayedLoadingContext.js"/>
+		<iw:resource uri="../rv/delayedload/ViewerLoadManager.js"/>
+
+		<iw:resource uri="../rv/actions/ActionFactory.js"/>
+		<iw:resource uri="../rv/WidgetContextManager.js"/>
+		<iw:resource uri="../rv/PinFreezeContainer.js"/>
+		<iw:resource uri="../rv/PinFreezeManager.js"/>
+
+		<iw:resource uri="../rv/cvselection.js"/>
+		<iw:resource uri="../rv/CDrillThroughTarget.js"/>
+		<iw:resource uri="../cr1/drill.js"/>
+		<iw:resource uri="../rv/CCognosViewerUtilities.js"/>
+		<iw:resource uri="../rv/cvInfoBarHelper.js"/>
+		<iw:resource uri="../rv/CCognosViewerInfoBar.js"/>
+		<iw:resource uri="../rv/RAPReportInfo.js"/>
+		<iw:resource uri="../rv/CCognosViewer.js"/>
+		<iw:resource uri="../rv/CCDataManager.js"/>
+		<iw:resource uri="../rv/GUtil.js"/>
+		<iw:resource uri="../rv/common.js"/>
+		<iw:resource uri="../rv/commonIWidget.js"/>
+		<iw:resource uri="../rv/AnnotationHelper.js"/>
+		<iw:resource uri="../rv/ViewerIWidget.js"/>
+		<iw:resource uri="../rv/cvannotations.js"/>
+		<iw:resource uri="../icd/bux/js/bux/_base.js" skipLoad="bux.hasModule('bux/_base')"/>
+		<iw:resource uri="../icd/bux/js/bux/data/AnnotationStore.js" skipLoad="bux.hasModule('bux/data/AnnotationStore')"/>
+		<iw:resource uri="../rv/ReportInfo.js"/>
+		<iw:resource uri="../rv/ViewerIWidgetInlineDialog.js"/>
+		<iw:resource uri="../rv/ViewerIWidgetProperties.js"/>
+
+		<iw:resource uri="../rv/utils/CCognosViewerLoadExtra_iWidget.js"/>
+		<iw:resource uri="../rv/utils/CCognosViewerToolbarHelper.js"/>
+		<iw:resource uri="../rv/utils/DrillContextMenuHelper.js"/>
+		<iw:resource uri="../rv/dialogs/Blocker.js"/>
+
+		<iw:resource uri="ActiveReportIWidgetProperties.js"/>
+		<iw:resource uri="ActiveReportIWidget.js"/>
+		
+		<!--
+			For IE specific issue, comment the above line and uncomment all the
+			individual javascript files
+		-->
+		<!--
+		<iw:resource uri="rv/ViewerA11YHelper.js"/>
+		<iw:resource uri="rv/CDrillManager.js"/>
+		<iw:resource uri="rv/cvImageHighlight.js"/>
+		<iw:resource uri="rv/cvSelectionXml.js"/>
+		<iw:resource uri="rv/cvSubscriptionManager.js"/>
+		<iw:resource uri="rv/selectionContext.js"/>
+		<iw:resource uri="rv/CalculationDialog.js"/>
+		<iw:resource uri="rv/ConfirmationDialog.js"/>
+		<iw:resource uri="rv/SelectSnapshotDialog.js"/>
+		<iw:resource uri="rv/cvactions.js"/>
+		<iw:resource uri="rv/actions/ModifyReportAction.js"/>
+		<iw:resource uri="rv/cvcalculations.js"/>
+		<iw:resource uri="rv/cvFilter.js"/>
+		<iw:resource uri="rv/cvsort.js"/>
+		<iw:resource uri="rv/actions/RedrawAction.js"/>
+		<iw:resource uri="rv/actions/AuthoredDrillAction.js"/>
+		<iw:resource uri="rv/actions/ChangeDisplayTypeAction.js"/>
+		<iw:resource uri="rv/actions/ChangePaletteAction.js"/>
+		<iw:resource uri="rv/actions/DragDropAction.js"/>
+		<iw:resource uri="rv/actions/DrillAction.js"/>
+		<iw:resource uri="rv/actions/DrillUpDownAction.js"/>
+		<iw:resource uri="rv/actions/DrillDownAction.js"/>
+		<iw:resource uri="rv/actions/DrillUpAction.js"/>
+		<iw:resource uri="rv/actions/DeleteAction.js"/>
+		<iw:resource uri="rv/actions/UndoableClientActionBase.js"/>
+		<iw:resource uri="rv/actions/FreezeRowHeadingsAction.js"/>
+		<iw:resource uri="rv/actions/UnfreezeRowHeadingsAction.js"/>
+		<iw:resource uri="rv/actions/FreezeColumnHeadingsAction.js"/>
+		<iw:resource uri="rv/actions/UnfreezeColumnHeadingsAction.js"/>
+		<iw:resource uri="rv/actions/GlossaryAction.js"/>
+		<iw:resource uri="rv/actions/GroupAction.js"/>
+		<iw:resource uri="rv/actions/LoadMenuAction.js"/>
+		<iw:resource uri="rv/actions/MoveAction.js"/>
+		<iw:resource uri="rv/actions/RefreshViewAction.js"/>
+		<iw:resource uri="rv/actions/RefreshViewEventAction.js"/>
+		<iw:resource uri="rv/actions/RenameDataItemAction.js"/>
+		<iw:resource uri="rv/actions/RenameFromContextMenuAction.js"/>
+		<iw:resource uri="rv/actions/ResetToOriginalAction.js"/>
+		<iw:resource uri="rv/actions/ResizeChartAction.js"/>
+		<iw:resource uri="rv/actions/RetryRequestAction.js"/>
+		<iw:resource uri="rv/actions/RunReportAction.js"/>
+		<iw:resource uri="rv/actions/BuxRunReportAction.js"/>
+		<iw:resource uri="rv/actions/RefreshAction.js"/>
+		<iw:resource uri="rv/actions/GetParametersAction.js"/>
+		<iw:resource uri="rv/actions/RepromptAction.js"/>
+		<iw:resource uri="rv/actions/RepromptRAPAction.js"/>
+		<iw:resource uri="rv/actions/RepromptRunAction.js"/>
+		<iw:resource uri="rv/actions/SelectionAction.js"/>
+		<iw:resource uri="rv/actions/SharePromptAction.js"/>
+		<iw:resource uri="rv/actions/SnapshotsAction.js"/>
+		<iw:resource uri="rv/actions/SwapRowsAndColumnsAction.js"/>
+		<iw:resource uri="rv/actions/UndoRedoAction.js"/>
+		<iw:resource uri="rv/actions/UndoAction.js"/>
+		<iw:resource uri="rv/actions/RedoAction.js"/>
+		<iw:resource uri="rv/actions/ViewAllSnapshotsAction.js"/>
+		<iw:resource uri="rv/actions/ViewOriginalLabelAction.js"/>
+		<iw:resource uri="rv/actions/ViewSavedOutputAction.js"/>
+		<iw:resource uri="rv/actions/WatchNewVersionsAction.js"/>
+		<iw:resource uri="rv/actions/RunSavedOutputReportAction.js"/>
+		<iw:resource uri="rv/actions/InvokeChangeDisplayTypeDialogAction.js"/>
+		<iw:resource uri="rv/actions/GotoAction.js"/>
+		<iw:resource uri="rv/actions/AnnotationAction.js"/>
+		<iw:resource uri="rv/actions/DeleteWidgetAnnotationAction.js"/>
+		<iw:resource uri="rv/actions/EditWidgetAnnotationAction.js"/>
+		<iw:resource uri="rv/actions/NewWidgetAnnotationAction.js"/>
+		<iw:resource uri="rv/actions/DeleteAnnotationAction.js"/>
+		<iw:resource uri="rv/actions/EditAnnotationAction.js"/>
+		<iw:resource uri="rv/actions/NewAnnotationAction.js"/>
+		<iw:resource uri="rv/actions/ExploreWithAAFAction.js"/>
+		<iw:resource uri="rv/actions/ViewActiveReportAction.js"/>
+		<iw:resource uri="rv/actions/RefreshActiveReportAction.js"/>
+		<iw:resource uri="rv/actions/ExportAction.js"/>
+		<iw:resource uri="rv/actions/ExportToCSVAction.js"/>
+		<iw:resource uri="rv/actions/ExportToExcel2000Action.js"/>
+		<iw:resource uri="rv/actions/ExportToExcel2002Action.js"/>
+		<iw:resource uri="rv/actions/ExportToExcel2007Action.js"/>
+		<iw:resource uri="rv/actions/ExportToExcel2007DataAction.js"/>
+		<iw:resource uri="rv/actions/ExportToExcelSingleSheetAction.js"/>
+		<iw:resource uri="rv/actions/ExportToPDFAction.js"/>
+		<iw:resource uri="rv/actions/ExportToXMLAction.js"/>
+		<iw:resource uri="rv/actions/PrintAsPDFAction.js"/>
+		<iw:resource uri="rv/actions/ExpandCollapseMemberAction.js"/>
+		<iw:resource uri="rv/actions/ExpandMemberAction.js"/>
+		<iw:resource uri="rv/actions/CollapseMemberAction.js"/>
+		<iw:resource uri="rv/actions/OpenReportFromClipboardAction.js"/>
+		<iw:resource uri="rv/actions/BusinessProcessAction.js"/>
+		<iw:resource uri="rv/actions/DrillResetAction.js"/>
+		<iw:resource uri="rv/actions/RemoveAllDataFilterAction.js"/>
+		<iw:resource uri="rv/utils/CCognosViewerLoadExtra_extra.js"/>
+		<iw:resource uri="rv/ClipboardDialog.js"/>
+		<iw:resource uri="rv/cvChart.js"/>
+		<iw:resource uri="rv/serverrequest/requests/helpers/ActionFormFields.js"/>
+		<iw:resource uri="rv/serverrequest/requests/ReportInfoDispatcherEntry.js"/>
+		<iw:resource uri="rv/serverrequest/requests/ModifyReportDispatcherEntry.js"/>
+		<iw:resource uri="rv/CCognosViewerSaveReport.js"/>
+		<iw:resource uri="rv/ViewerIWidgetSave.js"/>
+		-->
+
+
+		<iw:event id="com.ibm.bux.widget.toolbar.action" description="com.ibm.bux.widget.toolbar.actionDesc" handled="true" onEvent="onToolbarAction"/>
+		<iw:eventDescription id="com.ibm.bux.widget.toolbar.actionDesc" payloadType="any" description="Event for toolbar actions."/>
+
+		<iw:event id="com.ibm.bux.widgetchrome.toolbar.init" description="com.ibm.bux.widgetchrome.toolbar.initDesc" published="true"/>
+		<iw:eventDescription id="com.ibm.bux.widgetchrome.toolbar.initDesc" payloadType="any" description="Event for initialize chrome toolbar."/>
+
+		<iw:event id="com.ibm.bux.widgetchrome.toolbar.update" description="com.ibm.bux.widgetchrome.toolbar.updateDesc" published="true"/>
+		<iw:eventDescription id="com.ibm.bux.widgetchrome.toolbar.updateDesc" payloadType="any" description="Event for updating chrome toolbar."/>
+
+		<iw:event id="com.ibm.bux.widget.save" description="com.ibm.bux.widget.saveDesc" handled="true" onEvent="onWidgetSave"/>
+		<iw:eventDescription id="com.ibm.bux.widget.saveDesc" payloadType="any" description="Event for saving widget."/>
+
+		<iw:event id="com.ibm.bux.widget.save.done" description="com.ibm.bux.widget.save.doneDesc" published="true"/>
+		<iw:eventDescription id="com.ibm.bux.widget.save.doneDesc" payloadType="any" description="Signal when saving is done."/>
+
+		<iw:event id="com.ibm.bux.widget.refresh" description="com.ibm.bux.widget.refreshDesc" handled="true" onEvent="onWidgetRefresh"/>
+		<iw:eventDescription id="com.ibm.bux.widget.refreshDesc" payloadType="any" description="Event for refreshing widget."/>
+
+		<iw:event id="com.ibm.bux.widget.refresh.done" description="com.ibm.bux.widget.refresh.doneDesc" published="true"/>
+		<iw:eventDescription id="com.ibm.bux.widget.refresh.doneDesc" payloadType="any" description="Event for refreshing widget is done."/>
+
+		<iw:event id="com.ibm.bux.widget.modified" description="com.ibm.bux.widget.modifiedDesc" published="true"/>
+		<iw:eventDescription id="com.ibm.bux.widget.modifiedDesc" payloadType="any" description="Event for setting the canvas dirty flag"/>
+
+		<iw:event id="com.ibm.bux.widget.properties.get" description="com.ibm.bux.widget.properties.getDesc" handled="true" onEvent="onGetProperties"/>
+		<iw:eventDescription id="com.ibm.bux.widget.properties.getDesc" payloadType="any" description="Fire this event to get the properties of the widget"/>
+
+		<iw:event id="com.ibm.bux.widget.properties.get.done" description="com.ibm.bux.widget.properties.get.doneDesc" published="true"/>
+		<iw:eventDescription id="com.ibm.bux.widget.properties.get.doneDesc" payloadType="any" description="returns the properties"/>
+
+		<iw:event id="com.ibm.bux.widget.properties.set" description="com.ibm.bux.widget.properties.setDesc" handled="true" onEvent="onSetProperties"/>
+		<iw:eventDescription id="com.ibm.bux.widget.properties.setDesc" payloadType="any" description="Fire this event to set the properties of the widget"/>
+
+		<iw:event id="com.ibm.bux.widget.properties.set.done" description="com.ibm.bux.widget.properties.set.doneDesc" published="true"/>
+		<iw:eventDescription id="com.ibm.bux.widget.properties.set.doneDesc" payloadType="any" description="Signal when properties set is done."/>
+
+		<iw:event id="com.ibm.bux.widget.render.done" description="com.ibm.bux.widget.render.doneDesc" published="true"/>
+		<iw:eventDescription id="com.ibm.bux.widget.render.doneDesc" payloadType="any" description="Signal rendering is done."/>
+
+		<iw:event id="com.ibm.bux.widget.action" description="com.ibm.bux.widget.action" published="true"/>
+		<iw:eventDescription id="com.ibm.bux.widget.actionDesc" payloadType="any" description="Event for comunicating with the chrome"/>
+
+		<iw:event id="com.ibm.bux.widget.action.done" description="com.ibm.bux.widget.action.doneDesc" handled="true" onEvent="onWidgetActionDone"/>
+		<iw:eventDescription id="com.ibm.bux.widget.action.doneDesc" payloadType="any" description="Event to signal canvas level actions based on widget commands are complete"/>
+
+		<iw:event id="com.ibm.bux.widget.resize" description="com.ibm.bux.widget.resizeDesc" handled="true" onEvent="onWidgetResize"/>
+		<iw:eventDescription id="com.ibm.bux.widget.resizeDesc" payloadType="any" description="Event for widget resizing."/>
+
+		<iw:event id="com.ibm.bux.widget.getDisplayTitle" description="com.ibm.bux.canvas.base.desc" published="true"/>
+		<iw:event id="com.ibm.bux.widget.getDisplayTitle.done" description="com.ibm.bux.canvas.base.desc" handled="true" onEvent="onGetDisplayTitleDone"/>
+		<iw:event id="com.ibm.bux.widget.updateStoreID" description="com.ibm.bux.canvas.base.desc" published="true"/>
+		<iw:event id="com.ibm.bux.widget.updateStoreID.done" description="com.ibm.bux.canvas.base.desc" handled="true" onEvent="onUpdateWidgetStoreIDDone"/>
+
+		<iw:event id="com.ibm.bux.widget.remove.done" description="com.ibm.bux.widget.remove.done" handled="true" onEvent="onRemoveDone"/>
+		<iw:eventDescription id="com.ibm.bux.widget.remove.done" payloadType="any" description="Event for remove from dashboard event."/>
+
+		<iw:event id="com.ibm.bux.widget.updateEventFilter" description="com.ibm.bux.widget.updateEventFilterDesc" published="true"/>
+		<iw:eventDescription id="com.ibm.bux.widget.updateEventFilterDesc" payloadType="any" description="Event to stop listening to another widget"/>
+
+		<iw:event id="com.ibm.bux.widget.open" description="com.ibm.bux.widget.openDesc" handled="true" onEvent="onOpen"/>
+		<iw:eventDescription id="com.ibm.bux.widget.openDesc" payloadType="any" description="Event to handle open"/>
+
+		<iw:event id="com.ibm.bux.widget.notification" description="com.ibm.bux.widget.notificationDesc" published="true" />
+		<iw:eventDescription id="com.ibm.bux.widget.notificationDesc" payloadType="any" description="Event to have the widget display a message over it's content." />
+
+		<iw:event id="com.ibm.bux.widget.setShowBordersWhenInnactive" description="com.ibm.bux.widget.setShowBordersWhenInnactiveDesc" published="true" />
+		<iw:eventDescription id="com.ibm.bux.widget.setShowBordersWhenInnactiveDesc" payloadType="any" description="Event to tell the parent that it is ok to hide the scrollbars when innactive (or not)." />
+
+		<iw:event id="com.ibm.bux.widget.autoResize" description="com.ibm.bux.widget.autoResizeDesc" published="true"/>
+		<iw:eventDescription id="com.ibm.bux.widget.autoResizeDesc" payloadType="any" description="Signal to resize the widget."/>
+
+		<iw:event id="com.ibm.bux.widget.select" description="com.ibm.bux.widget.selectDesc" handled="true" onEvent="onSelect"/>
+		<iw:eventDescription id="com.ibm.bux.widget.selectDesc" payloadType="any" description="Event for when the widget gets focus"/>
+
+		<iw:event id="com.ibm.bux.widget.select.done" description="com.ibm.bux.widget.select.doneDesc" published="true"/>
+		<iw:eventDescription id="com.ibm.bux.widget.select.doneDesc" payloadType="any" description="Event letting BUX know we're done with the select event"/>
+
+		<!--
+		 GENERIC CONTEXT
+		 -->
+		<iw:event id="com.ibm.widget.contextChanged" description="com.ibm.widget.contextChangedDesc" handled="true" published="true" onEvent="onOtherWidgetsContextChanged"/>
+		<iw:eventDescription id="com.ibm.widget.contextChangedDesc" payloadType="any" description="Event to send or handle widget context change from another Active Report widget"><iw:alt title="Respond to context change events communicated from this Active report widget" lang="en"/></iw:eventDescription>
+
+		<iw:event id="com.ibm.widget.contextChanged.drill" description="com.ibm.widget.contextChanged.drillDesc"
+		handled="true" onEvent="onGenericEvent"/>
+		<iw:eventDescription id="com.ibm.widget.contextChanged.drillDesc"
+		payloadType="any" description="Event to handle drill request from another Viewer widget">
+			<iw:alt title="Respond to drill events communicated from this report widget" lang="en"/>
+		</iw:eventDescription>
+
+		<iw:event id="com.ibm.widget.contextChanged.prompt" description="com.ibm.widget.contextChanged.promptDesc"
+		handled="true" onEvent="onGenericEvent"/>
+		<iw:eventDescription id="com.ibm.widget.contextChanged.promptDesc"
+		payloadType="any" description="Event to handle prompt request from Viewer widget">
+			<iw:alt title="Response to prompt request from Viewer widget" lang="en"/>
+		</iw:eventDescription>
+
+		<iw:event id="com.ibm.widget.contextChanged.selectValueControl" description="com.ibm.widget.contextChanged.selectValueControlDesc"
+		handled="true" onEvent="onGenericEvent"/>
+		<iw:eventDescription id="com.ibm.widget.contextChanged.selectValueControlDesc"
+		payloadType="any" description="Event to handle requests from slider or selectValue control">
+			<iw:alt title="Response to change in a slider or selectValue control request" lang="en"/>
+		</iw:eventDescription>
+
+		<iw:event id="com.ibm.widget.context.get" description="com.ibm.widget.context.getDesc" handled="true" onEvent="onGetWidgetContext"/>
+		<iw:eventDescription id="com.ibm.widget.context.getDesc" payloadType="any" description="Event for getting the widget context." />
+
+		<iw:event id="com.ibm.widget.context.get.done" description="com.ibm.widget.context.get.doneDesc" published="true"/>
+		<iw:eventDescription id="com.ibm.widget.context.get.doneDesc" payloadType="any" description="Event to return the widget context." />
+
+		<iw:event id="com.ibm.bux.canvas.context.get" description="com.ibm.bux.canvas.context.getDesc" published="true"/>
+		<iw:eventDescription id="com.ibm.bux.canvas.context.getDesc" payloadType="any" description="Event to query the canvas context." />
+
+		<iw:event id="com.ibm.bux.canvas.context.get.done" description="com.ibm.bux.canvas.context.get.doneDesc" handled="true" onEvent="onGetCanvasContextDone"/>
+		<iw:eventDescription id="com.ibm.bux.canvas.context.get.doneDesc" payloadType="any" description="Event for getting the canvas context." />
+
+		<!--
+		 SLIDER CONFIGRATION DIALOG
+		-->
+		<iw:event id="com.ibm.bux.filter.items.get" description="com.ibm.bux.filter.items.get.desc"
+		handled="true" onEvent="onGetFilterableItems"/>
+		<iw:eventDescription id="com.ibm.bux.filter.items.get.desc"
+		payloadType="any" description="Get filterable items"/>
+		<iw:event id="com.ibm.bux.filter.items.get.done" description="com.ibm.bux.filter.items.get.doneDesc"
+		published="true"/>
+		<iw:eventDescription id="com.ibm.bux.filter.items.get.doneDesc"
+		payloadType="any" description="Event to return the filterable items"/>
+		<iw:event id="com.ibm.bux.filter.values.get" description="com.ibm.bux.filter.values.get.desc"
+		handled="true" onEvent="onGetFilterValues"/>
+		<iw:eventDescription id="com.ibm.bux.filter.values.get.desc"
+		payloadType="any" description="Get filter values"/>
+		<iw:event id="com.ibm.bux.filter.values.get.done" description="com.ibm.bux.filter.values.get.doneDesc"
+		published="true"/>
+		<iw:eventDescription id="com.ibm.bux.filter.values.get.doneDesc"
+		payloadType="any" description="Event to return the filter values"/>
+		
+		<iw:event id="com.ibm.bux.widget.visible.set" eventDescName="com.ibm.bux.widget.visible.setDesc" handled="true" onEvent="onWidgetShow"/>
+		<iw:eventDescription id="com.ibm.bux.widget.visible.setDesc" payloadType="any" description="Event for widget visiblility change."/>
+
+		<iw:content mode="view">
+			<![CDATA[<div id="_IWID_cv" style="width:100%; height:100%">]]>
+		</iw:content>
+</iw:iwidget>

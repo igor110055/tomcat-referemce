@@ -1,0 +1,1 @@
+<fmt:setBundle basename="RclWebResources"/>

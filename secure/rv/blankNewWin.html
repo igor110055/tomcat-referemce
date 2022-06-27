@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<!--
+  Licensed Materials - Property of IBM
+  IBM Cognos Products: Viewer
+  (C) Copyright IBM Corp. 2001, 2015
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<html lang="en">
+<head>
+	<title>Blank</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="Copyright" content="(C) Copyright IBM Corporation and its licensors 2001, 2015.">
+	<meta name="Trademark" content="IBM, the IBM logo, and Cognos are trademarks of IBM Corp., registered in many jurisdictions worldwide.">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+	<link id="rvReportCSS" href="../skins/corporate/qs/RVReport.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript">
+	<!--
+		var sSkin = "../skins/corporate";
+		/* figure out the skin folder */
+		var sLocation = document.location.search;
+
+		function resubmit()
+		{
+			if (window.history.length > 1) {
+				window.history.go(+1);
+			}
+			else
+			{
+				var sCVId = "";
+				if (sLocation.match(/\bcv\.id=([^&?]*)/))
+				{
+					sCVId = RegExp.$1;
+				}
+
+				var form = self.opener.document.getElementById('viewForm' + sCVId);
+
+				if(form) {
+					var BUSY_LINE_1 = document.getElementById("BUSY_LINE_1");
+					while (BUSY_LINE_1.hasChildNodes())
+					{
+						BUSY_LINE_1.removeChild(BUSY_LINE_1.firstChild);
+					}
+
+					try
+					{
+						var oCognosViewerObject = window.opener["oCV" + sCVId];
+						BUSY_LINE_1.appendChild(document.createTextNode(oCognosViewerObject.getString("RV_PLEASE_WAIT")));
+					}
+					catch(e)
+					{
+					}
+
+					if(form["ui.action"] && form["ui.action"].value == 'view') {
+						var tempBackURL = (form["ui.backURL"]?form["ui.backURL"].value:"");
+						var viewForm = self.opener.document.getElementById('viewForm' + sCVId);
+
+						if(viewForm) {
+							var tempDoPostBack='';
+							if(viewForm.doPostBack) {
+								tempDoPostBack = viewForm.doPostBack.value;
+								viewForm.doPostBack.value='';
+							}
+
+							if(viewForm["ui.backURL"])
+							{
+								viewForm["ui.backURL"].value = "javascript:window.close();";
+							}
+
+							viewForm.submit();
+							viewForm.target="";
+
+							if(viewForm['ui.backURL'])
+							{
+								viewForm['ui.backURL'].value = tempBackURL;
+							}
+
+							if(viewForm['ui.toolbar']) {
+								viewForm['ui.toolbar'].value='';
+							}
+							if(tempDoPostBack!='') {
+								viewForm.doPostBack.value = tempDoPostBack;
+							}
+							viewForm["ui.object"].value = form["ui.object"].value;
+							viewForm["ui.format"].value = form["ui.format"].value;
+						}
+
+					} else {
+						// cache form vars which need to be temporarily modifed to launch the new csv/xls window
+						var tempBackURL = (form["ui.backURL"]?form["ui.backURL"].value:"");
+						var tempErrURL = (form["ui.errURL"]?form["ui.errURL"].value:"");
+
+						if (form["ui.backURL"]) {
+							form["ui.backURL"].value = "javascript:window.close();";
+						}
+						if (form["ui.errURL"]) {
+							form["ui.errURL"].value = "javascript:window.close();";
+						}
+
+						form.submit();
+						form.target="";
+
+						// restore the form vars
+						if (form["ui.backURL"]) {
+							form["ui.backURL"].value = tempBackURL;
+						}
+						if (form["ui.errURL"]) {
+							form["ui.errURL"].value = tempErrURL;
+						}
+						if(form['ui.toolbar']) {
+							form['ui.toolbar'].value='';
+						}
+
+						// restore the previous format
+						if (form && form.previousFormat) {
+							form["run.outputFormat"].value = form.previousFormat.value;
+							form.removeChild(form.previousFormat);
+						}
+					}
+				}
+			}
+		}
+	//-->
+	</script>
+</head>
+<body style="background-color: #FFFFFF;" onload="resubmit();">
+	<table cellspacing="0" cellpadding="0" width="100%" height="100%" align="left" onload="resubmit();">
+		<tr valign="top">
+			<td>
+				<span id="BUSY_LINE_1" class="busyUpdatingStr"></span>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,87 @@
+
+/* OVERRIDE of workspaceWithProperties.css */
+#bodyDiv {
+   border: 3px solid rgb(55,104,185);
+   display:block;
+   margin:0px 5px 0px 0px;
+
+   height:100%;
+   width:99%;
+   overflow:hidden;
+}
+
+
+div.workspaceToolbar {
+   -moz-user-select:none;
+}
+
+#workspaceBody {
+   -moz-user-select:none;
+}
+
+
+
+div.categoryHeader img {
+   vertical-align: middle;
+
+   margin-right: 3px;
+}
+
+div.categoryHeader {
+   color: #3768B9;
+   font-weight:bold;
+   padding-left: 5px;
+   border-bottom: 2px solid #7BA4E0;
+
+   cursor: hand;
+
+   margin-top:5px;
+}
+
+div.contentViewItem {
+   padding-left: 20px;
+   border-top: 1px solid #DDDDDD;
+   cursor: hand;
+}
+
+div.contentViewItemOffline {
+   padding-left: 20px;
+   border-top: 1px solid #DDDDDD;
+   cursor: hand;
+   color: #778899;
+}
+
+div.contentViewItemSelected {
+   padding-left: 20px;
+   border-top: 1px solid #AAAAAA;
+   cursor: hand;
+   background-color: #316AC5;
+   color: white;
+}
+
+div.contentViewItemSelectedOffline {
+   padding-left: 20px;
+   border-top: 1px solid #AAAAAA;
+   cursor: hand;
+   background-color: #D3D3D3;
+   color: #316AC5;
+}
+
+div.categoryBody {
+   display:block;
+}
+
+div.categoryBodyCollapsed {
+   display:none;
+}
+
+
+img.itemIcon {
+   vertical-align:middle;
+}
+
+
+input.toolbarButton {
+   width:100px;
+   margin: 2px 0px 2px 2px;
+}

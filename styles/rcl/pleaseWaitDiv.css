@@ -1,0 +1,23 @@
+
+div.pleaseWaitDiv {
+   position:absolute;
+   -moz-opacity: .7;
+   filter: alpha(opacity=200);
+   background-color:blue;
+   text-align:center;
+   align:center;
+}
+
+
+div.pleaseWaitMessage {
+   background-color: #AAAAAA;
+   display:block;
+   position:absolute;
+   padding:10px;
+   top:40%;
+   margin-left:35%;
+   text-align:center;
+   font-weight:bold;
+
+   filter:alpha(opacity=200);
+}

@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2014
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+--> 
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5_base.xsd"/>
+	<xs:include schemaLocation="V5_style.xsd"/>
+	<xs:element name="conditionalRender">
+		<xs:annotation>
+			<xs:documentation>If this element is defined the n the layout element containing it will be conditionally rendered based on the evaluation of the variable referenced. If the variable is of type boolean, then the renderFor is not required.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="renderFor" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>The layout element will be rendered if the variable evaulates to this value.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attributeGroup ref="ConditionalPartAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attributeGroup ref="ConditionalOwnerAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="XMLAttributes">
+		<xs:annotation>
+			<xs:documentation>Allow for specification of arbirary name value pairs in the layout.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="XMLAttribute">
+					<xs:complexType>
+						<xs:attribute name="name" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Identifies the user data. Because this data is undefined in the enclosing specification, it is the author's responsibility to constrain this value with respect to the unique scoping rules of their application.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="value" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Defines the value of the name-value pair.</xs:documentation>
+								<xs:documentation source="doc_att_value_XMLAttribute"/>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="render" type="xs:boolean" default="true">
+							<xs:annotation>
+								<xs:documentation>Appends this attribute specification in the output XML. When 'false', this specification will not appear in the output: it serves as annotation only within the report specification.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dataSource" type="DataSourceType">
+		<xs:annotation>
+			<xs:documentation>Defines a data source for a layout element. The data may be obtained from either a static value, the result of a query data item or the result of evaluating a layout expression.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="conditionalDataSources">
+		<xs:annotation>
+			<xs:documentation>Contains a list of conditional data sources. When rendering, the variable pointed to by refVariable will be eveluated and the first conditionalDataSource whose refVariableValue matches the value of the expression will be used. If no match is found, dataSource of the parent element will be applied. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="conditionalDataSource" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="DataSourceType">
+								<xs:attributeGroup ref="ConditionalPartAttributes"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attributeGroup ref="ConditionalOwnerAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="reportExpression" type="ExpressionType">
+		<xs:annotation>
+			<xs:documentation>An expression that is evaluated by the rendering engine at the current rendering context.
+
+Query data item references can be either qualified or un-qualified (e.g. [MasterQuery].[Column1] or [Column1]).
+
+Only un-qualified references are put into the result set definition.
+
+</xs:documentation>
+			<xs:documentation source="ebnf/EBNF_CRXExpressionGrammar.xml#CRXExpression">Allowable Expression Syntax in EBNF</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="defaultMeasure">
+		<xs:annotation>
+			<xs:documentation>This element identifies the default measure to be used for a crosstab or chart. If the measures of the crosstab or chart cannot be determined by what is being rendered on the edges, then the default measure will be rendered.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="SolveOrderAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="reportDrills">
+		<xs:annotation>
+			<xs:documentation>Defines a list of drills.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="reportDrill" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Represents a drill action that is available for this layout element.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="drillTarget" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Optionally identify the report  that is the destination of the drill. If not specified, then the drill is within this report.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="reportPath"/>
+										<xs:element name="drillLinks" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="drillLink" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:all>
+																<xs:element name="drillSourceContext" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>The source context is optional to indicate that no value is being provided for the target parameter. If the target parameter is optional then no prompting should occur.</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:choice>
+																			<xs:element ref="dataItemContext"/>
+																			<xs:element ref="parameterContext"/>
+																		</xs:choice>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="drillTargetContext">
+																	<xs:complexType>
+																		<xs:choice>
+																			<xs:element ref="parameterContext"/>
+																		</xs:choice>
+																	</xs:complexType>
+																</xs:element>
+															</xs:all>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="showInNewWindow" type="xs:boolean" default="false">
+										<xs:annotation>
+											<xs:documentation>Indicates whether or not the report is launched in a new window.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="method" use="optional">
+										<xs:annotation>
+											<xs:documentation>Indicates with what method the target report is to be accessed:
+
+- no method specified - the drill through target is launched according to the default action in the portal 
+- method="edit" - the drill through target is launched with the editor appropriate for the object type in the object model 
+- method="execute" - the drill through target is launched (and executed) in the report viewer 
+- method="view" - the report output for the drill through target is viewed in the report viewer 
+</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="edit"/>
+												<xs:enumeration value="execute"/>
+												<xs:enumeration value="view"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="outputFormat" use="optional">
+										<xs:annotation>
+											<xs:documentation>Specifies what format to produce or view.  If missing, the format of the report from which the drill originates is used.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="CSV"/>
+												<xs:enumeration value="HTML"/>
+												<xs:enumeration value="HTMLFragment"/>
+												<xs:enumeration value="PDF"/>
+												<xs:enumeration value="XHTML"/>
+												<xs:enumeration value="XLS"/>
+												<xs:enumeration value="XLWA"/>
+												<xs:enumeration value="singleXLS"/>
+												<xs:enumeration value="XML"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="bookmarkRef" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Defines which bookmark to jump to.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="dataSource"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="drillLabel">
+								<xs:annotation>
+									<xs:documentation>Label which will appear if the  user must choose between different report drills.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="dataSource"/>
+										<xs:element ref="conditionalDataSources" minOccurs="0"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="name" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Uniquely names the report drill in this report. </xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="masterDetailLinks">
+		<xs:annotation>
+			<xs:documentation>Defines the master/detail linkages for the detail layout element that this is contained in. If there are no masterDetailLink defined, then the detail query is run unfiltered.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="masterDetailLink" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Links a member set or parameter of the master query to a member set or parameter in the detail query.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="masterContext">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element ref="dataItemContext"/>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="detailContext">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element ref="dataItemContext"/>
+										<xs:element ref="parameterContext"/>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="reportPath">
+		<xs:annotation>
+			<xs:documentation>Used to define a path to a report in Content Manager. The path attribute contains the Content Manger path. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="path" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dataItemContext">
+		<xs:complexType>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="parameterContext">
+		<xs:complexType>
+			<xs:attribute name="parameter" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="propertyList">
+		<xs:annotation>
+			<xs:documentation>Identifies dataItems that will behave as properties of whichever layout element contains this list. A dataItem listed here will have data available at rendering time at this place in the layout context.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="propertyItem" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="DataSourceType">
+		<xs:choice>
+			<xs:element name="staticValue">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="preserve"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dataItemValue">
+				<xs:annotation>
+					<xs:documentation>Represents the value of the specificied data item that is available in the current layout context.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="reportExpression"/>
+			<xs:element name="dataItemLabel">
+				<xs:annotation>
+					<xs:documentation>Represent the label of the data item specifiied. The label is available in the result set.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="memberCaption">
+				<xs:annotation>
+					<xs:documentation>Represents the caption of the current member context being rendered in the layout. This element is only allowed within a crosstabs or charts where edge members are rendered.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="cellValue">
+				<xs:annotation>
+					<xs:documentation>Represents the value of the current cell context being rendered in the layout. This element is only for crosstabs or charts where the cell values are rendered.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType/>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="GenericLayoutStyleType">
+		<xs:all>
+			<xs:element ref="style" minOccurs="0"/>
+			<xs:element ref="conditionalStyles" minOccurs="0"/>
+			<xs:element ref="XMLAttributes" minOccurs="0"/>
+		</xs:all>
+		<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+	</xs:complexType>
+	<xs:attributeGroup name="DefaultLayoutStyleAttributes">
+		<xs:attribute name="class" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>HTML class name. This value will be transferred to the rendered output as an attribute of the output element. Typically, it is used to designate specific components of the layout for easy identification by CSS and XSL style sheets. The class name is explicit in that if no class name is specified then none will be used in the rendered output.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="NameLayoutAttributes">
+		<xs:attribute name="name" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Any layout element may be given a name. The name must be unique for all layout elements in the report. It is primarily allow a layout element to be referenced as a component (layoutComponentRef).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="CommonLayoutAttributes">
+		<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+		<xs:attributeGroup ref="NameLayoutAttributes"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="KeepWithAttributes">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:attribute name="keepWithHeader" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>Renders all headers on same page as first N detail rows, where 'N' is the given numeric value. If not specified then a page break may occur between headers and their associated detail rows. </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="keepWithFooter" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>Renders all footers on same page as last N detail rows, where 'N' is the given numeric value. If not specified then a page break may occur between footers and their associated detail rows.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="KeepWithNextPrevAttributes">
+		<xs:attribute name="keepWithNext" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>Renders this element with the N next elements on the edge, where 'N' is the given numeric value. If not specified then a page break may occur between this element and the next element on the edge. </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="keepWithPrevious" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>Renders this element with the N previous elements on the edge, where 'N' is the given numeric value. If not specified then a page break may occur between this element and the previous element on the edge. </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ResetPageAttributes">
+		<xs:attribute name="resetPageNumber" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>If this attribute is specified, then whenever this layout element is rendered, the current page number for the rendering will be reset to the indicated value.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="resetPageCount" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>If this attribute is specified, then whenever this layout element is rendered, the current page count for the rendering will be reset to the indicated value.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="RepeatEveryPageAttributes">
+		<xs:attribute name="repeatEveryPage" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>Controls repetitive rendering of this object on each page. When the frame contains more columns than can be rendered on a given page, an overflow (or "fault right") occurs. When the frame contains more rows than can be rendered on a given page, an page break (or "fault down") occurs. When 'true', this object will be rendered on the next or overflow page. </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="GlobalQuerySingletonAttributes">
+		<xs:annotation>
+			<xs:documentation> Any element that has these attributes can act as a global singleton. All elements in the layout that reference same query and have singleton="true" would share the same result set, the row cursor would never be moved pass row 1. All elements in the layout (not including frames) that reference the same query and have singleton="false" would use the resultset of the closest parent frame that references that query, the row context in this case is clear. If no parent frame can be found, then no value will be rendered.
+</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="refQuery" type="xs:string" use="optional"/>
+		<xs:attribute name="singleton" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DescriptionLayoutAttributes">
+		<xs:attribute name="description" type="xs:string" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PushToBottom">
+		<xs:annotation>
+			<xs:documentation>This attribute indicates that the footer element is to be pushed to the bottom of the rendering. The last instance of the footer element rendered on this page will be the one pushed to the bottom.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="pushToBottom" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="SolveOrderAttributes">
+		<xs:attribute name="solveOrder" type="xs:integer" default="0">
+			<xs:annotation>
+				<xs:documentation source="doc_att_solveOrder_crosstabNodeMember"/>
+				<xs:documentation source="doc_att_solveOrder_chartNodeMember"/>
+				<xs:documentation source="doc_att_solveOrder_defaultMeasure"/>
+				<xs:documentation>Specifies the solve order for this calculation. If no solve order is specified then the solve order will be follow the default rules that the server uses to determine solve order.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+</xs:schema>

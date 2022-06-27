@@ -1,0 +1,100 @@
+
+div.rclPanel div.headerLeft
+{
+  background-image: url('header_left.gif');
+  background-repeat: no-repeat;
+  padding-left: 4px;
+}
+div.rclPanel div.headerMiddle
+{
+  color: white;
+  height: 24px;
+  background-image: url('header_middle.gif');
+  background-repeat: repeat-x;
+}
+div.rclPanel div.headerRight
+{
+  background-image: url('header_right.gif');
+  background-repeat: repeat-y;
+  background-position: top right;
+  padding-right: 10px;
+}
+div.rclPanel div.header
+{
+  color: black;
+  font-weight: bold;
+  padding-top: 6px;
+  margin-left: 4px;
+  margin-right: 2px;
+}
+
+div.rclPanel div.bodyLeft
+{
+  margin: 0px;
+  background-image: url('content_left.gif');
+  background-repeat: repeat-y;
+  padding-left: 4px;
+}
+
+div.rclPanel div.bodyMiddle
+{
+
+  background-image: url('content_middle.gif');
+  background-repeat: repeat-x;
+  * height: 1%;
+
+  background-color: white;
+  padding: 0px;
+  margin: 0px;
+}
+
+div.rclPanel div.bodyRight
+{
+  * padding-bottom: 1px;
+  margin: 0px;
+  background-image: url('content_right.gif');
+  background-repeat: repeat-y;
+  background-position: right;
+  padding-right: 10px;
+
+  /* Needed to make the padding we add to the body the same color as the body background */
+  background-color: #E6EAF6;
+  /* **** */
+}
+div.rclPanel div.bodyMain
+{
+  /*Needed to keep the margins from collapsing*/
+  padding-top: 1px;
+  padding-bottom: 1px;
+  /* **** */
+
+  padding-left: 8px;
+
+  margin-left: -1px;
+  margin-right: -1px;
+  margin-bottom: 0px;
+
+  background-color: #E6EAF6;
+
+}
+
+div.rclPanel div.footerLeft
+{
+  background-image: url('footer_left.gif');
+  background-repeat: no-repeat;
+  padding-left: 10px;
+}
+div.rclPanel div.footerMiddle
+{
+  background-image: url('footer_middle.gif');
+  background-repeat: repeat-x;
+  background-position: bottom top;
+  height: 10px;
+}
+div.rclPanel div.footerRight
+{
+  background-image: url('footer_right.gif');
+  background-repeat: no-repeat;
+  background-position: top right;
+  padding-right: 10px;
+}

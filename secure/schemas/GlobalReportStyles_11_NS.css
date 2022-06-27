@@ -1,0 +1,1130 @@
+@charset "UTF-8";
+
+/*
+	Licensed Materials - Property of IBM
+	IBM Cognos Products: rstyles
+	(C) Copyright IBM Corp. 2003, 2014
+	US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+
+/*
+	Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+	Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+*/
+
+/* ======================================================
+	Named styles:
+
+	Page styles
+	-----------
+	pg	: page
+	pb	: page body
+	ph	: page header
+	pf	: page footer
+
+	Title styles
+	------------
+	ta	: report title area (container of the report title text)
+	tt	: report title text
+	ts	: subtitle area
+	ft	: filter subtitle area
+	fi	: filter subtitle icon
+
+	List styles
+	-----------
+	ls	: list table
+	lt	: list column title cell
+	lc	: list column body cell
+	lm	: list column body measure cell
+	lh	: list header cell
+	lf	: list footer cell
+	ih	: inner header cell
+	if	: inner footer cell
+	is	: inner sumnmary cell
+	oh	: outer header cell
+	of	: outer footer cell
+	os	: outer sumnmary cell
+
+	Section styles
+	--------------
+	sc	: section list
+	sb	: section body
+	sh	: section header cell
+	sf	: section footer cell
+	sg	: section summary cell
+	sk	: section inner header cell
+	so	: section inner footer cell
+	sp	: section inner summary cell
+	ss	: section summary text
+
+	Crosstab styles
+	---------------
+	xt	: crosstab table
+	xm	: crosstab default measure label cell
+	ml	: member label cell
+	mv	: member value cell
+	cl	: calculated member label cell
+	cv	: calculated member value cell
+	c2	: calculated member value cell
+	sl	: subtotal (items) label cell
+	sv	: subtotal (items) value cell
+	hl	: subtotal (more + hidden) label cell
+	hv	: subtotal (more + hidden) value cell
+	nl	: subtotal (included) label cell
+	nv	: subtotal (included) value cell
+	xl	: subtotal (excluded) label cell
+	xv	: subtotal (excluded) value cell
+	il	: inner total (nested) label cell
+	iv	: inner total (nested) value cell
+	ol	: outer total (not nested) total label cell
+	ov	: outer total (not nested) total value cell
+	dm	: drillable member label text
+	xs	: crosstab spacer
+	hs  : crosstab header spacer
+	hsv : crosstab header spacer value/fact cell
+
+	Chart styles
+	------------
+	ct	: chart title
+	cb	: chart body
+	cn	: chart note
+	cs	: chart subtitle
+	cf	: chart footer
+	lx	: chart legend title
+	lg	: chart legend
+	at	: chart axis title
+	al	: chart axis labels
+	ch	: chart
+
+	Prompt styles
+	-------------
+	pp	: prompt page
+	hp	: prompt page header
+	fp	: prompt page footer
+	py	: prompt page body
+	bp	: prompt button
+
+	Repeater styles
+	---------------
+	rt	: repeater table
+	rc	: repeater table cell
+
+	Other styles
+	------------
+	dp	: default container padding
+	hy	: hyperlink
+	bt	: button
+	fs	: field set
+	tb	: table
+	np	: no print (do not render element in printable output)
+	h1-6: heading text
+	em  : emphasized text
+	stg : strong text
+
+	Conditional styles
+	------------------
+
+	pd_1 : Excellent
+	pd_2 : Very good
+	pd_3 : Average
+	pd_4 : Below average
+	pd_5 : Poor
+
+	Prompt Control styles
+	--------------------
+	bpd	: Prompt button (disabled)
+	pa	: Prompt control tree box
+	pc	: Prompt control label text
+	pcl	: Prompt control clock
+	pd	: Prompt control calendar (day numbers)
+	pdd	: Prompt control calendar (day numbers, disabled)
+	pds	: Prompt control calendar (day numbers, selected)
+	pdt	: Prompt control date/time background
+	pe	: Prompt control general text
+	pi	: Prompt control hint text
+	pl	: Prompt control hyperlink
+	pm	: Prompt control calendar (months)
+	pmd	: Prompt control calendar (months, disabled)
+	pms	: Prompt control calendar (months, selected)
+	pt	: Prompt control text box
+	pv	: Prompt control value box
+	pw	: Prompt control calendar (day names)
+
+		
+ ====================================================== */
+/*
+* These make sense to reset for list, crosstab etc.
+*/
+.v11 .ls,
+.v11 .sc,
+.v11 .xt,
+.v11 .rt,
+.v11 .tb
+{
+
+	text-align: left;
+	text-indent: 0;
+}
+
+/*
+ * Negate Quirks mode defaults in v5_standard.css by setting to "inherit"
+ */
+.v11 .ls,
+.v11 .sc,
+.v11 .xt,
+.v11 .rt,
+.v11 .tb
+{
+	font-style: inherit;
+	font-variant: inherit;
+	font-weight: inherit;
+	font-size: inherit;
+	word-spacing: inherit;
+	letter-spacing: inherit;
+	text-decoration: inherit;
+	text-transform: inherit;
+	line-height: inherit;
+	white-space: inherit;
+	word-wrap: inherit;
+	color: inherit;
+}
+
+
+/*
+ * Quirks mode defaults
+ */
+.v11 .pg,
+.v11 .pp
+{
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	word-spacing: normal;
+	letter-spacing: normal;
+	text-decoration: none none none;
+	text-transform: none;
+	text-align: left;
+	text-indent: 0;
+	line-height: normal;
+	white-space: normal;
+	word-wrap: initial;
+}
+
+/* Default Font for the Report */
+/* --------------------------- */
+
+.v11 .pg /* page */,
+.v11 .pp /* prompt page */
+{
+	font-family: Arial, Tahoma, 'Arial Unicode MS', 'Andale WT', 'MS UI Gothic', Gulim, SimSun, PMingLiU, Raghu8, sans-serif;
+	color: #222222;
+	font-size: 10pt;
+}
+
+.v11 .pg *,
+.v11 .pp *
+{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+IMG
+{
+	-moz-box-sizing: content-box !important;
+	-webkit-box-sizing: content-box !important;
+	box-sizing: content-box !important;
+}
+
+
+
+
+/* Page Styles */
+/* ----------- */
+
+.v11 .pg /* page */
+{
+	width: 100%;
+	height: 100%;
+}
+
+.v11 .pb /* page body */
+{
+	height: 100%;
+	vertical-align: top;
+	padding: 3px 5px;
+}
+
+.v11 .ph /* page header */,
+.v11 .pf /* page footer */
+{
+	vertical-align: top;
+	padding: 3px 5px;
+}
+
+/* Title Styles */
+/* ----------- */
+
+.v11 .ta /* 	report title area (container of the report title text) */
+{
+	font-size: 16pt;
+	font-weight: bold;
+	text-align: center;
+	padding: 3px 5px;
+}
+
+.v11 .tt /* report title text */
+{
+	text-decoration: underline;
+}
+
+
+.v11 .ts /* subtitle area */
+{
+	font-size: 14pt;
+	text-align: center;
+	padding: 3px 5px;
+}
+
+
+.v11 .ft /* filter subtitle area */
+{
+
+	padding: 3px 5px;
+}
+
+
+.v11 .fi /* filter subtitle icon */
+{
+	vertical-align: middle;
+	margin-right: 4px;
+	border: 0px;
+}
+
+/* List Styles */
+/* ----------- */
+
+.v11 .ls /* list */
+{
+	
+}
+
+.v11 .lt /* list column title cell */
+{
+	text-align: center;
+	vertical-align: top;
+	padding: 4px 5px 4px 6px;
+	background-color: #E7E5E5;
+	border: 1px solid silver;
+}
+
+.v11 .lc /* list column body cell */
+{
+	vertical-align: top;
+	padding: 4px 5px 4px 5px;	
+	border: 1pt solid #E2E2E2;
+}
+
+.v11 .lm /* list column body measure cell */
+{
+	vertical-align: top;
+	padding: 4px 5px;
+	text-align: right;
+	border: 1pt solid #E2E2E2;
+}
+
+.v11 .lh /* list header cell */,
+.v11 .lf /* list footer cell */
+{
+	vertical-align: top;
+	border: 1px solid #E2E2E2;
+	padding: 4px 5px;
+}
+
+.v11 .ih /* inner header cell */,
+.v11 .if /* inner footer cell */
+{
+	font-weight: bold;
+	vertical-align: top;
+	border: 1px solid #CCCCCC;
+	padding: 4px 5px 4px 6px;
+	color: #31455E;
+	background-color: #BDDAF3;
+
+}
+
+.v11 .is /* inner summary cell */
+{
+	font-weight: bold;
+	vertical-align: top;
+	border: 1px solid #CCCCCC;
+	padding: 4px 5px;
+	text-align: right;	
+	color: #31455E;
+	background-color: #BDDAF3;
+
+}
+
+.v11 .oh /* outer header cell */,
+.v11 .of /* outer footer cell */
+{
+	font-weight: bold;
+	vertical-align: top;
+	border: 1px solid #CCCCCC;
+	padding: 4px 5px;	
+	background-color: #5F91CB;
+	color: white;
+}
+
+.v11 .os /* outer sumnmary cell */
+{
+	font-weight: bold;
+	vertical-align: top;
+	border: 1px solid #CCCCCC;
+	padding: 4px 5px;
+	text-align: right;	
+	background-color: #5F91CB;
+	color: white;
+}
+
+/* Section Styles */
+/* -------------- */
+
+.v11 .sb /* section body */
+{
+	padding: 3px 5px;
+}
+
+.v11 .sh /* section header cell */,
+.v11 .sk /* section inner header cell */
+{
+	font-weight: bold;
+	border-bottom: 1px solid #666666;
+	padding: 4px 5px;
+	padding-top: 8px;
+}
+
+.v11 .sf /* section footer cell */,
+.v11 .sg /* section summary cell */,
+.v11 .so /* section inner footer cell */,
+.v11 .sp /* section inner summary cell */
+{
+ 	border-top: 1px solid #999999;
+	color: #999999;
+	padding: 3px 5px;
+}
+
+.v11 .ss /* section summary text */
+{
+	border-top: 1px solid #999999;
+	font-weight: bold;
+	padding: 3px 5px;
+}
+
+/* Crosstab Styles */
+/* --------------- */
+
+.v11 .xt /* crosstab */
+{
+
+}
+
+.v11 .xm /* crosstab default measure label cell */
+{
+	font-weight: bold;
+	vertical-align: top;
+	text-align: center;
+	padding: 4px 5px 4px 6px;
+	border: none;
+}
+
+.v11 .ml /* member label cell */
+{
+	vertical-align: top;
+	padding: 4px 5px 4px 6px;
+	background-color: #E7E5E5;
+	border: 1px solid silver;
+}
+
+.v11 .mv /* member value cell */
+{
+	vertical-align: top;
+	white-space: nowrap;
+	padding: 4px 5px 4px 6px;
+	text-align: right;
+	border: 1px solid #EFEFEF;
+}
+
+.v11 .cl /* calculated member label cell */
+{
+	font-style: italic;
+	vertical-align: top;
+	padding: 4px 5px 4px 6px;
+	background-color: #E7E5E5;
+	border: 1px solid silver;
+}
+
+.v11 .cv /* calculated member value cell */
+{
+	font-style: italic;
+	vertical-align: top;
+	white-space: nowrap;
+	border: 1px solid #E2E2E2;
+	padding: 4px 5px 4px 6px;
+	text-align: right;
+}
+
+.v11 .c2 /* calculated member value cell (no italics) */
+{
+	vertical-align: top;
+	white-space: nowrap;
+	border: 1px solid #E2E2E2;
+	padding: 4px 5px 4px 6px;
+	text-align: right;
+}
+
+.v11 .sl /* subtotal (items) label cell */
+{
+	font-style: italic;
+	vertical-align: top;
+	padding: 4px 5px 4px 6px;
+	padding-left: 10px;
+	background-color: #E7E5E5;
+	border: 1px solid silver;
+}
+
+.v11 .sv /* subtotal (items) value cell */
+{
+	vertical-align: top;
+	white-space: nowrap;
+	background-color: #EFF3F7;
+	border: 1px solid #E1E6EC;
+	padding: 4px 5px;
+	text-align: right;
+}
+
+.v11 .hl /* subtotal (more + hidden) label cell */
+{
+	font-style: italic;
+	vertical-align: top;
+	padding: 4px 5px 4px 6px;
+	padding-left: 10px;
+	background-color: #E7E5E5;
+	border: 1px solid silver;
+}
+
+.v11 .hv /* subtotal (more + hidden) value cell */
+{
+	vertical-align: top;
+	white-space: nowrap;
+	background-color: #EFF3F7;
+	border: 1px solid #E1E6EC;
+	padding: 4px 5px;
+	text-align: right;
+}
+
+.v11 .nl /* subtotal (included) label cell */
+{
+	font-weight: bold;
+	vertical-align: top;
+	border: 1px solid #608BB4;
+	color: #31455E;
+	padding: 4px 5px 4px 6px;
+	
+	background-color: #BDDAF3;
+}
+
+.v11 .nv /* subtotal (included) value cell */
+{
+	font-weight: bold;
+	vertical-align: top;
+	white-space: nowrap;
+	background-color: #EFF3F7;
+	border: 1px solid #E1E6EC;
+	padding: 4px 5px;
+	text-align: right;
+}
+
+.v11 .xl /* subtotal (excluded) label cell */
+{
+	font-style: italic;
+	vertical-align: top;
+	border: 1px solid #608BB4;
+	color: #31455E;
+	padding: 4px 5px 4px 6px;
+	background-color: #BDDAF3;
+}
+
+.v11 .xv /* subtotal (excluded) value cell */
+{
+	vertical-align: top;
+	white-space: nowrap;
+	background-color: #EFF3F7;
+	border: 1px solid #E1E6EC;
+	padding: 3px 5px;
+	text-align: right;
+}
+
+.v11 .il /* inner total (nested) label cell */
+{
+	font-weight: bold;
+	vertical-align: top;
+	border: 1px solid #93B1CD;
+	color: #31455E;
+	background-color: #BDDAF3;
+	padding: 4px 5px 4px 6px;
+}
+
+.v11 .iv /* inner total (nested) value cell */
+{
+	font-weight: bold;
+	vertical-align: top;
+	white-space: nowrap;
+	padding: 3px 5px;
+	text-align: right;	
+	background-color: #EFF3F7;
+	border: 1px solid #E1E6EC;
+}
+
+.v11 .ol /* outer total (not nested) total label cell */
+{
+	font-weight: bold;
+	vertical-align: top;
+	border: 1px solid #93B1CD;
+	padding: 4px 5px 4px 6px;	
+	background-color: #5F91CB;
+	color: white;
+}
+
+.v11 .ov /* outer total (not nested) total value cell */
+{
+	font-weight: bold;
+	vertical-align: top;
+	white-space: nowrap;
+	border: 1px solid #D5D5D5;
+	padding: 4px 7px 4px 9px;
+	text-align: right;	
+	background-color: #DEE6F2;
+}
+
+.v11 .dm /* drillable member label text */
+{
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+	padding: 4px 5px;
+	background-color: #ffffff;
+}
+
+.v11 .xs /* crosstab spacer */
+{
+	vertical-align: top;
+	padding: 4px 5px 4px 6px;
+	background-color: #E7E5E5;
+	border: 1px solid silver;
+}
+
+.v11 .hs /* crosstab header spacer */
+{	
+	font-weight: bold;
+	vertical-align: top;
+	border: 1px solid silver;
+	padding: 4px 5px 4px 6px;
+	background-color: #4b4b4b;
+	color: #ffffff;
+}
+
+.v11 .hsv /* crosstab header spacer value/fact cell */
+{
+}
+
+/* Chart Styles */
+/* ------------ */
+
+.v11 .ct /* chart title */
+{
+	font-size: 12pt;
+	text-align: center;
+	font-weight: bold;
+	padding: 4px 5px;
+}
+
+.v11 .cs /* chart subtitle */,
+.v11 .cf /* chart footer */
+{
+	font-size: 10pt;
+	text-align: center;
+}
+
+.v11 .lx /* chart legend title */
+{
+	font-weight: bold;
+	padding: 4px 5px;
+}
+
+.v11 .lg /* chart legend */
+{
+	text-align: left;
+	padding: 4px 5px;
+}
+
+.v11 .at /* chart axis title */
+{
+	font-weight: bold;
+	text-align: center;
+	padding: 4px 5px;
+}
+
+.v11 .al /* chart axis labels */
+{
+	padding: 4px 5px;
+}
+
+.v11 .ch /* chart */
+{
+	font-size: 10pt;
+	padding: 5px;
+}
+
+/* Prompt Styles */
+/* ----------- */
+
+.v11 .pp /* prompt page */
+{
+	width: 100%;
+	height: 100%;
+	background-color: #f7f8f9;
+}
+
+.v11 .py /* prompt page body */
+{
+	height: 100%;
+	vertical-align: top;
+	padding: 3px 5px;
+}
+
+.v11 .hp /* prompt page header */
+{
+	vertical-align: top;
+	padding: 3px 5px;
+}
+
+.v11 .fp /* prompt page footer */
+{
+	vertical-align: top;
+	background-color: #dfeef8;
+	border: 1px solid #b1d6f3;
+	padding: 4px 5px;
+}
+
+
+.v11 .bp /* prompt button */
+{
+	font-size: 90%;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-top: 2px;
+	margin-right: 7px;
+	background-color: #ffffff;
+	color: #000000;
+	font-weight: normal;
+	border: 1px solid #989898;
+}
+
+/* Repeater Styles */
+/* --------------- */
+
+.v11 .rc /* repeaterTableCell */
+{
+	vertical-align: top;
+}
+
+/* Other Styles */
+/* ------------ */
+
+.v11 .dp /* default container padding */
+{
+	padding: 3px 5px;
+}
+
+.v11 .hy /* hyperlink */
+{
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.v11 .bt /* button */
+{
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-top: 2px;
+	margin-right: 7px;
+	background-color: #ffffff;
+	color: #000000;
+	font-weight: normal;
+	border: 1px solid #92AFC2;
+}
+
+.v11 .fs /* field set */
+{
+	display: inline;
+	text-align: left;
+}
+
+@media print
+{
+.v11 	.np /* no print (do not render element in printable output) */
+	{
+		display: none;
+	}
+}
+
+.v11 .h1 /* heading 1 text */
+{
+	font-size: 15pt;
+	font-weight: bold;
+	display: block;
+}
+
+.v11 .h2 /* heading 2 text */
+{
+	font-size: 14pt;
+	font-weight: bold;
+	display: block;
+}
+
+.v11 .h3 /* heading 3 text */
+{
+	font-size: 13pt;
+	font-weight: bold;
+	display: block;
+}
+
+.v11 .h4 /* heading 4 text */
+{
+	font-size: 12pt;
+	font-weight: bold;
+	display: block;
+}
+
+.v11 .h5 /* heading 5 text */
+{
+	font-size: 11pt;
+	font-weight: bold;
+	display: block;
+}
+
+.v11 .h6 /* heading 6 text */
+{
+	font-size: 10pt;
+	font-weight: bold;
+	display: block;
+}
+
+.v11 .em /* emphasized text */
+{
+	font-style: italic;
+}
+
+.v11 .stg /* strong text */
+{
+	font-weight: bold;
+}
+
+/*
+	Using the language specific font list below can help to workaround the following rendering issues on Browsers:
+	1. The Japanese Yen and Korean Won sign appears as the "backslash" when they are represented by the code point "U+005C".
+	2. Browser fails to supply a reasonable fall-back font support based on the font list in the "generic fonts" section.
+
+	Also, these font lists will be useful for rendering some of the Unified Han ideographs to the form and shape which is
+	typographically preferred by different Asian writing scripts.
+*/
+
+/* For Japanese:
+.v11 .pg,
+.v11 .pp
+{
+	font-family: 'MS UI Gothic', Tahoma, arial, geneva, helvetica, sans-serif, 'Andale WT J';
+}
+*/
+
+/* For Simplified Chinese:
+.v11 .pg,
+.v11 .pp
+{
+	font-family: SimSun, Tahoma, arial, geneva, helvetica, sans-serif, 'Andale WT';
+}
+*/
+
+/* For Traditional Chinese:
+.v11 .pg,
+.v11 .pp
+{
+	font-family: PMingLiU, Tahoma, arial, geneva, helvetica, sans-serif, 'Andale WT';
+}
+*/
+
+/* For Korean:
+.v11 .pg,
+.v11 .pp
+{
+	font-family: Gulim, Tahoma, arial, geneva, helvetica, sans-serif, 'Andale WT K';
+}
+*/
+
+.v11 .lt /* list column title cell */,
+.v11 .lc /* list column body cell */,
+.v11 .lm /* list column body measure cell */,
+.v11 .lh /* list header cell */,
+.v11 .lf /* list footer cell */,
+.v11 .ih /* inner header cell */,
+.v11 .if /* inner footer cell */,
+.v11 .is /* inner sumnmary cell */,
+.v11 .oh /* outer header cell */,
+.v11 .of /* outer footer cell */,
+.v11 .os /* outer sumnmary cell */,
+.v11 .xm /* crosstab default measure label cell */,
+.v11 .ml /* member label cell */,
+.v11 .mv /* member value cell */,
+.v11 .cl /* calculated member label cell */,
+.v11 .cv /* calculated member value cell */,
+.v11 .c2 /* calculated member value cell */,
+.v11 .sl /* subtotal (items) label cell */,
+.v11 .sv /* subtotal (items) value cell */,
+.v11 .hl /* subtotal (more + hidden) label cell */,
+.v11 .hv /* subtotal (more + hidden) value cell */,
+.v11 .nl /* subtotal (included) label cell */,
+.v11 .nv /* subtotal (included) value cell */,
+.v11 .xl /* subtotal (excluded) label cell */,
+.v11 .xv /* subtotal (excluded) value cell */,
+.v11 .il /* inner total (nested) label cell */,
+.v11 .iv /* inner total (nested) value cell */,
+.v11 .ol /* outer total (not nested) total label cell */,
+.v11 .ov /* outer total (not nested) total value cell */,
+.v11 .xs /* crosstab spacer */
+{
+	line-break: strict;
+}
+
+.v11 .bpd /* Prompt button (disabled) */
+{
+	font-size: 90%;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-top: 2px;
+	margin-right: 7px;
+	background-color: #ffffff;
+	color: #777777;
+	font-weight: normal;
+	border: 1px solid #CCCCCC;
+}
+
+.v11 .bph /* Prompt button (hover) */
+{
+	font-size: 90%;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+	padding-top: 2px;
+	margin-right: 7px;
+	background-color: #ffffff;
+	color: #000000;
+	font-weight: normal;
+	border: 1px solid #D4AD63;
+}
+
+.v11 .pa /* Prompt control tree box */
+{
+	height: 400px;
+	width: 300px;
+	overflow: auto;
+	border: 1px solid #5da5d2;
+	padding: 5px;
+	color: #333333;
+	background-color: #FFFFFF;
+}
+
+.v11 .pc /* Prompt control label text */
+{
+	font-weight: bold;
+	color: #336699;
+}
+
+.v11 .pcl /* Prompt control clock */
+{
+	padding: 0px;
+	margin: 0px;
+	border: none;
+	border-bottom-width: 2px;
+	border-bottom-color: #FFFFFF;
+	border-bottom-style: solid;
+	color: #333333;
+}
+
+.v11 .pd /* Prompt control calendar (day numbers) */
+{
+	color: #015890;
+	text-decoration: none;
+	text-align: center;
+	font-size: 10pt;
+	padding: 3px;
+	cursor: pointer;
+	font-weight: normal;
+	background-color: #FFFFFF;
+	border: 1px solid #FFFFFF;
+}
+
+.v11 .pdd /* Prompt control calendar (day numbers, disabled) */
+{
+	color: #999999;
+	text-decoration: none;
+	text-align: center;
+	font-size: 10pt;
+	padding: 3px;
+	cursor: default;
+	font-weight: normal;
+	background-color: #FFFFFF;
+	border: 1px solid #FFFFFF;
+}
+
+.v11 .pds /* Prompt control calendar (day numbers, selected) */
+{
+	color: #015890;
+	text-decoration: none;
+	text-align: center;
+	font-size: 10pt;
+	padding: 3px;
+	cursor: pointer;	
+	font-weight: normal;
+	background-color: #f6daaf;
+	border: 1px solid #eccf9e;
+}
+
+.v11 .pdt /* Prompt control date/time background */
+{
+	background-color: #edf3f7;
+	border: 1px solid #81b2d1;
+	margin: 5px;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+}
+
+.v11 .pe /* Prompt control general text */
+{
+	color: #333333;
+}
+
+.v11 .pi /* Prompt control hint text */
+{
+	font-size: 70%;
+	color: #015890;
+}
+
+.v11 .pl /* Prompt control hyperlink */
+{
+	font-size: 70%;
+	color: #0000FF;
+	font-weight: normal;
+}
+
+.v11 .pm /* Prompt control calendar (months) */
+{
+	color: #015890;
+	font-size: 10pt;
+	text-decoration: none;
+	margin-top: 3px;
+	text-align: center;
+	vertical-align: bottom;
+	cursor: pointer;
+	font-weight: normal;
+	border: 1px solid #FFFFFF;
+}
+
+.v11 .pmd /* Prompt control calendar (months, disabled) */
+{
+	color: #999999;
+	font-size: 10pt;
+	text-decoration: none;
+	margin-top: 3px;
+	text-align: center;
+	vertical-align: bottom;
+	cursor: default;
+	font-weight: normal;
+	border: 1px solid #FFFFFF;
+}
+
+.v11 .pms /* Prompt control calendar (months, selected) */
+{
+	color: #015890;
+	font-size: 10pt;
+	margin-top: 3px;
+	text-align: center;
+	vertical-align: bottom;
+	cursor: pointer;
+	text-decoration: none;	
+	font-weight: normal;
+	background-color: #f6daaf;
+	border: 1px solid #eccf9e;
+}
+
+.v11 .pt /* Prompt control text box */
+{
+	color: #333333;
+}
+
+.v11 .pv /* Prompt control value box */
+{
+	color: #333333;
+}
+
+.v11 .pw /* Prompt control calendar (day names) */
+{
+	font-size: 10pt;
+	padding: 3px;
+	text-decoration: none;
+	text-align: center;
+	background-color: #E7E5E5;
+	color: #333333;
+}
+
+/* Conditional Styles */
+/* --------------- */
+
+.v11 .pd_1 /* Excellent */
+{
+	background-color: #009933;
+	color: #FFFFFF;
+}
+
+.v11 .pd_2 /* Very good */
+{
+	background-color: #FFFFFF;
+	color: #009933;
+}
+
+.v11 .pd_3 /* Average */
+{
+	background-color: #FFFFFF;
+	color: #CC9900;
+}
+
+.v11 .pd_4 /* Below average */
+{
+	background-color: #FFFFFF;
+	color: #990000;
+}
+
+.v11 .pd_5 /* Poor */
+{
+	background-color: #990000;
+	color: #FFFFFF;
+}

@@ -1,0 +1,32 @@
+
+
+
+/********************************
+*  Licensed Materials - Property of IBM
+*    
+*  IBM Cognos Products: cogadmin
+*   
+*  (C) Copyright IBM Corp. 2005, 2012
+*  
+*  US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.  
+********************************/
+.cogstyle-threshold-default-input {
+	width: 70px;
+	text-align: right;
+}
+.cogstyle-threshold-default-input-error {
+	width: 70px;
+	text-align: right;
+	border-bottom-color: #FF6600;
+	border-bottom-style: dashed;
+}
+.cogstyle-threshold-duration-input {
+	width: 40px;
+	text-align: right;
+}
+.cogstyle-threshold-duration-input-error {
+	width: 40px;
+	text-align: right;
+	border-bottom-color: #FF6600;
+	border-bottom-style: dashed;
+}

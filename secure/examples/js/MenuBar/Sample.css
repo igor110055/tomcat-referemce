@@ -1,0 +1,33 @@
+/**
+ * Just some sample styles to make things look a bit nicer...
+ *
+ **/
+
+body {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	margin: 0px;
+	scrollbar-face-color: #999999;
+	scrollbar-shadow-color: #999999;
+	scrollbar-base-color: #cccccc;
+	scrollbar-highlight-color: #999999;
+	scrollbar-3dlight-color: #cccccc;
+	scrollbar-darkshadow-color: #cccccc;
+	scrollbar-track-color: #cccccc;
+	scrollbar-arrow-color: #cccccc;
+
+}
+
+table,td {
+	font-size:11px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+a, a:visited,a:active {
+	color:#013368;
+	text-decoration:none
+}
+
+a:hover {
+	text-decoration:underline
+}

@@ -1,0 +1,64 @@
+/********************************************************************************************************************************
+* Licensed Materials - Property of IBM                                                                                          *
+*                                                                                                                               *
+* IBM Cognos Products: UIPE                                                                                                     *
+*                                                                                                                               *
+* (C) Copyright IBM Corp. 2014                                                                                                  *
+*                                                                                                                               *
+* US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp. *
+*********************************************************************************************************************************/
+HTML,
+BODY
+{
+	height: 100%;
+	overflow: auto;
+}
+
+.uipeContent
+{
+	width: 100%;
+	padding:15px;
+}
+
+.navTreeContainer
+{
+	border: #85aff9 1px solid;
+	width: 300px; 
+	height: 560px;
+	overflow: auto;
+}
+
+.uipeRightPane
+{
+	width: 100%;
+	padding-left: 16px;
+}
+
+.uipeNavBarTable
+{
+	width: 100%;
+}
+
+.uipeTabBorder
+{
+	border-bottom: #85aff9 1px solid;
+	padding: 0 1px;
+}
+
+.uipeHighlight,
+SPAN.uipeHighlight,
+TD.uipeDefaultSettingsHighlight,
+TD INPUT.uipeDefaultSettingsHighlight
+{
+	font-weight: bolder;
+	color: #0080b2;
+}
+
+.uipeDeckMain
+{	
+	height:360px; 
+	width:300px; 
+	margin-right: 16px; 
+	overflow: auto;
+	border: #85aff9 1px solid;
+}

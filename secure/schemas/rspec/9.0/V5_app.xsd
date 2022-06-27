@@ -1,0 +1,2247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	IBM Cognos Products: rspec
+	(C) Copyright IBM Corp. 2003, 2014
+	US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rspec="http://developer.cognos.com/schemas/report/7.0/" xmlns:rspecExtension="http://developer.cognos.com/schemas/rspecExtension/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5_layout.xsd"/>
+	<xs:group name="applicationElements">
+		<xs:choice>
+			<xs:element ref="appRepeaterTable"/>
+			<xs:element ref="appDeck"/>
+			<xs:element ref="appTabControl"/>
+			<xs:element ref="appButton"/>
+			<xs:element ref="appButtonBar"/>
+			<xs:element ref="appToggleButtonBar"/>
+			<xs:element ref="appDropDownList"/>
+			<xs:element ref="appListBox"/>
+			<xs:element ref="appRadioButtonGroup"/>
+			<xs:element ref="appCheckboxGroup"/>
+			<xs:element ref="appDataDropDownList"/>
+			<xs:element ref="appDataListBox"/>
+			<xs:element ref="appDataButtonBar"/>
+			<xs:element ref="appDataToggleButtonBar"/>
+			<xs:element ref="appDataCheckboxGroup"/>
+			<xs:element ref="appDataRadioButtonGroup"/>
+			<xs:element ref="appDataDeck"/>
+			<xs:element ref="appDataTabControl"/>
+			<xs:element ref="appListSummary"/>
+			<xs:element ref="appVariableTextItem"/>
+			<xs:element ref="appIterator"/>
+			<xs:element ref="appDataIterator"/>
+			<xs:element ref="appRowNumber"/>
+			<xs:element ref="appDiscreteSlider"/>
+			<xs:element ref="appContinuousSlider"/>
+			<xs:element ref="appDataDiscreteSlider"/>
+		</xs:choice>
+	</xs:group>
+	<!---->
+	<!--Static Controls-->
+	<xs:element name="appDeck">
+		<xs:annotation>
+			<xs:documentation>Represents a deck of cards. Only one card is displayed at a time and which card to display is determined by the appContainerSelect condition. Similar to a tab control without the tabs.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appCardDefinition"/>
+				<xs:element name="appCards">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+						<xs:documentation>Each card in the deck needs a corresponding row in the static data table.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="appCard" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation source="rn_added_7.0"/>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="contents"/>
+										<xs:element ref="XMLAttributes" minOccurs="0"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="appDataSource"/>
+				<xs:element name="appDefaultCard" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+						<xs:documentation>Card to display when no other card matches for the current variable state.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="contents"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attributeGroup ref="AppDeckControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appTabControl">
+		<xs:annotation>
+			<xs:documentation>Represents a tab control. Tab control is made up of a deck of cards. The cards map to the tabs.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appTabDefinition"/>
+				<xs:element name="appTabDeck">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="appTabCards">
+								<xs:annotation>
+									<xs:documentation source="rn_added_7.0"/>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="appTabCard" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="appDataSource"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attributeGroup ref="AppTabControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appButton">
+		<xs:annotation>
+			<xs:documentation>Represent a button.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appButtonDefinition"/>
+				<xs:element ref="appDataSource"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attribute name="width" type="CSSLength" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appButtonBar">
+		<xs:annotation>
+			<xs:documentation>Represents a bar of buttons. The button bar will act as a single selection control similar to a radio button group.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appButtonDefinition"/>
+				<xs:element ref="appDataSource"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attributeGroup ref="AppButtonBarAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appToggleButtonBar">
+		<xs:annotation>
+			<xs:documentation>Represents a bar of buttons. Each button in the bar can be toggled on or off. The button bar will act as a multiple selection control similar to a check box group.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appButtonDefinition"/>
+				<xs:element ref="appDataSource"/>
+				<xs:element ref="appContainerSelect" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Selects items in the container based on the value evaluated for the condition defined for each item.
+
+In the case of single select containers the first item evaluating to true is selected.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attributeGroup ref="AppButtonBarAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appRadioButtonGroup">
+		<xs:annotation>
+			<xs:documentation>Represents a group of radio buttons.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appRadioButtonDefinition"/>
+				<xs:element ref="appDataSource"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attributeGroup ref="AppRadioButtonGroupAttributes"/>
+			<xs:attribute name="textColor" type="ColorType"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appCheckboxGroup">
+		<xs:annotation>
+			<xs:documentation>Represents a group of checkboxes.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appCheckboxDefinition"/>
+				<xs:element ref="appDataSource"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attributeGroup ref="AppCheckboxGroupAttributes"/>
+			<xs:attribute name="textColor" type="ColorType"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appDropDownList">
+		<xs:annotation>
+			<xs:documentation>Represents a drop down list (or combo box) control.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appListItemDefinition"/>
+				<xs:element ref="appDataSource"/>
+				<xs:element ref="appNoValueListItem" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attributeGroup ref="AppDropDownListAttributes"/>
+			<xs:attribute name="showIcon" type="xs:boolean" default="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appListBox">
+		<xs:annotation>
+			<xs:documentation>Represents a list box control. The list box may act either as a single or multiple selection control.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appListItemDefinition"/>
+				<xs:element ref="appDataSource">
+					<xs:annotation>
+						<xs:documentation>Represents the rows of values that will be associated with each item in a static control (e.g. list item in a list box). </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="appNoValueListItem" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Selects an item in the control or container based on the value of the variable. e.g. select a row in a list, select a named list item from drop down, select a named tab from a tab control.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attributeGroup ref="AppListBoxAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appIterator">
+		<xs:annotation>
+			<xs:documentation>Represents a control that can iterate through a set of values. Provides the capability to navigate to the first, last, next, previous or a specific value in a set of values.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appIteratorUI" minOccurs="0"/>
+				<xs:element ref="appIteratorDefinition"/>
+				<xs:element ref="appDataSource"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attribute name="orientation" default="horizontal">
+				<xs:annotation>
+					<xs:documentation source="doc_att_orientation_app"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="horizontal">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_horizontal_app"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="vertical">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_vertical_app"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appDiscreteSlider">
+		<xs:annotation>
+			<xs:documentation>Represents a slider control that can be used to pick from a discrete set of values. It a single selection control similar to a radio button group.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appSliderDefinition"/>
+				<xs:element ref="appDataSource"/>
+				<xs:element ref="appSliderTrackValuesStyle" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attributeGroup ref="AppSliderAttributes"/>
+			<xs:attributeGroup ref="AppDiscreteSliderAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appContinuousSlider">
+		<xs:annotation>
+			<xs:documentation>Represents a slider control that can be used to pick a value in a continuous range of values between 2 end points. This control is typically used with measure values.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="appSliderMinVariable" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="refAppVariable" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appSliderMaxVariable" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="refAppVariable" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="appSliderTrackValuesStyle" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attributeGroup ref="AppSliderAttributes"/>
+			<xs:attributeGroup ref="AppContinuousSliderAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appRepeaterTable">
+		<xs:annotation>
+			<xs:documentation>Similar to a repeaterTable element, but allows the data driving the control to be statically defined. This control will behave similar to a list in terns of the clicking behavior.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appRepeaterTableCellDefinition"/>
+				<xs:element ref="appDataSource"/>
+				<xs:element name="appRepeaterTableCell">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="contents"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="appRepeaterTableProperties" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attribute name="across" type="xs:positiveInteger"/>
+			<xs:attribute name="down" type="xs:positiveInteger"/>
+			<xs:attribute name="direction" default="lr-tb">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="lr-tb"/>
+						<xs:enumeration value="tb-lr"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!---->
+	<!--Dynamic Controls-->
+	<xs:element name="appDataDropDownList">
+		<xs:annotation>
+			<xs:documentation>Similar to an appDropDownList except that the data for the control will be obtained from the results of a query.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appListItemDefinition" minOccurs="0"/>
+				<xs:element ref="appNoValueListItem" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element ref="listSuppress" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="AppDropDownListAttributes"/>
+			<xs:attribute name="showIcon" type="xs:boolean" default="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appDataListBox">
+		<xs:annotation>
+			<xs:documentation>Similar to an appListBox except that the data for the control will be obtained from the results of a query.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appListItemDefinition" minOccurs="0"/>
+				<xs:element ref="appNoValueListItem" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element ref="listSuppress" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="AppListBoxAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appDataDeck">
+		<xs:annotation>
+			<xs:documentation>Similar to an appDeck except that the data for the control will be obtained from the results of a query.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appCardDefinition" minOccurs="0"/>
+				<xs:element name="appDataCard">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="contents"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appDataDefaultCard" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+						<xs:documentation>Card to display when no other card matches for the current variable state.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="contents"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element ref="listSuppress" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="AppDeckControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appDataTabControl">
+		<xs:annotation>
+			<xs:documentation>Similar to an appTabControl except that the data for the control will be obtained from the results of a query.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appTabDefinition" minOccurs="0"/>
+				<xs:element name="appDataTabDeck">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="appDataTabCard">
+								<xs:annotation>
+									<xs:documentation source="rn_added_7.0"/>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="contents"/>
+										<xs:element ref="XMLAttributes" minOccurs="0"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element ref="listSuppress" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="AppTabControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appDataButtonBar">
+		<xs:annotation>
+			<xs:documentation>Similar to an appButtonBar  except that the data for the control will be obtained from the results of a query.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appButtonDefinition" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element ref="listSuppress" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="AppButtonBarAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appDataToggleButtonBar">
+		<xs:annotation>
+			<xs:documentation>Similar to an appToggleButtonBar except that the data for the control will be obtained from the results of a query.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appButtonDefinition" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Selects items in the container based on the value evaluated for the condition defined for each item.
+
+In the case of single select containers the first item evaluating to true is selected.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element ref="listSuppress" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="AppButtonBarAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appDataRadioButtonGroup">
+		<xs:annotation>
+			<xs:documentation>Similar to an appRadioButtonGroup except that the data for the control will be obtained from the results of a query.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appRadioButtonDefinition" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element ref="listSuppress" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="AppRadioButtonGroupAttributes"/>
+			<xs:attribute name="textColor" type="ColorType"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appDataCheckboxGroup">
+		<xs:annotation>
+			<xs:documentation>Similar to an appCheckboxGroup except that the data for the control will be obtained from the results of a query.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appCheckboxDefinition" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element ref="listSuppress" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="AppCheckboxGroupAttributes"/>
+			<xs:attribute name="textColor" type="ColorType"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appDataIterator">
+		<xs:annotation>
+			<xs:documentation>Similar to an appIterator except that the data for the control will be obtained from the results of a query.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appIteratorUI" minOccurs="0"/>
+				<xs:element ref="appIteratorDefinition" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element ref="listSuppress" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attribute name="orientation" default="horizontal">
+				<xs:annotation>
+					<xs:documentation source="doc_att_orientation_app"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="horizontal">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_horizontal_app"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="vertical">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_vertical_app"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appDataDiscreteSlider">
+		<xs:annotation>
+			<xs:documentation>Similar to an appDiscreteSlider except that the data for the control will be obtained from the results of a query.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appSliderDefinition" minOccurs="0"/>
+				<xs:element ref="appSliderTrackValuesStyle" minOccurs="0"/>
+				<xs:element ref="appContainerSelect" minOccurs="0"/>
+				<xs:element ref="appOnSelectSetVariableValues" minOccurs="0"/>
+				<xs:element ref="appDrills" minOccurs="0"/>
+				<xs:element ref="appContainerFilter" minOccurs="0"/>
+				<xs:element ref="appControlEnabled" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element ref="listSuppress" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppControlAttributes"/>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="AppSliderAttributes"/>
+			<xs:attributeGroup ref="AppDiscreteSliderAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<!---->
+	<!--Application conditional elements-->
+	<xs:element name="appContainerFilter">
+		<xs:annotation>
+			<xs:documentation>This condition will be evaluated for each item in the control. If the condition evaluates to false, then the item is removed from being displayed as part of the control.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appCondition"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appContainerSelect">
+		<xs:annotation>
+			<xs:documentation>This condition is evaluated for each item in this control. The first item that evaluates to true is shown as the selected item.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appCondition"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:group name="appConditionElement">
+		<xs:choice>
+			<xs:element name="appConditionAnd">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="appConditionElement" minOccurs="2" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="appConditionOr">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="appConditionElement" minOccurs="2" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="appConditionNot">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:group ref="appConditionElement"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="appConditionDataItemComparison">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+					<xs:documentation>Compares the current data item value to the app variable value(s). This is interpreted a (data item) operator (variable). By default, if the app variable has no value, then this term is dropped from the expression.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="refAppVariable" type="xs:string" use="required"/>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					<xs:attributeGroup ref="AppConditionOperator"/>
+					<xs:attribute name="dropIfValueIsEmpty" type="xs:boolean" default="true"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="appConditionConstantComparison">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+					<xs:documentation>Compares the app variable value to a constant.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="appVariableValue"/>
+					</xs:all>
+					<xs:attribute name="refAppVariable" type="xs:string" use="required"/>
+					<xs:attributeGroup ref="AppConditionOperator"/>
+					<xs:attribute name="dropIfValueIsEmpty" type="xs:boolean" default="true"/>
+					<xs:attributeGroup ref="AppVariableDataTypes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="appConditionIsVariableEmpty">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+					<xs:documentation>Tests the app variable to see if there is no value set. This is not the same as having a value of 0 or empty string.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="refAppVariable" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="appConditionIsDataItemEmpty">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+					<xs:documentation>Tests the data item value at the current row to see if there is no available. This is not the same as having a value of 0 or empty string.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="appConditionDataItemConstantComparison">
+				<xs:annotation>
+					<xs:documentation source="rn_added_7.0"/>
+					<xs:documentation>Compares the data item value at the current row to a constant.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="appVariableValue"/>
+					</xs:all>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					<xs:attributeGroup ref="AppConditionOperator"/>
+					<xs:attributeGroup ref="AppVariableDataTypes"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:element name="appCondition">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:group ref="appConditionElement"/>
+		</xs:complexType>
+	</xs:element>
+	<!---->
+	<!--Output summaries-->
+	<xs:element name="appListSummary">
+		<xs:annotation>
+			<xs:documentation>Acts like a textItem that represents a column summary in a overall or group header/footer in a list. The summary is computed in the Active Report and will be affected by any filtering done (through appContainerFilter) in the Active Report.
+
+Will summarize all the values found for the referenced data item in that grouping.
+
+From the style element, it will support all of the CSS styles that apply to textItem. For dataFormat it will only support a subset we implement in the app.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+			<xs:attribute name="summaryMethod" default="total">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="total"/>
+						<xs:enumeration value="minimum"/>
+						<xs:enumeration value="maximum"/>
+						<xs:enumeration value="average"/>
+						<xs:enumeration value="count"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appCrosstabSummary">
+		<xs:annotation>
+			<xs:documentation>Acts like a crosstabNodeMember, but any fact cells associated to this will summarizes the preceding values in the output at the current nesting level. The summary is computed in the Active Report and will be affected by any filtering done (through appContainerFilter) in the Active Report.
+
+From style, the CSS supported will be the same as supported for crosstabNodeMember. dataFormat will be a subset, same for factCell.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="contents"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="factCell" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="appCrosstabNodeMemberProperties" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+			<xs:attribute name="appSolveOrder" type="xs:positiveInteger" default="1"/>
+			<xs:attribute name="edgeLocation" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Uniquely identifies a node member or spacer on an edge of the crosstab. This attribute is used by the crosstabIntersection element to uniquely identify the intersection of elements from each edge.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="summaryMethod" default="total">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="total"/>
+						<xs:enumeration value="minimum"/>
+						<xs:enumeration value="maximum"/>
+						<xs:enumeration value="average"/>
+						<xs:enumeration value="count"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!---->
+	<!--Other elements-->
+	<xs:element name="appVariableTextItem">
+		<xs:annotation>
+			<xs:documentation>Renders the value of an app variable in the layout.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="refAppVariable" type="xs:string" use="required"/>
+			<xs:attribute name="whichValues" default="list">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="list"/>
+						<xs:enumeration value="first"/>
+						<xs:enumeration value="last"/>
+						<xs:enumeration value="min"/>
+						<xs:enumeration value="max"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appChartProperties">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="appChartClickableRegions" minOccurs="0">
+					<xs:complexType>
+						<xs:attributeGroup ref="AppClickableRegionsAttributes"/>
+						<xs:attribute name="numericAxisTitle" type="xs:boolean" default="false"/>
+						<xs:attribute name="ordinalAxisTitle" type="xs:boolean" default="false"/>
+						<xs:attribute name="legendTitle" type="xs:boolean" default="false"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attributeGroup ref="AppChartPropertiesCommonAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appCrosstabProperties">
+		<xs:complexType>
+			<xs:attribute name="showHover" type="xs:boolean" default="true"/>
+			<xs:attribute name="showPointer" type="xs:boolean" default="false"/>
+			<xs:attribute name="clickable" type="xs:boolean" default="false"/>
+			<xs:attribute name="clickableColumns" type="xs:boolean" default="false"/>
+			<xs:attribute name="clickableRows" type="xs:boolean" default="false"/>
+			<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appCrosstabNodeMemberProperties">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="visible" type="xs:boolean" default="true"/>
+			<xs:attribute name="clickable" type="xs:boolean" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appCrosstabNodeMemberFactCellProperties">
+		<xs:complexType>
+			<xs:attribute name="clickable" type="xs:boolean" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appCrosstabFactCellProperties">
+		<xs:complexType>
+			<xs:attribute name="clickable" type="xs:boolean" default="true"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appCrosstabIntersectionProperties">
+		<xs:complexType>
+			<xs:attribute name="clickable" type="xs:boolean" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appListProperties">
+		<xs:complexType>
+			<xs:attribute name="showHover" type="xs:boolean" default="true"/>
+			<xs:attribute name="showPointer" type="xs:boolean" default="false"/>
+			<xs:attribute name="clickable" type="xs:boolean" default="false"/>
+			<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appListColumnProperties">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="appListColumnVisible" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="appCondition"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attribute name="allowSorting" type="xs:boolean" default="false"/>
+			<xs:attribute name="visible" type="xs:boolean" default="true"/>
+			<xs:attribute name="clickable" type="xs:boolean" default="true"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appListRowProperties">
+		<xs:complexType>
+			<xs:attribute name="clickable" type="xs:boolean" default="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appDataRepeaterTableProperties">
+		<xs:complexType>
+			<xs:attribute name="showHover" type="xs:boolean" default="true"/>
+			<xs:attribute name="showPointer" type="xs:boolean" default="false"/>
+			<xs:attribute name="clickable" type="xs:boolean" default="false"/>
+			<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appRepeaterTableProperties">
+		<xs:complexType>
+			<xs:attribute name="showHover" type="xs:boolean" default="true"/>
+			<xs:attribute name="showPointer" type="xs:boolean" default="false"/>
+			<xs:attribute name="clickable" type="xs:boolean" default="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appRowNumber">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="appTextStyle" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appDrills">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="appDrill" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="appDrillMethod">
+								<xs:annotation>
+									<xs:documentation>In future add HTML form support. Element declaration commented out in schema (appDrillForm).</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="appDrillHandler">
+											<xs:complexType>
+												<xs:attribute name="name" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<!-- In future add HTML form support
+										<xs:element name="appDrillForm">
+											<xs:complexType>
+												<xs:attribute name="method" default="POST">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="GET"/>
+															<xs:enumeration value="POST"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="action" type="xs:string" use="required"/>
+												<xs:attribute name="target" type="xs:string"/>
+											</xs:complexType>
+										</xs:element>
+										-->
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="appDrillLabel" type="LocalizedTextType"/>
+							<xs:element name="appDrillParameters" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="appDrillParameter" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="appDrillValues">
+														<xs:complexType>
+															<xs:choice>
+																<xs:element name="appDrillAppVariableValues">
+																	<xs:complexType>
+																		<xs:attribute name="refAppVariable" type="xs:string" use="required"/>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="appDrillStaticValue" type="TextType" maxOccurs="unbounded"/>
+															</xs:choice>
+														</xs:complexType>
+													</xs:element>
+												</xs:all>
+												<xs:attribute name="name" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+								<xs:unique name="appDrillParameterUniqueness">
+									<xs:selector xpath="*"/>
+									<xs:field xpath="@name"/>
+								</xs:unique>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:unique name="appDrillUniqueness">
+			<xs:selector xpath="*"/>
+			<xs:field xpath="@name"/>
+		</xs:unique>
+	</xs:element>
+	<!---->
+	<!--Report app properties-->
+	<xs:element name="appProperties">
+		<xs:annotation>
+			<xs:documentation>Properties affecting the overall behavior of an Active Report.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="appVariables" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="appVariable" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Represents a variable in the application. The variable may have default values on startup of the application.</xs:documentation>
+									<xs:documentation source="rn_added_7.0"/>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="appVariableValues" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation source="rn_added_7.0"/>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="appVariableValue" maxOccurs="unbounded"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="name" type="xs:string" use="required"/>
+									<xs:attributeGroup ref="AppVariableDataTypes"/>
+									<xs:attribute name="public" type="xs:boolean" default="false"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="appVariableUniqueness">
+						<xs:selector xpath="*"/>
+						<xs:field xpath="@name"/>
+					</xs:unique>
+				</xs:element>
+				<xs:element name="appWindowTitle" type="LocalizedTextType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="appWindowIcon" type="TextType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="appWindowSize" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>If the window size is not specified then the window will not be sized on startup and will be whatever the browser default is.</xs:documentation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="appWindowSizeMaximize">
+								<xs:annotation>
+									<xs:documentation source="rn_added_7.0"/>
+									<xs:documentation>Maximize the window size to fill the entire screen.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="appWindowSizeFixed">
+								<xs:annotation>
+									<xs:documentation source="rn_added_7.0"/>
+									<xs:documentation>Set the window to a fixed size</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="width" type="xs:positiveInteger" use="required">
+										<xs:annotation>
+											<xs:documentation>width of the window in pixels</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="height" type="xs:positiveInteger" use="required">
+										<xs:annotation>
+											<xs:documentation>height of window in pixels</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appMaxRows" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Sets the maximum number of rows that will be retrieved for any control or frame in the application. For crosstabs and charts, this is actually the number of cell intersections returned. An error will occur if the number of rows is exceeded. If not specified the maximum number will be 5000 rows.</xs:documentation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="value" type="xs:positiveInteger" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appAccess" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines an access code that must be entered by the user before the Active Report will open up.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="accessCode" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appRanges" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines ranges that are mapped to min and max variables. This is used in BUX to allow their sliders to drive AR content.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="appRange" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="appRangeMin">
+											<xs:complexType>
+												<xs:attribute name="refAppVariable" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="appRangeMax">
+											<xs:complexType>
+												<xs:attribute name="refAppVariable" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="name" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="appRangeUniqueness">
+						<xs:selector xpath="*"/>
+						<xs:field xpath="@name"/>
+					</xs:unique>
+				</xs:element>
+			</xs:all>
+			<xs:attribute name="compressOutput" type="xs:boolean" use="optional">
+				<xs:annotation>
+					<xs:documentation>Determines whether the Active Report output will be compressed or not. When enabled the server will compress certain parts of the Active Report output.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!---->
+	<!--Shared attributes-->
+	<xs:attributeGroup name="AppControlAttributes">
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppTabControlAttributes">
+		<xs:attribute name="tabOrientation" default="topLeft">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="topLeft">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_topLeft_app"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="bottomLeft">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_bottomLeft_app"/>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="width" type="CSSLength" use="optional"/>
+		<xs:attribute name="height" type="CSSLength" use="optional"/>
+		<xs:attribute name="tabWidth" type="CSSFixedLength" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppDeckControlAttributes">
+		<xs:attribute name="width" type="CSSLength" use="optional"/>
+		<xs:attribute name="height" type="CSSLength" use="optional"/>
+		<xs:attribute name="slideDirection" use="optional">
+			<xs:annotation>
+				<xs:documentation>Controls the animation effect that occurs when the card gets drawn. Enumeration values are: topToBottom | rightToLeft | bottomToTop | leftToRight | autoVertical | autoHorizontal. The auto options will chose the slide direction based on the order of the card you are going to.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="topToBottom"/>
+					<xs:enumeration value="rightToLeft"/>
+					<xs:enumeration value="bottomToTop"/>
+					<xs:enumeration value="leftToRight"/>
+					<xs:enumeration value="autoVertical"/>
+					<xs:enumeration value="autoHorizontal"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppButtonBarAttributes">
+		<xs:attribute name="orientation" default="horizontal">
+			<xs:annotation>
+				<xs:documentation source="doc_att_orientation_app"/>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="horizontal">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_horizontal_app"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="vertical">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_vertical_app"/>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="buttonWidth" type="CSSFixedLength" use="optional"/>
+		<xs:attribute name="buttonGap" type="CSSFixedLength" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppRadioButtonGroupAttributes">
+		<xs:attribute name="orientation" default="horizontal">
+			<xs:annotation>
+				<xs:documentation source="doc_att_orientation_app"/>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="horizontal">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_horizontal_app"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="vertical">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_vertical_app"/>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppCheckboxGroupAttributes">
+		<xs:attribute name="orientation" default="horizontal">
+			<xs:annotation>
+				<xs:documentation source="doc_att_orientation_app"/>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="horizontal">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_horizontal_app"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="vertical">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_vertical_app"/>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppDropDownListAttributes">
+		<xs:attribute name="width" type="CSSFixedLength" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppSliderAttributes">
+		<xs:attribute name="animate" type="xs:boolean" default="false"/>
+		<xs:attribute name="orientation" default="horizontal">
+			<xs:annotation>
+				<xs:documentation source="doc_att_orientation_app"/>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="horizontal">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_horizontal_app"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="vertical">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_vertical_app"/>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="rangeType" default="none">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="min"/>
+					<xs:enumeration value="max"/>
+					<xs:enumeration value="range"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="labelColor" type="xs:string" default="black"/>
+		<xs:attribute name="tickType" default="values">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="noLabels"/>
+					<xs:enumeration value="percent"/>
+					<xs:enumeration value="values"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="tickLabelSkipInterval" type="xs:positiveInteger" use="optional"/>
+		<xs:attribute name="live" type="xs:boolean" default="false"/>
+		<xs:attribute name="trackLength" type="CSSFixedLength" default="300px"/>
+		<xs:attribute name="showTooltip" type="xs:boolean" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppDiscreteSliderAttributes">
+		<xs:attribute name="tickInterval" type="xs:positiveInteger" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppContinuousSliderAttributes">
+		<xs:attribute name="min" type="xs:decimal" default="0.0"/>
+		<xs:attribute name="max" type="xs:decimal" default="100.0"/>
+		<xs:attribute name="step" type="xs:decimal" default="1.0"/>
+		<xs:attribute name="tickInterval" type="xs:decimal" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppListBoxAttributes">
+		<xs:attribute name="multiSelect" type="xs:boolean" default="false"/>
+		<xs:attribute name="width" type="CSSFixedLength" use="required"/>
+		<xs:attribute name="height" type="CSSFixedLength" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppSetVariableValueAttributes">
+		<xs:attribute name="refAppVariable" type="xs:string" use="required"/>
+		<xs:attribute name="sourceType" use="optional">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="min"/>
+					<xs:enumeration value="max"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppConditionOperator">
+		<xs:attribute name="operator" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="in">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_in_operator"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="notIn"/>
+					<xs:enumeration value="greaterThan"/>
+					<xs:enumeration value="greaterThanEqual"/>
+					<xs:enumeration value="lessThan"/>
+					<xs:enumeration value="lessThanEqual"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppVariableDataTypes">
+		<xs:attribute name="dataType" default="string">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="string"/>
+					<xs:enumeration value="dateTime"/>
+					<xs:enumeration value="decimal"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppOrientationControlAttributes">
+		<xs:attribute name="displayForOrientation" default="both">
+			<xs:annotation>
+				<xs:documentation>Determines whether the element will be displayed when the mobile device is in portrait or landscape mode.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="both"/>
+					<xs:enumeration value="portrait"/>
+					<xs:enumeration value="landscape"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppChartPropertiesCommonAttributes">
+		<xs:attribute name="showHover" type="xs:boolean" default="true"/>
+		<xs:attribute name="showPointer" type="xs:boolean" default="false"/>
+		<xs:attribute name="clickable" type="xs:boolean" default="false"/>
+		<xs:attributeGroup ref="AppOrientationControlAttributes"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AppClickableRegionsAttributes">
+		<xs:attribute name="intersections" type="xs:boolean" default="true"/>
+		<xs:attribute name="ordinalAxisLabels" type="xs:boolean" default="false"/>
+		<xs:attribute name="legendLabels" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<!---->
+	<xs:simpleType name="CSSFixedLength" rspecExtension:validSample="0px">
+		<xs:annotation>
+			<xs:documentation>A valid CSS length definition</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]*[.]?[0-9]+(px|in|cm|mm|pt|pc|em|ex)?">
+				<xs:annotation>
+					<xs:documentation source="doc_enum_CSSLength"/>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	<!---->
+	<!--Control event handlers-->
+	<xs:element name="appOnSelectSetVariableValues">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+			<xs:documentation>When an item(s) is selected in a control, then the listed variables will have their values set to the data item value corresponding to the selected item(s) in the control.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="appSetVariableValueToDataItemValue">
+						<xs:annotation>
+							<xs:documentation source="rn_added_7.0"/>
+							<xs:documentation>Sets the variable to the value of the referenced data item</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:attributeGroup ref="AppSetVariableValueAttributes"/>
+							<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="appSetVariableValueToConstant">
+						<xs:annotation>
+							<xs:documentation source="rn_added_7.0"/>
+							<xs:documentation>Set variable to a constant value.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:all>
+								<xs:element ref="appVariableValue"/>
+							</xs:all>
+							<xs:attributeGroup ref="AppSetVariableValueAttributes"/>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="appClearVariable">
+						<xs:annotation>
+							<xs:documentation source="rn_added_7.0"/>
+							<xs:documentation>Clear the value being stored for variable</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:attributeGroup ref="AppSetVariableValueAttributes"/>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="appSetVariableValueToContinuousValue">
+						<xs:complexType>
+							<xs:attributeGroup ref="AppSetVariableValueAttributes"/>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!---->
+	<!--Shared elements-->
+	<xs:element name="appListItemDefinition">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="appListItemLabel" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appListItemIcon" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appListItemValues" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="appListItemValue" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation source="rn_added_7.0"/>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appNoValueListItem">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+			<xs:documentation>Represents a default list item that results in no value for all data items. By default, it will be the first item in the list.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="appNoValueListItemLabel" type="LocalizedTextType">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+				</xs:element>
+			</xs:all>
+			<xs:attribute name="lastItemInList" type="xs:boolean" default="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appStaticDataTable">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+			<xs:documentation>Represents the rows of values that will be associated with each item in a static control (e.g. list item in a list box). The order of the values in a row corresponds to the order of data items in the control.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appStaticDataItems">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+						<xs:documentation>Represents the data items that will have values for each row (e.g. list item) of the control. The order of the data items represents the order they will appear in the data rows.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="appStaticDataRows">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="appStaticDataRow" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation source="rn_added_7.0"/>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="appStaticDataItemValue" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation source="rn_added_7.0"/>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="LocalizedTextType"/>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appStaticDataItems">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+			<xs:documentation>Represents the data items that will have values for each row (e.g. list item) of the control.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="appStaticDataItem" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:unique name="appStaticDataItemUniqueness">
+			<xs:selector xpath="*"/>
+			<xs:field xpath="@name"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="appControlEnabled">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+			<xs:documentation>Determines the enabled state of a control.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="appCondition">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appVariableValue">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="TextType"/>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appButtonDefinition">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="appButtonLabel" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appButtonIcon" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appButtonValues" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="appButtonValue" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation source="rn_added_7.0"/>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appRadioButtonDefinition">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="appRadioButtonLabel" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appRadioButtonIcon" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appRadioButtonValues" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="appRadioButtonValue" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation source="rn_added_7.0"/>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appCheckboxDefinition">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="appCheckboxLabel" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appCheckboxIcon" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appCheckboxValues" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="appCheckboxValue" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation source="rn_added_7.0"/>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appTabDefinition">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="appTabLabel" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appTabIcon" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appTabValues" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="appTabValue" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation source="rn_added_7.0"/>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appTabCard">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+			<xs:documentation>Represents the card/panel portion of a tab in a tab control.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="contents"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appDataSource">
+		<xs:annotation>
+			<xs:documentation>A static source of data for the control. The data is described in a table and row structure similar to a result set that would have been returned for a query.</xs:documentation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="appStaticDataTable"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appCardDefinition">
+		<xs:annotation>
+			<xs:documentation source="rn_added_7.0"/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="appCardLabel" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appCardValues" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="appCardValue" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation source="rn_added_7.0"/>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appIteratorDefinition">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="appIteratorLabel" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appIteratorIcon" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appIteratorValues" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="appIteratorValue" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appIteratorButton">
+		<xs:complexType/>
+	</xs:element>
+	<xs:element name="appIteratorSiblingLabel">
+		<xs:complexType>
+			<xs:attribute name="width" type="CSSLength" use="optional"/>
+			<xs:attribute name="textColor" type="ColorType"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appIteratorUI">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="appIteratorFirst" minOccurs="0">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="appIteratorButton"/>
+							<xs:element ref="appIteratorSiblingLabel"/>
+							<xs:element ref="appIteratorSiblingLabelButton"/>
+							<xs:element ref="appIteratorText"/>
+							<xs:element ref="appIteratorTextButton"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appIteratorLast" minOccurs="0">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="appIteratorButton"/>
+							<xs:element ref="appIteratorSiblingLabel"/>
+							<xs:element ref="appIteratorSiblingLabelButton"/>
+							<xs:element ref="appIteratorText"/>
+							<xs:element ref="appIteratorTextButton"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appIteratorPrevious" minOccurs="0">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="appIteratorButton"/>
+							<xs:element ref="appIteratorSiblingLabel"/>
+							<xs:element ref="appIteratorSiblingLabelButton"/>
+							<xs:element ref="appIteratorText"/>
+							<xs:element ref="appIteratorTextButton"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appIteratorNext" minOccurs="0">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="appIteratorButton"/>
+							<xs:element ref="appIteratorSiblingLabel"/>
+							<xs:element ref="appIteratorSiblingLabelButton"/>
+							<xs:element ref="appIteratorText"/>
+							<xs:element ref="appIteratorTextButton"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appIteratorLabelArea" minOccurs="0">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="appIteratorDropDownList">
+								<xs:complexType>
+									<xs:attribute name="showIcon" type="xs:boolean" default="false"/>
+									<xs:attribute name="width" type="CSSFixedLength" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="appIteratorLabelText">
+								<xs:complexType>
+									<xs:attribute name="textColor" type="ColorType"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="appDotsPageIndicator">
+								<xs:complexType>
+									<xs:attribute name="dotColor" type="ColorType" default="gray"/>
+									<xs:attribute name="activeDotColor" type="ColorType" default="white"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="appIteratorNumber">
+								<xs:complexType>
+									<xs:attribute name="textColor" type="ColorType"/>
+									<xs:attribute name="beforeText" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation source="rn_added_4.0"/>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="verticalType" default="number">
+										<xs:annotation>
+											<xs:documentation source="rn_added_4.0"/>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="number">
+													<xs:annotation>
+														<xs:documentation source="doc_enum_number_verticalType"/>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="lowerCaseRoman"/>
+												<xs:enumeration value="upperCaseRoman"/>
+												<xs:enumeration value="range"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="verticalRangeSeparator" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation source="rn_added_4.0"/>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="afterText" type="xs:string" use="optional">
+										<xs:annotation>
+											<xs:documentation source="rn_added_4.0"/>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appIteratorText">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="LocalizedTextType">
+					<xs:attribute name="width" type="CSSLength" use="optional"/>
+					<xs:attribute name="textColor" type="ColorType"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appIteratorSiblingLabelButton">
+		<xs:complexType>
+			<xs:attribute name="width" type="CSSLength" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appIteratorTextButton">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="LocalizedTextType">
+					<xs:attribute name="width" type="CSSLength" use="optional"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appSliderDefinition">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="appSliderLabel" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appSliderValues" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="appSliderValue" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appSliderTrackValuesStyle">
+		<xs:annotation>
+			<xs:documentation>Only supports dataFormat</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="style"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appRepeaterTableCellDefinition">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="appRepeaterTableCellLabel" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appRepeaterTableCellValues" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="appRepeaterTableCellValue" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="appTextStyle">
+		<xs:annotation>
+			<xs:documentation>Represents text styling within the control.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,126 @@
+/*
+Licensed Materials - Property of IBM
+
+IBM Cognos Products: pps
+
+(C) Copyright IBM Corp. 2005, 2010
+
+US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+
+.mainBanner {
+	width:100%;
+	min-width: 838px;
+	height:35px;
+	overflow: hidden;
+	background: url('images/banner-background.png') repeat-x 0 0;
+}
+
+.mainHeader1
+{
+	background: url('images/banner-swoosh.png')  no-repeat;
+	background-position: 220px 0;
+	padding-left:18px;
+	height:35px;
+	max-height:35px;
+	white-space:nowrap;
+}
+.mainHeader1Middle
+{
+	width:100%;
+}
+.bannerOptionsButtonNormal
+{
+	padding: 1px;
+	margin:2px;
+	cursor:pointer;
+}
+.bannerOptionsButtonOver 
+{
+	border: #fff 1px solid; 
+	margin:1px;
+	cursor:pointer;
+}
+.bannerDivider 
+{
+	background-image: url(../shared/images/tool_sep_dot_line_banner.gif);
+	background-position: top left;
+	background-repeat: no-repeat;	 
+	font-size: 0px; 
+	width: 1px;
+	height:23px;
+}
+.bannerOptions
+{
+	font-size: 70%; 
+	color: #fff;
+	text-decoration: underline;
+	cursor:pointer;
+}
+.headerTitle 
+{
+	color:#fff;
+	font-family:Helvetica, Verdana, Tahoma, Arial, sans-serif;
+	font-size:0.95em;
+	font-weight:normal;
+	vertical-align: middle;
+ 	padding-top:2px;
+	white-space:nowrap;
+}
+.userNameContainer 
+{
+	color:#fff;
+	font-family:Verdana, Tahoma, Arial, sans-serif;
+	font-size:.75em;
+	text-decoration:none;		
+	padding-right: 8px;
+	font-weight: bold; 
+	white-space:nowrap;
+}
+
+.homeContainer 
+{
+	padding-left: 5px;
+}
+
+.returnContainer 
+{
+	padding-left: 5px;
+}
+
+.helpContainer 
+{
+	padding-left: 3px;
+	padding-right: 5px;
+}
+
+.dividerContainer 
+{
+	padding-left: 2px;
+}
+
+.logoContainer
+{
+	padding-left: 8px;
+	padding-right:8px;
+}
+
+.authOptionContainer 
+{ 
+	color:#fff;
+	font-family:Verdana, Tahoma, Arial, sans-serif;
+	font-size:.75em;
+	text-decoration:none;	
+	white-space: nowrap;
+}
+
+.aboutContainer
+{
+	color:#fff;
+	font-family:Verdana, Tahoma, Arial, sans-serif;
+	font-size:.75em;
+	text-decoration:none;		
+	padding-left: 4px;
+	padding-bottom: 4px;
+}
+

@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2017
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5_base.xsd"/>
+	<xs:include schemaLocation="V5_style.xsd"/>
+	<xs:element name="conditionalRender">
+		<xs:annotation>
+			<xs:documentation>If this element is defined the n the layout element containing it will be conditionally rendered based on the evaluation of the variable referenced. If the variable is of type boolean, then the renderFor is not required.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="renderFor" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>The layout element will be rendered if the variable evaulates to this value.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attributeGroup ref="ConditionalPartAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attributeGroup ref="ConditionalOwnerAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dataSource" type="DataSourceType">
+		<xs:annotation>
+			<xs:documentation>Defines a data source for a layout element. The data may be obtained from either a static value, the result of a query data item or the result of evaluating a layout expression.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="conditionalDataSources">
+		<xs:annotation>
+			<xs:documentation>Contains a list of conditional data sources. When rendering, the variable pointed to by refVariable will be eveluated and the first conditionalDataSource whose refVariableValue matches the value of the expression will be used. If no match is found, dataSource of the parent element will be applied. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="conditionalDataSource" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="DataSourceType">
+								<xs:attributeGroup ref="ConditionalPartAttributes"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attributeGroup ref="ConditionalOwnerAttributes"/>
+		</xs:complexType>
+		<xs:unique name="dataSourceCases">
+			<xs:selector xpath="*"/>
+			<xs:field xpath="@refVariableValue"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="reportExpression">
+		<xs:annotation>
+			<xs:documentation>An expression that is evaluated by the rendering engine at the current rendering context.
+
+Query data item references can be either qualified or un-qualified (e.g. [MasterQuery].[Column1] or [Column1]).
+
+Only un-qualified references are put into the result set definition.
+
+</xs:documentation>
+			<xs:documentation source="ebnf/EBNF_CRXExpressionGrammar.xml#CRXExpression">Allowable Expression Syntax in EBNF</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="ExpressionType"/>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="reportCondition" type="ExpressionType">
+		<xs:annotation>
+			<xs:documentation>Report Expression that evaluates to true or false.  Used in conditional styles and other similar elements.</xs:documentation>
+			<xs:documentation>An boolean expression that is evaluated by the rendering engine at the current rendering context.
+
+Query data item references can be either qualified or un-qualified (e.g. [MasterQuery].[Column1] or [Column1]).
+
+Only un-qualified references are put into the result set definition.
+
+</xs:documentation>
+			<xs:documentation source="ebnf/EBNF_CRXExpressionGrammar.xml#CRXExpression">Allowable Expression Syntax in EBNF</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="defaultMeasure">
+		<xs:annotation>
+			<xs:documentation>This element identifies the default measure to be used for a crosstab or chart. If the measures of the crosstab or chart cannot be determined by what is being rendered on the edges, then the default measure will be rendered.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="SolveOrderAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="reportDrills">
+		<xs:annotation>
+			<xs:documentation>Defines a list of drills.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="reportDrill" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Represents a drill action that is available for this layout element.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="drillTarget" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Optionally identify the report  that is the destination of the drill. If not specified, then the drill is within this report.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="reportPath"/>
+										<xs:element name="drillLinks" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="drillLink" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:all>
+																<xs:element name="drillSourceContext" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>The source context is optional to indicate that no value is being provided for the target parameter. If the target parameter is optional then no prompting should occur.</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:choice>
+																			<xs:element ref="dataItemContext"/>
+																			<xs:element ref="parameterContext"/>
+																		</xs:choice>
+																		<xs:attribute name="propertyToPass" use="optional">
+																			<xs:annotation>
+																				<xs:documentation>When an OLAP entity is sourced as a parameter value for a drill through, the mapping of values to be passed to the target is rigid and arbitrary. Particularly when drilling from OLAP to relational, the mapping of a member to a column value may be unnecessarily restrictive, resultilng in greatly increased effort and complexity to work around the limitations. The "business key" attribute is used exclusively for drill through value mapping, which may not necessarily be the desired linkage for drill through. In order to support generalized drill through, particularly where the target parameter is used to perform linkages beyond the established rules for model conformance, it becomes necessary for the author to determine the most appropriate source member role. The mechanisms for establishing drill through parameter value associations needs to be extended in order to allow the selection of alternate attributes, besides the business key. Similarly, authoring of package based drill through objects needs to include the ability to select an arbitrary intrinsic attribute of an OLAP entity to be mapped to the more basic datatypes which may be encountered as target parameters. 
+</xs:documentation>
+																			</xs:annotation>
+																			<xs:simpleType>
+																				<xs:restriction base="xs:string">
+																					<xs:enumeration value="memberUniqueName"/>
+																					<xs:enumeration value="memberCaption"/>
+																					<xs:enumeration value="parentUniqueName"/>
+																					<xs:enumeration value="levelUniqueName"/>
+																					<xs:enumeration value="hierarchyUniqueName"/>
+																					<xs:enumeration value="dimensionUniqueName"/>
+																					<xs:enumeration value="businessKey"/>
+																				</xs:restriction>
+																			</xs:simpleType>
+																		</xs:attribute>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="drillTargetContext">
+																	<xs:complexType>
+																		<xs:choice>
+																			<xs:element ref="parameterContext"/>
+																		</xs:choice>
+																	</xs:complexType>
+																</xs:element>
+															</xs:all>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="showInNewWindow" type="xs:boolean" default="false">
+										<xs:annotation>
+											<xs:documentation>Indicates whether or not the report is launched in a new window.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="method" use="optional">
+										<xs:annotation>
+											<xs:documentation>Indicates with what method the target report is to be accessed:
+
+- no method specified - the drill through target is launched according to the default action in the portal 
+- method="edit" - the drill through target is launched with the editor appropriate for the object type in the object model 
+- method="execute" - the drill through target is launched (and executed) in the report viewer 
+- method="view" - the report output for the drill through target is viewed in the report viewer 
+</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="edit"/>
+												<xs:enumeration value="execute"/>
+												<xs:enumeration value="view"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="outputFormat" use="optional">
+										<xs:annotation>
+											<xs:documentation>Specifies what format to produce or view.  If missing, the format of the report from which the drill originates is used.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="CSV"/>
+												<xs:enumeration value="HTML"/>
+												<xs:enumeration value="HTMLFragment"/>
+												<xs:enumeration value="PDF"/>
+												<xs:enumeration value="XHTML"/>
+												<xs:enumeration value="XLWA"/>
+												<xs:enumeration value="spreadsheetML"/>
+												<xs:enumeration value="xlsxData"/>
+												<xs:enumeration value="XML"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="prompt" default="no">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="yes"/>
+												<xs:enumeration value="no">
+													<xs:annotation>
+														<xs:documentation source="doc_att_prompt_no"/>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="target"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="sendFilterContext" type="xs:boolean" default="false">
+										<xs:annotation>
+											<xs:documentation>If true then the dynamic filtering context is passed to the target report in a drill through.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="bookmarkRef" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Defines which bookmark to jump to.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="dataSource"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="drillLabel">
+								<xs:annotation>
+									<xs:documentation>Label which will appear if the  user must choose between different report drills.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="dataSource"/>
+										<xs:element ref="conditionalDataSources" minOccurs="0"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="name" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Uniquely names the report drill in this report. </xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="masterDetailLinks">
+		<xs:annotation>
+			<xs:documentation>Defines the master/detail linkages for the detail layout element that this is contained in. If there are no masterDetailLink defined, then the detail query is run unfiltered.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="masterDetailLink" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Links a member set or parameter of the master query to a member set or parameter in the detail query.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="masterContext">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element ref="dataItemContext"/>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="detailContext">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element ref="dataItemContext"/>
+										<xs:element ref="parameterContext"/>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dataItemContext">
+		<xs:complexType>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="parameterContext">
+		<xs:complexType>
+			<xs:attribute name="parameter" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="propertyList">
+		<xs:annotation>
+			<xs:documentation>Identifies dataItems that will behave as properties of whichever layout element contains this list. A dataItem listed here will have data available at rendering time at this place in the layout context.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="propertyItem" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="namedConditionalStyles">
+		<xs:annotation>
+			<xs:documentation>A list of named conditional styles.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="advancedConditionalStyle">
+						<xs:annotation>
+							<xs:documentation>Each of the style cases will be evaluated in the order they occur and the first one whose style condition evaluates to true will be applied. If none of the cases evaluates to true, then the style default will be used.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:all>
+								<xs:element name="styleCases" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="styleCase" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:all>
+														<xs:element ref="reportCondition"/>
+														<xs:element ref="style" minOccurs="0"/>
+													</xs:all>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element ref="styleDefault" minOccurs="0"/>
+							</xs:all>
+							<xs:attribute name="name" type="xs:string" use="required"/>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="rangeConditionalStyle">
+						<xs:annotation>
+							<xs:documentation>Picks a style based on a range. The styleRanges must be ordered from largest to smallest. They will be evaluated in order to determine if the value is greater than (or equal to if inclusive) the current value. If true, then the style will be applied. If none of the styleRanges are applied, and the styleRangeRemaining isn't applied, then the styleDefault will be applied. The styleDefault will be applied for any missing values or any values where the conditionalDataItem isn't applicable.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:all>
+								<xs:element ref="conditionalDataItem"/>
+								<xs:element name="styleRanges" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="styleRange" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation>The value attribute must be in the following form for the different datatypes:
+
+date : YYYY-MM-DD
+datetime : YYYY-MM-DD HH:MM:SS.MMM
+time : HH:MM:SS.MMM
+interval : D HH:MM:SS.MMM ( this can also be negative).
+</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:all>
+														<xs:element ref="style" minOccurs="0"/>
+													</xs:all>
+													<xs:attribute name="value" type="xs:string" use="required">
+														<xs:annotation>
+															<xs:documentation source="doc_att_value_styleRange"/>
+														</xs:annotation>
+													</xs:attribute>
+													<xs:attribute name="inclusive" type="xs:boolean" default="false"/>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="styleRangeRemaining" minOccurs="0">
+									<xs:complexType>
+										<xs:all>
+											<xs:element ref="style" minOccurs="0"/>
+										</xs:all>
+									</xs:complexType>
+								</xs:element>
+								<xs:element ref="styleDefault" minOccurs="0"/>
+							</xs:all>
+							<xs:attribute name="name" type="xs:string" use="required"/>
+							<xs:attribute name="type" use="required">
+								<xs:annotation>
+									<xs:documentation source="doc_att_rangeConditionalStyle_type"/>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:NMTOKEN">
+										<xs:enumeration value="number"/>
+										<xs:enumeration value="date">
+											<xs:annotation>
+												<xs:documentation source="doc_enum_date_type_rangeConditionalStyle"/>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="dateTime">
+											<xs:annotation>
+												<xs:documentation source="doc_enum_dateTime_type_rangeConditionalStyle"/>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="time">
+											<xs:annotation>
+												<xs:documentation source="doc_enum_time_type_rangeConditionalStyle"/>
+											</xs:annotation>
+										</xs:enumeration>
+										<xs:enumeration value="interval">
+											<xs:annotation>
+												<xs:documentation source="doc_enum_interval_type_rangeConditionalStyle"/>
+											</xs:annotation>
+										</xs:enumeration>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="stringsConditionalStyle">
+						<xs:annotation>
+							<xs:documentation>Picks a style based on equality with sets of values or defined ranges of values. The styleValueConditions will be evaluated in order to determine if the value is covered by them. If true, then the style will be applied. If none of them are applied, then the styleDefault will be applied.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:all>
+								<xs:element ref="conditionalDataItem"/>
+								<xs:element name="stringConditions" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:choice maxOccurs="unbounded">
+												<xs:element name="stringValueList">
+													<xs:complexType>
+														<xs:all>
+															<xs:element name="styleValues">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element ref="styleValue" maxOccurs="unbounded"/>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+															<xs:element ref="style" minOccurs="0"/>
+														</xs:all>
+														<xs:attribute name="selectedValues" type="xs:boolean" default="true">
+															<xs:annotation>
+																<xs:documentation>rn_internal_4.0</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="stringCriteria">
+													<xs:complexType>
+														<xs:all>
+															<xs:element ref="styleValue"/>
+															<xs:element ref="style" minOccurs="0"/>
+														</xs:all>
+														<xs:attribute name="operator" use="required">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="contains"/>
+																	<xs:enumeration value="like"/>
+																	<xs:enumeration value="beginsWith"/>
+																	<xs:enumeration value="endsWith"/>
+																	<xs:enumeration value="notContains"/>
+																	<xs:enumeration value="notLike"/>
+																	<xs:enumeration value="notEndsWith"/>
+																	<xs:enumeration value="notBeginsWith"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:complexType>
+												</xs:element>
+											</xs:choice>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element ref="styleDefault" minOccurs="0"/>
+							</xs:all>
+							<xs:attribute name="name" type="xs:string" use="required"/>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="conditionalStyleRefs">
+		<xs:annotation>
+			<xs:documentation>List of references to named conditional styles.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="conditionalStyleRef" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="refConditionalStyle" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="conditionalDataItem">
+		<xs:annotation>
+			<xs:documentation>Reference to a data item and query from a conditional style or conditional palette.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="styleDefault">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="style" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="containerDropShadow">
+		<xs:annotation>
+			<xs:documentation>Drop shadow that is rendered around containers.  The offset attributes are measured in pixels and can be negative.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="shadowColor" type="ColorType" default="gray"/>
+			<xs:attribute name="offsetX" type="xs:int" default="5"/>
+			<xs:attribute name="offsetY" type="xs:int" default="5"/>
+			<xs:attributeGroup ref="TransparencyAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pageGradient">
+		<xs:annotation>
+			<xs:documentation>Gradient that can be applied to the entire page.  It will resize when the browser is resized, unlike the generatedBackground gradient.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="direction" default="down">
+				<xs:annotation>
+					<xs:documentation source="doc_att_direction_chart"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="up">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_direction_up"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="down">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_direction_down"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="left">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_direction_left"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="right">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_direction_right"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fromColor" type="ColorType" default="white"/>
+			<xs:attribute name="toColor" type="ColorType" default="gray"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listSuppress">
+		<xs:annotation>
+			<xs:documentation>Describes the suppress applied to the list element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attributeGroup ref="SuppressAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="crosstabSuppress">
+		<xs:annotation>
+			<xs:documentation>Describes the suppress applied to the crosstab element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="type" default="rowsAndColumns">
+				<xs:annotation>
+					<xs:documentation source="doc_att_crosstabSuppress_type"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="rows">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_crosstabSuppress_rows"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="columns">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_crosstabSuppress_columns"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="rowsAndColumns">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_crosstabSuppress_rowsAndColumns"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="SuppressAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartSuppress">
+		<xs:annotation>
+			<xs:documentation>Describes the suppress applied to the chart element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="type" default="categoriesAndSeries">
+				<xs:annotation>
+					<xs:documentation source="doc_att_chartSuppress_type"/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="categories"/>
+						<xs:enumeration value="series">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_chartSuppress_series"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="categoriesAndSeries"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="SuppressAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="DataSourceType">
+		<xs:choice>
+			<xs:element name="staticValue">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="preserve"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dataItemValue">
+				<xs:annotation>
+					<xs:documentation>Represents the value of the specificied data item that is available in the current layout context.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="reportExpression"/>
+			<xs:element name="dataItemLabel">
+				<xs:annotation>
+					<xs:documentation>Represent the label of the data item specifiied. The label is available in the result set.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="memberCaption">
+				<xs:annotation>
+					<xs:documentation>Represents the caption of the current member context being rendered in the layout. This element is only allowed within a crosstabs or charts where edge members are rendered.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="cellValue">
+				<xs:annotation>
+					<xs:documentation>Represents the value of the current cell context being rendered in the layout. This element is only for crosstabs or charts where the cell values are rendered.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="appDataItemValue">
+				<xs:annotation>
+					<xs:documentation>Represents the value of the specificied static data item that is available in the current layout context.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="GenericLayoutStyleType">
+		<xs:all>
+			<xs:element ref="style" minOccurs="0"/>
+			<xs:element ref="conditionalStyles" minOccurs="0"/>
+			<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+			<xs:element ref="XMLAttributes" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:attributeGroup name="SuppressAttributes">
+		<xs:attribute name="nulls" type="xs:boolean" default="true"/>
+		<xs:attribute name="zero" type="xs:boolean" default="true"/>
+		<xs:attribute name="divByZero" type="xs:boolean" default="true"/>
+		<xs:attribute name="overflow" type="xs:boolean" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="TargetAttribute">
+		<xs:attribute name="target" use="optional">
+			<xs:annotation>
+				<xs:documentation>Specifies the target attribute of the hyperlink.  For buttons, the code for the onClick tries to simulate what the target attribute of an anchor tag would do.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="_blank"/>
+					<xs:enumeration value="_top"/>
+					<xs:enumeration value="_parent"/>
+					<xs:enumeration value="_self"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="NameLayoutAttributes">
+		<xs:attribute name="name" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Any layout element may be given a name. The name must be unique for all layout elements in the report. It is primarily allow a layout element to be referenced as a component (layoutComponentRef).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="CommonLayoutAttributes">
+		<xs:attributeGroup ref="NameLayoutAttributes"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="KeepWithAttributes">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:attribute name="keepWithHeader" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>Renders all headers on same page as first N detail rows, where 'N' is the given numeric value. If not specified then a page break may occur between headers and their associated detail rows. </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="keepWithFooter" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>Renders all footers on same page as last N detail rows, where 'N' is the given numeric value. If not specified then a page break may occur between footers and their associated detail rows.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="KeepWithNextPrevAttributes">
+		<xs:attribute name="keepWithNext" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>Renders this element with the N next elements on the edge, where 'N' is the given numeric value. If not specified then a page break may occur between this element and the next element on the edge. </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="keepWithPrevious" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>Renders this element with the N previous elements on the edge, where 'N' is the given numeric value. If not specified then a page break may occur between this element and the previous element on the edge. </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ResetPageAttributes">
+		<xs:attribute name="resetPageNumber" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>If this attribute is specified, then whenever this layout element is rendered, the current page number for the rendering will be reset to the indicated value.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="resetPageCount" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>If this attribute is specified, then whenever this layout element is rendered, the current page count for the rendering will be reset to the indicated value.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="RepeatEveryPageAttributes">
+		<xs:attribute name="repeatEveryPage" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>Controls repetitive rendering of this object on each page. When the frame contains more columns than can be rendered on a given page, an overflow (or "fault right") occurs. When the frame contains more rows than can be rendered on a given page, an page break (or "fault down") occurs. When 'true', this object will be rendered on the next or overflow page. </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="GlobalQuerySingletonAttributes">
+		<xs:annotation>
+			<xs:documentation> Any element that has these attributes can act as a global singleton. All elements in the layout that reference same query and have singleton="true" would share the same result set, the row cursor would never be moved pass row 1. All elements in the layout (not including frames) that reference the same query and have singleton="false" would use the resultset of the closest parent frame that references that query, the row context in this case is clear. If no parent frame can be found, then no value will be rendered.
+</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="refQuery" type="xs:string" use="optional"/>
+		<xs:attribute name="singleton" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DescriptionLayoutAttributes">
+		<xs:attribute name="description" type="xs:string" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PushToBottom">
+		<xs:annotation>
+			<xs:documentation>This attribute indicates that the footer element is to be pushed to the bottom of the rendering. The last instance of the footer element rendered on this page will be the one pushed to the bottom.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="pushToBottom" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="SolveOrderAttributes">
+		<xs:attribute name="solveOrder" type="xs:integer" use="optional">
+			<xs:annotation>
+				<xs:documentation source="doc_att_solveOrder_measures"/>
+				<xs:documentation>[DEPRECATED] The solveOrder attribute should now be specified on the dataItem.
+
+Specifies the solve order for this calculation. If no solve order is specified then the solve order will be follow the default rules that the server uses to determine solve order.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="HorizontalPaginationAttributes">
+		<xs:attribute name="horizontalPagination" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>Specifies whether this element will do horizontal pagination.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="NoPageWhenNoDataAttributes">
+		<xs:annotation>
+			<xs:documentation>If this attribute is set to true then the page will be rendered when no data contents are generated</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="renderPageWhenEmpty" type="xs:boolean" default="true"/>
+	</xs:attributeGroup>
+	<xs:element name="styleValue" type="TextType"/>
+	<xs:element name="alternateText" type="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>Provides a text alternative for the image based element. This is primarily used to provide accessibility in a report.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

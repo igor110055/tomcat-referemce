@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+    ">
+
+
+   <!--
+
+   Default LinkBuilderFactory Setup
+
+   -->
+
+   <util:list id="rclDefaultLinkBuilderFactories">
+      <bean class="com.focus.rcl.links.DefaultAdfServicesLinkBuilderFactory"/>
+   </util:list>
+
+   <bean id="rclAllLinkBuilderFactories" class="com.focus.spring.CompositeListFactoryBean">
+      <property name="sourceList">
+         <list>
+            <ref bean="rclDefaultLinkBuilderFactories"/>
+            <!--
+            this bean is defined in applicationContext-rclCustomerStubs.xml (populate there if you
+            want to add additional link builder factories
+            -->
+            <ref bean="rclAdditionalLinkBuilderFactories"/>
+         </list>
+      </property>
+   </bean>
+
+   <bean id="defaultLinkBuilderFactory" class="com.focus.rcl.core.DefaultLinkBuilderFactory">
+      <property name="delegates" ref="rclAllLinkBuilderFactories"/>
+   </bean>
+
+   <!--
+    Default rel -> path mappings.   Downstream projects can populate the rclAdditionalRelToPathMappings
+    bean which is in applicationContext-rclCustomerStubs.xml to add additional mappings (or override
+    entries here)
+
+    todo: I considred putting this in the weblayer appContext, but it creates some
+    short term issues for the provisioner if we do.  Leaving it here for now with the
+    thought that it may move to web
+   -->
+   <util:map id="rclDefaultRelToPathMappings" map-class="java.util.HashMap">
+      <entry key="blank" value="/secure/actions/blank.do"/>
+      <entry key="errorPage" value="/actions/error.do"/>
+      <entry key="redirect" value="/secure/actions/redirect.do"/>
+
+      <entry key="executeImmediate" value="/secure/actions/executeImmediate.do"/>
+      <entry key="launchCognosViewer" value="/secure/actions/ext/launchCognosViewer.do"/>
+   </util:map>
+
+
+   <bean id="rclAllRelToPathMappings" class="com.focus.spring.CompositeMapFactoryBean">
+      <property name="sourceList">
+         <list>
+            <ref bean="rclDefaultRelToPathMappings"/>
+            <!--
+            this bean is defined in applicationContext-rclCustomerStubs.xml (populate there if you
+            want to add additional rel -> path mappings
+            -->
+            <ref bean="rclAdditionalRelToPathMappings"/>
+         </list>
+      </property>
+   </bean>
+
+
+
+    <bean id="rclStandardHbmFiles" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <value>CustomTypeMappings.hbm.xml</value>
+                <value>com/focus/rcl/core/AbstractContentNode.hbm.xml</value>
+                <value>com/focus/rcl/core/announcement/AbstractRclMessage.hbm.xml</value>
+                <value>com/focus/rcl/core/CustomPrompt.hbm.xml</value>
+                <value>com/focus/rcl/core/CustomPromptAssociation.hbm.xml</value>
+                <value>com/focus/rcl/core/CompositeAssociation.hbm.xml</value>
+                <value>com/focus/rcl/core/CustomPromptParameterMapping.hbm.xml</value>
+                <value>com/focus/rcl/core/AnonymousReport.hbm.xml</value>
+                <value>com/focus/rcl/core/ReportParameterInfo.hbm.xml</value>
+                <value>com/focus/rcl/core/ReportColumnDefinition.hbm.xml</value>
+                <value>com/focus/rcl/core/PermittedRole.hbm.xml</value>
+                <value>com/focus/rcl/core/CustomProperty.hbm.xml</value>
+                <value>com/focus/rcl/core/EmailDomain.hbm.xml</value>
+                <value>com/focus/rcl/core/RclConfigProperty.hbm.xml</value>
+                <value>com/focus/rcl/core/Incident.hbm.xml</value>
+                <value>com/focus/rcl/core/Dashboard.hbm.xml</value>
+                <value>com/focus/rcl/core/AbstractDashboardModule.hbm.xml</value>
+                <value>com/focus/rcl/core/DashboardPage.hbm.xml</value>
+                <value>com/focus/rcl/core/DashboardTemplate.hbm.xml</value>
+                <value>com/focus/rcl/core/cognos/config/CognosConfiguration.hbm.xml</value>
+                <value>com/focus/rcl/core/cognos/config/CognosInstance.hbm.xml</value>
+                <value>com/focus/rcl/core/DataSourceVersion.hbm.xml</value>
+                <value>com/focus/rcl/stats/RerStatistic.hbm.xml</value>
+                <value>com/focus/rcl/metadata/QueryItemMetaData.hbm.xml</value>
+                <value>com/focus/rcl/security/RclUser.hbm.xml</value>
+                <value>com/focus/rcl/security/RclUserProperty.hbm.xml</value>
+                <value>com/focus/rcl/security/Organization.hbm.xml</value>
+                <value>com/focus/rcl/security/RclCapability.hbm.xml</value>
+                <value>com/focus/rcl/security/OrganizationProperty.hbm.xml</value>
+                <value>com/focus/rcl/reportservice/ReportExecutionRequest.hbm.xml</value>
+                <value>com/focus/rcl/reportservice/ReportInstance.hbm.xml</value>
+                <value>com/focus/rcl/reportservice/ReportOutput.hbm.xml</value>
+                <value>com/focus/rcl/reportservice/BurstGroup.hbm.xml</value>
+                <value>com/focus/rcl/reportservice/ReportInstanceSummary.hbm.xml</value>
+                <value>com/focus/rcl/reportservice/ReportExecutionRequestSummary.hbm.xml</value>
+                <value>com/focus/rcl/reportservice/ReportExecutionRequestError.hbm.xml</value>
+                <value>com/focus/rcl/reportservice/ReportFragment.hbm.xml</value>
+                <value>com/focus/rcl/reportservice/AbstractReportExecutionRequestContentNode.hbm.xml</value>
+                <value>com/focus/rcl/reportservice/ReportFragmentAssociation.hbm.xml</value>
+                <value>com/focus/rcl/scheduler/Schedule.hbm.xml</value>
+                <value>com/focus/rcl/scheduler/ScheduleExecution.hbm.xml</value>
+                <value>com/focus/rcl/scheduler/SystemJobExecution.hbm.xml</value>
+                <value>com/focus/rcl/scheduler/ScheduleAssociation.hbm.xml</value>
+                <value>com/focus/rcl/metadata/ReportExecutionStatistic.hbm.xml</value>
+                <value>com/focus/rcl/stats/UserSessionStatistic.hbm.xml</value>
+
+                <value>com/focus/rcl/core/MLString.hbm.xml</value>
+                <value>com/focus/rcl/core/MLStringValue.hbm.xml</value>
+                <value>com/focus/rcl/core/RclLocale.hbm.xml</value>
+
+                <value>com/focus/rcl/core/SampleParameterValue.hbm.xml</value>
+
+                <value>com/focus/rcl/core/adhoc/WizardReportFilter.hbm.xml</value>
+
+                <value>com/focus/rcl/delivery/ReportOutputDestination.hbm.xml</value>
+                <value>com/focus/rcl/delivery/ReportOutputDestinationProperty.hbm.xml</value>
+
+                <value>com/focus/rcl/core/ReportMetaData.hbm.xml</value>
+                <value>com/focus/rcl/core/ReportQueryMetaData.hbm.xml</value>
+                <value>com/focus/rcl/core/ReportDataItemMetaData.hbm.xml</value>
+
+                <value>com/focus/rcl/core/RerProcessorChain.hbm.xml</value>
+                <value>com/focus/rcl/core/RerProcessorChainLink.hbm.xml</value>
+
+                <value>com/focus/rcl/ci/CiIntegrationStatus.hbm.xml</value>
+                <value>com/focus/rcl/transformation/ConcatenationRequest.hbm.xml</value>
+                <value>com/focus/rcl/transformation/RequestOutputData.hbm.xml</value>
+
+                <value>com/focus/rcl/admin/AuditEvent.hbm.xml</value>
+                <value>com/focus/rcl/admin/AuditEventProperty.hbm.xml</value>
+                <value>com/motio/adf/core/artifact/AbstractArtifact.hbm.xml</value>
+
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="rclAllHbmFiles" class="com.focus.spring.CompositeListFactoryBean">
+        <property name="sourceList">
+            <list>
+                <ref bean="rclStandardHbmFiles"/>
+                <!-- this is defined in applicationContext-rclCustomerStubs.xml -->
+                <ref bean="rclAdditionalHbmFiles"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- RCL Hibernate SessionFactory -->
+    <bean id="rclSessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+
+        <property name="mappingResources">
+            <ref bean="rclAllHbmFiles"/>
+        </property>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>
+                <prop key="use_outer_join">false</prop>
+                <prop key="hibernate.query.substitutions">true 1, false 0</prop>
+                <prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+
+                <!-- We need to shut off second level caching for unit tests -->
+                <prop key="hibernate.bytecode.use_reflection_optimizer">${hibernate.bytecode.use_reflection_optimizer}</prop>
+                <prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+                <prop key="hibernate.jmx.enabled">${hibernate.generate_statistics}</prop>
+                <prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+                <prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+                <prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+                <prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
+                <prop key="hibernate.allow_update_outside_transaction">true</prop>
+
+                <prop key="hibernate.validator.apply_to_ddl">false</prop>
+                <prop key="hibernate.validator.autoregister_listeners">false</prop>
+            </props>
+        </property>
+
+        <property name="entityInterceptor">
+            <ref bean="rclAuditInterceptor"/>
+        </property>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+       <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="rclTransactionTemplate" class="org.springframework.transaction.support.TransactionTemplate"
+          scope="prototype">
+        <property name="transactionManager">
+            <ref bean="rclTransactionManager"/>
+        </property>
+    </bean>
+
+    <!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
+    <bean id="rclTransactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+
+
+    <!-- This is meant to be overrriden in derived RCL projects -->
+    <bean id="customerStrategy" class="com.focus.rcl.customer.DefaultFolderOrganizationStrategy">
+    </bean>
+
+
+    <!--
+    ###########################################################################
+       RCL DAOs.
+    ###########################################################################
+    -->
+    <bean id="contentFolderDao" class="com.focus.rcl.core.dao.hibernate.ContentFolderDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="customPromptAssociationDao" class="com.focus.rcl.core.dao.hibernate.CustomPromptAssociationDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="reportDao" class="com.focus.rcl.core.dao.hibernate.ReportDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="compositeReportDao" class="com.focus.rcl.core.dao.hibernate.CompositeReportDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="queryStudioReportDao" class="com.focus.rcl.core.dao.hibernate.QueryStudioReportDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="analysisStudioReportDao" class="com.focus.rcl.core.dao.hibernate.AnalysisStudioReportDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+
+    <bean id="reportGroupDao" class="com.focus.rcl.core.dao.hibernate.ReportGroupDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="reportProfileDao" class="com.focus.rcl.core.dao.hibernate.ReportProfileDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="softLinkDao" class="com.focus.rcl.core.dao.hibernate.SoftLinkDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="customPromptDao" class="com.focus.rcl.core.dao.hibernate.CustomPromptDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="rclConfigPropertyDao" class="com.focus.rcl.core.dao.hibernate.RclConfigPropertyDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="anonymousReportDao" class="com.focus.rcl.core.dao.hibernate.AnonymousReportDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+
+    <bean id="reportExecutionRequestDao" class="com.focus.rcl.reportservice.dao.hibernate.ReportExecutionRequestDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="reportFragmentDao" class="com.focus.rcl.reportservice.dao.hibernate.ReportFragmentDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+
+    <bean id="reportInstanceDao" class="com.focus.rcl.reportservice.dao.hibernate.ReportInstanceDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="reportExecutionRequestFolderDao"
+          class="com.focus.rcl.reportservice.dao.hibernate.ReportExecutionRequestFolderDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+
+    <bean id="userDao" class="com.focus.rcl.security.dao.hibernate.RclUserDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="organizationDao" class="com.focus.rcl.security.dao.hibernate.OrganizationDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="rclCapabilityDao" class="com.focus.rcl.security.dao.hibernate.RclCapabilityDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="reportOutputDataDao" class="com.focus.rcl.reportservice.dao.hibernate.ReportOutputDataDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="reportOutputAttachmentDao" class="com.focus.rcl.reportservice.dao.hibernate.ReportOutputAttachmentDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="reportInstanceSummaryDao" class="com.focus.rcl.reportservice.dao.hibernate.ReportInstanceSummaryDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="reportExecutionRequestSummaryDao"
+          class="com.focus.rcl.reportservice.dao.hibernate.ReportExecutionRequestSummaryDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="reportExecutionRequestErrorDao"
+          class="com.focus.rcl.reportservice.dao.hibernate.ReportExecutionRequestErrorDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+
+    <bean id="queryItemMetaDataDao" class="com.focus.rcl.metadata.dao.hibernate.QueryItemMetaDataDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="registerQueryItemMetadataReferenceDataCacheHook"
+          class="com.focus.rcl.metadata.QueryItemMetadataReferenceDataCacheHook$RegistrationBean"></bean>
+
+
+    <bean id="reportExecutionStatisticDao" class="com.focus.rcl.metadata.dao.hibernate.ReportExecutionStatisticDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="userSessionStatisticDao" class="com.focus.rcl.stats.dao.hibernate.UserSessionStatisticDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="rerStatisticDao" class="com.focus.rcl.stats.dao.hibernate.RerStatisticDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="scheduleDao" class="com.focus.rcl.scheduler.dao.hibernate.ScheduleDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="scheduleExecutionDao" class="com.focus.rcl.scheduler.dao.hibernate.ScheduleExecutionDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="systemJobExecutionDao" class="com.focus.rcl.scheduler.dao.hibernate.SystemJobExecutionDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="rclLocaleDao" class="com.focus.rcl.core.dao.hibernate.RclLocaleDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="rclMessageDao" class="com.focus.rcl.core.dao.hibernate.RclMessageDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="cognosInstanceDao" class="com.focus.rcl.core.dao.hibernate.CognosInstanceDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="cognosConfigurationDao" class="com.focus.rcl.core.dao.hibernate.CognosConfigurationDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="cognosConfigurationLoader" class="com.focus.rcl.core.cognos.config.DatabaseCognosConfigurationService">
+        <property name="cognosConfigurationDao">
+            <ref bean="cognosConfigurationDao"/>
+        </property>
+    </bean>
+
+    <bean id="dataSourceVersionDao" class="com.focus.rcl.core.dao.hibernate.DataSourceVersionDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="reportOutputDestinationDao" class="com.focus.rcl.delivery.dao.hibernate.ReportOutputDestinationDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="dashboardTemplateDao" class="com.focus.rcl.core.dao.hibernate.DashboardTemplateDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="dashboardDao" class="com.focus.rcl.core.dao.hibernate.DashboardDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="dashboardPageDao" class="com.focus.rcl.core.dao.hibernate.DashboardPageDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="abstractDashboardModuleDao" class="com.focus.rcl.core.dao.hibernate.AbstractDashboardModuleDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+
+    <bean id="sampleParameterValueDao" class="com.focus.rcl.core.dao.hibernate.SampleParameterValueDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="wizardReportFilterDao" class="com.focus.rcl.core.dao.hibernate.WizardReportFilterDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="reportMetaDataDao" class="com.focus.rcl.core.dao.hibernate.ReportMetaDataDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="reportQueryMetaDataDao" class="com.focus.rcl.core.dao.hibernate.ReportQueryMetaDataDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="reportDataItemMetaDataDao" class="com.focus.rcl.core.dao.hibernate.ReportDataItemMetaDataDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="rerProcessorChainDao" class="com.focus.rcl.core.dao.hibernate.RerProcessorChainDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="persistenEntityCountDao" class="com.focus.rcl.core.dao.hibernate.PersistenEntityCountDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="incidentDao" class="com.focus.rcl.core.dao.hibernate.IncidentDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="ciIntegrationStatusDao" class="com.focus.rcl.ci.dao.hibernate.CiIntegrationStatusDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="requestDao" class="com.focus.rcl.transformation.RequestDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+        <property name="domainClassName" value="com.focus.rcl.transformation.ConcatenationRequest"/>
+    </bean>
+
+    <bean id="auditEventDao" class="com.focus.rcl.admin.dao.AuditEventDao">
+        <property name="sessionFactory">
+            <ref bean="rclSessionFactory"/>
+        </property>
+    </bean>
+
+
+    <context:component-scan base-package="com.focus.rcl"/>
+    <context:annotation-config/>
+    <tx:annotation-driven transaction-manager="rclTransactionManager"/>
+</beans>

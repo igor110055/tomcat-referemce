@@ -1,0 +1,19 @@
+
+#tabsContainer {
+   border: 0px solid black;
+}
+
+div.contentContainer {
+   height: 630px;
+   padding: 2px;
+
+   border: 1px solid #B7B7B7;
+}
+
+div.bottomContainer {
+   display: block;
+   padding: 2px;
+   border: 1px solid black;
+   background-color:#CCCCCC;
+   width: 100%;
+}

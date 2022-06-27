@@ -1,0 +1,235 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+/* requires tooltip.css */
+
+/*layout section*/
+.bux-comment-editBux {
+	width: 250px;
+	margin: 2px;
+	resize: none;
+}
+
+.bux-comment-cell-indicator {
+	height: 7px;
+	width: 0px;
+	float: right;
+	margin-right: 0px;
+	margin-top: -7px;
+}
+
+.bux-comment-cell-indicator-image {
+	position: relative;
+	left: -2px;
+}
+
+.bux-comment-widget-indicator {
+	height: 9px;
+	width: 9px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 9;
+	margin: 1px;
+}
+
+.bux-comment-scrollable-content {
+	max-height: 133px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	cursor: default;
+	margin: 0 10px 10px;
+	padding: 1px;
+}
+
+.bux-comment-editbox-container .dijitTextArea {
+	min-height: 83px;
+	width: 260px;
+}
+
+.bux-comment-editbox-container .dijitTextArea>div {
+	min-height: 50px;
+	max-height: 400px;
+}
+
+.bux-comment-editbox-container-label {
+	display: none;
+}
+
+.bux-comment-cancel-button-container,
+.bux-comment-done-button-container {
+	text-align: right;
+	cursor: default;
+	margin-top: 6px;
+}
+
+.bux-comment-cancel-button .dijitButtonNode button {
+	height: 16px;
+	width: 16px;
+}
+
+.bux-comment-cancel-button-text {
+	display: none;
+}
+
+.bux-comment-cancel-button {
+	display: block;
+}
+
+.bux-comment-action-strip {
+	padding-left: 10px;
+}
+
+.bux-comment-action-strip button {
+	background: 0;
+	border: 0;
+	color: #00649d;
+	cursor: pointer;
+	font-size: 0.83em;
+	margin: 0;
+	padding: 0;
+	text-decoration: underline;
+	vertical-align: top;
+}
+
+.dj_gecko .bux-comment-action-strip button,
+.dj_safari .bux-comment-action-strip button {
+	margin-top: -2px;
+}
+
+.bux-comment-load-div {
+	display: none;
+	position: absolute;
+	text-align: center;
+}
+
+.bux-comment-load-table {
+	height: 100%;
+	width: 100%;
+}
+
+.bux-comment-load-cell {
+	text-align: center;
+	vertical-align: middle;
+	cursor: default;
+}
+
+.bux-comment-load-container {
+	text-align: center;
+}
+
+.bux-comment-load {
+	height: 34px;
+	background-position: left;
+	background-repeat: no-repeat;
+	padding-left: 34px;
+	padding-top: 17px;
+	vertical-align: middle;
+	background-image: none;
+	background-image: url(images/action_busy_32x32.gif);
+}
+
+.editDisabled .dijitButton,
+.editDisabled .bux-comment-editBux {
+	visibility: hidden;
+}
+
+.editDisabled .bux-comment-editcontrols-container {
+	border: none;
+}
+
+/*Skin section*/
+.bux-comment-table {
+	background-color: #ffffff;
+}
+
+.bux-comment-item-owner {
+	font-weight: bold;
+	font-size: 0.83em;
+	color: #00649d;
+	padding: 2px;
+	vertical-align: top;
+}
+
+.bux-comment-item-date {
+	font-weight: normal;
+	font-size: 0.67em;
+	color: #444444;
+	padding: 2px;
+}
+
+.bux-comment-item-text {
+	font-weight: normal;
+	font-size: 0.83em;
+	color: #444444;
+	padding: 2px;
+	width: 250px;
+}
+
+.bux-comment-editcontrols-container {
+    border-bottom: 1px solid #e7e7e7;
+    margin: 0 10px 10px;
+    padding: 10px 0;
+}
+
+/*
+ * Override the default claro styling for buttons.
+ */
+.icdUI .dijitButton.bux-comment-cancel-button .dijitButtonNode,
+.icdUI .bux-comment-cancel-button-container .dijitButtonHover .dijitButtonNode {
+	background: none no-repeat;
+	background-image: url(images/dialog/popupClose.png);
+	border: none !important;
+	height: 22px;
+	width: 22px;
+	padding: 1px !important;
+	box-shadow: none;
+	-moz-box-shadow: none !important;
+}
+/*
+ * Make the highlight border in FF full-height
+ * when the user clicks on the cancel button.
+ */
+.bux-comment-cancel-button .dijitButtonContents {
+	height: 100%;
+}
+
+/* RTL layout section*/
+.dj_rtl .bux-comment-cancel-button-container,
+.dj_rtl .bux-comment-done-button-container {
+	text-align: left;
+}
+
+.dj_rtl .bux-comment-cell-indicator {
+	float: left;
+}
+
+.dj_rtl .bux-comment-widget-indicator {
+	left: 0;
+	float: left;
+	position: relative;
+	right: 20px;
+}
+
+/* -- A11Y -- */
+
+.dijit_a11y .bux-comment-editcontrols-container {
+	border: 1px solid black;
+}
+
+.dijit_a11y .bux-comment-cancel-button {
+	font-size: inherit;
+}
+
+.dijit_a11y .bux-comment-cancel-button-text {
+	display: inline;
+}
+

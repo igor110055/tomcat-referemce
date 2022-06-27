@@ -1,0 +1,69 @@
+/***** jtDialogBox - BEGIN REQUIRED *********************************/
+DIV.jtDialogBox {
+  position: absolute;
+  display: none;
+  }
+DIV.jtDialogBox .tbLeft {
+   /*refers to image with relative path to make it easier for the downstream applications*/
+  background: url(dialogTL.gif) no-repeat left top;
+  width: 10px;
+  }
+DIV.jtDialogBox .tbRight {
+/*refers to image with relative path to make it easier for the downstream applications*/
+  background: url(dialogTR.gif) no-repeat right top;
+  width: 16px;
+  padding: 6px 2px 5px 2px;
+  vertical-align: bottom;
+  }
+DIV.jtDialogBox .Title {
+/*refers to image with relative path to make it easier for the downstream applications*/
+  background: url(dialogTM.gif) top;
+  background-color: #a9a9a9;
+  font-size: 10pt;
+  font-weight: bold;
+  white-space: nowrap;
+  color: white;
+  padding: 4px 0px 2px 0px;
+  cursor:move;
+  }
+
+.jtDialogBoxVeil {
+  position: absolute;
+  display: none;
+  top: 0px;
+  left: 0px;
+  cursor: "not-allowed";
+  background-color: #6a74cb;
+  filter:alpha(opacity=5);
+  -moz-opacity:0.05;
+  opacity: 0.05;
+  }
+/***** jtDialogBox - END REQUIRED *********************************/
+
+
+/***** jtDialogBox - BEGIN SUGGESTED *********************************/
+DIV.jtDialogBox {
+   border: 1px solid #201D61;
+  /*border-top   : 1px solid #EDEDED;*/
+  /*border-right : 1px solid #ABABAB;*/
+  /*border-bottom: 1px solid #ABABAB;*/
+  /*border-left  : 1px solid #EDEDED;*/
+  }
+DIV.jtDialogBox .MainPanel {
+  background-color: #ffffff;
+   border: 1px solid #201D61;
+  /*border-top   : 1px solid #898989;*/
+  /*border-right : 1px solid #4E4E4E;*/
+  /*border-bottom: 1px solid #4E4E4E;*/
+  /*border-left  : 1px solid #898989;*/
+  }
+DIV.jtDialogBox .MainPanel .ContentArea {
+  margin: 2px;
+  /*font-size: 9pt;*/
+  }
+
+.AlertContentArea
+{
+   margin: 15px;
+}
+/***** jtDialogBox - END SUGGESTED *********************************/

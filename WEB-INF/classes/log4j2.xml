@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+===============================================================================
+
+   Non-cluster log4j.xml configuration from :
+
+      metadata/war/log4j.xml
+
+===============================================================================
+-->
+
+<!-- $Id: log4j2.xml 1988 2020-02-04 20:42:24Z dbequeaith $ -->
+
+<!--
+   | For more configuration infromation and examples see the Jakarta Log4j
+   | owebsite: http://jakarta.apache.org/log4j
+ -->
+
+<Configuration status="DEBUG">
+
+    <!-- ================================= -->
+    <!-- Preserve messages in a local file -->
+    <!-- ================================= -->
+
+    <!-- A time/date based rolling appender -->
+    <Appenders>
+        <RollingFile name="FILE" fileName="../logs/reference.log" filePattern="../logs/rcl-%d{yyyy-MM-dd}.log.gz"
+                     append="true">
+            <PatternLayout>
+                <Pattern>%d [%t] [%X{u}] [%X{s}] %-5p [%c{1}] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+
+        <!-- A time/date based rolling appender -->
+        <RollingFile name="ERROR_LOG" fileName="../logs/rcl-errors.log"
+                     filePattern="../logs/rcl-errors-%d{yyyy-MM-dd}.log.gz" append="true">
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout>
+                <Pattern>%d [%t] [%X{u}] [%X{s}] %-5p [%c{1}] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+
+
+        <!-- ============================== -->
+        <!-- Append messages to the console -->
+        <!-- ============================== -->
+
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+
+            <PatternLayout>
+                <Pattern>%d{ABSOLUTE} %-5p [%c{1}] %m%n</Pattern>
+                <!-- The default pattern: Date Priority [Category] Message\n -->
+            </PatternLayout>
+        </Console>
+
+
+    </Appenders>
+
+    <!-- ================ -->
+    <!-- Limit categories -->
+    <!-- ================ -->
+
+
+    <!-- ======================= -->
+    <!-- Setup the Root category -->
+    <!-- ======================= -->
+
+    <Loggers>
+
+        <Logger name="org.apache.commons.digester" level="INFO">
+        </Logger>
+
+        <Logger name="org.apache" level="INFO">
+        </Logger>
+
+        <Logger name="org.quartz" level="INFO">
+        </Logger>
+
+        <Logger name="com.cognos.org.apache" level="INFO">
+        </Logger>
+
+        <Logger name="com.opensymphony.oscache" level="WARN">
+        </Logger>
+        <Logger name="net.sf.navigator" level="WARN">
+        </Logger>
+
+        <Logger name="org.apache.commons" level="WARN">
+        </Logger>
+        <Logger name="org.apache.struts" level="WARN">
+        </Logger>
+        <Logger name="org.springframework" level="INFO">
+        </Logger>
+        <Logger name="com.ibatis.db" level="WARN">
+        </Logger>
+
+        <Logger name="org.apache.velocity" level="WARN">
+        </Logger>
+
+        <Logger name="org.springframework.security" level="DEBUG">
+        </Logger>
+
+        <Logger name="net.sf.ehcache" level="WARN">
+        </Logger>
+
+        <!-- monitor creation of Hibernate Sessions -->
+        <Logger name="org.springframework.orm.hibernate5.SessionFactoryUtils" level="DEBUG">
+        </Logger>
+
+        <!-- generic top level hibernate logging -->
+        <Logger name="org.hibernate" level="WARN">
+        </Logger>
+
+        <!-- Log all SQL DML statements as they are executed -->
+        <Logger name="org.hibernate.SQL" level="INFO">
+        </Logger>
+
+        <!-- Log all JDBC parameters -->
+        <Logger name="org.hibernate.type" level="INFO">
+        </Logger>
+
+        <!-- Log the state of all entities (max 20 entities) associated with the session at flush time -->
+        <Logger name="org.hibernate.pretty" level="INFO">
+        </Logger>
+
+        <!-- Log all second-level cache activity -->
+        <Logger name="org.hibernate.cache" level="INFO">
+        </Logger>
+        <Logger name="org.hibernate.cache" level="WARN">
+        </Logger>
+
+
+        <!-- Log transaction related activity -->
+        <Logger name="org.hibernate.transaction" level="INFO">
+        </Logger>
+
+        <!-- Log all JDBC resource acquisition -->
+        <Logger name="org.hibernate.jdbc" level="INFO">
+        </Logger>
+
+        <!-- Log HQL and SQL ASTs during query parsing -->
+        <Logger name="org.hibernate.hql.ast.AST" level="INFO">
+        </Logger>
+
+        <!-- Temp: this is due to ticket #1170 (erroneous hibernate warning message, fixed in hibernate 3.2.1) -->
+        <Logger name="org.hibernate.hql.ast.tree.FromElementType" level="ERROR">
+        </Logger>
+
+
+        <!-- Log all JAAS authorization requests -->
+        <Logger name="org.hibernate.secure" level="INFO">
+        </Logger>
+
+
+        <Logger name="httpclient" level="INFO">
+        </Logger>
+
+
+        <Logger name="org.springframework.transaction.interceptor.TransactionInterceptor" level="DEBUG">
+        </Logger>
+
+        <Logger name="com.focus.rcl.base.hibernate" level="INFO">
+        </Logger>
+
+        <Logger name="com.focus" level="DEBUG">
+        </Logger>
+
+        <Logger name="com.focus.rcl.jdbc.SecureDriver" level="INFO">
+        </Logger>
+        <Logger name="org.springframework.scheduling.quartz.LocalDataSourceJobStore" level="WARN">
+        </Logger>
+
+
+        <Logger name="capture.com.focus.rcl.crn.reportspec" level="DEBUG">
+        </Logger>
+
+        <Logger name="com.mchange" level="INFO">
+        </Logger>
+        <Root level="INFO">
+            <AppenderRef ref="FILE"/>
+            <AppenderRef ref="ERROR_LOG"/>
+            <AppenderRef ref="CONSOLE"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>
+
+

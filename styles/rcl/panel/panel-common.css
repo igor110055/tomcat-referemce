@@ -1,0 +1,68 @@
+div.rclPanel div.property
+{
+  clear: both;
+}
+
+div.rclPanel div.propertyLabel
+{
+  position: relative;
+  float:left;
+}
+
+div.rclPanel div.propertyValue
+{
+  font-weight: bold;
+}
+
+div.rclPanel table.properties {
+   border-collapse: collapse;
+   border-style:hidden;
+}
+
+div.rclPanel table.properties td.propertyLabel {
+   font-family:inherit;
+   font-size:inherit;
+   border-style:hidden;
+}
+
+div.rclPanel table.properties td.propertyValue {
+   font-weight:bold;
+   border-style:hidden;
+}
+
+
+div.rclPanel
+{
+  margin: 0px;
+  clear: both;
+
+}
+
+div.rclPanel table
+{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+div.rclPanel tr
+{
+  vertical-align: top;
+}
+
+div.rclPanel th
+{
+  text-align: left;
+  background-color: #dee0e6;
+}
+
+div.rclPanel td
+{
+  border: 1px solid #dee0e6;
+}
+
+div.rclPanel div.scrollDiv
+{
+  overflow: auto;
+  overflow-x: hidden;
+}
+

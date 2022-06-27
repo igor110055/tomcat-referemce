@@ -1,0 +1,33 @@
+body {
+   font-family:arial,tahoma,helvetica,sans-serif;
+   font-size:11px;
+}
+
+
+/* workspace property panels */
+*.propertyPanel {
+   padding: 6px;
+}
+
+.x-tree-node-leaf .x-tree-node-icon {
+   background: url( ../../../scripts/lib/ext/resources/images/default/tree/folder.gif ) no-repeat center center;
+}
+
+.x-tree-node-leaf .adminTreeNode{
+   background: url( ../../../images/silkIcons/cog.png) no-repeat center center;
+}
+
+.x-grid-row-selected td, .x-grid-locked .x-grid-row-selected td{
+   background-color: lightsteelblue !important;
+   /*color: darkgray;*/
+}
+
+      .x-grid-cell-selected{
+   background-color: lightsteelblue !important;
+   /*color: darkgray;*/
+}
+
+      .x-props-grid .x-grid-cell-selected .x-grid-cell-text{
+    background-color: lightsteelblue !important;
+}
+

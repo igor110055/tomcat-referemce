@@ -1,0 +1,378 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+html.dj_ie {
+	overflow: hidden;
+}
+body {
+	background-color: #ffffff;
+	font-family: Arial, Verdana,'Arial Unicode MS','Andale WT','MS UI Gothic','MS PGothic','Apple Gothic',Gulim,SimSun,PMingLiU,Raghu8,sans-serif !important;
+	padding: 0;
+	margin: 0;
+}
+body a{
+	color: #00649d;
+}
+
+
+/*
+ * Override padding in .claro .dijitContentPane so that content panes making up
+ * main BUX UI (banner, search, content pane) appear correctly.
+ */
+.icdUI .dijitContentPane {
+	padding: 0;
+	cursor: default;
+}
+
+/*
+ * Reinstate the below claro styles which .icdUI .dijitContentPane overrides.
+ * They are necessary for proper padding in tab containers.
+ */
+.claro .dijitTabContainerTop-dijitContentPane,
+.claro .dijitTabContainerLeft-dijitContentPane,
+.claro .dijitTabContainerBottom-dijitContentPane,
+.claro .dijitTabContainerRight-dijitContentPane,
+.claro .dijitAccordionContainer-dijitContentPane {
+	padding: 8px;
+}
+
+.claro .dijitDialog .dijitTabContainerTop-dijitContentPane,
+.claro .dijitDialog .dijitTabContainerLeft-dijitContentPane,
+.claro .dijitDialog .dijitTabContainerBottom-dijitContentPane,
+.claro .dijitDialog .dijitTabContainerRight-dijitContentPane,
+.claro .dijitDialog .dijitAccordionContainer-dijitContentPane {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.icdUI .dojoxExpandoClosed .dojoxExpandoContent {
+	display: none;
+}
+.icdUI .dijitMenuItemIcon{
+	width: 16px;
+	height: 16px;
+}
+
+/*
+ * This class is applied to input nodes in dijit controls.
+ * It is defined in dojo as invisible, but still displayed.
+ * In the bux banner, these inputs cause scrollbars when
+ * the display area is less than about ~400px wide. Dojo
+ * does not use display:none for this class as it causes
+ * problems in webkit. Setting width to 0px fixes the
+ * banner problem while not introducing a problem if we ever
+ * add support for webkit.
+ */
+.dijitOffScreen {
+	width: 0px;
+	overflow: hidden;
+}
+.icdUI .dojoDndAvatar {
+	font-size: 100%; /*the default dojo size is 75% which is very small and unreadable in our setup*/
+}
+
+/*
+ * Override the tab classes to avoid the min-width property interfeering with the focus border
+ * The min width will instead be applied higher up in the tab button dom
+ */
+
+.claro .dijitTabContainerBottom-tabs .dijitTabContent,
+.claro .dijitTabContainerTop-tabs .dijitTabContent {
+	min-width: auto;
+}
+
+.claro .dijitTabContainerBottom-tabs .dijitTabContent {
+	padding: 3px 6px 7px;
+}
+
+.claro .dijitTabContainerBottom-tabs .dijitTab,
+.claro .dijitTabContainerTop-tabs .dijitTab {
+	min-width: 74px;
+}
+
+/*
+ * Override combo box class to get rid of the 1px white border when innactive that grows the button over the active state
+ */
+.claro .dijitComboBox .dijitArrowButtonInner {
+	border: none;
+}
+/*The base font size required is 12px*/
+.claro {
+	font-size: 12px;
+}
+.claro .font_size_override {
+	font-size: 1.33em; /*balances the base font-size (above) 12px to allow for pt size fon't that resize on IE with large text*/
+}
+
+/*
+ * Override the move cursor for tree items, even though they are draggable.
+ */
+.dojoDndHandle .dijitTreeRow, table.buxListPage div.dojoDndHandle {
+	cursor: default;
+	color:#222222;
+}
+
+/*
+ * Override the widget titles to allow for wrapping of the text.
+ */
+.dojoxFloatingPaneTitle {
+	white-space: normal;
+	cursor:default;
+}
+
+/*
+ * Override to ensure that the z-indexs are respected and the toolbar appears below the content pane in IE.
+ */
+.dijitBorderContainerNoGutter {
+	position: static;
+}
+.claro .dijitDialogTitle {
+	width:90% !important;
+}
+
+/*
+ * Overrides to allow the rich text to pick up the background color set for the widget
+ */
+.icdUI .dijitEditor .dijitEditorIFrameContainer,
+.icdUI .dijitEditorHover .dijitEditorIFrameContainer,
+.icdUI .dijitEditorHover .dijitEditorIFrameContainer .dijitEditorIFrame,
+.icdUI .dijitEditorFocused .dijitEditorIFrameContainer,
+.icdUI .dijitEditorFocused .dijitEditorIFrameContainer .dijitEditorIFrame,
+.icdUI .dijitEditorIFrame {
+	background-color: transparent;
+}
+/*
+ * This needs to be removed when we move to dojo 1.8 as the fix is contained there.
+ * http://bugs.dojotoolkit.org/ticket/15599
+ */
+.dijitButton, .dijitButtonNode {
+	-webkit-transition-duration: 0s, 0s !important;
+}
+
+.claro .dijitTabContainerTop-tabs .dijitTabContent {
+	padding-bottom: 2px;
+    padding-top: 6px;
+}
+
+.claro .dijitTabListWrapper .dijitTabInnerDiv, .claro .dijitTabInnerDiv, .claro .dijitTabActive .dijitTabInnerDiv{
+	background-color: #f5f5f5;
+	color: #444444;
+}
+
+.claro .dijitTabListWrapper .dijitTabHover .dijitTabInnerDiv, .claro .dijitTabHover .dijitTabInnerDiv {
+	background-color: #ffffff;
+	color: #222222;
+}
+
+.claro .dijitLayoutContainer .dijitTreeRowSelected{
+	background-color: #dfedfb;
+	border: 1px solid transparent;
+	background-image: none;
+	color: #222222;
+}
+
+.claro .dijitLayoutContainer .dijitTreeRowSelected.dijitTreeRowHover  {
+	background-color: #c5dcf2;
+	background-image: none;
+	color: #222222;
+}
+
+.claro .dijitLayoutContainer .dijitTreeRowHover {
+	background-color: #c5dcf2;
+	background-image: none;
+	border: 0px none;
+}
+
+.claro .dojoxExpandoPane .dijitDropDownButton .dijitButtonNode {
+	background-color: transparent;
+	border-radius: 3px;
+	color: #222222;
+	border: 1px solid #cccccc;
+}
+
+.claro .dijitPopup .dijitMenuItem {
+	color: #222222;
+	background-image: none;
+}
+
+.claro .dijitPopup .dijitMenuPassive .dijitMenuItemHover, .claro .dijitPopup .dijitMenuPassive .dijitMenuItemSelected, .claro .dijitPopup .dijitMenuActive .dijitMenuItemHover, .claro .dijitPopup .dijitMenuActive .dijitMenuItemSelected {
+	background-color: #f8e2ba;
+}
+
+.claro .dijitPopup .dijitMenu {
+	border: 1px solid #cccccc;
+}
+
+.claro .dijitDialog {
+	border: 1px solid #000000;
+	border-radius: 4px;
+	padding: 15px 0px;
+	background-color: #dfedfb;
+}
+
+.claro .dijitDialogPaneContent {
+	background-color: #ffffff;
+}
+
+.claro .dijitTooltipContainer {
+    border: 3px solid #999999;
+    border-radius: 3px;
+    background-image: none;
+}
+
+.claro .dijitButton .dijitButtonNode,
+.claro .dijitDropDownButton .dijitButtonNode,
+.claro .dijitComboButton .dijitButtonNode,
+.claro .dijitToggleButton .dijitButtonNode {
+	background-color: transparent;
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );
+	zoom: 1;
+	border-color: #759dc0;
+	color: #222222;
+	border-radius:3px;
+	font-weight: bold;
+}
+
+.claro .dijitButton.buxSecondaryButton .dijitButtonNode{
+	font-weight: normal;
+}
+
+.claro .buxBannerbar .dijitToolbar .dijitButton .dijitButtonNode,
+.claro .buxBannerbar .dijitToolbar .dijitDropDownButton .dijitButtonNode,
+.claro .buxBannerbar .dijitToolbar .dijitComboButton .dijitButtonNode,
+.claro .buxBannerbar .dijitToolbar .dijitToggleButton .dijitButtonNode,
+.claro .buxBannerbar .dijitToolbar .dijitComboBox .dijitButtonNode,
+.claro .buxBannerbar .dijitToolbar .buxBannerBigButton.dijitHover .dijitButtonNode{
+	height: 32px;
+}
+
+.claro .dijitToolbar .dijitButton .dijitButtonNode,
+.claro .dijitToolbar .dijitDropDownButton .dijitButtonNode,
+.claro .dijitToolbar .dijitComboButton .dijitButtonNode,
+.claro .dijitToolbar .dijitToggleButton .dijitButtonNode,
+.claro .dijitToolbar .dijitComboBox .dijitButtonNode{
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+
+.claro .dijitButtonHover .dijitButtonNode,
+.claro .dijitDropDownButtonHover .dijitButtonNode,
+.claro .dijitComboButton .dijitButtonNodeHover,
+.claro .dijitComboButton .dijitDownArrowButtonHover,
+.claro .dijitToggleButtonHover .dijitButtonNode {
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#b9cee3));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #b9cee3 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#b9cee3',GradientType=0 );
+	zoom: 1;
+}
+
+.claro .dijitTabListWrapper  .dijitTabContainerBottom-tabs .dijitTabChecked .dijitTabContent,
+.claro .dijitTabContainerBottom .dijitTabActive .dijitTabInnerDiv .dijitTabContent {
+	border-bottom-color: #cccccc;
+}
+
+.claro .dijitTabListWrapper .dijitTabHover .dijitTabContent,
+.claro .dijitTabContainerBottom .dijitTabHover .dijitTabInnerDiv .dijitTabContent {
+	border-bottom-color: #c7adad;
+}
+
+.claro .dijitTabListWrapper  .dijitTabContainerBottom-tabs .dijitTabChecked .dijitTabContent,
+.claro .dijitTabListWrapper .dijitTabHover .dijitTabContent,
+.claro .dijitTabContainerBottom .dijitTabHover .dijitTabInnerDiv .dijitTabContent,
+.claro .dijitTabContainerBottom .dijitTabActive .dijitTabInnerDiv .dijitTabContent {
+	border-bottom-width: 2px;
+	border-radius: 0 0 3px 3px;
+}
+
+.claro .dijitTabListWrapper  .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent,
+.claro .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent,
+.claro .dijitTabListWrapper  .dijitTabContainerTop-tabs  .dijitTabActive .dijitTabInnerDiv .dijitTabContent,
+.claro .dijitTabContainerTop-tabs  .dijitTabActive .dijitTabInnerDiv .dijitTabContent {
+	border-top-color: #cccccc;
+}
+
+.claro .dijitTabListWrapper  .dijitTabContainerTop-tabs .dijitTabHover .dijitTabInnerDiv .dijitTabContent,
+.claro .dijitTabContainerTop-tabs .dijitTabHover .dijitTabInnerDiv .dijitTabContent {
+	border-top-color: #c7adad;
+}
+
+.claro .dijitTabListWrapper  .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent,
+.claro .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent,
+.claro .dijitTabListWrapper  .dijitTabContainerTop-tabs .dijitTabHover .dijitTabInnerDiv .dijitTabContent,
+.claro .dijitTabListWrapper  .dijitTabContainerTop-tabs  .dijitTabActive .dijitTabInnerDiv .dijitTabContent,
+.claro .dijitTabContainerTop-tabs .dijitTabHover .dijitTabInnerDiv .dijitTabContent,
+.claro .dijitTabContainerTop-tabs  .dijitTabActive .dijitTabInnerDiv .dijitTabContent {
+	border-top-width:2px;
+	border-radius: 3px 3px 0 0;
+}
+
+.claro .dijitTabListWrapper  .dijitTabContainerTop-tabs .dijitTabHover .dijitTabInnerDiv .dijitTabContent,
+.claro .dijitTabListWrapper  .dijitTabContainerTop-tabs  .dijitTabActive .dijitTabInnerDiv .dijitTabContent,
+.claro .dijitTabContainerTop-tabs .dijitTabHover .dijitTabInnerDiv .dijitTabContent,
+.claro .dijitTabContainerTop-tabs  .dijitTabActive .dijitTabInnerDiv .dijitTabContent {
+    border-bottom: 0px none;
+}
+
+.claro .dijitComboBox .dijitButtonNode{
+	background-color: transparent;
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );
+	zoom: 1;
+	border-color: #759dc0;
+	color: #222222;
+}
+
+.claro .dijitComboBoxOpenOnClickHover .dijitButtonNode, .claro .dijitComboBox .dijitDownArrowButtonHover {
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#b9cee3));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #b9cee3 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#b9cee3',GradientType=0 );
+	zoom: 1;
+	border-color: #759dc0;
+}
+
+.claro .dijitTextBoxHover {
+	background-color:transparent;
+}
+
+.claro .dijitTextBoxHover, .claro .dijitTextBoxHover .dijitButtonNode, .claro .dijitTextBoxFocused, .claro .dijitTextBoxFocused .dijitButtonNode {
+    border-color: #999999;
+}
+
+.claro .dijitComboBoxMenu .dijitMenuItemSelected, .claro .dijitComboBoxMenu .dijitMenuItemHover {
+	background-color:  #f8e2ba;
+}
+
+.icdUI .dojoxResizeHandleClone {
+	left:-5px;
+}
+

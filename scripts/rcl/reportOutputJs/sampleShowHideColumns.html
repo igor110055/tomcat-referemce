@@ -1,0 +1,1692 @@
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <meta name="Copyright" content="Copyright (C) 2007 Cognos Incorporated. All Rights Reserved.">
+   <meta name="Trademark" content="Cognos (R) is a trademark of Cognos Incorporated.">
+   <link xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" rel="stylesheet" type="text/css"
+         href="../schemas/GlobalReportStyles_1.css">
+   <title>transient-EFE811BE-A35F-579A-8503-990EB44BCA6D</title>
+
+</head>
+<body topmargin="0" leftmargin="0" style="background-color: #FFFFFF;">
+
+      <!--todo this table (or some type of UI for showing/hiding columns) should be generated-->
+      <table border="1">
+         <tr>
+            <td>Product name</td>
+            <td><a href="#" onclick="uiController.showColumn('Product name')">show</a></td>
+            <td><a href="#" onclick="uiController.hideColumn('Product name')">hide</a></td>
+         </tr>
+         <tr>
+            <td>Quantity</td>
+            <td><a href="#" onclick="uiController.showColumn('Quantity')">show</a></td>
+            <td><a href="#" onclick="uiController.hideColumn('Quantity')">hide</a></td>
+         </tr>
+         <tr>
+            <td>Revenue</td>
+            <td><a href="#" onclick="uiController.showColumn('Revenue')">show</a></td>
+            <td><a href="#" onclick="uiController.hideColumn('Revenue')">hide</a></td>
+
+         </tr>
+      </table>
+
+
+
+<table xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" cellpadding="0" cellspacing="0" border="0" class="pg">
+   <tr class="tableRow">
+      <td style="border-bottom:2.25pt solid #6699CC;;" class="ph">
+         <table style="border-collapse:collapse;width:100%;;" class="tb" cellpadding="0">
+            <tr class="tableRow">
+               <td style="vertical-align:bottom;text-align:left;" class="tableCell" colspan="1">
+                  <div class="block"><span class="textItem">Apr 16, 2008</span></div>
+               </td>
+               <td style="vertical-align:bottom;text-align:right;" class="tableCell" colspan="1">
+                  <div class="block"></div>
+                  <span style="font-size:11pt;font-weight:bold;color:#6699CC;" class="textItem">Great Outdoors</span>
+               </td>
+            </tr>
+         </table>
+      </td>
+   </tr>
+   <tr class="tableRow">
+      <td style="vertical-align:middle;text-align:center;" class="pb">
+
+   <!--NOTE:  This section should go inside of the HTMLItem tag in the report spec-->
+   <script type="text/javascript" src="/rcl/scripts/rcl/common/JsUtil.js"></script>
+   <script type="text/javascript" src="/rcl/scripts/rcl/AbstractUiController.js"></script>
+   <script type="text/javascript" src="/rcl/scripts/rcl/reportOutputJs/ShowHideColumnsUi.js"></script>
+
+   <link rel="stylesheet" type="text/css" href="/rcl/scripts/lib/ext/resources/css/ext-all.css"/>
+   <link rel="stylesheet" type="text/css" href="/rcl/scripts/lib/ext/resources/css/xtheme-vista.css"/>
+
+   <link rel="stylesheet" type="text/css" href="/rcl/styles/rcl/ext-adf/ext-adf.css"/>
+
+   <script type="text/javascript" src="/rcl/scripts/lib/ext/adapter/ext/ext-base.js"></script>
+   <script type="text/javascript" src="/rcl/scripts/lib/ext/ext-all-debug.js"></script>
+
+
+   <script type="text/javascript">
+      var uiController = new ShowHideColumnsUi();
+      Ext.onReady(uiController.initUi, uiController);
+   </script>
+   <!--end of HTMLItem tag-->
+
+
+         <span style="font-size:18pt;font-weight:bold;color:#6699CC;" class="textItem">Banded Report</span>
+
+         <div style="padding-bottom:50px;" class="block"></div>
+         <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+            <tr class="tableRow">
+               <td style="padding:0px;vertical-align:top;text-align:right;letter-spacing:0px;" class="tableCell"
+                   colspan="1"><img class="image" src="/../../secure/samples/images/cover1.jpg"></td>
+               <td style="padding:0px;margin:0px;vertical-align:top;text-align:left;" class="tableCell" colspan="1"><img
+                       style="margin:0px;" class="image" src="../../../secure/samples/images/cover2.jpg">
+
+                  <div class="block"></div>
+               </td>
+            </tr>
+         </table>
+      </td>
+   </tr>
+   <tr class="tableRow">
+      <td style="border-top:2.25pt solid #6699CC;border-bottom:1pt dotted Black;" class="pf">
+         <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+            <tr class="tableRow">
+               <td style="vertical-align:middle;text-align:left;padding-bottom:10px;" class="tableCell"
+                   colspan="1"></td>
+               <td style="vertical-align:middle;text-align:right;padding-bottom:10px;" class="tableCell" colspan="1">
+                  <span style="color:gray;" class="textItem">12:57:06 PM</span></td>
+            </tr>
+         </table>
+         <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+            <tr class="tableRow">
+               <td class="tableCell" colspan="1"><img class="image" src="../../../secure/samples/images/banner_cogsquare.jpg"></td>
+               <td style="vertical-align:middle;text-align:center;" class="tableCell" colspan="1"><span
+                       style="font-family:Tahoma;font-size:9pt;color:gray;" class="textItem">1</span></td>
+               <td style="padding-left:150px;" class="tableCell" colspan="1"></td>
+            </tr>
+         </table>
+         <div class="block"></div>
+      </td>
+   </tr>
+</table>
+<table xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" cellpadding="0" cellspacing="0" border="0" class="pg">
+<tr class="tableRow">
+   <td style="border-bottom:2.25pt solid #6699CC;;" class="ph">
+      <table style="border-collapse:collapse;width:100%;;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><span style="font-size:14pt;font-weight:bold;color:#6699CC;"
+                                                    class="textItem">Banded Report</span></td>
+            <td style="vertical-align:top;text-align:right;;" class="tableCell" colspan="1"><img class="image"
+                                                                                                 src="../../../secure/samples/images/logo.jpg">
+            </td>
+         </tr>
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><span style="font-family:Tahoma;font-size:9pt;color:gray;"
+                                                    class="textItem">Apr 16, 2008</span></td>
+            <td style="vertical-align:middle;text-align:right;;" class="tableCell" colspan="1"><span
+                    style="font-size:11pt;font-weight:bold;color:#6699CC;" class="textItem">Great Outdoors</span>
+            </td>
+         </tr>
+      </table>
+   </td>
+</tr>
+<tr class="tableRow">
+<td style="vertical-align:top;text-align:center;" class="pb">
+<table style="border-collapse:collapse;" class="ls" cellpadding="0">
+<tr>
+   <td class="lt" colspan="1"><span class="textItem">Product name</span></td>
+   <td class="lt" colspan="1"><span class="textItem">Quantity</span></td>
+   <td style="vertical-align:middle;text-align:center" class="lt" colspan="1"><span
+           class="textItem">Revenue</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">Camping Equipment</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">16,409</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">866,234</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$89,713,990.92</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span
+           class="textItem">Cooking Gear</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">4,160</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">198,676</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$5,401,132.08</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">TrailChef Water Bag</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">41,770</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$244,414.16</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">TrailChef Kettle</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">9,900</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$118,595.16</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">TrailChef Cup</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">31,834</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$218,416.30</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">TrailChef Double Flame</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">14,510</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,851,635.38</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">TrailChef Deluxe Cook Set</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">3,744</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$445,494.14</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">TrailChef Kitchen Kit</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">25,964</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$570,975.16</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">TrailChef Canteen</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">31,712</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$374,674.96</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">TrailChef Utensils</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">15,928</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$268,084.56</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">TrailChef Cook Set</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">12,700</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$642,494.48</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">TrailChef Single Flame</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">10,614</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$666,347.78</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span
+           class="textItem">Lanterns</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">4,477</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">345,096</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$10,539,200.16</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Firefly Extreme</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">48,736</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$2,118,861.48</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">EverGlow Single</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">35,354</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,040,525.12</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">EverGlow Kerosene</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">13,146</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$387,679.14</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Firefly Multi-light</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">30,994</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$745,997.00</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Firefly Mapreader</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">20,502</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$299,616.18</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Firefly 2</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">49,590</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,212,633.92</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Firefly 4</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">45,688</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,205,443.84</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">EverGlow Lamp</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">40,696</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,001,374.00</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Firefly Lite</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">13,558</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$179,749.72</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Flicker Lantern</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">10,172</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$324,574.64</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class="tableRow">
+   <td style="border-top:2.25pt solid #6699CC;border-bottom:1pt dotted Black;" class="pf">
+      <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td style="vertical-align:middle;text-align:left;padding-bottom:10px;" class="tableCell"
+                colspan="1"></td>
+            <td style="vertical-align:middle;text-align:right;padding-bottom:10px;" class="tableCell" colspan="1">
+               <span style="color:gray;" class="textItem">12:57:07 PM</span></td>
+         </tr>
+      </table>
+      <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><img class="image" src="../../../secure/samples/images/banner_cogsquare.jpg"></td>
+            <td style="vertical-align:middle;text-align:center;" class="tableCell" colspan="1"><span
+                    style="font-family:Tahoma;font-size:9pt;color:gray;" class="textItem">2</span></td>
+            <td style="padding-left:150px;" class="tableCell" colspan="1"></td>
+         </tr>
+      </table>
+      <div class="block"></div>
+   </td>
+</tr>
+</table>
+<table xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" cellpadding="0" cellspacing="0" border="0" class="pg">
+<tr class="tableRow">
+   <td style="border-bottom:2.25pt solid #6699CC;;" class="ph">
+      <table style="border-collapse:collapse;width:100%;;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><span style="font-size:14pt;font-weight:bold;color:#6699CC;"
+                                                    class="textItem">Banded Report</span></td>
+            <td style="vertical-align:top;text-align:right;;" class="tableCell" colspan="1"><img class="image"
+                                                                                                 src="../../../secure/samples/images/logo.jpg">
+            </td>
+         </tr>
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><span style="font-family:Tahoma;font-size:9pt;color:gray;"
+                                                    class="textItem">Apr 16, 2008</span></td>
+            <td style="vertical-align:middle;text-align:right;;" class="tableCell" colspan="1"><span
+                    style="font-size:11pt;font-weight:bold;color:#6699CC;" class="textItem">Great Outdoors</span>
+            </td>
+         </tr>
+      </table>
+   </td>
+</tr>
+<tr class="tableRow">
+<td style="vertical-align:top;text-align:center;" class="pb">
+<table style="border-collapse:collapse;" class="ls" cellpadding="0">
+<tr>
+   <td class="lt" colspan="1"><span class="textItem">Product name</span></td>
+   <td class="lt" colspan="1"><span class="textItem">Quantity</span></td>
+   <td style="vertical-align:middle;text-align:center" class="lt" colspan="1"><span
+           class="textItem">Revenue</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">EverGlow Double</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">16,304</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$742,592.92</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">EverGlow Butane</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">20,356</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,280,152.20</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span class="textItem">Packs</span><span
+           class="textItem">(Opportunities:&nbsp;</span><span class="textItem">2,660</span><span
+           class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">95,552</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$14,627,996.26</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Canyon Mule Climber Backpack</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">23,082</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,718,086.52</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Canyon Mule Extreme Backpack</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">11,052</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$4,335,772.24</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Canyon Mule Journey Backpack</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">11,598</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$3,622,382.68</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Canyon Mule Weekender Backpack</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">12,854</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$3,123,663.86</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Canyon Mule Cooler</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">17,944</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$545,409.60</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Canyon Mule Carryall</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">19,022</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,282,681.36</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span
+           class="textItem">Sleeping Bags</span><span
+           class="textItem">(Opportunities:&nbsp;</span><span class="textItem">2,768</span><span
+           class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">96,246</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$11,688,944.32</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Hibernator Lite</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">23,868</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,966,368.00</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Hibernator Pillow</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">3,674</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$55,865.36</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Hibernator Camp Cot</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">3,182</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$307,526.30</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Hibernator Pad</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">9,460</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$340,411.88</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Hibernator Extreme</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">20,596</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$4,715,059.40</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Hibernator</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">23,984</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$3,034,022.20</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Hibernator Self - Inflating Mat</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">11,482</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,269,691.18</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span class="textItem">Tents</span><span
+           class="textItem">(Opportunities:&nbsp;</span><span class="textItem">2,344</span><span
+           class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">130,664</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$47,456,718.10</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Star Gazer 3</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">22,660</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$13,044,951.40</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Star Dome</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">25,564</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$14,948,640.60</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Star Gazer 6</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">10,504</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$7,219,022.62</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Star Lite</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">8,988</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$3,034,718.04</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Star Peg</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">44,686</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$85,937.78</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class="tableRow">
+   <td style="border-top:2.25pt solid #6699CC;border-bottom:1pt dotted Black;" class="pf">
+      <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td style="vertical-align:middle;text-align:left;padding-bottom:10px;" class="tableCell"
+                colspan="1"></td>
+            <td style="vertical-align:middle;text-align:right;padding-bottom:10px;" class="tableCell" colspan="1">
+               <span style="color:gray;" class="textItem">12:57:07 PM</span></td>
+         </tr>
+      </table>
+      <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><img class="image" src="../../../secure/samples/images/banner_cogsquare.jpg"></td>
+            <td style="vertical-align:middle;text-align:center;" class="tableCell" colspan="1"><span
+                    style="font-family:Tahoma;font-size:9pt;color:gray;" class="textItem">3</span></td>
+            <td style="padding-left:150px;" class="tableCell" colspan="1"></td>
+         </tr>
+      </table>
+      <div class="block"></div>
+   </td>
+</tr>
+</table>
+<table xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" cellpadding="0" cellspacing="0" border="0" class="pg">
+<tr class="tableRow">
+   <td style="border-bottom:2.25pt solid #6699CC;;" class="ph">
+      <table style="border-collapse:collapse;width:100%;;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><span style="font-size:14pt;font-weight:bold;color:#6699CC;"
+                                                    class="textItem">Banded Report</span></td>
+            <td style="vertical-align:top;text-align:right;;" class="tableCell" colspan="1"><img class="image"
+                                                                                                 src="../../../secure/samples/images/logo.jpg">
+            </td>
+         </tr>
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><span style="font-family:Tahoma;font-size:9pt;color:gray;"
+                                                    class="textItem">Apr 16, 2008</span></td>
+            <td style="vertical-align:middle;text-align:right;;" class="tableCell" colspan="1"><span
+                    style="font-size:11pt;font-weight:bold;color:#6699CC;" class="textItem">Great Outdoors</span>
+            </td>
+         </tr>
+      </table>
+   </td>
+</tr>
+<tr class="tableRow">
+<td style="vertical-align:top;text-align:center;" class="pb">
+<table style="border-collapse:collapse;" class="ls" cellpadding="0">
+<tr>
+   <td class="lt" colspan="1"><span class="textItem">Product name</span></td>
+   <td class="lt" colspan="1"><span class="textItem">Quantity</span></td>
+   <td style="vertical-align:middle;text-align:center" class="lt" colspan="1"><span
+           class="textItem">Revenue</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Star Gazer 2</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">18,262</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$9,123,447.66</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">Golf Equipment</span><span
+           class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">5,225</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">99,400</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$25,905,465.58</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span
+           class="textItem">Golf Accessories</span><span
+           class="textItem">(Opportunities:&nbsp;</span><span class="textItem">1,232</span><span
+           class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">47,988</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$811,516.72</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Course Pro Golf Bag</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">1,746</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$339,808.08</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Course Pro Gloves</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">17,466</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$172,073.98</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Course Pro Umbrella</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">14,170</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$166,896.12</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Course Pro Golf and Tee Set</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">14,606</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$132,738.54</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span class="textItem">Irons</span><span
+           class="textItem">(Opportunities:&nbsp;</span><span class="textItem">1,438</span><span
+           class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">14,244</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$8,801,464.98</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Lady Hailstorm Titanium Irons</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">1,504</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,020,884.74</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Hailstorm Steel Irons</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">5,764</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$3,070,916.68</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Lady Hailstorm Steel Irons</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">1,962</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$960,122.46</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Hailstorm Titanium Irons</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">5,014</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$3,749,541.10</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span
+           class="textItem">Putters</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">1,099</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">23,244</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$2,310,367.24</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Blue Steel Max Putter</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">3,188</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$555,866.30</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Course Pro Putter</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">11,240</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$717,989.90</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Blue Steel Putter</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">8,816</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,036,511.04</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span class="textItem">Woods</span><span
+           class="textItem">(Opportunities:&nbsp;</span><span class="textItem">1,456</span><span
+           class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">13,924</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$13,982,116.64</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Lady Hailstorm Steel Woods Set</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">1,506</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,250,946.84</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Hailstorm Steel Woods Set</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">4,842</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$4,519,643.36</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Hailstorm Titanium Woods Set</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">5,768</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$6,264,117.96</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Lady Hailstorm Titanium Woods Set</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">1,808</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,947,408.48</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">Mountaineering Equipment</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">6,795</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">301,958</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$20,891,350.60</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span
+           class="textItem">Climbing Accessories</span><span
+           class="textItem">(Opportunities:&nbsp;</span><span class="textItem">2,377</span><span
+           class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">142,150</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$3,689,818.02</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Granite Belay</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">19,894</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,291,486.54</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Firefly Rechargeable Battery</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">22,840</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$169,982.52</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Firefly Charger</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">15,598</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$784,836.88</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Granite Pulley</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">12,464</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$440,289.36</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class="tableRow">
+   <td style="border-top:2.25pt solid #6699CC;border-bottom:1pt dotted Black;" class="pf">
+      <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td style="vertical-align:middle;text-align:left;padding-bottom:10px;" class="tableCell"
+                colspan="1"></td>
+            <td style="vertical-align:middle;text-align:right;padding-bottom:10px;" class="tableCell" colspan="1">
+               <span style="color:gray;" class="textItem">12:57:07 PM</span></td>
+         </tr>
+      </table>
+      <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><img class="image" src="../../../secure/samples/images/banner_cogsquare.jpg"></td>
+            <td style="vertical-align:middle;text-align:center;" class="tableCell" colspan="1"><span
+                    style="font-family:Tahoma;font-size:9pt;color:gray;" class="textItem">4</span></td>
+            <td style="padding-left:150px;" class="tableCell" colspan="1"></td>
+         </tr>
+      </table>
+      <div class="block"></div>
+   </td>
+</tr>
+</table>
+<table xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" cellpadding="0" cellspacing="0" border="0" class="pg">
+<tr class="tableRow">
+   <td style="border-bottom:2.25pt solid #6699CC;;" class="ph">
+      <table style="border-collapse:collapse;width:100%;;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><span style="font-size:14pt;font-weight:bold;color:#6699CC;"
+                                                    class="textItem">Banded Report</span></td>
+            <td style="vertical-align:top;text-align:right;;" class="tableCell" colspan="1"><img class="image"
+                                                                                                 src="../../../secure/samples/images/logo.jpg">
+            </td>
+         </tr>
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><span style="font-family:Tahoma;font-size:9pt;color:gray;"
+                                                    class="textItem">Apr 16, 2008</span></td>
+            <td style="vertical-align:middle;text-align:right;;" class="tableCell" colspan="1"><span
+                    style="font-size:11pt;font-weight:bold;color:#6699CC;" class="textItem">Great Outdoors</span>
+            </td>
+         </tr>
+      </table>
+   </td>
+</tr>
+<tr class="tableRow">
+<td style="vertical-align:top;text-align:center;" class="pb">
+<table style="border-collapse:collapse;" class="ls" cellpadding="0">
+<tr>
+   <td class="lt" colspan="1"><span class="textItem">Product name</span></td>
+   <td class="lt" colspan="1"><span class="textItem">Quantity</span></td>
+   <td style="vertical-align:middle;text-align:center" class="lt" colspan="1"><span
+           class="textItem">Revenue</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Firefly Climbing Lamp</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">17,152</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$661,099.36</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Granite Carabiner</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">43,130</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$159,650.06</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Granite Chalk Bag</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">11,072</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$182,473.30</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span
+           class="textItem">Rope</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">1,180</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">40,678</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$10,481,804.42</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Husky Rope 60</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">14,248</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$2,559,977.34</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Husky Rope 50</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">7,982</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,198,642.74</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Husky Rope 100</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">14,500</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$4,613,953.30</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Husky Rope 200</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">3,948</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$2,109,231.04</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span
+           class="textItem">Safety</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">826</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">22,332</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$1,528,501.94</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Granite Climbing Helmet</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">3,788</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$270,910.96</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Husky Harness Extreme</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">4,472</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$461,132.50</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Granite Signal Mirror</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">2,440</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$74,673.00</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Husky Harness</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">11,632</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$721,785.48</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span class="textItem">Tools</span><span
+           class="textItem">(Opportunities:&nbsp;</span><span class="textItem">2,412</span><span
+           class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">96,798</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$5,191,226.22</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Granite Shovel</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">8,084</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$470,227.70</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Granite Ice</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">8,872</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$660,718.22</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Granite Hammer</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">11,914</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$917,666.18</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Granite Axe</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">24,494</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$914,520.36</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Granite Extreme</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">24,922</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,881,948.66</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Granite Grip</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">18,512</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$346,145.10</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">Outdoor Protection</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">5,576</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">557,854</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$3,171,114.92</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span
+           class="textItem">First Aid</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">1,438</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">72,348</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$578,364.96</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Calamine Relief</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">18,362</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$103,541.34</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Compact Relief Kit</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">5,974</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$133,753.26</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Aloe Relief</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">14,786</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$69,346.28</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class="tableRow">
+   <td style="border-top:2.25pt solid #6699CC;border-bottom:1pt dotted Black;" class="pf">
+      <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td style="vertical-align:middle;text-align:left;padding-bottom:10px;" class="tableCell"
+                colspan="1"></td>
+            <td style="vertical-align:middle;text-align:right;padding-bottom:10px;" class="tableCell" colspan="1">
+               <span style="color:gray;" class="textItem">12:57:07 PM</span></td>
+         </tr>
+      </table>
+      <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><img class="image" src="../../../secure/samples/images/banner_cogsquare.jpg"></td>
+            <td style="vertical-align:middle;text-align:center;" class="tableCell" colspan="1"><span
+                    style="font-family:Tahoma;font-size:9pt;color:gray;" class="textItem">5</span></td>
+            <td style="padding-left:150px;" class="tableCell" colspan="1"></td>
+         </tr>
+      </table>
+      <div class="block"></div>
+   </td>
+</tr>
+</table>
+<table xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" cellpadding="0" cellspacing="0" border="0" class="pg">
+<tr class="tableRow">
+   <td style="border-bottom:2.25pt solid #6699CC;;" class="ph">
+      <table style="border-collapse:collapse;width:100%;;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><span style="font-size:14pt;font-weight:bold;color:#6699CC;"
+                                                    class="textItem">Banded Report</span></td>
+            <td style="vertical-align:top;text-align:right;;" class="tableCell" colspan="1"><img class="image"
+                                                                                                 src="../../../secure/samples/images/logo.jpg">
+            </td>
+         </tr>
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><span style="font-family:Tahoma;font-size:9pt;color:gray;"
+                                                    class="textItem">Apr 16, 2008</span></td>
+            <td style="vertical-align:middle;text-align:right;;" class="tableCell" colspan="1"><span
+                    style="font-size:11pt;font-weight:bold;color:#6699CC;" class="textItem">Great Outdoors</span>
+            </td>
+         </tr>
+      </table>
+   </td>
+</tr>
+<tr class="tableRow">
+<td style="vertical-align:top;text-align:center;" class="pb">
+<table style="border-collapse:collapse;" class="ls" cellpadding="0">
+<tr>
+   <td class="lt" colspan="1"><span class="textItem">Product name</span></td>
+   <td class="lt" colspan="1"><span class="textItem">Quantity</span></td>
+   <td style="vertical-align:middle;text-align:center" class="lt" colspan="1"><span
+           class="textItem">Revenue</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Insect Bite Relief</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">29,980</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$162,271.06</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Deluxe Family Relief Kit</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">3,246</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$109,453.02</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span class="textItem">Insect Repellents</span><span
+           class="textItem">(Opportunities:&nbsp;</span><span class="textItem">2,055</span><span
+           class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">270,074</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$1,584,308.90</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">BugShield Natural</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">47,360</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$255,465.18</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">BugShield Spray</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">46,664</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$248,145.80</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">BugShield Lotion</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">51,126</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$318,723.90</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">BugShield Lotion Lite</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">54,928</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$335,255.84</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">BugShield Extreme</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">69,996</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$426,718.18</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span
+           class="textItem">Sunscreen</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">2,083</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">215,432</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$1,008,441.06</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Sun Shield</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">53,086</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$285,215.14</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Sun Blocker</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">33,056</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$154,769.64</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Sun Shelter 15</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">47,954</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$206,229.02</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Sun Shelter 30</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">69,004</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$303,590.68</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Sun Shelter Stick</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">12,332</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$58,636.58</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">Personal Accessories</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">9,058</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">389,908</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$31,894,465.86</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span
+           class="textItem">Binoculars</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">1,302</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">43,330</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$5,083,058.88</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Seeker 35</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">14,278</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,422,845.46</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Seeker Mini</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">8,570</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$668,114.42</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Seeker Extreme</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">13,046</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$2,050,220.60</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Seeker 50</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">7,436</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$941,878.40</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span
+           class="textItem">Eyewear</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">1,876</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">53,510</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$4,881,470.56</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Polar Extreme</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">8,812</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,234,305.04</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Polar Sports</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">9,094</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,078,542.46</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Polar Sun</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">22,796</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,353,474.08</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Polar Ice</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">4,352</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$456,305.76</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class="tableRow">
+   <td style="border-top:2.25pt solid #6699CC;border-bottom:1pt dotted Black;" class="pf">
+      <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td style="vertical-align:middle;text-align:left;padding-bottom:10px;" class="tableCell"
+                colspan="1"></td>
+            <td style="vertical-align:middle;text-align:right;padding-bottom:10px;" class="tableCell" colspan="1">
+               <span style="color:gray;" class="textItem">12:57:07 PM</span></td>
+         </tr>
+      </table>
+      <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><img class="image" src="../../../secure/samples/images/banner_cogsquare.jpg"></td>
+            <td style="vertical-align:middle;text-align:center;" class="tableCell" colspan="1"><span
+                    style="font-family:Tahoma;font-size:9pt;color:gray;" class="textItem">6</span></td>
+            <td style="padding-left:150px;" class="tableCell" colspan="1"></td>
+         </tr>
+      </table>
+      <div class="block"></div>
+   </td>
+</tr>
+</table>
+<table xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" cellpadding="0" cellspacing="0" border="0" class="pg">
+<tr class="tableRow">
+   <td style="border-bottom:2.25pt solid #6699CC;;" class="ph">
+      <table style="border-collapse:collapse;width:100%;;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><span style="font-size:14pt;font-weight:bold;color:#6699CC;"
+                                                    class="textItem">Banded Report</span></td>
+            <td style="vertical-align:top;text-align:right;;" class="tableCell" colspan="1"><img class="image"
+                                                                                                 src="../../../secure/samples/images/logo.jpg">
+            </td>
+         </tr>
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><span style="font-family:Tahoma;font-size:9pt;color:gray;"
+                                                    class="textItem">Apr 16, 2008</span></td>
+            <td style="vertical-align:middle;text-align:right;;" class="tableCell" colspan="1"><span
+                    style="font-size:11pt;font-weight:bold;color:#6699CC;" class="textItem">Great Outdoors</span>
+            </td>
+         </tr>
+      </table>
+   </td>
+</tr>
+<tr class="tableRow">
+<td style="vertical-align:top;text-align:center;" class="pb">
+<table style="border-collapse:collapse;" class="ls" cellpadding="0">
+<tr>
+   <td class="lt" colspan="1"><span class="textItem">Product name</span></td>
+   <td class="lt" colspan="1"><span class="textItem">Quantity</span></td>
+   <td style="vertical-align:middle;text-align:center" class="lt" colspan="1"><span
+           class="textItem">Revenue</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Polar Wave</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">8,456</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$758,843.22</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span
+           class="textItem">Knives</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">2,251</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">134,134</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$6,935,777.32</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Single Edge</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">15,632</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$187,384.22</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Edge Extreme</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">26,618</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$2,909,955.22</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Double Edge</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">38,352</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$603,263.98</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Bear Edge</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">28,140</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,085,148.54</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Bear Survival Edge</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">25,392</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$2,150,025.36</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span
+           class="textItem">Navigation</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">1,715</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">56,666</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$6,130,335.38</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Glacier GPS</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">10,896</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,189,989.10</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Glacier Deluxe</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">13,900</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,220,672.66</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Glacier GPS Extreme</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">10,706</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$3,089,784.26</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Glacier Basic</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">21,164</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$629,889.36</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="ih" colspan="1"><span class="textItem">&nbsp; &nbsp;</span><span
+           class="textItem">Watches</span><span class="textItem">(Opportunities:&nbsp;</span><span
+           class="textItem">1,914</span><span class="textItem">)</span></td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span class="textItem">102,268</span>
+   </td>
+   <td style="vertical-align:middle;text-align:right" class="rowCell" colspan="1"><span
+           class="textItem">$8,863,823.72</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Mountain Man Deluxe</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">22,200</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,667,671.96</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Mountain Man Combination</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">7,510</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$661,428.40</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Mountain Man Analog</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">15,990</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">$727,540.68</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Mountain Man Digital</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">37,966</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$1,472,303.12</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+<tr>
+   <td class="lc" colspan="1"><span class="textItem">&nbsp; &nbsp; &nbsp;&nbsp;</span><span
+           class="textItem">Mountain Man Extreme</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span
+           class="textItem">18,602</span></td>
+   <td style="text-align:right;vertical-align:middle" class="lc" colspan="1"><span class="textItem">$4,334,879.56</span><span
+           style="visibility:hidden;" class="textItem">)</span></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class="tableRow">
+   <td style="border-top:2.25pt solid #6699CC;border-bottom:1pt dotted Black;" class="pf">
+      <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td style="vertical-align:middle;text-align:left;padding-bottom:10px;" class="tableCell"
+                colspan="1"></td>
+            <td style="vertical-align:middle;text-align:right;padding-bottom:10px;" class="tableCell" colspan="1">
+               <span style="color:gray;" class="textItem">12:57:07 PM</span></td>
+         </tr>
+      </table>
+      <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+         <tr class="tableRow">
+            <td class="tableCell" colspan="1"><img class="image" src="../../../secure/samples/images/banner_cogsquare.jpg"></td>
+            <td style="vertical-align:middle;text-align:center;" class="tableCell" colspan="1"><span
+                    style="font-family:Tahoma;font-size:9pt;color:gray;" class="textItem">7</span></td>
+            <td style="padding-left:150px;" class="tableCell" colspan="1"></td>
+         </tr>
+      </table>
+      <div class="block"></div>
+   </td>
+</tr>
+</table>
+
+</body>
+</html>

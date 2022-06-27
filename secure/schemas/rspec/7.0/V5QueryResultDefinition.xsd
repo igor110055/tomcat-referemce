@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2014
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5Query.xsd"/>
+	<xs:element name="queryResultDefinition">
+		<xs:annotation>
+			<xs:documentation>The QRD describes the shape, or the dimensional structure, of the result set to be returned for rendering. It will generally be generated from the layout specification and is used to assist the rendering operation by delivering the data to be iterated on in the expected form.  That is, the QRD unambiguously specifies a result set structure and represents a meta-model of the QSAPI.  The QRD can be specified either as one of the available templates or as a set of named edges.  Optional master-detail links, generated from the layout containment relationships, define the master and detail contexts of the relationships.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element name="edges" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>a collection of edges.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="edge" minOccurs="0" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>a generic edge type that is generated from the layout information (i.e. the placement of dataItems within a report and their nesting, grouping and aggregations)</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:complexContent>
+											<xs:extension base="edgeType">
+												<xs:attribute name="name" type="xs:string" use="required"/>
+												<xs:attribute name="edgeID" type="xs:unsignedInt" use="optional"/>
+												<xs:attribute name="memberCache" use="optional">
+													<xs:annotation>
+														<xs:documentation>OQP currently caches 100 members along each edge of a cross tab report and disables this cache when the "all rows" query hint is enabled. RSVP, when rendering cross tab reports, re-traverses the column edge for each row of data. If the number of members along the column edge exceeds the cache size, performance is impacted. In the case of charts, RSVP re-traverses both the row and column edge, consequently a large result set as input to a chart can exhibit even worse performance than a cross tab. 
+What is required is a mechanism by which RSVP can control the caching of members along individual edges of a result set, independent of the "all rows" query hint. The solution is to introduce a new, optional attribute to the edge element of the QRD, called "memberCache", the purpose of which is to indicate how members are to be cached along an edge. The three supported values for the attribute are -default - Members along an edge are cached, to the maximum specified by the qfs_config.xml file. -none- None of the members along an edge are cached. -all - All of the members along an edge are cached. If the attribute does not appear for an edge, members are cached to the maximum specified in the qfs_config.xml file and if the "all rows" query hint is disabled. If the attribute appears on an edge, it overrides the value of the "all rows" query hint. In addition, the size of the OQP member edge cache is controlled by the qfs_config.xml property "PPRowCacheSize", the default value of which is 1000. The property must be assigned a value greater than zero, otherwise it defaults to 1000. </xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:NMTOKEN">
+															<xs:enumeration value="default"/>
+															<xs:enumeration value="none"/>
+															<xs:enumeration value="all"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:extension>
+										</xs:complexContent>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="masterDetailLinks" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>a collection of MD links.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="masterDetailLink" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Defines  a master-detail relationship.  A master context and a detail context child elements specify the link filter based on refrenced dataItems or paramters.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="masterContext">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="dataItemContext"/>
+												</xs:sequence>
+												<xs:attribute name="refQueryResultDefinition" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="detailContext">
+											<xs:complexType>
+												<xs:choice>
+													<xs:element ref="dataItemContext"/>
+													<xs:element ref="parameterContext"/>
+												</xs:choice>
+												<xs:attribute name="refQueryResultDefinition" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attribute name="shape" use="optional" default="automatic">
+				<xs:annotation>
+					<xs:documentation>The shape attribute will be set by Analysis Studio to indicate a crosstab QRD, including single edge crosstab.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="crosstab">
+							<xs:annotation>
+								<xs:documentation>"crosstab" value indicates a crosstab QRD. A crosstab with header/footer/detailGroup will cause the server to throw an exception.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="list">
+							<xs:annotation>
+								<xs:documentation>"list" value indicates a list QRD.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="automatic">
+							<xs:annotation>
+								<xs:documentation>"automatic" value indicates that the server will determine the shape of the QRD based on known rules: number of edges and presence of header/footer/detailGroup elements.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="edgeType">
+		<xs:annotation>
+			<xs:documentation>a canonical edge specification that defines a list or a xtab/chart edge</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element ref="edgeGroups" minOccurs="0"/>
+			<xs:element name="edgeSuppression" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Controls suppression on the edge with the following attributes: 1. nulls - a boolean attribute indicating if edge members are to be suppressed if they correspond only to null fact/measure values. 2. zero - a boolean attribute indicating if edge members are to be suppressed if they correspond only to zero fact/measure values. 3.  divByZero - a boolean attribute indicating if edge members are to be suppressed if they correspond only to fact/measure values with status of divByZero. 4. overflow - a boolean attribute indicating if edge members are to be suppressed if they correspond only to fact/measure values with a status of overflow.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="null" type="xs:boolean" use="optional" default="true"/>
+					<xs:attribute name="zero" type="xs:boolean" use="optional" default="true"/>
+					<xs:attribute name="divByZero" type="xs:boolean" use="optional" default="true"/>
+					<xs:attribute name="overflow" type="xs:boolean" use="optional" default="true"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="edgeGroupType">
+		<xs:annotation>
+			<xs:documentation>an arbitrary shaped set of values on an edge</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="valueSets">
+				<xs:annotation>
+					<xs:documentation>unions of value sets, each refrences a dataItem and defines a group body, header, and/or footer </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="valueSet" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>a valueSet, also known as a memberSet, defines a collection of values or members to be returned for this edgeGroup.  It represents a (nesting) level in an explorer style edge.  The refDataItem attribute of this element represents the "key" associated with the level. Level properties can be specified in the groupBody child element as a list of dataItemRefs.  Seven default memeber properties can be specified as property expression.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="valueSetType"/>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="edgeGroups" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="overallHeaderType">
+		<xs:annotation>
+			<xs:documentation>a list overall header</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="dataItemRef" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="overallFooterType">
+		<xs:annotation>
+			<xs:documentation>a list overall footer</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="dataItemRef" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="groupSortType">
+		<xs:annotation>
+			<xs:documentation>specifies how members of the group are sorted</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="sortItem" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="edgeGroup">
+		<xs:annotation>
+			<xs:documentation>a node in a tree of member sets</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="edgeGroupType">
+					<xs:attribute name="name" type="xs:string" use="optional"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="details">
+		<xs:annotation>
+			<xs:documentation>a list report detail column.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dataItemRef" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dataItemRef">
+		<xs:annotation>
+			<xs:documentation>a reference to a selection dataItem.  In a context that requires many dataItemRefs (a group footer for example),  each dataItemRef must be unique.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dataItemContext">
+		<xs:annotation>
+			<xs:documentation>for linking master/detail queries </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="parameterContext">
+		<xs:annotation>
+			<xs:documentation>for linking master/detail queries</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="parameter" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="edgeGroups">
+		<xs:annotation>
+			<xs:documentation>represents an arbitrary shaped set of members (data values) on an edge.  A flat list of non-nested edge groups in an edge specification can be used to represent the unioning of member sets.  Each group in the list  can have one or more valueSets that represent the group's members (based on a caption key and associated body attributes), an optionial  header and/or footer, a sort, and a supression.  An explorer-mode crosstab edge can be specified by a set of nested edge groups.  A reporter-mode crosstab edge can be specified by nesting and unioning edge groups.  A grouped list report can be specified by a set of nested edge groups with the inner most edge group representing the details.  This special group is not keyed on anly level (i.e. it valueSet has not refDataItem attribute) and its body references the detail columns as level attributes. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="edgeGroup" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="layers">
+		<xs:annotation>
+			<xs:documentation>a data section in a cross tab or a chart template</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="layerEdge">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="dataItemRef" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cells">
+		<xs:annotation>
+			<xs:documentation>cross tab fact values</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="dataItemRef"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="overallHeader" type="overallHeaderType">
+		<xs:annotation>
+			<xs:documentation>a list report overall header.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="overallFooter" type="overallFooterType">
+		<xs:annotation>
+			<xs:documentation>a list report overall footer.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="groupHeader">
+		<xs:annotation>
+			<xs:documentation>defines a member that represents a summary of  the group members.  Logically returned before the group members </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dataItemRef" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="groupFooter">
+		<xs:annotation>
+			<xs:documentation>defines a member that reoresents a summary of the group members.  Logically returned after the group members</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dataItemRef" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="groupSort" type="groupSortType">
+		<xs:annotation>
+			<xs:documentation>The groupSort child element of the valueSet element defines the sort order for the group members within a context defined by the entire result set.  A query author can define a sort using projected and non projected items as was the case in Baltic.  The groupSort can reference a data item form the associated query even if the data item was not used in QRD.  For a detail group (i.e. a group with a valueSet that has no data item reference and has a group body reference a list of items) the order the groupSort items dictates the order in which the details are sorted.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="propertyExpressions">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="propertyExpression" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>RoleValue('_memberUniqueName'), RoleValue('_memberCaption'), RoleValue('_levelUniqueName'), RoleValue('_levelNumber'), RoleValue('_levelLabe')l, RoleValue('_parentUniqueName'), RoleValue('_dimensionUniqueName'), RoleValue('_hierarchyUniqueName'), RoleValue('_queryItemModelID') </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="valueSetType">
+		<xs:all>
+			<xs:element ref="groupHeader" minOccurs="0"/>
+			<xs:element name="groupBody" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>defines the attributes to be returned for each member in the group.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="dataItemRef" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="propertyExpressions" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="name" type="xs:string" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="groupFooter" minOccurs="0"/>
+			<xs:element ref="groupSort" minOccurs="0"/>
+			<xs:element ref="propertyExpressions" minOccurs="0"/>
+		</xs:all>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="refDataItem" type="xs:string" use="optional"/>
+		<xs:attribute name="solveOrder" type="xs:integer" default="0">
+			<xs:annotation>
+				<xs:documentation>[DEPRECATED] The solveOrder attribute should now be specified on the dataItem.
+
+Specifies the solve order for this calculation. If no solve order is specified then the solve order will be follow the default rules that the server uses to determine solve order.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

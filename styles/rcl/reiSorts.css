@@ -1,0 +1,121 @@
+
+
+#defaultsContainerDiv {
+   margin:20px 10px 10px 10px;
+   border: 1px solid silver;
+   padding:5px 10px 20px 10px;
+   width:945px;
+   display:block;
+}
+
+#containersDiv {
+   float: left;
+   width: 180px;
+   margin-left:0px;
+}
+
+#columnsDiv {
+   float: left;
+   width: 290px;
+   margin-left:5px;
+}
+
+#defaultSortsDiv {
+   float: left;
+   width: 290px;
+   margin-left:5px;
+}
+
+#operationsDiv {
+   float: left;
+   width: 100px;
+   margin-left:5px;
+   padding-top:15px;
+}
+
+#operationsDiv input {
+   /*width:120px;*/
+}
+
+
+
+
+
+
+#overrideContainerDiv {
+   display:none;
+   clear:both;
+   margin:20px 10px 10px 10px;
+   border: 1px solid silver;
+   padding:5px 10px 20px 10px;
+   width:945px;
+}
+
+#overrideDisplayDiv {
+   display:block;
+   clear:both;
+   margin:20px 10px 10px 10px;
+   border: 1px solid silver;
+   padding:5px 10px 20px 10px;
+   width:945px;
+}
+
+
+div.sortOverrideDescr {
+   border: 1px solid silver;
+   padding:5px;
+   margin:5px 5px 0px 5px;
+   width: 330px;
+}
+
+div.sortOverrideDescr td.containerName {
+   vertical-align:top;
+   text-align:right;
+   padding-right:10px;
+   width: 100px;
+}
+
+div.sortOverrideDescr td.overrideList {
+   vertical-align:top;
+}
+
+
+
+#availColumnsDiv {
+   float:left;
+   width: 345px;
+   margin-left:0px;
+}
+
+#operations2Div {
+   float:left;
+   width: 40px;
+   margin-left:5px;
+   padding-top: 50px;
+   vertical-align:top;
+}
+
+#overrideSortsDiv {
+   float:left;
+   width: 385px;
+   margin-left:5px;
+}
+
+
+#operations3Div {
+   float:left;
+   width: 100px;
+   margin-left:5px;
+   vertical-align:top;
+   padding:15px;
+}
+
+#operations3Div input {
+   /*width: 80px;*/
+}
+
+
+#sortPrecedenceNote {
+   margin:6px 0 0 0;
+}
+

@@ -1,0 +1,55 @@
+@charset "UTF-8";
+/****************************************************************
+** Licensed Materials - Property of IBM
+**
+** BI and PM: qs
+**
+** (C) Copyright IBM Corp. 2001, 2017
+**
+** US Government Users Restricted Rights - Use, duplication or 
+** disclosure restricted by GSA ADP Schedule Contract with 
+** IBM Corp.
+*****************************************************************/
+/*
+Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+*/
+
+.headerMouseover
+{
+	color: #ffffff !important;
+	background-color: #2c4f55 !important;
+}
+
+.headerSelected
+{
+	color: #000000 !important;
+	background-color: #ecb75c !important;
+}
+
+.headerCut
+{
+	color: #666666 !important;
+	background-color: #CCCCCC !important;
+}
+
+.dataCut
+{
+	color: #666666 !important;
+}
+
+.dataSelected
+{
+	background-color: #FFFFCC !important;
+}
+
+.crosstabCornerMouseover
+{
+	color: black !important;
+}
+
+.crosstabCornerSelected
+{
+	color: #000000 !important;
+	background-color: #ecb75c !important;
+}

@@ -1,0 +1,43 @@
+@charset "UTF-8";
+/*
+  Licensed Materials - Property of IBM
+  IBM Cognos Products: Viewer
+  (C) Copyright IBM Corp. 2001, 2011
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+
+.headerMouseover,
+.headerSelected
+{
+	color: #000000 !important;
+	background-color: #E3E9F3 !important;
+}
+
+.headerCut
+{
+	color: #999999 !important;
+	background-color: #CCCCCC !important;
+}
+
+.dataCut
+{
+	color: #999999 !important;
+}
+
+.dataSelected
+{
+	background-color: #FFFFCC !important;
+}
+
+.crosstabCornerMouseover
+{
+	color: #000000 !important;
+}
+
+.crosstabCornerSelected
+{
+	color: #000000 !important;
+	background-color: #FFFFCC !important;
+}

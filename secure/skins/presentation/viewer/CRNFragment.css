@@ -1,0 +1,278 @@
+
+/*
+  Licensed Materials - Property of IBM
+  IBM Cognos Products: Viewer
+  (C) Copyright IBM Corp. 2001, 2011
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+/*General styles*/
+
+.mainViewerHeader3
+{
+	background-color: #ffffff;
+}
+/*menu bar styles*/
+.menuBar
+{
+	padding: 1px;
+	background-color: #336699;
+	border-bottom: 1px solid #000066;
+}
+
+/* fix to prevent firefox from treating image maps as block elements in fragments */
+map
+{
+	display:none;
+}
+
+
+.clsMenu
+{
+	display: inline;
+	background-color: #ffffff;
+	border: 1px solid #444444;
+	position:absolute;
+	padding: 2px 2px 2px 2px;
+	overflow: visible;
+	cursor: default;
+	left: 0px;
+	top:0px;
+	margin:0px;
+}
+
+.pageControl .tableText
+{
+	font-size:100%;
+}
+.body_dialog_modal .tableText
+{
+	font-size:100%;
+}
+.PortalFontFix table
+{
+	font-size:100%;
+}
+
+.menuTitle_normal
+{
+	background-color: #336699;
+	color:#ffffff;
+	font-weight: bold;
+}
+.menuTitle_hover
+{
+	background-color: #e8ecf4;
+	color:#000066;
+	font-weight: bold;
+}
+.menuTitle_pressed
+{
+	background-color: #e8ecf4;
+	color:#000066;
+	font-weight: bold;
+}
+.menuItem_normal
+{
+	border: transparent 1px solid;
+	color: #000000;
+	padding: 2px;
+
+	font-family: Tahoma;
+	cursor: pointer;
+	cursor: hand;
+}
+.clsMenu .menuItem_normal
+{
+	color: #000000;
+	background-color: transparent;
+	border:none;
+}
+.menuItem_hover
+{
+	background-color: #f8f8f8;
+	background-image: -moz-linear-gradient(top, #ffffff 0%, #f8f8f8 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f8f8f8));
+	background-image: -webkit-linear-gradient(top, #ffffff 0%, #f8f8f8 100%);
+	background-image: -o-linear-gradient(top, #ffffff 0%, #f8f8f8 100%);
+	background-image: -ms-linear-gradient(top, #ffffff 0%, #f8f8f8 100%);
+	background-image: linear-gradient(to bottom, #ffffff 0%, #f8f8f8 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f8f8f8',GradientType=0 );
+	zoom: 1;
+	border: #8d8d8d 1px solid;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #000000;
+	padding: 2px;
+
+	font-family: Tahoma;
+	cursor: pointer;
+	cursor: hand;
+}
+.menuItem_hover:active
+{
+	background-color: #e7e7e7;
+	background-image: -moz-linear-gradient(top, #e7e7e7 0%, #cccccc 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e7e7e7), color-stop(100%,#cccccc));
+	background-image: -webkit-linear-gradient(top, #e7e7e7 0%, #cccccc 100%);
+	background-image: -o-linear-gradient(top, #e7e7e7 0%, #cccccc 100%);
+	background-image: -ms-linear-gradient(top, #e7e7e7 0%, #cccccc 100%);
+	background-image: linear-gradient(to bottom, #e7e7e7 0%, #cccccc 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e7e7e7', endColorstr='#cccccc',GradientType=0 );
+	zoom: 1;
+	border: #8d8d8d 1px solid;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #000000;
+	padding: 2px;
+
+	font-family: Tahoma;
+	cursor: pointer;
+	cursor: hand;
+}
+.clsMenu .menuItem_hover
+{
+	color: #000000;
+	background-color: #95daf2;	
+	background-image:none;
+	border: none;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;	
+	border-radius: 0px;
+	filter:none;
+	text-decoration: underline;
+}
+.menuItem_pressed
+{
+	background-color: #efefef;
+	background-image: none, -moz-linear-gradient(top, #e7e7e7 0%, #cccccc 100%);
+	background-image: none, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e7e7e7), color-stop(100%,#cccccc));
+	background-image: none, -webkit-linear-gradient(top, #e7e7e7 0%, #cccccc 100%);
+	background-image: none, -o-linear-gradient(top, #e7e7e7 0%, #cccccc 100%);
+	background-image: none, -ms-linear-gradient(top, #e7e7e7 0%, #cccccc 100%);
+	background-image: none, linear-gradient(to bottom, #e7e7e7 0%, #cccccc 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e7e7e7', endColorstr='#cccccc',GradientType=0 );
+	zoom: 1;
+	border: #8d8d8d 1px dotted;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	color: #000000;
+	padding: 2px;
+
+	font-family: Tahoma;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.menuItem_disabled
+{
+	padding: 3px;
+	color: #767676;
+}
+
+.clsMenu .menuItem_disabled
+{
+	color: #767676;	
+	text-decoration: none;
+}
+
+.menuContainer
+{
+	background-color: #ffffff;
+	border: 1px solid #336699;
+}
+
+/*toolbar styles*/
+
+.toolbar
+{
+	width: 25px;
+	height: 25px;
+	padding: 2px;
+	background-color: #e0e0e0;
+	border-bottom: 1px solid #cccccc;
+}
+
+/* Drop down arrow */
+.dropDownArrow
+{
+	height: 22px;
+	width: 13px;
+	border: 1px solid #cccccc;
+	background-color: #FFFFFF;
+}
+
+.dropDownArrowOver
+{
+	height: 22px;
+	width: 13px;
+	border: 1px solid #666699;
+	background-color: #cccce3;
+	cursor: pointer;
+	cursor: hand;
+}
+
+/* Seperators */
+
+.menuHorizontalSeperator
+{
+    border-bottom: 1px solid #C0C0C0;
+    font-size: 0;
+    height: 1px;
+    margin-bottom: 3px;
+    margin-top: 1px;
+    width: 100%;
+}
+
+.toolbarVerticalSeperator
+{
+	padding: 0px 2px 0px 2px;
+}
+
+/* Command buttons (usually appear in dialog footers) */
+.commandButton
+{
+	border: #8d8d8d 1px solid;
+	font-size: 110%;
+    color: #000000;
+	background-color: #f3f3f3;
+}
+.commandButtonOver
+{
+	border: #8d8d8d 1px solid;
+	font-size: 110%;
+	cursor: pointer;
+    color: #000000;
+	background-color: #cccccc;
+}
+.commandButtonDown
+{
+	border: #8d8d8d 1px solid;
+	font-size: 110%;
+	cursor: pointer;
+    color: #000000;
+	background-color: #efefef;
+}
+
+td#btnAnchor a /* none ie browsers */
+{
+	color: #000000;
+	text-decoration: none;
+}
+
+td#btnAnchorIE a
+{
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 3px;
+	padding-top: 2px;
+	width:100%;
+	color: #000000;
+	height: 100%;
+	text-decoration: none;
+}
+

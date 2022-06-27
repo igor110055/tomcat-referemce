@@ -1,0 +1,231 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+/*layout section*/
+html,body,#buxMainBC {
+	width: 100%; /* make the body expand to fill the visible window */
+	height: 100%;
+	overflow: hidden; /* erase window level scrollbars */
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+}
+
+.icdUI div.icdWorkspace {
+	height: 100%;
+	width: 100%;
+	padding: 0px;
+	background-color: #ffffff;
+}
+
+.icdUI .icdWorkspace .dojoxExpandoClosed {
+	border: none !important;
+}
+
+.icdUI div.icdWorkspace .icdSplitterOpenH {
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid #cccccc;
+	height: 5px;
+}
+
+.icdUI div.icdWorkspace .icdSplitterCloseH,
+.icdUI div.icdWorkspace .dijitSplitterHHover {
+	height: 6px;
+}
+
+.icdUI div.icdWorkspace .icdSplitterOpenV {
+	background-color: transparent;
+	border: none;
+	border-left: 1px solid #cccccc;
+	width: 5px;
+}
+
+.icdUI div.icdWorkspace .icdSplitterCloseV,
+.icdUI div.icdWorkspace .dijitSplitterVHover {
+	width: 6px;
+}
+
+.icdUI div.icdWorkspace .dijitTabPaneWrapper {
+	border-style: none;
+}
+
+.icdUI div.icdWorkspace .dijitTabListContainer-bottom,
+.icdUI div.icdWorkspace .dijitTabListContainer-top,
+.icdUI div.icdWorkspace .dijitTabListWrapper {
+	background-color: #f5f5f5;
+}
+
+.icdUI div.icdWorkspace .icdSplitterCloseH,
+.icdUI div.icdWorkspace .icdSplitterCloseV,
+.icdUI div.icdWorkspace .dijitSplitterHover {
+	background-image: none !important;
+	background-color: #dfedfb;
+}
+
+.icdUI div.icdWorkspace .icdSplitterOpenV.dijitSplitterHover,
+.icdUI div.icdWorkspace .icdSplitterOpenH.dijitSplitterHover,
+.icdUI div.icdWorkspace .icdSplitterOpenV.icdSplitterMobile,
+.icdUI div.icdWorkspace .icdSplitterOpenH.icdSplitterMobile
+ {
+	border-style: solid;
+	border: 1px solid  #cccccc !important;
+}
+
+.icdUI div.icdWorkspace .dijitSplitter .dijitSplitterThumb {
+	visibility: hidden;
+}
+
+.icdUI div.icdWorkspace .icdSplitterMobile .dijitSplitterThumb {
+	visibility: visible;
+}
+
+.icdUI div.icdWorkspace .icdSplitterMobile {
+	overflow: visible;
+	z-index: 540 !important;
+}
+
+.icdUI div.icdWorkspace .icdSplitterCloseH .dijitSplitterThumb,
+.icdUI div.icdWorkspace .icdSplitterCloseV .dijitSplitterThumb,
+.icdUI div.icdWorkspace .dijitSplitterHover .dijitSplitterThumb {
+	visibility: visible;
+}
+
+.buxCanvas {
+	overflow: auto;
+	height: 100%;
+}
+
+/* The suggested workaround of https://bugzilla.mozilla.org/show_bug.cgi?id=548397 */
+.buxCanvasHidden {
+	display: block !important;
+	visibility: hidden !important;
+	position: absolute !important;
+	top: -5000px !important;
+	left: -5000px !important;
+}
+
+.buxCanvasDropZoneIndicator {
+	text-align: center;
+}
+
+.buxCanvasDropZoneInner {
+	position: relative;
+}
+
+.buxCanvasDropZoneUnderlay {
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	background-color:transparent;
+	z-index:100000;
+	-moz-opacity: 0.01;
+	opacity: 0.01;
+	filter: alpha(opacity = 1);
+}
+
+.nowrapForAutoResize * {
+	white-space: nowrap !important;
+}
+
+.nowrapForAutoResize *[style*="width"] {
+	overflow-x: hidden !important;
+}
+
+.nowrapForAutoResizeWidthSet {
+	overflow-x: hidden !important;
+}
+
+.nowrapForAutoResize .infoBar,
+.nowrapForAutoResize .infoBarFlyout {
+	display: none;
+}
+
+/* Overriding overflow properties for elements in widgets that have overflow set to hidden or auto, like Facets. */
+div.widgetContainer div.nowrapForAutoResize div.dojoxFloatingPaneContent div.mm_Content div {
+	overflow: visible;
+}
+
+.dijitTabCloseIcon {
+	visibility: hidden;
+}
+
+.dijitTabChecked .dijitTabCloseIcon {
+	visibility: visible;
+}
+
+/*Skin section*/
+.buxPagePreview {
+	background-color: #FAFCFE;
+	background-image: none;
+	background-repeat: repeat-x;
+}
+
+.buxCanvasDropZoneIndicatorText {
+	font-size: 13pt;
+	color: #444444;
+	padding-bottom: 2px;
+}
+
+.buxCanvasDropZoneIndicatorSubText {
+	font-size: 10pt;
+	color: #444444;
+}
+
+.buxCanvasDropZoneIndicatorImage {
+	height: 200px;
+	background: none center no-repeat;
+	background-image: url(images/canvas/drag_r.png);
+}
+
+.dj_ie7 .buxCanvasDropZoneIndicatorImage {
+	width: 340px;
+}
+
+.bux-contentpane-left .buxCanvasDropZoneIndicatorImage {
+	background-image: none;
+	background-image: url(images/canvas/drag_l.png);
+}
+
+.dojoxExpandoPane .buxGlobalAreaDropZoneIndicatorImage {
+	height: 62px;
+	background: none center no-repeat;
+	background-image: url(images/canvas/drag_ga_r.png);
+}
+
+.bux-contentpane-left .dojoxExpandoPane .buxGlobalAreaDropZoneIndicatorImage {
+	background-image: none;
+	background-image: url(images/canvas/drag_ga_l.png);
+}
+
+.dj_ie7 .dojoxExpandoPane .buxCanvasDropZoneIndicatorImage,
+.dj_ie7 .dojoxExpandoPane .buxGlobalAreaDropZoneIndicatorImage {
+	width: 95px;
+}
+
+.claro .dijitTabCloseButton {
+	background-image: none;
+	background-image: url(images/canvas/tab_icon_close.png);
+	background-position: center right;
+}
+
+.claro .dijitTabCloseButtonHover {
+	background-image: none;
+	background-image: url(images/canvas/tab_icon_close_h.png);
+	background-position: center right;
+}
+
+.claro .dijitTabStripMenuIcon {
+	background-position: 0px 50%;
+	background-image: none;
+	background-image: url(images/canvas/tab_overflow.png);
+}

@@ -1,0 +1,3025 @@
+
+
+TEXTAREA {
+    font: message-box;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    border: 1px solid #cccccc;
+    color: #292929;
+    margin-top: 0px !important;
+    margin-top: -1px;
+    }
+INPUT[type="text"] {
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    }
+BODY {
+    font: message-box;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    background-color: #f7f8fc;
+    }
+INPUT {
+    font: message-box;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #292929;
+    }
+.clsDialogText,
+DIV.clsDialog DIV.clsToolbar,
+DIV.clsDlgToolbar,
+DIV.clsVerticalToolbar,
+DIV.clsMenubar,
+TD.clsModalDlgBody,
+TD.clsModelessDlgBody,
+BUTTON.clsDlgButton,
+BUTTON.clsDlgButton_hover,
+TABLE.clsPropertyPane {
+    font: message-box;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    }
+TD.clsMenubarItem,
+TD.clsToolbarButton,
+.clsMenuPopup,
+TABLE.clsModalDlg,
+TABLE.clsModelessDlg,
+TABLE.clsModelessInfoDlg,
+TD.clsMenubarItem_up,
+TD.clsMenubarItem_down,
+TD.clsToolbarButton_up,
+TD.clsToolbarButton_down,
+TD.clsToolbarButton_stuck,
+BUTTON.clsCoolButton,
+BUTTON.clsCoolButton_hover,
+BUTTON.clsCoolButton_pressed,
+BUTTON.clsBigCoolButton,
+BUTTON.clsBigCoolButton_hover,
+BUTTON.clsBigCoolButton_pressed,
+.clsMenuItem,
+.clsMenuItem_selected,
+.clsMenuSeparatorLabel,
+TABLE.clsTabBox,
+TABLE.clsButtonBarHorizontal,
+TABLE.clsButtonBarVertical,
+DIV.clsTreeView,
+DIV.clsListView,
+DIV.clsListView_dropdown,
+.clsPropertySheetContainer,
+TABLE.clsComboBox,
+TABLE.clsPropertySheet {
+    font: menu;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    }
+.clsToolDlgHeader_active,
+.clsModalDlgHeader_active,
+.clsModalDlgHeader_inactive {
+    font: caption;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    }
+.clsDialogText {
+    cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #292929;
+    }
+DIV.clsDlgToolbar {
+    padding-top: 2px;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #292929;
+    height: 30px;
+    background-color: transparent;
+    }
+
+DIV.clsMenubar {
+    cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    vertical-align: top;
+    border-top: none;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 32px;
+    color: #e8eef5;
+    background-color: #85aff9;
+    background-image: none;
+	background-image: none, -moz-linear-gradient(top, #85aff9 0%, #375584 100%);
+	background-image: none, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#85aff9), color-stop(100%,#375584));
+	background-image: none, -webkit-linear-gradient(top, #85aff9 0%, #375584 100%);
+	background-image: none, -o-linear-gradient(top, #85aff9 0%, #375584 100%);
+	background-image: none, -ms-linear-gradient(top, #85aff9 0%, #375584 100%);
+	background-image: none, linear-gradient(to bottom, #85aff9 0%, #375584 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#85aff9', endColorstr='#375584',GradientType=0 );
+	zoom: 1;
+    border-bottom: 4px solid #3fb006;
+    }
+TD.clsMenubarItem {
+    cursor: default;
+    white-space: nowrap;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    height: 28px;
+    padding: 2px 10px 2px 9px;
+    background-color: transparent;
+    border: none;
+    color: #e8eef5;
+    }
+
+TD.clsToolbarButton {
+    cursor: default;
+    white-space: nowrap;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    padding: 3px 4px 3px 4px;
+    background-color: transparent;
+    color: #375584;
+    }
+.clsMenuPopup {
+    position: absolute;
+    visibility: hidden;
+    left: -1000px;
+    top: 0;
+    cursor: default;
+    z-index: 10000;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    padding: 2px;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    background-color: #e8eef5;
+    color: #375584;
+    border: 1px solid #9bb6d3;
+    }
+TABLE.clsModalDlg {
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    border-radius: 4px;
+    color: #292929;
+    border: 1px solid #336699;
+    background-color: #ffffff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    }
+TABLE.clsModelessDlg {
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    color: #292929;
+    border: 1px solid #336699;
+    background-color: #ffffff;
+    }
+TABLE.clsModelessInfoDlg {
+    border: 1px solid #336699;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #292929;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    }
+TD.clsModalDlgBody {
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    padding: 10px 10px 0 10px;
+    color: #292929;
+    }
+TD.clsModelessDlgBody {
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    padding: 10px 10px 0 10px;
+    color: #292929;
+    }
+BUTTON.clsDlgButton {
+    overflow: visible;
+    margin-left: 5px;
+    white-space: nowrap;
+    height: 23px;
+    cursor: pointer;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    border: 1px solid #9bb6d3;
+    border-radius: 3px;
+    background-color: #d2deeb;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2deeb), color-stop(100%,#abb5c0));
+	background-image: -webkit-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: -o-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: -ms-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: linear-gradient(to bottom, #d2deeb 0%, #abb5c0 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2deeb', endColorstr='#abb5c0',GradientType=0 );
+	zoom: 1;
+    color: #375584;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    vertical-align: bottom;
+    }
+BUTTON.clsDlgButton_hover {
+    overflow: visible;
+    margin-left: 5px;
+    white-space: nowrap;
+    height: 23px;
+    cursor: pointer;
+    border: 1px solid #9bb6d3;
+    border-radius: 3px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #d2deeb;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2deeb), color-stop(100%,#c4d0dc));
+	background-image: -webkit-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: -o-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: -ms-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: linear-gradient(to bottom, #d2deeb 0%, #c4d0dc 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2deeb', endColorstr='#c4d0dc',GradientType=0 );
+	zoom: 1;
+    font-size: 11px;
+    font-weight: bold;
+    color: #375584;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    }
+TABLE.clsPropertyPane {
+    z-index: 102;
+    position: relative;
+    background-color: threedface;
+    border-collapse: collapse;
+    }
+TD.clsMenubarItem_up {
+    cursor: default;
+    white-space: nowrap;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    background-position: 0 0;
+    background-repeat: repeat-x;
+    height: 28px;
+    padding: 2px 9px 2px 8px;
+    background-color: #375584;
+    background-image: none;
+	background-image: none, -moz-linear-gradient(top, #375584 0%, #85aff9 100%);
+	background-image: none, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#375584), color-stop(100%,#85aff9));
+	background-image: none, -webkit-linear-gradient(top, #375584 0%, #85aff9 100%);
+	background-image: none, -o-linear-gradient(top, #375584 0%, #85aff9 100%);
+	background-image: none, -ms-linear-gradient(top, #375584 0%, #85aff9 100%);
+	background-image: none, linear-gradient(to bottom, #375584 0%, #85aff9 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#375584', endColorstr='#85aff9',GradientType=0 );
+	zoom: 1;
+    border: 1px solid #375584;
+    color: #e8eef5;
+    }
+TD.clsMenubarItem_down {
+    cursor: default;
+    white-space: nowrap;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    background-position: 0 0;
+    background-repeat: repeat-x;
+    height: 28px;
+    padding: 2px 9px 2px 8px;
+    background-color: #2c4764;
+    background-image: none;
+	background-image: none, -moz-linear-gradient(top, #85aff9 0%, #2c4764 100%);
+	background-image: none, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#85aff9), color-stop(100%,#2c4764));
+	background-image: none, -webkit-linear-gradient(top, #85aff9 0%, #2c4764 100%);
+	background-image: none, -o-linear-gradient(top, #85aff9 0%, #2c4764 100%);
+	background-image: none, -ms-linear-gradient(top, #85aff9 0%, #2c4764 100%);
+	background-image: none, linear-gradient(to bottom, #85aff9 0%, #2c4764 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#85aff9', endColorstr='#2c4764',GradientType=0 );
+	zoom: 1;
+    border: 1px solid #2c4764;
+    color: #e8eef5;
+    }
+
+
+TD.clsToolbarButton_up {
+    cursor: default;
+    white-space: nowrap;
+    padding: 2px 3px 2px 3px;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    background-position: 0 0;
+    background-repeat: repeat-x;
+    background-color: #f7f8fc;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #f7f8fc 0%, #d2deeb 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7f8fc), color-stop(100%,#d2deeb));
+	background-image: -webkit-linear-gradient(top, #f7f8fc 0%, #d2deeb 100%);
+	background-image: -o-linear-gradient(top, #f7f8fc 0%, #d2deeb 100%);
+	background-image: -ms-linear-gradient(top, #f7f8fc 0%, #d2deeb 100%);
+	background-image: linear-gradient(to bottom, #f7f8fc 0%, #d2deeb 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f8fc', endColorstr='#d2deeb',GradientType=0 );
+	zoom: 1;
+    border: #9bb6d3 1px solid;
+    color: #375584;
+    border-radius: 3px;
+    }
+TD.clsToolbarButton_down {
+    cursor: default;
+    white-space: nowrap;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    padding: 2px 3px 2px 3px;
+    background-color: #e8eef5;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #e8eef5 0%, #d2deeb 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8eef5), color-stop(100%,#d2deeb));
+	background-image: -webkit-linear-gradient(top, #e8eef5 0%, #d2deeb 100%);
+	background-image: -o-linear-gradient(top, #e8eef5 0%, #d2deeb 100%);
+	background-image: -ms-linear-gradient(top, #e8eef5 0%, #d2deeb 100%);
+	background-image: linear-gradient(to bottom, #e8eef5 0%, #d2deeb 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8eef5', endColorstr='#d2deeb',GradientType=0 );
+	zoom: 1;
+    border: #9bb6d3 1px solid;
+    color: #375584;
+    border-radius: 3px;
+    }
+TD.clsToolbarButton_stuck {
+    cursor: default;
+    white-space: nowrap;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #e8eef5 0%, #d2deeb 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8eef5), color-stop(100%,#d2deeb));
+	background-image: -webkit-linear-gradient(top, #e8eef5 0%, #d2deeb 100%);
+	background-image: -o-linear-gradient(top, #e8eef5 0%, #d2deeb 100%);
+	background-image: -ms-linear-gradient(top, #e8eef5 0%, #d2deeb 100%);
+	background-image: linear-gradient(to bottom, #e8eef5 0%, #d2deeb 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8eef5', endColorstr='#d2deeb',GradientType=0 );
+	zoom: 1;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    background-color: #e8eef5;
+    border: #9bb6d3 1px solid;
+    color: #375584;
+    padding: 2px 3px 2px 3px;
+    border-radius: 3px;
+    }
+
+DIV.clsVerticalToolbar TD.clsToolbarButton_up, DIV.clsVerticalToolbar TD.clsToolbarButton_down, DIV.clsVerticalToolbar TD.clsToolbarButton_stuck{
+   	padding: 2px 2px 2px 2px;
+    }
+
+DIV.clsVerticalToolbar TD.clsToolbarButton{
+	border: none;
+    padding: 3px 3px 3px 3px;
+    }
+BUTTON.clsCoolButton {
+    background-color: transparent;
+    cursor: default;
+    padding: 2px 1px 1px 1px;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #375584;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    }
+BUTTON.clsCoolButton_hover {
+    cursor: default;
+    padding: 2px 1px 1px 1px;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #375584;
+    background-color: #d2deeb;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2deeb), color-stop(100%,#c4d0dc));
+	background-image: -webkit-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: -o-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: -ms-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: linear-gradient(to bottom, #d2deeb 0%, #c4d0dc 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2deeb', endColorstr='#c4d0dc',GradientType=0 );
+	zoom: 1;
+    border: 1px solid #9bb6d3;
+    border-radius: 3px;
+    }
+BUTTON.clsCoolButton_pressed {
+    cursor: default;
+    padding: 2px 1px 1px 1px;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #375584;
+    background-color: #abb5c0;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #abb5c0 0%, #d2deeb 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#abb5c0), color-stop(100%,#d2deeb));
+	background-image: -webkit-linear-gradient(top, #abb5c0 0%, #d2deeb 100%);
+	background-image: -o-linear-gradient(top, #abb5c0 0%, #d2deeb 100%);
+	background-image: -ms-linear-gradient(top, #abb5c0 0%, #d2deeb 100%);
+	background-image: linear-gradient(to bottom, #abb5c0 0%, #d2deeb 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#abb5c0', endColorstr='#d2deeb',GradientType=0 );
+	zoom: 1;
+    border: 1px solid #9bb6d3;
+    border-radius: 3px;
+    }
+BUTTON.clsBigCoolButton {
+    cursor: default;
+    padding: 2px 1px 1px 1px;
+    margin: 0px 0px 4px 0px;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #375584;
+    background-color: #d2deeb;
+    border: 1px solid #9bb6d3;
+    border-radius: 3px;
+    }
+BUTTON.clsBigCoolButton_hover {
+    cursor: default;
+    padding: 2px 1px 1px 1px;
+    margin: 0px 0px 4px 0px;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    background-color: #d2deeb;
+    border: 1px solid #9bb6d3;
+    color: #375584;
+    border-radius: 3px;
+    }
+BUTTON.clsBigCoolButton_pressed {
+    cursor: default;
+    padding: 2px 1px 1px 1px;
+    margin: 0px 0px 4px 0px;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    background-color: #d2deeb;
+    border: 1px solid #9bb6d3;
+    color: #375584;
+    border-radius: 3px;
+    }
+.clsMenuItem {
+    cursor: default;
+    white-space: nowrap;
+    width: 100%;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    height: 22px;
+    color: #375584;
+    background-color: #e8eef5;
+    border-top: 1px solid #e8eef5;
+    border-bottom: 1px solid #e8eef5;
+    }
+.clsMenuItem_selected {
+    cursor: default;
+    white-space: nowrap;
+    width: 100%;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    height: 22px;
+    background-color: #9bb6d3;
+    border-top: 1px solid #9bb6d3;
+    border-bottom: 1px solid #9bb6d3;
+    color: #2c4764;
+    }
+.clsTouchFriendly .clsMenuItem,
+.clsTouchFriendly .clsMenuItem_selected
+{
+    height: 40px;
+    font-size: 16px;
+}
+.clsTouchFriendly .clsMenuSeparatorLabel
+{
+    height: 40px;
+    font-size: 16px;
+    padding-top: 12px;
+}
+.clsMenuSeparatorLabel {
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #2c4764;
+    padding: 4px 5px 0 5px;
+    height: 24px;
+    border-top: none;
+    }
+TABLE.clsTabBox {
+    border-collapse: collapse;
+    empty-cells: show;
+    cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #2c4764;
+    }
+DIV.clsTreeView {
+    overflow: auto;
+    white-space: nowrap;
+    padding: 3px;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    background-position: top left;
+    background-repeat: repeat-x;
+    color: #292929;
+    border: 1px solid #85aff9;
+    /* background-image: #FF0000; */
+    background-color: #ffffff;
+    padding: 0px 7px;
+    }
+DIV.clsListView {
+    overflow: auto;
+    white-space: nowrap;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #292929;
+    background-color: #ffffff;
+    border: 1px solid #85aff9;
+    }
+DIV.clsListView_dropdown {
+    overflow: auto;
+    white-space: nowrap;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    background-color: #fff;
+    padding-left: 0;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    border: 1px solid #cccccc;
+    color: #292929;
+    }
+.clsPropertySheetContainer {
+    overflow: auto;
+    white-space: nowrap;
+    background-color: #ffffff;
+    border: 2px inset #85aff9;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #292929;
+    }
+TABLE.clsComboBox
+{
+    table-layout: fixed;
+    empty-cells: show;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    color: #292929;
+}
+
+TABLE.clsPropertySheet {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #292929;
+    background-color: #ffffff;
+    }
+.clsToolDlgHeader_active {
+    cursor: default;
+    font-weight: normal;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    border: 1px solid #9bb6d3;
+    color: #2c4764;
+    background-color: #e8eef5;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8eef5), color-stop(100%,#d2d8de));
+	background-image: -webkit-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: -o-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: -ms-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: linear-gradient(to bottom, #e8eef5 0%, #d2d8de 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8eef5', endColorstr='#d2d8de',GradientType=0 );
+	zoom: 1;
+    }
+.clsModalDlgHeader_active {
+    cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #2c4764;
+    background-color: #ffffff;
+    }
+.clsModalDlgHeader_inactive {
+    cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #2c4764;
+    background-color: #ffffff;
+    }
+DIV.clsModalDlgShadow {
+    position: absolute;
+    z-index: -1;
+    top: -6px;
+    left: -6px;
+    height: 400px;
+    width: 640px;
+    background-color: #777;
+    display: block;
+    }
+DIV.clsWidgetFrameBorderDialog {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    height: 400px;
+    width: 640px;
+    left: -4px;
+    top: -1px;
+    }
+DIV.clsHalScrollableBody {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    }
+DIV.clsDialog {
+    cursor: default;
+    display: none;
+    }
+.clsFixedWidthFont {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 10pt;
+    }
+.clsCptf {
+    font-size: 20pt;
+    color: red;
+    }
+DIV.clsToolbar {
+    padding-top: 2px;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    border: none;
+    height: 30px;
+    color: #375584;
+    background-color: #f7f8fc;
+    }
+DIV.clsSlider {
+    background-color: threedface;
+    }
+DIV.clsSliderHandle {
+    font-family: sans-serif;
+    font-size: 2pt;
+    border: 1px solid #CCC;
+    cursor: default;
+    position: absolute;
+    background-color: #F6F6F6;
+    }
+TD.clsMenubarItemLast {
+    width: 100%;
+    background-position: right top;
+    background-repeat: no-repeat;
+    border: none;
+    }
+IMG.clsImg16x16 {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    }
+IMG.clsImg13x13 {
+    width: 13px;
+    height: 13px;
+    vertical-align: middle;
+    }
+IMG.clsImg10x10 {
+    width: 10px;
+    height: 10px;
+    vertical-align: middle;
+    }
+DIV.clsToolbarHorizontalSeparator {
+    font-size: 0;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    height: 1px;
+    width: 22px;
+    border-top: 1px solid threedshadow;
+    border-bottom: 1px solid threedhighlight;
+    }
+TD.clsToolbarSeparator {
+    vertical-align: middle;
+    padding-left: 2px;
+    padding-right: 2px;
+    }
+TD.clsToolbarSeparator_hidden {
+    vertical-align: middle;
+    padding-left: 1px;
+    padding-right: 1px;
+    }
+DIV.clsToolbarSeparator {
+    width: 1px;
+    height: 22px;
+    border: none;
+    background-image: url(td_images/tool_sep_dot_line_banner_blk.gif);
+    background-repeat: no-repeat;
+    background-position: center left;
+    }
+DIV.clsToolbarSeparator_hidden {
+    width: 1px;
+    height: 22px;
+    }
+TD.clsToolbarComboBox {
+    white-space: nowrap;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    }
+.clsSubMenuPopupRight {
+    margin-left: -1px;
+    }
+.clsSubMenuPopupLeft {
+    margin-left: 1px;
+    }
+.clsMenuSeparator {
+    height: 1px;
+    border-top: 1px solid #9bb6d3;
+    }
+.clsMenuSeparatorContainer {
+    padding: 0 0 0 0;
+    font-size: 0;
+    line-height: 0;
+    background-color: #ffffff;
+    }
+.clsMenuSeparatorLabelContainer {
+    border-top: 1px solid #9bb6d3;
+    border-bottom: 1px solid #9bb6d3;
+    background-color: #ffffff;
+    }
+TD.clsMenuImageContainer {
+    width: 20px;
+    height: 20px;
+    padding: 2px 8px 2px 8px;
+    background-color: #e8eef5;
+    }
+IMG.clsMenuImage {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin: 2px 2px 2px 2px;
+    }
+IMG.clsSubMenuArrow {
+    width: 4px;
+    height: 7px;
+    vertical-align: middle;
+    }
+TD.clsSubMenu {
+    width: 10px;
+    padding-right: 4px;
+    padding-left: 2px;
+    text-align: right;
+    }
+DIV.clsModalDlgWin {
+    position: absolute;
+    left: -1000px;
+    top: 0;
+    }
+DIV.clsModelessDlgWin {
+    position: absolute;
+    left: -1000px;
+    top: 0;
+    }
+.clsPopupDialog {
+    border: none;
+    background-color: Transparent;
+    }
+.clsModelessDlgHeader_active {
+    cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #2c4764;
+    background-color: #ffffff;
+    }
+.clsModelessDlgHeader_inactive {
+    cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #2c4764;
+    background-color: #ffffff;
+    }
+.clsModelessInfoDlgHeader_inactive {
+    cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #2c4764;
+    background-color: #ffffff ;
+    }
+.clsModelessInfoDlgHeader_active {
+    cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #2c4764;
+    background-color: #ffffff;
+    }
+BUTTON.clsDlgButtonDropDownArrow {
+    margin-left: 0;
+    padding: 0;
+    height: 23px;
+    cursor: pointer;
+    border: 1px solid #9bb6d3;
+    border-radius: 3px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #d2deeb;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2deeb), color-stop(100%,#abb5c0));
+	background-image: -webkit-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: -o-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: -ms-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: linear-gradient(to bottom, #d2deeb 0%, #abb5c0 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2deeb', endColorstr='#abb5c0',GradientType=0 );
+	zoom: 1;
+    font-size: 11px;
+    color: #375584;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    width: 23px;
+    vertical-align: middle;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    }
+BUTTON.clsDlgButton16x16 {
+    width: 24px;
+    padding-left: 1px;
+    padding-right: 1px;
+    vertical-align: middle;
+    margin-right: 4px;
+    }
+BUTTON.clsDlgButton16x16 IMG {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    }
+.clsDlgButtonBar {
+    text-align: right;
+    padding-top: 10px;
+    white-space: nowrap;
+    }
+.clsDlgMsgBoxButtonBar {
+    text-align: center;
+    padding-top: 10px;
+    white-space: nowrap;
+    }
+TD.clsModalDlgHeaderTitleFirstCell_active {
+    vertical-align: middle;
+    font-size: 1.6em;
+    font-weight: normal;
+    padding: 15px;
+    cursor: move;
+    border-bottom: 1px solid #9bb6d3;
+    border-radius: 4px 0 0 0;
+    color: #2c4764;
+    background: #ffffff;
+    }
+TD.clsModalDlgHeaderTitleFirstCell_inactive {
+    vertical-align: middle;
+    font-size: 1.6em;
+    font-weight: normal;
+    padding: 15px;
+    cursor: move;
+    border-bottom: 1px solid #9bb6d3;
+    border-radius: 4px 0 0 0;
+    color: #2c4764;
+    background: #ffffff;
+    }
+TD.clsModalDlgHeaderTitleLastCell_active {
+    vertical-align: middle;
+    font-size: 1.18em;
+    font-weight: bold;
+    cursor: move;
+    border-bottom: 1px solid #9bb6d3;
+    border-radius: 0 4px 0 0;
+    color: #2c4764;
+    background: #ffffff;
+    padding-right: 2px;
+    }
+TD.clsModalDlgHeaderTitleLastCell_inactive {
+    vertical-align: middle;
+    font-size: 1.18em;
+    font-weight: bold;
+    cursor: move;
+    border-bottom: 1px solid #9bb6d3;
+    border-radius: 0 4px 0 0;
+    color: #2c4764;
+    background: #ffffff;
+    padding-right: 2px;
+    }
+TD.clsModalDlgBottomSpacer {
+    height: 0;
+    font-size: 0;
+    }
+DIV.clsDlgResizeHandle {
+    background-repeat: no-repeat;
+    cursor: se-resize;
+    font-size: 6px;
+    background-image: url(td_images/size_resize.gif);
+    background-position: right bottom;
+    height: 9px;
+    width: 9px;
+    }
+BUTTON.clsXButton_active {
+    margin-right: 4px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    background-image: url(td_images/x.png);
+    background-position: top right;
+    background-repeat: no-repeat;
+    height: 28px;
+    margin-left: 7px;
+    vertical-align: middle;
+    width: 28px;
+    }
+BUTTON.clsXButton_inactive {
+    margin-right: 4px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    background-image: url(td_images/x.png);
+    background-position: top right;
+    background-repeat: no-repeat;
+    height: 28px;
+    margin-left: 7px;
+    vertical-align: middle;
+    width: 28px;
+    }
+BUTTON.clsXButton_hover {
+    margin-right: 4px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    background-image: url(td_images/x.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    height: 28px;
+    margin-left: 7px;
+    vertical-align: middle;
+    width: 28px;
+    }
+BUTTON.clsXButtonInfo_active {
+    border: none;
+    background-color: infobackground;
+    height: 28px;
+    margin-left: 7px;
+    vertical-align: middle;
+    width: 28px;
+    }
+BUTTON.clsXButtonInfo_inactive {
+    border: none;
+    background-color: infobackground;
+    height: 28px;
+    margin-left: 7px;
+    vertical-align: middle;
+    width: 28px;
+    }
+BUTTON.clsXButtonInfo_hover {
+    border: none;
+    background-color: infobackground;
+    height: 28px;
+    margin-left: 7px;
+    vertical-align: middle;
+    width: 28px;
+    }
+IMG.clsXButton {
+    vertical-align: top;
+    display: none;
+    height: 28px;
+    width: 28px;
+    }
+IMG.clsProgressImage {
+    height: 32px;
+    width: 32px;
+    margin: 8px;
+    }
+
+DIV.clsTabPanels {
+    cursor: default;
+    padding: 12px 10px 10px 10px;
+    border-top-style: none;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    background-color: Transparent;
+    border: #cccccc;
+    }
+
+
+TD.clsTabBox_inactive,
+TD.clsTabBox_inactive_hover,
+TD.clsTabBox_active,
+TD.clsTabBox_active_hover,
+TD.clsBottomTabBox_inactive,
+TD.clsBottomTabBox_inactive_hover,
+TD.clsBottomTabBox_active,
+TD.clsBottomTabBox_active_hover
+{
+	vertical-align: bottom;
+	padding: 0;
+}
+
+TD.clsTabBox_inactive,
+TD.clsTabBox_inactive_hover,
+TD.clsTabBox_active,
+TD.clsTabBox_active_hover
+{
+	border-radius: 3px 3px 0 0;
+}
+
+
+TD.clsTabBox_inactive,
+TD.clsTabBox_inactive_hover,
+TD.clsBottomTabBox_inactive,
+TD.clsBottomTabBox_inactive_hover
+{
+    border: 1px solid #e3e9f3;
+    background-color: #ffffff;
+	color: #375584;
+}
+
+TD.clsTabBox_inactive_hover
+{
+	border-top: 2px solid #3fb006;
+}
+
+TD.clsTabBox_active,
+TD.clsTabBox_active_hover
+{
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+    border-top: 2px solid #3fb006;
+    border-bottom: 1px solid transparent;
+}
+
+TD.clsTabBox_active_hover
+{
+    color: #375584;
+    background-color: #ffffff;
+}
+
+TD.clsBottomTabBox_inactive,
+TD.clsBottomTabBox_inactive_hover,
+TD.clsBottomTabBox_active,
+TD.clsBottomTabBox_active_hover
+{
+	border-radius: 0 0 3px 3px;
+}
+
+TD.clsBottomTabBox_active,
+TD.clsBottomTabBox_active_hover
+{
+    border: 1px solid #cccccc;
+    border-top: 1px solid Transparent;
+}
+
+TD.clsBottomTabBox_active
+{
+    background-color: #ffffff;
+}
+
+TD.clsBottomTabBox_active_hover
+{
+    color: #375584;
+    background-color: #ffffff;
+}
+
+TD.clsBottomTabBox_active,
+TD.clsBottomTabBox_active_hover,
+TD.clsBottomTabBox_inactive_hover
+{
+    border-bottom: 2px solid #3fb006;
+}
+
+
+TD.clsTabBoxLast {
+    width: 100%;
+    vertical-align: bottom;
+    padding: 0;
+    background-color: Transparent;
+    border-bottom: 1px solid #e3e9f3;
+    }
+TD.clsBottomTabBoxLast {
+    width: 100%;
+    vertical-align: bottom;
+    padding: 0;
+    background-color: Transparent;
+    border-top: 1px solid #e3e9f3;
+    }
+DIV.clsBottomTabPanels {
+    padding: 12px 10px 10px 10px;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #292929;
+    border: none;
+    background-color: Transparent;
+    padding: 3px 0px 0px 0px;
+    }
+IMG.clsTabImage {
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    margin: 0 3px 2px 3px;
+    }
+
+/*
+	Button Bar is not currently used in RS, only IROT.
+*/
+
+TD.clsButtonBarButton DIV.clsInner,
+TD.clsButtonBarButton DIV.clsInnerFirst,
+TD.clsButtonBarButton DIV.clsInnerLast
+{
+	height: 24px;
+	padding: 0px 10px;
+	background-color: #d2deeb;
+	border: 1px solid #9bb6d3;
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2deeb), color-stop(100%,#abb5c0));
+	background-image: -webkit-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: -o-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: -ms-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: linear-gradient(to bottom, #d2deeb 0%, #abb5c0 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2deeb', endColorstr='#abb5c0',GradientType=0 );
+	zoom: 1;
+	background-position: 0px 0px;
+	background-repeat: repeat-x;
+	padding-bottom: 2px;
+}
+
+TD.clsButtonBarButton DIV.clsInner,
+TD.clsButtonBarButton DIV.clsInnerFirst,
+TD.clsButtonBarButton DIV.clsInnerLast
+{
+	height: 24px;
+	padding: 0px 10px;
+	background-position: 0px 0px;
+	background-repeat: repeat-x;
+	padding-bottom: 2px;
+}
+
+TABLE.clsButtonBarHorizontal,
+TABLE.clsButtonBarVertical
+{
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 12px;
+    color: #375584;
+}
+
+TABLE.clsButtonBarHorizontal TD.clsOver DIV.clsInner,
+TABLE.clsButtonBarHorizontal TD.clsOver DIV.clsInnerFirst,
+TABLE.clsButtonBarHorizontal TD.clsOver DIV.clsInnerLast,
+TABLE.clsButtonBarVertical TD.clsOver DIV.clsInner,
+TABLE.clsButtonBarVertical TD.clsOver DIV.clsInnerFirst,
+TABLE.clsButtonBarVertical TD.clsOver DIV.clsInnerLast
+{
+	border: 1px solid #9bb6d3;
+	background-position: 0px -24px;
+}
+
+TABLE.clsButtonBarHorizontal TD.clsUpAndSelected DIV.clsInner,
+TABLE.clsButtonBarHorizontal TD.clsUpAndSelected DIV.clsInnerFirst,
+TABLE.clsButtonBarHorizontal TD.clsUpAndSelected DIV.clsInnerLast,
+TABLE.clsButtonBarVertical TD.clsUpAndSelected DIV.clsInner,
+TABLE.clsButtonBarVertical TD.clsUpAndSelected DIV.clsInnerFirst,
+TABLE.clsButtonBarVertical TD.clsUpAndSelected DIV.clsInnerLast,
+TABLE.clsButtonBarHorizontal TD.clsDown DIV.clsInner,
+TABLE.clsButtonBarHorizontal TD.clsOverAndSelected DIV.clsInner,
+TABLE.clsButtonBarHorizontal TD.clsDownAndSelected DIV.clsInner,
+TABLE.clsButtonBarHorizontal TD.clsDisabledAndSelected DIV.clsInner,
+TABLE.clsButtonBarHorizontal TD.clsDown DIV.clsInnerFirst,
+TABLE.clsButtonBarHorizontal TD.clsOverAndSelected DIV.clsInnerFirst,
+TABLE.clsButtonBarHorizontal TD.clsDownAndSelected DIV.clsInnerFirst,
+TABLE.clsButtonBarHorizontal TD.clsDisabledAndSelected DIV.clsInnerFirst,
+TABLE.clsButtonBarHorizontal TD.clsDown DIV.clsInnerLast,
+TABLE.clsButtonBarHorizontal TD.clsOverAndSelected DIV.clsInnerLast,
+TABLE.clsButtonBarHorizontal TD.clsDownAndSelected DIV.clsInnerLast,
+TABLE.clsButtonBarHorizontal TD.clsDisabledAndSelected DIV.clsInnerLast,
+TABLE.clsButtonBarVertical TD.clsDown DIV.clsInner,
+TABLE.clsButtonBarVertical TD.clsOverAndSelected DIV.clsInner,
+TABLE.clsButtonBarVertical TD.clsDownAndSelected DIV.clsInner,
+TABLE.clsButtonBarVertical TD.clsDisabledAndSelected DIV.clsInner,
+TABLE.clsButtonBarVertical TD.clsDown DIV.clsInnerFirst,
+TABLE.clsButtonBarVertical TD.clsOverAndSelected DIV.clsInnerFirst,
+TABLE.clsButtonBarVertical TD.clsDownAndSelected DIV.clsInnerFirst,
+TABLE.clsButtonBarVertical TD.clsDisabledAndSelected DIV.clsInnerFirst,
+TABLE.clsButtonBarVertical TD.clsDown DIV.clsInnerLast,
+TABLE.clsButtonBarVertical TD.clsOverAndSelected DIV.clsInnerLast,
+TABLE.clsButtonBarVertical TD.clsDownAndSelected DIV.clsInnerLast,
+TABLE.clsButtonBarVertical TD.clsDisabledAndSelected DIV.clsInnerLast
+{
+	border: 1px solid #9bb6d3;
+	background-position: 0px -96px;
+}
+
+
+.clsPropertySheet2Container {
+    cursor: default;
+    background-color: transparent;
+    border-style: none;
+    }
+.clsTreeNode_loading {
+    cursor: default;
+    color: #333;
+    border: 1px solid transparent;
+    padding: 2px 5px 2px 5px !important;
+    }
+.clsTreeNode_normal {
+    cursor: default;
+    border: 1px solid transparent;
+    padding: 2px 5px 2px 5px !important;
+    color: #292929;
+    }
+.clsTreeNode_hover {
+    cursor: default;
+    padding: 2px 5px 2px 5px !important;
+    background-color: #85aff9;
+    border: 1px solid #85aff9;
+    color: #292929;
+    }
+.clsTreeNode_selected {
+    cursor: default;
+    padding: 2px 5px 2px 5px !important;
+    background-color: #f7f8fc;
+    border: 1px solid #f7f8fc;
+    color: #292929;
+    }
+.clsTreeNode_hyperlink_normal {
+    color: #375584;
+    cursor: pointer;
+    }
+.clsTreeNode_hyperlink_hover {
+    color: #375584;
+    cursor: pointer;
+    text-decoration: underline;
+    }
+.clsTreeNode_hyperlink_selected {
+    color: #375584;
+    cursor: pointer;
+    }
+TD.clsOrgTreeNode {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    }
+DIV.clsOrgTreeNode_normal {
+    background-color: transparent;
+    padding: 3px;
+    border-width: 2px;
+    border-style: solid;
+    white-space: nowrap;
+    text-align: center;
+    border-color: window;
+    }
+DIV.clsOrgTreeNode_hover {
+    padding: 3px;
+    border-width: 2px;
+    border-style: solid;
+    white-space: nowrap;
+    text-align: center;
+    border-color: #CCC;
+    background-color: #CCC;
+    }
+DIV.clsOrgTreeNode_selected {
+    padding: 3px;
+    border-width: 2px;
+    border-style: solid;
+    white-space: nowrap;
+    text-align: center;
+    border-color: highlight;
+    background-color: #CCC;
+    }
+TABLE.clsOrgTreeNodeLines {
+    border-collapse: collapse;
+    height: 100%;
+    width: 25px;
+    }
+TD.clsOrgTreeNodeLine {
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #666;
+    border-left: 1px solid #666;
+    }
+IMG.clsOrgTreeNodeArrow {
+    width: 30px;
+    height: 9px;
+    vertical-align: middle;
+    }
+IMG.clsOrgTreeNodeArrowHeadRight {
+    width: 8px;
+    height: 9px;
+    vertical-align: middle;
+    }
+DIV.clsListViewHeaderPane {
+    height: 23px;
+    }
+DIV.clsListViewColumnHeader {
+    cursor: default;
+    padding-left: 3px;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: #e8eef5;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8eef5), color-stop(100%,#d2d8de));
+	background-image: -webkit-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: -o-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: -ms-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: linear-gradient(to bottom, #e8eef5 0%, #d2d8de 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8eef5', endColorstr='#d2d8de',GradientType=0 );
+	zoom: 1;
+    height: 23px;
+    padding-top: 3px;
+    border: none;
+    border-left: 1px solid #85aff9;
+    border-bottom: 1px solid #85aff9;
+    }
+
+.clsListItem_normal {
+    cursor: default;
+    color: #292929;
+    }
+.clsListItem_hover {
+    cursor: default;
+    background-color: #9bb6d3;
+    color: #2c4764;
+    }
+.clsListItem_selected {
+    cursor: default;
+    background-color: #85aff9;
+    color: #2c4764;
+    }
+.clsListItem_selected_inactive {
+    background-color: #CCC;
+    }      
+.clsListItem_gridLine {
+    border: 1px solid buttonface;
+    }
+.clsListItem_hyperlink_normal {
+    color: #375584;
+    cursor: pointer;
+    }
+.clsListItem_hyperlink_hover {
+    color: #375584;
+    cursor: pointer;
+    }
+.clsListItem_hyperlink_selected {
+    color: #375584;
+    cursor: pointer;
+    }
+.clsListItem_hyperlink_hover SPAN {
+    text-decoration: underline;
+    }
+.clsListItem_outline_normal {
+    margin: 1px 1px 1px 1px;
+    padding: 2px 2px 2px 2px;
+    border: 1px solid Transparent;
+    }
+.clsListItem_outline_selected {
+    margin: 1px 1px 1px 1px;
+    padding: 2px 2px 2px 2px;
+    background-color: #85aff9;
+    border: 1px solid Transparent;
+    color: #2c4764;
+    }
+.clsListItem_outline_hover {
+    margin: 1px 1px 1px 1px;
+    padding: 2px 2px 2px 2px;
+    border: 1px solid Transparent;
+    background-color: #9bb6d3;
+    }
+.clsListItem_outline_noLabels_normal {
+    margin: 1px 1px 1px 1px;
+    padding: 2px 2px 2px 2px;
+    border: 1px solid #fff;
+    }
+.clsListItem_outline_noLabels_selected {
+    margin: 1px 1px 1px 1px;
+    border: 1px solid #35bad8;
+    background-color: #e8f6fc;
+    padding: 2px 2px 2px 2px;
+    }
+.clsListItem_outline_noLabels_hover {
+    margin: 1px 1px 1px 1px;
+    border: 1px solid #9bb6d3;
+    padding: 2px 2px 2px 2px;
+    }
+.clsListItem_token_normal {
+    cursor: default;
+    }
+.clsListItem_token_hover {
+    cursor: default;
+    }
+.clsListItem_token_selected {
+    cursor: default;
+    background-color: highlight;
+    color: highlighttext;
+    }
+.clsListItem_token_selected_inactive {
+    cursor: default;
+    background-color: inactivecaptiontext;
+    }
+.clsListItem_colorCell_normal {
+    border: 1px solid #F9F9F9;
+    }
+.clsListItem_colorCell_hover {
+    border: 1px solid #CCC;
+    }
+.clsListItem_colorCell_selected {
+    border: 1px solid threedface;
+    background-color: #F9F9F9;
+    border-color: #252525;
+    }
+.clsListItem_tb_normal {
+    cursor: default;
+    padding: 1px 0 2px 4px;
+    border: 1px solid Transparent;
+    }
+.clsListItem_tb_hover {
+    cursor: default;
+    padding: 1px 0 2px 4px;
+    border: 1px solid Transparent;
+    background-color: #9bb6d3;
+    }
+.clsListItem_tb_selected {
+    cursor: default;
+    padding: 1px 0 2px 4px;
+    border: 1px solid Transparent;
+    color: #2c4764;
+    background-color: #85aff9;
+    }
+.clsListItem_chooser_normal {
+    border: 1px solid transparent;
+    padding: 3px 0 4px 0;
+    font-size: 10pt;
+    }
+.clsListItem_chooser_hover {
+    border: 1px solid transparent;
+    padding: 3px 0 4px 0;
+    font-size: 10pt;
+    background-color: #EEE;
+    }
+.clsListItem_chooser_selected {
+    padding: 3px 0 4px 0;
+    font-size: 10pt;
+    background-color: #EEE;
+    border: 1px solid silver;
+    }
+.clsListItem_gallery_normal IMG {
+    margin-bottom: 0;
+    }
+.clsListItem_gallery_hover IMG {
+    margin-bottom: 0;
+    }
+.clsListItem_gallery_selected IMG {
+    margin-bottom: 0;
+    }
+.clsListItem_gallery_normal BR {
+    display: none;
+    }
+.clsListItem_gallery_hover BR {
+    display: none;
+    }
+.clsListItem_gallery_selected BR {
+    display: none;
+    }
+.clsListItem_gallery_normal SPAN {
+    display: none;
+    }
+.clsListItem_gallery_hover SPAN {
+    display: none;
+    }
+.clsListItem_gallery_selected SPAN {
+    display: none;
+    }
+.clsListItem_gallery_normal {
+    border: 1px solid transparent;
+    margin: 2px !important;
+    padding: 1px;
+    background-position: top left;
+    background-repeat: repeat-x;
+    }
+.clsListItem_gallery_hover {
+    margin: 2px !important;
+    padding: 1px;
+    border-color: #CCC;
+    border: 1px solid #eccf9e;
+    background-image: url(td_images/selection_bg_listview.png);
+    background-position: left top;
+    background-repeat: repeat-x;
+    background-color: #f6daaf;
+    }
+.clsListItem_gallery_selected {
+    border: 1px solid transparent;
+    margin: 2px !important;
+    padding: 1px;
+    background-position: top left;
+    background-repeat: repeat-x;
+    background-color: #FBE9AA;
+    border-color: gray;
+}
+
+TD.clsComboBoxIcon {
+    height: 18px;
+    width: 18px;
+    vertical-align: middle;
+    cursor: default;
+    }
+TD.clsComboBoxText {
+    white-space: nowrap;
+    height: 18px;
+    padding-left: 2px;
+    vertical-align: middle;
+    }
+TD.clsComboBoxText DIV {
+    overflow: hidden;
+    }
+TD.clsComboBoxText INPUT {
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    }
+
+TD.clsComboBoxArrow,
+TD.clsComboBoxArrow_down,
+TD.clsComboBoxArrow_disabled
+{
+    background-repeat: no-repeat;
+    height: 18px;
+    width: 18px;
+    vertical-align: middle;
+    cursor: default;
+    border: 2px outset threedhighlight;
+    background-color: #ffffff;
+    border-left: 1px solid #cccccc;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    background-position: 0 0;
+}
+TD.clsComboBoxArrow
+{
+    background-image: url(images/ComboBoxArrow.png);
+}
+TD.clsComboBoxArrow_down
+{
+    background-image: url(images/ComboBoxArrow_down.png);
+}
+TD.clsComboBoxArrow_disabled
+{
+    background-image: url(images/ComboBoxArrow_disabled.png);
+}
+
+DIV.clsSliderDisabled DIV.clsSliderTrackRange {
+    background-color: #CCC;
+    border: 1px solid gray;
+    cursor: default;
+    }
+DIV.clsSliderDisabled DIV.clsSliderHandle {
+    background-color: #CCC;
+    border: 1px solid gray;
+    cursor: default;
+    }
+DIV.clsSliderDisabled DIV.clsSliderHandle_hover {
+    background-color: #CCC;
+    border: 1px solid gray;
+    cursor: default;
+    }
+DIV.clsHSlider {
+    cursor: default;
+    position: relative;
+    font-family: sans-serif;
+    font-size: 2pt;
+    }
+DIV.clsVSlider {
+    cursor: default;
+    position: relative;
+    font-family: sans-serif;
+    font-size: 2pt;
+    }
+DIV.clsSliderTrack {
+    font-family: sans-serif;
+    font-size: 2pt;
+    border: 1px solid #CCC;
+    position: relative;
+    background-color: #F8F8F8;
+    cursor: pointer;
+    }
+DIV.clsSliderTrackRange {
+    font-family: sans-serif;
+    font-size: 2pt;
+    position: absolute;
+    overflow: hidden;
+    background-color: #4FADEA;
+    border: 1px solid #3F85CB;
+    }
+DIV.clsSliderTicks {
+    font-family: sans-serif;
+    font-size: 2pt;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    }
+DIV.clsSliderHandle_hover {
+    font-family: sans-serif;
+    font-size: 2pt;
+    border: 1px solid #CCC;
+    cursor: default;
+    position: absolute;
+    background-color: #F6DAAF;
+    border-color: #CC9850;
+    }
+DIV.clsSliderLabel {
+    font-family: menu;
+    font-size: 8pt;
+    white-space: nowrap;
+    color: #444;
+    }
+DIV.clsSliderHandleTooltip {
+    font-family: menu;
+    font-size: 8pt;
+    white-space: nowrap;
+    color: #444;
+    position: absolute;
+    z-index: 10000;
+    padding: 2px 3px 2px 3px;
+    border: 1px solid #DDD;
+    background-color: #F9F9F9;
+    }
+DIV.clsHSlider DIV.clsSliderLabel {
+    margin-top: -1.2em;
+    }
+DIV.clsVSlider DIV.clsSliderLabel {
+    margin-left: 7px;
+    }
+DIV.clsHSlider DIV.clsSliderTicks {
+    border-left: 1px solid transparent;
+    height: 7px;
+    }
+DIV.clsVSlider DIV.clsSliderTicks {
+    border-top: 1px solid transparent;
+    width: 7px;
+    }
+DIV.clsSliderTick {
+    position: absolute;
+    }
+DIV.clsSliderTickMinor {
+    position: absolute;
+    }
+DIV.clsHSlider DIV.clsSliderTick {
+    border-left: 1px solid #CCC;
+    height: 4px;
+    margin-left: -1px;
+    }
+DIV.clsHSlider DIV.clsSliderTickMinor {
+    border-left: 1px solid #CCC;
+    height: 4px;
+    margin-left: -1px;
+    border-left-color: #E0E0E0;
+    }
+DIV.clsVSlider DIV.clsSliderTick {
+    border-top: 1px solid #CCC;
+    width: 4px;
+    margin-top: -1px;
+    }
+DIV.clsVSlider DIV.clsSliderTickMinor {
+    border-top: 1px solid #CCC;
+    width: 4px;
+    margin-top: -1px;
+    border-top-color: #E0E0E0;
+    }
+DIV.clsHSlider DIV.clsSliderTrack {
+    height: 7px;
+    }
+DIV.clsHSlider DIV.clsSliderTrackRange {
+    height: 7px;
+    margin-top: -1px;
+    margin-left: -1px;
+    }
+DIV.clsVSlider DIV.clsSliderTrack {
+    width: 7px;
+    }
+DIV.clsVSlider DIV.clsSliderTrackRange {
+    width: 7px;
+    margin-top: -1px;
+    margin-left: -1px;
+    }
+DIV.clsHSlider_iOSDefault DIV.clsSliderHandle {
+    height: 32px;
+    width: 32px;
+    }
+DIV.clsHSlider_iOSDefault DIV.clsSliderHandle_hover {
+    height: 32px;
+    width: 32px;
+    }
+DIV.clsVSlider_iOSDefault DIV.clsSliderHandle {
+    height: 32px;
+    width: 32px;
+    }
+DIV.clsVSlider_iOSDefault DIV.clsSliderHandle_hover {
+    height: 32px;
+    width: 32px;
+    }
+DIV.clsHSlider DIV.clsSliderHandle {
+    height: 13px;
+    width: 11px;
+    margin-top: -4px;
+    }
+DIV.clsHSlider DIV.clsSliderHandle_hover {
+    height: 13px;
+    width: 11px;
+    margin-top: -4px;
+    }
+DIV.clsVSlider DIV.clsSliderHandle {
+    height: 11px;
+    width: 13px;
+    margin-left: -4px;
+    }
+DIV.clsVSlider DIV.clsSliderHandle_hover {
+    height: 11px;
+    width: 13px;
+    margin-left: -4px;
+    }
+TD.clsPropertySheetExpand {
+    width: 13px;
+    }
+TD.clsPropertySheetLabel_active {
+    white-space: nowrap;
+    padding: 0 4px 0 4px;
+    cursor: default;
+    height: 20px;
+    border: 1px solid #85aff9;
+    color: #292929;
+    background-color: #f7f8fc;
+    }
+TD.clsPropertySheetLabel_inactive {
+    white-space: nowrap;
+    padding: 0 4px 0 4px;
+    cursor: default;
+    height: 20px;
+    background-color: transparent;
+    border: 1px solid #85aff9;
+    color: #292929;
+    }
+TD.clsPropertySheetValue {
+    cursor: default;
+    white-space: nowrap;
+    width: 100%;
+    padding: 0 0 0 1px;
+    height: 20px;
+    border: 1px solid #85aff9;
+    }
+TD.clsPropertySheetValue INPUT {
+    font-size: 11px;
+    background-color: #ffffff;
+    color: #292929;
+    }
+BUTTON.clsDotDotDotButton {
+    padding: 0;
+    height: 19px;
+    cursor: default;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 11px;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    width: 23px;
+    margin: 0 0 1px 2px;
+    border: 1px solid #9bb6d3;
+    border-radius: 3px;
+    background-color: #d2deeb;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2deeb), color-stop(100%,#abb5c0));
+	background-image: -webkit-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: -o-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: -ms-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: linear-gradient(to bottom, #d2deeb 0%, #abb5c0 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2deeb', endColorstr='#abb5c0',GradientType=0 );
+	zoom: 1;
+    color: #375584;
+    }
+BUTTON.clsDotDotDotPropertyButton {
+    height: 19px;
+    width: 18px;
+    font-family: sans-serif;
+    font-size: 2pt;
+    background-color: #e8eef5;
+    padding: 1px;
+    border: 1px solid #85aff9;
+    }
+BUTTON.clsDotDotDotButton IMG {
+    height: 9px;
+    width: 10px;
+    }
+BUTTON.clsDlgButtonDropDownArrow IMG {
+    height: 9px;
+    width: 10px;
+    }
+BUTTON.clsDotDotDotPropertyButton IMG {
+    height: 9px;
+    width: 10px;
+    }
+DIV.clsPropertiesPaneInputBlocker {
+    z-index: 101;
+    }
+DIV.clsPropertyGroup {
+    height: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+    padding: 3px 0px 0px 4px;
+    }
+TD.clsPropertyGroupContainer {
+    border-bottom: 1px solid #85aff9;
+    padding: 4px 0 3px 0;
+    }
+DIV.clsPaneHeader_active {
+    overflow: hidden;
+    cursor: default;
+    text-align: left;
+    white-space: nowrap;
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    padding: 0;
+    border-radius: 8px;
+    background-color: #e8eef5;
+    border: 1px solid #85aff9;
+    color: #2c4764;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8eef5), color-stop(100%,#d2d8de));
+	background-image: -webkit-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: -o-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: -ms-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: linear-gradient(to bottom, #e8eef5 0%, #d2d8de 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8eef5', endColorstr='#d2d8de',GradientType=0 );
+	zoom: 1;
+    }
+DIV.clsPaneHeader_inactive {
+    overflow: hidden;
+    cursor: default;
+    text-align: left;
+    white-space: nowrap;
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    padding: 0;
+    border-radius: 8px;
+    background-color: #e8eef5;
+    border: 1px solid #85aff9;
+    color: #2c4764;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e8eef5), color-stop(100%,#d2d8de));
+	background-image: -webkit-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: -o-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: -ms-linear-gradient(top, #e8eef5 0%, #d2d8de 100%);
+	background-image: linear-gradient(to bottom, #e8eef5 0%, #d2d8de 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8eef5', endColorstr='#d2d8de',GradientType=0 );
+	zoom: 1;
+    }
+DIV.clsPaneHeader_active SPAN {
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #2c4764;
+    font-weight: normal;
+    }
+DIV.clsPaneHeader_inactive SPAN {
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #2c4764;
+    font-weight: normal;
+    }
+DIV.clsPropertyDescriptionBox {
+    cursor: default;
+    overflow-y: auto;
+    padding: 2px;
+    border: 1px solid #85aff9;
+    background-color: #ffffff;
+    }
+DIV.clsPropertyDescriptionBoxTitle {
+    font-weight: bold;
+    padding-bottom: 2px;
+    }
+IMG.clsCursor {
+    position: absolute;
+    visibility: hidden;
+    top: 0;
+    margin: 22px 0 0 10px;
+    z-index: 10000;
+    }
+IMG.clsCursorFaded {
+    position: absolute;
+    visibility: hidden;
+    top: 0;
+    margin: 22px 0 0 10px;
+    z-index: 10000;
+    }
+#idTreeViewDropCaret {
+    position: absolute;
+    visibility: hidden;
+    top: 0;
+    height: 6px;
+    width: 100px;
+    z-index: 10000;
+    }
+#idOrgTreeViewDropCaret {
+    position: absolute;
+    visibility: hidden;
+    top: 0;
+    height: 7px;
+    width: 65px;
+    z-index: 10000;
+    }
+#idOrgTreeViewDropCaretInside {
+    position: absolute;
+    visibility: hidden;
+    top: 0;
+    height: 65px;
+    width: 7px;
+    z-index: 10000;
+    }
+#idListViewDropCaret_report {
+    position: absolute;
+    visibility: hidden;
+    top: 0;
+    height: 3px;
+    width: 50px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    z-index: 10000;
+    }
+#idListViewDropCaret_icon {
+    position: absolute;
+    visibility: hidden;
+    top: 0;
+    height: 50px;
+    width: 4px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    z-index: 10000;
+    }
+.clsResizerHoriz_normal {
+    cursor: n-resize;
+    margin: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 999;
+    height: 4px;
+    border: none;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url(td_images/pane_resize_vert.gif);
+    }
+.clsResizerHoriz_hover {
+    cursor: n-resize;
+    margin: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 999;
+    height: 4px;
+    border: none;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url(td_images/pane_resize_vert.gif);
+    }
+.clsResizerHoriz_selected {
+    cursor: n-resize;
+    margin: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 999;
+    height: 4px;
+    border: none;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url(td_images/pane_resize_vert.gif);
+    }
+.clsResizerVert_normal {
+    cursor: e-resize;
+    margin: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+    width: 4px;
+    border: none;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url(td_images/pane_resize_horiz.gif);
+    }
+.clsResizerVert_hover {
+    cursor: e-resize;
+    margin: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+    width: 4px;
+    border: none;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url(td_images/pane_resize_horiz.gif);
+    }
+.clsResizerVert_selected {
+    cursor: e-resize;
+    margin: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    overflow: hidden;
+    z-index: 999;
+    width: 4px;
+    border: none;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url(td_images/pane_resize_horiz.gif);
+    }
+.clsListViewColResizer_normal {
+    margin: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    overflow: hidden;
+    cursor: col-resize;
+    border: none;
+    width: 16px;
+    z-index: 999;
+    }
+.clsListViewColResizer_hover {
+    margin: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    overflow: hidden;
+    cursor: col-resize;
+    border: none;
+    width: 16px;
+    z-index: 999;
+    }
+.clsListViewColResizer_selected {
+    margin: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    overflow: hidden;
+    cursor: col-resize;
+    border: none;
+    width: 16px;
+    z-index: 999;
+    }
+.clsInvisibleSplitterVertical_normal {
+    cursor: e-resize;
+    margin: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 4px;
+    border: none;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url(td_images/pane_resize_horiz.gif);
+    }
+.clsInvisibleSplitterVertical_hover {
+    cursor: e-resize;
+    margin: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 4px;
+    border: none;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url(td_images/pane_resize_horiz.gif);
+    }
+.clsInvisibleSplitterVertical_selected {
+    cursor: e-resize;
+    margin: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 4px;
+    border: none;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url(td_images/pane_resize_horiz.gif);
+    }
+.clsExpandCollapseSplitterVertical_normal {
+    cursor: e-resize;
+    margin: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 7px;
+    border-left: 1px solid #85aff9;
+    }
+.clsExpandCollapseSplitterVertical_hover {
+    cursor: e-resize;
+    margin: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 7px;
+    border-left: 1px solid #85aff9;
+    }
+.clsExpandCollapseSplitterVertical_selected {
+    cursor: e-resize;
+    margin: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 7px;
+    border-left: 1px solid #85aff9;
+    }
+.clsExpandCollapseSplitterHorizontal_normal {
+    cursor: n-resize;
+    margin: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 6px;
+    border: none;
+    }
+.clsExpandCollapseSplitterHorizontal_hover {
+    cursor: n-resize;
+    margin: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 6px;
+    border: none;
+    }
+.clsExpandCollapseSplitterHorizontal_selected {
+    cursor: n-resize;
+    margin: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 6px;
+    border: none;
+    }
+.clsFeedbackBar {
+    top: 0;
+    left: 0;
+    position: absolute;
+    visibility: hidden;
+    border: 0;
+    background-image: url(td_images/splitter_active.gif);
+    overflow: hidden;
+    cursor: default;
+    z-index: 999;
+    }
+DIV.clsExpandCollapseRight_normal {
+    background-image: url(td_images/vertical_splitter.png);
+    height: 51px;
+    width: 6px;
+    background-position: -12px 0;
+    }
+DIV.clsExpandCollapseRight_hover {
+    background-image: url(td_images/vertical_splitter.png);
+    height: 51px;
+    width: 6px;
+    background-position: -18px 0;
+    }
+DIV.clsExpandCollapseLeft_normal {
+    background-image: url(td_images/vertical_splitter.png);
+    height: 51px;
+    width: 6px;
+    background-position: 0 0;
+    }
+DIV.clsExpandCollapseLeft_hover {
+    background-image: url(td_images/vertical_splitter.png);
+    height: 51px;
+    width: 6px;
+    background-position: -6px 0;
+    }
+DIV.clsExpandCollapseTop_normal {
+    background-image: url(td_images/horizontal_splitter.png);
+    height: 6px;
+    width: 51px;
+    background-position: 0 0;
+    }
+DIV.clsExpandCollapseTop_hover {
+    background-image: url(td_images/horizontal_splitter.png);
+    height: 6px;
+    width: 51px;
+    background-position: 0 -6px;
+    }
+DIV.clsExpandCollapseBottom_normal {
+    background-image: url(td_images/horizontal_splitter.png);
+    height: 6px;
+    width: 51px;
+    background-position: 0 -12px;
+    }
+DIV.clsExpandCollapseBottom_hover {
+    background-image: url(td_images/horizontal_splitter.png);
+    height: 6px;
+    width: 51px;
+    background-position: 0 -18px;
+    }
+.clsInsetBorder {
+    border: 1px solid #98b1c1;
+    }
+.clsHyperlink {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #375584;
+    }
+.clsHyperlink_hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #375584;
+    }
+.clsImagePreviewBorder {
+    border: 1px solid #98b1c1;
+    }
+.clsImageBrowserPreviewBorder {
+    border: 1px solid #98b1c1;
+    }
+BUTTON.clsColorButton {
+    cursor: default;
+    font-family: sans-serif;
+    vertical-align: middle;
+    padding: 1px;
+    overflow: visible;
+    font-size: 2pt;
+    border: 1px solid #9bb6d3;
+    }
+DIV.clsColorButtonDIV_normal {
+    width: 32px;
+    height: 14px;
+    border: none;
+    }
+DIV.clsColorButtonDIV_transparent {
+    width: 32px;
+    height: 14px;
+    border: 1px dotted black;
+    }
+DIV.clsBlocker {
+    background-image: url(td_images/blank.gif);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    }
+DIV.clsComboBoxBlocker {
+    background-image: url(td_images/blank.gif);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    }
+DIV.clsDialogBlocker {
+    background-image: url(td_images/blank.gif);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    }
+DIV.clsLightbox {
+    background-color: #EEE;
+    }
+DIV.clsDialogTransferProxy {
+    z-index: 10000;
+    border-radius: 4px;
+    border: 1px solid #336699;
+    background-color: #ffffff;
+    }
+DIV.clsMenuPopupTransferProxy {
+    z-index: 10000;
+    border-radius: 4px;
+    border: 1px solid #336699;
+    background-color: #e8eef5;
+    }
+DIV.clsComboBoxPopupTransferProxy {
+    z-index: 10000;
+    border-radius: 4px;
+    border: 1px solid #336699;
+    background-color: #ffffff;
+    }
+#idHALStartupBlocker {
+    cursor: wait;
+    position: absolute;
+    z-index: 20000;
+    width: 100%;
+    height: 100%;
+    background-color: #ecf1f3;
+    }
+#idHALStartupDialog {
+    cursor: wait;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    color: #015890;
+    width: 360px;
+    padding: 0;
+    border: none;
+    background-color: #ecf1f3;
+    }
+#idHALStartupBarContainer {
+    cursor: wait;
+    background-image: url(td_images/loading_bar.png);
+    width: 360px;
+    border: none;
+    height: 34px;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    padding: 0 2px 0 2px;
+    }
+#idHALStartupBar {
+    cursor: wait;
+    padding-top: 1px;
+    width: 0%;
+    text-align: center;
+    background-image: url(td_images/progress.png);
+    height: 33px;
+    background-position: left bottom;
+    background-repeat: repeat-x;
+    filter: none;
+    background-color: Transparent;
+    color: #798e9a;
+    }
+.clsReadOnlyTextBox {
+    background-color: transparent;
+    background-image: none;
+    }
+DIV.clsSuperTip {
+    position: absolute;
+    z-index: 100000;
+    display: block;
+    background-color: red;
+    top: 10px;
+    left: 10px;
+    }
+.clsDetailMsgTextarea {
+    height: 200px;
+    width: 485px;
+    overflow: auto;
+    background-color: #FFF;
+    }
+.clsPrettyPrint {
+    font-size: 10pt;
+    overflow: auto;
+    border: 1px solid #9bb6d3;
+    }
+.clsPrettyPrintNamespaceDecl {
+    color: red;
+    }
+.clsPrettyPrintNamespaceURI {
+    color: red;
+    font-weight: bold;
+    }
+.clsPrettyPrintExpandLink {
+    color: red;
+    }
+.clsPrettyPrintNodeText {
+    font-weight: bold;
+    }
+.clsPrettyPrintBrackets {
+    color: blue;
+    }
+.clsPrettyPrintNodeName {
+    color: maroon;
+    }
+.clsPrettyPrintAttribute {
+    color: maroon;
+    }
+TD.clsResizeButtonContainer {
+    text-align: -moz-center !important;
+    text-align: -webkit-center !important;
+    text-align: center;
+    }
+.clsTooltipContainer {
+    padding: 0;
+    border: none;
+    background-color: Transparent;
+    }
+.clsTooltipTitle {
+    font-weight: bold;
+    white-space: nowrap;
+    color: #292929;
+    padding: 5px 5px 5px 0;
+    }
+.clsTooltipDescription {
+    padding: 5px 5px 5px 7px;
+    color: #292929;
+    }
+.clsMenubar {
+    z-index: 100;
+    }
+.clsToolbar {
+    z-index: 100;
+    }
+
+.clsIbmBlue {
+	fill: #4178BE;
+}
+.clsIbmGrey {
+	fill: #AEB8B8;
+}
+.clsIbmLightGrey{
+	fill: #C8D2D2;
+}
+
+BODY.clsHighContrast .clsTreeNode_selected {
+    border: 4px solid black;
+    }
+BODY.clsHighContrast .clsListItem_selected {
+    outline: 4px solid black;
+    }
+.clsHighContrastSelected {
+    outline: 4px solid black;
+    }
+ BODY.clsHighContrast SPAN.clsListItem_selected,
+ BODY.clsHighContrast SPAN.clsListItem_outline_selected,
+ BODY.clsHighContrast SPAN.clsListItem_hover,
+ BODY.clsHighContrast SPAN.clsListItem_outline_hover
+ {
+    outline: none;
+ }
+ BODY.clsHighContrast svg,
+ BODY.clsHighContrast .clsIbmBlue, 
+ BODY.clsHighContrast .clsIbmGrey,
+ BODY.clsHighContrast .clsIbmLightGrey,
+ BODY.clsHighContrast DIV.clsFloatingToolbar,
+ BODY.clsHighContrast DIV.clsToolbar,
+ BODY.clsHighContrast DIV.clsDlgToolbar {
+ 	fill:currentColor;
+ }
+ 
+BODY.clsHighContrast .clsMenuItem_selected {
+    text-decoration: underline;
+    }
+.clsHighContrastHover {
+    outline: 2px solid black;
+    }
+.clsHighContrastDisabled {
+    outline: 1px dotted black;
+    }
+IMG.clsLVRadio {
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    }
+IMG.clsLVRadio_checked {
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    }
+IMG.clsLVRadio_checked_disabled {
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    }
+IMG.clsLVRadio_disabled {
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    }
+IMG.clsLVCheckbox {
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    }
+IMG.clsLVCheckbox_checked {
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    }
+IMG.clsLVCheckbox_checked_static {
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    }
+IMG.clsLVCheckbox_static {
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    }
+INPUT.clsDialogRadioButton {
+    border: none;
+    }
+INPUT.clsDialogCheckbox {
+    border: none;
+    }
+  
+.clsHighContrast TD.clsToolbarButton_stuck IMG {
+    border: solid 1px #000;
+    }
+.clsListView .clsDialogText {
+    color: #333;
+    }
+.clsBigButtonBar {
+    background-color: transparent;
+    border: 1px solid transparent;
+    }
+TD.clsMenuItemLabelCell {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    }
+.clsDlgButton16x16 {
+    border: 1px solid transparent;
+    background-color: #d2deeb;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2deeb), color-stop(100%,#abb5c0));
+	background-image: -webkit-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: -o-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: -ms-linear-gradient(top, #d2deeb 0%, #abb5c0 100%);
+	background-image: linear-gradient(to bottom, #d2deeb 0%, #abb5c0 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2deeb', endColorstr='#abb5c0',GradientType=0 );
+	zoom: 1;
+    }
+TABLE.clsMenuItem_selected TD.clsMenuImageContainer {
+    background-color: #9bb6d3;
+    }
+TD.clsConditionalPreview {
+    border: 1px solid #dfe2e3;
+    }
+TD.clsListItem_gridLine {
+    border: 1px solid #dfe2e3;
+    }
+.clsTreeViewExpand_hover {
+    background-image: url(td_images/tv_hover.gif);
+    }
+HR {
+    border: 1px solid #F9F9F9;
+    border-top: 1px solid #999;
+    }
+clsModelessDlgHeader_active {
+    background-color: #dfedf8;
+    border: 1px solid #81B2D1;
+    }
+#idHALStartupDialogTopDivs {
+    width: 360px;
+    display: none;
+    }
+#idHALStartupDialogBottomDivs {
+    width: 360px;
+    display: none;
+    }
+BODY.clsHighContrast #idHALStartupDialog {
+    border: 2px outset threedhighlight;
+    width: 362px;
+    }
+#idHALStartupDialogTopDivs * {
+    display: none;
+    }
+#idHALStartupDialogBottomDivs * {
+    display: none;
+    }
+FIELDSET {
+    border: 1px solid #85aff9;
+    padding: 0px;
+    margin: 0px;
+    }
+DIV.clsPropertySheetContainer {
+    background-color: #ffffff;
+    border: 1px solid #85aff9;
+    }
+DIV.clsPropertySheet2Container {
+    background-color: #ffffff;
+    border: 1px solid #85aff9;
+    }
+SPAN.clsListItem_outline_noLabels_normal {
+    display: none;
+    }
+SPAN.clsListItem_outline_noLabels_selected {
+    display: none;
+    }
+SPAN.clsListItem_outline_noLabels_hover {
+    display: none;
+    }
+BUTTON[HAL_disabled="true"] {
+    color: #767676;
+    }
+*[HAL_disabled="true"] {
+    color: #767676;
+    }
+BODY.clsHighContrast BUTTON.clsXButton_active {
+    border: 1px solid #99bbd1;
+    }
+BODY.clsHighContrast BUTTON.clsXButton_inactive {
+    border: 1px solid #99bbd1;
+    }
+BODY.clsHighContrast BUTTON.clsXButton_hover {
+    border: 1px outset #99bbd1;
+    }
+BODY.clsHighContrast IMG.clsXButton {
+    display: inline;
+    height: 7px;
+    vertical-align: top;
+    width: 8px;
+    border: 1px solid #99bbd1;
+    padding: 3px !important;
+    }
+BUTTON.clsDlgButtonDropDownArrow_hover {
+    height: 23px;
+    cursor: pointer;
+    border: 1px solid #9bb6d3;
+    border-radius: 3px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #d2deeb;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2deeb), color-stop(100%,#c4d0dc));
+	background-image: -webkit-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: -o-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: -ms-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: linear-gradient(to bottom, #d2deeb 0%, #c4d0dc 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2deeb', endColorstr='#c4d0dc',GradientType=0 );
+	zoom: 1;
+    font-size: 11px;
+    color: #375584;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    width: 23px;
+    vertical-align: middle;
+    }
+BUTTON.clsDotDotDotButton_hover {
+    height: 19px;
+    cursor: default;
+    border: 1px solid #9bb6d3;
+    border-radius: 3px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #d2deeb;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2deeb), color-stop(100%,#c4d0dc));
+	background-image: -webkit-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: -o-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: -ms-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: linear-gradient(to bottom, #d2deeb 0%, #c4d0dc 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2deeb', endColorstr='#c4d0dc',GradientType=0 );
+	zoom: 1;
+    font-size: 11px;
+    color: #375584;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    width: 23px;
+    margin: 0 0 1px 2px;
+    }
+BUTTON.clsDotDotDotButton_disabled {
+    height: 19px;
+    cursor: default;
+    border: 1px solid #9bb6d3;
+    border-radius: 3px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #d2deeb;
+    background-image: none;
+	background-image: -moz-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2deeb), color-stop(100%,#c4d0dc));
+	background-image: -webkit-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: -o-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: -ms-linear-gradient(top, #d2deeb 0%, #c4d0dc 100%);
+	background-image: linear-gradient(to bottom, #d2deeb 0%, #c4d0dc 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2deeb', endColorstr='#c4d0dc',GradientType=0 );
+	zoom: 1;
+    font-size: 11px;
+    color: #767676;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    width: 23px;
+    margin: 0 0 1px 2px;
+    }
+BUTTON.clsDlgButton_disabled span {
+    color: #767676;
+    }
+BUTTON::-moz-focus-inner {
+    padding: 0;
+    }
+TD.clsPropertySheetValue .clsDialogText {
+    color: #292929;
+    }
+TABLE.clsDialogAltBackgroundForResize div.clsDlgButtonBar {
+    padding-top: 21px;
+    }
+div.clsDlgButtonBar {
+    height: 46px;
+    padding-top: 15px;
+    }
+div.clsDlgMsgBoxButtonBar {
+    height: 46px;
+    padding-top: 15px;
+    }
+.clsHelpLink {
+    text-decoration: underline !important;
+    color: #2c4764;
+    }
+.clsHelpLink_hover {
+    text-decoration: underline;
+    color: #375584;
+    }
+DIV.clsPaneHeaderInner {
+    width: 100%;
+    height: 28px;
+    overflow: hidden;
+    padding: 5px 8px 3px 8px;
+    }
+.clsTextBox {
+    border: 1px solid #cccccc;
+    color: #292929;
+    height: 20px !important;
+    padding-left: 1px;
+    }
+.clsStyleValue {
+    border: 1px solid #cccccc;
+    color: #292929;
+    }
+BODY.clsHighContrast TEXTAREA {
+    border: 1px inset;
+    }
+BODY.clsHighContrast .clsTextBox {
+    border: 1px inset;
+    }
+BODY.clsHighContrast .clsStyleValue {
+    border: 1px inset;
+    }
+
+TD.clsTabBox_active DIV.clsTabDivInner,
+TD.clsTabBox_active_hover DIV.clsTabDivInner
+{
+    padding: 5px 9px 1px 9px;
+    padding-bottom: 4px;
+}
+
+TD.clsBottomTabBox_active DIV.clsTabDivInner,
+TD.clsBottomTabBox_active_hover DIV.clsTabDivInner,
+TD.clsBottomTabBox_inactive_hover DIV.clsTabDivInner,
+TD.clsBottomTabBox_inactive DIV.clsTabDivInner
+{
+    padding: 1px 9px 5px 9px;
+}
+
+TD.clsTabBox_inactive DIV.clsTabDivInner,
+TD.clsTabBox_inactive_hover DIV.clsTabDivInner
+{
+    padding: 5px 9px 1px 9px;
+}
+
+
+DIV.clsPane_Toolbox_active DIV.clsBottomTabPanels {
+    background-color: Transparent;
+    }
+DIV.clsPane_Toolbox_inactive DIV.clsBottomTabPanels {
+    background-color: Transparent;
+    }
+.clsDisplayNone {
+    display: none;
+    }
+div.clsWidgetPopupDialog {
+    position: absolute;
+    z-index: -1;
+    top: -1px;
+    left: -4px;
+    }
+div.clsSimpleTooltip {
+    position: absolute;
+    z-index: -1;
+    top: -1px;
+    left: -4px;
+    }
+div.clsTooltipWrapper {
+    border: none;
+    background-color: Transparent;
+    }
+.clsTooltipTitle img {
+    display: none;
+    }
+div.clsStartupArea {
+    width: 918px;
+    height: 463px;
+    }
+.clsHighContrast .clsColorButton .clsDialogText td {
+    border: 1px solid;
+    }
+.clsHighContrast BUTTON.clsDotDotDotPropertyButton {
+    border: 1px outset;
+    }
+.clsHighContrast BUTTON.clsColorButton {
+    border: 1px outset;
+    }
+input[type="radio"] {
+    vertical-align: bottom !important;
+    }
+input[type="checkbox"] {
+    margin-bottom: 5px;
+    margin-top: 2px;
+    vertical-align: middle !important;
+    }
+DIV.clsBottomTabPanels DIV.clsTreeView {
+    border-bottom-color: Transparent;
+    }
+BODY.clsHighContrast BUTTON.clsDlgButton {
+    border: 1px outset #999;
+    }
+BODY.clsHighContrast BUTTON.clsDlgButton_hover {
+    border: 1px outset #999;
+    }
+BODY.clsHighContrast BUTTON.clsColorButton {
+    border: 1px outset #999;
+    }
+BODY.clsHighContrast BUTTON.clsDotDotDotButton {
+    border: 1px outset #999;
+    }
+BODY.clsHighContrast BUTTON.clsDlgButtonDropDownArrow {
+    border: 1px outset #999;
+    }
+BODY.clsHighContrast BUTTON.clsDotDotDotPropertyButton {
+    border: 1px outset #999;
+    }
+.clsAppBarDone .clsHyperlink {
+    color: #e8eef5;
+    }
+.clsAppBarDone .clsHyperlink_hover {
+    color: #e8eef5;
+    }
+.clsModalDlgNotPopup .clsModalDlg {
+    border: 4px solid #336699;
+    }
+.clsModelessDlgNotPopup .clsModelessDlg {
+    border: 4px solid #336699;
+    }
+DIV.clsBottomTabPanelsPopup {
+    padding: 7px 0 15px 5px !important;
+    }
+DIV.clsBottomTabPanels DIV.clsInfoBox, DIV.clsBottomTabPanels DIV.clsListView {
+    border-bottom-color: Transparent;
+    }
+
+DIV.clsCircularMenuItem
+{
+	cursor: default;
+	position: absolute;
+	border-radius: 2px;
+	padding: 4px;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-out;
+	background-color: rgba(255,255,255,0.8);
+}
+DIV.clsCircularMenuItem:hover,
+DIV.clsCircularMenuItem:focus
+{
+	background-color: #D9ECF8;
+}
+DIV.clsCircularMenuLabel
+{
+    white-space: nowrap;
+    min-width: 50px;
+}
+
+DIV.clsFloatingToolbar,
+DIV.clsToolbar,
+DIV.clsDlgToolbar
+{
+	fill: #4178be;
+}
+
+DIV.clsFloatingToolbar
+{
+	height: 40px;
+	padding: 8px 4px 8px 4px;
+	
+}
+
+DIV.clsFloatingToolbar.right
+{
+	margin-left: 10px;
+}
+
+.glyphicon-arrow-left:before
+{
+	content: "\e091"
+}
+
+.glyphicon-arrow-right:before
+{
+	content: "\e092"
+}
+
+.glyphicon-arrow-up:before
+{
+	content: "\e093"
+}
+
+.glyphicon-arrow-down:before
+{
+	content: "\e094"
+}
+
+.clsFloatingToolbar>.arrow,
+.clsFloatingToolbar>.arrow:after
+{
+	position: absolute;
+	display: block;
+	width: 0;
+	height: 0;
+	border-color: transparent;
+	border-style: solid
+}
+
+.clsFloatingToolbar>.arrow
+{
+	border-width: 11px
+}
+
+.clsFloatingToolbars>.arrow:after
+{
+	content: "";
+	border-width: 10px
+}
+
+.clsFloatingToolbar.top>.arrow
+{
+	bottom: -11px;
+	left: 50%;
+	margin-left: -11px;
+	border-top-color: #999;
+	border-top-color: rgba(0,0,0,.25);
+	border-bottom-width: 0
+}
+
+.clsFloatingToolbar.top>.arrow:after
+{
+	bottom: 1px;
+	margin-left: -10px;
+	content: " ";
+	border-top-color: #fff;
+	border-bottom-width: 0
+}
+
+.clsFloatingToolbar.right>.arrow
+{
+	top: 50%;
+	left: -11px;
+	margin-top:-11px;
+	border-right-color: #999;
+	border-right-color: rgba(0,0,0,.25);
+	border-left-width: 0
+}
+
+.clsFloatingToolbar.right>.arrow:after
+{
+	bottom: -10px;
+	left: 1px;
+	content: " ";
+	border-right-color: #fff;
+	border-left-width: 0
+}
+
+.clsFloatingToolbar.bottom>.arrow
+{
+	top: -11px;
+	left: 50%;
+	margin-left: -11px;
+	border-top-width: 0;
+	border-bottom-color: #999;
+	border-bottom-color: rgba(0,0,0,.25)
+}
+
+.clsFloatingToolbar.bottom>.arrow:after
+{
+	top: 1px;
+	margin-left: -10px;
+	content: " ";
+	border-top-width: 0;
+	border-bottom-color: #fff
+}
+
+.clsFloatingToolbar.left>.arrow
+{
+	top: 50%;
+	right: -11px;
+	margin-top: -11px;
+	border-right-width: 0;
+	border-left-color: #999;
+	border-left-color: rgba(0,0,0,.25)
+}
+
+.clsFloatingToolbar.left>.arrow:after
+{
+	right: 1px;
+	bottom: -10px;
+	content: " ";
+	border-right-width: 0;
+	border-left-color: #fff
+}
+
+.clsToolbarButton svg,
+.clsToolbarButton_up svg,
+.clsToolbarButton_down svg,
+.clsToolbarButton_stuck svg,
+.clsToolbarTextButton svg
+{
+	pointer-events: none;
+} 
+
+svg.clsToolbarSvg {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+

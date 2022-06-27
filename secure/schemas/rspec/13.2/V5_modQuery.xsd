@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2015, 2016
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rspec="http://developer.cognos.com/schemas/report/13.2/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5_base.xsd"/>
+	<xs:element name="modQuery">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="metadataPath" minOccurs="0"/>
+				<xs:element name="modDataItems" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="modDataItem" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="modDefinition">
+											<xs:annotation>
+												<xs:documentation>Data item definitions are categorized into 3 types: Measure, summaries and sets.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:choice>
+													<xs:element ref="modMeasure">
+														<xs:annotation>
+															<xs:documentation>References a measure from the model. The detailRollup attribute is used to control how the measure values from the dataSet are rolled out to the query details. The groupRollup attribute indicates how these values should be rolled up in group headers and footers.</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="modListSummary">
+														<xs:annotation>
+															<xs:documentation>Header/footer summary in a list visualization</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+															<xs:attributeGroup ref="ModGroupRollupAttributes"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="modEdgeSummary">
+														<xs:annotation>
+															<xs:documentation>Data item summary that can be used in a multidimensional visualization (e.g. crosstab or chart)</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+															<xs:attributeGroup ref="ModGroupRollupAttributes"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:group ref="modSetDefinitionType"/>
+												</xs:choice>
+											</xs:complexType>
+										</xs:element>
+										<xs:element ref="XMLAttributes" minOccurs="0"/>
+										<xs:element name="modLabel" type="LocalizedTextType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Label for the data item. If not specified, then if the data item is a simple reference to a model item the it will use the model item label, otherwise it will use the data item name.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="name" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="modDataItemUniqueness">
+						<xs:selector xpath="*"/>
+						<xs:field xpath="@name"/>
+					</xs:unique>
+				</xs:element>
+				<xs:element name="modFilters" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Query filters. All non disabled filters act as if AND together.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="modFilter" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>References to data items in filters will be equivalent to post aggregate filters if the data is being projected, otherwise it will be a pre aggregate filter.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="modFilterDefinition">
+											<xs:complexType>
+												<xs:group ref="modFilterType"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element ref="XMLAttributes" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="use" default="required">
+										<xs:annotation>
+											<xs:documentation>When optional, this filter will be applied only if all the parameters referenced by the filter expression have been provided with values. If the filter expression does not refer to any parameters, then this filter will always be applied. When disabled this filter will never be applied, which is useful for testing and authoring purposes. Default: "required".</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="required"/>
+												<xs:enumeration value="optional"/>
+												<xs:enumeration value="disabled"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="canBeChangedInAdvancedViewer" type="xs:boolean" default="false"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="modDetailSortList" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Detail sorting only applies for lists and is only done within the set sorting of the list. Set sorting order in a list is done in the order of the data items. The authoring UI use set sorting where possible and only detail sorting when needed (e..g. on meausres) </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="modDetailSort" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+									<xs:attribute name="ascending" type="xs:boolean" default="true"/>
+									<xs:attributeGroup ref="ModNullPosition"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="autoSummary" type="xs:boolean" use="optional" default="true"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="modAttribute">
+		<xs:complexType>
+			<xs:attribute name="refModelItem" type="xs:string" use="required"/>
+			<xs:attribute name="show" use="optional">
+				<xs:annotation>
+					<xs:documentation>Controls which facets are returned. Default is to only return facets that have values in the results. Optionally can ask to have all possible facets returned.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="all"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="modMeasure">
+		<xs:complexType>
+			<xs:attribute name="refModelItem" type="xs:string" use="required"/>
+			<xs:attribute name="detailRollup" default="default">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="default"/>
+						<xs:enumeration value="total"/>
+						<xs:enumeration value="minimum"/>
+						<xs:enumeration value="maximum"/>
+						<xs:enumeration value="average"/>
+						<xs:enumeration value="count"/>
+						<xs:enumeration value="calculated">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_calculated_aggregate"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="countDistinct"/>
+						<xs:enumeration value="median"/>
+						<xs:enumeration value="standardDeviation"/>
+						<xs:enumeration value="variance"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="ModGroupRollupAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="modBaseSet">
+		<xs:annotation>
+			<xs:documentation>Set which is being acted on</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:group ref="modSetDefinitionType"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="modTuple">
+		<xs:annotation>
+			<xs:documentation>An intersection of facets and measure to identify a value. The tuple can be affected by the surrounding context or not.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="modTupleFacets" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice maxOccurs="unbounded">
+								<xs:element name="modTupleFacet">
+									<xs:annotation>
+										<xs:documentation>Eplicit attribute facet (e.g. Year @ 2004</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:attribute name="refAttribute" type="xs:string" use="required"/>
+										<xs:attribute name="refFacet" type="xs:string" use="required"/>
+										<xs:attributeGroup ref="ModParameterizedAttributes"/>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="modTupleCurrentFacet">
+									<xs:annotation>
+										<xs:documentation>References the current facet that is in context for the attribute</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:attribute name="refAttribute" type="xs:string" use="required"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="ModTupleFacetUniqueness">
+						<xs:selector xpath="*"/>
+						<xs:field xpath="@refAttribute"/>
+					</xs:unique>
+				</xs:element>
+				<xs:element ref="modMeasure" minOccurs="0"/>
+				<xs:element ref="modValueCalc" minOccurs="0"/>
+				<xs:element name="modTupleBehavior" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines how the tuple will behave. The default is for it to be affected by all other attributes that are in context in the query unless explicitly specified in the tuple definition.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="modContextAffectedByNone">
+								<xs:annotation>
+									<xs:documentation>Tuple is affected by no attributes in query context unless explicity specified in the tuple definition.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="modContextDetail">
+								<xs:annotation>
+									<xs:documentation>Tuple is affected by the detail (row level) context of the source data set unless explicitly specified in the tuple definition.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType/>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="modFacetValue" type="TextType"/>
+	<xs:element name="modFacetValues">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="modFacetValue" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="modFilterValue" type="TextType"/>
+	<xs:element name="modValueCalc">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="modValueCalcDefinition">
+					<xs:complexType>
+						<xs:group ref="modValueCalcType"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attribute name="solveOrder" type="xs:integer" use="optional"/>
+			<xs:attributeGroup ref="ModGroupRollupAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="modFilterFrom" type="TextType"/>
+	<xs:element name="modFilterTo" type="TextType"/>
+	<xs:group name="modSetDefinitionType">
+		<xs:choice>
+			<xs:element ref="modAttribute">
+				<xs:annotation>
+					<xs:documentation>References an attribute from the model</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="modFacetSet">
+				<xs:annotation>
+					<xs:documentation>Set of attribute facets e.g. (Canada, US, Mexico)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="modFacetValue" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="refAttribute" type="xs:string" use="required"/>
+					<xs:attributeGroup ref="ModParameterizedAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modExclude">
+				<xs:annotation>
+					<xs:documentation>Exclude a set of facets from the base set</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modBaseSet"/>
+						<xs:element ref="modFacetValues"/>
+					</xs:all>
+					<xs:attributeGroup ref="ModParameterizedAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modTopCount">
+				<xs:annotation>
+					<xs:documentation>Top n (value attribute) facets from the base set based on the tuple value</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modBaseSet"/>
+						<xs:element ref="modTuple"/>
+					</xs:all>
+					<xs:attribute name="value" type="xs:positiveInteger" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modBottomCount">
+				<xs:annotation>
+					<xs:documentation>Bottom n (value attribute) facets from the base set based on the tuple value</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modBaseSet"/>
+						<xs:element ref="modTuple"/>
+					</xs:all>
+					<xs:attribute name="value" type="xs:positiveInteger" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modTopSum">
+				<xs:annotation>
+					<xs:documentation>Top facets from the base set whose cumulitave sum  based on the tuple value is less than or equal to the specified value</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modBaseSet"/>
+						<xs:element ref="modTuple"/>
+					</xs:all>
+					<xs:attribute name="value" type="xs:decimal" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modBottomSum">
+				<xs:annotation>
+					<xs:documentation>Bottom facets from the base set whose cumulitave sum  based on the tuple value is less than or equal to the specified value</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modBaseSet"/>
+						<xs:element ref="modTuple"/>
+					</xs:all>
+					<xs:attribute name="value" type="xs:decimal" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modTopPercent">
+				<xs:annotation>
+					<xs:documentation>Top facets from the base set whose cumulitave sum  based on the tuple value as a percentage of the overall total is less than or equal to the specified value</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modBaseSet"/>
+						<xs:element ref="modTuple"/>
+					</xs:all>
+					<xs:attribute name="value" type="xs:decimal" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modBottomPercent">
+				<xs:annotation>
+					<xs:documentation>Bottom facets from the base set whose cumulitave sum  based on the tuple value as a percentage of the overall total is less than or equal to the specified value</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modBaseSet"/>
+						<xs:element ref="modTuple"/>
+					</xs:all>
+					<xs:attribute name="value" type="xs:decimal" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modMoveToTop">
+				<xs:annotation>
+					<xs:documentation>Move the specifiied facets to the top of the base set</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modBaseSet"/>
+						<xs:element ref="modFacetValues"/>
+					</xs:all>
+					<xs:attributeGroup ref="ModParameterizedAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modMoveToBottom">
+				<xs:annotation>
+					<xs:documentation>Move the specifiied facets to the bottom of the base set</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modBaseSet"/>
+						<xs:element ref="modFacetValues"/>
+					</xs:all>
+					<xs:attributeGroup ref="ModParameterizedAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modConditionalSet">
+				<xs:annotation>
+					<xs:documentation>Create a set whose facets from the base set and meet the specified filter condition.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modBaseSet"/>
+						<xs:element name="modSetFilter">
+							<xs:complexType>
+								<xs:group ref="modSetFilterType"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modCustomGrouping">
+				<xs:annotation>
+					<xs:documentation>Rolls up specified facets from the base set into groups. Should we allow custom groups of other custom groups or unions?</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modBaseSet"/>
+						<xs:element name="modCustomGroups">
+							<xs:complexType>
+								<xs:sequence maxOccurs="unbounded">
+									<xs:element name="modCustomGroup">
+										<xs:annotation>
+											<xs:documentation>Custom group for dimensional dataitems defined by lists of facets</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:all>
+												<xs:element ref="modFacetValues"/>
+											</xs:all>
+											<xs:attribute name="label" type="xs:string" use="required"/>
+											<xs:attributeGroup ref="ModParameterizedAttributes"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="modCustomGroupRemaining">
+							<xs:annotation>
+								<xs:documentation>Represents what to do with any facets from the base set that do not fall into one of the defined custom groups.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:choice>
+									<xs:element name="includeRemainingFacets">
+										<xs:annotation>
+											<xs:documentation>Other members that do not match the custom groping are included in the set.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType/>
+									</xs:element>
+									<xs:element name="excludeRemainingFacets">
+										<xs:annotation>
+											<xs:documentation>Other members that do not match the custom groping are excluded from the set.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType/>
+									</xs:element>
+									<xs:element name="groupRemainingFacets">
+										<xs:annotation>
+											<xs:documentation>Other members that do not match the custom groping are grouped under as a  single label.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="label" type="xs:string" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modUnion">
+				<xs:annotation>
+					<xs:documentation>Union 2 or more sets into 1. For Titan can only union sets that originated from the same model attribute. Should we allow union of custom groups?</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="modSetDefinitionType" minOccurs="2" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modSetReference">
+				<xs:annotation>
+					<xs:documentation>Reference to a data item in the query that is a set</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modSort">
+				<xs:annotation>
+					<xs:documentation>Sort the facets in a set either ascending or descending based on the sort by criteria. Nulls can be positioned at the beginning or end using the nullsLast property.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modBaseSet"/>
+						<xs:element name="modSortBy" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Defines how to sort the set, if not present, then set is sorted by caption</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:choice>
+									<xs:element ref="modTuple"/>
+									<xs:element ref="modAttribute"/>
+								</xs:choice>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+					<xs:attribute name="ascending" type="xs:boolean" default="true"/>
+					<xs:attributeGroup ref="ModNullPosition"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="modValueCalc">
+				<xs:annotation>
+					<xs:documentation>A single calculated item. May act as a facet and may be unioned with other sets. Rules TBD</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="modFilterType">
+		<xs:choice>
+			<xs:annotation>
+				<xs:documentation>Future types:
+modFilterByQuery : use another query to return a set of facets</xs:documentation>
+			</xs:annotation>
+			<xs:element name="modFilterFacets">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modFacetValues" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					<xs:attribute name="out" type="xs:boolean" default="false"/>
+					<xs:attributeGroup ref="ModFilterIncludeNullAttributes"/>
+					<xs:attributeGroup ref="ModParameterizedAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modFilterCompare">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modFilterValue" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					<xs:attribute name="operator" use="required">
+						<xs:annotation>
+							<xs:documentation source="doc_att_filterCondition_operator"/>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="equal"/>
+								<xs:enumeration value="notEqual"/>
+								<xs:enumeration value="greaterThan"/>
+								<xs:enumeration value="greaterThanEqual"/>
+								<xs:enumeration value="lessThan"/>
+								<xs:enumeration value="lessThanEqual"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="ModFilterIncludeNullAttributes"/>
+					<xs:attributeGroup ref="ModParameterizedAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modFilterStringCompare">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modFilterValue" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					<xs:attribute name="operator" use="required">
+						<xs:annotation>
+							<xs:documentation source="doc_att_filterCondition_operator"/>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="contains">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_contains"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="beginsWith">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_beginsWith"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="endsWith">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_endsWith"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="matches">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_matches"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="containsNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_containsNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="beginsWithNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_beginsWithNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="endsWithNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_endsWithNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="matchesNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_matchesNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="caseInsensitive" default="dataSource">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="yes"/>
+								<xs:enumeration value="dataSource"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="escapeCharacter" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation>A single escape character that can be used to escape wildcard characters in the value text.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attributeGroup ref="ModFilterIncludeNullAttributes"/>
+					<xs:attributeGroup ref="ModParameterizedAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modFilterRange">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modFilterFrom" minOccurs="0"/>
+						<xs:element ref="modFilterTo" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					<xs:attribute name="out" type="xs:boolean" default="false"/>
+					<xs:attributeGroup ref="ModFilterIncludeNullAttributes"/>
+					<xs:attributeGroup ref="ModParameterizedAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modFilterNulls">
+				<xs:complexType>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					<xs:attribute name="out" type="xs:boolean" default="false"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modFilterAnd">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="modFilterType" minOccurs="2" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modFilterOr">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="modFilterType" minOccurs="2" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modFilterNot">
+				<xs:complexType>
+					<xs:group ref="modFilterType"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="modSetFilterType">
+		<xs:choice>
+			<xs:element name="modTupleCompare">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modTuple"/>
+					</xs:all>
+					<xs:attribute name="operator" use="required">
+						<xs:annotation>
+							<xs:documentation source="doc_att_filterCondition_operator"/>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="equal"/>
+								<xs:enumeration value="notEqual"/>
+								<xs:enumeration value="greaterThan"/>
+								<xs:enumeration value="greaterThanEqual"/>
+								<xs:enumeration value="lessThan"/>
+								<xs:enumeration value="lessThanEqual"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="value" type="xs:decimal" use="optional"/>
+					<xs:attributeGroup ref="ModFilterIncludeNullAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modSetFilterCompare">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modFilterValue"/>
+					</xs:all>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					<xs:attribute name="operator" use="required">
+						<xs:annotation>
+							<xs:documentation source="doc_att_filterCondition_operator"/>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="equal"/>
+								<xs:enumeration value="notEqual"/>
+								<xs:enumeration value="greaterThan"/>
+								<xs:enumeration value="greaterThanEqual"/>
+								<xs:enumeration value="lessThan"/>
+								<xs:enumeration value="lessThanEqual"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="ModFilterIncludeNullAttributes"/>
+					<xs:attributeGroup ref="ModParameterizedAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modSetFilterStringCompare">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modFilterValue"/>
+					</xs:all>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					<xs:attribute name="operator" use="required">
+						<xs:annotation>
+							<xs:documentation source="doc_att_filterCondition_operator"/>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="contains">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_contains"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="beginsWith">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_beginsWith"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="endsWith">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_endsWith"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="matches">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_matches"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="containsNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_containsNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="beginsWithNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_beginsWithNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="endsWithNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_endsWithNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="matchesNot">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_stringPropertyCondition_operator_matchesNot"/>
+									</xs:annotation>
+								</xs:enumeration>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="caseInsensitive" default="dataSource">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="yes"/>
+								<xs:enumeration value="dataSource"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="escapeCharacter" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation>A single escape character that can be used to escape wildcard characters in the value text.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attributeGroup ref="ModFilterIncludeNullAttributes"/>
+					<xs:attributeGroup ref="ModParameterizedAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modSetFilterRange">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modFilterFrom" minOccurs="0"/>
+						<xs:element ref="modFilterTo" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					<xs:attribute name="out" type="xs:boolean" default="false"/>
+					<xs:attributeGroup ref="ModFilterIncludeNullAttributes"/>
+					<xs:attributeGroup ref="ModParameterizedAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modSetFilterNulls">
+				<xs:complexType>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					<xs:attribute name="out" type="xs:boolean" default="false"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modSetFilterAnd">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="modSetFilterType" minOccurs="2" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modSetFilterOr">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="modSetFilterType" minOccurs="2" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modSetFilterNot">
+				<xs:complexType>
+					<xs:group ref="modSetFilterType"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="modValueCalcType">
+		<xs:choice>
+			<xs:element name="modValueCalcOp">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="modValueCalcType" minOccurs="2" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="operator" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="add"/>
+								<xs:enumeration value="subtract"/>
+								<xs:enumeration value="multiply"/>
+								<xs:enumeration value="divide"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="modTuple"/>
+			<xs:element name="modValueNumber">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:decimal">
+							<xs:attributeGroup ref="ModParameterizedAttributes"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="modRollup">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="modBaseSet"/>
+					</xs:all>
+					<xs:attributeGroup ref="ModGroupRollupAttributes"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:attributeGroup name="ModParameterizedAttributes">
+		<xs:attribute name="parameterized" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>Indicates that when the report is run in the viewer the user should be prompted for the value(s). </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="parameterName" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The name the parameter will have in the report. If no name is specified one will be generated by the server. The name will be used by generated prompt pages.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ModFilterIncludeNullAttributes">
+		<xs:attribute name="includeNulls" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>The set of values being filtered (in or not in) should also include any null values.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ModGroupRollupAttributes">
+		<xs:attribute name="groupRollup" default="default">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="default"/>
+					<xs:enumeration value="total"/>
+					<xs:enumeration value="minimum"/>
+					<xs:enumeration value="maximum"/>
+					<xs:enumeration value="average"/>
+					<xs:enumeration value="count"/>
+					<xs:enumeration value="calculated">
+						<xs:annotation>
+							<xs:documentation source="doc_enum_calculated_aggregate"/>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="countDistinct"/>
+					<xs:enumeration value="median"/>
+					<xs:enumeration value="standardDeviation"/>
+					<xs:enumeration value="variance"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ModNullPosition">
+		<xs:attribute name="nullPosition" use="optional">
+			<xs:annotation>
+				<xs:documentation>Explicitly position nulls at the beginning or end of the sorted facets. The default behavior will  show nulls first when sorted ascending and last when sorted descending.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="first"/>
+					<xs:enumeration value="last"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+</xs:schema>

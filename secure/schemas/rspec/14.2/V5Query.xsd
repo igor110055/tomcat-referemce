@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2016
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rspec="http://developer.cognos.com/schemas/report/14.2/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5_base.xsd"/>
+	<xs:include schemaLocation="V5_queryBase.xsd"/>
+	<xs:element name="query" type="queryType">
+		<xs:annotation>
+			<xs:documentation>A query defines the data to be retrieved from the database.  It consists of a source, a selection, detailed and summary filters, and a dimension Information. Query hints can be supplied. A query does not define the structure or presentation of the retrieved data.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="selection">
+		<xs:annotation>
+			<xs:documentation>The selection identifies the metadata elements upon which the query is based.  This is analogous to a projection from the source.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dataItem" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="autoSummary" type="xs:boolean" use="optional" default="true"/>
+		</xs:complexType>
+		<xs:unique name="dataItemUniqueness">
+			<xs:selector xpath="*"/>
+			<xs:field xpath="@name"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="slicer">
+		<xs:annotation>
+			<xs:documentation>a list of member expressions. the list is interpreted as a tuple of members.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="slicerMemberSet" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="detailFilter">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="filterExpression"/>
+			</xs:all>
+			<xs:attribute name="use" use="optional" default="required">
+				<xs:annotation>
+					<xs:documentation>{required} When optional, this filter will be applied only if all the parameters referenced by the filter expression have been provided with values. If the filter expression does not refer to any parameters, then this filter will always be applied. When prohibited, this filter will never be applied, which is useful for testing and authoring purposes. Default: "required".</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="required"/>
+						<xs:enumeration value="optional"/>
+						<xs:enumeration value="prohibited"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="postAutoAggregation" type="xs:boolean" use="optional" default="false">
+				<xs:annotation>
+					<xs:documentation>{false} Specifies that when "false", this condition will be applied to detail database rows from the tabular result set prior to aggregation and summarization. Any reference to a fact (aggregate) item in this expression will be interpreted as the individual database value before it has been summarized. When "true", this condition will be applied to the summarized rows; that is, after one or more detail rows have been aggregated into one summary row. Any reference to a fact (aggregate) item in this expression will be interpreted as the aggregate value of the summarized row(s). This attribute has no effect upon references to non-aggregate items, nor is it effective when automatic summarization is disabled (see "autoSummary" attribute of the selection element).  This attribute has no effect in all cases for OLAP data sources.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="canBeChangedInAdvancedViewer" type="xs:boolean" default="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="summaryFilter">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="filterExpression"/>
+				<xs:element ref="summaryFilterLevels" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="use" use="optional" default="required">
+				<xs:annotation>
+					<xs:documentation>{required} When optional, this filter will be applied only if all the parameters referenced by the filter expression have been provided with values. If the filter expression does not refer to any parameters, then this filter will always be applied. When prohibited, this filter will never be applied, which is useful for testing and authoring purposes. Default: "required".</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="required"/>
+						<xs:enumeration value="optional"/>
+						<xs:enumeration value="prohibited"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

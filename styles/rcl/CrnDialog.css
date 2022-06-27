@@ -1,0 +1,70 @@
+div.dialogTitle {
+   background-color:ButtonFace;
+   color: ButtonText;
+   font-weight:bold;
+   width:100%;
+}
+
+
+div.dialogDiv {
+   /*position:absolute;*/
+   top: 10%;
+   left: 10%;
+
+   /*padding : 3px;*/
+   /*background-color: ThreeDFace;*/
+
+   /*border-style: solid;*/
+   /*border-width: 2px;*/
+   /*border-color: ThreeDHighlight ThreeDDarkShadow ThreeDDarkShadow ThreeDHighlight;*/
+
+   /*this will make sure the dialog displays on top*/
+   z-index: 1500;
+}
+
+div.fileChooser {
+   height: 366px;
+   width: 740px;
+}
+
+div.fileChooser iframe {
+   height: 366px;
+   width: 734px;
+}
+
+
+div.folderChooser {
+   height: 366px;
+   width: 320px;
+}
+
+div.folderChooser iframe {
+   height: 366px;
+   width: 314px;
+}
+
+div.folderWithInputChooser {
+   height: 400px;
+   width: 320px;
+}
+
+div.folderWithInputChooser iframe {
+   height: 400px;
+   width: 314px;
+}
+
+
+div.queryItemValuePicker {
+   height: 424px;
+   width: 704px;
+}
+
+div.queryItemValuePicker iframe {
+   height: 420px;
+   width: 700px;
+}
+
+
+
+
+

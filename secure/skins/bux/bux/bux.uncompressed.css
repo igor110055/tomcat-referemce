@@ -1,0 +1,63 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *|
+ *| IBM Cognos Products: BUX
+ *|
+ *| (C) Copyright IBM Corp. 2009, 2012
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *|
+ *+------------------------------------------------------------------------+
+ */
+
+/* MAIN */
+@import "dojo.css";
+@import "bordercontainer.css";
+@import "canvas.css";
+@import "dialog.css";
+@import "widget.css";
+@import "toolbar.css";
+@import "tree.css";
+@import "controls.css";
+
+/* CANVAS */
+@import "menu.css";
+
+/* BANNER */
+@import "banner.css";
+@import "about.css";
+@import "tooltip.css";
+
+/* COLLABORATION PANE */
+@import "collaboration.css";
+
+/* CONTENT PANE */
+@import "contentpane.css";
+@import "search.css";
+
+/* EDITOR PANE */
+@import "editor.css";
+
+/* FILTER */
+@import "filter.css";
+
+/*COMMENT*/
+@import "comment.css";
+
+/* GUIDANCE PAGE */
+@import "guidancepage.css";
+
+/* InfoBar */
+@import "infobar.css";
+
+
+/* Cognos bridged portlets styles*/
+@import "portlets.css";
+
+/* Utilities widgets */
+@import "utilities.css";
+
+/* prompt controls */
+@import "prompt.css";

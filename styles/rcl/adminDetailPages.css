@@ -1,0 +1,76 @@
+div.pageBanner {
+   background-color: #4A7DAD;
+
+   border: 1px solid #333333;
+   border-bottom: 0px;
+
+   padding: 5px;
+   height: 20px;
+   margin-bottom: 0px;
+
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 16pt;
+   font-weight: bold;
+   color: white;
+}
+
+div.pageTraverseButtons {
+   background-color: #4A7DAD;
+
+   border: 1px solid #333333;
+   border-top: 0px;
+
+   padding: 5px;
+   * height: 10px;
+   height: 14px;
+   margin-bottom: 0px;
+
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 16pt;
+   font-weight: bold;
+   color: white;
+   /*float:*/
+   /*text-align:right;*/
+}
+
+div.pageBody {
+   border: 1px solid #333333;
+
+   padding: 5px; 
+   margin-bottom: 10px;
+
+   font-family: Arial, Helvetica, sans-serif;
+   font-weight: bold;
+}
+
+*.pageTitle {
+   font-size: 12pt;
+   margin-bottom: 10px;
+}
+
+td.label {
+   text-align: right;
+   font-weight: bold;
+   padding-right: 2px;
+
+}
+
+/* local overrides of CrnDialog.css */
+div.dialogDiv {
+   left: 5%;
+   top: 20%;
+}
+
+div.fileChooser {
+   height: 366px;
+   width: 680px;
+}
+
+div.fileChooser iframe {
+   height: 360px;
+   width: 674px;
+}
+
+input, select, textArea {
+   font-weight:normal;
+}

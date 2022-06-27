@@ -1,0 +1,253 @@
+
+
+
+/********************************
+*  Licensed Materials - Property of IBM
+*    
+*  IBM Cognos Products: cpscrn
+*   
+*  (C) Copyright IBM Corp. 2005, 2013
+*  
+*  US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.  
+********************************/
+A {
+	text-decoration: none;
+	color: #005e44;
+	text-decoration: underline;
+}
+BODY {
+	margin: 0px 0px 0px 0px;
+	background-color: #ffffff;
+	height: 100%;
+	font-size: 70%;
+}
+SELECT, INPUT, TEXTAREA {
+	font-size: 10pt;
+}
+PRE {
+	margin: 0px 0px 0px 0px;
+}
+HR {
+	padding: 0px 0px 0px 0px;
+	margin: 2px 0px 2px 0px;
+	border-right: none;
+	border-top: #000000 1px solid;
+	border-left: none;
+	border-bottom: none;
+	font-size: 1pt;
+}
+FORM {
+	margin: 0px 0px 0px 0px;
+}
+.portlet-font {
+	color: #222222;
+}
+.portlet-font-dim {
+	color: #b9b9b9;
+}
+.portlet-table {
+	background-color: #ffffff;
+	border: #b9b9b9 1px solid;
+}
+.portlet-section-header, .portlet-table-header {
+    	background-color: #dddddd;
+	background-image: -moz-linear-gradient(top, #dddddd 0%, #c6c6c6 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dddddd), color-stop(100%,#c6c6c6));
+	background-image: -webkit-linear-gradient(top, #dddddd 0%, #c6c6c6 100%);
+	background-image: -o-linear-gradient(top, #dddddd 0%, #c6c6c6 100%);
+	background-image: -ms-linear-gradient(top, #dddddd 0%, #c6c6c6 100%);
+	background-image: linear-gradient(to bottom, #dddddd 0%, #c6c6c6 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#c6c6c6',GradientType=0 );
+	zoom: 1;
+	border-color: #b9b9b9;
+	color: #222222;
+
+}
+.portlet-section-body, .portlet-table-body {
+	color: #222222;
+}
+.portlet-section-alternate, .portlet-table-alternate {
+	color: #222222;
+	background-color: #f5f5f5;
+}
+.portlet-section-selected, .portlet-table-selected {
+	background-color: #bed6b2;
+}
+.portlet-section-subheader, .portlet-table-subheader {
+	background-color: #d8e2e9;
+}
+.portlet-section-footer, .portlet-table-footer {
+	background-color: #d8e2e9;
+}
+.portlet-section-text, .portlet-table-text {
+	color: #222222;
+}
+.portlet-form-label {
+	color: #385c4c;
+}
+.portlet-form-input-field {
+	font-size: 10pt;
+}
+.portlet-form-button {
+		background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(top, #f5f5f5 0%, #cacaca 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f5f5), color-stop(100%,#cacaca));
+	background-image: -webkit-linear-gradient(top, #f5f5f5 0%, #cacaca 100%);
+	background-image: -o-linear-gradient(top, #f5f5f5 0%, #cacaca 100%);
+	background-image: -ms-linear-gradient(top, #f5f5f5 0%, #cacaca 100%);
+	background-image: linear-gradient(to bottom, #f5f5f5 0%, #cacaca 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#cacaca',GradientType=0 );
+	zoom: 1;
+	border: #cccccc 1px solid;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #005e44;
+
+	font-size: 129%;
+	cursor: pointer;
+	height: 24px;
+	width: 70px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	overflow-x: visible;
+}
+.portlet-form-button[type] {
+	width: auto;
+	height: auto; 
+	min-height: 24px;
+}
+.portlet-form-button:hover {
+		background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(top, #f5f5f5 0%, #e6e6e6 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f5f5), color-stop(100%,#e6e6e6));
+	background-image: -webkit-linear-gradient(top, #f5f5f5 0%, #e6e6e6 100%);
+	background-image: -o-linear-gradient(top, #f5f5f5 0%, #e6e6e6 100%);
+	background-image: -ms-linear-gradient(top, #f5f5f5 0%, #e6e6e6 100%);
+	background-image: linear-gradient(to bottom, #f5f5f5 0%, #e6e6e6 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#e6e6e6',GradientType=0 );
+	zoom: 1;
+	border: #cccccc 1px solid;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #005e44;
+
+}
+.portlet-icon-label {
+	color: #222222;
+}
+.portlet-dlg-icon-label {
+	color: #222222;
+}
+.portlet-form-field-label {
+	font-weight: bold;
+	color: #385c4c;
+}
+.portlet-form-field {
+	color: #222222;
+}
+.portlet-msg-status {
+	color: #222222;
+}
+.portlet-msg-info {
+	color: #385c4c;
+}
+.portlet-msg-error {
+	color: #000000;
+}
+.portlet-msg-alert {
+	color: #222222;
+}
+.portlet-msg-success {
+	color: #222222;
+}
+.portlet-menu-cascade-item {
+}
+.portlet-menu-cascade-item-selected {
+}
+.portlet-menu-description {
+}
+.portlet-menu-caption {
+}
+.cognos-form-footer {
+	border-top: solid 1px #9ec38d;
+	background-color: #f5f5f5;
+}
+.cognos-form-footer-area {
+	padding-top: 5px;
+	padding-bottom: 2px;
+}
+.cognos-form-footer-button-area {
+	padding-left: 10px;
+}
+.cognos-section-background {
+	background-color: #e1ebf2;
+}
+.cognos-tooltip {
+	background-color: #ffffcc;
+	border-top: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #b9b9b9;
+	border-bottom: 1px solid #b9b9b9;
+}
+.boxBorder {
+	border: solid 1px #d9ebd0;
+}
+.boxHeaderBackground {
+	background-color: #cccccc;
+}
+.boxBody {
+	padding: 3px 3px 3px 3px;
+}
+.boxSpacing {
+	padding-right: 5px;
+}
+.boxHeader {
+	font-weight: normal;
+	color: #005e44;
+	padding: 5px;
+}
+.boxButtonNormal {
+	border: solid 1px #005e44;
+	padding: 0px;
+	background-color: #005e44;
+}
+.boxButtonOver {
+	border: solid 1px #005e44;
+	padding: 0px;
+	background-color: #005e44;
+}
+.headerTitleMiddle {
+	background-color: #d9ebd0;
+	background-image: url(../portal/images/title_bar_grapic.gif);
+	background-repeat: repeat-y;
+	background-position: left top;
+}
+.crnOptionsImage {
+	padding-left: 10px;
+	padding-right: 3px;
+}
+.crnOptions {
+	color: #005e44;
+}
+.mainHeader2 {
+	border: #f5f5f5 2px solid;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	height: 25px;
+	background-color: #f5f5f5;
+}
+.mainHeader3 {
+	padding-top: 5px;
+	background-color: #f5f5f5;
+}
+.headerTitleSmall {
+	font-weight: bold;
+	color: #222222;
+}
+.ccOptions {
+	color: #005e44;
+}

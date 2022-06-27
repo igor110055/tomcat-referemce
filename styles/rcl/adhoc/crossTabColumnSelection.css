@@ -1,0 +1,140 @@
+
+/* overrides */
+div.tree img {
+   margin: 0px 3px 0px 1px;
+}
+
+#lhsDiv {
+   width: 39%;
+   float: left;
+   border: 0px solid red;
+   height: 500px;
+
+}
+
+
+#rhsDiv {
+   width: 60%;
+   float: left;
+   border: 0px solid blue;
+
+   white-space: nowrap;
+}
+
+#centerButtons {
+   float: left;
+   padding: 154px 10px 0px 10px;
+
+   overflow: hidden;
+   white-space: nowrap;
+
+}
+
+#centerButtons input {
+   width: 90px;
+   display:block;
+}
+
+#selectedColumnsContainer {
+   float: left;
+   /*width: 280px;*/
+   border: 0px solid green;
+   /*height: 250px; */
+   white-space: nowrap;
+}
+
+
+
+
+#crosstabColumnsContainer {
+   border:0px solid red;
+   width:250px;
+   height:100px;
+   margin-left:210px;
+   padding-left:10px;
+}
+
+#crosstabRowsContainer {
+   border:0px solid blue;
+   width:210px;
+   height:100px;
+   float:left;
+}
+
+#crosstabMeasuresContainer {
+   border:0px solid green;
+   width:250px;
+   height:100px;
+   float:left;
+   padding-left:10px;
+}
+
+
+
+
+
+#rhsDiv select {
+   font-family: Verdana, Helvetica, sans-serif;
+   font-size: 11px;
+   width: 100%;
+   white-space: nowrap;
+}
+
+
+#crosstabColumnsContainer select {
+   height: 80px;
+}
+
+#crosstabRowsContainer select {
+   height: 130px;
+}
+
+#crosstabMeasuresContainer select {
+   height: 130px;
+}
+
+
+
+
+
+
+
+
+#currentSelectionActions {
+   width: 468px;
+   height: 308px;
+   border: 0px solid #AAAAAA;
+   margin-left: 110px;
+
+}
+
+#rhsDiv ##currentSelectionActions input.vbutton {
+   display: block;
+   width: 104px;
+}
+
+#columnActions {
+   display:none;
+   float:right;
+}
+
+#rowActions {
+   display:none;
+   float:right;
+}
+
+#measureActions {
+   display:none;
+   float:right;
+}
+
+
+
+#mdTreeContainer {
+   overflow: auto;
+   height: 420px;
+   width: 100%;
+
+   border: 1px solid #AAAAAA;
+}
+

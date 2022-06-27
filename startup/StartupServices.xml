@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<startup-services xmlns:xsi="http://www.w3.org/2001/XMLSchema-INSTANCE" xsi:noNamespaceSchemaLocation="StartupServices.xsd">
+
+   <service name="RclAppContextStartupService" class="com.focus.rcl.startup.RclAppContextStartupService">
+   </service>
+
+   <service name="RclPropertiesStartupService" class="com.focus.ftl.startup.model.LoadPropertiesStartupService">
+      <init-param name="propertyFile" value="${motio.adf.conf.dir}/MotioAdf.properties"/>
+      <dependency name="RclAppContextStartupService"/>
+   </service>
+
+   <service name="RclDatabasePropertiesStartupService" class="com.focus.rcl.service.startup.LoadDatabasePropertiesStartupService">
+      <dependency name="RclPropertiesStartupService"/>
+   </service>
+
+   <service name="RclLocaleCacheStartupService" class="com.focus.rcl.startup.RclLocaleCacheStartupService">
+      <dependency name="RclDatabasePropertiesStartupService"/>
+   </service>
+
+   <service name="RclJobs" class="com.focus.rcl.startup.RclJobsStartupService">
+      <dependency name="RclDatabasePropertiesStartupService"/>
+   </service>
+
+   <service name="DefaultValueResolversStartupService" class="com.focus.rcl.startup.DefaultFuzzyValueResolversStartupService">
+      <dependency name="RclDatabasePropertiesStartupService"/>
+   </service>
+
+   <service name="StatsStartupService" class="com.focus.rcl.startup.StatsStartupService">
+      <dependency name="RclDatabasePropertiesStartupService"/>
+      <dependency name="RclAppContextStartupService"/>
+   </service>
+
+
+   <service name="InitializeCognosClientStartupService" class="com.focus.rcl.startup.InitializeCognosClientStartupService">
+      <dependency name="RclDatabasePropertiesStartupService"/>
+   </service>
+
+   <service name="RclConfigurationStartupService" class="com.focus.rcl.startup.RclConfigurationStartupService">
+      <dependency name="RclDatabasePropertiesStartupService"/>
+      <dependency name="InitializeCognosClientStartupService"/>
+   </service>
+
+   <service name="InitializeMaxSecurityThreadsStartupService" class="com.focus.rcl.startup.InitializeMaxSecurityThreadsStartupService">
+      <dependency name="RclDatabasePropertiesStartupService"/>
+      <dependency name="RclAppContextStartupService"/>
+   </service>
+
+
+   <!-- for example purposes only -->
+<!--   <service name="GoslCacheStartupService" class="com.focus.rcl.refapp.startup.GoslCacheStartupService">-->
+<!--       <dependency name="RclDatabasePropertiesStartupService"/>-->
+<!--    </service>-->
+
+</startup-services>
+

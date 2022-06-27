@@ -1,0 +1,1387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+   http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.5.0.xsd
+	">
+
+   <context:component-scan base-package="com.focus.rcl"/>
+   <context:component-scan base-package="com.motio"/>
+   <context:annotation-config/>
+   <tx:annotation-driven transaction-manager="rclTransactionManager"/>
+   <!--
+   ##########################################################################
+     JMS Related...
+   ##########################################################################
+   -->
+    <bean id="kahaPersistenceAdapter" class="org.apache.activemq.store.kahadb.KahaDBPersistenceAdapter">
+       <property name="directory" value="${dir.appserver.install}/activemq-data/data/kahadb"/>
+       <property name="enableJournalDiskSyncs" value="false"/>
+       <property name="indexWriteBatchSize" value="1000"/>
+       <property name="indexCacheSize" value="1000"/>
+    </bean>
+
+   <amq:broker brokerName="${rcl.jms.activemq.brokerName}" useJmx="${activemq.usejmx:true}" persistent="false">
+      <amq:networkConnectors>
+         <amq:networkConnector uri="${rcl.jms.activemq.networkConnector.uri}" conduitSubscriptions="false"/>
+      </amq:networkConnectors>
+
+
+      <amq:persistenceAdapter>
+         <ref bean="kahaPersistenceAdapter"/>
+         <!--<amq:kahaDB directory="${dir.appserver.install}/activemq-data/data/kahadb"-->
+                     <!--enableJournalDiskSyncs="false"-->
+                     <!--indexWriteBatchSize="10000" indexCacheSize="1000"/>-->
+      </amq:persistenceAdapter>
+      <amq:transportConnectors>
+         <amq:transportConnector uri="tcp://${rcl.jms.activemq.transportConnector.ip}:${rcl.appserver.jms.connector.port}?daemon=true"/>
+      </amq:transportConnectors>
+
+      <amq:managementContext>
+         <amq:managementContext createConnector="false"/>
+      </amq:managementContext>
+
+      <amq:destinationPolicy>
+         <amq:policyMap>
+            <amq:policyEntries>
+               <amq:policyEntry queue="reportService.preExecute.queue.>" prioritizedMessages="true"/>
+               <amq:policyEntry queue="reportService.execute.queue.>" prioritizedMessages="true"/>
+               <amq:policyEntry queue="reportService.postExecute.queue.>" prioritizedMessages="true"/>
+               <amq:policyEntry queue="reportService.download.queue.>" prioritizedMessages="true"/>
+            </amq:policyEntries>
+         </amq:policyMap>
+      </amq:destinationPolicy>
+
+      <!--http://www.christianposta.com/blog/?p=273-->
+      <!--http://activemq.apache.org/producer-flow-control.html-->
+      <!--todo make this a proportion of max heap-->
+      <amq:systemUsage>
+         <amq:systemUsage>
+            <amq:memoryUsage>
+               <amq:memoryUsage limit="256 mb"/>
+            </amq:memoryUsage>
+            <amq:storeUsage>
+               <amq:storeUsage limit="7 gb"/>
+            </amq:storeUsage>
+            <amq:tempUsage>
+               <amq:tempUsage limit="10 gb"/>
+            </amq:tempUsage>
+         </amq:systemUsage>
+      </amq:systemUsage>
+
+   </amq:broker>
+
+   <amq:connectionFactory id="connectionFactory" brokerURL="vm://${rcl.jms.activemq.brokerName}" clientIDPrefix="test" trustAllPackages="true">
+      <amq:redeliveryPolicy>
+         <amq:redeliveryPolicy maximumRedeliveries="1" initialRedeliveryDelay="5000"/>
+      </amq:redeliveryPolicy>
+   </amq:connectionFactory>
+
+
+   <amq:connectionFactory id="zeroPreFetchConnectionFactory" brokerURL="vm://${rcl.jms.activemq.brokerName}"  clientIDPrefix="test" trustAllPackages="true">
+      <amq:redeliveryPolicy>
+         <amq:redeliveryPolicy maximumRedeliveries="1" initialRedeliveryDelay="5000"/>
+      </amq:redeliveryPolicy>
+
+      <amq:prefetchPolicy>
+         <amq:prefetchPolicy queuePrefetch="0"/>
+      </amq:prefetchPolicy>
+   </amq:connectionFactory>
+
+   <amq:connectionFactory id="infiniteDeliveryConnectionFactory" brokerURL="vm://${rcl.jms.activemq.brokerName}"  clientIDPrefix="test" trustAllPackages="true">
+      <amq:redeliveryPolicy>
+         <amq:redeliveryPolicy maximumRedeliveries="-1" initialRedeliveryDelay="10000"/>
+      </amq:redeliveryPolicy>
+   </amq:connectionFactory>
+
+   <!--template declarations-->
+   <bean id="preExecuteTemplate" class="org.springframework.jms.core.JmsTemplate">
+      <property name="connectionFactory">
+         <!-- lets wrap in a pool to avoid creating a connection per send -->
+         <bean class="org.springframework.jms.connection.SingleConnectionFactory">
+            <property name="targetConnectionFactory" ref="connectionFactory"/>
+         </bean>
+      </property>
+      <property name="sessionTransacted" value="true"/>
+      <property name="defaultDestination" ref="reportService.preExecute.queue.default"/>
+   </bean>
+
+   <bean id="executeTemplate" class="org.springframework.jms.core.JmsTemplate">
+      <property name="connectionFactory">
+         <bean class="org.springframework.jms.connection.SingleConnectionFactory">
+            <property name="targetConnectionFactory" ref="connectionFactory"/>
+         </bean>
+      </property>
+      <property name="defaultDestination" ref="reportService.execute.queue.default"/>
+      <property name="sessionTransacted" value="true"/>
+   </bean>
+
+   <bean id="postExecuteTemplate" class="org.springframework.jms.core.JmsTemplate">
+      <property name="connectionFactory">
+         <bean class="org.springframework.jms.connection.SingleConnectionFactory">
+            <property name="targetConnectionFactory" ref="connectionFactory"/>
+         </bean>
+      </property>
+      <property name="defaultDestination" ref="reportService.postExecute.queue.default"/>
+      <property name="sessionTransacted" value="true"/>
+   </bean>
+
+   <bean id="downloadTemplate" class="org.springframework.jms.core.JmsTemplate">
+      <property name="connectionFactory">
+         <bean class="org.springframework.jms.connection.SingleConnectionFactory">
+            <property name="targetConnectionFactory" ref="connectionFactory"/>
+         </bean>
+      </property>
+      <property name="defaultDestination" ref="reportService.download.queue.default"/>
+      <property name="sessionTransacted" value="true"/>
+   </bean>
+
+   <bean id="deliveryTemplate" class="org.springframework.jms.core.JmsTemplate">
+      <property name="connectionFactory">
+         <bean class="org.springframework.jms.connection.SingleConnectionFactory">
+            <property name="targetConnectionFactory" ref="connectionFactory"/>
+         </bean>
+      </property>
+      <property name="defaultDestination" ref="deliveryQueue"/>
+      <property name="sessionTransacted" value="true"/>
+   </bean>
+
+   <bean id="emailTemplate" class="org.springframework.jms.core.JmsTemplate">
+      <property name="connectionFactory">
+         <bean class="org.springframework.jms.connection.SingleConnectionFactory">
+            <property name="targetConnectionFactory" ref="connectionFactory"/>
+         </bean>
+      </property>
+      <property name="defaultDestination" ref="emailQueue"/>
+      <property name="sessionTransacted" value="true"/>
+   </bean>
+
+   <bean id="concatenationTemplate" class="org.springframework.jms.core.JmsTemplate">
+      <property name="connectionFactory">
+         <bean class="org.springframework.jms.connection.SingleConnectionFactory">
+            <property name="targetConnectionFactory" ref="connectionFactory"/>
+         </bean>
+      </property>
+      <property name="defaultDestination" ref="concatenationQueue"/>
+      <property name="sessionTransacted" value="true"/>
+   </bean>
+
+   <bean id="ciIntegrationTemplate" class="org.springframework.jms.core.JmsTemplate">
+      <property name="connectionFactory">
+         <bean class="org.springframework.jms.connection.SingleConnectionFactory">
+            <property name="targetConnectionFactory" ref="connectionFactory"/>
+         </bean>
+      </property>
+      <property name="defaultDestination" ref="ciIntegrationQueue"/>
+      <property name="sessionTransacted" value="true"/>
+   </bean>
+
+
+   <!--
+   =========================================================
+
+      JMS queues
+
+   =========================================================
+   -->
+   <amq:queue id="reportService.preExecute.queue.default" physicalName="reportService.preExecute.queue.default"/>
+   <amq:queue id="reportService.execute.queue.default" physicalName="reportService.execute.queue.default"/>
+   <amq:queue id="reportService.download.queue.default" physicalName="reportService.download.queue.default"/>
+   <amq:queue id="reportService.postExecute.queue.default" physicalName="reportService.postExecute.queue.default"/>
+
+   <amq:queue id="deliveryQueue" physicalName="com.motio.adf.DeliveryQueue"/>
+   <amq:queue id="emailQueue" physicalName="com.motio.adf.EmailQueue"/>
+   <amq:queue id="concatenationQueue" physicalName="com.motio.adf.ConcatenationQueue"/>
+   <amq:queue id="ciIntegrationQueue" physicalName="com.motio.adf.ConcatenationQueue"/>
+
+
+   <!--
+   =========================================================
+
+      JMS TOPICS
+
+   =========================================================
+   -->
+
+
+   <!-- this topic only broadcasts RerFinishedEvents (generated when an RER reaches a final resting status) -->
+   <amq:topic id="jmsDestination_MotioAdfReportEventsTopic" physicalName="com.motio.adf.cluster.ReportEventsTopic"/>
+
+
+   <!--Listener and JmsConfiguration Beans-->
+
+   <bean id="hibernateSessionAwareMessageListener" abstract="true"
+         class="com.focus.rcl.HibernateSessionAwareMessageListener">
+      <property name="sessionFactory" ref="rclSessionFactory"/>
+   </bean>
+
+   <bean id="authenticationAwareMessageListener" abstract="true"
+         class="com.focus.rcl.service.impl.AuthenticationAwareMessageListener"/>
+
+   <bean id="preExecuteMessageListener" parent="authenticationAwareMessageListener"
+         class="com.focus.rcl.service.impl.ReportServicePreExecutionListener">
+      <property name="reportService" ref="reportService"/>
+   </bean>
+
+   <bean id="executeMessageListener" parent="authenticationAwareMessageListener"
+         class="com.focus.rcl.service.impl.ReportServiceExecutionListener">
+      <property name="reportService" ref="reportService"/>
+   </bean>
+
+   <bean id="postExecuteMessageListener" parent="authenticationAwareMessageListener"
+         class="com.focus.rcl.service.impl.ReportServicePostExecutionListener">
+      <property name="reportService" ref="reportService"/>
+   </bean>
+
+   <bean id="downloadMessageListener" parent="authenticationAwareMessageListener"
+         class="com.focus.rcl.service.impl.ReportServiceDownloadListener">
+      <property name="reportService" ref="reportService"/>
+   </bean>
+
+   <bean id="deliveryMessageListener" parent="authenticationAwareMessageListener"
+         class="com.focus.rcl.service.impl.DeliveryListener">
+      <property name="deliveryService" ref="deliveryService"/>
+   </bean>
+
+   <bean id="emailMessageListener" parent="authenticationAwareMessageListener"
+         class="com.focus.rcl.service.impl.EmailListener">
+      <property name="emailService" ref="emailService"/>
+   </bean>
+
+   <bean id="concatenationMessageListener" parent="authenticationAwareMessageListener"
+         class="com.focus.rcl.service.impl.ConcatenationListener">
+      <property name="outputProcessingService" ref="outputProcessingService"/>
+   </bean>
+
+   <bean id="ciIntegrationMessageListener" parent="authenticationAwareMessageListener"
+         class="com.focus.rcl.service.impl.CiIntegrationListener">
+      <property name="ciIntegrationService" ref="ciIntegrationService"/>
+   </bean>
+
+
+   <bean id="rclConfigurationNotificationListener"
+         class="com.focus.rcl.service.impl.RclConfigurationPropertyNotificationListener">
+      <property name="propertyService" ref="rclConfigPropertyService"/>
+      <property name="configurationService" ref="rclConfigurationService"/>
+   </bean>
+
+
+
+   <bean id="adfReportEventsProducerTemplate" class="org.springframework.jms.core.JmsTemplate">
+      <property name="connectionFactory" ref="connectionFactory"/>
+      <property name="defaultDestination" ref="jmsDestination_MotioAdfReportEventsTopic"/>
+   </bean>
+
+   <bean id="deliveryContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+       <property name="connectionFactory" ref="connectionFactory"/>
+       <property name="destination" ref="deliveryQueue"/>
+       <property name="sessionTransacted" value="true"/>
+       <property name="messageListener" ref="deliveryMessageListener"/>
+       <property name="concurrentConsumers" value="${rcl.reportservice.delivery.minPoolSize}"/>
+       <property name="maxConcurrentConsumers" value="${rcl.reportservice.delivery.maxPoolSize}"/>
+   </bean>
+
+   <!--
+   ============================================
+
+   IClusterService - AllNodes Topic
+
+   ============================================
+   -->
+
+
+   <!-- used for pushing ICommand to be executed on EACH node of an ADF cluster -->
+   <amq:topic id="jmsDestination_MotioAdfAllNodesTopic" physicalName="com.motio.adf.cluster.AllNodesTopic"/>
+
+   <bean id="adfClusterServiceAllNodesConsumerContainer"
+         class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+      <property name="connectionFactory" ref="connectionFactory"/>
+      <property name="messageListener" ref="adfClusterServiceMessageListener"/>
+      <property name="destination" ref="jmsDestination_MotioAdfAllNodesTopic"/>
+      <property name="maxConcurrentConsumers" value="1"/>
+   </bean>
+
+   <!-- used for pushing com.focus.rcl.events.ICommand to be executed on EACH node of an ADF cluster -->
+   <bean id="adfClusterServiceAllNodesProducerTemplate" class="org.springframework.jms.core.JmsTemplate">
+      <property name="connectionFactory" ref="connectionFactory"/>
+      <property name="defaultDestination" ref="jmsDestination_MotioAdfAllNodesTopic"/>
+   </bean>
+
+
+   <!--
+     ============================================
+
+     IClusterService - SingleNode Queue
+
+     ============================================
+
+     -->
+
+   <!-- used for pushing ICommand to be executed on a SINGLE node of the ADF cluster -->
+   <amq:queue id="jmsDestination_MotioAdfSingleNodeQueue" physicalName="com.motio.adf.cluster.SingleNodeQueue"/>
+
+   <bean id="adfClusterServiceSingleNodeConsumerContainer"
+         class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+      <property name="connectionFactory" ref="connectionFactory"/>
+      <property name="messageListener" ref="adfClusterServiceMessageListener"/>
+      <property name="destination" ref="jmsDestination_MotioAdfSingleNodeQueue"/>
+      <property name="maxConcurrentConsumers" value="5"/>
+   </bean>
+
+   <bean id="adfClusterServiceSingleNodeProducerTemplate" class="org.springframework.jms.core.JmsTemplate">
+      <property name="connectionFactory" ref="connectionFactory"/>
+      <property name="defaultDestination" ref="jmsDestination_MotioAdfSingleNodeQueue"/>
+   </bean>
+
+
+   <bean id="adfClusterServiceMessageListener" parent="authenticationAwareMessageListener"
+         class="com.focus.rcl.admin.ClusterServiceMessageListener">
+   </bean>
+
+
+   <!--
+   ##########################################################################
+     Services...
+   ##########################################################################
+   -->
+
+
+
+   <!-- Transaction template for Managers, from:
+        http://blog.exis.com/colin/archives/2004/07/31/concise-transaction-definitions-spring-11/ -->
+   <bean id="rclTxProxyTemplate" abstract="true"
+         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+      <property name="transactionManager">
+         <ref bean="rclTransactionManager"/>
+      </property>
+      <property name="transactionAttributes">
+         <props>
+            <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+            <prop key="list*">PROPAGATION_REQUIRED,readOnly</prop>
+            <prop key="create*">PROPAGATION_REQUIRED</prop>
+            <prop key="scanCognosForReportChanges">PROPAGATION_NEVER</prop>
+<!--            This is a weird addition to keep transactions from being called on incidental calls to toString()-->
+            <prop key="toString">PROPAGATION_SUPPORTS</prop>
+            <prop key="*">PROPAGATION_REQUIRED</prop>
+            <prop key="initialize">PROPAGATION_NEVER,readOnly</prop>
+         </props>
+      </property>
+   </bean>
+
+   <bean id="schedulerServiceTxProxy" abstract="true"
+         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+      <property name="transactionManager">
+         <ref bean="rclTransactionManager"/>
+      </property>
+      <property name="transactionAttributes">
+         <props>
+            <prop key="executeSchedule">PROPAGATION_NEVER</prop>
+            <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+            <prop key="list*">PROPAGATION_REQUIRED,readOnly</prop>
+            <prop key="addFailedScheduledJob">PROPAGATION_REQUIRED</prop>
+            <!--            This is a weird addition to keep transactions from being called on incidental calls to toString()-->
+            <prop key="toString">PROPAGATION_SUPPORTS</prop>
+            <prop key="*">PROPAGATION_REQUIRED</prop>
+         </props>
+      </property>
+   </bean>
+
+
+<!--   <bean id="reportServiceTxProxy" abstract="true"-->
+<!--         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">-->
+<!--      <property name="transactionManager">-->
+<!--         <ref bean="rclTransactionManager"/>-->
+<!--      </property>-->
+
+<!--      <property name="transactionAttributes">-->
+<!--         <props>-->
+<!--            <prop key="getGeneratedReportSpecXml">PROPAGATION_NEVER</prop>-->
+<!--            <prop key="cleanUpOldReportInstances">PROPAGATION_NEVER</prop>-->
+<!--            <prop key="executeImmediate">PROPAGATION_NEVER</prop>-->
+
+<!--            &lt;!&ndash; The following RER related methods have transitioned to use-->
+<!--                 IMPLICIT transactions.-->
+
+<!--                     see ticket #1714-->
+
+<!--                 BTW - I'd rather leave these here explicitly than rely on-->
+<!--                 the wildcard ("*").-->
+<!--            &ndash;&gt;-->
+<!--            <prop key="launch">PROPAGATION_REQUIRED</prop>-->
+<!--            <prop key="launchDrillThrough">PROPAGATION_REQUIRED</prop>-->
+<!--            <prop key="launchAnonymousReport">PROPAGATION_REQUIRED</prop>-->
+<!--            <prop key="launchScheduledReports">PROPAGATION_REQUIRED</prop>-->
+<!--            <prop key="launchReports">PROPAGATION_REQUIRED</prop>-->
+<!--            <prop key="reExecute">PROPAGATION_REQUIRED</prop>-->
+
+<!--            &lt;!&ndash; each of the above launch / re-execute methods ends up calling this method eventually &ndash;&gt;-->
+<!--            <prop key="submitRequest">PROPAGATION_REQUIRED</prop>-->
+
+
+<!--            &lt;!&ndash; ReportService Pipeline Phases use Explicit Transactions &ndash;&gt;-->
+<!--            <prop key="doPreExecuteStep">PROPAGATION_NEVER</prop>-->
+<!--            <prop key="doExecuteStep">PROPAGATION_NEVER</prop>-->
+<!--            <prop key="doDownloadStep">PROPAGATION_NEVER</prop>-->
+<!--            <prop key="doPostExecuteStep">PROPAGATION_NEVER</prop>-->
+
+<!--            &lt;!&ndash; Catchall Wildcards  &ndash;&gt;-->
+<!--            <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>-->
+<!--            <prop key="delete*">PROPAGATION_REQUIRED</prop>-->
+<!--            <prop key="*">PROPAGATION_REQUIRED</prop>-->
+<!--            &lt;!&ndash;            This is a weird addition to keep transactions from being called on incidental calls to toString()&ndash;&gt;-->
+<!--            <prop key="toString">PROPAGATION_SUPPORTS</prop>-->
+<!--         </props>-->
+<!--      </property>-->
+<!--   </bean>-->
+
+   <bean id="fragmentService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.FragmentService">
+            <property name="reportFragmentDao">
+               <ref bean="reportFragmentDao"/>
+            </property>
+
+         </bean>
+      </property>
+   </bean>
+
+
+   <bean id="reportExecutionRequestCleanupPolicyTxProxy" abstract="true"
+         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+      <property name="transactionManager">
+         <ref bean="rclTransactionManager"/>
+      </property>
+
+      <property name="transactionAttributes">
+         <props>
+            <prop key="*">PROPAGATION_NEVER</prop>
+            <!-- All methods manage their own transactions -->
+         </props>
+      </property>
+   </bean>
+   <bean id="reportExecutionRequestCleanupPolicy" parent="reportExecutionRequestCleanupPolicyTxProxy">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.DefaultReportExecutionRequestCleanupPolicy">
+            <property name="reportExecutionRequestDao">
+               <ref bean="reportExecutionRequestDao"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+
+   <bean id="rclConfigPropertyService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.ConfigPropertyService">
+            <property name="rclConfigPropertyDao">
+               <ref bean="rclConfigPropertyDao"/>
+            </property>
+            <property name="clusterService">
+               <ref bean="adfClusterService"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="adfClusterService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.admin.ClusterService">
+
+            <property name="allNodesJmsTemplate">
+               <ref bean="adfClusterServiceAllNodesProducerTemplate"/>
+            </property>
+            <property name="singleNodeJmsTemplate">
+               <ref bean="adfClusterServiceSingleNodeProducerTemplate"/>
+            </property>
+
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="adfAuditService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.admin.AuditService" destroy-method="onDestroy">
+            <property name="auditEventDao">
+               <ref bean="auditEventDao"/>
+            </property>
+
+         </bean>
+      </property>
+   </bean>
+
+
+   <bean id="rclMessageService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.RclMessageService">
+            <property name="messageDao">
+               <ref bean="rclMessageDao"/>
+            </property>
+            <property name="emailService">
+               <ref bean="emailService"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+   <!--<bean id="emailService" parent="rclTxProxyTemplate">-->
+   <!--<property name="target">-->
+   <!--<bean class="com.focus.rcl.service.impl.EmailService">-->
+   <!--<property name="jmsTemplate">-->
+   <!--<ref bean="rclJmsTemplate"/>-->
+   <!--</property>-->
+   <!--</bean>-->
+   <!--</property>-->
+   <!--</bean>-->
+
+   <bean id="deliveryService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.DeliveryService">
+
+            <property name="deliveryServiceQueue">
+               <ref bean="deliveryTemplate"/>
+            </property>
+
+            <property name="reportInstanceDao">
+               <ref bean="reportInstanceDao"/>
+            </property>
+
+            <property name="reportInstanceSummaryDao">
+               <ref bean="reportInstanceSummaryDao"/>
+            </property>
+
+
+            <property name="reportOutputDataDao">
+               <ref bean="reportOutputDataDao"/>
+            </property>
+
+            <property name="userDao">
+               <ref bean="userDao"/>
+            </property>
+
+            <property name="reportExecutionRequestDao">
+               <ref bean="reportExecutionRequestDao"/>
+            </property>
+
+            <property name="reportOutputDestinationDao">
+               <ref bean="reportOutputDestinationDao"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+
+   <bean id="rerMessageProcessor" class="com.focus.rcl.ReportExecutionRequestMessagePostProcessor"/>
+
+   <bean id="reportService" class="com.focus.rcl.service.impl.ReportService" destroy-method="shutdownExecuteImmediateFinisherPool">
+            <property name="contentFolderDao">
+               <ref bean="contentFolderDao"/>
+            </property>
+            <property name="reportProfileDao">
+               <ref bean="reportProfileDao"/>
+            </property>
+            <property name="reportDao">
+               <ref bean="reportDao"/>
+            </property>
+
+            <property name="reportGroupDao">
+               <ref bean="reportGroupDao"/>
+            </property>
+
+            <property name="reportExecutionRequestDao">
+               <ref bean="reportExecutionRequestDao"/>
+            </property>
+
+            <property name="reportInstanceDao">
+               <ref bean="reportInstanceDao"/>
+            </property>
+
+            <property name="reportExecutionRequestFolderDao">
+               <ref bean="reportExecutionRequestFolderDao"/>
+            </property>
+
+            <property name="reportOutputDataDao">
+               <ref bean="reportOutputDataDao"/>
+            </property>
+
+            <property name="reportOutputAttachmentDao">
+               <ref bean="reportOutputAttachmentDao"/>
+            </property>
+
+            <property name="reportInstanceSummaryDao">
+               <ref bean="reportInstanceSummaryDao"/>
+            </property>
+
+            <property name="reportExecutionRequestSummaryDao">
+               <ref bean="reportExecutionRequestSummaryDao"/>
+            </property>
+
+            <property name="softLinkDao">
+               <ref bean="softLinkDao"/>
+            </property>
+
+            <property name="anonymousReportDao">
+               <ref bean="anonymousReportDao"/>
+            </property>
+
+            <property name="rerStatisticDao">
+               <ref bean="rerStatisticDao"/>
+            </property>
+
+            <property name="preExecutionQueue">
+               <ref bean="preExecuteTemplate"/>
+            </property>
+
+            <property name="executionQueue">
+               <ref bean="executeTemplate"/>
+            </property>
+
+            <property name="downloadQueue">
+               <ref bean="downloadTemplate"/>
+            </property>
+
+            <property name="postExecutionQueue">
+               <ref bean="postExecuteTemplate"/>
+            </property>
+
+            <property name="reportEventsTopic">
+               <ref bean="adfReportEventsProducerTemplate"/>
+            </property>
+
+            <property name="clusterService">
+               <ref bean="adfClusterService"/>
+            </property>
+
+            <property name="userDao">
+               <ref bean="userDao"/>
+            </property>
+
+            <property name="messageDao">
+               <ref bean="rclMessageDao"/>
+            </property>
+
+            <property name="reportExecutionRequestErrorDao">
+               <ref bean="reportExecutionRequestErrorDao"/>
+            </property>
+
+            <property name="requestCleanupPolicy">
+               <ref bean="reportExecutionRequestCleanupPolicy"/>
+            </property>
+
+            <property name="reportExecutionStatisticDao">
+               <ref bean="reportExecutionStatisticDao"/>
+            </property>
+
+            <property name="rerProcessorChainDao">
+               <ref bean="rerProcessorChainDao"/>
+            </property>
+
+            <property name="scheduleOwnerStrat">
+               <ref bean="scheduleOwnerStrat"/>
+            </property>
+
+            <property name="rerMessagePostProcessor">
+               <ref bean="rerMessageProcessor"/>
+            </property>
+   </bean>
+
+
+   <bean id="schedulerService" parent="schedulerServiceTxProxy">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.SchedulerService">
+            <property name="scheduler">
+               <ref bean="scheduler"/>
+            </property>
+            <property name="scheduleDao">
+               <ref bean="scheduleDao"/>
+            </property>
+            <property name="contentNodeDao">
+               <ref bean="reportDao"/>
+            </property>
+            <property name="reportService">
+               <ref bean="reportService"/>
+            </property>
+            <property name="scheduleExecutionDao">
+               <ref bean="scheduleExecutionDao"/>
+            </property>
+            <property name="systemJobExecutionDao">
+               <ref bean="systemJobExecutionDao"/>
+            </property>
+            <property name="scheduleOwnerStrat">
+               <ref bean="scheduleOwnerStrat"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+
+   <bean id="cognosConfigurationServiceTxProxy" abstract="true"
+         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+      <property name="transactionManager">
+         <ref bean="rclTransactionManager"/>
+      </property>
+      <property name="transactionAttributes">
+         <props>
+            <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+            <prop key="add*">PROPAGATION_REQUIRED</prop>
+            <prop key="delete*">PROPAGATION_REQUIRED</prop>
+            <prop key="update*">PROPAGATION_REQUIRED</prop>
+            <prop key="*">PROPAGATION_REQUIRED</prop>
+         </props>
+      </property>
+   </bean>
+
+   <bean id="cognosConfigurationService" parent="cognosConfigurationServiceTxProxy">
+      <property name="target">
+         <bean class="com.focus.rcl.core.cognos.config.DatabaseCognosConfigurationService">
+            <property name="cognosConfigurationDao">
+               <ref bean="cognosConfigurationDao"/>
+            </property>
+            <property name="cognosInstanceDao">
+               <ref bean="cognosInstanceDao"/>
+            </property>
+         </bean>
+
+      </property>
+   </bean>
+
+
+   <bean id="synchExecutionDestination" class="com.focus.rcl.service.impl.SynchronousJmsTemplate$ExecutionDestination"/>
+   <bean id="synchPreExecutionDestination"
+         class="com.focus.rcl.service.impl.SynchronousJmsTemplate$PreExecutionDestination"/>
+   <bean id="synchDownloadDestination" class="com.focus.rcl.service.impl.SynchronousJmsTemplate$DownloadDestination"/>
+   <bean id="synchPostExecutionDestination"
+         class="com.focus.rcl.service.impl.SynchronousJmsTemplate$PostExecutionDestination"/>
+   <bean id="synchEventsDestination" class="com.focus.rcl.service.impl.SynchronousJmsTemplate$EventsDestination"/>
+
+
+   <bean id="synchronousReportService" class="com.focus.rcl.service.impl.ReportService">
+            <property name="contentFolderDao">
+               <ref bean="contentFolderDao"/>
+            </property>
+            <property name="reportProfileDao">
+               <ref bean="reportProfileDao"/>
+            </property>
+            <property name="reportDao">
+               <ref bean="reportDao"/>
+            </property>
+
+            <property name="reportGroupDao">
+               <ref bean="reportGroupDao"/>
+            </property>
+
+            <property name="reportExecutionRequestDao">
+               <ref bean="reportExecutionRequestDao"/>
+            </property>
+
+            <property name="reportInstanceDao">
+               <ref bean="reportInstanceDao"/>
+            </property>
+
+            <property name="reportExecutionRequestFolderDao">
+               <ref bean="reportExecutionRequestFolderDao"/>
+            </property>
+
+
+            <property name="reportOutputDataDao">
+               <ref bean="reportOutputDataDao"/>
+            </property>
+
+            <property name="reportOutputAttachmentDao">
+               <ref bean="reportOutputAttachmentDao"/>
+            </property>
+
+            <property name="reportInstanceSummaryDao">
+               <ref bean="reportInstanceSummaryDao"/>
+            </property>
+
+            <property name="reportExecutionRequestSummaryDao">
+               <ref bean="reportExecutionRequestSummaryDao"/>
+            </property>
+
+            <property name="softLinkDao">
+               <ref bean="softLinkDao"/>
+            </property>
+
+            <property name="anonymousReportDao">
+               <ref bean="anonymousReportDao"/>
+            </property>
+
+            <property name="rerStatisticDao">
+               <ref bean="rerStatisticDao"/>
+            </property>
+
+            <property name="preExecutionQueue">
+               <ref bean="synchPreExecutionDestination"/>
+            </property>
+
+
+            <property name="executionQueue">
+               <ref bean="synchExecutionDestination"/>
+            </property>
+
+            <property name="downloadQueue">
+               <ref bean="synchDownloadDestination"/>
+            </property>
+
+            <property name="postExecutionQueue">
+               <ref bean="synchPostExecutionDestination"/>
+            </property>
+
+            <property name="reportEventsTopic">
+               <ref bean="adfReportEventsProducerTemplate"/>
+            </property>
+
+            <property name="clusterService">
+               <ref bean="adfClusterService"/>
+            </property>
+
+
+            <property name="userDao">
+               <ref bean="userDao"/>
+            </property>
+
+            <property name="messageDao">
+               <ref bean="rclMessageDao"/>
+            </property>
+
+
+            <property name="reportExecutionRequestErrorDao">
+               <ref bean="reportExecutionRequestErrorDao"/>
+            </property>
+
+            <property name="requestCleanupPolicy">
+               <ref bean="reportExecutionRequestCleanupPolicy"/>
+            </property>
+
+            <property name="reportExecutionStatisticDao">
+               <ref bean="reportExecutionStatisticDao"/>
+            </property>
+
+
+            <property name="rerProcessorChainDao">
+               <ref bean="rerProcessorChainDao"/>
+            </property>
+
+            <property name="scheduleOwnerStrat">
+               <ref bean="scheduleOwnerStrat"/>
+            </property>
+
+   </bean>
+
+
+   <bean id="contentManagementService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.ContentManagementService">
+            <property name="contentFolderDao">
+               <ref bean="contentFolderDao"/>
+            </property>
+            <property name="reportProfileDao">
+               <ref bean="reportProfileDao"/>
+            </property>
+            <property name="softLinkDao">
+               <ref bean="softLinkDao"/>
+            </property>
+            <property name="reportDao">
+               <ref bean="reportDao"/>
+            </property>
+            <property name="reportGroupDao">
+               <ref bean="reportGroupDao"/>
+            </property>
+
+            <property name="userDao">
+               <ref bean="userDao"/>
+            </property>
+
+            <property name="organizationDao">
+               <ref bean="organizationDao"/>
+            </property>
+
+            <property name="customPromptDao">
+               <ref bean="customPromptDao"/>
+            </property>
+
+            <property name="customPromptAssociationDao">
+               <ref bean="customPromptAssociationDao"/>
+            </property>
+
+            <property name="reportExecutionRequestDao">
+               <ref bean="reportExecutionRequestDao"/>
+            </property>
+
+            <property name="reportInstanceDao">
+               <ref bean="reportInstanceDao"/>
+            </property>
+
+            <property name="reportExecutionRequestFolderDao">
+               <ref bean="reportExecutionRequestFolderDao"/>
+            </property>
+
+            <property name="compositeReportDao">
+               <ref bean="compositeReportDao"/>
+            </property>
+
+            <property name="queryStudioReportDao">
+               <ref bean="queryStudioReportDao"/>
+            </property>
+
+            <property name="analysisStudioReportDao">
+               <ref bean="analysisStudioReportDao"/>
+            </property>
+
+            <property name="cognosInstanceDao">
+               <ref bean="cognosInstanceDao"/>
+            </property>
+
+            <property name="messageSource" ref="messageSource"/>
+
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="dashboardService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.DashboardService">
+            <property name="dashboardDao">
+               <ref bean="dashboardDao"/>
+            </property>
+            <property name="dashboardPageDao">
+               <ref bean="dashboardPageDao"/>
+            </property>
+            <property name="abstractDashboardModuleDao">
+               <ref bean="abstractDashboardModuleDao"/>
+            </property>
+            <property name="reportExecutionRequestDao">
+               <ref bean="reportExecutionRequestDao"/>
+            </property>
+            <property name="dashboardTemplateDao">
+               <ref bean="dashboardTemplateDao"/>
+            </property>
+            <property name="userDao">
+               <ref bean="userDao"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="userServiceTxProxy" abstract="true"
+         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+      <property name="transactionManager">
+         <ref bean="rclTransactionManager"/>
+      </property>
+
+      <property name="transactionAttributes">
+         <props>
+
+            <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+            <prop key="list*">PROPAGATION_REQUIRED,readOnly</prop>
+            <prop key="delete*">PROPAGATION_NEVER</prop>
+            <prop key="*">PROPAGATION_REQUIRED</prop>
+         </props>
+      </property>
+   </bean>
+
+
+   <bean id="userService" parent="userServiceTxProxy">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.UserService">
+            <property name="userDao">
+               <ref bean="userDao"/>
+            </property>
+
+            <property name="contentFolderDao">
+               <ref bean="contentFolderDao"/>
+            </property>
+
+            <property name="anonymousReportDao">
+               <ref bean="anonymousReportDao"/>
+            </property>
+
+            <property name="reportInstanceSummaryDao">
+               <ref bean="reportInstanceSummaryDao"/>
+            </property>
+
+            <property name="reportExecutionRequestDao">
+               <ref bean="reportExecutionRequestDao"/>
+            </property>
+
+            <property name="reportExecutionRequestFolderDao">
+               <ref bean="reportExecutionRequestFolderDao"/>
+            </property>
+
+            <property name="scheduleDao">
+               <ref bean="scheduleDao"/>
+            </property>
+
+            <property name="dashboardDao">
+               <ref bean="dashboardDao"/>
+            </property>
+
+            <property name="messageDao">
+               <ref bean="rclMessageDao"/>
+            </property>
+
+            <property name="contentManagementService">
+               <ref bean="contentManagementService"/>
+            </property>
+
+            <property name="customerEnvironment">
+               <ref bean="rclCustomerEnvironment"/>
+            </property>
+
+         </bean>
+      </property>
+
+   </bean>
+
+   <bean id="statisticsServiceTxProxy" abstract="true"
+         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+      <property name="transactionManager">
+         <ref bean="rclTransactionManager"/>
+      </property>
+
+      <property name="transactionAttributes">
+         <props>
+            <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+            <prop key="list*">PROPAGATION_REQUIRED,readOnly</prop>
+            <prop key="*">PROPAGATION_REQUIRED</prop>
+         </props>
+      </property>
+   </bean>
+
+
+   <bean id="statisticsService" parent="statisticsServiceTxProxy">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.StatisticsService">
+
+            <property name="userSessionStatisticDao">
+               <ref bean="userSessionStatisticDao"/>
+            </property>
+
+         </bean>
+      </property>
+
+   </bean>
+
+
+   <bean id="metaDataService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.MetaDataService">
+            <property name="queryItemMetaDataDao">
+               <ref bean="queryItemMetaDataDao"/>
+            </property>
+            <property name="reportDao">
+               <ref bean="reportDao"/>
+            </property>
+            <property name="reportMetaDataDao">
+               <ref bean="reportMetaDataDao"/>
+            </property>
+            <property name="reportQueryMetaDataDao">
+               <ref bean="reportQueryMetaDataDao"/>
+            </property>
+            <property name="reportDataItemMetaDataDao">
+               <ref bean="reportDataItemMetaDataDao"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="sampleParameterValueService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.SampleParameterValueService">
+            <property name="sampleParameterValueDao">
+               <ref bean="sampleParameterValueDao"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="organizationService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.OrganizationService">
+            <property name="organizationDao">
+               <ref bean="organizationDao"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="rclLocaleService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.RclLocaleService">
+            <property name="rclLocaleDao">
+               <ref bean="rclLocaleDao"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="dataSourceVersionService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.DataSourceVersionService">
+            <property name="dataSourceVersionDao">
+               <ref bean="dataSourceVersionDao"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="rclConfigurationService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.RclConfigurationService">
+            <property name="configPropertyService">
+               <ref bean="rclConfigPropertyService"/>
+            </property>
+            <property name="jmxServerConnection" ref="clientConnector"/>
+            <property name="preExecuteName" value="${pre.execute.container.name}"/>
+            <property name="executeName" value="${execute.container.name}"/>
+            <property name="postExecuteName" value="${post.execute.container.name}"/>
+            <property name="downloadName" value="${download.container.name}"/>
+         </bean>
+      </property>
+   </bean>
+
+
+   <!-- just another flexpoint, probably never overriden but you never know -->
+   <bean id="rclMonitorPayloadGenerator" class="com.focus.rcl.admin.DefaultMonitorPayloadGenerator">
+   </bean>
+
+   <bean id="rclYesterdaysLogsMonitorFunctionContributor"
+         class="com.focus.rcl.admin.YesterdaysLogsMonitorFunctionContributor">
+   </bean>
+
+   <bean id="rclDbStatsMonitorFunctionContributor" class="com.focus.rcl.admin.DbStatsMonitorFunctionContributor">
+   </bean>
+
+   <bean id="rclDefaultMonitorContributors" class="java.util.ArrayList">
+      <constructor-arg>
+         <list>
+            <ref bean="rclYesterdaysLogsMonitorFunctionContributor"/>
+            <ref bean="rclDbStatsMonitorFunctionContributor"/>
+         </list>
+      </constructor-arg>
+   </bean>
+
+   <bean id="rclAllMonitorContributors" class="com.focus.spring.CompositeListFactoryBean">
+      <property name="sourceList">
+         <list>
+            <ref bean="rclDefaultMonitorContributors"/>
+            <!-- this is defined in applicationContext-rclCustomerStubs.xml (can be overriden on downstream projects) -->
+            <ref bean="rclAdditionalMonitorContributors"/>
+         </list>
+      </property>
+   </bean>
+
+   <bean id="rclAdminService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.AdminService">
+            <property name="configPropertyService">
+               <ref bean="rclConfigPropertyService"/>
+            </property>
+
+            <property name="monitorFunctionContributors">
+               <ref bean="rclAllMonitorContributors"/>
+            </property>
+
+         </bean>
+      </property>
+   </bean>
+
+
+   <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" destroy-method="destroy">
+      <property name="autoStartup" value="${rcl.scheduler.autoStartup}"/>
+      <property name="startupDelay" value="${rcl.scheduler.startupDelay}"/>
+      <property name="dataSource">
+         <ref bean="dataSource"/>
+      </property>
+      <property name="transactionManager">
+         <ref bean="rclTransactionManager"/>
+      </property>
+      <property name="quartzProperties" ref="quartzProperties"/>
+   </bean>
+
+   <bean id="capabilityService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.CapabilityService">
+            <property name="rclCapabilityDao">
+               <ref bean="rclCapabilityDao"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="rerProcessorChainService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.RerProcessorChainService">
+            <property name="rerProcessorChainDao">
+               <ref bean="rerProcessorChainDao"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="incidentService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.IncidentService">
+            <property name="incidentDao">
+               <ref bean="incidentDao"/>
+            </property>
+            <property name="incidentCleanupPolicy">
+               <ref bean="incidentCleanupPolicy"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="incidentCleanupPolicy" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.IncidentCleanupPolicy">
+            <property name="incidentDao">
+               <ref bean="incidentDao"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="ciIntegrationService" class="com.focus.rcl.service.impl.DefaultCiIntegrationService">
+      <property name="ciIntegrationStatusService">
+         <ref bean="ciIntegrationStatusService"/>
+      </property>
+      <property name="contentManagementService">
+         <ref bean="contentManagementService"/>
+      </property>
+      <property name="reportService">
+         <ref bean="reportService"/>
+      </property>
+      <property name="userService">
+         <ref bean="userService"/>
+      </property>
+      <property name="ciIntegrationQueue">
+         <ref bean="ciIntegrationTemplate"/>
+      </property>
+   </bean>
+
+   <bean id="ciIntegrationStatusService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.CiIntegrationStatusService">
+            <property name="ciIntegrationStatusDao">
+               <ref bean="ciIntegrationStatusDao"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="emailService" parent="rclTxProxyTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.service.impl.EmailService">
+            <property name="customerEnvironment">
+               <ref bean="rclCustomerEnvironment"/>
+            </property>
+
+            <property name="emailServiceQueue">
+               <ref bean="emailTemplate"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="pdfConcatenationProcessor" class="com.focus.rcl.transformation.PdfConcatentationProcessor">
+      <property name="source">
+         <ref bean="hibernatePdfHandler"/>
+      </property>
+      <property name="behavior">
+         <ref bean="hibernatePdfHandler"/>
+      </property>
+   </bean>
+
+   <bean id="hibernatePdfHandler" class="com.focus.rcl.transformation.HibernatePdfHandler">
+      <property name="reportOutputData">
+         <ref bean="reportOutputDataDao"/>
+      </property>
+      <property name="requestDao">
+         <ref bean="requestDao"/>
+      </property>
+   </bean>
+
+   <bean id="rclTxOutputProcessingServiceTemplate" abstract="true"
+         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+      <property name="transactionManager">
+         <ref bean="rclTransactionManager"/>
+      </property>
+      <property name="transactionAttributes">
+         <props>
+            <prop key="get*">PROPAGATION_SUPPORTS,readOnly</prop>
+            <prop key="*">PROPAGATION_REQUIRED</prop>
+            <prop key="setStatus">PROPAGATION_REQUIRES_NEW</prop>
+         </props>
+      </property>
+   </bean>
+
+
+   <bean id="outputProcessingService" parent="rclTxOutputProcessingServiceTemplate">
+      <property name="target">
+         <bean class="com.focus.rcl.transformation.OutputProcessingService">
+            <property name="requestDao">
+               <ref bean="requestDao"/>
+            </property>
+
+            <property name="destination">
+               <ref bean="concatenationTemplate"/>
+            </property>
+            <property name="outputProcessor">
+               <ref bean="pdfConcatenationProcessor"/>
+            </property>
+         </bean>
+      </property>
+   </bean>
+
+
+   <bean id="servletImageMatchCollector" scope="prototype" class="com.motio.io.ServletImageMatchCollector">
+   </bean>
+
+   <bean id="rsImageMatchCollector" scope="prototype" class="com.motio.io.RestImageMatchCollector">
+      <property name="imageBase" value="/${webapp.name}/rs/report/attachment"/>
+   </bean>
+
+
+   <!--JMX Client Connector-->
+   <bean id="clientConnector" class="org.springframework.jmx.support.MBeanServerConnectionFactoryBean">
+      <property name="serviceUrl" value="service:jmx:rmi:///jndi/rmi://127.0.0.1:${rcl.appserver.jvm.jmx.port}/jmxrmi"/>
+      <property name="connectOnStartup" value="false"/>
+   </bean>
+
+
+   <bean id="lifecycleProcessor" class="org.springframework.context.support.DefaultLifecycleProcessor">
+      <!-- timeout value in milliseconds -->
+      <property name="timeoutPerShutdownPhase" value="10000"/>
+   </bean>
+
+   <!--<bean id="rclLocaleCache" parent="rclTxProxyTemplate">-->
+   <!--<property name="target">-->
+   <!--<bean class="com.focus.rcl.service.RclLocaleCache" init-method="initialize">-->
+   <!--<property name="localeDao" ref="rclLocaleDao"/>-->
+   <!--</bean>-->
+   <!--</property>-->
+   <!--</bean>-->
+
+
+   <!--<bean id="ownershipManager" class="com.focus.rcl.OwnershipManager"/>-->
+
+   <!--<aop:config>-->
+   <!--<aop:pointcut id="ownershipPointcut" expression="execution(* com.focus.rcl.transformation.OutputProcessingService.concatenate(..))"/>-->
+   <!--<aop:aspect ref="ownershipManager">-->
+   <!--<aop:before method="populateOwner" pointcut-ref="ownershipPointcut"/>-->
+   <!--</aop:aspect>-->
+
+
+   <!--</aop:config>-->
+
+   <!--<aop:config>-->
+   <!--<aop:pointcut id="webServiceOperation" expression="execution(* com.focus.rcl.ws.Ws*.*(..))"/>-->
+   <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="webServiceOperation"/>-->
+   <!--</aop:config>-->
+</beans>

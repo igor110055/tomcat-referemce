@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app id="web-app_1" xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+         version="2.4">
+
+    <display-name>reference</display-name>
+    <!-- You may experience issues in Mozilla < version 1.2 if you use  -->
+    <!-- ports other than 80 and 443, it seems to work fine with v1.2.  -->
+    <!-- For further information see the following article:             -->
+    <!-- http://www.javaworld.com/javaworld/jw-02-2002/jw-0215-ssl.html -->
+    <context-param>
+        <param-name>listenPort_http</param-name>
+        <param-value>8080</param-value>
+    </context-param>
+    <context-param>
+        <param-name>listenPort_https</param-name>
+        <param-value>4443</param-value>
+    </context-param>
+    <!-- Fallback locale if no bundles found for browser's preferred locale -->
+    <!-- Force a single locale using param-name 'javax.servlet.jsp.jstl.fmt.locale' -->
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.fallbackLocale</param-name>
+        <param-value>en</param-value>
+    </context-param>
+    <!-- Context Configuration locations for Spring XML files -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext-*.xml</param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+
+    <filter>
+        <filter-name>hibernateFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
+        <init-param>
+            <param-name>sessionFactoryBeanName</param-name>
+            <param-value>rclSessionFactory</param-value>
+        </init-param>
+    </filter>
+
+    <!-- This filter depends on the security filter having run first -->
+    <filter>
+        <filter-name>auxiliaryLoggingContextFilter</filter-name>
+        <filter-class>com.focus.ftl.web.AuxiliaryLoggingContextFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>DebuggerWindowFilter</filter-name>
+        <filter-class>com.focus.ftl.web.DebuggerWindowFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>GzipCompressionFilter</filter-name>
+        <filter-class>com.focus.ftl.web.GzipCompressionFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>sessionExpirationFilter</filter-name>
+        <filter-class>com.focus.rcl.security.SessionExpirationFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>UTF8EncodingFilter</filter-name>
+        <filter-class>com.focus.ftl.web.UTF8EncodingFilter</filter-class>
+    </filter>
+
+   <!-- the hibernate filter mappings need to come first (needs to be the first filter in the chain).  -->
+   <filter-mapping>
+       <filter-name>hibernateFilter</filter-name>
+       <url-pattern>*.do</url-pattern>
+   </filter-mapping>
+
+   <filter-mapping>
+       <filter-name>hibernateFilter</filter-name>
+       <url-pattern>/rs/*</url-pattern>
+   </filter-mapping>
+
+   <filter-mapping>
+       <filter-name>hibernateFilter</filter-name>
+       <url-pattern>/secure/reportOutputs/*</url-pattern>
+   </filter-mapping>
+
+   <filter-mapping>
+       <filter-name>hibernateFilter</filter-name>
+       <url-pattern>/j_security_check</url-pattern>
+   </filter-mapping>
+
+   <filter-mapping>
+       <filter-name>hibernateFilter</filter-name>
+       <url-pattern>/logon</url-pattern>
+   </filter-mapping>
+
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/secure/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/logon</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+       <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/j_security_check</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+       <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/ws/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+       <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/rs/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>UTF8EncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>GzipCompressionFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>auxiliaryLoggingContextFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>DebuggerWindowFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+
+    <!-- not generated via xdoclet, because we don't want it embedded in TLD's as well -->
+    <listener>
+        <listener-class>com.focus.rcl.web.framework.RclStartupListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>com.focus.rcl.web.framework.RclSessionListener</listener-class>
+    </listener>
+
+    <servlet>
+        <description><![CDATA[Servlet which maps filesystem-like URL -> Action request]]></description>
+        <servlet-name>ReportOutputServlet</servlet-name>
+        <servlet-class>com.focus.rcl.web.reportviewer.ReportOutputServlet</servlet-class>
+
+    </servlet>
+    <servlet>
+        <servlet-name>RclStartupServiceServlet</servlet-name>
+        <servlet-class>com.focus.rclcustomer.web.ConcreteStartupServiceServlet</servlet-class>
+
+        <init-param>
+            <param-name>SLEEP_TIME</param-name>
+            <param-value>4000</param-value>
+        </init-param>
+        <init-param>
+            <param-name>CONFIG_PATH</param-name>
+            <param-value>/startup/StartupServices.xml</param-value>
+        </init-param>
+
+        <load-on-startup>2</load-on-startup>
+
+    </servlet>
+
+    <!-- Standard Action Servlet Configuration -->
+    <servlet>
+        <servlet-name>action</servlet-name>
+        <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>RclJsEnums</servlet-name>
+        <jsp-file>/scripts/rcl/domain/RclJsEnums.jsp</jsp-file>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ApplicationResource</servlet-name>
+        <jsp-file>/scripts/rcl/i18n/ApplicationResources.jsp</jsp-file>
+    </servlet>
+
+    <servlet>
+        <servlet-name>CXFServlet</servlet-name>
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+        <init-param>
+            <param-name>disable-address-updates</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>redirects-list</param-name>
+            <param-value>
+                .*\.css
+                .*\.js
+            </param-value>
+        </init-param>
+        <!--This is a server side redirect for all static resources
+        to the war's /secure directory-->
+        <init-param>
+            <param-name>redirect-servlet-path</param-name>
+            <param-value>/secure</param-value>
+        </init-param>
+    </servlet>
+
+
+    <!-- Front Controller Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>action</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>RclJsEnums</servlet-name>
+        <url-pattern>/scripts/rcl/domain/RclJsEnums.js</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ApplicationResource</servlet-name>
+        <url-pattern>/scripts/rcl/i18n/Localization/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CXFServlet</servlet-name>
+        <url-pattern>/ws/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CXFServlet</servlet-name>
+        <url-pattern>/rs/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ReportOutputServlet</servlet-name>
+        <url-pattern>/secure/reportOutputs/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RclStartupServiceServlet</servlet-name>
+        <url-pattern>/bleh/*</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <!--
+    To specify mime mappings, create a file named mime-mappings.xml, put it in your project's mergedir.
+    Organize mime-mappings.xml following this DTD slice:
+
+    <!ELEMENT mime-mapping (extension, mime-type)>
+    -->
+
+    <welcome-file-list>
+        <!--<welcome-file>index.jsp</welcome-file>-->
+        <welcome-file>welcome.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!--
+        <error-page>
+            <error-code>500</error-code>
+            <location>/error.jsp</location>
+        </error-page>
+        <error-page>
+            <error-code>400</error-code>
+            <location>/index.jsp</location>
+        </error-page>
+        <error-page>
+            <error-code>403</error-code>
+            <location>/403.jsp</location>
+        </error-page>
+        <error-page>
+            <error-code>404</error-code>
+            <location>/404.jsp</location>
+        </error-page>
+    -->
+    <jsp-config>
+        <taglib>
+            <taglib-uri>http://www.motio.com/rcl.tld</taglib-uri>
+            <taglib-location>/WEB-INF/rcl.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+
+
+</web-app>

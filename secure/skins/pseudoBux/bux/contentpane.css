@@ -1,0 +1,705 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+/*layout section*/
+#widgetBuxContentPane,#widgetBuxContentPane .mm_Content {
+	height: 100%;
+}
+
+.bux-contentpane-border-container {
+	height: 100%;
+	width: 100%;
+}
+
+.bux-contentpane-border-container-hidden-search-section {
+	padding-top:6px;
+}
+
+.bux-contentpane-stackcontainer-container {
+	overflow: hidden !important;
+}
+
+.bux-contentpane-stackcontainer-inner {
+	margin-top: 0px;
+	overflow: auto;
+}
+
+span.bux-contentpane-stackcontainer-inner>div.dijitContentPaneSingleChild {
+	overflow: visible;
+}
+
+.bux-contentpane-stackcontainer .dijitTreeIcon {
+	width: 16px;
+	height: 16px;
+}
+
+.icdContentpaneToolbarIcon {
+	height: 16px;
+	width: 16px;
+	margin-top: 2px;
+}
+
+.icdUI .bux-contentpane-toolbar {
+	vertical-align: top;
+	white-space: nowrap;
+}
+
+.bux-views-item-image-thumbnail,
+.bux-views-item-image-list,
+.bux-views-item-image-tree {
+	width: 14px;
+	height: 18px;
+	padding-left: 2px;
+	text-align: left;
+}
+
+.icdContentpaneToolbarContainer {
+	height: 54px !important;
+}
+
+.icdContentpaneToolbarContainer,
+.bux-contentpane-controls-section-center {
+	overflow: hidden;
+	height: 58px;
+	padding-left: 0px !important;
+}
+
+.bux-contentpane-toolbar-left-section {
+	float: left;
+}
+
+.bux-contentpane-left .bux-contentpane-toolbar-left-section {
+	float: right;
+}
+
+.bux-contentpane-toolbar-right-section {
+	float: right;
+}
+
+.bux-contentpane-stackcontainer-inner div.dijitContentPaneSingleChild,div.bux-contentpane-treeView {
+	height: 100%;
+}
+
+.bux-contentpane-left .bux-contentpane-toolbar-right-section {
+	float: left;
+}
+
+.icdUI .bux-contentpane-toolbar .dijitButtonText {
+	text-align: right;
+	padding: 0px;
+}
+
+.buxTreeView .bux-contentpane-toolbar-bottom,
+.buxListView .bux-contentpane-toolbar-bottom {
+	display: none;
+}
+
+.icdUI .bux-contentpane-toolbar .dijitStackController {
+	white-space: nowrap;
+}
+
+.bux-contentpane-toolbar-top,
+.bux-contentpane-toolbar-bottom {
+	height: 50%;
+	padding-right: 6px;
+	padding-left: 2px;
+}
+
+.bux-contentpane-category-section {
+	height: 33px;
+	background-color: transparent;
+	overflow: hidden;
+}
+
+.icdUI .icdFeedLocationPullDownMenu .dijitButtonText {
+	text-align: left;
+	overflow: hidden;
+}
+
+.icdUI table.icdFeedLocationPullDownMenu {
+	margin-top: -2px;
+}
+
+.icdUI .icdFeedLocationPullDownMenu .dijitMenuItemLabel,
+.icdUI .icdFeedLocationPullDownMenu .dijitMenuItem td {
+	padding: 3px 0px 0px 0px;
+}
+
+.icdUI .icdFeedLocationPullDownMenu .dijitMenuItemIcon {
+	height: 0;
+	width: 0;
+}
+
+.icdUI .icdFeedLocationPullDownMenu .dijitMenuSeparator .bux-menu-separator {
+	padding-bottom: 2px;
+}
+
+.icdUI .icdFeedLocationPullDownMenu .dijitMenuItemLabel div {
+	background-position: left top;
+	background-repeat: no-repeat;
+}
+
+.icdContentPanePullDownMenuIcons {
+	width: 16px;
+	height: 16px;
+	background-repeat: no-repeat;
+	margin-right: 4px;
+	margin-left: 2px;
+}
+
+.dj_ie .icdContentPanePullDownMenuIcons {
+	height: 16px;
+}
+
+.dj_ie .icdUI .icdFeedLocationPullDownMenu .dijitMenuItemLabel div {
+	background-position: left center;
+}
+
+.bux-contentpane-controls-section {
+	overflow: hidden;
+	height: 62px;
+}
+
+.buxTileView .bux-contentpane-controls-section,
+.buxDetailView .bux-contentpane-controls-section {
+	height: 92px;
+}
+
+.buxDetailView .icdDisplayNoneInBuxDetailView {
+	display: none !important;
+}
+
+.bux-toolbox-border-container .bux-contentpane-controls-section {
+	height: 50px;
+}
+
+.bux-contentpane-controls-section .icdContentPaneToolboxTitle {
+	left: 30px;
+	position: absolute;
+	bottom: 10px;
+	z-index: 3;
+}
+
+.bux-contentpane-controls-section .bux-tools-icon {
+	left: 10px;
+	position: absolute;
+	bottom: 10px;
+	z-index: 3;
+}
+
+.bux-search-refinement-children {
+	padding-left: 15px;
+}
+
+.bux-contentpane-search-section {
+	height: 100%;
+	overflow: hidden;
+	padding: 5px;
+	display:none;
+}
+
+.bux-contentpane-tab-section {
+	overflow: hidden;
+}
+
+.bux-contentpane-right .bux-contentpane-tab-section {
+	padding-right: 5px !important;
+}
+
+.bux-contentpane-left .bux-contentpane-tab-section {
+	padding-left: 5px !important;
+}
+
+.contentPaneContextMenuViewCarousel,
+.contentPaneContextMenuViewThumbnail,
+.contentPaneContextMenuViewList,
+.contentPaneContextMenuViewTree {
+	background-repeat: no-repeat;
+	background-position: left;
+}
+
+.icdContentpaneTabContainer .dijitTabListContainer-bottom {
+	width: 100%;
+}
+
+.icdTabLabel {
+	white-space: nowrap;
+	background-repeat: no-repeat;
+	padding-left: 4px;
+	overflow: hidden;
+}
+
+.icdUI .icdContentpaneTabContainer .dijitTabContainerBottom-dijitContentPane {
+	padding: 0px;
+}
+
+.treeView-busyIndicator {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.waiAlert {
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	position: absolute;
+}
+
+/*Skin section*/
+.bux-contentpane-controls-section .icdContentPaneToolboxTitle {
+	font-weight: bold;
+	font-size: 1.1em;
+}
+
+.bux-contentpane-controls-section,
+.icdContentpaneToolbarContainer,
+.bux-contentpane-border-container {
+	background-color: #dfedfb !important;
+	background-image: none !important;
+}
+
+.bux-contentpane-stackcontainer-container {
+	border-top: 1px solid #cccccc;
+}
+
+.bux-contentpane-stackcontainer-inner,
+.bux-fileDialog-stackcontainer-inner,
+.buxListContainer {
+	background-color: #ffffff;
+}
+/*cleaned up till here*/
+.bux-search-refinement-pane {
+	position: absolute;
+	z-index: 400;
+	width: 200px;
+}
+
+.bux-search-refinement-pane-inner {
+	height: 100%;
+	background-color: #f5f5f5;
+	border: 1px solid #cccccc;
+	padding-left: 4px;
+}
+
+.bux-search-refinement-section {
+	padding-top: 10px;
+	padding-bottom: 4px;
+}
+
+.bux-search-refinement-section-header {
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+	padding-bottom: 4px;
+}
+
+.bux-search-refinement-section-body {
+	background-color: #FFFFFF;
+	border: 1px solid #999999;
+	padding: 3px;
+}
+
+.bux-search-refinement-section-body:hover {
+	border: 1px solid #046fc0;
+}
+
+.bux-search-refinement-item-label {
+	font-size: 12px;
+	color: #444444;
+	margin-bottom: 2px;
+	display: inline-block;
+	text-decoration: none;
+}
+
+.bux-search-refinement-item-label-active {
+	color: #00649d;
+	cursor: pointer;
+}
+
+.bux-search-refinement-item-count {
+	padding-left: 5px;
+	font-size: 12px;
+	color: #777777;
+}
+
+.bux-content-search-field-table {
+	width: 100%;
+	height: 26px;
+}
+
+.bux-content-search-field-left {
+	width: 17px;
+	background-position: 0px -196px !important;
+}
+
+.bux-content-search-field-right {
+	width: 20px;
+	background-position: -31px -196px !important;
+}
+
+.bux-content-search-field-right-content {
+	background-position: 0px -231px !important;
+	background-repeat: no-repeat;
+	width: 20px;
+	height: 21px;
+	margin-top: 2px;
+}
+
+.bux-content-search-field-section,
+.bux-content-search-field-right-content {
+	background-image: url(images/banner/bar_strip.png);
+	background-repeat: repeat-x;
+}
+
+.bux-content-search-field-middle {
+	background-position: 0px -156px !important;
+	padding-bottom: 1px;
+	padding-top: 2px;
+	text-align: left;
+	width: 100%;
+}
+
+.bux-content-search-field-text,
+.bux-content-search-field-pretext {
+	width: 100%;
+	border: none;
+	background: transparent;
+}
+
+.bux-content-search-field-pretext {
+	color: #777777;
+}
+
+.bux-content-search-field-right-content-A11y {
+	display: none;
+}
+
+.bux-content-search-field-left-content {
+	width: 17px;
+	height: 26px;
+	margin-left: 5px;
+	margin-top: 1px;
+	background-image: none;
+	background-image: url(images/icons/blue_bar_strip.png);
+	background-repeat: no-repeat;
+	background-position: -176px;
+}
+
+.claro .icdContentpaneTabContainer .dijitTabContent {
+	color: #444444;
+	font-weight: bold;
+	font-size: 1em;
+}
+
+.claro .icdContentpaneTabContainer .dijitTabChecked .dijitTabContent {
+	color: #444444;
+}
+
+.claro .icdContentpaneTabContainer .dijitTabContainerBottom-container {
+	border: none;
+}
+
+.bux-contentpane-stackcontainer {
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+}
+
+/* Images */
+/*TODO use the image in the image strip for the following images*/
+.bux-contentpane-right .bux-refine-results-button {
+	background: none 1px 1px no-repeat;
+	background-image: url(images/contentpane/action_icon_open.png);
+}
+
+.bux-contentpane-right .dijitToggleButtonChecked .bux-refine-results-button {
+	background: none 1px 1px no-repeat;
+	background-image: url(images/contentpane/action_icon_close.png);
+}
+
+.bux-contentpane-left .bux-refine-results-button {
+	background: none 1px 1px no-repeat;
+	background-image: url(images/contentpane/action_icon_close.png);
+}
+
+.bux-contentpane-left .dijitToggleButtonChecked .bux-refine-results-button {
+	background: none 1px 1px no-repeat;
+	background-image: url(images/contentpane/action_icon_open.png);
+}
+
+.icdUI span.bux-sort-default-icon {
+	background-image: none;
+	background-image: url(images/icons/action_sort.png);
+}
+
+.icdUI span.bux-sort-ascending-icon {
+	background-image: none;
+	background-image: url(images/icons/action_sort_ascending.png);
+}
+
+.icdUI span.bux-sort-descending-icon {
+	background-image: none;
+	background-image: url(images/icons/action_sort_descending.png);
+}
+
+.bux-search-results-icon,
+.bux-my-favorite-icon,
+.contentPaneContextMenuViewThumbnail,
+.contentPaneContextMenuViewList,
+.contentPaneContextMenuViewTree,
+.bux-views-item-image-thumbnail,
+.bux-views-item-image-list,
+.bux-views-item-image-tree,
+.bux-refresh-button,
+.bux-businesscard-icon,
+.bux-upOneLevel-icon,
+.bux-tools-icon,
+.bux-content-icon,
+.bux-myFolders-icon,
+.bux-new-folder-button {
+	background: none no-repeat;
+	background-image: url(images/icons/content_pane_toolbar_strip.png);
+}
+
+.bux-views-item-image-tree,
+.contentPaneContextMenuViewTree {
+	background-position: -64px;
+}
+
+.contentPaneContextMenuViewThumbnail,
+.bux-views-item-image-thumbnail {
+	background-position: -48px;
+}
+
+.contentPaneContextMenuViewList,
+.bux-views-item-image-list {
+	background-position: -32px;
+}
+
+.bux-businesscard-icon {
+	background-position: -80px;
+}
+
+.bux-upOneLevel-icon {
+	background-position: -96px;
+}
+
+.dijitButtonDisabled .bux-upOneLevel-icon {
+	background-position: -128px;
+}
+
+.bux-refresh-button {
+	background-position: 0px;
+}
+
+.bux-my-favorite-icon {
+	background-position: -16px 0px;
+}
+
+.bux-search-results-icon {
+	background-position: -176px 0px;
+}
+
+.bux-tools-icon {
+	background-position: -192px 0px;
+}
+
+.bux-content-icon {
+	background-position: -176px 0px;
+}
+
+.bux-myFolders-icon {
+	background-position: -144px 0px;
+}
+
+.bux-new-folder-button {
+	background-position: -256px 0px;
+}
+
+.dijitButtonDisabled .bux-new-folder-button {
+	background-position: -272px 0px;
+}
+
+/* -- A11Y -- */
+
+.dijit_a11y .bux-content-search-field-right-content .bux-content-search-field-right-content-A11y {
+	border: 3px solid;
+	cursor: pointer;
+	display: block;
+}
+
+.dijit_a11y .bux-content-search-field-middle {
+	border: 1px solid;
+}
+
+.bux-sort-ascending-a11y {
+	display: none;
+}
+
+.bux-sort-descending-a11y {
+	display: none;
+}
+
+.dijit_a11y .icdContentpaneTabContainer {
+	border-left: solid 1px;
+}
+
+.dijit_a11y  .bux-contentpane-stackcontainer {
+	border: solid 1px;
+}
+
+.dijit_a11y .bux-contentPane .dijitTab {
+	border: dotted 1px;
+}
+
+.dijit_a11y .bux-contentPane .dijitTabChecked {
+	border: solid 2px !important;
+}
+
+.dijit_a11y .bux-contentpane-controls-section-center {
+	border: solid 1px;
+}
+
+.views-title {
+	display: none;
+}
+
+.dijit_a11y .views-title {
+	display: block;
+}
+
+.dijit_a11y .bux-views-item-image-list,.dijit_a11y .bux-views-item-image-tree,.dijit_a11y .bux-views-item-image-thumbnail {
+	border: none;
+	width: auto;
+}
+
+.dijit_a11y .bux-contentpane-toolbar .dijitToggleButton {
+	width: auto;
+}
+
+.dijit_a11y .icdContentpaneToolbarContainer .dijitToolbar {
+	border: none;
+}
+
+.dijit_a11y .bux-contentpane-controls-section-center {
+	height: auto !important;
+}
+
+.bux-contentPane-a11y-label,.bux-contentPane-tree-view-a11y-label {
+	display: none;
+}
+
+.dijit_a11y .bux-contentpane-toolbar {
+	white-space: normal !important;
+	height: auto !important;
+}
+
+.dijit_a11y .bux-contentpane-toolbar .dijitToggleButton,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButton,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButton .dijitRight,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButtonNode,.dijit_a11y .bux-contentpane-toolbar .dijitButton,.dijit_a11y .bux-contentpane-toolbar .dijitButton .dijitRight,.dijit_a11y .bux-contentpane-toolbar .dijitButtonNode,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButtonHover,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButtonChecked
+	{
+	height: auto !important;
+	width: auto !important;
+}
+
+.dijit_a11y .bux-contentpane-toolbar .dijitToggleButtonHover {
+	height: auto !important;
+	width: auto !important;
+}
+
+.dijit_a11y .bux-contentpane-controls-section {
+	height: auto !important;
+}
+
+.dijit_a11y .bux-contentpane-toolbar .dijitStackController {
+	white-space: normal !important;
+}
+
+.dijit_a11y .bux-sort-ascending-icon .bux-sort-ascending-a11y {
+	display: inline;
+}
+
+.dijit_a11y .bux-sort-descending-icon .bux-sort-descending-a11y {
+	display: inline;
+}
+
+.dijit_a11y .contentpane-up-button {
+	border: solid 1px;
+	cursor: pointer;
+	text-align: center;
+	padding-top: 3px;
+}
+
+.contentpane-up-button-a11y-arrow {
+	display: none;
+	font-size: large;
+}
+
+.dijit_a11y .icdContentpaneToolbarContainer,.dijit_a11y .bux-contentpane-controls-section-center,.dijit_a11y .bux-contentpane-toolbar .dijitButton,.dijit_a11y .bux-contentpane-toolbar .dijitButtonHover,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButton,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButtonHover,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButtonChecked,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButton .dijitButtonNode,.dijit_a11y .bux-contentpane-toolbar .dijitToggleButton .dijitRight
+	{
+	height: auto !important;
+}
+
+.buxListNodeExpandCell-Close-A11y,.buxListNodeExpandCell-Open-A11y,.buxListLoadNode-A11y {
+	display: none;
+}
+
+.dijit_a11y .buxListNodeExpandCell-Open .buxListNodeExpandCell-Open-A11y,.dijit_a11y .buxListNodeExpandCell-Closed .buxListNodeExpandCell-Close-A11y,.dijit_a11y .contentpane-up-button-a11y-arrow {
+	display: block;
+}
+
+.dijit_a11y .buxListLoadNode-A11y {
+	display: block;
+	left: 50%;
+	position: absolute;
+	top: 50%;
+}
+
+.dijit_a11y .bux-contentpane-controls-section .bux-tools-icon {
+	top: 20px;
+	padding-left: 10px;
+}
+
+.dijit_a11y .bux-toolbox-border-container .dijitContentPane {
+	overflow: hidden;
+}
+
+.dj_ie .dijit_a11y .bux-contentpane-toolbar-top {
+	padding-bottom: 8px;
+}
+
+.dijit_a11y .contentpane-pulldown-m {
+	height: auto;
+}
+
+.dijit_a11y .bux-contentpane-category-section {
+	height: auto;
+}
+
+.dijit_a11y .bux-toolbox-border-container .bux-contentpane-category-section {
+	height: 45px;
+}
+
+.dijit_a11y .bux-pane-stackbutton,.dijit_a11y .bux-pane-stackbuttonChecked {
+	width: auto;
+}
+
+.dijit_a11y .bux-contentpane-toolbar-top .bux-contentpane-toolbar {
+	float: left;
+}
+
+.dijit_a11y .icdContentpaneTabContainer .dijitTabContainerBottom-spacer {
+	margin-right: 0px;
+	border-right: none;
+}
+
+.dijit_a11y .bux-search-refinement-item-label-active {
+	text-decoration: underline;
+}
+

@@ -1,0 +1,67 @@
+<html>
+<head>
+<script src="BrowserSniffer.js" type="text/javascript"></script>
+<script src="JsUtil.js" type="text/javascript"></script>
+<script src="TabbedPanel.js" type="text/javascript"></script>
+
+
+
+<link rel="StyleSheet" href="../../styles/rcl/tabbedPanel.css" type="text/css"/>
+
+
+<script type="text/javascript">
+
+var tabbedPanel;
+
+function setupTabbedPanel()
+{
+   TabbedPanel.SHOW_LOADING_ICONS = true;
+   //TabbedPanel.SHOW_LOADING_ICONS = false;
+   TabbedPanel.IMAGE_DIR = "../../images";
+
+
+
+
+
+
+   tabbedPanel = new TabbedPanel("tabbedPanel", "tabbedPanelDiv", null);
+
+   tabbedPanel.addTab("Sun-Java", "http://java.sun.com/");
+   tabbedPanel.addTab("W3C", "http://www.w3c.org");
+   tabbedPanel.addTab("Cognos", "http://www.cognos.com");
+   tabbedPanel.addTab("JGuru", "http://www.jguru.com");
+   tabbedPanel.addTab("JavaScript FAQ", "http://developer.irt.org/script/script.htm");
+
+
+   var outputUrl = 'http://crnserver/crn/cgi-bin/cognos.cgi?b_action=xts.run&m=portal/report-viewer.xts&method=view&m_obj=URLID("Mjc5OjEwOTQ5NTc4MTIwMDA6MTA4NTE=")';
+
+   tabbedPanel.addTab("CRN Output", outputUrl);
+
+
+
+
+
+
+
+   function windowWasResized()
+   {
+      alert("window resized");
+   }
+
+}
+</script>
+</head>
+
+
+<body onload="javascript:setupTabbedPanel();">
+
+   <div id="tabbedPanelDiv" class="tabbedPanelOuterDiv">
+      <!--  Tabs are inserted here... -->
+   </div>
+
+</body>
+
+
+
+</html>
+

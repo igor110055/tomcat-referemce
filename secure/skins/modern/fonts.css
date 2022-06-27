@@ -1,0 +1,82 @@
+/*
+    Licensed Materials - Property of IBM
+
+    IBM Cognos Products: ps
+
+    (C) Copyright IBM Corp. 2005, 2015
+
+    US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+/*
+   Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+   Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+*/
+
+/* Generic fonts */
+body
+{
+    font-size: 70% !important;
+}
+body, textarea, input, select
+{	
+	font-family:  Tahoma, arial, geneva, helvetica, sans-serif;	
+}
+.toolbarTextBold
+{
+	font-family: Times New Roman;
+	font-weight: bold;
+	font-size: 10pt;
+	padding-left:2px;
+}
+.toolbarTextItalic
+{
+	font-family: Times New Roman;
+	font-weight: bold;
+	font-size: 10pt;
+	font-style:italic;
+	padding-left:2px;
+}
+.toolbarTextUnderline
+{
+	font-family: Times New Roman;
+	font-weight: bold;
+	font-size: 10pt;
+	text-decoration: underline;
+	padding-left:2px;
+}
+/*	
+	Using the language specific font list below can help to workaround the following rendering issues on Browsers:
+	1. The Japanese Yen and Korean Won sign appears as the "backslash" when they are represented by the code point "U+005C".
+	2. Browser fails to supply a reasonable fall-back font support based on the font list in the "generic fonts" section.
+
+	Also, these font lists will be useful for rendering some of the Unified Han ideographs to the form and shape which is 
+	typographically preferred by different Asian writing scripts.
+*/
+
+/* For Japanese:
+body, td, span, p, textarea, input, select, a, div		
+{
+	font-family: 'MS UI Gothic', Tahoma, arial, geneva, helvetica, sans-serif;	
+}
+*/
+
+/* For Simplified Chinese:
+body, td, span, p, textarea, input, select, a, div		
+{
+	font-family: SimSun, Tahoma, arial, geneva, helvetica, sans-serif;
+}
+*/
+
+/* For Traditional Chinese:
+body, td, span, p, textarea, input, select, a, div		
+{
+	font-family: MingLiU, Tahoma, arial, geneva, helvetica, sans-serif;
+}
+*/
+
+/* For Korean:
+body, td, span, p, textarea, input, select, a, div		
+{
+	font-family: Gulim, Tahoma, arial, geneva, helvetica, sans-serif;
+}
+*/

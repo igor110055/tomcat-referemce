@@ -1,0 +1,49 @@
+body {
+	font-family:Verdana,Arial, Helvetica, sans-serif;
+}
+
+
+.selectedDoc
+{
+   background-color: navy;
+   color: white;
+}
+
+.unSelectedDoc
+{
+   background-color: white;
+   color: black;
+}
+
+
+#exampleDiv {
+   width: 100%;
+   height: 60%;
+   padding-top: 30px;
+}
+
+#treeContainer
+{
+   float: left;
+   width: 400px;
+   height: 400px;
+   overflow: auto;
+
+   border: 1px black solid;
+}
+
+#controls
+{
+   float: left;
+   padding-left: 20px;
+}
+
+#debugDiv
+{
+   display:block;
+   overflow: auto;
+
+   border: 0px black solid;
+   margin-top: 20px;
+   width: 100%;
+}

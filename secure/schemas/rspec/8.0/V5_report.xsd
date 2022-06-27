@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2014
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema xmlns="http://developer.cognos.com/schemas/report/8.0/" xmlns:rspec="http://developer.cognos.com/schemas/report/8.0/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://developer.cognos.com/schemas/report/8.0/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5_base.xsd"/>
+	<xs:include schemaLocation="V5_layoutbase.xsd"/>
+	<xs:include schemaLocation="V5_format.xsd"/>
+	<xs:include schemaLocation="V5_style.xsd"/>
+	<xs:include schemaLocation="V5_prompt.xsd"/>
+	<xs:include schemaLocation="V5_chart.xsd"/>
+	<xs:include schemaLocation="V5_layout.xsd"/>
+	<xs:element name="report">
+		<xs:annotation>
+			<xs:documentation>This element contains the entire report specification. The expressionLocale attribute indicates the locale of all report and query expressions in the report. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="modelPath" minOccurs="0"/>
+				<xs:element ref="layouts"/>
+				<xs:element name="queries" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence maxOccurs="unbounded">
+							<xs:element ref="query"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="classStyles" minOccurs="0"/>
+				<xs:element ref="burst" minOccurs="0"/>
+				<xs:element ref="reportVariables" minOccurs="0"/>
+				<xs:element ref="drillBehavior" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element name="upgradeInfo" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="upgradedSpec" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:whiteSpace value="preserve"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="upgradeMessages" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="upgradeMessage" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="messageId" type="xs:NMTOKEN">
+															<xs:annotation>
+																<xs:documentation>A unique id for the message. This is used so that the message can be referenced from parts of the spec that contain the error.</xs:documentation>
+																<xs:documentation source="rn_added_5.0"/>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="type" use="required">
+															<xs:annotation>
+																<xs:documentation source="doc_att_type_upgradeMessage"/>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="error"/>
+																	<xs:enumeration value="warning"/>
+																	<xs:enumeration value="info"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+								<xs:unique name="upgradeMessageId">
+									<xs:selector xpath="rspec:upgradeMessage"/>
+									<xs:field xpath="@messageId"/>
+								</xs:unique>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="namedConditionalStyles" minOccurs="0"/>
+				<xs:element ref="drillSetsBehavior" minOccurs="0"/>
+				<xs:element name="reportName" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="rn_added_7.0"/>
+						<xs:documentation>This element is used to capture the name of  report in content manager. It is captured here so that when the report is run from a studio which passes an inline spec to the server it will have access to the report name.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="appProperties" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="expressionLocale" type="xs:language" use="required"/>
+			<xs:attribute name="template" type="xs:boolean" default="false"/>
+			<xs:attribute name="useStyleVersion">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="none">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_none_useStyleVersion"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="10">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_10_useStyleVersion"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="interactivePageBreakByFrame" type="xs:boolean"/>
+			<xs:attribute name="ignoreFilterContext" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation>If true then this report will accept a dynamic filter context in a drill through operation.</xs:documentation>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="paginateHTMLOutput" type="xs:boolean" default="true">
+				<xs:annotation>
+					<xs:documentation>Determines whether batch HTML output will be broken into pages or returned as one document.</xs:documentation>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="use1xCSVExport" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation>Exports to CSV as the product did in version 1.x. This ensures that all of the query columns are exported.</xs:documentation>
+					<xs:documentation source="rn_added_5.0"/>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="application" type="xs:boolean" default="false"/>
+		</xs:complexType>
+		<xs:key name="queryKey">
+			<xs:selector xpath="rspec:queries/rspec:query"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:keyref name="queryKeyRef" refer="queryKey">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@refQuery"/>
+		</xs:keyref>
+		<xs:key name="appVariableKey">
+			<xs:selector xpath="rspec:appProperties/rspec:appVariables/rspec:appVariable"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:keyref name="appVariableKeyRef" refer="appVariableKey">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@refAppVariable"/>
+		</xs:keyref>
+	</xs:element>
+</xs:schema>

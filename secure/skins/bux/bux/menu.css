@@ -1,0 +1,97 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+/*skin section*/
+.buxMenuItemDescription {
+	color: #777777;
+	font-weight: normal;
+	white-space: normal;
+	width: 250px;
+}
+.buxMenuItemTitle {
+	font-weight: bold;
+	font-size: 0.92em;
+	color: #222222;
+	background-color: #ffffff;
+}
+
+/* Reduce default menu padding */
+.claro td.dijitMenuItemIconCell {
+padding: 0px 2px !important;
+}
+.claro td.dijitMenuItemLabel {
+padding-top: 3px !important;
+padding-bottom: 3px !important;
+}
+
+.buxMenuItemTitle  .dijitMenuItemLabel {
+	padding: 5px;
+}
+
+.claro .dijitMenuActive .dijitMenuItemHover, .claro .dijitMenuActive .dijitMenuItemSelected{
+	background-color: #cce8f2;
+	border-color: #66d0e9;
+}
+
+.dijitMenuItem {
+	outline: none
+}
+.claro .dijitButtonDisabled *,
+.claro .dijitMenuItemDisabled * {
+	color: #767676;
+}
+
+.claro .dijitMenuItemDisabled * {
+	opacity: 1;
+}
+
+.claro .dijitMenuItemDisabledFocused * {
+	color:  #767676;
+}
+
+.text_overflow_ellipsis_ie {
+	text-overflow: ellipsis;
+}
+
+.text_overflow_ellipsis {
+	text-overflow: ellipsis;
+	-moz-binding:url(./bux_ellipsis-xbl.xml#text_overflow_ellipsis);
+}
+
+.icdUI .buxEmptyArrowButtonInner {
+	background-position: center !important;
+	font-size:1px;
+	height:12px !important;
+	margin:0px !important;
+	width:12px !important;
+}
+
+/*a11y section*/
+.dijit_a11y .buxEmptyArrowButtonInner{
+	width:auto;
+	height:auto;
+	margin:2px;
+	font-size:1em;
+}
+.dijit_a11y .contentpane-pulldown .dijitArrowButtonInner{
+	display:block !important;
+	font-size:1em;
+	height:auto;
+	width:auto;
+}
+
+.claro .dijitMenuExpand{
+	background-image:none;
+	background-image: url(images/menu/menu_icon_arrow.png);
+	background-position: center center;
+	height: 10px;
+	width: 10px;
+}

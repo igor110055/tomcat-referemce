@@ -1,0 +1,46 @@
+.filterUiEntry {
+   float: left;
+   position: relative;
+   height : 25px;
+   padding: 2px 2px 2px 8px;
+}
+
+.filterHeaderDiv {
+   float : left;
+   position : relative;
+   height : 25px;
+   padding:  5px 2px 2px 2px;
+}
+
+span.filterHeader {
+   font-weight : bold;
+   padding-top : 5px;
+}
+
+span.filterTitle {
+   padding-left : 5px;
+   font-weight : bold;
+   text-decoration : underline;
+}
+span.filterTitle:after {
+   content: ":";
+}
+
+span.filterValue {
+   padding-left : 5px;
+}
+
+
+span.closeLink {
+   vertical-align : super;
+}
+
+span.separatedList {
+   border-left: solid 2px black;
+   padding-left:5px;
+   padding-right:5px;
+}
+
+span.separatedListFirstItem {
+   padding-right:5px;
+}

@@ -1,0 +1,121 @@
+/*
+    Licensed Materials - Property of IBM
+    IBM Cognos Products: XQE
+    (C) Copyright IBM Corp. 2005, 2015
+    US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+
+/*****************************************************************************************
+  This is a generated file. Any changes you make to it will not be upgraded.
+/*****************************************************************************************/
+.rowDividerLine {
+	border-top: #e7e7e7 1px solid;
+}
+.tabBorder {
+	background-color: #999999;
+}
+.tabLabel {
+	font-weight: bold;
+	color: #336699;
+}
+.tabLink {
+	color: #0000cc;
+}
+.tableHeaderDivider {
+	background-color: #999999;
+}
+.cogstyle-xqe-table{
+    border: #000000 1px solid;
+    background-color: #ffffff;
+    overflow: auto;
+}
+.cogstyle-dialog-button-hover-inplace {
+	border: solid 1px #999999;
+	font-size: 129%;
+	cursor: pointer;
+	color: #000000;
+	background-color: #ffffff;
+	height: 24px;
+	width: 70px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	overflow-x: visible;
+	margin: 5px 5px 5px 5px;
+	background-color: #e3e9f3;
+}
+.dialogHeader {
+    	background-color: #e7e7e7;
+	background-image: -moz-linear-gradient(top, #e7e7e7 0%, #d0d0d0 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e7e7e7), color-stop(100%,#d0d0d0));
+	background-image: -webkit-linear-gradient(top, #e7e7e7 0%, #d0d0d0 100%);
+	background-image: -o-linear-gradient(top, #e7e7e7 0%, #d0d0d0 100%);
+	background-image: -ms-linear-gradient(top, #e7e7e7 0%, #d0d0d0 100%);
+	background-image: linear-gradient(to bottom, #e7e7e7 0%, #d0d0d0 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e7e7e7', endColorstr='#d0d0d0',GradientType=0 );
+	zoom: 1;
+	font-weight: bold;
+	color: #134679;
+
+	height: 24px;
+	background-repeat: repeat-x;
+	background-position: left top;
+}
+.searchTableHeader {
+	margin: 2px 5px 5px 2px;
+	font-weight: bold;
+	color: #ffffff;
+	background: #336699;
+}
+.refiningHeaders {
+	margin: 5px 5px 5px 5px;
+	font-weight: bold;
+	color: #336699;
+}
+.filterItem {
+	margin: 5px 5px 5px 5px;
+	color: #000000;
+}
+.filterItemSelected {
+	margin: 5px 5px 5px 5px;
+	font-weight: bold;
+	color: #ffcc66;
+	background: #336699;
+}
+.filterItemDisabled {
+	margin: 5px 5px 5px 5px;
+	color: #999999;
+}
+.filterItemExpandable {
+	margin: 5px 5px 5px 5px;
+	color: #0000cc;
+}
+.filterItemExpandableRefining {
+	margin: 5px 5px 5px 5px;
+	color: #ffcc66;
+}
+.filterItemExpanded {
+	margin: 5px 5px 5px 25px;
+}
+.searchResultItemTitle {
+	font-weight: bold;
+}
+.searchResultItemBody {
+	margin: 5px 5px 5px 25px;
+	color: #ffffff;
+}
+.searchActionClass {
+	width: 16;
+	height: 16;
+	border: 0;
+}
+.facetSelectedItem {
+	margin: 5px 5px 5px 5px;
+	color: #000000;
+	font-weight: bold;
+}
+.facetCount {
+	margin: 5px 5px 5px 5px;
+	color: #A9A9A9;
+}

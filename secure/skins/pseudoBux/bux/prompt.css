@@ -1,0 +1,584 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+.icdUI .v10 td.clsControlLabel,
+.icdUI .v10 .clsFormLabel,
+.icdUI .v10 .clsDialogIntroduction,
+.icdUI .v10 .pl,
+.icdUI .v10 .clsLink,
+.icdUI .v10 .dialogHeaderText,
+.icdUI .v10 .dialogHeaderTitle,
+.icdUI .v10 .pc,
+.icdUI .v10 .clsTreeText,
+.icdUI .clsLink,
+.icdUI .clsControlLabel,
+.icdUI .clsDialogIntroduction,
+.icdUI .clsPromptButton,
+.icdUI .clsPromptButtonOver,
+.icdUI .clsPromptButton[disabled],
+.icdUI .clsInsertRemoveButton,
+.icdUI .clsInsertRemoveButton[disabled],
+.icdUI .clsInsertRemoveButtonOver {
+	font-family: Tahoma;
+	font-size: 100%;
+}
+
+.icdUI .v10 .clsFormLabel {
+	color: #000000;
+}
+
+.icdUI .clsLink {
+	font-size: 100% !important;
+	text-decoration: underline;
+	color: #00649d !important;
+}
+
+.icdUI .v10 .pdt {
+	background-color: ;
+	background-image: none;
+	border: 1px solid #999999;
+}
+
+.icdUI .v10 td.clsControlLabel,
+.icdUI .v10 .pc,
+.icdUI .clsControlLabel {
+	font-weight: normal;
+	color: #444444;
+}
+
+.icdUI .clsDialogIntroduction {
+	font-size: 90% !important;
+	color: #444444 !important;
+}
+
+.icdUI .clsPromptButton,
+.icdUI .clsPromptButtonOver,
+.icdUI .clsPromptButton[disabled],
+.icdUI .clsInsertRemoveButton,
+.icdUI .clsInsertRemoveButton[disabled],
+.icdUI .clsInsertRemoveButtonOver {
+	background-repeat: repeat-x;
+	background-color: transparent;
+}
+
+.icdUI .clsPromptButton,
+.icdUI .clsInsertRemoveButton {
+	border: 1px solid #759dc0;
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );
+	zoom: 1;
+	background-position: 0 0px;
+}
+
+.icdUI .clsPromptButtonOver,
+.icdUI .clsInsertRemoveButtonOver {
+	border: 1px solid #759dc0;
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );
+	zoom: 1;
+	background-position: 0 -24px;
+}
+
+.icdUI .clsPromptButton {
+	text-align: center;
+	margin-right: 7px;
+}
+
+.icdUI .clsPromptButton[disabled],
+.icdUI .clsInsertRemoveButton[disabled] {
+	border: 1px solid #759dc0;
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );
+	zoom: 1;
+	background-position: 0 -48px;
+}
+
+.icdUI .clsInsertRemoveButtonOver {
+	cursor: pointer;
+}
+
+.icdUI .clsSwsEditBox {
+	background-image: none;
+	background-image: url(images/prompting/text_input_grad.gif);
+}
+
+/*** Prompt Button **********/
+.icdUI .v10 button.bp,
+.icdUI .v10 button.bph,
+.icdUI .v10 button.bpd,
+.icdUI .v10 button.clsPromptButton,
+.icdUI .v10 button.clsPromptButtonOver,
+.icdUI .v10 button.clsInsertRemoveButton
+{
+	font-size:12px;
+	font-family: Arial,Verdana,'Arial Unicode MS','Andale WT','MS UI Gothic','MS PGothic','Apple Gothic',Gulim,SimSun,PMingLiU,Raghu8,sans-serif !important;
+}
+
+.icdUI .v10 button.bp,
+.icdUI .v10 button.bph,
+.icdUI .v10 button.bpd,
+.icdUI .v10 button.clsPromptButton,
+.icdUI .v10 button.clsPromptButtonOver {
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );
+	zoom: 1;
+	background-color: transparent;
+	border-color: #759dc0;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 3px;
+	color: #222222;
+	font-size: 1em;
+	font-weight: bold;
+	min-width: 50px;
+	padding-bottom: 3px;
+}
+
+.icdUI .v10 button.bpd {
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );
+	zoom: 1;
+	border-color: #759dc0;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 3px;
+	color: #767676;
+}
+
+.icdUI .v10 button.bph,
+.icdUI .v10 button.clsPromptButtonOver {
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#b9cee3));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #b9cee3 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#b9cee3',GradientType=0 );
+	zoom: 1;
+	color: #222222;
+	border-color: #759dc0;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 3px;
+}
+
+/*** Edit box****************/
+.icdUI .v10 .clsTextWidget,
+.icdUI .v10 .clsSwsEditBox,
+.icdUI .v10 .clsSelectDateEditBox,
+.icdUI .v10 .clsSelectDateYearEditBox,
+.icdUI .clsSelectDateEditBox,
+.icdUI .clsSelectDateYearEditBox,
+.icdUI .v10 .pcl,
+.icdUI .v10 .clsSelectTimeEditBox {
+	background-image: none;
+	background-color: #ffffff;
+	border: 1px solid #999999;
+}
+
+.icdUI .v10 .clsTextWidget:hover,
+.icdUI .v10 .clsSwsEditBox:hover,
+.icdUI .v10 .clsSelectDateEditBox:hover,
+.icdUI .v10 .clsSelectDateYearEditBox:hover,
+.icdUI .clsSelectDateEditBox:hover,
+.icdUI .clsSelectDateYearEditBox:hover,
+.icdUI .v10 .pcl:hover,
+.icdUI .v10 .clsSelectTimeEditBox:hover {
+	border: 1px solid #046fc0;
+}
+
+.icdUI .v10 .clsTextWidget:disabled,
+.icdUI .v10 .clsSwsEditBox:disabled,
+.icdUI .v10 .clsSelectDateEditBox:disabled,
+.icdUI .v10 .clsSelectDateYearEditBox:disabled,
+.icdUI .clsSelectDateEditBox:disabled,
+.icdUI .clsSelectDateYearEditBox:disabled,
+.icdUI .v10 .pcl:disabled,
+.icdUI .v10 .clsSelectTimeEditBox:disabled {
+	color: 1px solid #767676;
+}
+
+/*** DropDown****************/
+.icdUI .v10 .clsSelectControl,
+.icdUI .v10 .clsPromptComponent select,
+.icdUI .v10 .clsPromptControl select {
+	border: 1px solid #cccccc;
+	background-color: #ffffff;
+	color: #222222;
+}
+
+.icdUI .v10 .clsSelectControl:disabled,
+.icdUI .v10 .clsPromptControl:disabled select {
+	color: #767676;
+}
+
+.icdUI .v10 .clsSelectControl:hover,
+.icdUI .v10 .clsPromptControl:hover select {
+	border: 1px solid #cc9850;
+	background-color: #ffffff;
+}
+
+/****************************/
+/* select value control, and choices, and search results tree label */
+.icdUI .v10 .clsSelectControl,
+.icdUI .v10 .clsCheckBoxRow,
+.icdUI .v10 .clsTreeText,
+.icdUI .v10 .clsReadOnlyText,
+.icdUI .v10 td.pb {
+	font-size: 12px;
+	font-family: Tahoma;
+	font-size: 100%;
+}
+
+.icdUI .clsListControl,
+.icdUI .clsSelectControl,
+.icdUI .v10 .clsCheckBoxList,
+.icdUI .v10 .clsRadioGroupList {
+	min-width: 4em;
+	width: auto;
+}
+
+.icdUI .v10 .clsSelectControl option,
+.icdUI .v10 .clsPromptControl select {
+	font-size:12px;
+	font-family: Arial,Verdana,'Arial Unicode MS','Andale WT','MS UI Gothic','MS PGothic','Apple Gothic',Gulim,SimSun,PMingLiU,Raghu8,sans-serif !important;
+}
+
+.icdUI .clsSearchOptionsExpand {
+	background-image: url("images/prompting/prompt_option_expand.gif");
+}
+
+.icdUI .clsPromptComponent .dijitRadio .dijitCheckBoxInput {
+	/* Need to override a prompting fix for CC */
+	opacity : 0.01;
+	filter: alpha(opacity=0);
+}
+
+/** TIME PROMPT **************************/
+
+.icdUI .clsBtnTimeDown,
+.icdUI .clsBtnTimeUp {
+	height: 7px;
+	width: 15px;
+	background-image: url("images/prompting/icon_time_down.gif");
+}
+
+.icdUI .clsBtnTimeUp {
+	background-image: url("images/prompting/icon_time_up.gif");
+}
+
+.icdUI .clsBtnYearDown,
+.icdUI .clsBtnYearUp {
+	height: 15px;
+	width: 15px;
+	background-image: url("images/prompting/icon_year_down.gif");
+}
+.icdUI .clsBtnYearUp {
+	background-image: url("images/prompting/icon_year_up.gif");
+}
+
+.icdUI .v10 .clsToolbarButton,
+.icdUI .clsToolbarButton {
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#ebf5fe));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #ebf5fe 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #ebf5fe 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#ebf5fe',GradientType=0 );
+	zoom: 1;
+	background-color: transparent;
+	border: 1px solid #759dc0;
+}
+
+.icdUI .v10 .clsToolbarButton_hover {
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c5dcf2), color-stop(100%,#b9cee3));
+	background-image: -webkit-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: -o-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: -ms-linear-gradient(top, #c5dcf2 0%, #b9cee3 100%);
+	background-image: linear-gradient(to bottom, #c5dcf2 0%, #b9cee3 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c5dcf2', endColorstr='#b9cee3',GradientType=0 );
+	zoom: 1;
+	border: 1px solid #759dc0;
+}
+
+.icdUI .clsClockBlock {
+	background-image: none;
+	border: 1px solid #999999;
+	margin-bottom: 10px;
+	position: relative;
+	text-align: center;
+	width: 100%;
+}
+
+.icdUI .clsClock {
+	background-color: #ffffff;
+	height: 200px;
+	margin: 0;
+	position: relative;
+	width: 140px;
+}
+
+.icdUI .clsClockDigits {
+	color: #444444;
+	font-size: 10px;
+	left: 0;
+	position: absolute;
+	text-align: center;
+	top: 0;
+}
+
+.icdUI .clsHourHand {
+	background: none repeat scroll 0 0 #444444;
+	font-size: 2px;
+	height: 2px;
+	position: absolute;
+	width: 2px;
+}
+
+.icdUI .clsMinuteHand {
+	background: none repeat scroll 0 0 #444444;
+	font-size: 2px;
+	height: 2px;
+	position: absolute;
+	width: 2px;
+}
+
+/* calendar */
+.icdUI .v10 .clsSelectDateCalendarDialog,
+.icdUI .clsSelectDateCalendarDialog,
+.icdUI .v10 .clsSelectDateCalendar
+{
+	padding : 0;
+	width : 170px;
+}
+.icdUI .v10 .clsSelectDateCalendar
+{
+ 	background-color: #ffffff;
+	border: 1px solid #999999;
+	height:165px;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+.icdUI .clsSelectDateCalendarDialog {
+	height:152px;
+}
+
+.icdUI .v10 .clsSelectDateCalendarDialog {
+	margin : 1px 0;
+}
+
+.icdUI .v10 .pw,
+.icdUI .v10 .pd,
+.icdUI .v10 .pds,
+.icdUI .v10 .clsSelectDateDaysOfWeek,
+.icdUI .v10 .clsSelectDateDays,
+.icdUI .v10 .clsSelectDateDaysSelected ,
+.icdUI .clsSelectDateDays,
+.icdUI .clsSelectDateDaysSelected /* Prompt control calendar (day numbers) */
+{
+	padding : 0 1px;
+	border: 0 none;
+}
+
+.icdUI .v10 .pd,
+.icdUI .v10 .pds,
+.icdUI .v10 .clsSelectDateDays,
+.icdUI .v10 .clsSelectDateDaysSelected,
+.icdUI .clsSelectDateDays,
+.icdUI .clsSelectDateDaysSelected /* Prompt control calendar (day numbers) */
+{
+	font-size: 0.9em;
+}
+
+.icdUI .v10 .pw ,
+.icdUI .v10 .clsSelectDateDaysOfWeek,
+.icdUI .clsSelectDateDaysOfWeek/* Prompt control calendar (week day names) */
+{
+	font-size: 0.8em;
+}
+
+.icdUI .v10 .clsSelectDateDaysOfWeek,
+.icdUI .clsSelectDateDaysOfWeek {
+ 	background-color: #cccccc;
+	background-image: none;
+}
+
+.icdUI .v10 .pm {
+	background-color: #ffffff;
+	color: #00649d;
+	background-image: none;
+}
+
+.icdUI .v10 .pms {
+	background-color: #b6cfd9;
+	background-image: none;
+	border: 1px solid #ffffff;
+}
+
+.icdUI .v10 .pd {
+	background-color: #ffffff;
+	color: #00649d;
+	background-image: none;
+}
+
+.icdUI .v10 .pds {
+	background-color: #b6cfd9;
+	background-image: none;
+}
+
+.icdUI .clsSelectDateMonthsSelected {
+	background-color: transparent;
+}
+
+.icdUI .v10 .clsSelectDateYears,
+.icdUI .clsSelectDateYears {
+	background-color: ;
+}
+
+.icdUI .v10 .clsSelectDateYearEditBox,
+.icdUI .v10 .clsSelectDateYearEditBox:hover,
+.icdUI .clsSelectDateYearEditBox,
+.icdUI .clsSelectDateYearEditBox:hover {
+	background-color: ;
+	border: 0 none;
+}
+
+/****************************/
+.dj_safari .icdUI .v10 .clsPromptComponent {
+	width: auto;
+}
+
+.icdUI .v10 .clsPromptComponent {
+	margin-top: 3px;
+}
+
+.icdUI .v10 .py .clsPromptComponent {
+	margin-top: 0;
+}
+
+.icdUI .v10 .bp span,
+.icdUI .v10 .bph span,
+.icdUI .v10 .bpd span,
+.icdUI .v10 .clsPromptButton span,
+.icdUI .v10 .clsPromptButtonOver span,
+.icdUI .v10 .clsInsertRemoveButton span,
+.icdUI .v10 .clsInsertRemoveButtonOver span {
+	padding: 0 0.1em;
+}
+
+.icdUI .v10 a.clsLink,
+.icdUI .v10 .clsDialogIntroduction {
+	font-size: 12px !important;
+}
+
+/* Remove background color for prompt page */
+.icdUI .v10 .pp {
+	background-color: inherit;
+}
+
+.icdUI .v10 .clsSwsOptions {
+	font-size: 12px;
+}
+
+.icdUI .clsOptions {
+	cursor: pointer;
+	padding: 0;
+	vertical-align: bottom;
+	width: 240px;
+}
+
+.icdUI .clsPromptComponent .dijitInline {
+	display: inline-block;
+}
+
+.icdUI .clsSelectDateMonths {
+	color: #00649d;
+}
+
+/* pa Prompt control tree box */
+.icdUI .v10 .pa {
+	height: 250px;
+	width: 250px;
+	background-color: #ffffff;
+	border: 1px solid #999999;
+}
+
+.icdUI .clsPromptComponent .dijitTreeExpandoClosed {
+    background-image: url("images/tree/tree_closed.png");
+}
+
+.icdUI .clsPromptComponent .dijitTreeExpandoOpened {
+    background-image: url("images/tree/tree_open.png");
+}
+
+.icdUI .clsPromptComponent .dijitTreeExpandoClosedRTL {
+    background-image: url("images/tree/tree_closed_rtl.png");
+}
+
+.icdUI .clsTreeText {
+    font-size: 8pt;
+    padding: 0 1px 0 3px;
+    vertical-align: middle;
+	cursor: pointer;
+    margin: 0;
+    background-color: #FF0000;
+}
+
+.icdUI .clsTreeNode_hover {
+    background-color: #c5dcf2;
+    color: #222222;
+}
+
+.icdUI .clsTreeNode_partial {
+    color: #777777;
+}
+
+.icdUI .clsTreeNode_selected {
+    background-color: #dfedfb;
+    color: #222222;
+}
+

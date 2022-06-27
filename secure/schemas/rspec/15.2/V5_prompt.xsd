@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2017
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5_style.xsd"/>
+	<xs:include schemaLocation="V5_layoutbase.xsd"/>
+	<xs:group name="promptElement">
+		<xs:annotation>
+			<xs:documentation>Represents all possible prompt elements</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="textBox">
+				<xs:annotation>
+					<xs:documentation>Simple text box that accepts one or more values.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="defaultSelections" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element ref="choicesText" minOccurs="0"/>
+						<xs:element ref="fromText" minOccurs="0"/>
+						<xs:element ref="toText" minOccurs="0"/>
+						<xs:element ref="lowestValueText" minOccurs="0"/>
+						<xs:element ref="highestValueText" minOccurs="0"/>
+						<xs:element ref="choicesSelectAllText" minOccurs="0"/>
+						<xs:element ref="choicesDeselectAllText" minOccurs="0"/>
+						<xs:element ref="deselectText" minOccurs="0"/>
+						<xs:element ref="insertText" minOccurs="0"/>
+						<xs:element ref="removeText" minOccurs="0"/>
+						<xs:element ref="promptTextStyle" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="PromptRangeAttributes"/>
+					<xs:attribute name="numbersOnly" type="xs:boolean" default="false"/>
+					<xs:attribute name="multiLine" type="xs:boolean" default="false"/>
+					<xs:attribute name="hideText" type="xs:boolean" default="false"/>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+					<xs:attribute name="showThousandSeparator" type="xs:boolean" default="false"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectDate">
+				<xs:annotation>
+					<xs:documentation>Calendar control that allows selection of one or more dates.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="defaultSelections" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element ref="choicesText" minOccurs="0"/>
+						<xs:element ref="fromText" minOccurs="0"/>
+						<xs:element ref="toText" minOccurs="0"/>
+						<xs:element ref="lowestValueText" minOccurs="0"/>
+						<xs:element ref="highestValueText" minOccurs="0"/>
+						<xs:element ref="choicesSelectAllText" minOccurs="0"/>
+						<xs:element ref="choicesDeselectAllText" minOccurs="0"/>
+						<xs:element ref="deselectText" minOccurs="0"/>
+						<xs:element ref="insertText" minOccurs="0"/>
+						<xs:element ref="removeText" minOccurs="0"/>
+						<xs:element ref="promptTextStyle" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptDateAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="PromptRangeAttributes"/>
+					<xs:attribute name="selectDateUI" default="calendar">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="calendar"/>
+								<xs:enumeration value="editBox"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectDateTime">
+				<xs:annotation>
+					<xs:documentation>Calendar with time control that allows selection of one or mor date time values.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="defaultSelections" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element ref="choicesText" minOccurs="0"/>
+						<xs:element ref="fromText" minOccurs="0"/>
+						<xs:element ref="toText" minOccurs="0"/>
+						<xs:element ref="lowestValueText" minOccurs="0"/>
+						<xs:element ref="highestValueText" minOccurs="0"/>
+						<xs:element ref="choicesSelectAllText" minOccurs="0"/>
+						<xs:element ref="choicesDeselectAllText" minOccurs="0"/>
+						<xs:element ref="deselectText" minOccurs="0"/>
+						<xs:element ref="insertText" minOccurs="0"/>
+						<xs:element ref="removeText" minOccurs="0"/>
+						<xs:element ref="promptTextStyle" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="PromptRangeAttributes"/>
+					<xs:attributeGroup ref="PromptTimeAttributes"/>
+					<xs:attributeGroup ref="PromptDateAttributes"/>
+					<xs:attribute name="selectDateTimeUI" use="optional" default="calendar">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="calendar"/>
+								<xs:enumeration value="editBox"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectTime">
+				<xs:annotation>
+					<xs:documentation>Time control that allows selection of one or more time values.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="defaultSelections" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element ref="choicesText" minOccurs="0"/>
+						<xs:element ref="fromText" minOccurs="0"/>
+						<xs:element ref="toText" minOccurs="0"/>
+						<xs:element ref="lowestValueText" minOccurs="0"/>
+						<xs:element ref="highestValueText" minOccurs="0"/>
+						<xs:element ref="choicesSelectAllText" minOccurs="0"/>
+						<xs:element ref="choicesDeselectAllText" minOccurs="0"/>
+						<xs:element ref="deselectText" minOccurs="0"/>
+						<xs:element ref="insertText" minOccurs="0"/>
+						<xs:element ref="removeText" minOccurs="0"/>
+						<xs:element ref="promptTextStyle" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptTimeAttributes"/>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="PromptRangeAttributes"/>
+					<xs:attribute name="selectTimeUI" default="clock">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="clock"/>
+								<xs:enumeration value="editBox"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectInterval">
+				<xs:annotation>
+					<xs:documentation>Time interval control that allows selection of one or more temporal values.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="defaultSelections" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element ref="choicesText" minOccurs="0"/>
+						<xs:element ref="fromText" minOccurs="0"/>
+						<xs:element ref="toText" minOccurs="0"/>
+						<xs:element ref="lowestValueText" minOccurs="0"/>
+						<xs:element ref="highestValueText" minOccurs="0"/>
+						<xs:element ref="choicesSelectAllText" minOccurs="0"/>
+						<xs:element ref="choicesDeselectAllText" minOccurs="0"/>
+						<xs:element ref="deselectText" minOccurs="0"/>
+						<xs:element ref="insertText" minOccurs="0"/>
+						<xs:element ref="removeText" minOccurs="0"/>
+						<xs:element name="daysText" type="LocalizedTextType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Represents the "Days" text in the prompt.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="hoursText" type="LocalizedTextType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Represents the "Hours" text in the prompt.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="minutesText" type="LocalizedTextType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Represents the "Minutes" text in the prompt.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="secondsText" type="LocalizedTextType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Represents the "Seconds" text in the prompt.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="millisecondsText" type="LocalizedTextType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Represents the "Milliseconds" text in the prompt.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element ref="promptTextStyle" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="PromptRangeAttributes"/>
+					<xs:attribute name="showSeconds" type="xs:boolean" default="false"/>
+					<xs:attribute name="showMilliseconds" type="xs:boolean" default="false">
+						<xs:annotation>
+							<xs:documentation source="doc_att_showMilliseconds_prompt"/>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectValue">
+				<xs:annotation>
+					<xs:documentation>Data driven prompt control that can be rendered as a picklist.  The use item is optional since the control maybe entirely defined by explicit select options.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="defaultSelections" minOccurs="0"/>
+						<xs:element ref="useItem" minOccurs="0"/>
+						<xs:element ref="selectOptions" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="sortList" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element ref="propertyList" minOccurs="0"/>
+						<xs:element name="headerText" type="LocalizedTextType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>This element controls the header text (first select option in the list box) for this prompt control. 
+
+By default this element is not defined and the header text is generated.
+
+If the defaultText element is empty, then no header text will be generated.
+
+Otherwise, the elements definition determine the text to be displayed.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element ref="choicesText" minOccurs="0"/>
+						<xs:element ref="fromText" minOccurs="0"/>
+						<xs:element ref="toText" minOccurs="0"/>
+						<xs:element ref="lowestValueText" minOccurs="0"/>
+						<xs:element ref="highestValueText" minOccurs="0"/>
+						<xs:element ref="choicesSelectAllText" minOccurs="0"/>
+						<xs:element ref="choicesDeselectAllText" minOccurs="0"/>
+						<xs:element ref="resultsSelectAllText" minOccurs="0"/>
+						<xs:element ref="resultsDeselectAllText" minOccurs="0"/>
+						<xs:element ref="deselectText" minOccurs="0"/>
+						<xs:element ref="insertText" minOccurs="0"/>
+						<xs:element ref="removeText" minOccurs="0"/>
+						<xs:element ref="promptTextStyle" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptDataDrivenAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="PromptRangeAttributes"/>
+					<xs:attribute name="selectValueUI" default="dropdown">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="dropdown"/>
+								<xs:enumeration value="listBox"/>
+								<xs:enumeration value="radioGroup"/>
+								<xs:enumeration value="checkboxGroup"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+					<xs:attribute name="autoSubmit" type="xs:boolean" default="false"/>
+					<xs:attribute name="refQuery" type="xs:string" use="optional"/>
+					<xs:attributeGroup ref="PromptPrePopulateAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectWithSearch">
+				<xs:annotation>
+					<xs:documentation>Data driven prompt control that allows the consumer to search for values.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="useItem" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element ref="sortList" minOccurs="0"/>
+						<xs:element ref="selectOptions" minOccurs="0"/>
+						<xs:element ref="propertyList" minOccurs="0"/>
+						<xs:element ref="choicesSelectAllText" minOccurs="0"/>
+						<xs:element ref="choicesDeselectAllText" minOccurs="0"/>
+						<xs:element ref="resultsSelectAllText" minOccurs="0"/>
+						<xs:element ref="resultsDeselectAllText" minOccurs="0"/>
+						<xs:element ref="deselectText" minOccurs="0"/>
+						<xs:element ref="insertText" minOccurs="0"/>
+						<xs:element ref="removeText" minOccurs="0"/>
+						<xs:element name="resultsText" type="LocalizedTextType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Represents the "Results" text in the prompt.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="keywordsText" type="LocalizedTextType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Represents the "Keywords" text in the prompt.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="searchInstructionsText" type="LocalizedTextType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Represents the "Search Intstructions" text in the prompt.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="optionsText" type="LocalizedTextType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Represents the "Options" text in the prompt.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="searchText" type="LocalizedTextType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Represents the "Search" text in the prompt.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element ref="choicesText" minOccurs="0"/>
+						<xs:element ref="promptTextStyle" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptDataDrivenAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+					<xs:attribute name="refQuery" type="xs:string"/>
+					<xs:attribute name="caseInsensitiveIsDefault" type="xs:boolean" default="true"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectWithTree">
+				<xs:annotation>
+					<xs:documentation>Data driven prompt control that displays hierarchial information and allows the consumer to pick one or more members.  In essence, the key of each level is the use value and the caption of each level is the display item.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="selectWithTreeItem" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>A reference to the data item that will be used to populate the first level of the tree.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalStyleRefs" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="sortList" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element name="defaultTreeSelections" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>List of items that will be selected in the tree by default.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="defaultTreeSelection" type="xs:string" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Represents a selection in the tree.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="resultsSelectAllText" minOccurs="0"/>
+						<xs:element ref="resultsDeselectAllText" minOccurs="0"/>
+						<xs:element ref="deselectText" minOccurs="0"/>
+						<xs:element ref="promptTextStyle" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptDataDrivenAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+					<xs:attribute name="refQuery" type="xs:string"/>
+					<xs:attributeGroup ref="PromptPrePopulateAttributes"/>
+					<xs:attribute name="prePopulateLevels" type="xs:positiveInteger" default="1">
+						<xs:annotation>
+							<xs:documentation>Ths is the number of levels to prepopulate the tree with.  One is the default and means only prepopulate the tree with the root members.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="generatedPrompt">
+				<xs:annotation>
+					<xs:documentation>The server will generate an appropriate prompt control</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectFile">
+				<xs:annotation>
+					<xs:documentation>Prompt control to select a file.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attribute name="defaultPath" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:element name="defaultSelections">
+		<xs:annotation>
+			<xs:documentation>Defines the list of items that must be selected in the prompt control by default.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="defaultSimpleSelection"/>
+				<xs:element name="defaultRangeSelection">
+					<xs:annotation>
+						<xs:documentation>This element represents a range selection.  This is only valid (or useful) if the range property is set to true.  The two attributes, min and max are optional.  If only the min is specified it means all values (unbounded range) above this value.  Likewise if the max attribute is set it means all values (unbounded range) below this value.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="min" type="xs:string">
+							<xs:annotation>
+								<xs:documentation source="doc_att_min_prompt"/>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="max" type="xs:string">
+							<xs:annotation>
+								<xs:documentation source="doc_att_max_prompt"/>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="PromptCommonAttributes">
+		<xs:annotation>
+			<xs:documentation>Common attributes for prompt controls.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="parameter" type="xs:string"/>
+		<xs:attribute name="required" type="xs:boolean" default="true"/>
+		<xs:attribute name="hideAdornments" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptRangeAttributes">
+		<xs:annotation>
+			<xs:documentation>Attributes for controls that support ranges</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="range" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>When true, the prompt control will display a "From" and "To" text control.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptMultiSelectAttributes">
+		<xs:annotation>
+			<xs:documentation>Attributes for controls that support multi-select</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="multiSelect" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptDateAttributes">
+		<xs:annotation>
+			<xs:documentation>Attributes for controls that can show date values.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="calendar" default="Gregorian">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Gregorian"/>
+					<xs:enumeration value="Imperial"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="firstDate" type="xs:date" use="optional"/>
+		<xs:attribute name="lastDate" type="xs:date" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptTimeAttributes">
+		<xs:annotation>
+			<xs:documentation>Attributes for controls that can show time values.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="clockMode" default="static">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="static"/>
+					<xs:enumeration value="live"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showSeconds" type="xs:boolean" default="false"/>
+		<xs:attribute name="showMilliseconds" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation source="doc_att_showMilliseconds_prompt"/>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptDataDrivenAttributes">
+		<xs:annotation>
+			<xs:documentation>Attributes for controls that can be populated by data.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="rowsPerPage" type="xs:positiveInteger" default="5000"/>
+		<xs:attribute name="cascadeOn" type="xs:string" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptAutoSubmitAttributes">
+		<xs:annotation>
+			<xs:documentation>Attributes for controls that can support an autosubmit behavior.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="autoSubmit" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptTreeAttributes">
+		<xs:annotation>
+			<xs:documentation>Attributes for controls that can support a tree of data.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="maxDepthOfLevels" type="xs:positiveInteger" use="optional"/>
+		<xs:attribute name="lowestLevelToDisplay" type="xs:string" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptPrePopulateAttributes">
+		<xs:attribute name="prePopulateIfParentOptional" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>If the parent of this prompt control is optional, then pre-popluate this control with values, otherwise do not. This only applies to prompt controls that have a parent in a cascade.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:element name="useItem">
+		<xs:annotation>
+			<xs:documentation>A reference to a data item that will be used as the 'use' item for the control.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="displayItem" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>A reference to a data item that will be used as display iems in the control.  This is a child of the use item since you cannot have a display item without a use item.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="selectOptions">
+		<xs:annotation>
+			<xs:documentation>List of static choices to display in the control.  If there are also data items in the select value control, then the selectOptions are added first.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="selectOption" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>The specific item to be displayed in the list.  It contains the use value.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="displayValue" type="TextType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>This is an optional display value to display with the static choice.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="conditionalDisplayValues" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Specfieds the display value to use conditionally based of the refVariable attribute of the selectOpions element.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="conditionalDisplayValue" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="TextType">
+														<xs:attributeGroup ref="ConditionalPartAttributes"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="useValue" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="refVariable" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="defaultSimpleSelection" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>This element represents a single value.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="choicesText" type="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>Represents the "Your choices" text in the prompt.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="fromText" type="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>Represents the "From" text in the prompt.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="toText" type="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>Represents the "To" text in the prompt.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="lowestValueText" type="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>Represents the "Min Value" text in the prompt.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="highestValueText" type="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>Represents the "Max Value" text in the prompt.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="choicesSelectAllText" type="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>Represents the "Select All" text for the choices list box in the prompt.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="choicesDeselectAllText" type="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>Represents the "Deselect All" text choices list box for the in the prompt.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="resultsSelectAllText" type="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>Represents the "Select All" text for the results list box in the prompt.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="resultsDeselectAllText" type="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>Represents the "Deselect All" text for the results list box in the prompt.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="deselectText" type="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>Represents the "Deselect" text in the prompt.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="insertText" type="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>Represents the "Add" button text in the prompt.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="removeText" type="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>Represents the "Delete" button text in the prompt.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="promptTextStyle">
+		<xs:annotation>
+			<xs:documentation>Represents styling for text contained within the prompt.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,125 @@
+*.number {
+   text-align: right;
+   padding-right: 3px;
+}
+
+
+
+
+#leftColumn {
+   width: 400px;
+   float:left;
+}
+
+#rightColumn {
+   width: 340px;
+   float:left;
+}
+
+
+
+
+#generalPanel {
+   width: 400px;
+}
+
+/* for IE6, we need to give this a specific height... grrr... */
+#generalPanel div.scrollDiv {
+   height:50px;
+}
+
+
+#generalPanel div.scrollDiv td.propertyLabel {
+   width: 100px;
+}
+
+
+
+#parametersPanel {
+   width: 400px;
+}
+
+#parametersPanel .scrollDiv {
+   height: 210px;
+}
+
+
+
+#statusPanel {
+   width: 340px;
+}
+
+#statusPanel div.scrollDiv {
+   height:50px;
+}
+
+#formatAndDeliveryPanel
+{
+   width: 340px;
+}
+
+#formatAndDeliveryPanel td.propertyValue
+{
+   font-weight:normal;
+}
+
+
+/* for IE6, we need to give this a specific height... grrr... */
+#formatAndDeliveryPanel div.scrollDiv {
+   height: 116px;
+}
+
+
+
+#statsPanel {
+   width: 230px;
+}
+#statsPanel div.scrollDiv table.properties td.propertyLabel {
+   width: 160px;
+}
+
+#statsPanel td.propertyValue {
+   font-weight:normal;
+}
+
+#statsPanel div.scrollDiv table.properties tr.summaryRow td {
+   background-color: #dee0e6;
+   font-weight:bold;
+}
+
+
+
+/* for IE6, we need to give this a specific height... grrr... */
+#statsPanel .scrollDiv {
+   height: 176px;
+}
+
+
+#runtimeFiltersPanel {
+   width: 700px;
+}
+
+#runtimeFiltersPanel td.propertyLabel {
+   width: 100px;
+}
+
+
+/* for IE6, we need to give this a specific height... grrr... */
+#runtimeFiltersPanel div.scrollDiv {
+   height: 60px;
+}
+
+
+
+
+#actionsPanel {
+   width: 400px;
+}
+
+
+#actionsPanel div.scrollDiv{
+   height: 80px;
+
+}
+
+

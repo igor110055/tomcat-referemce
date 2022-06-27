@@ -1,0 +1,760 @@
+<!--
+    Licensed Materials - Property of IBM
+
+    IBM Cognos Products: ps
+
+    (C) Copyright IBM Corp. 2005, 2014
+
+    US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="copyright" content="(C) Copyright IBM Corp. 2005, 2014.">
+	<meta name="trademark" content="Licensed Material - Property of IBM Corp. IBM, the IBM logo, and Cognos are trademarks of IBM Corp., registered in many jurisdictions worldwide.">
+	<meta name="template" content="portal/cc.xts">
+	<title>My Folders - IBM Cognos Connection</title>
+	<link rel="stylesheet" type="text/css" href="portal/default.css">
+	<link rel="stylesheet" type="text/css" href="fragments/portlet.css">
+	<link rel="stylesheet" type="text/css" href="fonts.css">
+	<script language="javascript">
+			var g_PS_skinImageRoot = "portal/images/";
+			var g_PS_imageRoot = "../../ps/portal/images/";
+			var g_PS_app = "portal";
+			var g_PS_USER_productLocale = "en";
+			
+			var g_PS_PFRootId = "iBA5C245DCAB0461AAD7E6F2E721D7403";
+			var g_PS_MFRootId = "iEEBE64CB44B04C67A01EE7575FE22716";
+			var g_PS_gateway = "../../cgi-bin/(cognosgateway)";
+			var g_PS_COGNOSHome = "b_action=xts.run&m=portal/main.xts";
+			var g_PS_CCHome = "b_action=xts.run&m=portal/cc.xts";
+			
+			var g_PS_CCBaseURL = g_PS_gateway + "?" + g_PS_CCHome;
+
+			var g_PS_returnURL = "";			
+			var g_PS_URLEncodedReturnURL = "";
+
+			var g_PS_backURL = "../../cgi-bin/(cognosgateway)?b_action=xts.run&m=portal/cc.xts&m_folder=iEEBE64CB44B04C67A01EE7575FE22716&m_folder2=p-iBA5C245DCAB0461AAD7E6F2E721D7403&m_tab=iEEBE64CB44B04C67A01EE7575FE22716";
+			var g_PS_URLEncodedBackURL = "%2fcognos8%2fcgi-bin%2f(cognosgateway)%3fb_action%3dxts.run%26m%3dportal%2fcc.xts%26m_folder%3diEEBE64CB44B04C67A01EE7575FE22716%26m_folder2%3dp-iBA5C245DCAB0461AAD7E6F2E721D7403%26m_tab%3diEEBE64CB44B04C67A01EE7575FE22716";
+								
+			var g_PS_cmdFormName = "cform";			
+			
+			
+			function g_PS_getObjectContext()
+			{
+				return "";
+			}			
+			function g_PS_getFolderContext()
+			{
+				return "CAMID(\"::Anonymous\")/folder[@name=\'My Folders\']";
+			}
+			function g_PS_getEncodedFolderContext()
+			{
+				return "CAMID(%22%3a%3aAnonymous%22)%2ffolder%5b%40name%3d%27My%20Folders%27%5d";
+			}			
+			function g_PS_getWebRoot()
+			{
+				return "../..";
+			}
+			
+			
+			function resetOnResize()
+			{
+				
+				flyonresize();
+			}
+			
+			function resetOnClick(event)
+			{
+				
+				flyonclick(event);
+			}
+		</script><script language="javascript">
+			var sParamDelimiter = "|";
+			var sNameValueDelimiter = ":";
+			var sCookiePath = "";
+		</script><script language="javascript" src="../../ps/portal/js/cookie_jar.js"></script><script language="javascript" src="../../ps/portal/js/CCflyoutMenu.js"></script><script language="javascript" src="../../ps/portal/js/cc.js"></script><script language="javascript" src="../../ccl/helpDocs.js"></script><script language="javascript">
+			
+			function help(sContext)
+			{				
+				if (!sContext)
+					sContext = "";
+					
+				var sLocale = "en";
+				var bIsAdminMode = ("a" == "a");
+				var es = "false";
+				var sBook = "ug_";
+				
+				//decide which book to use
+				if (es=='false') {
+					sBook += bIsAdminMode ? "cra" : "cc";
+				}
+				else {
+					sBook += "cr_es";					
+				}
+
+				if (sContext == "") 
+					sBook += "_a";
+				gotoHelp(sLocale, sBook, sContext);
+			}
+		</script><script language="javascript" src="../../ps/../cognoslaunch.js"></script><script language="javascript">
+			var sGateway = "../../cgi-bin/(cognosgateway)";
+			var sBackURL = "../../cgi-bin/(cognosgateway)?b_action=xts.run&m=portal/cc.xts&m_folder=iEEBE64CB44B04C67A01EE7575FE22716&m_folder2=p-iBA5C245DCAB0461AAD7E6F2E721D7403&m_tab=iEEBE64CB44B04C67A01EE7575FE22716";
+			var sEncodedBackURL = "%2fcognos8%2fcgi-bin%2f(cognosgateway)%3fb_action%3dxts.run%26m%3dportal%2fcc.xts%26m_folder%3diEEBE64CB44B04C67A01EE7575FE22716%26m_folder2%3dp-iBA5C245DCAB0461AAD7E6F2E721D7403%26m_tab%3diEEBE64CB44B04C67A01EE7575FE22716";
+		</script><link rel="alternate" type="application/rss+xml" href="http://localhost:80../../cgi-bin/(cognosgateway)?m_folder=iEEBE64CB44B04C67A01EE7575FE22716&m_folder2=p-iBA5C245DCAB0461AAD7E6F2E721D7403&m=portal%2fcc.xts&m_tab=iEEBE64CB44B04C67A01EE7575FE22716&b_action=xts.run&feed=rss" title="IBM Cognos Connection"></head><body marginwidth="3" marginheight="3" role="region" aria-label="Oooo oooo" onload="if (window.init) init();" topmargin="3" bottommargin="0" rightmargin="5" leftmargin="5"><div style="position: absolute;"><a href="#top" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="1" border="0" height="1" src="../../ps/images/space.gif" alt="Top of page." title="Top of page."></a></div><div style="position: absolute;"><a href="#jumptocontent" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="1" border="0" height="1" src="../../ps/images/space.gif" alt="Press Enter to jump to the page contents." title="Press Enter to jump to the page contents."></a></div><script language="JavaScript">
+				function g_PS_getPageContext()
+				{
+					return "iEEBE64CB44B04C67A01EE7575FE22716";
+				}
+				
+				function g_PS_getPageRemoveConfMsg()
+				{
+					var bPageFound = !(false);
+					
+					if (bPageFound)
+						return "Remove the tab \'My Folders\' ?";
+					else
+					 return "";
+				}					
+			</script><script language="javascript" src="../../ps/portal/js/banner.js"></script><div id="headerBack" style="min-width:1000px;"><table cellspacing="0" cellpadding="0" class="mainHeader1" role="presentation"><tbody><tr><td class="logoContainer"><div class="logo"></div></td><td class="headerTitle">Ooooooooo Oooo</td><td class="mainHeader1Middle"><table role="presentation"><tbody><tr><td class="authOptionContainer"><div class="authOptionContainer"><a href="#" class="bannerOptions" tabindex="0" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;">Ooo Oo</a></div></td><td class="dividerContainer"><div class="bannerDivider"></div></td><td class="refreshContainer"><div tabindex="0" role="button" class="bannerOptionsButtonNormal" onmouseover="this.className='bannerOptionsButtonOver';" onmouseout="this.className='bannerOptionsButtonNormal';"><img border="0" src="../../ps/portal/images/action_refresh.gif" alt=""></div></td><td class="dividerContainer"><div class="bannerDivider"></div></td><td class="searchEditContainer"><form name="mainSearchForm" method="get" style="margin: 0px;"><script language="javascript"></script><input type="text" class="mainSearchEdit" aria-label="Oooooo" name="stext" id="stext" value=""><input type="hidden" name="search" value=""><input type="hidden" name="b_action" value="xts.run"><input type="hidden" name="m" value="portal/cc.xts"><input type="hidden" name="sscope" value="fb"><input type="hidden" name="m_folder2" value="p-iBA5C245DCAB0461AAD7E6F2E721D7403"><input type="hidden" name="m_folder" value="iEEBE64CB44B04C67A01EE7575FE22716"><input type="hidden" name="m_tab" value="iEEBE64CB44B04C67A01EE7575FE22716"><script language="javascript" src="../../cr1/caf.js"></script><script language="javascript" src="../../ps/portal/js/validation.js"></script><script language="javascript">
+				var cafInvalidStringMsg = "Field contains invalid keyword values: ";
+				var cafInvalidInteger = "Integer value expected.";
+				var cafInvalidUnsignedInteger = "Integer value greater than or equal to zero expected.";
+				var cafInvalidLength = "The value exceeds the maximum length for this field.";
+				</script></form></td><td class="searchIconContainer"><div id="searchflyout_span" style="position: relative; z-index: 12;"><table cellspacing="0" cellpadding="0" role="presentation"><tbody><tr><td nowrap="nowrap" tabindex="0" role="button" aria-haspopup="true" class="bannerOptionsButtonNormal" onmouseover="this.className='bannerOptionsButtonOver';" onmouseout="this.className='bannerOptionsButtonNormal';"><img border="0" id="bannerSearch" src="../../ps/portal/images/action_search.gif" alt=""></td><td class="bannerOptionsButtonNormal" tabindex="0" onmouseover="this.className='bannerOptionsButtonOver';" onmouseout="this.className='bannerOptionsButtonNormal';" role="button" onkeypress="return CCPopupMenu.dropDown(event,0,0,'searchMenu');" onclick="return CCPopupMenu.dropDown(event,0,0,'searchMenu');"><img name="searchMenu_imgFlyControl" src="shared/images/dropdown_arrow_banner.gif" alt=""></td></tr></tbody></table><div style="padding: 2px; overflow: visible; display: block; position: absolute; z-index: 2; visibility: hidden; width: 56px; height: 40px; top: 20px; left: 0px;" class="flyOutMenu" id="flyout_searchMenu"><table id="flyoutTab_searchMenu" style="border-collapse: collapse;"><tbody><tr style="overflow: visible; width: 100%; opacity: 1;" id="searchmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>Oooo</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="advancedSearchmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>Oooo</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div tabindex="-1" role="menu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 34px; height: 40px; top: 20px; left: 0px;" class="flyOutMenu" id="flyout_searchMenu"><table id="flyoutTab_searchMenu" role="presentation" summary="" style="border-collapse: collapse;"><tbody><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="searchmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="advancedSearchmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div id="flyout_searchMenu" class="flyOutMenu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 34px; height: 40px; top: 20px; left: 0px;" role="menu" tabindex="-1"><table style="border-collapse: collapse;" summary="" role="presentation" id="flyoutTab_searchMenu"><tbody><tr role="menuitem" class="menuItemNormal" id="searchmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="advancedSearchmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr></tbody></table></div><div tabindex="-1" role="menu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 34px; height: 40px; top: 20px; left: 0px;" class="flyOutMenu" id="flyout_searchMenu"><table id="flyoutTab_searchMenu" role="presentation" summary="" style="border-collapse: collapse;"><tbody><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="searchmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="advancedSearchmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div id="flyout_searchMenu" class="flyOutMenu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 34px; height: 40px; top: 20px; left: 0px;" role="menu" tabindex="-1"><table style="border-collapse: collapse;" summary="" role="presentation" id="flyoutTab_searchMenu"><tbody><tr role="menuitem" class="menuItemNormal" id="searchmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="advancedSearchmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr></tbody></table></div></div><script language="javascript">
+				with(new CCPopupMenu("searchMenu","searchflyout_span", ""))
+				{
+				
+					addMenuItem("search","", "Oooo", "","");
+					
+					addMenuItem("advancedSearch","", "Oooo", "","");
+					 
+				}
+			</script></td><td class="dividerContainer"><div class="bannerDivider"></div></td><td class="homeContainer"><div id="homeflyout_span" style="position: relative; z-index: 12;"><script language="JavaScript">			
+															var g_CC_basicCCQueryString = "b_action=xts.run&m=portal%2fcc.xts";
+															var g_CC_homeQueryStringContext = "b_action=xts.run&m=portal%2fcc.xts&m_path=CAMID(%22%3a%3aAnonymous%22)%2ffolder%5b%40name%3d%27My%20Folders%27%5d";					
+														</script><table cellspacing="0" cellpadding="0" role="presentation"><tbody><tr><td tabindex="0" role="button" aria-haspopup="true" class="bannerOptionsButtonNormal" onmouseover="this.className='bannerOptionsButtonOver';" onmouseout="this.className='bannerOptionsButtonNormal';"><img border="0" src="shared/images/action_home.gif" alt=""></td><td class="bannerOptionsButtonNormal" tabindex="0" onmouseover="this.className='bannerOptionsButtonOver';" onmouseout="this.className='bannerOptionsButtonNormal';" role="button" onkeypress="return CCPopupMenu.dropDown(event,0,0,'HomeMenu');" onclick="return CCPopupMenu.dropDown(event,0,0,'HomeMenu');"><img name="homeMenu_imgFlyControl" src="shared/images/dropdown_arrow_banner.gif" alt=""></td></tr></tbody></table><div style="padding: 2px; overflow: visible; display: block; position: absolute; z-index: 2; visibility: hidden; width: 93px; height: 40px; top: 20px; left: 0px;" class="flyOutMenu" id="flyout_HomeMenu"><table id="flyoutTab_HomeMenu" style="border-collapse: collapse;"><tbody><tr style="overflow: visible; width: 100%; opacity: 1;" id="goHomemenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="setHomemenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>Set View as Home</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div tabindex="-1" role="menu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 46px; height: 40px; top: 20px; left: 0px;" class="flyOutMenu" id="flyout_HomeMenu"><table id="flyoutTab_HomeMenu" role="presentation" summary="" style="border-collapse: collapse;"><tbody><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="goHomemenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="setHomemenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div id="flyout_HomeMenu" class="flyOutMenu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 46px; height: 40px; top: 20px; left: 0px;" role="menu" tabindex="-1"><table style="border-collapse: collapse;" summary="" role="presentation" id="flyoutTab_HomeMenu"><tbody><tr role="menuitem" class="menuItemNormal" id="goHomemenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="setHomemenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr></tbody></table></div><div tabindex="-1" role="menu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 46px; height: 40px; top: 20px; left: 0px;" class="flyOutMenu" id="flyout_HomeMenu"><table id="flyoutTab_HomeMenu" role="presentation" summary="" style="border-collapse: collapse;"><tbody><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="goHomemenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="setHomemenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div id="flyout_HomeMenu" class="flyOutMenu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 46px; height: 40px; top: 20px; left: 0px;" role="menu" tabindex="-1"><table style="border-collapse: collapse;" summary="" role="presentation" id="flyoutTab_HomeMenu"><tbody><tr role="menuitem" class="menuItemNormal" id="goHomemenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="setHomemenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr></tbody></table></div></div><script language="javascript">
+				with(new CCPopupMenu("HomeMenu","homeflyout_span", ""))
+				{
+				
+					addMenuItem("goHome","", "Oooooo", "","");
+					
+					addMenuItem("setHome","", "Oooooo", "","");
+					 
+				}
+			</script></td><td class="personalOptionsContainer"><div id="personalOptions_span" style="position: relative; z-index: 12;"><div role="button" aria-haspopup="true" tabindex="0" class="bannerOptionsButtonNormal" onmouseover="this.className='bannerOptionsButtonOver';" onmouseout="this.className='bannerOptionsButtonNormal';" onkeypress="return CCPopupMenu.dropDown(event,0,0,'personalOptions');" onclick="return CCPopupMenu.dropDown(event,0,0,'personalOptions');"><table cellspacing="0" cellpadding="0" role="presentation"><tbody><tr><td style="padding-right: 4px;"><img src="shared/images/icon_my_area.gif" alt=""></td><td style="padding-right: 4px;"><img name="toolsMenu_imgFlyControl" src="shared/images/dropdown_arrow_banner.gif" alt=""></td></tr></tbody></table></div><div style="padding: 2px; overflow: visible; display: block; position: absolute; z-index: 2; visibility: hidden; width: 140px; height: 60px; top: 20px; left: -111px;" class="flyOutMenu" id="flyout_personalOptions"><table id="flyoutTab_personalOptions" style="border-collapse: collapse;"><tbody><tr style="overflow: visible; width: 100%; opacity: 1;" id="subscriptionsmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>My Watch Items</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="preferencesmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>My Preferences</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="runactivitiesmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>My Activities and Schedules</nobr></td><td style="cursor: pointer; text-decoration: underlin
+e;" class="text"></td></tr></tbody></table></div><div tabindex="-1" role="menu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 52px; height: 60px; top: 20px; left: 0px;" class="flyOutMenu" id="flyout_personalOptions"><table id="flyoutTab_personalOptions" role="presentation" summary="" style="border-collapse: collapse;"><tbody><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="subscriptionsmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="preferencesmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="runactivitiesmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div id="flyout_personalOptions" class="flyOutMenu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 52px; height: 60px; top: 20px; left: 0px;" role="menu" tabindex="-1"><table style="border-collapse: collapse;" summary="" role="presentation" id="flyoutTab_personalOptions"><tbody><tr role="menuitem" class="menuItemNormal" id="subscriptionsmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="preferencesmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="runactivitiesmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr></tbody></table></div><div tabindex="-1" role="menu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 52px; height: 60px; top: 20px; left: 0px;" class="flyOutMenu" id="flyout_personalOptions"><table id="flyoutTab_personalOptions" role="presentation" summary="" style="border-collapse: collapse;"><tbody><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="subscriptionsmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="preferencesmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="runactivitiesmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div id="flyout_personalOptions" class="flyOutMenu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 52px; height: 60px; top: 20px; left: 0px;" role="menu" tabindex="-1"><table style="border-collapse: collapse;" summary="" role="presentation" id="flyoutTab_personalOptions"><tbody><tr role="menuitem" class="menuItemNormal" id="subscriptionsmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="preferencesmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="runactivitiesmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr></tbody></table></div></div><script language="javascript">
+				with(new CCPopupMenu("personalOptions","personalOptions_span", ""))
+				{
+				
+					addMenuItem("subscriptions","", "Ooooooo", "","");
+					
+					addMenuItem("preferences","", "Ooooooo", "","");
+					
+					addMenuItem("runactivities","", "Ooooooo", "","");
+					 
+				}
+			</script></td><td class="appOptionsContainer"><div id="goto_span" style="position: relative; z-index: 12;"><div role="button" aria-haspopup="true" tabindex="0" class="bannerOptionsButtonNormal" onmouseover="this.className='bannerOptionsButtonOver';" onmouseout="this.className='bannerOptionsButtonNormal';" onkeypress="return CCPopupMenu.dropDown(event,0,0,'goto');" onclick="return CCPopupMenu.dropDown(event,0,0,'goto');"><table cellspacing="0" cellpadding="0" role="presentation"><tbody><tr><td nowrap="nowrap" style="padding-left: 4px;"><a class="bannerOptions" role="button" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;">Oooooo</a></td><td style="padding-right: 4px; padding-left: 4px;"><img name="toolsMenu_imgFlyControl" src="shared/images/dropdown_arrow_banner.gif" alt=""></td></tr></tbody></table></div><div style="padding: 2px; overflow: visible; display: block; position: absolute; z-index: 2; visibility: hidden; width: 148px; height: 108px; top: 20px; left: -97px;" class="flyOutMenu" id="flyout_goto"><table id="flyoutTab_goto" style="border-collapse: collapse;"><tbody><tr style="overflow: visible; width: 100%; opacity: 1;" id="qsmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="menuItemIcon"><img style="opacity: 1;" src="branding/tools_query_studio.gif"></td><td class="text" style="padding: 2px;"><nobr>IBM Cognos Query Studio</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="rsmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="menuItemIcon"><img style="opacity: 1;" src="branding/tools_report_studio.gif"></td><td class="text" style="padding: 2px;"><nobr>IBM Cognos Report Studio</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="esmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; 
+text-decoration: underline;" class="menuItemIcon"><img style="opacity: 1;" src="branding/tools_agent_studio.gif"></td><td class="text" style="padding: 2px;"><nobr>Event Studio</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="dtmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="menuItemIcon"><img style="opacity: 1;" src="branding/tools_drill_through.gif"></td><td class="text" style="padding: 2px;"><nobr>Drill-through Definitions</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr tabindex="-1"><td colspan="3"><div class="flyOutMenuSeparator"></div></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="acmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="menuItemIcon"><img style="opacity: 1;" src="branding/tools_cognos_administration.gif"></td><td class="text" style="padding: 2px;"><nobr>IBM Cognos Administration</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div tabindex="-1" role="menu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 86px; height: 108px; top: 20px; left: 0px;" class="flyOutMenu" id="flyout_goto"><table id="flyoutTab_goto" role="presentation" summary="" style="border-collapse: collapse;"><tbody><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="qsmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="menuItemIcon"><img role="presentation" alt="" style="height: 16px; width: 16px;" src="branding/tools_query_studio.gif"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="rsmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="menuItemIcon"><img role="presentation" alt="" style="height: 16px; width: 16px;" src="branding/tools_report_studio.gif"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="esmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="menuItemIcon"><img role="presentation" alt="" style="height: 16px; width: 16px;" src="branding/tools_agent_studio.gif"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="dtmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="menuItemIcon"><img role="presentation" alt="" style="height: 16px; width: 16px;" src="branding/tools_drill_through.gif"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr role="separator" tabindex="-1"><td colspan="3"><div class="flyOutMenuSeparator"></div></td></tr><tr aria-disabled="true" style="width: 100%; overflow: visible;" tabindex="-1" id="acmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="menuItemIcon"><img role="presentation" alt="" style="height: 16px; width: 16px;" src="branding/tools_cognos_administration.gif"></td><td class="inactiveText" style="padding: 2px;"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div id="flyout_goto" class="flyOutMenu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 86px; height: 108px; top: 20px; left: 0px;" role="menu" tabindex="-1"><table style="border-collapse: collapse;" summary="" role="presentation" id="flyoutTab_goto"><tbody><tr role="menuitem" class="menuItemNormal" id="qsmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="menuItemIcon" style="cursor: pointer; text-decoration: underline;"><img src="branding/tools_query_studio.gif" style="height: 16px; width: 16px;" alt="" role="presentation"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="rsmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="menuItemIcon" style="cursor: pointer; text-decoration: underline;"><img src="branding/tools_report_studio.gif" style="height: 16px; width: 16px;" alt="" role="presentation"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="esmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="menuItemIcon" style="cursor: pointer; text-decoration: underline;"><img src="branding/tools_agent_studio.gif" style="height: 16px; width: 16px;" alt="" role="presentation"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="dtmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="menuItemIcon" style="cursor: pointer; text-decoration: underline;"><img src="branding/tools_drill_through.gif" style="height: 16px; width: 16px;" alt="" role="presentation"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr tabindex="-1" role="separator"><td colspan="3"><div class="flyOutMenuSeparator"></div></td></tr><tr role="menuitem" class="menuItemNormal" id="acmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="true"><td class="menuItemIcon" style="cursor: pointer; text-decoration: underline;"><img src="branding/tools_cognos_administration.gif" style="height: 16px; width: 16px;" alt="" role="presentation"></td><td style="padding: 2px;" class="inactiveText"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr></tbody></table></div><div tabindex="-1" role="menu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 86px; height: 108px; top: 20px; left: 0px;" class="flyOutMenu" id="flyout_goto"><table id="flyoutTab_goto" role="presentation" summary="" style="border-collapse: collapse;"><tbody><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="qsmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="menuItemIcon"><img role="presentation" alt="" style="height: 16px; width: 16px;" src="branding/tools_query_studio.gif"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="rsmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="menuItemIcon"><img role="presentation" alt="" style="height: 16px; width: 16px;" src="branding/tools_report_studio.gif"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="esmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="menuItemIcon"><img role="presentation" alt="" style="height: 16px; width: 16px;" src="branding/tools_agent_studio.gif"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="dtmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="menuItemIcon"><img role="presentation" alt="" style="height: 16px; width: 16px;" src="branding/tools_drill_through.gif"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr role="separator" tabindex="-1"><td colspan="3"><div class="flyOutMenuSeparator"></div></td></tr><tr aria-disabled="true" style="width: 100%; overflow: visible;" tabindex="-1" id="acmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="menuItemIcon"><img role="presentation" alt="" style="height: 16px; width: 16px;" src="branding/tools_cognos_administration.gif"></td><td class="inactiveText" style="padding: 2px;"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div id="flyout_goto" class="flyOutMenu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 86px; height: 108px; top: 20px; left: 0px;" role="menu" tabindex="-1"><table style="border-collapse: collapse;" summary="" role="presentation" id="flyoutTab_goto"><tbody><tr role="menuitem" class="menuItemNormal" id="qsmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="menuItemIcon" style="cursor: pointer; text-decoration: underline;"><img src="branding/tools_query_studio.gif" style="height: 16px; width: 16px;" alt="" role="presentation"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="rsmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="menuItemIcon" style="cursor: pointer; text-decoration: underline;"><img src="branding/tools_report_studio.gif" style="height: 16px; width: 16px;" alt="" role="presentation"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="esmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="menuItemIcon" style="cursor: pointer; text-decoration: underline;"><img src="branding/tools_agent_studio.gif" style="height: 16px; width: 16px;" alt="" role="presentation"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="dtmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="menuItemIcon" style="cursor: pointer; text-decoration: underline;"><img src="branding/tools_drill_through.gif" style="height: 16px; width: 16px;" alt="" role="presentation"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr tabindex="-1" role="separator"><td colspan="3"><div class="flyOutMenuSeparator"></div></td></tr><tr role="menuitem" class="menuItemNormal" id="acmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="true"><td class="menuItemIcon" style="cursor: pointer; text-decoration: underline;"><img src="branding/tools_cognos_administration.gif" style="height: 16px; width: 16px;" alt="" role="presentation"></td><td style="padding: 2px;" class="inactiveText"><nobr><span tabindex="-1">Oooooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr></tbody></table></div></div><script language="javascript">
+				with(new CCPopupMenu("goto","goto_span", ""))
+				{
+				
+					addMenuItem("qs","", "Oooooooo", "branding/tools_query_studio.gif","");
+					
+					addMenuItem("rs","", "Oooooooo", "branding/tools_report_studio.gif","");
+					
+					addMenuItem("es","", "Oooooooo", "branding/tools_agent_studio.gif","");
+					
+					addMenuItem("dt","", "Oooooooo", "branding/tools_drill_through.gif","");
+					
+			addMenuSeparator();
+		
+					addMenuItem("ac","", "Oooooooo", "branding/tools_cognos_administration.gif","");
+					
+					var disabledItem = getMenuItem("ac");
+					disabledItem.disable();
+				}
+			</script></td><td class="helpContainer"><div id="helpMenu_span" style="position: relative; z-index: 12;"><table cellspacing="0" cellpadding="0" role="presentation"><tbody><tr><td tabindex="0" role="button" aria-haspopup="true" class="bannerOptionsButtonNormal" onmouseover="this.className='bannerOptionsButtonOver';" onmouseout="this.className='bannerOptionsButtonNormal';"><img src="shared/images/action_help.gif" alt=""></td><td class="bannerOptionsButtonNormal" tabindex="0" onmouseover="this.className='bannerOptionsButtonOver';" onmouseout="this.className='bannerOptionsButtonNormal';" role="button" aria-haspopup="true" onkeypress="return CCPopupMenu.dropDown(event,0,0,'helpMenu');" onclick="return CCPopupMenu.dropDown(event,0,0,'helpMenu');"><img name="searchMenu_imgFlyControl" src="shared/images/dropdown_arrow_banner.gif" alt=""></td></tr></tbody></table><div style="padding: 2px; overflow: visible; display: block; position: absolute; z-index: 2; visibility: hidden; width: 133px; height: 156px; top: 20px; left: -108px;" class="flyOutMenu" id="flyout_helpMenu"><table id="flyoutTab_helpMenu" style="border-collapse: collapse;"><tbody><tr style="overflow: visible; width: 100%; opacity: 1;" id="helpmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>Help</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="quickTourmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>Quick Tour</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="getStartedmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>Getting Started</nobr></td><td style="cursor: pointer; te
+xt-decoration: underline;" class="text"></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="moreDocsmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>More Documentation</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="companyWebsitemenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>IBM Cognos on the Web</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr tabindex="-1"><td colspan="3"><div class="flyOutMenuSeparator"></div></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="welcomemenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>Go to the Welcome Page</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr tabindex="-1"><td colspan="3"><div class="flyOutMenuSeparator"></div></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="aboutmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>About IBM Cognos Connection</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div tabindex="-1" role="menu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 46px; height: 156px; top: 20px; left: 0px;" class="flyOutMenu" id="flyout_helpMenu"><table id="flyoutTab_helpMenu" role="presentation" summary="" style="border-collapse: collapse;"><tbody><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="helpmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="quickTourmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="getStartedmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="moreDocsmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="companyWebsitemenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr role="separator" tabindex="-1"><td colspan="3"><div class="flyOutMenuSeparator"></div></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="welcomemenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr role="separator" tabindex="-1"><td colspan="3"><div class="flyOutMenuSeparator"></div></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="aboutmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div id="flyout_helpMenu" class="flyOutMenu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 46px; height: 156px; top: 20px; left: 0px;" role="menu" tabindex="-1"><table style="border-collapse: collapse;" summary="" role="presentation" id="flyoutTab_helpMenu"><tbody><tr role="menuitem" class="menuItemNormal" id="helpmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="quickTourmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="getStartedmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="moreDocsmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="companyWebsitemenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr tabindex="-1" role="separator"><td colspan="3"><div class="flyOutMenuSeparator"></div></td></tr><tr role="menuitem" class="menuItemNormal" id="welcomemenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr tabindex="-1" role="separator"><td colspan="3"><div class="flyOutMenuSeparator"></div></td></tr><tr role="menuitem" class="menuItemNormal" id="aboutmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr></tbody></table></div><div tabindex="-1" role="menu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 46px; height: 156px; top: 20px; left: 0px;" class="flyOutMenu" id="flyout_helpMenu"><table id="flyoutTab_helpMenu" role="presentation" summary="" style="border-collapse: collapse;"><tbody><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="helpmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="quickTourmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="getStartedmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="moreDocsmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="companyWebsitemenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr role="separator" tabindex="-1"><td colspan="3"><div class="flyOutMenuSeparator"></div></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="welcomemenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr role="separator" tabindex="-1"><td colspan="3"><div class="flyOutMenuSeparator"></div></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="aboutmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div id="flyout_helpMenu" class="flyOutMenu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 46px; height: 156px; top: 20px; left: 0px;" role="menu" tabindex="-1"><table style="border-collapse: collapse;" summary="" role="presentation" id="flyoutTab_helpMenu"><tbody><tr role="menuitem" class="menuItemNormal" id="helpmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="quickTourmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="getStartedmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="moreDocsmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="companyWebsitemenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr tabindex="-1" role="separator"><td colspan="3"><div class="flyOutMenuSeparator"></div></td></tr><tr role="menuitem" class="menuItemNormal" id="welcomemenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr tabindex="-1" role="separator"><td colspan="3"><div class="flyOutMenuSeparator"></div></td></tr><tr role="menuitem" class="menuItemNormal" id="aboutmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr></tbody></table></div></div><script language="javascript">
+				with(new CCPopupMenu("helpMenu","helpMenu_span", ""))
+				{
+				
+					addMenuItem("help","", "Ooooo", "","");
+					
+					addMenuItem("quickTour","", "Ooooo", "","");
+					
+					addMenuItem("getStarted","", "Ooooo", "","");
+					
+					addMenuItem("moreDocs","", "Ooooo", "","");
+					
+					addMenuItem("companyWebsite","", "Ooooo", "","");
+					
+			addMenuSeparator();
+		
+					addMenuItem("welcome","", "Oooooo", "","");
+					
+			addMenuSeparator();
+		
+					addMenuItem("about","", "Ooooo", "","");
+					 
+				}
+			</script></td></tr></tbody></table></td><td id="ibmLogo"></td></tr></tbody></table><div class="headerBannerLip"></div></div>
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" class="mainHeader3" style="min-width:1000px;"><tbody><tr><td style="padding-left: 2px;"><script language="javascript">
+				with(new CCPopupMenu("TabsMenu","tabscontroldiv", ""))
+				{
+				
+					addMenuItem("addTab","", "Oooooo", "","");
+					
+					addMenuItem("removeTab","", "Ooooo", "","");
+					
+					addMenuItem("resequenceTabs","", "Ooooo", "","");
+					 
+				}
+			</script>
+				<div id="tabscontroldiv" role="presentation" aria-haspopup="true" class="tabMenuButtonNormal" style="position: relative; cursor: pointer; z-index: 15;" onmouseover="this.className='tabMenuButtonOver'" onmouseout="this.className='tabMenuButtonNormal'">
+					<div role="button" tabindex="0" onkeypress="return CCPopupMenu.dropDown(event,0,0,'TabsMenu');" onclick="return CCPopupMenu.dropDown(event,0,0,'TabsMenu');"><span style="cursor: pointer; position: relative;"><img style="" name="pageMenu_imgFlyControl" src="portal/images/page_menu.gif" alt=""></span></div>
+					<div style="padding: 2px; overflow: visible; display: block; position: absolute; z-index: 2; visibility: hidden; width: 157px; height: 60px; top: 20px; left: 0px;" class="flyOutMenu" id="flyout_TabsMenu"><table id="flyoutTab_TabsMenu" style="border-collapse: collapse;"><tbody><tr style="overflow: visible; width: 100%; opacity: 1;" id="addTabmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>Add tabs...</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="removeTabmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>Remove this tab</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr style="overflow: visible; width: 100%; opacity: 1;" id="resequenceTabsmenuItemTR" class="menuItemNormal" tabindex="0"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr>Modify the sequence of tabs...</nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div tabindex="-1" role="menu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 46px; height: 60px; top: 20px; left: 0px;" class="flyOutMenu" id="flyout_TabsMenu"><table id="flyoutTab_TabsMenu" role="presentation" summary="" style="border-collapse: collapse;"><tbody><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="addTabmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="removeTabmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="resequenceTabsmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div id="flyout_TabsMenu" class="flyOutMenu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 46px; height: 60px; top: 20px; left: 0px;" role="menu" tabindex="-1"><table style="border-collapse: collapse;" summary="" role="presentation" id="flyoutTab_TabsMenu"><tbody><tr role="menuitem" class="menuItemNormal" id="addTabmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="removeTabmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="resequenceTabsmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr></tbody></table></div><div tabindex="-1" role="menu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 46px; height: 60px; top: 20px; left: 0px;" class="flyOutMenu" id="flyout_TabsMenu"><table id="flyoutTab_TabsMenu" role="presentation" summary="" style="border-collapse: collapse;"><tbody><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="addTabmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="removeTabmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr><tr aria-disabled="false" style="width: 100%; overflow: visible;" tabindex="-1" id="resequenceTabsmenuItemTR" class="menuItemNormal" role="menuitem"><td style="cursor: pointer; text-decoration: underline;" class="text"></td><td class="text" style="padding: 2px;"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td style="cursor: pointer; text-decoration: underline;" class="text"></td></tr></tbody></table></div><div id="flyout_TabsMenu" class="flyOutMenu" style="display: block; position: absolute; overflow: visible; z-index: 2; visibility: hidden; padding: 2px; width: 46px; height: 60px; top: 20px; left: 0px;" role="menu" tabindex="-1"><table style="border-collapse: collapse;" summary="" role="presentation" id="flyoutTab_TabsMenu"><tbody><tr role="menuitem" class="menuItemNormal" id="addTabmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Oooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="removeTabmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr><tr role="menuitem" class="menuItemNormal" id="resequenceTabsmenuItemTR" tabindex="-1" style="width: 100%; overflow: visible;" aria-disabled="false"><td class="text" style="cursor: pointer; text-decoration: underline;"></td><td style="padding: 2px;" class="text"><nobr><span tabindex="-1">Ooooo</span></nobr></td><td class="text" style="cursor: pointer; text-decoration: underline;"></td></tr></tbody></table></div></div></td><td width="100%" valign="bottom" style="padding-left: 2px;">
+					<div class="tabBarContainer"><table cellspacing="0" cellpadding="0" role="presentation"><tbody><tr><td valign="bottom" style="position: rel
+ative; width: 100%; top: 0px;"><div id="tabWindow" role="presentation" onresize="tabEvalScroll();" style="overflow: hidden; width: 100%;"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" id="tabs"><tbody><tr><td><div class="tabLeftNormal"></div></td><td nowrap="nowrap" class="tabNormal"><a class="tabAnchor" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;" href="#">Ooo</a></td><td><div class="tabRightNormal"></div></td><td valign="bottom"><div class="tabSpacer"></div></td><td><div class="tabLeftSelected"></div></td><td nowrap="nowrap" class="tabSelected"><div id="selectedTab" style="position: relative;">Oooooo Ooo</div></td><td><div class="tabRightSelected"></div></td><td valign="bottom"><div class="tabSpacer"></div></td><td><div class="tabLeftNormal"></div></td><td nowrap="nowrap" class="tabNormal"><a class="tabAnchor" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;" href="#">Ooo</a></td><td><div class="tabRightNormal"></div></td><td class="tabTail">&nbsp;</td></tr></tbody></table></div></td><script language="JavaScript">
+								var g_sImageRoot = "shared/images/";
+							</script><script language="javascript" src="../../ps/portal/js/tabs.js"></script><td><div id="tabControlLeftContainer" role="button" tabindex="0" class="tabScrollButtonDisabled" onkeypress="if(event.keyCode==9)return true;tabControlDBLClick('left', event); return true;" onmouseover="tabControlMouseOver(this)" onmouseout="tabControlMouseOut(this)" ondblclick="tabControlDBLClick('left', event); return true;" onmousedown="tabControlPress('left', event); return true;" onmouseup="tabControlRelease(); return true;" title="Scroll left"><img id="tabControlLeft" src="shared/images/action_scroll_left_disabled.gif" alt=""></div></td><td><div id="tabControlRightContainer" role="button" tabindex="0" class="tabScrollButtonDisabled" onkeypress="if(event.keyCode==9)return true;tabControlDBLClick('right', event); return true;" onmouseover="tabControlMouseOver(this)" onmouseout="tabControlMouseOut(this)" ondblclick="tabControlDBLClick('right', event); return true;" onmousedown="tabControlPress('right', event); return true;" onmouseup="tabControlRelease(); return true;" title="Scroll right"><img id="tabControlRight" src="shared/images/action_scroll_right_disabled.gif" alt=""></div></td></tr></tbody></table></div></td></tr></tbody></table>
+							<table width="100%" cellspacing="3" cellpadding="0" border="0" role="presentation" style="min-width:1000px;"><tbody><tr><td width="100%" valign="middle" class="dialogHeaderText"><span class="pathLink">
+<a href="#" onmouseout="window.status='';return true;" onmouseover="window.status='';return true;">Ooooo oooo</a>
+</span>
+<span class="pathSeparator"> > </span><span class="pathLeafNode">Ooooo</span></td><td width="100%"><img width="1" height="30" src="../../ps/images/space.gif" alt=""></td><td valign="top">
+
+
+ <script language="javascript" type="text/javascript">
+                    var frmCmdForm = "cform";
+                        var frmEditForm = "pform";
+                        var defaultPrefix = "checkbox_";
+                                
+                                                        
+                        var sDelimiter = "|"; 
+                                        var toolbarImageNormal = "toolbarImageNormal";
+                                
+                        
+                        
+                        
+                        //<!-- change the images for the toolbar during a mouseover -->
+                        function mouseoverImage(item)
+                        {       
+                                if (item.className == toolbarImageNormal)
+                                        item.className = 'toolbarImageOver';
+                                if (item.className == 'toolbarImagePressed')
+                                        item.className = 'toolbarImageOverPressed';
+                        }
+                        //<!-- change the images for the toolbar during a mouseout      -->     
+                        function mouseoutImage(item)
+                        {       
+                                if (item.className == 'toolbarImageOver')
+                                        item.className = toolbarImageNormal;
+                                if (item.className == 'toolbarImageOverPressed')
+                                        item.className = 'toolbarImagePressed';
+                        }
+                        
+                                
+    </script><script language="javascript" src="../../ps/portal/js/list.js" type="text/javascript"></script>
+
+<table width="100%" cellspacing="3" cellpadding="0" border="0" role="presentation">
+      <tbody>
+        <tr>
+          <td style="padding-left: 5px;"></td>
+          <td nowrap="nowrap" role="button" class="toolbarImagePressed" onmouseover="this.className = 'toolbarImageOverPressed'" onmouseout="this.className = 'toolbarImagePressed'">
+            <a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;" style="vertical-align:middle"><img width="16" border="0" height="16" src="../../ps/portal/images/action_listview.gif" alt=""></a>Oooo
+          </td>
+          <td role="button" class="toolbarImageNormal" onmouseover="this.className = 'toolbarImageOver'" onmouseout="this.className = 'toolbarImageNormal'">
+            <a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../ps/portal/images/action_detailview.gif" alt=""></a>
+          </td>
+          <td class="toolbarDividerContainer">
+            <div class="toolbarDivider">&nbsp;</div>
+          </td>
+          
+          
+          
+          
+          <td nowrap="nowrap" role="button" onmouseover="mouseoverImage(this)" onmouseout="mouseoutImage(this)" class="toolbarImageNormal">
+            <a href="#" onmouseover="window.status='';return true;" style="vertical-align:middle" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../rv/images/action_keep_report.gif" alt=""></a>Ooo Oooo
+          </td>
+          <td nowrap="nowrap" role="button" onmouseover="mouseoverImage(this)" onmouseout="mouseoutImage(this)" class="toolbarImageNormal">
+            <a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../rv/images/action_run.gif" alt=""></a>
+          </td>
+          <td nowrap="nowrap" role="button" class="toolbarImageOver">
+            <a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;" style="vertical-align:middle"><img width="16" border="0" height="16" src="../../rv/images/action_go_to.gif" alt=""></a> Ooo Oooo
+          </td>
+          
+          <td class="toolbarDividerContainer">
+            <div class="toolbarDivider">&nbsp;</div>
+          </td>
+          <td id="cut" role="button" onmouseover="mouseoverImage(this)" onmouseout="mouseoutImage(this)" class="toolbarImageNormal">
+            <a role="presentation" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../ps/portal/images/action_cut.gif" alt=""></a>
+          </td>
+          <td role="button" onmouseover="mouseoverImage(this)" onmouseout="mouseoutImage(this)" id="copy" class="toolbarImageNormal">
+            <a href="#" role="presentation" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../ps/portal/images/action_copy.gif" alt=""></a>
+          </td>
+          <td id="paste" role="button" onmouseover="mouseoverImage(this)" onmouseout="mouseoutImage(this)" class="toolbarImageUnavailable">
+            <img width="16" border="0" height="16" name="paste-img" src="../../ps/portal/images/action_paste_dis.gif" alt="" id="paste-img">
+          </td>
+          <td role="button" onmouseover="mouseoverImage(this)" onmouseout="mouseoutImage(this)" class="toolbarImageNormal">
+            <a href="#" role="presentation" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../ps/portal/images/action_delete.gif" alt=""></a>
+          </td>
+          <td class="toolbarDividerContainer">
+            <div class="toolbarDivider">&nbsp;</div>
+          </td>
+          <td role="button" onmouseover="mouseoverImage(this)" onmouseout="mouseoutImage(this)" class="toolbarImageNormal">
+            <a href="#" role="presentation" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../ps/portal/images/action_properties_path.gif" alt=""></a>
+          </td>
+          <td role="button" onmouseover="mouseoverImage(this)" onmouseout="mouseoutImage(this)" class="toolbarImageNormal">
+            <a role="presentation" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;" href="#"><img width="16" border="0" height="16" src="../../ps/portal/images/action_order.gif" alt=""></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+
+		</td></tr></tbody></table>
+							
+
+<a id="jumptocontent" role="presentation" tabindex="0" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="1" border="0" height="1" src="../../ps/images/space.gif" alt="Start of contents." title="Start of contents."></a><form name="pform" method="post" action="../../cgi-bin/(cognosgateway)" style="margin: 0px;min-width:1000px;"><input type="hidden" name="b_action" value="xts.run"><input type="hidden" name="backURL" value=""><input type="hidden" name="m_path" value="CAMID(&quot;::Anonymous&quot;)/folder[@name='My Folders']"><input type="hidden" name="m" value=""><input type="hidden" name="ifrmcmd" value=""><input type="hidden" name="ps_nav_op" value="submit"><input type="hidden" name="editentries" value=""><input type="hidden" name="errURL" value=""><input type="hidden" name="m_folder" value="iEEBE64CB44B04C67A01EE7575FE22716"><input type="hidden" name="encoding" value="UTF-8"><input type="hidden" name="m_folder2" value="p-iBA5C245DCAB0461AAD7E6F2E721D7403"><input type="hidden" name="m_tab" value="iEEBE64CB44B04C67A01EE7575FE22716"><script language="javascript" src="../../ps/portal/js/utilities.js"></script><script language="javascript" src="../../ps/portal/js/list.js"></script><script language="javascript">
+				function navGo(pos) {
+					var fromName = "pagerfrom" + pos + "";
+					var toName = "pagerto" + pos + "";
+					var fromA = document.getElementsByName(fromName);
+					var toA = document.getElementsByName(toName);
+					var from = fromA[0];
+					var to = toA[0];
+					var fromloc = trim(from.value);
+					var toloc = trim(to.value);
+					if (fromloc != "")
+					{
+						checkPositiveIntegerDefault(from,"");
+						fromloc = from.value;
+						if ( fromloc == "" ) {
+							alert( "The number in the first entry box is not valid; it must be a number greater than 0.");
+							return;
+						} 
+
+						if (toloc !="")  {
+							checkPositiveIntegerDefault(to,"");
+							toloc = to.value;
+							if ( toloc == "" ) {
+								alert( "The number in the second entry box is not valid; it must be a number greater than 0.");
+								return;
+							} 
+							if ( Number(toloc) < Number(fromloc)) {
+								alert( "The number in the first entry box cannot be greater than the number in the second entry box.");
+								return;
+							}
+						}
+						else { //to is empty calculate it
+							toloc = Number(fromloc) + 15 -1;
+						}
+					}
+					else {
+						if (toloc == "") {
+								alert ("Specify the entry numbers to show and then click the Go to button.");
+								return;
+							}
+						else {
+								checkPositiveIntegerDefault(to,"");
+								toloc = to.value;
+								if ( toloc == "" ) {
+									alert( "The number in the second entry box is not valid; it must be a number greater than 0.");
+									return;
+								} 
+								fromloc = Number(toloc) - 15 +1;
+								if (Number(fromloc) < 0) {
+									fromloc=1;
+								}
+						}
+					}
+					location.href = "../../cgi-bin/(cognosgateway)?b_action=xts.run&m=portal/cc.xts&m_folder=iEEBE64CB44B04C67A01EE7575FE22716&m_folder2=p-iBA5C245DCAB0461AAD7E6F2E721D7403&m_tab=iEEBE64CB44B04C67A01EE7575FE22716&m_pagerfrom=" + fromloc + "&m_pagerto="  + toloc + "&m_pg_e=1";
+					document.getElementById('img__go').src = imgAnimatedGo.src;
+				}
+		</script><table width="100%" cellspacing="0" cellpadding="1" border="0" role="presentation"><tbody><tr align="right"><td width="100%" nowrap="nowrap" colspan="2"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation"><tbody><tr valign="bottom"><td width="100%" align="left"><table role="presentation"><tbody><tr><td></td></tr></tbody></table></td><td><table cellspacing="0" cellpadding="0" role="presentation" style="padding: 1px; height: 20px;"><tbody><tr><td class="formLabel" style="white-space: nowrap; padding-right: 5px;">Ooooo: </td><td nowrap="nowrap"><script language="javascript"></script><input type="text" name="pagerfrom" aria-label="Oooo" size="4" class="formText" maxlength="9" value="1"> - <script language="javascript"></script><input type="text" name="pagerto" aria-label="Ooo" size="4" class="formText" maxlength="9" value="3"><input type="hidden" name="m_pagerfrom" value=""><input type="hidden" name="m_pagerto" value=""><input type="hidden" name="m_pg_e" value=""></td><td nowrap="nowrap" style="padding-right: 8px; padding-left: 2px;"><script language="javascript">
+			var imgAnimatedGo = new Image();
+			imgAnimatedGo.src =  "portal/images/action_go_ani.gif";			
+		</script><a onmouseover="window.status='';return true;" onmouseout="window.status='';return true;" href="#"><img width="16" border="0" height="16" id="img__go" role="button" class="button" src="portal/images/action_go.gif" onmousedown="this.className='button_pressed'" onmouseover="this.className='button_hover'" onmouseout="this.className='button'" alt="Oooo"></a></td><td nowrap="nowrap"><div style="height: 13px;" class="rowDivider"></div></td><td nowrap="nowrap" style="padding-left: 8px;"><img width="13" height="13" src="portal/images/control_btn_top_disabled.gif" title="First Page" alt="First Page" class="button"><img width="2" height="1" src="../../ps/images/space.gif" alt=""><img width="13" height="13" src="portal/images/control_btn_pageup_disabled.gif" title="Previous Page" alt="Previous Page" class="button"><img width="2" height="1" src="../../ps/images/space.gif" alt=""><img width="13" height="13" src="portal/images/control_btn_pagedown_disabled.gif" title="Next Page" alt="Next Page" class="button"><img width="2" height="1" src="../../ps/images/space.gif" alt=""><img width="13" height="13" src="portal/images/control_btn_bottom_disabled.gif" title="Last Page" alt="Last Page" class="button"><img width="2" height="1" src="../../ps/images/space.gif" alt=""></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td width="100%" valign="top" colspan="2" rowspan="2"><div>
+		<table width="100%" cellspacing="0" cellpadding="2" border="0" class="cctable" summary="Oooo oo ooo ooooo">
+			<thead id="Header"><tr class="tableHeader"><th width="16" valign="center" nowrap="nowrap" height="10" style="padding-left: 2px; padding-top: 2px;" class="tableTitle" scope="col"><input type="checkbox" aria-label="Oooooo ooo" id="control_checkbox_" onclick="javascript:toggleChecks(this.checked,'checkbox_')"><script language="javascript">
+						function checkControl_checkbox_(cbName)
+						{
+						
+							var formObj = "pform";
+							
+							var idObj = "control_checkbox_";
+							resetControlCheck(formObj, idObj, cbName);
+						}
+					</script></th><th width="1" height="15" scope="col"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="tableHeaderDivider"><img width="1" height="15" alt="" src="../../ps/images/space.gif"></td></tr></tbody></table></th><th width="20" valign="center" nowrap="nowrap" height="10" style="padding-left: 2px; padding-top: 2px;" class="tableTitle" scope="col">&nbsp;</th><th width="1" height="15" scope="col"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="tableHeaderDivider"><img width="1" height="15" alt="" src="../../ps/images/space.gif"></td></tr></tbody></table></th><th width="100%" valign="center" nowrap="nowrap" height="10" style="padding-left: 2px; padding-top: 2px;" class="tableTitle" scope="col"><table cellspacing="0" cellpadding="0" border="0" role="presentation"><tbody><tr><td valign="top" nowrap="nowrap" class="tableTitle"><a href="#" onmouseout="window.status='';return true;" onmouseover="window.status='';return true;" class="tableSortTitle">Ooooooo</a></td><td><a href="#" onmouseout="window.status='';return true;" onmouseover="window.status='';return true;"><img width="15" border="0" height="15" alt="" src="portal/images/list_sort_no.gif"></a></td></tr></tbody></table></th><th width="1" height="15" scope="col"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="tableHeaderDivider"><img width="1" height="15" alt="" src="../../ps/images/space.gif"></td></tr></tbody></table></th><th width="200" valign="center" nowrap="nowrap" height="10" style="padding-left: 2px; padding-top: 2px;" class="tableTitle" scope="col"><table cellspacing="0" cellpadding="0" border="0" role="presentation"><tbody><tr><td valign="top" nowrap="nowrap" class="tableTitle"><a href="#" onmouseout="window.status='';return true;" onmouseover="window.status='';return true;" class="tableSortTitle">Ooooooo</a></td><td><a href="#" onmouseout="window.status='';return true;" onmouseover="window.status='';return true;"><img width="15" border="0" height="15" alt="" src="portal/images/list_sort_no.gif"></a></td></tr></tbody></table></th><th width="1" height="15" scope="col"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="tableHeaderDivider"><img width="1" height="15" alt="" src="../../ps/images/space.gif"></td></tr></tbody></table></th><th width="170" valign="center" nowrap="nowrap" height="10" style="padding-left: 2px; padding-top: 2px;" class="tableTitle" scope="col">
+
+							Oooooooooooooo
+						&nbsp;</th></tr></thead>
+			<tbody><tr style="height: 1px;"><td nowrap="nowrap" height="10" class="tableText"><input type="checkbox" value="storeID(%22i0E17B42A0F824729B68D32864D671536%22)" name="checkbox_1" aria-label="Oooooo ooo"></td><td width="1" height="15"><img width="1" height="15" src="../../ps/images/space.gif" alt=""></td><td nowrap="nowrap" height="10" class="tableText"><img width="16" height="16" src="../../ps/portal/images/icon_result_html.gif" alt=""><img width="12" height="16" src="../../ps/portal/images/action_run.gif" alt=""></td><td width="1" height="15"><img width="1" height="15" src="../../ps/images/space.gif" alt=""></td><td width="100%" height="10" class="tableText" wrap="true"><a onmouseover="window.status='';return true;" onmouseout="window.status='';return true;" href="#">Ooooooooooooooooooooooooooo</a></td><td width="1" height="15"><img width="1" height="15" src="../../ps/images/space.gif" alt=""></td><td width="200" nowrap="nowrap" height="10" class="tableText"><nobr>Oooooooooo</nobr></td><td width="1" height="15"><img width="1" height="15" src="../../ps/images/space.gif" alt=""></td><td width="170" nowrap="nowrap" height="10" class="tableText"><nobr><table cellspacing="0" cellpadding="2" border="0" role="presentation"><tbody><tr><td><a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../ps/portal/images/action_properties.gif" alt=""></a></td><td><a href="#"><img width="16" border="0" height="16" src="../../ps/portal/images/action_run_16.gif" alt=""></a></td><td><a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../ps/portal/images/action_new_custom_view.gif" alt=""></a></td><td><a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../ps/portal/images/action_schedule.gif" alt=""></a></td><td nowrap="nowrap" class="objectOptions"><a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;">Oooo...</a></td></tr></tbody>
+		</table></nobr></td></tr><tr class="rowHighlight" style="height: 1px;"><td nowrap="nowrap" height="10" class="tableText"><input type="checkbox" value="storeID(%22i5DA2135A16BE478BB88D5275A35943B6%22)" name="checkbox_2" aria-label="Oooooo ooo"></td><td width="1" height="15"><img width="1" height="15" src="../../ps/images/space.gif" alt=""></td><td nowrap="nowrap" height="10" class="tableText"><img width="16" height="16" alt="Margins and Revenue Map for United States" src="../../ps/portal/images/icon_result_html.gif"><img width="12" height="16" src="../../ps/portal/images/action_run.gif" alt=""></td><td width="1" height="15"><img width="1" height="15" src="../../ps/images/space.gif" alt=""></td><td width="100%" height="10" class="tableText" wrap="true"><a onmouseover="window.status='';return true;" onmouseout="window.status='';return true;" href="#">Oooooooooooooo</a></td><td width="1" height="15"><img width="1" height="15" src="../../ps/images/space.gif" alt=""></td><td width="200" nowrap="nowrap" height="10" class="tableText"><nobr>Ooooooooooo</nobr></td><td width="1" height="15"><img width="1" height="15" src="../../ps/images/space.gif" alt=""></td><td width="170" nowrap="nowrap" height="10" class="tableText"><nobr><table cellspacing="0" cellpadding="2" border="0" role="presentation"><tbody><tr><td><a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../ps/portal/images/action_properties.gif" alt=""></a></td><td><a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../ps/portal/images/action_run_16.gif" alt=""></a></td><td><a href="#"><img width="16" border="0" height="16" src="../../ps/portal/images/action_edit_with_RS.gif" alt=""></a></td><td><a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../ps/portal/images/action_new_custom_view.gif" alt=""></a></td><td><a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../ps/portal/images/action_schedule.gif" alt=""></a></td><td nowrap="nowrap" class="objectOptions"><a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;">Ooooo...</a></td></tr></tbody></table></nobr></td></tr><tr style="height: 1px;"><td nowrap="nowrap" height="10" class="tableText"><input type="checkbox" value="storeID(%22i9A658E029B1D4B82A083C57B84681C1B%22)" name="checkbox_3" aria-label="Oooooo ooo"></td><td width="1" height="15"><img width="1" height="15" src="../../ps/images/space.gif" alt=""></td><td nowrap="nowrap" height="10" class="tableText"><img width="16" height="16" src="../../ps/portal/images/icon_result_html_sub.gif" alt=""><img width="12" height="16" src="../../ps/portal/images/action_run.gif" alt=""></td><td width="1" height="15"><img width="1" height="15" src="../../ps/images/space.gif" alt=""></td><td width="100%" height="10" class="tableText" wrap="true"><a onmouseover="window.status='';return true;" onmouseout="window.status='';return true;" href="#">Oooooooooo</a></td><td width="1" height="15"><img width="1" height="15" src="../../ps/images/space.gif" alt=""></td><td width="200" nowrap="nowrap" height="10" class="tableText"><nobr>Ooooooooooo</nobr></td><td width="1" height="15"><img width="1" height="15" src="../../ps/images/space.gif" alt=""></td><td width="170" nowrap="nowrap" height="10" class="tableText"><nobr><table cellspacing="0" cellpadding="2" border="0" role="presentation"><tbody><tr><td><a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../ps/portal/images/action_properties.gif" alt=""></a></td><td><a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="16" src="../../ps/portal/images/action_run_16.gif" alt=""></a></td><td><a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;"><img width="16" border="0" height="1" src="../../ps/portal/images/action_schedule.gif" alt=""></a></td><td nowrap="nowrap" class="objectOptions"><a href="#" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;">Oooo...</a></td></tr></tbody></table></nobr></td></tr><tr><td></td></tr></tbody>
+					<tfoot><tr class="tableFooter"><td width="100%" valign="middle" nowrap="" height="10" colspan="11" style="padding-left:2px;padding-top:2px;" class="tableFooter">Ooooooooo: Ooooooo 00, 0000 0:00:00 OO</td></tr></tfoot>
+		</table></div></td></tr><tr><td colspan="2"><img width="1" height="1" src="../../ps/images/space.gif" alt=""></td></tr><tr><td align="right" nowrap="nowrap" class="tableText" colspan="2"><img width="10" height="1" src="../../ps/images/space.gif" alt=""></td><td></td></tr></tbody></table><p></p><script language="javascript" src="../../cr1/caf.js"></script><script language="javascript" src="../../ps/portal/js/validation.js"></script><script language="javascript">
+				var cafInvalidStringMsg = "Field contains invalid keyword values: ";
+				var cafInvalidInteger = "Integer value expected.";
+				var cafInvalidUnsignedInteger = "Integer value greater than or equal to zero expected.";
+				var cafInvalidLength = "The value exceeds the maximum length for this f(cognosgateway)";		</script></form><form name="cform" method="post" action=""><input type="hidden" name="b_action" value="xts.run"><input type="hidden" name="m" value=""><input type="hidden" name="cmd" value=""><input type="hidden" name="m_path" value="CAMID(&quot;::Anonymous&quot;)/folder[@name='My Folders']"><input type="hidden" name="m_class" value=""><input type="hidden" name="b_report_type" value=""><input type="hidden" name="m_new_class" value=""><input type="hidden" name="m_name" value=""><input type="hidden" name="m_obj" value=""><input type="hidden" name="m_location" value=""><input type="hidden" name="backURL" value=""><input type="hidden" name="reportLocation" value=""><input type="hidden" name="sharedPagesChanged" value=""><input type="hidden" name="ifrmcmd" value=""><input type="hidden" name="m_selectedPage" value=""><script language="javascript" src="../../cr1/caf.js"></script><script language="javascript" src="../../ps/portal/js/validation.js"></script><script language="javascript">
+				var cafInvalidStringMsg = "Field contains invalid keyword values: ";
+				var cafInvalidInteger = "Integer value expected.";
+				var cafInvalidUnsignedInteger = "Integer value greater than or equal to zero expected.";
+				var cafInvalidLength = "The value exceeds the maximum length for this field.";
+				</script>	
+  <div id="d1" style="position:absolute; width:355px; height:338px; left: 93px; top: 100px; z-index:9;">
+    <table width="100%" cellspacing="0" cellpadding="0" bordercolor="#E0E0E0" border="1" role="presentation" class="body_dialog_modal">
+      <tbody><tr>
+        <td bordercolor="#808080"><table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" class="dialogHeader">
+            
+              <tbody><tr>
+                <td width="100%" valign="top" nowrap="" class="dialogHeaderTitle"><span>Oooo - Oooooo </span></td>
+                <td valign="center" nowrap="" class="dialogHeaderLink"><a class="dialogHeaderLinkColor" onmouseover="window.status='';return true;" onmouseout="window.status='';return true;" href="#">Ooooo</a></td>
+                <td valign="center" align="right" style="PADDING-RIGHT: 3px"><a onmouseover="window.status='';return true;" onmouseout="window.status='';return true;" href="#"><img width="16" vspace="2" border="0" height="16" class="dialogClose" role="button" onmouseover="this.className = 'dialogCloseOver'" onmouseout="this.className = 'dialogClose'" src="portal/images/close.gif" alt="Oooooo"></a></td>
+              </tr>
+            
+          </tbody></table>
+            <table cellspacing="0" cellpadding="0" border="0" role="presentation">
+              
+                <tbody><tr>
+                  <td width="10" valign="bottom" height="20"><img width="10" height="25" src="../../ps/images/space.gif" alt=""></td>
+                  <td width="323" valign="center" height="20" class="dialogHeaderText">Oooooo ooo oooooo ooo oo ooooooo oooo</td>
+                </tr>
+              
+            </tbody></table>
+            <table cellspacing="0" cellpadding="3" border="0" role="presentation">
+              
+                <tbody><tr>
+                  <td width="1" height="1"><img width="1" height="1" src="../../ps/images/space.gif" alt=""></td>
+                  <td width="30%" valign="top"><table cellspacing="0" cellpadding="1" border="0" role="presentation">
+                      
+                        <tbody><tr>
+                          <td nowrap="" class="formLabel">Ooooo ooooo:</td>
+                        </tr>
+                        <tr>
+                          <td nowrap="" class="formText"><input maxlength="3" style="width:310px;" name="m_po_linesPerPage" aria-label="Ooooooo"></td>
+                        </tr>
+                        <tr>
+                          <td nowrap=""><img width="1" height="5" src="../../ps/images/space.gif" alt=""></td>
+                        </tr>
+                      
+                    </tbody></table>
+                      <table cellspacing="0" cellpadding="1" border="0" role="presentation">
+                        
+                          <tbody><tr>
+                            <td nowrap="" class="formLabel">Ooooo ooooo:</td>
+                          </tr>
+                          <tr>
+                            <td nowrap="" class="formText"><textarea name="m_po_linesPerPage" style="width:310px;" rows="4" aria-label="Oooooooo"></textarea></td>
+                          </tr>
+                          <tr>
+                            <td nowrap=""><img width="1" height="5" src="../../ps/images/space.gif" alt=""></td>
+                          </tr>
+                        
+                      </tbody></table>
+                     
+                      <table cellspacing="0" cellpadding="1" border="0" role="presentation">
+                        
+                          <tbody><tr>
+                            <td nowrap="" class="formLabel">Ooooo ooooo:</td>
+                          </tr>
+                          <tr>
+                            <td nowrap="" class="formText"><select name="select" aria-label="Ooooooo">
+                              <option>Oooo Ooooo</option>
+                              <option>Oooo Ooooo</option>
+                              <option>Oooo Ooooo</option>
+                            </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td nowrap=""><img width="1" height="5" src="../../ps/images/space.gif" alt=""></td>
+                          </tr>
+                        
+                      </tbody></table>
+                      <table cellspacing="0" cellpadding="1" border="0" role="presentation">
+                        <tbody><tr>
+                          <td width="96" nowrap="" class="formLabel"> Ooooo:&nbsp;&nbsp;&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td nowrap="" class="formText"><div id="ng_path" style="padding:0px; display:none; ">Public Folders > Finance &nbsp;&nbsp;&nbsp; </div></td>
+                        </tr>
+                        <tr>
+                          <td nowrap="" class="formText"><div id="ng_myfolder" style="padding:0px; display:none; ">My Folders&nbsp;&nbsp;&nbsp; </div></td>
+                        </tr>
+                        <tr>
+                          <td nowrap="" class="formText"><table cellspacing="0" cellpadding="0" border="0">
+                              <tbody><tr>
+                                <td valign="top" class="formText">
+                                    <a href="#"> Oooo... </a></td>
+                              </tr>
+                          </tbody></table></td>
+                        </tr>
+                      </tbody></table>
+                      <br></td>
+                  <td width="70%" valign="top">&nbsp;</td>
+                </tr>
+              
+            </tbody></table>
+            <table cellspacing="0" cellpadding="1" border="0" role="presentation" class="dialogButtonBar">
+              <tbody><tr>
+                <td width="3" valign="middle"><img width="3" src="../../ps/images/space.gif" alt=""></td>
+                <td valign="middle"><table cellspacing="0" cellpadding="0" border="0" role="presentation">
+                    <tbody><tr>
+                      <td><table cellspacing="0" cellpadding="0" role="presentation" onmouseover="this.className = 'commandButtonOver'" onmouseout="this.className = 'commandButton'" onmousedown="this.className = 'commandButtonDown'" class="commandButton">
+                          <tbody><tr>
+                            <td valign="middle" align="center" nowrap="" id="btnAnchorIE1"><img width="70" border="0" height="1" src="../../ps/images/space.gif" alt=""><br>
+                                <a onmouseover="window.status='';return true;" onmouseout="window.status='';return true;" href="#">Oooooo</a></td>
+                          </tr>
+                      </tbody></table></td>
+                      <td><img width="10" height="8" src="../../ps/images/space.gif" alt=""></td>
+                      <td><table cellspacing="0" cellpadding="0" role="presentation" class="commandButtonInactive">
+                          <tbody><tr> 
+                            <td valign="middle" align="center" nowrap="" id="btnAnchorIE2"><img width="70" border="0" height="1" src="../../ps/images/space.gif" alt=""><br>
+                                <a onmouseover="window.status='';return true;" onmouseout="window.status='';return true;" href="#">< Oooooo</a></td>
+                          </tr>
+                      </tbody></table></td>
+                      <td><img width="10" height="8" src="../../ps/images/space.gif" alt=""></td>
+                      <td><table cellspacing="0" cellpadding="0" role="presentation" onmouseover="this.className = 'commandButtonOver'" onmouseout="this.className = 'commandButton'" onmousedown="this.className = 'commandButtonDown'" class="commandButton">
+                          <tbody><tr>
+                            <td valign="middle" align="center" nowrap="" id="btnAnchorIE3"><img width="70" border="0" height="1" src="../../ps/images/space.gif" alt=""><br>
+                                <a onmouseover="window.status='';return true;" onmouseout="window.status='';return true;" href="#">Oooooo ></a></td>
+                          </tr>
+                      </tbody></table></td>
+                      <td><img width="10" height="8" src="../../ps/images/space.gif" alt=""></td>
+                      <td><table cellspacing="0" cellpadding="0" role="presentation" onmouseover="this.className = 'commandButtonOver'" onmouseout="this.className = 'commandButton'" onmousedown="this.className = 'commandButtonDown'" class="commandButton">
+                          <tbody><tr>
+                            <td valign="middle" align="center" nowrap="" id="btnAnchorIE4"><img width="70" border="0" height="1" src="../../ps/images/space.gif" alt=""><br>
+                                <a onmouseover="window.status='';return true;" onmouseout="window.status='';return true;" href="#">Oooooo</a></td>
+                          </tr>
+                      </tbody></table></td>
+                      <td><img width="10" height="8" src="../../ps/images/space.gif" alt=""></td>
+                    </tr>
+                </tbody></table></td>
+                <td width="100%">&nbsp;</td>
+              </tr>
+          </tbody></table></td>
+      </tr>
+    </tbody></table>
+  </div>
+  <div id="d1_shadow" style="position:absolute; z-index:3; background-color: #B6B6B6; width:355px; height:338px; left: 98px; top: 105px;"></div>
+ 
+ 
+
+<div id="d2" class="cogstyle-portlet-frame" style="position:absolute;width:550px;height:222px;overflow:hidden;z-index:13;left: 430px; top: 200px;border: 1px none #000000;background-color:white;">
+	<table cellspacing="0" cellpadding="0" border="0" role="presentation" style="table-layout:fixed">
+		<tbody>
+			<tr>
+				<td>
+					<table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" class="cogstyle-portlet-caption-bar" style="font-size: 12px;">
+						<tbody>
+							<tr>
+								<td class="cogstyle-portlet-caption">
+									<div style="float:left" id="pagelet4caption">Oooooo<br></div>
+									<div style="float:right">
+										<table cellspacing="2" cellpadding="0" border="0" role="presentation" class="cogstyle-portlet-actions" style="font-size: 12px;">
+											<tbody>
+												<tr>
+													<td valign="middle" align="center" id="pagelet4caption_help" role="button" tabindex="0" class="cogstyle-portlet-action" onmouseout="this.className='cogstyle-portlet-action';" onmouseover="this.className='cogstyle-portlet-action-hover';">
+														<img title="Oooo" alt="Oooo" src="../../fragments/portlet/images/portlet_action_help.gif">
+													</td>
+													<td valign="middle" align="center" id="pagelet4caption_refresh" role="button" tabindex="0" class="cogstyle-portlet-action" onmouseout="this.className='cogstyle-portlet-action';" onmouseover="this.className='cogstyle-portlet-action-hover';">
+														<img title="Ooooooo" alt="Ooooooo" src="../../fragments/portlet/images/portlet_action_refresh.gif">
+													</td>
+													<td valign="middle" align="center" id="pagelet4caption_edit" role="button" tabindex="0" class="cogstyle-portlet-action" onmouseout="this.className='cogstyle-portlet-action';" onmouseover="this.className='cogstyle-portlet-action-hover';">
+														<img title="Oooo" alt="Oooo" src="../../fragments/portlet/images/portlet_action_edit.gif">
+													</td>
+													<td valign="middle" align="center" style="display:none" id="pagelet4caption_view" role="button" tabindex="0" class="cogstyle-portlet-action" onmouseout="this.className='cogstyle-portlet-action';" onmouseover="this.className='cogstyle-portlet-action-hover';">
+														<img title="Oooooo" alt="Oooooo" src="../../fragments/portlet/images/portlet_action_view.gif">
+													</td>
+													<td valign="middle" align="center" id="pagelet4caption_minimize" tabindex="0" role="button" class="cogstyle-portlet-action" onmouseout="this.className='cogstyle-portlet-action';" onmouseover="this.className='cogstyle-portlet-action-hover';">
+														<img title="Oooooooo" alt="Oooooooo" src="../../fragments/portlet/images/portlet_action_minimize.gif">
+													</td>
+													<td valign="middle" align="center" style="display:none" id="pagelet4caption_restore" role="button" tabindex="0" class="cogstyle-portlet-action" onmouseout="this.className='cogstyle-portlet-action';" onmouseover="this.className='cogstyle-portlet-action-hover';">
+														<img title="Ooooooo" alt="Ooooooo" src="../../fragments/portlet/images/portlet_action_restore.gif">
+													</td>
+													<td valign="middle" align="center" id="pagelet4caption_maximize" role="button" tabindex="0" class="cogstyle-portlet-action" onmouseout="this.className='cogstyle-portlet-action';" onmouseover="this.className='cogstyle-portlet-action-hover';">
+														<img title="Oooooooo" alt="Oooooooo" src="../../fragments/portlet/images/portlet_action_maximize.gif">
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td class="cogstyle-portlet-content cogstyle-portlet-borders">
+					<div style="overflow-x:auto;width:100%;" aria-live="polite" id="pagelet4content">
+						<div id="pagelet4bvContainer" xmlns:xts="http://developer.cognos.com/schemas/xts/" xmlns:encodingutils="com.cognos.portal.utils.EncodingUtils">
+							<table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" style="table-layout:fixed; font-size: 12px;" id="pagelet4tabs_main">
+								<tbody>
+									<tr>
+										<td valign="top" nowrap="" style="width:196px" id="pagelet4tabs_area">
+											<div style="overflow-x:hidden;overflow-y:auto;width:100%;" id="pagelet4tabs_area_div">
+												<div style="overflow-x: hidden; width: auto;" class="cogstyle-vtabs-area" id="pagelet4tabs_control_div">
+													<div id="pagelet4i1i2tab">
+														<div class="cogstyle-vtabs-left-edge" role="button" onmouseout="this.className='cogstyle-vtabs-left-edge';" onmouseover="this.className='cogstyle-vtabs-left-edge-hover';">
+															<div class="cogstyle-vtabs-right-edge">
+																<div title="Ooo" style="padding-left: 0px" class="cogstyle-vtabs">
+																	<img border="0" class="cogstyle-vtabs-icon" alt="" src="../../ps/images/space.gif" id="pagelet4i1i2_throbber">
+																	<a onclick="return false" href="javascript:noop()" tabindex="-1">Ooo</a>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div id="pagelet2tab">
+														<div class="cogstyle-vtabs-opened-active-left-edge" role="button" onmouseout="this.className='cogstyle-vtabs-opened-active-left-edge';" onmouseover="this.className='cogstyle-vtabs-opened-active-left-edge-hover';">
+															<div class="cogstyle-vtabs-opened-active-right-edge">
+																<div title="Oooo" style="padding-left: 0px" class="cogstyle-vtabs-opened-active">
+																	<img border="0" class="cogstyle-vtabs-icon" alt="" src="../../ps/images/space.gif" id="pagelet2_throbber">
+																	<a tabindex="0" onclick="return false" href="javascript:noop()" style="width: 184px;">Oooo</a>
+																</div>
+															</div>
+														</div>
+													<div style="display: block;" class="cogstyle-vtabs-opened-subtabs-area" id="pagelet2subtabs">
+														<div id="pagelettab">
+															<div class="cogstyle-vtabs-alt-left-edge" role="button" onmouseout="this.className='cogstyle-vtabs-alt-left-edge';" onmouseover="this.className='cogstyle-vtabs-alt-left-edge-hover';">
+																<div class="cogstyle-vtabs-alt-right-edge">
+																	<div title="Oooo" style="padding-left: 10px" class="cogstyle-vtabs-alt">
+																		<img border="0" class="cogstyle-vtabs-icon" alt="" parent="pagelet2_throbber" src="../../ps/images/space.gif" id="pagelet_throbber">
+																		<a tabindex="-1" onclick="return false" href="javascript:noop()" style="width: 184px;">Oooo</a>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div id="pagelet3tab">
+															<div class="cogstyle-vtabs-alt-active-left-edge" role="button" onmouseout="this.className='cogstyle-vtabs-alt-active-left-edge';" onmouseover="this.className='cogstyle-vtabs-alt-active-left-edge-hover';">
+																<div class="cogstyle-vtabs-alt-active-right-edge">
+																	<div title="Ooooo" style="padding-left: 10px" class="cogstyle-vtabs-alt-active">
+																		<img border="0" class="cogstyle-vtabs-icon" alt="" parent="pagelet2_throbber" src="../../ps/images/space.gif" id="pagelet3_throbber">
+																		<a tabindex="0" onclick="return false" href="javascript:noop()" style="width: 184px;">Ooooo</a>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div id="pagelet4i3i6tab">
+															<div class="cogstyle-vtabs-alt-left-edge" role="button" onmouseout="this.className='cogstyle-vtabs-alt-left-edge';" onmouseover="this.className='cogstyle-vtabs-alt-left-edge-hover';">
+																<div class="cogstyle-vtabs-alt-right-edge">
+																	<div title="Ooooooo" style="padding-left: 10px" class="cogstyle-vtabs-alt">
+																		<img border="0" class="cogstyle-vtabs-icon" alt="" parent="pagelet2_throbber" src="../../ps/images/space.gif" id="pagelet4i3i6_throbber">
+																		<a tabindex="-1" onclick="return false" href="javascript:noop()">Ooooooo</a>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div id="pagelet4i1i7tab">
+													<div class="cogstyle-vtabs-left-edge" role="button" onmouseout="this.className='cogstyle-vtabs-left-edge';" onmouseover="this.className='cogstyle-vtabs-left-edge-hover';">
+														<div class="cogstyle-vtabs-right-edge">
+															<div title="Ooooo" style="padding-left: 0px" class="cogstyle-vtabs">
+																<img border="0" class="cogstyle-vtabs-icon" alt="" src="../../ps/images/space.gif" id="pagelet4i1i7_throbber">
+																<a tabindex="-1" onclick="return false" href="javascript:noop()">Ooooo</a>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div id="pagelet4i1i8tab">
+													<div class="cogstyle-vtabs-left-edge" role="button" onmouseout="this.className='cogstyle-vtabs-left-edge';" onmouseover="this.className='cogstyle-vtabs-left-edge-hover';">
+														<div class="cogstyle-vtabs-right-edge">
+															<div title="Oooooo" style="padding-left: 0px" class="cogstyle-vtabs">
+																<img border="0" class="cogstyle-vtabs-icon" alt="" src="../../ps/images/space.gif" id="pagelet4i1i8_throbber">
+																<a tabindex="-1" onclick="return false" href="javascript:noop()">Oooooo</a>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												</div><div style="overflow: auto; width: 196px;" id="pagelet4filter_container">
+											</div>
+										</div>
+									</td>
+									<td valign="top" nowrap="" class="cogstyle-splitter" id="pagelet4tabs_splitter"><br></td>
+									<td valign="top" id="pagelet4tabs_container">
+										<div id="pagelet3page" style="width: 100%; height: 100%; display: block;">
+											<div style="width:100%; height:100%;" class="cogstyle-vtabs-page-content" id="pagelet3content">
+												<form style="margin:0px;" method="post" name="pagelet3NSP10_form" xmlns:bus="http://developer.cognos.com/schemas/bibus/3/">
+													<input type="hidden" value="" name="sort">
+													<input type="hidden" value="_i5" name="display_folder">
+													<input type="hidden" value="" name="display_id_state">
+													<table width="100%" cellspacing="0" cellpadding="2" border="0" valign="top" style="font-size: 12px;">
+														<tbody>
+															<tr>
+																<td nowrap="">
+																	<table width="100%" cellspacing="0" cellpadding="0" border="0" style="font-size: 12px;">
+																		<tbody>
+																			<tr role="navigation">
+																				<td class="portlet-font">
+																					<span class="cognos-path">
+																						<a hreg="#" onmouseout="window.status='';return true;" onmouseover="window.status='';return true;" class="cognos-anchor" role="link">Oo Ooooooo</a>
+																						&lrm; > 
+																						<a hreg="#" onmouseout="window.status='';return true;" onmouseover="window.status='';return true;" class="cognos-anchor" role="link">oo</a>
+																						&lrm; > 
+																						<a hreg="#" onmouseout="window.status='';return true;" onmouseover="window.status='';return true;" class="cognos-anchor" role="link">Oooo</a>
+																						&lrm; > <b>Ooooo</b>
+																					</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+													<span id="pagelet3NSP10_objTypeHead" style="position: absolute;margin-left: -9999px; margin-top: -9999px;">Entry type</span>
+													<table width="100%" cellspacing="0" cellpadding="0" border="0" tabindex="0" class="portlet-table" summary="Oooo ooo ooooooo o" valign="top" style="font-size: 12px;">
+														<thead>
+															<tr style="height:20px" class="portlet-table-header">
+																<th width="20" aria-labelledby="pagelet3NSP10_objTypeHead" class="portlet-font" tabindex="0" id="ctrl_pagelet3NSP10_objTypeHead">&nbsp;</th>
+																<th width="12" class="portlet-font" scope="col"><img width="12" height="15" alt="" src="../.././cps4/portlets/nav/images/sep.gif"></th>
+																<th width="60%" style="text-align:left" aria-label="Oooooo" tabindex="0" id="pagelet3NSP10_objName" scope="col">
+																	<table cellspacing="0" cellpadding="0" border="0" role="presentation" style="font-size: 12px;">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="portlet-table-header"><b role="presentation">Oooo</b></td>
+																				<td>
+																					<a aria-label="Oooo oooo" href="#" onmouseout="window.status='';return true;" onmouseover="window.status='';return true;" class="cognos-anchor" role="link">
+																					<img width="15" border="0" height="15" title="Oooo" alt="Oooo" src="../.././cps4/portlets/nav/images/list_sort_no.gif"></a>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</th>
+																<th width="12" class="portlet-font" scope="col"><img width="12" height="15" alt="" src="../.././cps4/portlets/nav/images/sep.gif"></th>
+																<th width="40%" style="text-align:left" class="portlet-table-header" aria-labelledby="pagelet3NSP10_actonsHeader" tabindex="0" id="pagelet3NSP10_objActions" scope="col">
+																	<b id="pagelet3NSP10_actonsHeader">Ooooooo</b>
+																</th>
+															</tr>
+														</thead>
+													<tbody>
+														<tr>
+															<td valign="top" align="center" colspan="5" class="portlet-table-body">
+																<br>Oo ooooooo.
+																<br><br>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</form>
+											<!-- instanceID=PORTLETID cacheInfo={cacheID=null, notExpired=false, copyFromCache=false, copyToCache=false, addedToCache=false, sendingValTag=false, reachedMaxCount=false, calculatedChecksum=2144931724} -->
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<div id="d2_shadow" style="position:absolute; width:550px; height:222px; z-index:13; left: 436px; top: 207px; z-index:10;  background-color:#B6B6B6;"></div>
+
+
+				
+				</form></body></html>

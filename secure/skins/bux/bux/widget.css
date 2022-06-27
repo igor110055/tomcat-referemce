@@ -1,0 +1,486 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+/*layout section*/
+.icdUI .buxFloatingPane {
+	background: transparent;
+	border: none;
+}
+
+.bux-MaximizedMode .dijitDialogUnderlay {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	left: 0;
+	top: 0;
+}
+
+.buxFloatingPane .widgetContainer {
+	padding: 0;
+}
+
+.buxWidgetHighlight .widget_resizerHandleVert,
+.buxWidgetHighlight .widget_resizerHandleHoriz {
+	display: none;
+}
+
+.bux-MaximizedMode .widget-border,
+.bux-MaximizedMode .widget-corner,
+.bux-MaximizedMode .bux-toolbar,
+.bux-MaximizedMode .widget_resizerHandleVert,
+.bux-MaximizedMode .widget_resizerHandleHoriz {
+	cursor: default !important;
+}
+
+.widget_resizerHandleHoriz {
+	height: 8px;
+	width: 28px;
+	visibility: hidden;
+}
+
+.widget_resizerHandleVert {
+	height: 28px;
+	width: 8px;
+	visibility: hidden;
+}
+
+.widget-movable {
+	cursor: move;
+}
+
+div.buxWidgetActive div.widget_resizerHandleHoriz,
+div.buxWidgetActive div.widget_resizerHandleVert {
+	visibility: visible;
+}
+
+.widget-border,
+.widget-corner {
+	position: absolute;
+}
+
+.wb-top,
+.wb-bottom {
+	text-align: center;
+	height: 6px;
+	left: 0;
+	right: 0;
+}
+
+.wb-top {
+	top: 0;
+}
+
+.wb-bottom {
+	bottom: 0;
+}
+
+.wb-left,
+.wb-right {
+	width: 6px;
+	top: 0;
+	bottom: 0;
+	vertical-align: middle;
+}
+
+.wb-left {
+	left: 0px;
+}
+
+.wb-right {
+	right: 0px;
+	margin-left: -7px;
+}
+
+.widget-corner {
+	width: 8px;
+	height: 8px;
+	z-index: 1;
+}
+/* corner grabbers*/
+.wc-TL {
+	top: 0px;
+	left: 0px;
+}
+
+.wc-TR {
+	top: 0px;
+	right: 0px;
+}
+
+.wc-BL {
+	bottom: 0px;
+	left: 0px;
+}
+
+.wc-BR {
+	bottom: 0px;
+	right: 0px;
+}
+
+.buxFloatingPane .dojoxFloatingPaneCanvas {
+	background: transparent;
+	/* Need to change position to relative for IE. Some content was bleeding through the widget border. */
+	position: relative;
+	display: block;
+}
+
+div.buxFloatingPane div.icdPaneResizeHandleR {
+	cursor: e-resize;
+}
+
+div.buxFloatingPane div.icdPaneResizeHandleBL {
+	cursor: sw-resize;
+}
+
+div.buxFloatingPane div.icdPaneResizeHandleB {
+	cursor: s-resize;
+}
+
+div.buxFloatingPane div.icdPaneResizeHandleBR {
+	cursor: se-resize;
+}
+
+.buxFloatingPane .mm_iWidget,
+.buxFloatingPane .mm_Content {
+	height: 100%;
+}
+
+.buxFloatingPane .v10 td.pb {
+	padding: 1px;
+}
+
+.buxFloatingPane .dojoxFloatingPaneContent {
+	background: transparent;
+	width: auto;
+	height: 100%;
+	outline: none;
+}
+
+.buxWidgetFrame {
+	width: 100%;
+	table-layout: fixed;
+}
+
+div.dijitTitleNode {
+	overflow: hidden;
+}
+
+.tundra .dojoxFloatingPaneTitle {
+	padding: 0px 4px;
+	white-space: normal;
+	border: none;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+/*Title is displayed but invisible*/
+.icdUI .buxWidgetTitleInnactive .dojoxFloatingPaneTitle {
+	visibility: hidden;
+}
+/*Title is NOT displayed*/
+.icdUI .buxWidgetTitleNone .dojoxFloatingPaneTitle {
+	display: none;
+}
+
+.buxGuidelineH {
+	background-repeat: repeat-x;
+	position: absolute;
+}
+
+.buxGuidelineV {
+	background-repeat: repeat-y;
+	position: absolute;
+}
+
+.buxDragAndDropError {
+	padding-left: 36px;
+	height: 32px;
+	padding-top: 10px;
+	background-repeat: no-repeat;
+	background-position: left;
+	font-size: 12pt;
+}
+
+.buxDragAndDropMiddle {
+	width: 128px;
+	height: 128px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+.widget_loadContainerOuter {
+	height: 100%;
+	width: 100%;
+}
+
+.widget_loadContainer {
+	vertical-align: middle;
+}
+
+.widget_loadContainerInsert {
+	text-align: center;
+}
+/* Fixing scrollbars in widgets */
+.dojoxFloatingPaneContent {
+	overflow: visible !important;
+}
+
+.dojoxFloatingPaneCanvas {
+	overflow: auto !important;
+}
+
+.hiddenScrollBars .dojoxFloatingPaneCanvas {
+	overflow: hidden !important;
+}
+
+.autoResizeScrollbars .dojoxFloatingPaneCanvas {
+	overflow: visible !important;
+}
+
+/* hide element for iWidget configuration */
+.mm_Definition,
+.mm_ItemSet,
+.mm_ReceivedEvent,
+.mm_SourceEvent,
+.mm_Item,
+.mm_TargetEvent {
+	display: none;
+}
+
+/* Viewer's toolbar container */
+td.mainViewerHeader3 {
+	background-color: transparent !important;
+}
+
+.widget_load {
+	height: 34px;
+	background-position: left;
+	background-repeat: no-repeat;
+	padding-left: 34px;
+	padding-top: 17px;
+	vertical-align: middle;
+}
+
+.widgetDndBlanket {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.dj_ie .widgetDndBlanket {
+	background-color: white;
+	filter: alpha(opacity = 0);
+}
+
+/*skin section*/
+.bux-widget-overlap {
+	position: absolute;
+	background-color: #ffffff; /* same as default background-color for canvas (or dropzone) */
+	-moz-opacity: 0.9;
+	opacity: 0.9;
+	filter: alpha(opacity = 90);
+}
+
+.widget_resizerHandleHoriz {
+	background-image:  none;
+	background-image: url(images/widget/border2.png);
+	background-repeat: no-repeat;
+	background-position: 0px -31px;
+}
+
+.widget_resizerHandleVert {
+	background-repeat: no-repeat;
+	background-image: none;
+	background-image: url(images/widget/border.png);
+	background-position: -73px;
+}
+
+.icdUI .buxFloatingPane {
+	-webkit-box-shadow: none;
+}
+
+.icdUI div.buxWidgetActive {
+	-webkit-box-shadow: 0px 3px 6px #777777;
+}
+
+.buxWidgetActive {
+	-moz-box-shadow: 0 3px 6px #777777;
+	box-shadow: 0px 3px 6px #777777;
+}
+
+.buxWidgetActive .wb-top,
+.buxWidgetHighlight .wb-top {
+	border-top: 1px solid #8d8d8d;
+}
+
+.buxWidgetActive .wb-left,
+.buxWidgetHighlight .wb-left {
+	border-left: 1px solid #8d8d8d;
+}
+
+.buxWidgetActive .wb-right,
+.buxWidgetHighlight .wb-right {
+	border-right: 1px solid #8d8d8d;
+}
+
+.buxWidgetActive .wb-bottom,
+.buxWidgetHighlight .wb-bottom {
+	border-bottom: 1px solid #8d8d8d;
+}
+
+.buxFloatingPaneMaximized .buxFloatingPaneCanvasMaximized {
+	background: #ffffff;
+}
+
+/* Images */
+.buxGuidelineH {
+	background-image: none;
+	background-image: url('images/canvas/guidelineH.png');
+}
+
+.buxGuidelineV {
+	background-image: none;
+	background-image: url('images/canvas/guidelineV.png');
+}
+
+.buxDragAndDropError {
+	background-image: none;
+	background-image: url('images/cursor_nodrop.gif');
+}
+
+.buxDragAndDropMiddle-loading,
+.widget_load {
+	background-image: none;
+	background-image: url(images/action_busy_32x32.gif);
+}
+
+/* -- A11Y -- */
+
+.dijit_a11y .buxGuidelineH {
+	border-bottom: dashed 1px;
+}
+
+.dijit_a11y .buxGuidelineV {
+	border-left: dashed 1px;
+}
+
+.dijit_a11y .widget_a11y_border {
+	margin: 1px;
+}
+
+.dijit_a11y .buxWidgetActive .widget_a11y_border {
+	margin: 1px;
+	border: solid;
+}
+
+.dijit_a11y .buxWidgetHighlight .widget_a11y_border {
+	border: dotted 2px;
+	margin: 1px;
+}
+
+.dijit_a11y .widget_dnd_a11y_border,
+.dijit_a11y .buxWidgetInnactive .widget_a11y_border {
+	border: none;
+}
+
+.dijit_a11y .buxWidgetTitleActive .dojoxFloatingPaneTitle {
+	border: solid 1px;
+}
+
+.dijit_a11y .buxWidgetTitleHighlight .dojoxFloatingPaneTitle {
+	border: dotted 2px;
+}
+
+.dijit_a11y .buxWidgetTitleInnactive .dojoxFloatingPaneTitle {
+	border: dotted 1px;
+}
+/* grabbers */
+.dj_ie .dijit_a11y .buxWidgetActive .wb-bottom {
+	border: solid 3px;
+	margin-top: -7px;
+}
+
+.dijit_a11y .widget_b_grabber {
+	margin-top: 2px;
+	margin-bottom: -9px;
+}
+
+.dijit_a11y .widget_t_grabber {
+	margin-top: -5px;
+	margin-bottom: 3px;
+}
+
+.dijit_a11y .buxWidgetActive .widget_resizerHandleHoriz {
+	border: solid 3px;
+	height: 1px;
+}
+
+.dijit_a11y .buxWidgetActive .widget_resizerHandleVert {
+	border: solid 3px;
+	width: 1px;
+}
+
+.dijit_a11y .icdPaneResizeHandleR {
+	margin-left: -1px;
+}
+
+.dijit_a11y .buxFloatingPane {
+	padding: 5px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
+
+/* corner grabbers*/
+
+/*This makes it easier to move the widget from the right side of it*/
+.dijit_a11y .buxWidgetActive .widget-corner {
+	border: solid 5px;
+	width: 6px;
+	height: 6px;
+}
+
+.dijit_a11y .wc-BR {
+	bottom: 0px;
+	right: 0px;
+}
+
+.dijit_a11y .wc-BL {
+	bottom: 0px;
+	left: 0px;
+}
+
+.dijit_a11y .wc-TR {
+	top: 0px;
+	right: 0px;
+}
+
+.dijit_a11y .wc-TL {
+	top: 0px;
+	left: 0px;
+}
+
+.dj_ie .dijit_a11y .buxWidgetInnactive .widget-corner {
+	display: none;
+}
+/*used to prevent the slider/checkbox properties dialog shows "No data items are available..." test propertly in HC mode (COGCQ00272646)*/
+.dijit_a11y .buxDialog .bux-widget-overlap {
+	z-index: 1;
+}
+
+.dj_ie .dijit_a11y .widget-corner,
+.dj_ie .dijit_a11y .widget-border {
+	display: none;
+}
+
+.dj_ie .dijit_a11y .buxWidgetActive .widget-corner,
+.dj_ie .dijit_a11y .buxWidgetActive .widget-border {
+	display: block;
+}
+

@@ -1,0 +1,502 @@
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <meta name="Copyright" content="Copyright (C) 2007 Cognos Incorporated. All Rights Reserved.">
+   <meta name="Trademark" content="Cognos (R) is a trademark of Cognos Incorporated.">
+   <link xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" rel="stylesheet" type="text/css"
+         href="../schemas/GlobalReportStyles.css">
+   <title>transient-A69C821D-7968-A5C2-9C44-EE354F685D92</title>
+
+
+
+   <!--
+   =======================================================================================
+      BEGIN INSERT
+   =======================================================================================
+   -->
+      <script type="text/javascript" src="/rcl/scripts/rcl/common/JsUtil.js"></script>
+
+
+      <link rel="stylesheet" type="text/css" href="/rcl/scripts/lib/ext/resources/css/ext-all.css"/>
+      <link rel="stylesheet" type="text/css" href="/rcl/scripts/lib/ext/resources/css/xtheme-vista.css"/>
+
+      <link rel="stylesheet" type="text/css" href="/rcl/styles/rcl/ext-adf/ext-adf.css"/>
+
+      <script type="text/javascript" src="/rcl/scripts/lib/ext/adapter/ext/ext-base.js"></script>
+      <script type="text/javascript" src="/rcl/scripts/lib/ext/ext-all-debug.js"></script>
+
+      <style type="text/css">
+         *.dataItemHide {
+            display:none;
+         }
+         td {
+            border: 1px solid black;
+         }
+      </style>
+
+      <script type="text/javascript">
+         var uiController = {
+            initUi : function() {
+            },
+            hideDataItem : function(aName) {
+               this.toggleDataItem(aName, true);
+            },
+            showDataItem : function(aName) {
+               this.toggleDataItem(aName, false);
+            },
+            toggleDataItem : function (aName, aHide)
+            {
+               var markerClass = markers[aName];
+
+               var elements = Ext.DomQuery.select("div[class=" + markerClass + "]");
+               //alert("queryClass = [" + markerClass + "], elements = [" + elements.length + "]");
+               
+               for (var i = 0; i < elements.length; ++i)
+               {
+
+                  //var valueCellQuery = "td[class=mv" + (aHide ? "" : " dataItemHide") + "]";
+                  var valueCellQuery = "td[class^=mv]";
+                  var valueCells = Ext.DomQuery.select(valueCellQuery, elements[i].parentNode.parentNode);
+
+                  //alert("valueCellQuery = [" + valueCellQuery + "], valueCells = [" + valueCells.length + "]");
+
+                  for (var j = 0; j < valueCells.length; ++j)
+                  {
+                     if (aHide)
+                        Ext.get(valueCells[j]).addClass("dataItemHide");
+                     else
+                        Ext.get(valueCells[j]).removeClass("dataItemHide");
+                  }
+
+                  if (aHide)
+                     Ext.get(elements[i].parentNode).addClass("dataItemHide");
+                  else
+                     Ext.get(elements[i].parentNode).removeClass("dataItemHide");
+               }
+
+            }
+         };
+         Ext.onReady(uiController.initUi, uiController);
+      </script>
+
+   <!--
+   =======================================================================================
+      END INSERT
+   =======================================================================================
+   -->
+
+</head>
+<body topmargin="0" leftmargin="0" style="background-color: #FFFFFF;">
+
+
+
+<table>
+   <tr>
+      <td>Planned Revenue</td>
+      <td><a href="javascript:uiController.hideDataItem('Planned revenue');">hide</a></td>
+      <td><a href="javascript:uiController.showDataItem('Planned revenue');">show</a></td>
+   </tr>
+   <tr>
+      <td>Revenue</td>
+      <td><a href="javascript:uiController.hideDataItem('Revenue');">hide</a></td>
+      <td><a href="javascript:uiController.showDataItem('Revenue');">show</a></td>
+   </tr>
+   <tr>
+      <td>Gross profit</td>
+      <td><a href="javascript:uiController.hideDataItem('Gross profit');">hide</a></td>
+      <td><a href="javascript:uiController.showDataItem('Gross profit');">show</a></td>
+   </tr>
+   <tr>
+      <td>Margin</td>
+      <td><a href="javascript:uiController.hideDataItem('Margin');">hide</a></td>
+      <td><a href="javascript:uiController.showDataItem('Margin');">show</a></td>
+   </tr>
+</table>
+
+
+<table xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" cellpadding="0" cellspacing="0" border="0" class="pg">
+   <tr class="tableRow">
+      <td style="padding-bottom:10px;" class="ph">
+         <div class="ta"><span class="tt">Product Measure Crosstab</span></div>
+      </td>
+   </tr>
+   <tr class="tableRow">
+      <td class="pb">
+         <table style="border-collapse:collapse;" class="xt" cellpadding="0">
+            <tr>
+               <td class="xm" colspan="2" rowspan="1"></td>
+               <td class="ml" colspan="1" rowspan="1">
+                  <div class="adfRdiMarker_6" style="display:none"></div>
+                  <span class="textItem">2004</span></td>
+               <td class="ml" colspan="1" rowspan="1">
+                  <div class="adfRdiMarker_6" style="display:none"></div>
+                  <span class="textItem">2005</span></td>
+               <td class="ml" colspan="1" rowspan="1">
+                  <div class="adfRdiMarker_6" style="display:none"></div>
+                  <span class="textItem">2006</span></td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1" rowspan="5">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">Camping Equipment</span></td>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_0" style="display:none"></div>
+                  <span class="textItem">Planned revenue</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$21,621,534.40</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$33,565,199.46</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$41,004,300.40</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_1" style="display:none"></div>
+                  <span class="textItem">Revenue</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$20,471,328.88</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$31,373,606.46</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$37,869,055.58</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Gross profit</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$5,112,910.00</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$7,637,806.70</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$8,923,947.60</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Margin</span></td>
+               <td class="mv" colspan="1"><span class="textItem">0.306</span></td>
+               <td class="mv" colspan="1"><span class="textItem">0.295</span></td>
+               <td class="mv" colspan="1"><span class="textItem">0.282</span></td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Return quantity</span></td>
+               <td class="mv" colspan="1"><span class="textItem">2,336</span></td>
+               <td class="mv" colspan="1"><span class="textItem">2,786</span></td>
+               <td class="mv" colspan="1"><span class="textItem">3,724</span></td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1" rowspan="5">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">Golf Equipment</span></td>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_0" style="display:none"></div>
+                  <span class="textItem">Planned revenue</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$5,956,405.50</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$10,550,904.86</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$11,885,400.96</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_1" style="display:none"></div>
+                  <span class="textItem">Revenue</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$5,597,980.86</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$9,598,268.88</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$10,709,215.84</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Gross profit</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$2,616,254.62</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$4,309,340.30</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$4,755,929.86</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Margin</span></td>
+               <td class="mv" colspan="1"><span class="textItem">0.479</span></td>
+               <td class="mv" colspan="1"><span class="textItem">0.462</span></td>
+               <td class="mv" colspan="1"><span class="textItem">0.456</span></td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Return quantity</span></td>
+               <td class="mv" colspan="1"><span class="textItem">144</span></td>
+               <td class="mv" colspan="1"><span class="textItem">288</span></td>
+               <td class="mv" colspan="1"><span class="textItem">62</span></td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1" rowspan="5">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">Outdoor Protection</span></td>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_0" style="display:none"></div>
+                  <span class="textItem">Planned revenue</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$1,644,097.44</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$1,060,308.30</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$704,892.00</span><span style="visibility:hidden;"
+                                                                                         class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_1" style="display:none"></div>
+                  <span class="textItem">Revenue</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$1,536,456.24</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$988,230.64</span><span style="visibility:hidden;"
+                                                                                         class="textItem">)</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$646,428.04</span><span style="visibility:hidden;"
+                                                                                         class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Gross profit</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$866,574.56</span><span style="visibility:hidden;"
+                                                                                         class="textItem">)</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$558,152.22</span><span style="visibility:hidden;"
+                                                                                         class="textItem">)</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$363,436.06</span><span style="visibility:hidden;"
+                                                                                         class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Margin</span></td>
+               <td class="mv" colspan="1"><span class="textItem">0.562</span></td>
+               <td class="mv" colspan="1"><span class="textItem">0.561</span></td>
+               <td class="mv" colspan="1"><span class="textItem">0.555</span></td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Return quantity</span></td>
+               <td class="mv" colspan="1"><span class="textItem">228</span></td>
+               <td class="mv" colspan="1"><span class="textItem">298</span></td>
+               <td class="mv" colspan="1"><span class="textItem">200</span></td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1" rowspan="5">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">Personal Accessories</span></td>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_0" style="display:none"></div>
+                  <span class="textItem">Planned revenue</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$7,301,534.00</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$11,462,494.76</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$14,783,898.76</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_1" style="display:none"></div>
+                  <span class="textItem">Revenue</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$7,144,797.52</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$10,955,708.04</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$13,793,960.30</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Gross profit</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$2,760,446.44</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$4,061,603.62</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$4,890,492.72</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Margin</span></td>
+               <td class="mv" colspan="1"><span class="textItem">0.367</span></td>
+               <td class="mv" colspan="1"><span class="textItem">0.355</span></td>
+               <td class="mv" colspan="1"><span class="textItem">0.341</span></td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Return quantity</span></td>
+               <td class="mv" colspan="1"><span class="textItem">496</span></td>
+               <td class="mv" colspan="1"><span class="textItem">936</span></td>
+               <td class="mv" colspan="1"><span class="textItem">1,026</span></td>
+            </tr>
+         </table>
+      </td>
+   </tr>
+   <tr class="tableRow">
+      <td style="padding-top:10px;" class="pf">
+         <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+            <tr class="tableRow">
+               <td style="vertical-align:top;text-align:left;width:25%;" class="tableCell" colspan="1"><span
+                       class="textItem">Apr 19, 2008</span></td>
+               <td style="vertical-align:top;text-align:center;width:50%;" class="tableCell" colspan="1"><span
+                       class="textItem">-&nbsp;</span><span class="textItem">1</span><span
+                       class="textItem">&nbsp;-</span></td>
+               <td style="vertical-align:top;text-align:right;width:25%;" class="tableCell" colspan="1"><span
+                       class="textItem">3:45:16 PM</span></td>
+            </tr>
+         </table>
+      </td>
+   </tr>
+</table>
+<table xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" cellpadding="0" cellspacing="0" border="0" class="pg">
+   <tr class="tableRow">
+      <td style="padding-bottom:10px;" class="ph">
+         <div class="ta"><span class="tt">Product Measure Crosstab</span></div>
+      </td>
+   </tr>
+   <tr class="tableRow">
+      <td class="pb">
+         <table style="border-collapse:collapse;" class="xt" cellpadding="0">
+            <tr>
+               <td class="xm" colspan="2" rowspan="1"></td>
+               <td class="ml" colspan="1" rowspan="1">
+                  <div class="adfRdiMarker_6" style="display:none"></div>
+                  <span class="textItem">2004</span></td>
+               <td class="ml" colspan="1" rowspan="1">
+                  <div class="adfRdiMarker_6" style="display:none"></div>
+                  <span class="textItem">2005</span></td>
+               <td class="ml" colspan="1" rowspan="1">
+                  <div class="adfRdiMarker_6" style="display:none"></div>
+                  <span class="textItem">2006</span></td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1" rowspan="5">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">Mountaineering Equipment</span></td>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_0" style="display:none"></div>
+                  <span class="textItem">Planned revenue</span></td>
+               <td class="mv" colspan="1"><span class="textItem"></span></td>
+               <td class="mv" colspan="1"><span class="textItem">$10,111,612.34</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$12,007,728.92</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_1" style="display:none"></div>
+                  <span class="textItem">Revenue</span></td>
+               <td class="mv" colspan="1"><span class="textItem"></span></td>
+               <td class="mv" colspan="1"><span class="textItem">$9,642,674.54</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$11,248,676.06</span><span style="visibility:hidden;"
+                                                                                            class="textItem">)</span>
+               </td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Gross profit</span></td>
+               <td class="mv" colspan="1"><span class="textItem"></span></td>
+               <td class="mv" colspan="1"><span class="textItem">$3,280,836.16</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+               <td class="mv" colspan="1"><span class="textItem">$3,696,081.40</span><span style="visibility:hidden;"
+                                                                                           class="textItem">)</span>
+               </td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Margin</span></td>
+               <td class="mv" colspan="1"><span class="textItem"></span></td>
+               <td class="mv" colspan="1"><span class="textItem">0.382</span></td>
+               <td class="mv" colspan="1"><span class="textItem">0.366</span></td>
+            </tr>
+            <tr>
+               <td class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Return quantity</span></td>
+               <td class="mv" colspan="1"><span class="textItem"></span></td>
+               <td class="mv" colspan="1"><span class="textItem">864</span></td>
+               <td class="mv" colspan="1"><span class="textItem">870</span></td>
+            </tr>
+         </table>
+         <script type="text/javascript">
+            var markers = {};
+            markers['Return quantity'] = 'adfRdiMarker_4';
+            markers['Order year'] = 'adfRdiMarker_6';
+            markers['Planned revenue'] = 'adfRdiMarker_0';
+            markers['Revenue'] = 'adfRdiMarker_1';
+            markers['Gross profit'] = 'adfRdiMarker_2';
+            markers['Product line'] = 'adfRdiMarker_5';
+            markers['Margin'] = 'adfRdiMarker_3';
+         </script>
+
+      </td>
+   </tr>
+   <tr class="tableRow">
+      <td style="padding-top:10px;" class="pf">
+         <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+            <tr class="tableRow">
+               <td style="vertical-align:top;text-align:left;width:25%;" class="tableCell" colspan="1"><span
+                       class="textItem">Apr 19, 2008</span></td>
+               <td style="vertical-align:top;text-align:center;width:50%;" class="tableCell" colspan="1"><span
+                       class="textItem">-&nbsp;</span><span class="textItem">2</span><span
+                       class="textItem">&nbsp;-</span></td>
+               <td style="vertical-align:top;text-align:right;width:25%;" class="tableCell" colspan="1"><span
+                       class="textItem">3:45:16 PM</span></td>
+            </tr>
+         </table>
+      </td>
+   </tr>
+</table>
+</body>
+</html>

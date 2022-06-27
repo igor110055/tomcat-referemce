@@ -1,0 +1,347 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+/*Toolbar layout section*/
+.bux-toolbar {
+	position: absolute;
+	top: 200px;
+	left: 200px;
+	height: 30px;
+	overflow: hidden;
+}
+
+.dj_ie .bux-toolbar {
+	padding-right: 2px;
+}
+
+.bux-toolbar-inner {
+	position: absolute;
+	top: 30px;
+	left: 0px;
+	padding-left: 0px !important;
+}
+
+.bux-toolbar table {
+	border-collapse: collapse;
+}
+
+.bux-toolbar td {
+	white-space: nowrap;
+}
+
+.bux-toolbar-dropdown-section {
+	padding-left: 3px;
+	width: 25px;
+	height: 30px;
+	overflow: hidden;
+}
+
+.bux-toolbar-dropdown-section .dijitDropDownButton {
+	margin-top: -1px;
+}
+
+.icdUI .bux-toolbar-tools-section .dijitToolbarSeparator {
+	height: 15px;
+}
+
+.icdUI .buxBannerSection .dijitToolbarSeparator {
+	margin: 0 0 0 5px;
+}
+
+.bux-toolbar-tools-section,
+.bux-toolbar-edit-section {
+	height: 30px;
+	overflow: hidden;
+	vertical-align: top;
+}
+
+.bux-toolbar-edit-section-r {
+	width: 12px;
+	height: 30px;
+}
+
+.bux-toolbar-edit-section {
+	width: 36px;
+	height: 30px;
+	text-align: right;
+}
+
+.bux-toolbar-tools {
+	margin-top: 2px;
+	margin-left: 3px;
+	background: transparent !important;
+	border: none !important;
+	cursor: default;
+}
+
+.dj_ie .bux-toolbar-tools {
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+.bux-toolbar-chevron-button .dijitArrowButtonInner {
+	display: none;
+}
+
+.bux-toolbar-chevron-button .dijitArrowButtonChar {
+	display: none;
+}
+
+.dj_ie .bux-toolbar-edit-buttons button {
+	width: 100%;
+}
+
+/*Skin section*/
+.bux-toolbar-inner {
+	border-radius: 10px 10px 0 0;
+	-moz-border-radius: 10px 10px 0 0;
+	-moz-box-shadow: inset 0px 1px 3px white;
+}
+
+.dj_ie .bux-toolbar-inner {
+	padding-top: 0px !important; /*this is to make sure buttons are in the middle of the toolbar in IE*/
+}
+
+.icdUI .bux-toolbar .dijitToolbar { /*use to change the background color*/
+	background-color: #efefef;
+	border: 1px solid #cccccc;
+	border-radius: 0px;
+	background-image: none;
+	background-image: -moz-linear-gradient(top, #ffffff 0%, #efefef 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef));
+	background-image: -webkit-linear-gradient(top, #ffffff 0%, #efefef 100%);
+	background-image: -o-linear-gradient(top, #ffffff 0%, #efefef 100%);
+	background-image: -ms-linear-gradient(top, #ffffff 0%, #efefef 100%);
+	background-image: linear-gradient(to bottom, #ffffff 0%, #efefef 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#efefef',GradientType=0 );
+	zoom: 1;
+	padding-top: 1px;
+}
+
+.bux-toolbar-chevron-show-button {
+	width: 16px;
+	height: 16px;
+	background-image: none;
+	background-image: url(images/menu/action_menu_show.gif);
+}
+
+.bux-toolbar-chevron-hide-button {
+	width: 16px;
+	height: 16px;
+	background-image: none;
+	background-image: url(images/menu/action_menu_hide.gif);
+}
+/*Shows the blue button on the widget toolbar*/
+.claro .bux-toolbar-dropdown-section .dijitArrowButtonInner {
+	background-image: none;
+	background-image: url("images/widget_toolbar/odtb.png");
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	height: 25px;
+	width: 25px
+}
+
+.claro .bux-toolbar-dropdown-section .dijitDropDownButtonHover .dijitArrowButtonInner {
+	background-position: -25px 0;
+}
+
+.claro .dijitToolbar .bux-toolbar-dropdown-section .dijitButtonNode,
+.claro .dijitToolbar .bux-toolbar-dropdown-section .dijitDropDownButtonHover .dijitButtonNode,
+.claro .dijitToolbar .bux-toolbar-dropdown-section .dijitDropDownButtonActive .dijitButtonNode,
+.claro .dijitToolbar .bux-toolbar-dropdown-section .dijitDropDownButtonOpened .dijitButtonNode {
+	background-color: transparent;
+	border: none;
+	padding: 1px;
+	background-image: none;
+	filter: none;
+	-moz-border-radius: 10px;
+}
+
+.claro .dijitToolbar .bux-toolbar-dropdown-section .dijitButtonContents {
+	padding: 0px;
+}
+
+/* Images and icons*/
+.bux-onDemandUI-icon {
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 16px;
+	height: 16px;
+}
+
+.bux-toolbar-editcancel-icon {
+	background-image: none;
+	background-image: url(images/dialog/dialog_icon_close_strip.png);
+	background-position: 0px;
+}
+
+.bux-toolbar-autoresize {
+	background-position: 0px;
+}
+
+.bux-toolbar-delete {
+	background-position: -144px;
+}
+
+.bux-toolbar-rename {
+	background-position: -624px;
+}
+
+.bux-toolbar-edit-icon {
+	background-position: -272px;
+}
+
+.bux-toolbar-more-icon {
+	background-position: -1488px;
+}
+
+.bux-toolbar-maximize-icon {
+	background-position: -400px;
+}
+
+.bux-toolbar-listento {
+	background-position: -432px;
+}
+
+.bux-properties-icon {
+	background-position: -544px;
+}
+
+.bux-toolbar-remove {
+	background-position: -608px;
+}
+
+.bux-toolbar-restoredown-icon {
+	background-position: -656px;
+}
+
+.bux-toolbar-sendtoback {
+	background-position: -672px;
+}
+
+.dijitMenuItemDisabled .bux-toolbar-autoresize {
+	background-position: -1680px;
+}
+
+.dijitMenuItemDisabled .bux-toolbar-sendtoback {
+	background-position: -1696px;
+}
+
+.bux-toolbar-autoresize,
+.bux-toolbar-delete,
+.bux-toolbar-rename,
+.bux-toolbar-sendtoback,
+.bux-toolbar-listento,
+.bux-toolbar-remove,
+.bux-properties-icon,
+.bux-toolbar-maximize-icon,
+.bux-toolbar-restoredown-icon,
+.bux-toolbar-edit-icon,
+.bux-toolbar-more-icon {
+	background-image: none;
+	background-image: url(images/icons/on_demand_toolbar_and_context_menu_strip.png);
+}
+
+.bux-toolbar-icon {
+	background-image: none;
+	background-image: url(images/icons/undefined.png);
+}
+
+/* -- A11Y -- */
+
+.dijit_a11y .bux_bluedot_ArrowButtonChar {
+	height: 5px;
+	left: 12px;
+	position: absolute;
+	top: 8px;
+	width: 5px;
+}
+
+.dijit_a11y .bux-toolbar-tools .dijitToolbarSeparator {
+	border: 1px solid;
+	height: 25px;
+	margin: 3px;
+	width: 0;
+	padding: 0px;
+}
+
+.dijit_a11y .bux-toolbar-dropdown-section {
+	height: 25px;
+	width: 25px;
+}
+
+.dijit_a11y .bux-toolbar-tools {
+	margin-top: 0px;
+}
+
+.dijit_a11y .bux-toolbar .dijitButton,
+.dijit_a11y .bux-toolbar .dijitDropDownButton,
+.dijit_a11y .bux-toolbar .dijitComboButton {
+	margin: 0px;
+	padding: 0px;
+}
+
+.dijit_a11y .bux-toolbar-dropdown-spacer {
+	width: 30px !important;
+	height: 20px;
+}
+
+.dj_ie .dijit_a11y .bux-toolbar-tools .dijitButton,
+.dj_ie .dijit_a11y .bux-toolbar-tools .dijitDropDownButton {
+	height: auto !important;
+	vertical-align: top;
+}
+
+.dijit_a11y .bux-toolbar-tools .dijitButton button {
+	width: auto !important;
+}
+
+.dijit_a11y .bux-toolbar-tools .dijitDropDownButton button {
+	width: auto !important;
+}
+
+.dj_ie .dijit_a11y .bux-toolbar-tools .dijitButton button {
+	width: 100% !important;
+}
+
+.dj_ie .dijit_a11y .bux-toolbar-tools .dijitDropDownButton button {
+	width: 100% !important;
+}
+
+.dijit_a11y .bux-toolbar-tools-section,
+.dijit_a11y .bux-toolbar-edit-section {
+	width: 100px;
+}
+
+.dijit_a11y .bux-toolbar-edit-section-r {
+	width: auto;
+}
+
+.dijit_a11y .bux-toolbar {
+	height: 45px;
+}
+
+.dijit_a11y .bux-toolbar-inner {
+	background: white !important;
+	border: none !important;
+}
+
+.dijit_a11y .bux-toolbar,
+.dijit_a11y .bux-toolbar-inner {
+	overflow: visible;
+}
+
+.dijit_a11y .bux-toolbar,
+.dijit_a11y .bux-toolbar-inner,
+.dijit_a11y .bux-toolbar-inner table,
+.dijit_a11y .bux-toolbar-inner td {
+	background-color: white !important;
+}

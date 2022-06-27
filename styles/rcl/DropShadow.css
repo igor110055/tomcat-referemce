@@ -1,0 +1,69 @@
+/*
+   The stuff below is to create dropshadows, as per the following article:
+
+   http://www.sixapart.com/pronet/articles/ydsf_-_robust_c.html
+
+	yDSF (ydnar Drop-Shadow-Fu)
+	ydnar@sixapart.com - http://www.sixapart.com
+
+	typical usage will look something like this :
+
+   <div class="ydsf centered">
+      <div class="ydsfInner fadeMessage">My Content Goes Here</div>
+   </div>
+
+*/
+
+.ydsf {
+
+	display: block;
+	position: relative;
+	margin: 4px -4px -4px 4px;
+
+   background: url(shadow-grid.gif) repeat;
+}
+
+/* ie6 ignores this selector */
+html>body .ydsf {
+	margin: 10px -10px -10px 10px;
+	background: url(shadow.png) right bottom no-repeat;
+}
+
+/* shadow corners */
+.ydsf:before,
+.ydsf:after {
+	content: " ";
+	display: block;
+	width: 10px;
+	height: 10px;
+	background: inherit;
+}
+
+.ydsf:before {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: -10px 0 0 auto;
+	background-position: right top;
+}
+
+.ydsf:after {
+	margin: -10px 0 0 -10px;
+	background-position: left bottom;
+}
+
+.ydsf .ydsfInner {
+	display: block;
+	position: relative;
+	overflow: hidden; /* prevents margin leakage from child elements */
+	left: -4px;
+	top: -4px;
+}
+
+/* ie6 ignores this selector */
+html>body .ydsf .ydsfInner {
+	left: -10px;
+	top: -10px;
+	margin: 0;
+}
+

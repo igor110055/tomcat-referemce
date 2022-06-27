@@ -1,0 +1,33 @@
+
+div.searchAndSelectWidget td.labelArea {
+   vertical-align:top;
+   text-align:right;
+   width:140px;
+}
+
+div.searchAndSelectWidget td.inputArea {
+   vertical-align:top;
+   text-align:right;
+   width:120px;
+}
+
+div.searchAndSelectWidget td.buttons {
+   vertical-align:top;
+   text-align:right;
+   width:30px;
+}
+
+div.searchAndSelectWidget td.selectedValues {
+   width:250px;
+}
+
+div.searchAndSelectWidget td.selectedValues select {
+   width:100%;
+}
+
+
+select {
+   font-family:Verdana, Helvetica, sans-serif;
+   font-size:11px;
+   margin: 0px;
+}

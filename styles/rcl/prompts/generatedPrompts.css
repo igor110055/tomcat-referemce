@@ -1,0 +1,30 @@
+div.promptContainer {
+   float: left;
+   border: 1px solid #CCCCCC;
+   padding: 10px;
+   margin-right: 10px;
+}
+
+div.promptRowSpacerDiv {
+   clear: both;
+}
+
+div.multipleRawValuesPrompt {
+}
+
+div.multipleRawValuesPrompt div.column {
+   float: left;
+   margin-right: 10px;
+}
+
+div.multipleRawValuesPrompt input {
+   width: 80px;
+}
+
+div.multipleRawValuesPrompt select {
+   width: 130px;
+}
+
+div.chooseDistinctValuesPrompt select {
+   width: 180px;
+}

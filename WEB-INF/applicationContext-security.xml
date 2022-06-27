@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security-5.2.xsd">
+
+    <!--NEW HOTNESS-->
+    <security:http pattern="/" security="none"/>
+    <security:http use-expressions="true" auto-config="false">
+        <security:intercept-url pattern="/**" access="hasAuthority('Cognos:Everyone')" requires-channel="${rcl.http.channel}"/>
+        <security:form-login login-page="/actions/loginPromptAction.do"
+                             authentication-failure-url="/actions/loginPromptAction.do?error=true"
+                             login-processing-url="/j_security_check"
+                             authentication-details-source-ref="authenticationDetailsSource"
+                             always-use-default-target="false"
+                             authentication-success-handler-ref="successHandler"/>
+        <security:csrf disabled="true"/>
+        <security:custom-filter ref="lazyUserCreationFilter" after="FORM_LOGIN_FILTER" />
+        <security:port-mappings>
+            <security:port-mapping http="#{8080 + (@portprofile * 100)}"
+                                   https="#{8443 + (@portprofile * 100)}"/>
+        </security:port-mappings>
+
+        <security:headers>
+            <security:frame-options policy="SAMEORIGIN"/>
+        </security:headers>
+    </security:http>
+
+
+    <!--Defining a constant this way is a bit hacky.  Ideally we'd be able to read from the port profile property
+    directly into the spring expression above.  However, this syntax systemProperties['rcl.port.profile'] returns
+    null.  Essentially the SpEL expression systemProperties['rcl.port.profile'] should be equivalent to ${rcl.port.profile}
+    -->
+    <bean id="portprofile" class="java.lang.Integer">
+        <constructor-arg value="${rcl.port.profile}"/>
+    </bean>
+
+    <bean id="grantedAuthorityDefaults" class="org.springframework.security.config.core.GrantedAuthorityDefaults">
+        <constructor-arg value="" />
+    </bean>
+
+    <!--Responsible for creating users in the database if they have not already been created-->
+    <bean id="lazyUserCreationFilter" class="com.focus.rcl.security.LazyUserCreationFilter"/>
+
+    <!--Allows URLs with deplink=true parameter to skip the default-target-url -->
+    <bean id="successHandler" class="com.focus.rcl.security.DeepLinkSuccessHandler">
+        <property name="defaultTargetUrl" value="/secure/actions/enterApplication.do"/>
+    </bean>
+
+    <bean id="authenticationDetailsSource" class="com.focus.rcl.security.RclAuthenticationDetailsSource"/>
+    <bean id="userDetailsService" class="com.focus.rcl.security.CognosUserAuthorizationService">
+    </bean>
+
+    <bean id="cognosAuthenticationProvider" class="com.focus.rcl.security.CognosAuthenticationProvider">
+    </bean>
+
+
+    <security:authentication-manager alias="springAuthenticationManager">
+        <security:authentication-provider ref="cognosAuthenticationProvider"/>
+    </security:authentication-manager>
+
+</beans>

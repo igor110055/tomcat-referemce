@@ -1,0 +1,66 @@
+/*
+	Licensed Materials - Property of IBM
+	IBM Cognos Products: ans
+	(C) Copyright IBM Corp. 2005, 2010
+	US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+
+#xtab_corner_div, 
+#xtab_rows_div,
+#xtab_cols_div,
+{
+	position:absolute;
+	overflow:hidden;
+	width:0px;
+	height: 0px;
+	left:0px;
+	top:0px;
+	padding:0px;
+	margin:0px;
+/*	background-color:Red;*/
+}
+
+.labelsDiv
+{
+	left: 0px;
+	overflow: hidden;
+	width: 0px;
+	position: absolute;
+	top: 0px;
+	height: 0px;
+}
+
+.cellsDiv
+{
+	position:absolute;
+	overflow:auto;
+	top:0px;
+	left:0px;
+	width:0px;
+	height:0px;	
+	padding:0px;
+	margin:0px;
+	/*border:solid 1px purple;*/
+}
+
+.labelsDiv TABLE, .cellsDiv TABLE
+{
+	table-layout:fixed;
+	padding: 0px;
+	margin: 0px;
+}
+
+.chicklets_table
+{
+	table-layout: fixed;
+	border-collapse:collapse;
+	padding:0px;
+}
+
+.chicklets_td 
+{
+	padding: 0px 0px 0px 0px;
+	overflow:hidden;
+	
+}
+

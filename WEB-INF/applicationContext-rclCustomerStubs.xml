@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+   This file contains hooks for things that will be provided by
+   customer projects.   Most of the items here are just set to
+   dummy default values, but its expected that each customer project
+   would have their own version of this file where they could plug in,
+   for example, a list of additional HBM files or additional monitor
+   function contributors
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+        http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.5.0.xsd
+">
+
+   <!--
+   This is a placeholder for derived projects to inject
+   their hbm files into the rclSessionFactory
+   -->
+   <bean id="rclAdditionalHbmFiles" class="java.util.ArrayList">
+      <constructor-arg>
+         <list>
+            <value>com/focus/rclcustomer/core/SampleDomainClass.hbm.xml</value>
+         </list>
+      </constructor-arg>
+   </bean>
+
+   <!--
+   derived projects can override this bean definition with a subclass...
+   -->
+   <bean id="rclAuditInterceptor" class="com.focus.rcl.base.hibernate.AuditInterceptor"/>
+
+   <!--
+   derived projects may want to add additonal LinkBuilderFactories.  In case of multiple
+   factories which handle the same rel, the last factory in the List has the highest
+   precedence.
+   -->
+   <util:list id="rclAdditionalLinkBuilderFactories">
+   </util:list>
+
+
+   <!--
+   This is a placeholder for derived projects to inject additional "rel" to "path" mappings
+   -->
+   <util:map id="rclAdditionalRelToPathMappings" map-class="java.util.HashMap">
+   </util:map>
+
+
+   <!--
+   This is a placeholder for derived projects to use their own rclCustomerEnvironment
+   implementation (determines things like mapping between user and organization)
+   -->
+   <bean id="rclCustomerEnvironment" class="com.focus.rclcustomer.core.RclCustomerEnvironment">
+   </bean>
+
+
+   <!--
+   This is a placeholder for derived projects to add additional monitor contributors...
+   -->
+   <bean id="rclAdditionalMonitorContributors" class="java.util.ArrayList">
+   </bean>
+
+   <!--
+   The admin proxy scheduler owner strategy is only viable if the security store supports it
+   This essentially means you can only use it if you have a CAP or TSP that can be modified to support this
+   -->
+   <!--<bean id="scheduleOwnerStrat" class="com.focus.rcl.scheduler.AdminProxyScheduleOwnerStrategy"/>-->
+
+   <!--  NullScheduleOwnerStrat will login with the user who created the schedule  -->
+   <bean id="scheduleOwnerStrat" class="com.focus.rcl.scheduler.NullScheduleOwnerStrategy"/>
+
+
+   <!-- =================================================================================== -->
+   <!--    EXAMPLE of CUSTOMER SPECIFIC Report Service Queues & Corresponding Containers    -->
+   <!--                                                                                     -->
+   <!-- =================================================================================== -->
+
+   <!--
+        NOTE: Reports may be routed to a specific queue via the following OPTIONAL entry
+        in the provisioner XML.   If this entry is not present, then RERs for a report
+        just go to the default queues for each phase.   Note that the referenced queue
+        name in the provisioner is just the simple name (e.g. "heavy" rather than
+        "reportService.execute.queue.heavy"):
+
+
+           <report>
+              <name>Inventory</name>
+              <searchPath>/content/folder[@name='Samples']/folder[@name='ADF Samples']/report[@name='Inventory']</searchPath>
+
+              <routing>
+                 <preExecute name="heavy"/>
+                 <execute name="heavy"/>
+                 <download name="heavy"/>
+                 <postExecute name="heavy"/>
+              </routing>
+           </report>
+
+         In this example, we've defined a separate "heavy" queue for each phase, and set the
+         max concurrent processors of that heavy queue to 1.  We could have just done this for
+         the execute queue (as its the one that tends to backup), but for illustrative purposes
+         we have done this for all four phases, below :
+    -->
+
+   <!-- Sample Shown Below - Uncomment to Use -->
+
+
+   <!-- define a "heavy" queue for each phase of the RS Pipeline -->
+   <!--
+   <amq:queue id="reportService.preExecute.queue.heavy" physicalName="reportService.preExecute.queue.heavy"/>
+   <amq:queue id="reportService.execute.queue.heavy" physicalName="reportService.execute.queue.heavy"/>
+   <amq:queue id="reportService.download.queue.heavy" physicalName="reportService.download.queue.heavy"/>
+   <amq:queue id="reportService.postExecute.queue.heavy" physicalName="reportService.postExecute.queue.heavy"/>
+   -->
+
+   <!-- define a container which processes the "heavy" queue for each phase of the RS Pipeline,  -->
+   <!--
+   <bean id="reportService.preExecute.container.heavy"
+         class="org.springframework.jms.listener.DefaultMessageListenerContainer"
+         parent="reportService.container.defaults">
+      <property name="destination" ref="reportService.preExecute.queue.heavy"/>
+      <property name="messageListener" ref="preExecuteMessageListener"/>
+      <property name="taskExecutor">
+         <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+            <property name="daemon" value="true"/>
+            <property name="keepAliveSeconds" value="180"/>
+            <property name="threadNamePrefix" value="adf.preExecute.heavy-"/>
+            <property name="corePoolSize" value="1"/>
+            <property name="maxPoolSize" value="1"/>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="reportService.execute.container.heavy"
+         class="org.springframework.jms.listener.DefaultMessageListenerContainer"
+         parent="reportService.container.defaults">
+      <property name="destination" ref="reportService.execute.queue.heavy"/>
+      <property name="messageListener" ref="executeMessageListener"/>
+      <property name="taskExecutor">
+         <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+            <property name="daemon" value="true"/>
+            <property name="keepAliveSeconds" value="180"/>
+            <property name="threadNamePrefix" value="adf.execute.heavy-"/>
+            <property name="corePoolSize" value="1"/>
+            <property name="maxPoolSize" value="1"/>
+         </bean>
+      </property>
+
+   </bean>
+
+
+   <bean id="reportService.download.container.heavy"
+         class="org.springframework.jms.listener.DefaultMessageListenerContainer"
+         parent="reportService.container.defaults">
+      <property name="destination" ref="reportService.download.queue.heavy"/>
+      <property name="messageListener" ref="downloadMessageListener"/>
+      <property name="taskExecutor">
+         <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+            <property name="daemon" value="true"/>
+            <property name="keepAliveSeconds" value="180"/>
+            <property name="threadNamePrefix" value="adf.download.heavy-"/>
+            <property name="corePoolSize" value="1"/>
+            <property name="maxPoolSize" value="1"/>
+         </bean>
+      </property>
+   </bean>
+
+   <bean id="reportService.postExecute.container.heavy"
+         class="org.springframework.jms.listener.DefaultMessageListenerContainer"
+         parent="reportService.container.defaults">
+      <property name="destination" ref="reportService.postExecute.queue.heavy"/>
+      <property name="messageListener" ref="postExecuteMessageListener"/>
+      <property name="taskExecutor">
+         <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+            <property name="daemon" value="true"/>
+            <property name="keepAliveSeconds" value="180"/>
+            <property name="threadNamePrefix" value="adf.postExecute.heavy-"/>
+            <property name="corePoolSize" value="1"/>
+            <property name="maxPoolSize" value="1"/>
+         </bean>
+      </property>
+   </bean>
+   -->
+
+</beans>

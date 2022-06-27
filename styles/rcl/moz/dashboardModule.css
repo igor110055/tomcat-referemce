@@ -1,0 +1,53 @@
+form {
+   background-color: #BBD8FF;
+   padding-bottom: 0px;
+   margin-bottom: 2px; /*vertical-align:baseline;*/
+/*height:15px;*/
+}
+
+.dashboardBody {
+   padding: 0px;
+   margin: 0px;
+   height: 100%;
+}
+
+.menuBar {
+   overflow: hidden;
+   padding: 0px;
+   margin: 0px;
+   width: 100%; /*background-color:#4A7DAD;*/
+   font-weight: bold;
+}
+
+.menuBarText {
+   float: right;
+   padding-right: 7px;
+}
+
+.editBar {
+   overflow: hidden;
+   padding: 0px;
+   margin: 0px;
+   width: 100%;
+   background-color: white;
+   font-weight: bold;
+   border-right: 1px solid #BBD8FF;
+   border-left: 1px solid #BBD8FF;
+}
+
+a.editLink {
+   cursor: pointer;
+   text-decoration: underline; /*color:darkgray;*/
+}
+
+fieldset.tall {
+   height: 100%;
+   padding-top: 0px;
+   margin-bottom: 1px;
+   border:0px;
+}
+
+.resizeImage {
+   float: right;
+   cursor: pointer;
+}

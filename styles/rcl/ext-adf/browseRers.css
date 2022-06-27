@@ -1,0 +1,21 @@
+span.rerFailed {
+   font-style:italic;
+   color:red;
+}
+
+span.rerCancelled {
+   font-style:italic;
+   color:gray;
+}
+
+
+span.rerInProgress {
+   font-style:italic;
+   color:blue;
+}
+
+
+span.rerFinished {
+   font-weight:normal;
+   color:green;
+}

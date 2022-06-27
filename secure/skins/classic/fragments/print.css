@@ -1,0 +1,21 @@
+
+
+
+/********************************
+*  Licensed Materials - Property of IBM
+*    
+*  IBM Cognos Products: cpscrn
+*   
+*  (C) Copyright IBM Corp. 2005, 2012
+*  
+*  US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.  
+********************************/
+#header {
+	display: none;
+}
+.cogstyle-portlet-actions {
+	display: none;
+}
+.cogstyle-header-right-section-container {
+	display: none;
+}

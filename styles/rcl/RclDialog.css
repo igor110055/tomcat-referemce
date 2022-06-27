@@ -1,0 +1,70 @@
+div.dialogTitle {
+   background-color:ButtonFace;
+   color: ButtonText;
+   font-weight:bold;
+   width:100%;
+}
+
+
+
+div.rclDialogDiv {
+   /*position:absolute;*/
+   top: 10%;
+   left: 10%;
+
+   /*padding : 3px;*/
+   /*background-color: ThreeDFace;*/
+
+   /*border-style: solid;*/
+   /*border-width: 2px;*/
+   /*border-color: ThreeDHighlight ThreeDDarkShadow ThreeDDarkShadow ThreeDHighlight;*/
+
+   /*this will make sure the dialog displays on top*/
+   z-index: 1500;
+}
+
+div.rcl_filterReportOutputs {
+   height: 366px;
+   width: 740px;
+}
+
+div.rcl_filterIncidents {
+   height: 366px;
+   width: 740px;
+}
+
+div.rcl_fileChooser {
+   height: 366px;
+   width: 740px;
+}
+
+div.rcl_fileChooser iframe {
+   height: 366px;
+   width: 734px;
+}
+
+
+div.rcl_folderChooser {
+   height: 366px;
+   width: 500px;
+}
+
+div.rcl_folderChooser iframe {
+   height: 366px;
+   width: 494px;
+}
+
+div.rcl_folderWithInputChooser {
+   height: 400px;
+   width: 500px;
+}
+
+div.rcl_folderWithInputChooser iframe {
+   height: 400px;
+   width: 494px;
+}
+
+div.rcl_permissionsChooser iframe {
+   height: 239px;
+   width: 590px;
+}

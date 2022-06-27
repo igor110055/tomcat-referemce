@@ -1,0 +1,175 @@
+/*
+ *+------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| IBM Cognos Products: BUX
+ *| (C) Copyright IBM Corp. 2009, 2017
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *+------------------------------------------------------------------------+
+ */
+/* This is a generated file, do not edit */
+.icdUI .dojoxExpandoTitle {
+	display: none;
+}
+
+.icdUI .icdSplitter-left,.icdUI .icdSplitter-right,.icdUI .icdSplitter-top,.icdUI .icdSplitter-bottom {
+	z-index: 439; /*Just below the content pane, but above any widget toolbars*/
+}
+
+.icdUI .dijitSplitterV .dijitSplitterThumb {
+	left: 0;
+	width: 5px;
+	height: 51px !important;
+	background-image: none;
+	background-image: url(images/collapsablepane/border_button.png);
+}
+
+.icdUI .icdSplitter-left .icdSplitterOpen,.icdUI .icdSplitter-right .icdSplitterClose {
+	background-position: 0 0 !important;
+}
+
+.icdUI .icdSplitter-left .icdSplitterOpen:hover,.icdUI .icdSplitter-right .icdSplitterClose:hover {
+	background-position: -6px 0 !important;
+}
+
+.icdUI .icdSplitter-left .icdSplitterClose,.icdUI .icdSplitter-right .icdSplitterOpen {
+	background-position: -12px 0 !important;
+}
+
+.icdUI .icdSplitter-left .icdSplitterClose:hover,.icdUI .icdSplitter-right .icdSplitterOpen:hover {
+	background-position: -18px 0 !important;
+}
+
+.icdUI .dijitSplitterH .dijitSplitterThumb {
+	top: 0;
+	height: 5px;
+	width: 51px !important;
+	background-image: none;
+	background-image: url(images/collapsablepane/border_button.png);
+}
+
+.icdUI .icdSplitter-top .icdSplitterOpen,.icdUI .icdSplitter-bottom .icdSplitterClose {
+	background-position: 0 -51px !important;
+}
+
+.icdUI .icdSplitter-top .icdSplitterOpen:hover,.icdUI .icdSplitter-bottom .icdSplitterClose:hover {
+	background-position: 0 -57px !important;
+}
+
+.icdUI .icdSplitter-top .icdSplitterClose,.icdUI .icdSplitter-bottom .icdSplitterOpen {
+	background-position: 0 -63px !important;
+}
+
+.icdUI .icdSplitter-top .icdSplitterClose:hover,.icdUI .icdSplitter-bottom .icdSplitterOpen:hover {
+	background-position: 0 -69px !important;
+}
+
+.icdSplitter-left .dijitSplitterThumb,.icdSplitter-right .dijitSplitterThumb,.icdSplitter-bottom .dijitSplitterThumb,.icdSplitter-top .dijitSplitterThumb {
+	cursor: pointer !important;
+}
+
+.icdUI .dijitSplitterV,.icdUI .dijitSplitterVHover,.icdUI .dijitSplitterH,.icdUI .dijitSplitterHHover {
+	background-image: none !important;
+	background-color: #ffffff;
+	-moz-box-shadow: 0 0 11px #CECECE;
+}
+
+.icdUI .dijitSplitterV,.icdUI .dijitSplitterVHover {
+	border-left: 1px solid #cccccc;
+}
+
+.icdUI .icdSplitter-left {
+	border-right: 1px solid #cccccc !important;
+	border-left: none !important;
+	width: 5px !important;
+}
+
+.icdUI .icdSplitter-left {
+	background-position: -2px 0 !important;
+}
+
+.icdUI .dijitSplitterH,.icdUI .dijitSplitterHHover {
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	height: 6px;
+}
+
+.icdUI .icdSplitterCloseH,.icdUI .icdSplitterCloseV {
+	cursor: default;
+}
+
+.icdUI .dijitSplitter .icdSplitterMobileTouchZone {
+	background-color: transparent;
+	background-image: none;
+}
+
+.icdUI .dijitSplitterV .icdSplitterMobileTouchZone {
+	width: 30px;
+}
+
+.icdUI .dijitSplitterH .icdSplitterMobileTouchZone {
+	height: 30px;
+}
+
+.icdUI .icdSplitterOpenV.icdSplitterMobile .icdSplitterMobileTouchZone {
+	left: -13px;
+}
+
+.icdUI .icdSplitter-right.icdSplitterCloseV.icdSplitterMobile .icdSplitterMobileTouchZone {
+	left: -25px;
+}
+
+.icdUI .icdSplitterOpenH.icdSplitterMobile .icdSplitterMobileTouchZone {
+	top: -13px;
+}
+
+.icdUI .icdSplitter-bottom.icdSplitterCloseH.icdSplitterMobile .icdSplitterMobileTouchZone {
+	top: -25px;
+}
+
+/* -- A11Y -- */
+
+.icdSplitterOpenA11yArrowH,
+.icdSplitterCloseA11yArrowH,
+.icdSplitterOpenA11yArrowV,
+.icdSplitterCloseA11yArrowV {
+	display: none;
+	position: absolute;
+}
+
+.icdSplitterOpenA11yArrowH,
+.icdSplitterCloseA11yArrowH {
+	left: 50%;
+	top: -5px;
+}
+
+.icdSplitterOpenA11yArrowV,
+.icdSplitterCloseA11yArrowV {
+	top: 50%;
+	left: -3px;
+}
+
+.dijit_a11y .dijitSplitterH .icdSplitterOpen .icdSplitterOpenA11yArrowH,
+.dijit_a11y .dijitSplitterH .icdSplitterClose .icdSplitterCloseA11yArrowH,
+.dijit_a11y .dijitSplitterV .icdSplitterOpen .icdSplitterOpenA11yArrowV,
+.dijit_a11y .dijitSplitterV .icdSplitterClose .icdSplitterCloseA11yArrowV {
+	display: block !important;
+}
+
+.dijit_a11y .dijitSplitterV,
+.dijit_a11y .dijitGutterV,
+.dijit_a11y .dijitSplitterV .dijitSplitterThumb {
+	width: 18px !important;
+}
+
+.dijit_a11y .dijitSplitterH,
+.dijit_a11y .dijitGutterH,
+.dijit_a11y .dijitSplitterH .dijitSplitterThumb {
+	height: 18px !important;
+}
+
+.dijit_a11y .dijitSplitterVHover,
+.dijit_a11y .dijitSplitterHHover {
+	font-size: 100% !important;
+}

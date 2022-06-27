@@ -1,0 +1,64 @@
+/* overrides */
+div.tree img
+{
+   margin: 0px 3px 0px 1px;
+}
+
+
+#lhsDiv {
+   width:45%;
+   float:left;
+   border:0px solid red;
+}
+
+#rhsDiv {
+   width:53%;
+   float:left;
+   border:0px solid blue;
+   height:500px;
+}
+
+#centerButtons {
+   float:left;
+   padding:194px 10px 0px 10px;
+}
+
+#availableCalculatedColumnsContainer {
+   float:left;
+   margin-bottom:30px;
+}
+
+#activeCalculationContainer {
+   float:left;
+   width: 86%;
+   display:none;
+}
+
+#rhsDiv select  {
+   width:100%;
+}
+
+#calculatedColumnExpression {
+   width:100%;
+   height:200px;
+}
+
+
+
+div.lhsTreeContainer {
+   overflow:auto;
+   height:420px;
+   width:100%;
+   border: 1px solid #AAAAAA;
+}
+
+#mdTreeContainer {
+}
+
+#currentColumnsContainer {
+}
+
+#functionMdContainer  {
+}
+
+

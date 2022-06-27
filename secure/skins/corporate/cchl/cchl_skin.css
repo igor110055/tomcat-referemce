@@ -1,0 +1,1119 @@
+
+
+INPUT.clsCCHLNumericRange { 
+    text-align: right;
+    border: 1px solid #E7E7E7;
+    width: 100%;
+    height: 19px;
+    vertical-align: top;
+    }
+.clsCCHLcctable { 
+    border-right: 1px #999 solid;
+    border-top: 1px black solid;
+    border-left: 1px black solid;
+    border-bottom: 1px #999 solid;
+    background-color: white;
+    }
+.clsCCHLtableHeader { 
+    width: 18px;
+    background-color: #E7E7E7;
+    }
+DIV.clsCCHLWebSafeColor { 
+    cursor: default;
+    margin: 2px;
+    border: 1px solid gray;
+    width: 14px;
+    height: 14px;
+    font-size: 2pt;
+    }
+DIV.clsCCHLBorderPreviewLine { 
+    background-color: silver;
+    margin-bottom: 3px;
+    line-height: 3px;
+    }
+IMG.clsCCHLAbout { 
+    width: 650px;
+    height: 522px;
+    }
+INPUT.clsCCHLNumeric { 
+    text-align: right;
+    }
+.clsCCHLPromptComponent { 
+    display: inline;
+    visibility: visible;
+    clear: none;
+    }
+.clsCCHLDisplayInline { 
+    display: inline;
+    }
+.clsCCHLApplicationTitle { 
+    font-size: 90%;
+    color: black;
+    font-weight: bold;
+    }
+.clsCCHLDocumentTitle { 
+    font-size: 90%;
+    color: black;
+    font-weight: normal;
+    }
+.clsCCHLSecondaryTitle { 
+    font-size: 90%;
+    color: #369;
+    font-weight: bold;
+    }
+.clsCCHLMenuTitle { 
+    font-size: 70%;
+    color: #369;
+    font-weight: bold;
+    }
+.clsCCHLLink { 
+    font-size: 70%;
+    color: #00C;
+    font-weight: normal;
+    }
+.clsCCHLHighLevelLink { 
+    font-size: 90%;
+    color: #00C;
+    font-weight: normal;
+    }
+.clsCCHLReadOnlyText { 
+    font-size: 70%;
+    color: black;
+    font-weight: normal;
+    }
+.clsCCHLControlLabel { 
+    font-size: 70%;
+    color: #369;
+    font-weight: bold;
+    }
+.clsCCHLButtonText { 
+    font-size: 90%;
+    color: black;
+    font-weight: normal;
+    text-decoration: none;
+    }
+.clsCCHLFieldSet { 
+    border: none;
+    text-align: left;
+    display: inline;
+    vertical-align: top;
+    padding: 0;
+    }
+.clsCCHLDialogButton { 
+    height: 22px;
+    border: 1px solid #999;
+    cursor: pointer;
+    }
+.clsCCHLDialogButton:hover { 
+    border: 1px solid #369;
+    background-color: #E3E9F3;
+    }
+.clsCCHLToolbarButton { 
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    padding: 2px;
+    }
+.clsCCHLToolbarButton_hover { 
+    border: 1px solid #cccccc;
+    background-color: #cccccc;
+    padding: 2px;
+    }
+.clsCCHLToolbarButton_active { 
+    border: 1px solid #cccccc;
+    background-color: #eeeeee;
+    padding: 2px;
+    }
+.clsCCHLBottomBar { 
+    border-top: 1px solid #999;
+    margin: 0;
+    padding: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: right;
+    }
+.clsCCHLInsertRemoveButton { 
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    padding: 2px;
+    width: 100%;
+    overflow: visible;
+    background-color: white;
+    border: solid 1px #999;
+    white-space: nowrap;
+    }
+.clsCCHLInsertRemoveButton[disabled] { 
+    color: #CCC;
+    text-decoration: none;
+    text-align: center;
+    padding: 2px;
+    width: 100%;
+    overflow: visible;
+    background-color: white;
+    border: 1px solid #999;
+    white-space: nowrap;
+    }
+.clsCCHLInsertRemoveButtonOver { 
+    color: black;
+    background-color: #E3E9F3;
+    text-decoration: none;
+    text-align: center;
+    padding: 2px;
+    width: 100%;
+    overflow: visible;
+    border: 1px solid #999;
+    white-space: nowrap;
+    }
+.clsCCHLChoicesHeader { 
+    color: #369;
+    font-size: 10pt;
+    }
+.clsCCHLChoicesListbox { 
+    min-width: 200px;
+    margin-top: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    }
+.clsCCHLFeedbackWidget { 
+    margin-top: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 0;
+    border-width: 0;
+    border-top-style: solid;
+    border-color: white;
+    padding-top: 2px;
+    }
+.clsCCHLFeedbackWidgetParseError { 
+    margin-top: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 0;
+    border-width: 2px;
+    border-top-color: #F60;
+    border-top-style: dashed;
+    padding-top: 0;
+    }
+.clsCCHLFeedbackWidgetParseErrorArrowLeft { 
+    margin: 0;
+    border-width: 2px;
+    border-top-color: #F60;
+    border-top-style: dashed;
+    padding-top: 0;
+    }
+.clsCCHLFeedbackSpacer { 
+    width: 100%;
+    min-width: 200px;
+    }
+.clsCCHLTextWidget { 
+    width: 145px;
+    }
+.clsCCHLTextWidgetParseError { 
+    border-bottom-width: 2px;
+    border-bottom-color: #F60;
+    border-bottom-style: dashed;
+    }
+.clsPromptInvalidMessageContainer { 
+    background: #fff;
+    border: 1px solid #f00;
+    padding-left: 2px;
+    }
+.clsPromptInvalidMessage { 
+    font-size: 8pt;
+    color: #f00;
+    line-height: 8pt;
+    }
+.clsCCHLCheckBoxList { 
+    overflow: auto;
+    border: 2px inset threedhighlight;
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-bottom: 2px;
+    margin: 0;
+    min-width: 200px;
+    max-height: 165px;
+    }
+.clsCCHLRadioGroupList { 
+    overflow: auto;
+    border: 2px inset threedhighlight;
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-bottom: 2px;
+    margin: 0;
+    min-width: 200px;
+    max-height: 165px;
+    }
+.clsCCHLAlignRight { 
+    text-align: right;
+    }
+.clsCCHLListControl { 
+    min-width: 200px;
+    }
+.clsCCHLSelectControl { 
+    min-width: 200px;
+    }
+.clsCCHLCheckBox { 
+    font-size: 70%;
+    color: black;
+    }
+.clsCCHLSelectDateCalendar { 
+    border: 1px solid #999;
+    color: black;
+    padding: 3px;
+    margin-right: 5px;
+    text-align: center;
+    vertical-align: top;
+    background-color: white;
+    height: 240px;
+    overflow: visible;
+    width: 200px;
+    }
+.clsCCHLSelectDateCalendarDialog { 
+    background-color: #ffffff;
+    color: #222222;
+    padding: 3px;
+    text-align: center;
+    vertical-align: top;
+    overflow: visible;
+    width: 210px;
+    border: 1px solid #cccccc;
+    }
+.clsCCHLSelectDateDialogTopTable { 
+    border-collapse: separate;
+    }
+.clsCCHLSelectDateYears { 
+    text-align: center;
+    background-color: #00649d;
+    color: #222222;
+    font-weight: bold;
+    }
+.clsCCHLSelectDateMonths { 
+    color: #00649d;
+    font-size: 8pt;
+    text-decoration: underline;
+    margin-top: 3px;
+    text-align: center;
+    vertical-align: bottom;
+    cursor: pointer;
+    font-weight: normal;
+    }
+.clsCCHLSelectDateMonthsSelected { 
+    color: #00649d;
+    font-size: 8pt;
+    text-decoration: underline;
+    margin-top: 3px;
+    text-align: center;
+    vertical-align: bottom;
+    cursor: pointer;
+    font-weight: bold;
+    }
+.clsCCHLSelectDateMonthsDisabled { 
+    color: #222222;
+    font-size: 8pt;
+    text-decoration: none;
+    margin-top: 3px;
+    text-align: center;
+    vertical-align: bottom;
+    cursor: default;
+    font-weight: normal;
+    }
+.clsCCHLSelectDateDaysOfWeek { 
+    background-color: #eeeeee;
+    font-size: 9pt;
+    padding: 3px;
+    color: #222222;
+    text-decoration: none;
+    text-align: center;
+    }
+.clsCCHLSelectDateDays { 
+    color: #00649d;
+    text-decoration: underline;
+    text-align: center;
+    font-size: 10pt;
+    padding: 3px;
+    cursor: pointer;
+    font-weight: normal;
+    background-color: transparent;
+    }
+.clsCCHLSelectDateDaysSelected { 
+    font-weight: bold;
+    color: #00649d;
+    background-color: #cccccc;
+    text-decoration: none;
+    font-size: 80%;
+    cursor: pointer;
+    text-align: center;
+    padding: 3px;
+    }
+.clsCCHLSelectDateDaysDisabled { 
+    color:  #222222;
+    text-decoration: none;
+    text-align: center;
+    font-size: 10pt;
+    padding: 3px;
+    cursor: default;
+    font-weight: normal;
+    background-color: #ffffff;
+    }
+.clsCCHLSelectDateEditBox { 
+    padding: 0;
+    padding-left: 5px;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 5px;
+    width: 140px;
+    }
+.clsCCHLSelectDateEditBoxParseError { 
+    padding: 0;
+    padding-left: 5px;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 5px;
+    border-bottom-color: #F60;
+    border-bottom-style: dashed;
+    width: 140px;
+    }
+.clsCCHLSelectDateYearEditBox { 
+    width: 100px;
+    font-size: 13px;
+    text-align: center;
+    font-weight: bold;
+    }
+.clsCCHLSelectDateYearEditBoxParseError { 
+    text-align: center;
+    border-bottom-color: #F60;
+    border-bottom-style: dashed;
+    font-weight: bold;
+    }
+.clsCCHLSelectTimeEditBox { 
+    border: 1px solid #999999;
+    margin: 0;
+    padding: 0;
+    margin-right: 5px;
+    overflow: visible;
+    overflow-x: visible;
+    background-color: #ffffff;
+    width: 140px;
+    }
+.clsCCHLSelectTimeEditBoxExtend { 
+    margin: 0;
+    padding: 0;
+    margin-right: 5px;
+    overflow: visible;
+    overflow-x: visible;
+    background-color: #ffffff;
+    width: 180px;
+    border: 1px solid #999999;
+    }
+.clsCCHLSelectTime { 
+    margin-left: 0;
+    top: 0;
+    left: 0;
+    }
+.clsCCHLSelectTimeControl { 
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    border-bottom-width: 2px;
+    border-bottom-color: white;
+    border-bottom-style: solid;
+    border: none;
+    background-image: none;
+    }
+.clsCCHLSelectTimeControlParseError { 
+    text-align: center;
+    padding: 0;
+    border: none;
+    border-bottom-width: 2px;
+    border-bottom-color: #F60;
+    border-bottom-style: dashed;
+    }
+.clsCCHLColon { 
+    font: message-box;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    vertical-align: middle;
+    background-color: #ffffff;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    }
+.clsCCHLClock { 
+    margin: 0;
+    height: 190px;
+    width: 140px;
+    position: relative;
+    }
+.clsCCHLClockBlock { 
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    width: 100%;
+    }
+.clsCCHLClockDigits { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 10px;
+    color: black;
+    }
+.clsCCHLMinuteHand { 
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    font-size: 2px;
+    background: black;
+    border: 1px solid black;
+    }
+.clsCCHLHourHand { 
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    font-size: 2px;
+    background: black;
+    border: 1px solid black;
+    }
+.clsCCHLSecondHand { 
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    font-size: 2px;
+    background: #369;
+    border: 1px solid #369;
+    }
+.clsCCHLDivClock { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    }
+.clsCCHLDivRelative { 
+    position: relative;
+    }
+.clsCCHLAngleChooser { 
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    width: 170px;
+    cursor: default;
+    }
+.clsCCHLDivAngleChooserContainer { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 170px;
+    overflow: hidden;
+    }
+.clsCCHLDivAngleHands { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: lime;
+    }
+.clsCCHLStartAngle { 
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    font-size: 2px;
+    background: black;
+    }
+.clsCCHLEndAngle { 
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    font-size: 4px;
+    background: red;
+    }
+.clsCCHLBoundingBox { 
+    background-color: #E7E7E7;
+    margin: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    }
+.clsCCHLIntervalWidgetParseError { 
+    margin-top: 5px;
+    margin-left: 0;
+    margin-right: 3px;
+    border-bottom-color: #F60;
+    border-bottom-style: dashed;
+    }
+.clsCCHLSwsEditBox { 
+    margin-right: 5px;
+    }
+.clsCCHLSwsSearchButton { 
+    padding: 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: black;
+    }
+.clsCCHLSwsOptions { 
+    margin-top: 5px;
+    color: black;
+    font-size: 10pt;
+    }
+.clsCCHLSwsResultsHeader { 
+    color: #369;
+    font-size: 10pt;
+    }
+.clsCCHLSwsChoicesHeader { 
+    color: #369;
+    font-size: 10pt;
+    }
+.clsCCHLSwsResultsListbox { 
+    width: 150px;
+    margin-top: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    min-width: 200px !important;
+    }
+.clsCCHLSwsChoicesListbox { 
+    width: 150px;
+    margin-top: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    min-width: 200px !important;
+    }
+.clsCCHLSwsResultsListboxSingle { 
+    width: 230px;
+    margin-top: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    min-width: 230px !important;
+    }
+.clsCCHLOptions { 
+    cursor: pointer;
+    vertical-align: bottom;
+    width: 240px;
+    padding: 0;
+    }
+.clsCCHLDialogTitle { 
+    font-size: 90%;
+    font-weight: bold;
+    color: #369;
+    }
+.clsCCHLDialogHeaderBorder { 
+    background-color: #369;
+    }
+.clsCCHLDialogIntroduction { 
+    font-size: 70%;
+    color: #369;
+    }
+.clsCCHLDialogSeperator { 
+    background-color: #999;
+    }
+.clsCCHLDialogFooterButtons { 
+    background-color: #999;
+    }
+.clsCCHLFormLabel { 
+    font-size: 70%;
+    font-weight: bold;
+    color: #369;
+    }
+.clsCCHLButton { 
+    font-size: 70%;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%;
+    height: 18px;
+    padding-top: 2px;
+    }
+.clsCCHLButtonLeftRightPadding { 
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+.clsCCHLButton:hover { 
+    background-color: #E3E9F3;
+    }
+.clsCCHLPromptButton { 
+    font-size: 90%;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    width: auto;
+    height: 26px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-right: 7px;
+    background-color: white;
+    border: 1px solid #999;
+    cursor: pointer;
+    }
+.clsCCHLPromptButtonOver { 
+    font-size: 90%;
+    color: black;
+    background-color: #E3E9F3;
+    text-decoration: none;
+    text-align: center;
+    width: auto;
+    height: 26px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-right: 7px;
+    border: 1px solid #999;
+    cursor: pointer;
+    }
+.clsCCHLPromptButton[disabled] { 
+    font-size: 90%;
+    color: #CCC;
+    text-decoration: none;
+    text-align: center;
+    width: auto;
+    height: 26px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-right: 7px;
+    background-color: white;
+    border: 1px solid #CCC;
+    cursor: default;
+    }
+.clsCCHLTableLink { 
+    font-size: 70%;
+    color: #369;
+    text-decoration: underline;
+    }
+.clsCCHLTableText { 
+    font-size: 70%;
+    color: #369;
+    }
+.clsCCHLTableItemCount { 
+    font-size: 70%;
+    font-weight: normal;
+    color: black;
+    }
+.clsCCHLTableSortTitle { 
+    text-decoration: none;
+    font-weight: bold;
+    color: #369;
+    }
+.clsCCHLTableTitle { 
+    font-size: 70%;
+    font-weight: bold;
+    color: #369;
+    }
+.clsCCHLTableOutline { 
+    background-color: black;
+    }
+.clsCCHLTableBody { 
+    background-color: white;
+    }
+.clsCCHLTableOutlineIE { 
+    border: 1px solid;
+    border-color: black #999 #999 black;
+    }
+.clsCCHLTableOutline1 { 
+    background-color: black;
+    }
+.clsCCHLTableOutline2 { 
+    background-color: #999;
+    }
+.clsCCHLTableOutline3 { 
+    background-color: #999;
+    }
+.clsCCHLTreePane { 
+    height: 400px;
+    width: 300px;
+    overflow: auto;
+    border: 1px solid black;
+    padding: 5px;
+    }
+.clsCCHLTreeNode_unselected { 
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: black;
+    vertical-align: middle;
+    }
+.clsCCHLTreeNode_partial { 
+    cursor: pointer;
+    background-color: #E3E9F3;
+    margin: 0;
+    padding: 0;
+    color: black;
+    vertical-align: middle;
+    }
+.clsCCHLTreeNode_selected { 
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+    vertical-align: middle;
+    }
+.clsCCHLTreeNode_hover { 
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    color: black;
+    background-color: #BEC8DC;
+    vertical-align: middle;
+    }
+.clsCCHLTreeLevel { 
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    }
+.clsCCHLTreeLabel { 
+    cursor: pointer;
+    }
+.clsCCHLTreeText { 
+    padding: 0 1px 0 3px;
+    font-size: 70%;
+    vertical-align: middle;
+    }
+.noLink { 
+    text-decoration: none;
+    color: black;
+    font-weight: normal;
+    }
+SPAN.clsCCHLTreeNode_selected A.noLink { 
+    color: white;
+    }
+.clsCCHLErrorRequired { 
+    margin-right: 2px;
+    }
+.clsCCHLCPCell { 
+    border: 1px solid #CCC;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    cursor: pointer;
+    }
+.clsCCHLCPCell_hover { 
+    border: 1px solid #369;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    cursor: pointer;
+    }
+.clsCCHLCPCell_active { 
+    border: 1px solid #369;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    }
+.clsCCHLCPCellLabel { 
+    padding-left: 10px;
+    padding-right: 40px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    }
+.clsCCHLCPCustomTB { 
+    padding-left: 5px;
+    padding-right: 5px;
+    }
+.clsCCHLCPPreview { 
+    height: 177px;
+    width: 240px;
+    background-color: #E7E7E7;
+    border: 1px solid;
+    border-color: #CCC;
+    }
+.clsCCHLCPPreviewSwatch { 
+    height: 110px;
+    width: 145px;
+    cursor: pointer;
+    }
+.clsCCHLCPButton { 
+    height: 22px;
+    width: 29px;
+    background-color: white;
+    border: 1px solid #CCC;
+    margin-right: 3px;
+    cursor: pointer;
+    }
+.clsCCHLCPButtonOver { 
+    height: 22px;
+    width: 29px;
+    background-color: #E3E9F3;
+    border: 1px solid #369;
+    margin-right: 3px;
+    cursor: pointer;
+    }
+.clsCCHLCPLink { 
+    text-decoration: underline;
+    font-size: 70%;
+    color: #369;
+    cursor: pointer;
+    }
+.clsCCHLCPMenuContainer { 
+    background-color: white;
+    border: 1px solid #369;
+    }
+.clsCCHLCPCaptionBar { 
+    padding: 3px;
+    background-color: #E3E9F3;
+    }
+.clsCCHLCPPalette { 
+    padding: 3px;
+    }
+.clsCCHLCPItem { 
+    border: 1px solid white;
+    padding: 1px;
+    }
+.clsCCHLCPItem_hover { 
+    border: 1px solid #369;
+    background-color: #BEC8DC;
+    padding: 1px;
+    }
+.clsCCHLCPItem_active { 
+    border: 1px solid #369;
+    background-color: #E3E9F3;
+    padding: 1px;
+    }
+.clsCCHLAPButtonNormal { 
+    border: 1px solid #CCC;
+    background-color: white;
+    padding: 2px;
+    }
+.clsCCHLAPButtonOver { 
+    border: 1px solid #CCC;
+    background-color: #BEC8DC;
+    cursor: pointer;
+    padding: 2px;
+    }
+.clsCCHLAPButtonPressed { 
+    border: 1px solid #369;
+    background-color: #E3E9F3;
+    padding: 2px;
+    }
+.clsCCHLAPButtonOverPressed { 
+    border: 1px solid #369;
+    background-color: #E3E9F3;
+    padding: 2px;
+    }
+.clsCCHLAPContainer { 
+    background-color: white;
+    border: 1px solid #369;
+    }
+.clsCCHLParentDetail { 
+    display: none;
+    }
+.clsCCHLExpandCollapseHover { 
+    cursor: pointer;
+    }
+.clsCCHLParseErrorOn { 
+    border-bottom: 2px dashed #F60;
+    padding-bottom: 0;
+    }
+.clsCCHLParseErrorOff { 
+    border-bottom-width: 0;
+    padding-bottom: 2px;
+    }
+.clsCCHLPromptLink { 
+    font-size: 60%;
+    color: #00C;
+    font-weight: normal;
+    cursor: pointer;
+    text-decoration: underline;
+    }
+.clsCCHLContextBar { 
+    padding: 1px 2px 4px 5px;
+    cursor: default;
+    height: 42px;
+    overflow: hidden;
+    border: none;
+    background-color: Transparent;
+    border: 1px solid #cccccc;
+    }
+.clsCCHLContextBar TABLE { 
+    padding: 0;
+    border-style: none;
+    border-collapse: collapse;
+    white-space: nowrap;
+    margin: 0;
+    }
+.clsCCHLContextBar TBODY { 
+    padding: 0;
+    border-style: none;
+    border-collapse: collapse;
+    white-space: nowrap;
+    margin: 0;
+    }
+.clsCCHLContextBar TR { 
+    padding: 0;
+    border-style: none;
+    border-collapse: collapse;
+    white-space: nowrap;
+    margin: 0;
+    }
+.clsCCHLContextBar TD { 
+    padding: 0;
+    border-style: none;
+    border-collapse: collapse;
+    white-space: nowrap;
+    margin: 0;
+    }
+.clsCCHLContextLabel { 
+    font-family: "Helvetica Neue", Helvetica, Tahoma;
+    font-size: 80%;
+    color: #444444;
+    }
+TABLE.clsCCHLContextItem { 
+    cursor: default;
+    }
+TD.clsCCHLContextItem { 
+    padding: 2px;
+    border-color: #9AC;
+    font-family: "Helvetica Neue", Helvetica, Tahoma;
+    font-size: 70%;
+    margin: 0;
+    border: 1px solid #cccccc;
+    color: #444444;
+    background-color: #ffffff;
+    }
+TD.clsCCHLContextItem_selected { 
+    padding: 2px;
+    border-color: #9AC;
+    font-family: "Helvetica Neue", Helvetica, Tahoma;
+    font-size: 70%;
+    margin: 0;
+    border: 1px solid #cccccc;
+    color: #444444;
+    background-color: #ddf2f9;
+    }
+.clsCCHLContextItemImg { 
+    height: 24px;
+    padding: 0;
+    margin: 0;
+    width: 7px;
+    }
+.clsCCHLCaretVerticalBar { 
+    padding: 3px;
+    width: 10px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background-color: white;
+    }
+TABLE.clsCCHLContextItemSelected .clsCCHLContextItemLabel { 
+    background-color: black;
+    color: white;
+    }
+.clsCCHLScrollButton { 
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    border: 1px solid;
+    border-color: #CCC;
+    }
+.clsCCHLScrollButton_hover { 
+    background-color: #BEC8DC;
+    border: 1px solid;
+    border-color: #9AC;
+    }
+.clsCCHLScrollButton_pressed { 
+    background-color: #BEC8DC;
+    border: 1px solid;
+    border-color: #369;
+    }
+.clsCCHLScrollButtons { 
+    float: right;
+    width: 22px;
+    }
+.clsCCHLMsgDetails { 
+    overflow: auto;
+    background-color: transparent;
+    }
+DIV.clsCCHLDropRect { 
+    z-index: 98;
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 0;
+    left: 0;
+    border: 2px dashed black;
+    font-size: 2pt;
+    display: none;
+    }
+.clsPalette { 
+    width: 150px;
+    height: 150px;
+    background: url(td_images/icon_colorpicker.png) no-repeat;
+    background-position: -65px 0;
+    background-color: #F00;
+    border: 1px solid gray;
+    position: relative;
+    }
+.clsPaletteIndicator { 
+    background-image: url(td_images/icon_colorpicker.png);
+    background-position: -240px 0;
+    height: 11px;
+    width: 11px;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    position: relative;
+    }
+.clsPreviewDiv { 
+    width:100%;
+    height:20px;
+    border: 1px solid gray;
+    background-color:transparent;
+    }
+.clsHueBar { 
+    background: url(td_images/icon_colorpicker.png) no-repeat;
+    background-position: 0 0;
+    height: 150px;
+    width: 19px;
+    position: relative;
+    border: 1px solid gray;
+    }
+.clsSliderInHueBar { 
+    background: url(td_images/icon_colorpicker.png) no-repeat;
+    background-position: -24px 0px;
+    width: 37px;
+    height: 10px;
+    font-size: 6pt;
+    left: -28px;
+    position: relative;
+    }
+.clsContainerBorder { 
+    border:1px solid gray;
+    }
+.clsCustomColorBox { 
+    width:19px;
+    height:19px;
+    background-color:transparent;
+    margin: 1px;
+    }
+.clsEmptyCustomColorBox { 
+    border: 1px dotted gray;
+    }
+.customColorAddButton { 
+    position: absolute;
+    top: -25px;
+    left: 290px;
+    width: 40px;
+    height: 20px;
+    }
+.clsCCHLDropRect IMG { 
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+    opacity: 0.5;
+    }
+.clsBorderActionButton { 
+    border: 1px solid #99bbd1;
+    background-color: #d3e4ef;
+    }
+.clsPreviewAreaContainer { 
+    border: 1px solid #99bbd1;
+    }
+.clsHighContrast .clsPreviewAreaContainer { 
+    border: 1px solid #fff;
+    }
+.clsHighContrast .clsPreviewContent { 
+    border: 1px solid #fff;
+    }
+.clsHighContrast .clsPreviewBorder { 
+    position: relative;
+    }
+.clsHighContrast .clsPreviewBorderLegend { 
+    position: absolute;
+    left: 10;
+    top: -8;
+    background-color: #fff;
+    }

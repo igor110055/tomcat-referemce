@@ -1,0 +1,385 @@
+
+/*
+  Licensed Materials - Property of IBM
+  IBM Cognos Products: Viewer
+  (C) Copyright IBM Corp. 2001, 2015
+
+  US Government Users Restricted Rights - Use, duplication or
+  disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+/*General styles*/
+
+.mainViewerHeader3
+{
+	background-color: #ffffff;
+	padding-top:6px;
+}
+/*menu bar styles*/
+.menuBar
+{
+	padding: 1px;
+	background-color: #336699;
+	border-bottom: 1px solid #000066;
+}
+
+.clsMenu
+{
+	display: inline;
+	background-color: #ffffff;
+	border: 1px solid #444444;
+	position:absolute;
+	padding: 2px 2px 2px 2px;
+	overflow: visible;
+	cursor: default;
+	left: 0px;
+	top:0px;
+	margin:0px;
+}
+
+.menuTitle_normal
+{
+	background-color: #336699;
+	color:#ffffff;
+	font-weight: bold;
+}
+.menuTitle_hover
+{
+	background-color: #e8ecf4;
+	color:#000066;
+	font-weight: bold;
+}
+.menuTitle_pressed
+{
+	background-color: #e8ecf4;
+	color:#000066;
+	font-weight: bold;
+}
+.menuItem_normal
+{
+	border: transparent 1px solid;
+	color: #222222;
+	padding: 2px;
+
+	font-family: Tahoma;
+	cursor: pointer;
+	cursor: hand;
+}
+.clsMenu .menuItem_normal
+{
+	color: #222222;
+	background-color: transparent;	
+	border:none;
+}
+
+.titanui .menuItem_normal
+{
+	border: transparent 1px solid;
+	color: #222222;
+	padding: 2px;
+
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "MS UI Gothic", Gulim, SimSun, PMingLiU, Raghu8, "Arial Unicode MS", "Andale WT", sans-serif;
+    font-size: 11px;
+    height: 22px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.clsMenu .titanui.menuItem_normal
+{
+	color: #222222;
+	background-color: transparent;	
+	border:none;
+}
+
+.clsViewerMobile .clsMenuItem,
+.clsViewerMobile .clsMenuItem_selected
+{
+    height: 40px;
+    font-size: 16px;
+}
+.clsViewerMobile .clsMenuSeparatorLabel
+{
+    height: 40px;
+    font-size: 16px;
+    padding-top: 12px;
+}
+
+.clsMenu table.titanui.menuItem_hover,
+.clsMenu table.titanui.menuItem_pressed,
+.clsMenu table.titanui.menuItem_disabled,
+.clsMenu table.titanui.menuItem_normal,
+body.viewer .titanui .menuItem_hover,
+body.viewer .titanui .menuItem_pressed,
+body.viewer .titanui .menuItem_disabled,
+body.viewer .titanui .menuItem_normal, 
+body.viewer .titanui .pageControls
+{
+	font-size: 100%;
+}
+
+.menuItem_hover:active
+{
+	background-color: #eeeeee;
+	background-image: -moz-linear-gradient(top, #eeeeee 0%, #f3f3f3 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#f3f3f3));
+	background-image: -webkit-linear-gradient(top, #eeeeee 0%, #f3f3f3 100%);
+	background-image: -o-linear-gradient(top, #eeeeee 0%, #f3f3f3 100%);
+	background-image: -ms-linear-gradient(top, #eeeeee 0%, #f3f3f3 100%);
+	background-image: linear-gradient(to bottom, #eeeeee 0%, #f3f3f3 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#f3f3f3',GradientType=0 );
+	zoom: 1;
+	border: #cccccc 1px solid;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #222222;
+	padding: 2px;
+
+	font-family: Tahoma;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.menuItem_hover
+{
+	background-color: #cccccc;
+	background-image: -moz-linear-gradient(top, #ffffff 0%, #cccccc 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#cccccc));
+	background-image: -webkit-linear-gradient(top, #ffffff 0%, #cccccc 100%);
+	background-image: -o-linear-gradient(top, #ffffff 0%, #cccccc 100%);
+	background-image: -ms-linear-gradient(top, #ffffff 0%, #cccccc 100%);
+	background-image: linear-gradient(to bottom, #ffffff 0%, #cccccc 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=0 );
+	zoom: 1;
+	border: #cccccc 1px solid;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #222222;
+	padding: 2px;
+
+	font-family: Tahoma;
+	cursor: pointer;
+	cursor: hand;
+}
+.clsMenu .menuItem_hover
+{
+	color: #222222;
+	background-color: #cce8f2;	
+	background-image:none;
+	border: none;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;	
+	border-radius: 0px;
+	filter:none;
+	text-decoration: underline;
+}
+
+.menuItem_pressed
+{
+	background-color: #f5f5f5;
+	background-image: none, -moz-linear-gradient(top, #f8f8f8 0%, #f5f5f5 100%);
+	background-image: none, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#f5f5f5));
+	background-image: none, -webkit-linear-gradient(top, #f8f8f8 0%, #f5f5f5 100%);
+	background-image: none, -o-linear-gradient(top, #f8f8f8 0%, #f5f5f5 100%);
+	background-image: none, -ms-linear-gradient(top, #f8f8f8 0%, #f5f5f5 100%);
+	background-image: none, linear-gradient(to bottom, #f8f8f8 0%, #f5f5f5 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f8f8', endColorstr='#f5f5f5',GradientType=0 );
+	zoom: 1;
+	border: #cccccc 1px dotted;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	color: #222222;
+	padding: 2px;
+
+	font-family: Tahoma;	
+	cursor: pointer;
+	cursor: hand;
+}
+
+.clsMenu table.menuItem_hover,
+.clsMenu table.menuItem_pressed,
+.clsMenu table.menuItem_disabled,
+.clsMenu table.menuItem_normal,
+body.viewer .menuItem_hover,
+body.viewer .menuItem_pressed,
+body.viewer .menuItem_disabled,
+body.viewer .menuItem_normal, 
+body.viewer .pageControls
+{
+	font-size: 70%;
+}
+.menuItem_disabled
+{
+	padding: 3px;
+	color: #767676;
+}
+
+.clsMenu .menuItem_disabled
+{
+	color: #767676;	
+}
+
+.menuContainer
+{
+	background-color: #ffffff;
+	border: 1px solid #336699;
+}
+
+/*toolbar styles*/
+
+.toolbar
+{
+	width: 25px;
+	height: 25px;
+	padding: 2px;
+	background-color: #e0e0e0;
+	border-bottom: 1px solid #cccccc;
+}
+
+/* Drop down arrow */
+.dropDownArrow
+{
+	height: 22px;
+	width: 13px;
+	border: 1px solid #cccccc;
+	background-color: #FFFFFF;
+}
+
+.dropDownArrowOver
+{
+	height: 22px;
+	width: 13px;
+	border: 1px solid #666699;
+	background-color: #cccce3;
+	cursor: pointer;
+	cursor: hand;
+}
+
+/* Drop down arror in banner */
+.bannerDropDownArrow
+{
+	height: 22px;
+	width: 13px;
+	border: #d8dedc 1px solid;
+	background-color: #d8dedc;
+}
+
+.bannerDropDownArrowOver
+{
+	height: 22px;
+	width: 13px;
+	border: #336699 1px solid;
+	background-color: #d8dedc;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.bannerButtonContainer
+{
+}
+
+.bannerToolbarButton
+{
+	padding : 1px;
+	border: solid 1px transparent;
+}
+
+.bannerToolbarButtonOver
+{
+	cursor: pointer;
+	cursor: hand;
+	padding : 1px;
+	border: 1px solid #ffffff;
+	border-radius : 3px; 3px; 3px; 3px;
+}
+
+.bannerMenuItem
+{
+	font-size: 70%;
+	color: #e7e7e7;
+	text-decoration: underline;
+	padding: 1px 5px 1px 5px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.bannerMenuItemOver
+{
+	font-size: 70%;
+	color: #ffffff;
+	text-decoration: underline;
+	padding: 1px 5px 1px 5px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.bannerText
+{
+	color: #e7e7e7;
+	font-size:70%;
+	font-weight:bold;
+	white-space:nowrap;
+	padding: 1px 5px 1px 5px;
+}
+
+.bannerLink
+{
+	color: #e7e7e7;
+	cursor:pointer;
+	font-size:70%;
+	text-decoration:underline;
+	padding: 1px 5px 1px 5px;
+	margin-left: 3px;
+}
+
+/* Seperators */
+
+.menuHorizontalSeperator
+{
+    border-bottom: 1px solid #C0C0C0;
+    font-size: 0;
+    height: 1px;
+    margin-bottom: 3px;
+    margin-top: 1px;
+    width: 100%;
+}
+
+.toolbarVerticalSeperator
+{
+	padding: 4px 5px 0px 5px;
+}
+
+.toolbarDivider
+{
+	background-image: url(images/tool_sep_dot_line.gif);
+	background-position: top left;
+	background-repeat: no-repeat;
+	font-size: 0px;
+	width: 1px;
+	height:18px;
+}
+
+
+/*BiDi styles*/
+.rtl .headerTitle {
+	padding-right: 16px;
+	padding-left: 0px;
+}
+
+.rtl .mainHeader1Middle {
+	padding-right: 30px;
+	padding-left: 10px;
+}
+
+.rtl .bannerLink {
+	margin-left: 0px;
+	margin-right: 3px;
+}
+
+.rtl #ibmLogo {
+	padding-left: 57px;
+	padding-right: 0px;
+}
+

@@ -1,0 +1,178 @@
+
+
+
+/********************************
+*  Licensed Materials - Property of IBM
+*    
+*  IBM Cognos Products: cpscrn
+*   
+*  (C) Copyright IBM Corp. 2005, 2012
+*  
+*  US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.  
+********************************/
+#headerBackA11Y{
+	background: none repeat-x 0 0;
+	background-image: none, -moz-linear-gradient(top, #444444 0%, #222222 100%);
+	background-image: none, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#444444), color-stop(100%,#222222));
+	background-image: none, -webkit-linear-gradient(top, #444444 0%, #222222 100%);
+	background-image: none, -o-linear-gradient(top, #444444 0%, #222222 100%);
+	background-image: none, -ms-linear-gradient(top, #444444 0%, #222222 100%);
+	background-image: none, linear-gradient(to bottom, #444444 0%, #222222 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#222222',GradientType=0 );
+	zoom: 1;
+	background-color: #444444;
+	min-height: 35px;
+	float: left;
+	min-width: 100%;
+}
+#headerBack {
+	background: none repeat-x 0 0;
+	background-image: none, -moz-linear-gradient(top, #444444 0%, #222222 100%);
+	background-image: none, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#444444), color-stop(100%,#222222));
+	background-image: none, -webkit-linear-gradient(top, #444444 0%, #222222 100%);
+	background-image: none, -o-linear-gradient(top, #444444 0%, #222222 100%);
+	background-image: none, -ms-linear-gradient(top, #444444 0%, #222222 100%);
+	background-image: none, linear-gradient(to bottom, #444444 0%, #222222 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#222222',GradientType=0 );
+	zoom: 1;
+	background-color: #444444;
+	min-height: 35px;
+}
+.mainHeader1 {
+	background: none no-repeat;
+	background-image: none;
+	background-position: 220px 0;
+	max-height: 35px;
+	height: 35px;
+	min-width: 838px;
+	width: 100%;
+}
+.mainHeader1 tr {
+	background-image: url(../../../ps/images/space.gif); /* required for IE in high contrast mode */
+}
+table.mainHeader1 a {
+	color: #e7e7e7;
+}
+.mainHeader1Middle {
+	width: 100%;
+	text-align: right;
+	padding-left: 30px;
+	padding-right: 10px;
+    vertical-align: inherit;
+}
+.rtl .mainHeader1Middle {
+	text-align: left;
+	padding-left: 10px;
+	padding-right: 30px;
+}
+#ibmLogo {
+	background: none no-repeat;
+	background-image: url(../../../skins/corporate/branding/ibm-logo-white.gif);
+	background-position: 0px 10px;
+	height: 15px;
+	font-size: 0px;
+	padding-right: 16px;
+	padding-left: 41px;
+	display: ;
+}
+.rtl #ibmLogo {
+	background-position: 16px 10px;
+}
+.logo {
+	width: 45px;
+	height: 16px;
+	display: none;
+	background-image: none;
+	background-image: url(../../../skins/corporate/branding/your_logo_here.gif);
+	background-position: top left;
+	background-repeat: no-repeat;
+}
+.logoContainer {
+}
+.bannerOptionsButtonNormal {
+	padding: 2px;
+	cursor: pointer;
+}
+.bannerOptionsButtonOver  {
+	border: 1px solid #222222;
+	padding: 1px;
+	cursor: pointer;
+}
+.bannerDivider {
+	background-image: url(../shared/images/tool_sep_dot_line_banner.gif);
+	background-position: top left;
+	background-repeat: no-repeat;
+	font-size: 0px;
+	width: 1px;
+	height: 18px;
+}
+.bannerOptions {
+	color: #e7e7e7;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.headerTitle {
+	font-family: Helvetica, Verdana, Tahoma, Arial, sans-serif;
+	padding-left: 16px;
+	font-weight: normal;
+	color: #ffffff;
+	vertical-align: middle;
+	white-space: nowrap;
+	width: 100%;
+}
+.rtl .headerTitle {
+	padding-left: 0px;
+	padding-right: 16px;
+}
+.headerBannerLip{
+    	background-color: #008abf;
+
+	clear: left;
+	display: block;
+	height: 4px;
+	overflow:hidden;
+}
+.userNameContainer  {
+	padding-right: 8px;
+	font-weight: bold;
+	color: #e7e7e7;
+	white-space: nowrap;
+}
+.customBannerContainer {
+	padding-left: 5px;
+	padding-right: 5px;
+	white-space: nowrap;
+}
+.refreshContainer {
+	padding-left: 3px;
+}
+.personalOptionsContainer {
+	padding-left: 5px;
+}
+.homeContainer {
+	padding-left: 5px;
+}
+.returnContainer {
+	padding-left: 5px;
+}
+.searchEditContainer {
+	padding-left: 5px;
+}
+.searchIconContainer {
+	padding-left: 3px;
+	padding-right: 3px;
+}
+.helpContainer {
+	padding-left: 3px;
+	padding-right: 5px;
+}
+.dividerContainer {
+	padding-left: 2px;
+}
+.authOptionContainer {
+	padding-right: 3px;
+	white-space: nowrap;
+}
+.appOptionsContainer {
+	padding-left: 2px;
+}

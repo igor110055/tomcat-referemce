@@ -1,0 +1,1569 @@
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <meta name="Copyright" content="Copyright (C) 2007 Cognos Incorporated. All Rights Reserved.">
+   <meta name="Trademark" content="Cognos (R) is a trademark of Cognos Incorporated.">
+   <link xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" rel="stylesheet" type="text/css"
+         href="../schemas/GlobalReportStyles.css">
+   <title>transient-19BC25E1-84D6-FF7A-D4D1-C100F4244D64</title>
+   <!--
+   =======================================================================================
+      BEGIN INSERT
+   =======================================================================================
+   -->
+      <script type="text/javascript" src="/rcl/scripts/rcl/common/JsUtil.js"></script>
+
+
+      <link rel="stylesheet" type="text/css" href="/rcl/scripts/lib/ext/resources/css/ext-all.css"/>
+      <link rel="stylesheet" type="text/css" href="/rcl/scripts/lib/ext/resources/css/xtheme-vista.css"/>
+
+      <link rel="stylesheet" type="text/css" href="/rcl/styles/rcl/ext-adf/ext-adf.css"/>
+
+      <script type="text/javascript" src="/rcl/scripts/lib/ext/adapter/ext/ext-base.js"></script>
+      <script type="text/javascript" src="/rcl/scripts/lib/ext/ext-all-debug.js"></script>
+
+      <style type="text/css">
+         *.dataItemHide {
+            display:none;
+            /*background-color:yellow !important;*/
+         }
+         td {
+            border: 1px solid gray;
+         }
+
+         #hideShowDiv {
+            border:1px solid gray;
+            margin:20px 0 20px 20px;
+            padding: 20px;
+         }
+         #hideShowDiv td {
+            padding: 10px;
+         }
+      </style>
+
+      <script type="text/javascript">
+         var uiController = {
+            initUi : function() {
+            },
+            hideDataItem : function(aName) {
+               this.toggleDataItem(aName, true);
+            },
+            showDataItem : function(aName) {
+               this.toggleDataItem(aName, false);
+            },
+            toggleDataItem : function (aName, aHide)
+            {
+               var markerClass = markers[aName];
+               var elements = Ext.DomQuery.select("div[class=" + markerClass + "]");
+
+               for (var i = 0; i < elements.length; ++i)
+               {
+                  var valueCellQuery = "td[class^=mv],td[class^=cv]";
+                  var valueCells = Ext.DomQuery.select(valueCellQuery, elements[i].parentNode.parentNode);
+
+                  for (var j = 0; j < valueCells.length; ++j)
+                  {
+                     if (aHide)
+                        Ext.get(valueCells[j]).addClass("dataItemHide");
+                     else
+                        Ext.get(valueCells[j]).removeClass("dataItemHide");
+                  }
+
+                  if (aHide)
+                     Ext.get(elements[i].parentNode).addClass("dataItemHide");
+                  else
+                     Ext.get(elements[i].parentNode).removeClass("dataItemHide");
+               }
+
+            }
+         };
+         Ext.onReady(uiController.initUi, uiController);
+      </script>
+
+   <!--
+   =======================================================================================
+      END INSERT
+   =======================================================================================
+   -->
+
+
+
+</head>
+<body topmargin="0" leftmargin="0" style="background-color: #FFFFFF;">
+
+
+<div id="hideShowDiv">
+   <table>
+      <tr>
+         <td>Plan</td>
+         <td><a href="javascript:uiController.hideDataItem('Plan');">hide</a></td>
+         <td><a href="javascript:uiController.showDataItem('Plan');">show</a></td>
+      </tr>
+      <tr>
+         <td>Actual</td>
+         <td><a href="javascript:uiController.hideDataItem('Actual');">hide</a></td>
+         <td><a href="javascript:uiController.showDataItem('Actual');">show</a></td>
+      </tr>
+      <tr>
+         <td>Variance to Plan</td>
+         <td><a href="javascript:uiController.hideDataItem('Variance to Plan');">hide</a></td>
+         <td><a href="javascript:uiController.showDataItem('Variance to Plan');">show</a></td>
+      </tr>
+      <tr>
+         <td>% of Plan</td>
+         <td><a href="javascript:uiController.hideDataItem('% of Plan');">hide</a></td>
+         <td><a href="javascript:uiController.showDataItem('% of Plan');">show</a></td>
+      </tr>
+   </table>
+</div>
+
+
+
+
+<table xmlns:rsext="xalan://com.cognos.reportserver.ext.RSExt" cellpadding="0" cellspacing="0" border="0" class="pg">
+   <tr class="tableRow">
+      <td style="padding-bottom:10px;" class="ph">
+         <div style="font-weight:normal;" class="ta"><span style="font-weight:bold;" class="textItem">Financials</span>
+         </div>
+      </td>
+   </tr>
+   <tr class="tableRow">
+      <td style="padding-left:0cm;" class="pb">
+         <div style="height:0.25in;font-style:normal;" class="block"></div>
+         <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+            <tr class="tableRow">
+               <td style="font-family:Arial;width:11cm;" class="tableCell" colspan="1">
+                  <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+                     <tr class="tableRow">
+                        <td style="vertical-align:top;text-align:center;width:3cm;" class="tableCell" colspan="1"><span
+                                style="font-weight:bold;" class="textItem">Customer Name:&nbsp;</span></td>
+                        <td class="tableCell" colspan="1"><span class="textItem">KROGER COORDINATED</span></td>
+                     </tr>
+                  </table>
+               </td>
+               <td style="font-family:Arial;width:10cm;" class="tableCell" colspan="1">
+                  <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+                     <tr class="tableRow">
+                        <td style="width:3cm;vertical-align:top;text-align:right;" class="tableCell" colspan="1"><span
+                                style="font-weight:bold;" class="textItem">Start Week:&nbsp;</span></td>
+                        <td class="tableCell" colspan="1"><span class="textItem">11/24/07</span></td>
+                     </tr>
+                  </table>
+               </td>
+               <td style="width:10cm;" class="tableCell" colspan="1">
+                  <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+                     <tr class="tableRow">
+                        <td style="width:3cm;vertical-align:top;text-align:right;" class="tableCell" colspan="1"><span
+                                style="font-weight:bold;font-family:Arial;" class="textItem">Status:&nbsp;</span></td>
+                        <td class="tableCell" colspan="1"><span
+                                class="textItem">Completed - Nielsen Data Available</span></td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+            <tr class="tableRow">
+               <td style="font-family:Arial;width:11cm;" class="tableCell" colspan="1">
+                  <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+                     <tr class="tableRow">
+                        <td style="width:3cm;vertical-align:top;text-align:right;" class="tableCell" colspan="1"><span
+                                style="font-weight:bold;" class="textItem">Event Name:&nbsp;</span></td>
+                        <td style="vertical-align:top;text-align:left;" class="tableCell" colspan="1"><span
+                                class="textItem">Gn Boxer Launch &amp; Pfp</span></td>
+                     </tr>
+                  </table>
+               </td>
+               <td style="font-family:Arial;width:10cm;" class="tableCell" colspan="1">
+                  <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+                     <tr class="tableRow">
+                        <td style="width:3cm;vertical-align:top;text-align:right;" class="tableCell" colspan="1"><span
+                                style="font-weight:bold;" class="textItem">End Week:&nbsp;</span></td>
+                        <td class="tableCell" colspan="1"><span class="textItem">12/15/07</span></td>
+                     </tr>
+                  </table>
+               </td>
+               <td style="width:10cm;" class="tableCell" colspan="1">
+                  <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+                     <tr class="tableRow">
+                        <td style="width:3cm;vertical-align:top;text-align:right;" class="tableCell" colspan="1"><span
+                                style="font-weight:bold;font-family:Arial;" class="textItem">Campaign Tag:&nbsp;</span>
+                        </td>
+                        <td class="tableCell" colspan="1"><span class="textItem">Not Classified</span></td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+            <tr class="tableRow">
+               <td style="font-family:Arial;width:11cm;" class="tableCell" colspan="1">
+                  <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+                     <tr class="tableRow">
+                        <td style="width:3cm;vertical-align:top;text-align:right;" class="tableCell" colspan="1"><span
+                                style="font-weight:bold;" class="textItem">Event Code:&nbsp;</span></td>
+                        <td class="tableCell" colspan="1"><span class="textItem">H48097002</span></td>
+                     </tr>
+                  </table>
+               </td>
+               <td style="font-family:Arial;width:10cm;" class="tableCell" colspan="1">
+                  <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+                     <tr class="tableRow">
+                        <td style="width:3cm;vertical-align:top;text-align:right;" class="tableCell" colspan="1"><span
+                                style="font-weight:bold;" class="textItem">Duration:&nbsp;</span></td>
+                        <td class="tableCell" colspan="1"><span class="textItem">4 weeks</span></td>
+                     </tr>
+                  </table>
+               </td>
+               <td style="width:10cm;" class="tableCell" colspan="1">
+                  <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+                     <tr class="tableRow">
+                        <td style="width:3cm;vertical-align:top;text-align:right;" class="tableCell" colspan="1"><span
+                                style="font-weight:bold;font-family:Arial;"
+                                class="textItem">Financial Rating:&nbsp;</span></td>
+                        <td class="tableCell" colspan="1"></td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+         </table>
+         <div style="height:0.25in;" class="block"></div>
+         <table style="border-collapse:collapse;" class="xt" cellpadding="0">
+            <tr>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;"
+                   class="xm" colspan="2" rowspan="1"></td>
+               <td style="font-weight:bold;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1" rowspan="1">
+                  <div class="adfRdiMarker_0" style="display:none"></div>
+                  <span class="textItem">TOTAL</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;background-color:transparent;border-right-color:aqua;"
+                   class="xs" colspan="1" rowspan="1"><span class="textItem"> </span></td>
+               <td style="width:100px;font-weight:bold;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1" rowspan="1">
+                  <div class="adfRdiMarker_1" style="display:none"></div>
+                  <span class="textItem">CHILD CARE</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;font-weight:bold;font-style:normal;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_6" style="display:none"></div>
+                  <span class="textItem">Gross Sales</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$82,702</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$82,702</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$101,894</span><span style="visibility:hidden;"
+                                                                                      class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$101,894</span><span style="visibility:hidden;"
+                                                                                      class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$19,192</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$19,192</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">123.2%</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">123.2%</span></td>
+            </tr>
+            <tr>
+               <td style="font-weight:normal;font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_7" style="display:none"></div>
+                  <span class="textItem">RD&amp;A</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$1,654</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$1,654</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$2,038</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$2,038</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="font-weight:normal;font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cl" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-weight:normal;font-style:normal;" class="cv" colspan="1"><span
+                       class="textItem">$384</span><span style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-weight:normal;font-style:normal;" class="cv" colspan="1"><span
+                       class="textItem">$384</span><span style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="font-weight:normal;font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cl" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-weight:normal;font-style:normal;" class="cv" colspan="1"><span
+                       class="textItem">123.2%</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-weight:normal;font-style:normal;" class="cv" colspan="1"><span
+                       class="textItem">123.2%</span></td>
+            </tr>
+            <tr>
+               <td style="font-weight:normal;font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_7" style="display:none"></div>
+                  <span class="textItem">Trade Spending</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$19,292</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$19,292</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$3,613</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$3,613</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="font-weight:normal;font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cl" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-weight:normal;font-style:normal;" class="cv" colspan="1"><span
+                       class="textItem">($15,679)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-weight:normal;font-style:normal;" class="cv" colspan="1"><span
+                       class="textItem">($15,679)</span></td>
+            </tr>
+            <tr>
+               <td style="font-weight:normal;font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cl" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-weight:normal;font-style:normal;" class="cv" colspan="1"><span
+                       class="textItem">18.7%</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-weight:normal;font-style:normal;" class="cv" colspan="1"><span
+                       class="textItem">18.7%</span></td>
+            </tr>
+            <tr>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="xs" colspan="2" rowspan="1"><span class="textItem"> </span></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;"
+                   class="mv" colspan="1"></td>
+            </tr>
+            <tr>
+               <td style="font-weight:bold;background-color:#CEEDFC;font-style:normal;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_8" style="display:none"></div>
+                  <span class="textItem">Consumer Promotion Spending</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="cv"
+                   colspan="1"></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="cv"
+                   colspan="1"></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="cv"
+                   colspan="1"></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="cv"
+                   colspan="1"></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+            </tr>
+            <tr>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="xs" colspan="2" rowspan="1"><span class="textItem"> </span></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;"
+                   class="mv" colspan="1"></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;font-weight:bold;font-style:normal;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_9" style="display:none"></div>
+                  <span class="textItem">Net Sales</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$61,756</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$61,756</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$96,243</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$96,243</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$34,487</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$34,487</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">155.8%</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">155.8%</span></td>
+            </tr>
+            <tr>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;color:black;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_10" style="display:none"></div>
+                  <span class="textItem">STC</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$27,740</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$27,740</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$34,412</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$34,412</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$6,672</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$6,672</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">124.1%</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">124.1%</span></td>
+            </tr>
+            <tr>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;color:black;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_10" style="display:none"></div>
+                  <span class="textItem">ABC Dist Cost</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$1,034</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$1,034</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$2,404</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$2,404</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$1,370</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$1,370</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">232.5%</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">232.5%</span></td>
+            </tr>
+            <tr>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;color:black;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_10" style="display:none"></div>
+                  <span class="textItem">Advertising</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">&nbsp;</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">&nbsp;</span></td>
+            </tr>
+            <tr>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="xs" colspan="2" rowspan="1"><span class="textItem"> </span></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;font-weight:bold;font-style:normal;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_11" style="display:none"></div>
+                  <span class="textItem">Promotion Contribution</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$32,982</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$32,982</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$59,427</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$59,427</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$26,445</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$26,445</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">180.2%</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">180.2%</span></td>
+            </tr>
+            <tr>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_12" style="display:none"></div>
+                  <span class="textItem">Everyday Contribution</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$29,398</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$29,398</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$57,735</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$57,735</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$28,337</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$28,337</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">196.4%</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">196.4%</span></td>
+            </tr>
+            <tr>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_12" style="display:none"></div>
+                  <span class="textItem">Change in Contribution</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$3,584</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$3,584</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$1,692</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$1,692</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">($1,892)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">($1,892)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">47.2%</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">47.2%</span></td>
+            </tr>
+            <tr>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="xs" colspan="2" rowspan="1"><span class="textItem"> </span></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+            </tr>
+            <tr>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_13" style="display:none"></div>
+                  <span class="textItem">Sales ROI</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$1.19</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$1.19</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">&nbsp;</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">&nbsp;</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">&nbsp;</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">&nbsp;</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">&nbsp;</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">&nbsp;</span></td>
+            </tr>
+            <tr>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_13" style="display:none"></div>
+                  <span class="textItem">CP ROI</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0.42</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0.42</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">($9.44)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">($9.44)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">($9.87)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">($9.87)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">-2,242.0%</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">-2,242.0%</span></td>
+            </tr>
+            <tr>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="xs" colspan="2" rowspan="1"><span class="textItem"> </span></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+            </tr>
+            <tr>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_14" style="display:none"></div>
+                  <span class="textItem">Trade % Gross Sales</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">23.3%</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">23.3%</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">3.5%</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">3.5%</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">-19.8%</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">-19.8%</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">15.2%</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">15.2%</span></td>
+            </tr>
+            <tr>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_14" style="display:none"></div>
+                  <span class="textItem">Contribution % Gross Sales</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">39.9%</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">39.9%</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">58.3%</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">58.3%</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">18.4%</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">18.4%</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">146.2%</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">146.2%</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_15" style="display:none"></div>
+                  <span class="textItem">Incremental Gross Sales</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$36,901</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="mv" colspan="1"></td>
+               <td class="mv" colspan="1"><span class="textItem">$36,901</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$2,692</span><span style="visibility:hidden;"
+                                                                                    class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="mv" colspan="1"></td>
+               <td class="mv" colspan="1"><span class="textItem">$2,692</span><span style="visibility:hidden;"
+                                                                                    class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td class="mv" colspan="1"><span class="textItem">($34,209)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="mv" colspan="1"></td>
+               <td class="mv" colspan="1"><span class="textItem">($34,209)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td class="mv" colspan="1"><span class="textItem">7.3%</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="mv" colspan="1"></td>
+               <td class="mv" colspan="1"><span class="textItem">7.3%</span></td>
+            </tr>
+            <tr>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="xs" colspan="2" rowspan="1"><span class="textItem"> </span></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+            </tr>
+            <tr>
+               <td style="font-weight:bold;font-style:italic;background-color:#CEEDFC;font-size:9pt;border-top-color:aqua;border-right-color:white;border-bottom-color:aqua;border-left-color:aqua;border-right-style:none;"
+                   class="xs" colspan="2" rowspan="1"><span class="textItem">Trade Spending</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:white;border-left-style:none;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-top-color:white;border-bottom-color:white;border-right-color:aqua;"
+                   class="mv" colspan="1"></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"></td>
+            </tr>
+            <tr>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cl" colspan="2" rowspan="1">
+                  <div class="adfRdiMarker_16" style="display:none"></div>
+                  <span class="textItem">Net Unit Cost to Customer</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem"></span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;font-style:normal;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem"></span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;font-weight:bold;font-style:normal;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_17" style="display:none"></div>
+                  <span class="textItem">Event Costs</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem">$19,292</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="cv"
+                   colspan="1"></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem">$19,292</span><span style="visibility:hidden;"
+                                                                                     class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem">$0</span><span style="visibility:hidden;"
+                                                                                class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="cv"
+                   colspan="1"></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem">$0</span><span style="visibility:hidden;"
+                                                                                class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem">($19,292)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="cv"
+                   colspan="1"></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem">($19,292)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem">0.0%</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="cv"
+                   colspan="1"></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem">0.0%</span></td>
+            </tr>
+            <tr>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;padding-left:25px;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_18" style="display:none"></div>
+                  <span class="textItem">Variable Incremental Cost</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$19,292</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$19,292</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">($19,292)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">($19,292)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">0.0%</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">0.0%</span></td>
+            </tr>
+            <tr>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;padding-left:25px;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_18" style="display:none"></div>
+                  <span class="textItem">Fixed Cost</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">&nbsp;</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">&nbsp;</span></td>
+            </tr>
+            <tr>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;padding-left:25px;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_18" style="display:none"></div>
+                  <span class="textItem">Variable Forward Buy Cost</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">&nbsp;</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">&nbsp;</span></td>
+            </tr>
+            <tr>
+               <td style="font-weight:bold;font-style:italic;background-color:white;border-top-color:silver;border-right-color:white;border-bottom-color:silver;border-left-color:silver;padding-left:25px;border-right-style:none;"
+                   class="xs" colspan="2" rowspan="1"><span class="textItem">Promotion Funds and Claims Event Cost Comparison</span>
+               </td>
+               <td style="background-color:white;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-color:white;border-left-style:none;border-left-color:white;border-top-style:none;border-bottom-style:none;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;border-right-color:white;border-left-color:white;border-right-style:none;border-left-style:none;"
+                   class="mv" colspan="1"></td>
+               <td style="background-color:white;border-right-style:none;border-right-color:white;border-left-style:none;"
+                   class="mv" colspan="1"></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;padding-left:50px;"
+                   class="ml" colspan="1" rowspan="3">
+                  <div class="adfRdiMarker_20" style="display:none"></div>
+                  <span class="textItem">PFC</span></td>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual Event Spending</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$0</span><span style="visibility:hidden;"
+                                                                                class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="mv" colspan="1"></td>
+               <td class="mv" colspan="1"><span class="textItem">$0</span><span style="visibility:hidden;"
+                                                                                class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Open Commitment</span></td>
+               <td class="mv" colspan="1"><span class="textItem">$0</span><span style="visibility:hidden;"
+                                                                                class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;" class="mv" colspan="1"></td>
+               <td class="mv" colspan="1"><span class="textItem">$0</span><span style="visibility:hidden;"
+                                                                                class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cl" colspan="1">
+                  <div class="adfRdiMarker_19" style="display:none"></div>
+                  <span class="textItem">Total Event Spending</span></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;" class="cv" colspan="1"><span class="textItem">$0</span><span
+                       style="visibility:hidden;" class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;padding-left:50px;"
+                   class="cl" colspan="2" rowspan="1">
+                  <div class="adfRdiMarker_21" style="display:none"></div>
+                  <span class="textItem">Potential Adj to Op Comm</span></td>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cv" colspan="1"><span class="textItem">$0</span><span style="visibility:hidden;"
+                                                                                class="textItem">)</span></td>
+               <td style="border-top-style:none;border-top-color:white;border-bottom-style:none;border-bottom-color:white;"
+                   class="cv" colspan="1"></td>
+               <td style="font-style:normal;background-color:white;border-top-color:silver;border-right-color:silver;border-bottom-color:silver;border-left-color:silver;"
+                   class="cv" colspan="1"><span class="textItem">$0</span><span style="visibility:hidden;"
+                                                                                class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="xs" colspan="2" rowspan="1"><span class="textItem"> </span></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;font-weight:bold;font-style:normal;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_22" style="display:none"></div>
+                  <span class="textItem">Pricing Costs</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$0</span><span style="visibility:hidden;"
+                                                                                class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$0</span><span style="visibility:hidden;"
+                                                                                class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$3,613</span><span style="visibility:hidden;"
+                                                                                    class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$3,613</span><span style="visibility:hidden;"
+                                                                                    class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$3,613</span><span style="visibility:hidden;"
+                                                                                    class="textItem">)</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">$3,613</span><span style="visibility:hidden;"
+                                                                                    class="textItem">)</span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">&nbsp;</span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="mv"
+                   colspan="1"></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="mv" colspan="1"><span class="textItem">&nbsp;</span></td>
+            </tr>
+            <tr>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="xs" colspan="2" rowspan="1"><span class="textItem"> </span></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+               <td style="border-top-style:none;border-top-color:white;border-right-style:none;border-right-color:white;border-bottom-style:none;border-bottom-color:white;border-left-style:none;border-left-color:white;background-color:white;"
+                   class="mv" colspan="1"></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;font-weight:bold;font-style:normal;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;color:black;"
+                   class="cl" colspan="1" rowspan="4">
+                  <div class="adfRdiMarker_23" style="display:none"></div>
+                  <span class="textItem">CRM Associated to Event</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_2" style="display:none"></div>
+                  <span class="textItem">Plan</span></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="cv"
+                   colspan="1"></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_3" style="display:none"></div>
+                  <span class="textItem">Actual</span></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="cv"
+                   colspan="1"></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_4" style="display:none"></div>
+                  <span class="textItem">Variance to Plan</span></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="cv"
+                   colspan="1"></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+            </tr>
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="ml" colspan="1">
+                  <div class="adfRdiMarker_5" style="display:none"></div>
+                  <span class="textItem">% of Plan</span></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+               <td style="border-top-style:none;border-bottom-style:none;border-right-color:aqua;" class="cv"
+                   colspan="1"></td>
+               <td style="font-style:normal;background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua;"
+                   class="cv" colspan="1"><span class="textItem"></span></td>
+            </tr>
+         </table>
+         <div style="height:0.25in;" class="block"></div>
+         <table style="border-collapse:collapse;" class="ls" cellpadding="0">
+            <tr>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua"
+                   class="lt" colspan="1"><span class="textItem">Event Name</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua"
+                   class="lt" colspan="1"><span class="textItem">Product Category</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua"
+                   class="lt" colspan="1"><span class="textItem">Actual Cost Indicator</span></td>
+               <td style="background-color:#CEEDFC;border-top-color:aqua;border-right-color:aqua;border-bottom-color:aqua;border-left-color:aqua"
+                   class="lt" colspan="1"><span class="textItem">Scan YN</span></td>
+            </tr>
+            <tr>
+               <td class="lc" colspan="1" rowspan="1"><span class="textItem">Gn Boxer Launch &amp; Pfp</span></td>
+               <td class="lc" colspan="1" rowspan="1"><span class="textItem">CHILD CARE</span></td>
+               <td class="lc" colspan="1"><span class="textItem">Y</span></td>
+               <td class="lc" colspan="1"><span class="textItem">Scan Y</span></td>
+            </tr>
+         </table>
+         <script type="text/javascript">
+            var markers = {};
+            markers['Total Event Spending'] = 'adfRdiMarker_19';
+            markers['Net Sales'] = 'adfRdiMarker_9';
+            markers['Gross Sales'] = 'adfRdiMarker_6';
+            markers['Actual'] = 'adfRdiMarker_3';
+            markers['Product Category'] = 'adfRdiMarker_1';
+            markers['Promotion Contribution'] = 'adfRdiMarker_11';
+            markers['CRM Associated to Event'] = 'adfRdiMarker_23';
+            markers['Measures ROI'] = 'adfRdiMarker_13';
+            markers['Total Products'] = 'adfRdiMarker_0';
+            markers['% of Plan'] = 'adfRdiMarker_5';
+            markers['Incremental Gross Sales'] = 'adfRdiMarker_15';
+            markers['Pricing Costs'] = 'adfRdiMarker_22';
+            markers['Measures AP'] = 'adfRdiMarker_7';
+            markers['PFC Event Spend'] = 'adfRdiMarker_20';
+            markers['Event Costs'] = 'adfRdiMarker_17';
+            markers['Potential Adj to Op Comm'] = 'adfRdiMarker_21';
+            markers['Measures AP Pct'] = 'adfRdiMarker_14';
+            markers['Variance to Plan'] = 'adfRdiMarker_4';
+            markers['Measures EC'] = 'adfRdiMarker_18';
+            markers['Net Unit Cost to Customer'] = 'adfRdiMarker_16';
+            markers['Measures PC'] = 'adfRdiMarker_12';
+            markers['Measures NS'] = 'adfRdiMarker_10';
+            markers['Plan'] = 'adfRdiMarker_2';
+            markers['Consumer Promotion Spending'] = 'adfRdiMarker_8';
+         </script>
+
+      </td>
+   </tr>
+   <tr class="tableRow">
+      <td style="padding-top:10px;" class="pf">
+         <table style="border-collapse:collapse;width:100%;" class="tb" cellpadding="0">
+            <tr class="tableRow">
+               <td style="vertical-align:top;text-align:left;width:25%;" class="tableCell" colspan="1"><span
+                       class="textItem">Apr 19, 2008</span></td>
+               <td style="vertical-align:top;text-align:center;width:50%;" class="tableCell" colspan="1"><span
+                       class="textItem">-&nbsp;</span><span class="textItem">1</span><span
+                       class="textItem">&nbsp;-</span></td>
+               <td style="vertical-align:top;text-align:right;width:25%;" class="tableCell" colspan="1"><span
+                       class="textItem">7:55:09 PM</span></td>
+            </tr>
+         </table>
+      </td>
+   </tr>
+</table>
+</body>
+</html>
+

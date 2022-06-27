@@ -1,0 +1,56 @@
+body {
+   font-family:Arial, Helvetica, sans-serif;
+   font-size:8px;
+}
+
+
+*.functionalHeaderText {
+   background-color:#4A7DAD;
+
+   width:100%;
+   height: 20px;
+
+   font-family:Arial, Helvetica, sans-serif;
+   font-size:10pt;
+   font-weight: bold;
+   color: white;
+
+   padding-top:5px;
+   padding-left: 10px;
+}
+
+*.bodyTable {
+   padding-top:10px;
+   width:100%
+}
+
+input {
+   font-family:Arial, Helvetica, sans-serif;
+   font-size:11px;
+   text-align:center;
+}
+
+
+
+
+
+.buttonStyle
+{
+   width: 100px;
+
+}
+
+
+*.labelText {
+   font-weight: bold;
+   font-size: 12px;
+}
+
+select {
+   width:95%;
+   font-size: 11px;
+   margin-top: 2px;
+   margin-bottom: 3px;
+   margin-left: 3px;
+   margin-right: 3px;
+}

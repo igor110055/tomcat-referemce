@@ -1,0 +1,100 @@
+
+/* overrides */
+div.tree img {
+   margin: 0px 3px 0px 1px;
+}
+
+#lhsDiv {
+   width: 45%;
+   float: left;
+   border: 0px solid red;
+   height: 500px;
+
+}
+
+
+#rhsDiv {
+   width: 54%;
+   float: left;
+   border: 0px solid blue;
+   height: 280px;
+
+   overflow: hidden;
+   white-space: nowrap;
+}
+
+#centerButtons {
+   float: left;
+   padding: 174px 10px 0px 10px;
+
+   overflow: hidden;
+   white-space: nowrap;
+
+}
+
+#selectedColumnsContainer {
+   float: left;
+   width: 240px;
+   border: 0px solid green;
+   height: 250px; /*overflow:hidden;*/
+   white-space: nowrap;
+}
+
+#selectedColumnsContainer select {
+   font-family: Verdana, Helvetica, sans-serif;
+   font-size: 11px;
+   height: 250px; /*overflow:hidden;*/
+   white-space: nowrap;
+
+}
+
+#toolsBox {
+   padding: 20px 0px 0px 45px;
+   float: left;
+
+   overflow: hidden;
+   white-space: nowrap;
+}
+
+#renameQueryItem {
+   padding: 5px 0px 0px 10px;
+   float: left;
+
+   overflow: hidden;
+   white-space: nowrap;
+}
+
+#rightButtons {
+   padding: 0px 0px 0px 10px;
+   float: left;
+
+   overflow: hidden;
+   white-space: nowrap;
+}
+
+#rhsDiv input.vbutton {
+   display: block;
+}
+
+#rhsDiv #rightButtons input.vbutton {
+   /* this is to keep IE6 happy, if you need to use I18N, then override this with width:auto;*/
+   width: 104px;
+
+   min-width:104px;
+}
+
+#rhsDiv select {
+   width: 100%;
+}
+
+
+
+
+#mdTreeContainer {
+   overflow: auto;
+   height: 420px;
+   width: 100%;
+
+   border: 1px solid #AAAAAA;
+}
+

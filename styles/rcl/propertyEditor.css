@@ -1,0 +1,119 @@
+div.psEditor {
+   border-style: solid;
+   border-color: black;
+   border-width: 1px;
+}
+
+div.psEditor input {
+   font-family:Arial, Helvetica, sans-serif;
+   font-size:11px;
+   border-style: none !important;
+   border-color: white;
+   padding-left: 3px;
+
+}
+
+div.psEditor select {
+   width: 100%;
+   font-family:Arial, Helvetica, sans-serif;
+   font-size:11px;
+
+   padding-left:3px;
+
+}
+
+
+div.psEditorHeader {
+   font-family:Arial, Helvetica, sans-serif;
+   font-size:11px;
+
+   padding: 2px 0px 2px 0px;
+
+   background-color:#8c8B89;
+   color:white;
+
+
+   width: 100%;
+
+   /*font-weight: bold;*/
+   padding-top: 2px;
+}
+
+
+div.psEditorBody {
+   width: 100%;
+}
+
+div.psEditorBody td {
+   border-style: solid;
+   border-color:  #AAAAAA;
+
+   border-width: 0px 1px 1px 0px;
+   padding-top: 0px;
+
+}
+
+td.propertyName {
+   width: 200px;
+
+   background-color:#E3E3E3;
+   color:black;
+
+   font-weight: normal;
+}
+
+td.readOnlyPropertyName {
+   width: 200px;
+
+   background-color:#E5E5E5;
+   color:black;
+
+   font-weight: normal;
+}
+
+td.focusedProperty {
+   background-color: #003366;
+   color: white;
+   width: 200px;
+   font-weight: bold;
+}
+
+td.propertyValue {
+   width: 189px;
+}
+
+td.propertyValueSelect {
+   width: 189px;
+   border-top-style: none !important;
+   border-bottom-style: none !important;
+
+}
+
+td.readOnlyPropertyValue {
+   width: 189px;
+}
+
+td.readOnlyPropertyValue select {
+   color: #666666;
+
+   font-family:Arial, Helvetica, sans-serif;
+   font-size:11px;
+}
+
+td.readOnlyPropertyValue input{
+   color: #666666;
+
+   font-family:Arial, Helvetica, sans-serif;
+   font-size:11px;
+}
+
+td.propertyValue select {
+   font-family:Arial, Helvetica, sans-serif;
+   font-size:11px;
+}
+
+td.propertyValue input {
+   font-family:Arial, Helvetica, sans-serif;
+   font-size:11px;
+
+}

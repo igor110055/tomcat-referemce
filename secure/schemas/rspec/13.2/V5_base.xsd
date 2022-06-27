@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2016
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="ExpressionType">
+		<xs:annotation>
+			<xs:documentation> An expression is represented as a string. Whitespace is preserved to allow the author to add formatting (tabs, newlines, etc.)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextType">
+		<xs:annotation>
+			<xs:documentation>A simple text type that preserves whitespace</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PositiveUnboundedIntegerType">
+		<xs:annotation>
+			<xs:documentation> Represents a positive integer that supports infinity. The absence of the value attribute represents infinity. The absence of the element indicates that no value has been set.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="value" type="xs:positiveInteger" use="optional"/>
+	</xs:complexType>
+	<xs:element name="modelPath">
+		<xs:annotation>
+			<xs:documentation>a reference to the FM model as specified by its path.  QF currently recognizes the following references 1. the search path to a model package in the content store (/content/package[@name='GoSalesML']/model[@name='Model']) 2.the logical connection name described in nsgeneral.xml (GOSALES_ORACLE) 3. the physical path to the RTM model file (E:\bering\GOSALES_ORA.rtm) 4. the physical path to the xml model file (E:\beging\models\GOSALES_ORA\model.xml) 5. the physical path to the FM project file(E:\bering\models\GOSALES_ORA\GOSALES_ORA.cpf).  Reference 1 is the reference expected from QF clients.  The other references are supported for internal development. The type attribute indicates whether it is a reference to an FM package or a module.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="type" default="FM">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="FM"/>
+								<xs:enumeration value="module"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sortList">
+		<xs:annotation>
+			<xs:documentation>Specifies a sorting order to be used for the element. It will describe either the detail or group sorting for the element in contains depending on what that element represents.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="sortItem"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sortItem">
+		<xs:complexType>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+			<xs:attribute name="sortOrder" default="ascending">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="ascending"/>
+						<xs:enumeration value="descending"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="XMLAttributes">
+		<xs:annotation>
+			<xs:documentation>Allow for specification of arbirary name value pairs in the report spec.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="XMLAttribute">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="TextType">
+								<xs:attribute name="name" type="xs:string" use="required">
+									<xs:annotation>
+										<xs:documentation>Identifies the user data. Because this data is undefined in the enclosing specification, it is the author's responsibility to constrain this value with respect to the unique scoping rules of their application.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="value" type="xs:string" use="optional">
+									<xs:annotation>
+										<xs:documentation>Defines the value of the name-value pair.</xs:documentation>
+										<xs:documentation source="doc_att_value_XMLAttribute"/>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="output" default="XML">
+									<xs:annotation>
+										<xs:documentation>This attribute is used to control whether and how the attribute will show up in the ouput. The values are:
+
+No: The attribute will not be rendered to our Intermediate XML (useful for such things as "spec commenting") 
+XML: (the default) The attribute will be rendered to the intermediate XML in a way that is indistinguishible from other attributes the server might generate. These attributes will be subject to whatever general filtering is done on attributes by transforms. 
+HTML: The attribute will be rendered to the intermediate XML in a way that targets it for the output HTML v5ReportEngine (used by Query Studio and Report Viewer) will honour this setting, however; it should be noted that externally-defined transforms may not. 
+</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="no"/>
+											<xs:enumeration value="XML">
+												<xs:annotation>
+													<xs:documentation source="doc_enum_XML_output"/>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="HTML">
+												<xs:annotation>
+													<xs:documentation source="doc_enum_HTML_output"/>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>Represents text that can be localized.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="defaultText" type="TextType">
+				<xs:annotation>
+					<xs:documentation>Represent the default text for an element. Typcially used in conjunction with the localizedText element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="localizedText" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Represents text for different locales(languages)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="localeText" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="TextType">
+										<xs:attribute name="locale" type="xs:language" use="required">
+											<xs:annotation>
+												<xs:documentation source="doc_att_locale_text"/>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:element name="reportPath">
+		<xs:annotation>
+			<xs:documentation>Used to define a path to a report in Content Manager. The path attribute contains the Content Manger path. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="path" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="metadataPath">
+		<xs:annotation>
+			<xs:documentation>The object from which the metadata is obtained.  In the case of queries, this should be a model path.  For modQueries, this should be a module path.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="path" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

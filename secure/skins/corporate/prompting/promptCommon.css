@@ -1,0 +1,1427 @@
+@charset "UTF-8";
+/*
+ *+-----------------------------------------------------------------------------------+
+ *| Licensed Materials - Property of IBM
+ *| BI and PM: prmt
+ *| (C) Copyright IBM Corp. 2002, 2015
+ *|
+ *| US Government Users Restricted Rights - Use, duplication or
+ *| disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *|
+ *+------------------------------------------------------------------------------------+
+*/
+
+/*
+	Prompt Control Styles
+	This cascading stylesheet provides visual styles for the prompt user interface
+	controls in IBM Cognos.
+*/
+
+/* Common Prompt Styles */
+.clsPromptComponent
+{
+	/* box type */
+	display: inline;
+	vertical-align: top;
+
+	/* floating */
+	clear: none;
+}
+
+/* used on block type containers
+   to allow prompt controls to flow */
+.clsDisplayInline
+{
+	display: inline;
+}
+
+.clsApplicationTitle
+{
+	font-size: 10.5pt;
+	color: #000000;
+	font-weight: bold;
+}
+
+.clsDocumentTitle
+{
+	font-size: 10.5pt;
+	color: #000000;
+	font-weight: normal;
+}
+
+.clsSecondaryTitle
+{
+	font-size: 10.5pt;
+	color: #336699;
+	font-weight: bold;
+}
+
+.clsMenuTitle
+{
+	font-size: 8pt;
+	color: #336699;
+	font-weight: bold;
+}
+
+.clsLink
+{
+	font-size: 8pt;
+	color: #0000CC;
+	font-weight: normal;
+}
+
+span.clsLink
+{
+	cursor: default;
+}
+
+.clsHighLevelLink
+{
+	font-size: 10.5pt;
+	color: #0000CC;
+	font-weight: normal;
+}
+
+.clsReadOnlyText
+{
+	font-size: 8pt;
+	color: #000000;
+	font-weight: normal;
+}
+
+.clsControlLabel
+{
+	font-size: 8pt;
+	color: #336699;
+	font-weight: bold;
+}
+
+.clsButtonText
+{
+	font-size: 10.5pt;
+	color: #000000;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.clsFieldSet
+{
+ 	border:none;
+	text-align:left;
+	display:inline;
+	vertical-align: top;
+	padding:0px;
+}
+/*
+	Do not merge the following class with a previous .clsFieldSet definition.
+	( IE will ignore the previous value for display, which we want to use as default. )
+*/
+.clsFieldSet
+{
+	display: -moz-inline-grid;
+}
+
+.clsDialogButton
+{
+	height: 22px;
+	border: 1px solid #999999;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.clsDialogButton:hover
+{
+	border: 1px solid #336699;
+	background-color: #E3E9F3;
+}
+
+.clsToolbarButton,.clsToolbarButton_hover,.clsToolbarButton_active 
+{
+	margin: 3px 0;
+	padding: 2px;
+}
+ 
+.clsToolbarButton
+{
+	border: 1px solid #cccccc;
+	background-color: #ffffff;
+}
+
+.clsToolbarButton_hover
+{
+	border: 1px solid #336699;
+	background-color: #E3E9F3;
+}
+
+.clsToolbarButton_active
+{
+	border: 1px solid #E3E9F3;
+	background-color: #cccccc;
+}
+
+.clsBottomBar
+{
+	border-top: 1px solid #999999;
+	margin: 0px;
+	padding: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: right;
+}
+
+.clsBtnYearUp, .clsBtnYearDown {
+	height: 15px;
+	width: 15px;
+}
+
+.clsBtnYearUp {
+	background-image : url(images/icon_year_up.gif);	
+}
+
+.clsBtnYearDown {
+	background-image : url(images/icon_year_down.gif);	
+}
+
+.clsBtnTimeDown,.clsBtnTimeUp {
+	width: 15px;
+	height: 7px;
+}
+
+.clsBtnTimeDown {
+	background-image : url(images/icon_time_down.gif);	
+}
+.clsBtnTimeUp {
+	background-image : url(images/icon_time_up.gif);	
+}
+
+.clsInsertRemoveButton
+{
+	color: #000000;
+	text-decoration : none;
+	text-align: center;
+	padding:2px;
+	width: 100%;
+	overflow: visible;
+	background-color: #FFFFFF;
+	border: solid 1px #989898;
+	white-space: nowrap;
+}
+
+.clsInsertRemoveButton[disabled]
+{
+	color: #777777;
+	text-decoration : none;
+	text-align: center;
+	padding:2px;
+	width: 100%;
+	overflow: visible;
+	background-color: #FFFFFF;
+	border: solid 1px #CCCCCC;
+	white-space: nowrap;
+}
+
+.clsInsertRemoveButtonOver
+{
+	color: #000000;
+	background-color: #E3E9F3;
+	text-decoration : none;
+	text-align: center;
+	padding:2px;
+	width: 100%;
+	overflow: visible;
+	border: solid 1px #999999;
+	white-space: nowrap;
+}
+
+.clsInsertRemoveTable {
+	width: 90px;
+	min-width: 90px;	
+}
+
+/*  fix width for standard browsers,  allow to stretch, so long custom labels are not truncated */
+html>body .clsInsertRemoveButton, html>body .clsInsertRemoveButton[disabled], html>body .clsInsertRemoveButtonOver
+{
+	width: auto;
+	min-width: 90px;
+}
+
+.clsChoicesHeader
+{
+	color: #336699;
+	font-size: 10pt;
+}
+
+.clsChoicesListbox
+{
+	margin-top:0px;
+}
+
+.clsFeedbackWidget
+{
+	margin-top:0px;
+	margin-bottom:0px;
+	border-width: 0px;
+	border-top-style: solid;
+	border-color: #FFFFFF;
+	border-top-color: none;
+	padding-top:2px;
+}
+
+.clsFeedbackWidgetParseError
+{
+	margin-top:0px;
+	margin-bottom:0px;
+	border-width: 2px;
+	border-top-color: #FF6600;
+	border-top-style: dashed;
+	padding-top:0px;
+}
+
+.clsFeedbackWidgetParseErrorArrowLeft
+{
+	margin: 0px;
+	border-width: 2px;
+	border-top-color: #FF6600;
+	border-top-style: dashed;
+	padding-top: 0px;
+}
+
+.clsFeedbackSpacer
+{
+	width: 100%;
+	min-width: 200px;
+}
+
+/* textBox Control */
+.clsTextWidget
+{
+
+}
+
+.clsTextWidgetParseError
+{
+	border-bottom-width: 2px;
+	border-bottom-color: #FF6600;
+	border-bottom-style: dashed;
+}
+
+/* selectValue control: Radio Button, Check Box Styles */
+.clsCheckBoxList, .clsRadioGroupList
+{
+	overflow: auto;
+	border: 2px inset ThreeDHighlight;
+	-moz-border-right-colors: ThreeDLightShadow ThreeDHighlight;
+	-moz-border-bottom-colors: ThreeDLightShadow ThreeDHighlight;
+	border-right-color: ThreeDLightShadow;
+	border-bottom-color: ThreeDLightShadow;
+	padding-left:5px;
+	padding-right:10px;
+	padding-bottom:2px;
+
+	margin: 0px;
+	width: 200px;
+	cursor: default;
+
+	max-height: 165px;
+	/* the following is done for IE which does not support max-height */
+	height: expression(offsetHeight > 165 ? "165px" : offsetHeight + "px");
+}
+
+.clsAlignRight
+{
+	text-align:right;
+}
+
+/* selectValue control: Drop Down, List Styles */
+.clsListControl, .clsSelectControl
+{
+	width: 200px;
+}
+
+.clsSelectControl option
+{
+	white-space: pre;
+}
+
+.clsCheckBoxRow, .clsCheckBox
+{
+	font-size: 8pt;
+	color: #000000;
+	white-space: nowrap;
+}
+
+/* checkbox 3-state, using classnames that match dojo */
+.clsPromptComponent .dijitCheckBox,.clsPromptComponent .dijitRadio,.clsPromptComponent .dijitCheckBoxInput {
+	margin: 0 2px 0 0;
+	padding: 0;
+	border: 0;
+	width: 16px;
+	height: 16px;
+	background-position:center center;
+	background-repeat:no-repeat;
+	overflow: hidden;
+	vertical-align: middle;
+}
+
+.clsPromptComponent .dijitCheckBox INPUT,.clsPromptComponent .dijitRadio INPUT {
+	margin: 0;
+	padding: 0;
+}
+
+/* checkboxes CC & BUX, radio BUX */
+.clsPromptComponent .dijitCheckBoxInput {
+	opacity : 0.01;
+	filter: alpha(opacity=0);
+}
+
+/* just for radio button in CC */
+.clsPromptComponent .dijitRadio .dijitCheckBoxInput {
+	opacity : 1;
+	filter: none;
+}
+
+/* prompt high contrast */
+.clsPrompt_a11y .dijitCheckBox,.clsPrompt_a11y .dijitRadio {
+	
+	width: auto !important;
+	height: auto !important;
+	margin-left:2px;
+}
+
+.clsPrompt_a11y .dijitCheckBoxInput {
+	margin: 0;
+	opacity : 1;
+	filter: none;
+	width: auto;
+	height: auto;
+}
+
+.clsPromptComponent .dijitCheckBox {
+	background-image : url(images/checkbox_unchecked.gif);
+}
+
+.clsPromptComponent .dijitCheckBoxChecked {
+	background-image : url(images/checkbox_checked.gif);
+}
+
+.clsPromptComponent .dijitCheckBoxMixed { 
+	background-image : url(images/checkbox_mixed.gif);	
+}
+
+.clsCheckBoxRow input
+{
+	vertical-align: middle;
+}
+
+/*
+	In Firefox, it looks better with 'bottom'.
+	We are using a selector that IE do not understand to make it specific to Firefox.
+*/
+.clsCheckBoxRow> input
+{
+	vertical-align: bottom;
+}
+
+.clsPromptComponent .dijitInline {
+	display: inline;
+}
+
+.icdUI .clsPromptComponent .dijitInline {
+	display: inline-block;
+}
+
+/* select date styles */
+.clsSelectDateCalendar
+{
+	border: 1px solid #999999;
+	color: #000000;
+	padding: 3px;
+	margin-right: 5px;
+	text-align: center;
+	vertical-align:top;
+	background-color: #FFFFFF;
+	height: 240px;
+	overflow: visible;
+	width: 200px;
+}
+
+.clsSelectDateCalendarDialog
+{
+	border: 1px solid #999999;
+	background-color: #FFFFFF;
+	color: #000000;
+	padding: 3px;
+	text-align: center;
+	vertical-align:top;
+	overflow: visible;
+	width:200px;
+}
+
+.clsSelectDateDialogTopTable
+{
+	border-collapse: separate;
+}
+
+.clsSelectDateYears
+{
+	text-align: center;
+	background-color: #336699;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+.clsSelectDateMonths
+{
+	color: #336699;
+	font-size: 8pt;
+	text-decoration: underline;
+	margin-top: 3px;
+	text-align: center;
+	vertical-align: bottom;
+	cursor: pointer;
+	font-weight: normal;
+}
+
+.clsSelectDateMonthsSelected
+{
+	background-color: #E3E9F3;
+	color: #336699;
+	font-size: 8pt;
+	text-decoration: underline;
+	margin-top: 3px;
+	text-align: center;
+	vertical-align: bottom;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.clsSelectDateMonthsDisabled
+{
+	color: #000000;
+	font-size: 8pt;
+	text-decoration: none;
+	margin-top: 3px;
+	text-align: center;
+	vertical-align: bottom;
+	cursor: default;
+	font-weight: normal;
+}
+
+.clsSelectDateDaysOfWeek
+{
+	background-color: #E7E7E7;
+	font-size: 9pt;
+	padding: 3px;
+	color: #000000;
+	text-decoration: none;
+	text-align: center;
+	white-space:nowrap;
+}
+
+.clsSelectDateDays
+{
+	color: #336699;
+	text-decoration: underline;
+	text-align: center;
+	font-size: 10pt;
+	padding: 3px;
+	cursor: pointer;
+	cursor: hand;
+	font-weight: normal;
+	background-color: #FFFFFF;
+}
+
+.clsSelectDateDaysSelected
+{
+	color: #336699;
+	text-decoration: none;
+	text-align: center;
+	font-size: 10pt;
+	padding: 3px;
+	cursor: pointer;
+	cursor: hand;
+	font-weight: bold;
+	background-color: #E3E9F3;
+}
+
+.clsSelectDateDaysDisabled
+{
+	color: #000000;
+	text-decoration: none;
+	text-align: center;
+	font-size: 10pt;
+	padding: 3px;
+	cursor: default;
+	font-weight: normal;
+	background-color: #FFFFFF;
+}
+
+.clsSelectDateEditBox
+{
+	padding:0px;
+	padding-left: 5px;
+	margin-top: 0px;
+	margin-left: 2px;
+	margin-right: 5px;
+	width: auto;
+	min-width: 140px;
+}
+
+.clsSelectDateEditBoxParseError
+{
+	padding:0px;
+	padding-left: 5px;
+	margin-top: 0px;
+	margin-left: 2px;
+	margin-right: 5px;
+	border-bottom-color: #FF6600;
+	border-bottom-style: dashed;
+	width: auto;
+	min-width: 140px;
+}
+
+.clsSelectDateYearEditBox
+{
+	text-align: center;
+	font-weight: bold;
+}
+
+.clsSelectDateYearEditBoxParseError
+{
+	text-align: center;
+	border-bottom-color: #FF6600;
+	border-bottom-style: dashed;
+	font-weight: bold;
+}
+
+/* selectTime control */
+.clsSelectTimeEditBox, .clsSelectTimeEditBoxRTL
+{
+	border: 2px inset threedhighlight;
+	margin:0px;
+	padding:0px;
+	overflow: visible;
+	overflow-x:visible;
+	background-color:#FFFFFF;
+	width: auto;
+	min-width: 150px;
+}
+
+.clsSelectTimeEditBox
+{
+	margin-right: 5px;
+}
+
+/* selectTime control RTL */
+.clsSelectTimeEditBoxRTL
+{
+	margin-left: 5px;
+}
+
+/* selectTime control with Milliseconds */
+.clsSelectTimeEditBoxExtend, .clsSelectTimeEditBoxExtendRTL
+{
+	border: 2px inset threedhighlight;
+	margin:0px;
+	padding:0px;
+	overflow: visible;
+	overflow-x:visible;
+	background-color:#FFFFFF;
+	width:195px;
+}
+
+.clsSelectTimeEditBoxExtend
+{
+	margin-right: 5px;
+}
+
+/* selectTime control RTL with Milliseconds */
+.clsSelectTimeEditBoxExtendRTL
+{
+	margin-left: 5px;
+}
+
+.clsSelectTime
+{
+	margin-left: 2px;
+	top:0px;
+	left:0px;
+}
+
+.clsClockPosition
+{
+}
+
+.clsSelectTimeControl, .clsSelectTimeControlParseError
+{
+	text-align:center;
+	padding:0px;
+	margin:0px;
+	border:none;
+	border-bottom-width: 2px;
+	width:2em;
+}
+
+.clsSelectTimeControl
+{
+	border-bottom-color: #FFFFFF;
+	border-bottom-style: solid;
+}
+
+.clsSelectTimeControlParseError
+{
+	border-bottom-color: #FF6600;
+	border-bottom-style: dashed;
+}
+
+.clsColon
+{
+	vertical-align:absmiddle;
+	background-color: #ffffff;
+	margin:0px;
+	border:0px;
+	padding:0px;
+}
+
+.clsClock
+{
+	margin:0px;
+	height: 200px;
+	width: 140px;
+	background-color: #ffffff;
+	position:relative;
+}
+
+.clsClockBlock
+{
+	border: solid 1px #999999;
+	background-color: #ffffff;
+	margin-bottom:10px;
+	width: 100%;
+	text-align: center;
+	position:relative;
+}
+
+.clsClockDigits
+{
+	position:absolute;
+	top:0px;
+	left:0px;
+	font-size:10px;
+	color:#000000;
+	text-align:center;
+}
+
+.clsClockDisabled, .clsDisabled
+{
+	filter: alpha(opacity=75);
+	-moz-opacity: 0.70;
+}
+
+*>.clsDisabled
+{
+	height: auto;
+}
+
+.clsDisabled
+{
+	cursor: default;
+}
+
+/* minutes */
+.clsMinuteHand
+{
+	position:absolute;
+	width:2px;
+	height:2px;
+	font-size:2px;
+	background: #000000;
+}
+
+/* hours */
+.clsHourHand
+{
+	position:absolute;
+	width:2px;
+	height:2px;
+	font-size:2px;
+	background: #000000;
+}
+
+/* seconds */
+.clsSecondHand
+{
+	position:absolute;
+	width:2px;
+	height:2px;
+	font-size:2px;
+	background: #336699;
+}
+
+.clsDivClock
+{
+	position:absolute;
+	top:0px;
+	left:0px
+}
+
+.clsDivRelative
+{
+	position:relative;
+}
+
+/* selectDateTime control */
+.clsBoundingBox
+{
+	background-color:#E7E7E7;
+	margin:5px;
+}
+
+/* interval control styles */
+.clsIntervalWidget
+{
+	margin-top: 5px;
+	margin-left: 0px;
+	margin-right: 3px;
+}
+
+.clsIntervalWidgetParseError
+{
+	margin-top: 5px;
+	margin-left: 0px;
+	margin-right: 3px;
+	border-bottom-color: #FF6600;
+	border-bottom-style: dashed;
+}
+
+/* selectWithSearch Prompt control styles */
+.clsSwsEditBox
+{
+	margin-right: 5px;
+}
+
+.clsSwsSearchButton
+{
+	padding:2px;
+	margin-left: 5px;
+	margin-right: 5px;
+	color: #000000;
+}
+
+.clsSwsOptions
+{
+	margin-top: 5px;
+	color: #000000;
+	font-size: 10pt;
+}
+
+.clsSwsResultsHeader, .clsSwsChoicesHeader
+{
+	color: #336699;
+	font-size: 10pt;
+}
+
+.clsSwsResultsListbox
+{
+	margin-top:0px;
+	margin-left:5px;
+	margin-right:5px;
+	margin-bottom:5px;
+}
+
+.clsSwsChoicesListbox
+{
+	margin-top:0px;
+	margin-left:5px;
+	margin-right:5px;
+	margin-bottom:5px;
+}
+
+.clsOptions
+{
+	cursor: pointer;
+	cursor: hand;
+	vertical-align:bottom;
+	width:240px;
+	padding: 0px;
+}
+
+.clsSearchOptionsExpand, .clsSearchOptionsCollapse  {
+	height:10px;	
+	width:10px;	
+}
+
+.clsSearchOptionsExpand {
+	background-image : url(images/prompt_option_expand.gif);			
+}
+
+.clsSearchOptionsCollapse {
+	background-image : url(images/prompt_option_collapse.gif);			
+}
+
+/* Default Prompt Page Dialog Styles */
+.clsDialogTitle
+{
+	font-size: 10.5pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+.clsDialogHeaderBorder
+{
+	background-color: #336699;
+}
+
+.clsDialogIntroduction
+{
+	font-size: 8pt;
+	color: #336699;
+}
+
+.clsDialogSeperator
+{
+	background-color: #999999;
+}
+
+.clsDialogFooterButtons
+{
+	background-color: #999999;
+}
+
+.clsFormLabel
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+.clsButton
+{
+	font-size: 8pt;
+	color: #000000;
+	text-decoration : none;
+	cursor: pointer;
+	cursor:hand;
+	width: 100%;
+	height: 18px;
+	padding-top : 2px;
+}
+
+.clsButtonLeftRightPadding
+{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.clsButton:hover
+{
+	background-color: #E3E9F3;
+}
+
+/* prompt button styles */
+.clsPromptButton, .clsPromptButtonOver, .clsPromptButton[disabled]
+{
+	font-size: 10.5pt;
+	text-decoration : none;
+	text-align: center;
+	width: auto;
+	height:26px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-right: 7px;
+	white-space:nowrap;
+}
+	
+.clsPromptButton
+{
+
+	color: #000000;
+	background-color: #FFFFFF;
+	border: solid 1px #989898;
+	cursor: pointer;
+}
+
+.clsPromptButtonOver
+{
+	color: #000000;
+	background-color: #E3E9F3;
+	border: solid 1px #999999;
+	cursor: pointer;
+}
+
+.clsPromptButton[disabled]
+{
+	color: #777777;
+	background-color: #FFFFFF;
+	border: solid 1px #CCCCCC;
+	cursor: default;
+}
+
+/* styles for the table look, used with pager controls */
+.clsTableHeader
+{
+	background-color: #E7E7E7;
+}
+
+.clsTableLink
+{
+	font-size: 8pt;
+	color: #336699;
+	text-decoration : underline;
+}
+
+.clsTableText
+{
+	font-size: 8pt;
+	color: #336699;
+}
+
+
+.clsTableItemCount
+{
+	font-size: 8pt;
+	font-weight: normal;
+	color: #000000;
+}
+
+.clsTableSortTitle
+{
+	text-decoration : none;
+	font-weight: bold;
+	color: #336699;
+}
+
+.clsTableTitle
+{
+	font-size: 8pt;
+	font-weight: bold;
+	color: #336699;
+}
+
+.clsTableOutline
+{
+	background-color: #000000;
+}
+
+.clsTableBody
+{
+	background-color: #ffffff;
+}
+
+.clsTableOutlineIE
+{
+	border : 1px solid;
+	border-color : #000000 #999999 #999999 #000000;
+}
+
+.clsTableOutline1
+{
+	background-color: #000000;
+}
+
+.clsTableOutline2
+{
+	background-color: #999999;
+}
+
+.clsTableOutline3
+{
+	background-color: #999999;
+}
+
+
+/* Tree Prompt Styles*/
+.clsTreePane
+{
+	height: 400px;
+	width: 300px;
+	overflow: auto;
+	border:solid #000000 1px;
+	padding:5px;
+}
+
+
+.clsTreeNode_unselected
+{
+	cursor: pointer;
+	cursor: hand;
+	margin: 0px;
+	padding: 0px;
+	background-color: #FFFFFF;
+	color: #000000;
+	vertical-align: middle;
+	border: 0 none;
+}
+
+.clsTreeNode_partial
+{
+	cursor: pointer;
+	cursor: hand;
+	background-color: #E3E9F3;
+	margin: 0px;
+	padding: 0px;
+	color: #000000;
+	vertical-align: middle;
+}
+
+.clsTreeNode_selected
+{
+	cursor: pointer;
+	cursor: hand;
+	margin: 0px;
+	padding: 0px;
+	background-color: #000000;
+	color: #ffffff;
+	vertical-align: middle;
+}
+
+.clsTreeNode_hover
+{
+	cursor: pointer;
+	cursor: hand;
+	margin: 0px;
+	padding: 0px;
+	color: #000000;
+	background-color: #bec8dc;
+	vertical-align: middle;
+}
+
+.clsPrompt_a11y .clsTreeNode_hover {
+    border-style: dotted;
+    border-width: thin;	
+}
+
+.clsTreeLevel
+{
+	margin:0px;
+	padding:0px;
+	vertical-align: middle;
+}
+
+.clsPrompt_a11y .clsTreeLevel {
+	margin:2px;
+}
+
+.clsTreeLabel
+{
+	cursor: pointer;
+	cursor: hand;
+}
+
+.clsTreeLineIcon
+{
+	width:19px;
+	height:20px;
+	vertical-align: middle;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image : url(images/icon_tree_I.gif);		
+}
+
+.clsTreeLineIconSpace
+{
+	background-image : none;
+}
+
+img, span
+{
+	margin:0px;
+	padding:0px;
+}
+
+.clsTreeText
+{
+	padding: 0px 1px 0px 3px;
+	font-size: 8pt;
+	vertical-align: middle;
+}
+
+.noLink
+{
+	text-decoration: none;
+	color: #000000;
+	font-weight: normal;
+}
+
+SPAN.clsTreeNode_selected A.noLink
+{
+	color: #FFFFFF;
+}
+
+.clsErrorRequired
+{
+    display: block;
+	margin-right: 2px;
+}
+
+/* tree toggle */
+.clsPromptComponent .dijitTreeExpando {
+	width:19px;
+	height:20px;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.clsPrompt_a11y .dijitTreeExpando {
+    display: none !important;
+}
+
+.clsPromptComponent .dijitTreeExpandoClosed {
+	background-image:url(images/icon_tree_Lplus.gif);
+}
+
+.clsPromptComponent .dijitTreeExpandoOpened {
+	background-image:url(images/icon_tree_Lminus.gif);
+}
+
+.clsPromptComponent .dijitTreeExpandoClosedRTL {
+	background-image:url(images/icon_tree_Lplus_rtl.gif);
+}
+
+.clsPromptComponent .dijitTreeExpandoOpenedRTL {
+	background-image:url(images/icon_tree_Lminus_rtl.gif);
+}
+
+.clsPromptComponent .dijitTreeExpandoNone {
+	width:16px;
+	height:16px;
+	background-image:url(images/spacer.png);
+}
+
+.clsPromptComponent .dijitExpandoText {
+    display: none;
+}
+
+.clsPrompt_a11y .dijitExpandoText {
+    border-style: solid;
+    border-width: thin;
+    cursor: pointer;
+    display: inline;
+    font-family: monospace;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* Color Picker Styles */
+.clsCPCell
+{
+	border:1px solid #CCCCCC;
+	width:15px;
+	height:15px;
+	text-align: center;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.clsCPCell_hover
+{
+	border:1px solid #336699;
+	width:15px;
+	height:15px;
+	text-align: center;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.clsCPCell_active
+{
+	border:1px solid #336699;
+	width:15px;
+	height:15px;
+	text-align: center;
+}
+
+.clsCPCellLabel
+{
+	padding-left: 10px;
+	padding-right:40px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.clsCPCustomTB
+{
+	padding-left: 5px;
+	padding-right:5px;
+}
+
+.clsCPPreview
+{
+	height:177px;
+	width:240px;
+	background-color : #E7E7E7;
+	border : 1px solid;
+	border-color : #cccccc;
+}
+
+.clsCPPreviewSwatch
+{
+	height:110px;
+	width:145px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.clsCPButton
+{
+	height:22px;
+	width:29px;
+	background-color: #ffffff;
+	border : 1px solid  #ffffff;
+	margin-right:3px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.clsCPButtonOver
+{
+	height:22px;
+	width:29px;
+	background-color: #E3E9F3;
+	border: 1px solid #336699;
+	margin-right:3px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.clsCPLink
+{
+	text-decoration:underline;
+	font-size: 8pt;
+	color: #336699;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.clsCPMenuContainer
+{
+	background-color: #ffffff;
+	border: 1px solid #336699;
+}
+
+.clsCPCaptionBar
+{
+	padding: 3px;
+	background-color:#E3E9F3;
+}
+
+.clsCPPalette
+{
+	padding: 3px;
+}
+
+.clsCPItem
+{
+	border: 1px solid #FFFFFF;
+	padding: 1px;
+}
+
+.clsCPItem_hover
+{
+	border: 1px solid #336699;
+	background-color: #bec8dc;
+	padding: 1px;
+}
+
+.clsCPItem_active
+{
+	border: 1px solid #336699;
+	background-color: #E3E9F3;
+	padding: 1px;
+}
+
+/* Alignment Picker Styles */
+.clsAPButtonNormal
+{
+	border : 1px solid #cccccc;
+	background-color: #ffffff;
+	padding: 2px;
+}
+
+.clsAPButtonOver
+{
+	border : 1px solid #cccccc;
+	background-color: #bec8dc;
+	cursor: pointer;
+	cursor: hand;
+	padding: 2px;
+}
+
+.clsAPButtonPressed
+{
+	border : 1px solid #336699;
+	background-color: #E3E9F3;
+	padding: 2px;
+}
+
+.clsAPButtonOverPressed
+{
+	border : 1px solid #336699;
+	background-color: #E3E9F3;
+	padding: 2px;
+}
+
+.clsAPContainer
+{
+	background-color: #ffffff;
+	border: 1px solid #336699;
+}
+
+.clsParentDetail
+{
+	display: none;
+}
+
+/* expand/collapse icons  */
+.clsExpandCollapseHover
+{
+	cursor: pointer;
+	cursor: hand;
+}
+
+.clsPromptDialog
+{
+	border: 1px solid black;
+	background-color: #ffffff;
+	position: absolute;
+	padding: 2px;
+	top: 10%;
+	left: 10%;
+	width: 80%;
+	height: 80%;
+	z-index: 50;
+}
+
+/*
+	The following classes are required to fix Firefox's issues with display:inline on block elements.
+*/
+.clsPromptComponent, .clsDisplayInline, .clsFieldSet
+{
+	display: -moz-inline-grid;
+}
+
+*>.clsPromptComponent
+{
+	/* ff3  supported  feature(CSS 2.0) This value(inisde-table)  map to formatting objects that are like tables on the inside, but participate in inline layout.*/
+	display: inline-table;
+}
+
+.clsPromptComponent[pt="btn"]
+{
+	display: -moz-inline-box;
+	width: auto;
+}
+
+/*
+In Firefox the tree view the icon and text are not aligned correctly.The following class is required to fix Firefox's issues with align:middle issue in tree.
+*/
+
+.clsTextIconAlignFix
+{
+	vertical-align:middle;
+}
+
+.clsHTML5Input
+{
+	width:auto;
+}

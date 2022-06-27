@@ -1,0 +1,95 @@
+*.dataItemHide {
+   display:none;
+}
+
+*.dataItemHighlight {
+   background-color:yellow !important;
+}
+
+
+#hideShowControllerDiv {
+   border: 1px solid black;
+   padding : 10px;
+   margin: 10px;
+   background-color:yellow;
+   position:absolute;
+   top:5%;
+   left: 80%;
+}
+
+div.hideShowControllerDivHandle {
+   float:right;
+}
+
+table.testUi {
+   width: 100%;
+}
+
+
+/*
+===================================================================================
+   Freeze Headers styles
+===================================================================================
+*/
+
+table.freezeHeaders {
+   padding:0;
+   border-collapse:collapse;
+   margin:0;
+}
+
+table.freezeHeaders table {
+   border-collapse:collapse;
+   margin:0;
+   font-size:inherit;
+}
+
+table.freezeHeaders div.fhColumnEdges {
+   overflow:hidden;
+   overflow-x:hidden;
+   vertical-align:bottom;
+}
+
+table.freezeHeaders table.fhColumnEdges {
+   table-layout:fixed;
+   overflow:hidden;
+   overflow-x:hidden;
+}
+
+/*
+table.freezeHeaders table.fhColumnEdges td.ml {
+   overflow:auto;
+   overflow-x:auto;
+}
+*/
+
+table.freezeHeaders div.fhCorner {
+   overflow:hidden;
+   overflow-x:hidden;
+}
+
+table.freezeHeaders div.fhCorner table {
+   table-layout:fixed;
+   overflow:hidden;
+   overflow-x:hidden;
+}
+
+
+table.freezeHeaders div.fhRowEdges  {
+   overflow:hidden;
+   overflow-x:hidden;
+}
+
+table.freezeHeaders div.fhRowEdges table {
+   table-layout:fixed;
+}
+
+table.freezeHeaders div.fhCrosstabBody{
+   overflow:auto;
+   overflow-x:auto;
+}
+
+table.freezeHeaders div.fhCrosstabBody table{
+   table-layout:fixed;
+}
+

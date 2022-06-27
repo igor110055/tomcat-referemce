@@ -1,0 +1,1117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2014
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+--> 
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5_base.xsd"/>
+	<xs:element name="source" type="sourceType">
+		<xs:annotation>
+			<xs:documentation>The source defines the metadata upon which the query is based.  The source will mostly be a model reference, but we will support referencing an other query as well.  In both of these two case, all other queries in the querySet are implicilty part of the source. In addition, we will support direct query against an underlying data source technology like MDX or SQL that can be encoded within the specification.  In addition, the source could be the outcome of a query operation involving two or more queries, the result of which is a projection of query items that can be used by the selection and queryResultDefinition.  Lastly, the source could be the outcome of a join operation between exactly two queries.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dimensionInfo">
+		<xs:annotation>
+			<xs:documentation>Dimension information augments the selection.  It is optional and is specified by an advanced query author  when: 1.  There is no dimension information available in the source. 2.  The author wishes to override the dimension information in the source. 3.  The author wishes to extend or restrict dimension information in the source.The intent of this information is not to define the presentation of the information, but to help query planning.  In other words it can be considered a form of hint. If the dimension information is omitted then dimension information will be used from the source if available.  If not available, it will be defaulted by the Query Framework.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="dimensions" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>a collection of dimensions</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="dimension" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>A dimension represents a collection of member elements within the same logical domain that can organize a set of data; without levels, there are no relationships between the elements other than their relative position within the collection.For example, a collection of months makes up a “time” dimension.  A member is an item within a dimension that represents an occurrence of schema data.  For example, “Proctor and Gamble” could be a member of a “Manufacturer” dimension.A dimension may have members with non-unique names, but all members must have a dimension-wide unique identifier.All members have at least a single parent; members in a network hierarchy may have multiple parents.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="levels" minOccurs="0"/>
+										<xs:element name="hierarchies" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>A hierarchy is an organization of a dimension’s members into a logical tree structure, with each member having one or more “parent” members and an arbitrary number of “child” members.  The root of a hierarchy has no parent, and leaf members have no children. A dimension may contain multiple independent hierarchies. The purpose of having multiple hierarchies is to provide alternate representations of a dimension’s data and ways of navigating it.  For example, a Time dimension may have a regular calendar hierarchy and a fiscal calendar hierarchy. The first hiearchy defined in this collection is the default hierarchy.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:choice minOccurs="0" maxOccurs="unbounded">
+														<xs:element name="levelHierarchy">
+															<xs:annotation>
+																<xs:documentation>describes how the levels in a dimension are logically ordered.</xs:documentation>
+															</xs:annotation>
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element ref="levelRef" minOccurs="0" maxOccurs="unbounded"/>
+																</xs:sequence>
+																<xs:attribute name="name" type="xs:string" use="required">
+																	<xs:annotation>
+																		<xs:documentation source="doc_att_name_query_levelHierarchy"/>
+																	</xs:annotation>
+																</xs:attribute>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="memberHierarchy">
+															<xs:annotation>
+																<xs:documentation>A member hierarchy is an organization of a dimension’s members into a logical tree structure, with each member having one or more “parent” members and an arbitrary number of “child” members. </xs:documentation>
+															</xs:annotation>
+															<xs:complexType>
+																<xs:sequence minOccurs="0">
+																	<xs:element ref="calculatedMembers" minOccurs="0"/>
+																</xs:sequence>
+																<xs:attribute name="name" type="xs:string" use="required"/>
+															</xs:complexType>
+														</xs:element>
+													</xs:choice>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="name" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc_att_name_query_dimension"/>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="factList" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>a collection of facts that form a fact or measure dimension that is considered as a special dimension.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="fact" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>facts, also known as measures,  are special kinds of members whose values are a certain business measurement, such as sales or inventory levels.  Facts are the central values that are aggregated and analyzed. Facts form a measure dimension.  A measure may also represent a formula, which involves other measures and/or members from different dimensions.  Such measures are referred to as calculated measures. Sales, Revenue, and Quantity are common examples of facts or measures.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="scope" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>NOTE: This element is deprecated and will be ignored in BlackSea.</xs:documentation>
+												<xs:documentation source="rn_deprecated_5.0"/>
+												<xs:documentation>Each measure in a factList may only have values associated with particular dimensions or with a subset of levels within a dimension.  For example, a measure representing inventory count may not be defined relative to a salesperson dimension and may only have values available at the month level and higher in the time dimension.The Measure_Scope metadata object provides a list of the dimensions, hierarchies, and/or levels that define the scope of the measures within a cube.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:choice maxOccurs="unbounded">
+														<xs:element name="scopeDimension">
+															<xs:complexType>
+																<xs:attribute name="refDimension" type="xs:string" use="required"/>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="scopeHierarchy">
+															<xs:complexType>
+																<xs:attribute name="refHierarchy" type="xs:string" use="required"/>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="scopeLevel">
+															<xs:complexType>
+																<xs:attribute name="refLevel" type="xs:string" use="required"/>
+															</xs:complexType>
+														</xs:element>
+													</xs:choice>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="name" type="xs:string" use="required"/>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="levels">
+		<xs:annotation>
+			<xs:documentation>a collection of levels that represent an arbitrary kimball star schema</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="level" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="level">
+		<xs:annotation>
+			<xs:documentation>a set of members with a predifined set of similar characteristics.  For example, the members “Year 1999” and “Year 2000” in the “Time” dimension form a year level, while the corresponding quarters form a quarter level. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="keys">
+					<xs:annotation>
+						<xs:documentation>a key is a list of member set refs that together, uniqely identify members of the level.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="key" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="name" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc_att_name_query_key"/>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="attributes" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>a collection of level attributes.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Attributes (also referred as “properties”) are auxiliary information associated with members of a level. Attributes can be used for narrowing a search scope within level members or to provide additional information about members.“Address”, for example, may be an attribute of a store dimension at the “Store Region” level.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="name" type="xs:string" use="required"/>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element name="caption" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>A reference to a selection dataItem that represents the caption for this level.  The caption is a special level attribute that represents the name of the level members, usually usefull for reporting.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="calculatedMembers" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="name" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation source="doc_att_name_query_level"/>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="levelRef">
+		<xs:annotation>
+			<xs:documentation>a reference to a level within a dimension</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="refLevel" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="queryRef">
+		<xs:annotation>
+			<xs:documentation>a reference to another query defined in the query set or a query subject when used by FM to plan a relationship SQL.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="filterExpression" type="queryExpressionType">
+		<xs:annotation>
+			<xs:documentation source="ebnf/EBNF_CQEExpressionGrammar.xml#Expression">Defines the EBNF for the expression syntax allowed for queries.  The filter expression must evaluate to a boolean</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="calculatedMembers">
+		<xs:annotation>
+			<xs:documentation>a collection of calculated members.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="calculatedMember" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dataItem">
+		<xs:annotation>
+			<xs:documentation>The dataItem represents a set of data values or members. It is described by a metadata reference or by directly referencing member data.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="expression"/>
+			</xs:all>
+			<xs:attributeGroup ref="DataItemAttributes"/>
+			<xs:attribute name="aggregate" use="optional" default="automatic">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_none_aggregate"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="automatic">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_automatic_aggregate"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="summarize">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_summarize_aggregate"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="total"/>
+						<xs:enumeration value="minimum"/>
+						<xs:enumeration value="maximum"/>
+						<xs:enumeration value="average"/>
+						<xs:enumeration value="count"/>
+						<xs:enumeration value="calculated">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_calculated_aggregate"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="countDistinct"/>
+						<xs:enumeration value="standardDeviation"/>
+						<xs:enumeration value="variance"/>
+						<xs:enumeration value="median"/>
+						<xs:enumeration value="notApplicable">
+							<xs:annotation>
+								<xs:documentation>the not applicable value is used for V4 cube items converted to V5 selection items.  V4 cube item aggregation has the equivalent V5 rollup aggregation.  In this case, the aggregation is done only on rolled up values and hence QF uses only the rollupAggregate attribute value.  The aggregate attribute value is not applicable. </xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="rollupAggregate" use="optional" default="automatic">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_none_rollupAggregate"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="automatic">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_automatic_rollupAggregate"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="summarize">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_summarize_rollupAggregate"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="total"/>
+						<xs:enumeration value="minimum"/>
+						<xs:enumeration value="maximum"/>
+						<xs:enumeration value="average"/>
+						<xs:enumeration value="count"/>
+						<xs:enumeration value="calculated">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_calculated_rollupAggregate"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="countDistinct"/>
+						<xs:enumeration value="standardDeviation"/>
+						<xs:enumeration value="variance"/>
+						<xs:enumeration value="median"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="sort" use="optional" default="none">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="ascending"/>
+						<xs:enumeration value="descending"/>
+						<xs:enumeration value="none">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_none_sort"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="detail" use="optional" default="automatic">
+				<xs:annotation>
+					<xs:documentation>WO1478.  This attribute ensures that the correct aggregates for xtabs are computed by OQP.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="automatic">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_detail_automatic"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="true">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_detail_true"/>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="false">
+							<xs:annotation>
+								<xs:documentation source="doc_enum_detail_false"/>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="DataItemCalculatedMemberAttributes"/>
+			<xs:attributeGroup ref="DataItemSetAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="slicerMemberSet" type="queryExpressionType">
+		<xs:annotation>
+			<xs:documentation>an arbitrary set expression resulting in members from a single hierarchy of a single dimension.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="queryType">
+		<xs:all>
+			<xs:element ref="source"/>
+			<xs:element ref="selection"/>
+			<xs:element name="detailFilters" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Defines filters that are applied to the incoming data stream of the query.  This filter is applied before any summarization. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="detailFilter" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:all>
+									<xs:element ref="filterExpression"/>
+								</xs:all>
+								<xs:attribute name="use" use="optional" default="required">
+									<xs:annotation>
+										<xs:documentation>{required} When optional, this filter will be applied only if all the parameters referenced by the filter expression have been provided with values. If the filter expression does not refer to any parameters, then this filter will always be applied. When prohibited, this filter will never be applied, which is useful for testing and authoring purposes. Default: "required".</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:NMTOKEN">
+											<xs:enumeration value="required"/>
+											<xs:enumeration value="optional"/>
+											<xs:enumeration value="prohibited"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="postAutoAggregation" type="xs:boolean" use="optional" default="false">
+									<xs:annotation>
+										<xs:documentation>{false} Specifies that when "false", this condition will be applied to detail database rows from the tabular result set prior to aggregation and summarization. Any reference to a fact (aggregate) item in this expression will be interpreted as the individual database value before it has been summarized. When "true", this condition will be applied to the summarized rows; that is, after one or more detail rows have been aggregated into one summary row. Any reference to a fact (aggregate) item in this expression will be interpreted as the aggregate value of the summarized row(s). This attribute has no effect upon references to non-aggregate items, nor is it effective when automatic summarization is disabled (see "autoSummary" attribute of the selection element).  This attribute has no effect in all cases for OLAP data sources.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="summaryFilters" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Defines filters that are applied to summaries computed by the query</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="summaryFilter" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:all>
+									<xs:element ref="filterExpression"/>
+									<xs:element name="summaryFilterLevels" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="summaryFilterLevel" maxOccurs="unbounded">
+													<xs:annotation>
+														<xs:documentation>Refers to a resultSet level (a QRD group, or a diminfo level in the query or in the model or a dimensional data source level) to which this filter is applicable. Multiple references indicate an intersection of level groups from seperate edges (one level per edge); the overall or root level is assumed for omitted dimensions in the case of a dimensional model. Item references in the filter condition are scoped automatically to the indicated level(s). A filter without level specifications is applied to the overall level of the result set.</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:all>
+								<xs:attribute name="use" use="optional" default="required">
+									<xs:annotation>
+										<xs:documentation>{required} When optional, this filter will be applied only if all the parameters referenced by the filter expression have been provided with values. If the filter expression does not refer to any parameters, then this filter will always be applied. When prohibited, this filter will never be applied, which is useful for testing and authoring purposes. Default: "required".</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:NMTOKEN">
+											<xs:enumeration value="required"/>
+											<xs:enumeration value="optional"/>
+											<xs:enumeration value="prohibited"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="dimensionInfo" minOccurs="0"/>
+			<xs:element ref="slicer" minOccurs="0"/>
+			<xs:element name="queryHints" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>hints specific to this query within the querySet.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="avoidZeroDiv" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>When enabled, query returns NULL value for any item that encounters a divide by zero error.  The autoSort hint does not return an error. It affects execution of a request as follows: If set to true, then a sort will always be generated in Cognos SQL or for crosstab queries in the request sent to MDDS, even if no explicit sorting is specified in the request. If false, then sorting will only be generated if explicitly specified in the request. If set to minimal, then for non-crosstab queries sorting is not added for the lowest level.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" type="xs:boolean" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="autoSort" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Determines what level keys are sorted.  The autoSort governor does not return an error. It affects execution of a request as follows: If set to true, then a sort will always be generated in Cognos SQL or for crosstab queries in the request sent to MDDS, even if no explicit sorting is specified in the request. If false, then sorting will only be generated if explicitly specified in the request. If set to minimal, then for non-crosstab queries sorting is not added for the lowest level.  autosort Disabled: keys of the levels are included into sort list only if there is explicit sorting specified in the query.  autosort Enabled: keys are included into sort list.  autosort Minimal: keys are included into sort list except lowest levels  of the query spec in 1D case and if no DetailDA present Do not add default sorting to the lowest level of a  one-dimensional query in Minimal autoSort mode when there is no detail data
+</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="none">
+												<xs:annotation>
+													<xs:documentation source="doc_enum_none_value_autoSort"/>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="all"/>
+											<xs:enumeration value="minimal">
+												<xs:annotation>
+													<xs:documentation source="doc_enum_minimal_value"/>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="executionOptimization" minOccurs="0"/>
+						<xs:element name="queryProcessing" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>databaseOnly, limitedLocal. The queryProcessing hint will return an error if UDA has to do any local processing for the generated Cognos SQL and the governor was set to DatabaseOnly. If the generated Cognos SQL contains an AT clause, or if the request accesses more than 1 database, then the queryProcessing governor will be set to LimitedLocal for the execution of the request.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="databaseOnly">
+												<xs:annotation>
+													<xs:documentation>Queries are rewritten such that all the query processing is performed on the database, and the none performed on the client.</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="minimizeLocal">
+												<xs:annotation>
+													<xs:documentation>Queries are rewritten such that little, and possibly none, of the query processing is performed [locally] on the client.</xs:documentation>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="outerJoinAllowed" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The outerJoinAllowed hint will return an error if the generated Cognos SQL contains an outer join and the governor value is false or deny. A governor value of 0 means no error is returned.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="allow">
+												<xs:annotation>
+													<xs:documentation source="doc_enum_allow_outerJoinAllowed"/>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="warn">
+												<xs:annotation>
+													<xs:documentation source="doc_enum_warn_outerJoinAllowed"/>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="deny">
+												<xs:annotation>
+													<xs:documentation source="doc_enum_deny_outerJoinAllowed"/>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="crossProductAllowed" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The crossProductAllowed hint will return an error if the generated Cognos SQL contains a cross product and the governor value is false or deny. A governor value of 0 means no error is returned.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="allow">
+												<xs:annotation>
+													<xs:documentation source="doc_enum_allow_crossProductAllowed"/>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="warn">
+												<xs:annotation>
+													<xs:documentation source="doc_enum_warn_crossProductAllowed"/>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="deny">
+												<xs:annotation>
+													<xs:documentation source="doc_enum_deny_crossProductAllowed"/>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="suppress" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The suppress hint will control  whether suppression is done to the query results.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="none">
+												<xs:annotation>
+													<xs:documentation source="doc_enum_none_suppress"/>
+												</xs:annotation>
+											</xs:enumeration>
+											<xs:enumeration value="nulls">
+												<xs:annotation>
+													<xs:documentation source="doc_enum_nulls_suppress"/>
+												</xs:annotation>
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="rollupProcessing" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>This hint does not return an error, but it impacts the generated SQL.  Specifies where to compute aggregates. The Extended setting means that the aggregates are computed using an extended aggregate operation. The Database setting means that aggregates are computed by the database software. The Local setting means that aggregates are computed by the data retrieval software in the report server using a running aggregate.  How to get the rollup processing setting: 1. governors have highest priority  2. derive it from the datasources in the model. 2a. If there is only one datasource, use its setting 2b. If there are more than first set it to database rollup, which will be adjusted later on in the FinalizeRollupAggregateProperties method
+
+</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="extended"/>
+											<xs:enumeration value="database"/>
+											<xs:enumeration value="local"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="maxRowsRetrieved" type="PositiveUnboundedIntegerType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The maxRowsRetrieved hint will return an error if the number of rows retrieved from the underlying database system exceeds the governor value.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="maxTablesPerQuery" type="PositiveUnboundedIntegerType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The maxTablesPerQuery hint will return an error if the number of tables in the generated Cognos SQL exceeds the governor limit.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="maxQueryExecutionTime" type="PositiveUnboundedIntegerType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The maxQueryExecutionTime hint will return an error if the time to open the cursor of the request associated with the generated native command plus the time to fetch the first row, exceeds the governor value. The value is given in seconds. This governor is not for the total time to execute the whole request; just the cursor open time + time to fetch the first row. If the total time of the request exceeds the governor limit, but the cursor open time + time to fetch the first row, is still within the governor limit, then no error will be returned. This is the case many times when lots of rows are returned. To restrict users from fetching too much data, the maxRowsRetrieved governor can be used.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="maxTextBlobCharacters" type="PositiveUnboundedIntegerType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The maxTextBlobCharacters governor returns an error if the number of characters read for a text blob exceeds the governor value.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="useSQLWithClause" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Specifies whether to send a request to the database using an SQL WITH clause.  When set to Yes, and if the database supports WITH clause, a WITH clause request is generated. When set to No, or if the database does not support WITH clause, a request using dereived tables is generated.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" type="xs:boolean" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="localCache" minOccurs="0"/>
+						<xs:element name="useV4Interpretation" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>use alternate (V4) query semantics in cases where they differ from Cognos 8 BI Query rules</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" type="xs:boolean" use="optional" default="false"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="executionMethod" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Controls whether queries are run concurrently or sequentially.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="sequential"/>
+											<xs:enumeration value="concurrent"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="useForParameterInfo" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>When making a call do not send this query to QFW to retrieve parameter information.  Either this query does not contain parameters or the definition of the parameters exists in another query.</xs:documentation>
+								<xs:documentation source="rn_added_4.0"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" type="xs:boolean" use="optional" default="false"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="useSQLJoinSyntax" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Join syntax in Cognos SQL can either use explicit joins (a.k.a. sql99 join syntax) or implicit joins. 
+
+explicit - select a.a, b.b from a inner join b on ( a.c = b.c ) 
+implicit - select a.a, b.b from a, b where a.c = b.c 
+
+If not specified, the setting in the cqeconfig.xml file will be used.</xs:documentation>
+								<xs:documentation source="rn_added_3.0"/>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="implicit"/>
+											<xs:enumeration value="explicit"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="useAggregateCache" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation source="rn_internal_5.0"/>
+								<xs:documentation>When this valus is set to true, we turn on the aggregation cache in OPTSDK layer. Server default for this hint is FALSE</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" type="xs:boolean" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="useSAPMUNAsBusinessKey" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation source="rn_added_5.0"/>
+								<xs:documentation>When this valus is set to true, we will return full SAP MUN as the value for _businessKey property. Server default for this hint is FALSE which is to strip the SAP MUN to keep the Baltic/Bering/Blaring behaviour. </xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" type="xs:boolean" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="cacheServerQuery" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation source="rn_added_6.0">This new query hint is to support the configure mode of cache server specified in WO 2649. The base design of populating cache in 2649 is to decouple the loading of cache from the report execution. This query hint is to signal the SAP provider that the query associate with this hint is for the cache server. If this query hint is set to true, the dimensions will be passed down to the SAP cache server, encrypted and saved for later use. 
+</xs:documentation>
+								<xs:documentation>When this valus is set to true, we will return full SAP MUN as the value for _businessKey property. Server default for this hint is FALSE which is to strip the SAP MUN to keep the Baltic/Bering/Blaring behaviour. </xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" type="xs:boolean" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="useSQLParameters" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation source="rn_added_6.0"/>
+								<xs:documentation>As of 8.2, RQP moved to using parameter markers a lot more than otherwise happened. This has been observed to be the root cause of application performance issues in ORACLE, DB2, Teradata accounts due to the optimizer not seeing literal values it can more efficiently use to form a query plan. It can also cause materialized views to be ignore where predicates cannot be matched. This is all written up in the paper NAC1036 Parameter markers in SQL.doc. 
+The governor provides a way that allows RQP to achieve its goals, not impact RDBMS performance and in a manner which does not require users to go back and change their apps. Setting the governor to 'literal' allows RQP to re-write the parameters at the last minute to literal values before sending the query to UDA - for the non-detail query cases. 
+</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="marker"/>
+											<xs:enumeration value="literal"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="memberSetStructure" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Describes the set structure of this query. If this is not defined it is assumed that each dataItem defines an unrelated set.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="memberSet" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="sourceType">
+		<xs:choice>
+			<xs:element name="model">
+				<xs:annotation>
+					<xs:documentation>a model source.  The source for this query will be the FM model specified in the modelPath of the querySet </xs:documentation>
+				</xs:annotation>
+				<xs:complexType/>
+			</xs:element>
+			<xs:element ref="queryRef"/>
+			<xs:element name="sqlQuery">
+				<xs:annotation>
+					<xs:documentation>A SQL query against a relational data source. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="sqlText" type="ExpressionType">
+							<xs:annotation>
+								<xs:documentation>The text of the typed-in sql. It is assumed to be appropriate for the type and data source. If it is not, the query may fail, or produce unexpected results.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="mdProjectedItems" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>This contains the metadata returned for the typein sql. The queryMetadata is optional and is not required in order to execute the query.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="mdProjectedItem" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:attribute name="name" type="xs:string" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+					<xs:attribute name="name" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation source="doc_att_name_query_sqlQuery"/>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="dataSource" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation source="doc_att_dataSource_query_sqlQuery"/>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="type" use="optional" default="native">
+						<xs:annotation>
+							<xs:documentation>Specifies the level of flexibility the system is allowed in optimizing the query text from this element, before presenting it to the data source.</xs:documentation>
+							<xs:documentation source="doc_att_type_query"/>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="cogSQL">
+									<xs:annotation>
+										<xs:documentation>Cognos SQL can be optimized by the system and combined with other SQL before being sent to the data source. This type of query can be used only with relational data sources.</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="native">
+									<xs:annotation>
+										<xs:documentation>Native query text cannot be modified except by macro substitution, but can be combined with other query text into a single query text string to send to the data source. The syntax used must conform to that expected by the data source.</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="passThrough">
+									<xs:annotation>
+										<xs:documentation>Pass-through query text cannot be modified except by macro substitution, and cannot be combined with other query text. It must be sent to the data source as a stand-alone query. However, results can be combined with results of other queries. The syntax used must conform to that expected by the data source.</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="mdxQuery">
+				<xs:annotation>
+					<xs:documentation>A MDX query against a OLAP data source</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="mdxText" type="ExpressionType">
+							<xs:annotation>
+								<xs:documentation>The text of the typed-in mdx. It is assumed to be appropriate for the type and data source. If it is not, the query may fail, or produce unexpected results.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="mdDimensionalInfo" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>This contains the metadata returned for the typein query. The queryMetadata is optional and is not required in order to execute the query.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="mdDimensions" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="mdDimension" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="mdHierarchy">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="mdLevel" minOccurs="0" maxOccurs="unbounded">
+																			<xs:complexType>
+																				<xs:attribute name="name" type="xs:string" use="required"/>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="name" type="xs:string" use="required"/>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+														<xs:attribute name="name" type="xs:string" use="required"/>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="mdFacts" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="mdFact" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:attribute name="name" type="xs:string" use="required">
+															<xs:annotation>
+																<xs:documentation source="doc_att_name_query_mdFact"/>
+															</xs:annotation>
+														</xs:attribute>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+					<xs:attribute name="name" type="xs:string" use="required"/>
+					<xs:attribute name="dataSource" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation source="doc_att_dataSource_query_mdxQuery"/>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="catalog" type="xs:string" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="queryOperation">
+				<xs:annotation>
+					<xs:documentation>UNION, INTERSECT, EXCEPT (MINUS) operations on one or more queries resulting in a projection list upon which other queries can be based.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="queryRefs" type="queryOpArgumentType"/>
+						<xs:element name="projectionList">
+							<xs:annotation>
+								<xs:documentation>the list of items described in the query</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="queryItem" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:attribute name="name" type="xs:string" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="autoGenerated" type="xs:boolean" default="false">
+									<xs:annotation>
+										<xs:documentation>Determines whether the projection list is auto generated by the authoring tool.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+					<xs:attribute name="name" type="xs:string" use="required"/>
+					<xs:attribute name="setOperation" default="UNION">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="UNION"/>
+								<xs:enumeration value="INTERSECT"/>
+								<xs:enumeration value="EXCEPT"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="duplicates" default="remove">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="remove"/>
+								<xs:enumeration value="preserve">
+									<xs:annotation>
+										<xs:documentation source="doc_enum_preserve_duplicates"/>
+									</xs:annotation>
+								</xs:enumeration>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="joinOperation"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="queryOpArgumentType">
+		<xs:sequence>
+			<xs:element ref="queryRef" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="joinArgumentType">
+		<xs:all>
+			<xs:element ref="queryRef" minOccurs="0"/>
+		</xs:all>
+		<xs:attribute name="cardinality" default="1:N">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="1:N"/>
+					<xs:enumeration value="1:1"/>
+					<xs:enumeration value="0:N"/>
+					<xs:enumeration value="0:1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="queryExpressionType">
+		<xs:simpleContent>
+			<xs:extension base="ExpressionType"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="joinOperation">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="joinFilter">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="filterExpression"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="joinOperands">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="joinOperand" minOccurs="2" maxOccurs="2"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="joinOperand" type="joinArgumentType"/>
+	<xs:element name="calculatedMember">
+		<xs:annotation>
+			<xs:documentation>A calculated member is an item within a dimension that represents an occurrence of schema data defined as a calculation of two or more members.  For example, “1999+2000” could be a calculated member of a “Time” dimension.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="calculatedMembers" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="name" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation source="doc_att_name_query_calculatedMember"/>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="refDataItem" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation source="doc_att_refDataItem_query_calculatedMember"/>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="caption" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="executionOptimization">
+		<xs:annotation>
+			<xs:documentation>For non-interactive output (pdf, xml, csv) this value is set to AllRows. For all other cases it is set to FirstRow. This value will be passed on to the underlying database, if it supports this type of optimization hint.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="value" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="allRows">
+							<xs:annotation>
+								<xs:documentation>The optimizer must adopt a plan that retrieves all rows of the result set in the least amount of time. This value is typically used in a batch environment.
+The retrieval of the result set is restricted to forward only iterators.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="firstRow">
+							<xs:annotation>
+								<xs:documentation>The optimizer must adopt a plan that retrieves the first row as quicky as possible. This value is typically used in an interactive environment.
+The result set can be navigated back and forth as required.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="memberSet">
+		<xs:annotation>
+			<xs:documentation>Identifies a dataItem as representing a named set.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="memberSets" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Defines the sets that are partitions of this set</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="memberSet" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="localCache">
+		<xs:annotation>
+			<xs:documentation>enable query reuse in RQP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="value" type="xs:boolean" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="expression" type="queryExpressionType">
+		<xs:annotation>
+			<xs:documentation>Represents a V5 data expression.</xs:documentation>
+			<xs:documentation source="ebnf/EBNF_CQEExpressionGrammar.xml#Expression">Defines the EBNF for the expression syntax allowed for queries.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:attributeGroup name="DataItemAttributes">
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>unique name (identifier) of the item within the scope of a query's selection</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="label" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>a displayable caption of the item.  If not specified, the name attribute of the data item will be used as its label</xs:documentation>
+				<xs:documentation source="doc_att_label_query"/>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DataItemSetAttributes">
+		<xs:attribute name="onInaccessibleMember" use="optional">
+			<xs:annotation>
+				<xs:documentation source="rn_deprecated_5.0"/>
+				<xs:documentation>This element was added and then deprecated in BlackSea. See WO2099.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="substituteNull"/>
+					<xs:enumeration value="substituteDefault"/>
+					<xs:enumeration value="substituteError"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DataItemCalculatedMemberAttributes">
+		<xs:attribute name="naInCalcMemberContext" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>This attribute when set to true indicates that if this member definition on an edge intersects with a calculated member then the resulting cell value should be N/A.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solveOrder" type="xs:integer" use="optional">
+			<xs:annotation>
+				<xs:documentation>Specifies the solve order for this calculation. If no solve order is specified then the solve order will be follow the default rules that the server uses to determine solve order.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+</xs:schema>

@@ -1,0 +1,5037 @@
+<!--
+  Licensed Materials - Property of IBM
+  IBM Cognos Products: rspec
+  (C) Copyright IBM Corp. 2003, 2014
+  US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<xs:schema xmlns="http://developer.cognos.com/schemas/report/3.0/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://developer.cognos.com/schemas/report/3.0/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="ExpressionType">
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextType">
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PositiveUnboundedIntegerType">
+		<xs:attribute name="value" type="xs:positiveInteger" use="optional"/>
+	</xs:complexType>
+	<xs:element name="modelPath" type="xs:string">
+	</xs:element>
+	<xs:element name="sortList">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="sortItem"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sortItem">
+		<xs:complexType>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+			<xs:attribute name="sortOrder" default="ascending">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="ascending"/>
+						<xs:enumeration value="descending"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="format">
+		<xs:complexType>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="stringFormat">
+		<xs:complexType>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dateFormat">
+		<xs:complexType>
+			<xs:attribute name="whenZero" type="xs:string">
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+			<xs:attributeGroup ref="CommonDateFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="timeFormat">
+		<xs:complexType>
+			<xs:attribute name="whenZero" type="xs:string">
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+			<xs:attributeGroup ref="CommonTimeFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dateTimeFormat">
+		<xs:complexType>
+			<xs:attribute name="whenZero" type="xs:string">
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+			<xs:attributeGroup ref="CommonDateFormatAttributes"/>
+			<xs:attributeGroup ref="CommonTimeFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="intervalFormat">
+		<xs:complexType>
+			<xs:attribute name="units">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="time"/>
+						<xs:enumeration value="days"/>
+						<xs:enumeration value="hours"/>
+						<xs:enumeration value="minutes"/>
+						<xs:enumeration value="seconds"/>
+						<xs:enumeration value="milliseconds"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="showDays">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="false">
+						</xs:enumeration>
+						<xs:enumeration value="true">
+						</xs:enumeration>
+						<xs:enumeration value="1-digit">
+						</xs:enumeration>
+						<xs:enumeration value="2-digits">
+						</xs:enumeration>
+						<xs:enumeration value="Julian">
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="showYears" type="xs:boolean">
+			</xs:attribute>
+			<xs:attribute name="showMonths" type="xs:boolean">
+			</xs:attribute>
+			<xs:attribute name="dateSeparator" type="xs:string">
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+			<xs:attributeGroup ref="CommonIntervalFormatAttributes"/>
+			<xs:attributeGroup ref="DecimalFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="numberFormat">
+		<xs:complexType>
+			<xs:attribute name="useScientific" type="xs:boolean">
+			</xs:attribute>
+			<xs:attribute name="exponentSize" type="xs:nonNegativeInteger">
+			</xs:attribute>
+			<xs:attribute name="exponentSymbol" type="xs:string">
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+			<xs:attributeGroup ref="DecimalFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="currencyFormat">
+		<xs:complexType>
+			<xs:attribute name="currencyCode" type="xs:string">
+			</xs:attribute>
+			<xs:attribute name="currencySymbol" type="xs:string">
+			</xs:attribute>
+			<xs:attribute name="intlCurrencySymbol" type="xs:string">
+			</xs:attribute>
+			<xs:attribute name="useIntlSymbol" type="xs:boolean">
+			</xs:attribute>
+			<xs:attribute name="useTrailingSymbol" type="xs:boolean">
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+			<xs:attributeGroup ref="DecimalFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="percentFormat">
+		<xs:complexType>
+			<xs:attribute name="percentSymbol" type="xs:string">
+			</xs:attribute>
+			<xs:attribute name="percentScale" type="xs:nonPositiveInteger">
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonFormatAttributes"/>
+			<xs:attributeGroup ref="DecimalFormatAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="CommonFormatAttributes">
+		<xs:attribute name="pattern" type="xs:string">
+		</xs:attribute>
+		<xs:attribute name="whenMissing" type="xs:string">
+		</xs:attribute>
+		<xs:attribute name="whenSecurityError" type="xs:string">
+		</xs:attribute>
+		<xs:attribute name="whenNotApplicable" type="xs:string">
+		</xs:attribute>
+		<xs:attribute name="whenAnyError" type="xs:string">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="CommonDateFormatAttributes">
+		<xs:attribute name="showYears">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+					</xs:enumeration>
+					<xs:enumeration value="true">
+					</xs:enumeration>
+					<xs:enumeration value="hideCentury">
+					</xs:enumeration>
+					<xs:enumeration value="showCentury">
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showMonths">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+					</xs:enumeration>
+					<xs:enumeration value="true">
+					</xs:enumeration>
+					<xs:enumeration value="1-digit">
+					</xs:enumeration>
+					<xs:enumeration value="2-digits">
+					</xs:enumeration>
+					<xs:enumeration value="shortName">
+					</xs:enumeration>
+					<xs:enumeration value="fullName">
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="dateSeparator" type="xs:string">
+		</xs:attribute>
+		<xs:attribute name="dateStyle">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="short"/>
+					<xs:enumeration value="medium"/>
+					<xs:enumeration value="long"/>
+					<xs:enumeration value="full"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="displayOrder">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="YMD"/>
+					<xs:enumeration value="MDY"/>
+					<xs:enumeration value="DMY"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showDays">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+					</xs:enumeration>
+					<xs:enumeration value="true">
+					</xs:enumeration>
+					<xs:enumeration value="1-digit">
+					</xs:enumeration>
+					<xs:enumeration value="2-digits">
+					</xs:enumeration>
+					<xs:enumeration value="Julian">
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showWeekday">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+					</xs:enumeration>
+					<xs:enumeration value="true">
+					</xs:enumeration>
+					<xs:enumeration value="shortName">
+					</xs:enumeration>
+					<xs:enumeration value="fullName">
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showEra" type="xs:boolean">
+		</xs:attribute>
+		<xs:attribute name="calendar">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Gregorian">
+					</xs:enumeration>
+					<xs:enumeration value="Imperial">
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="CommonIntervalFormatAttributes">
+		<xs:attribute name="showHours">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+					</xs:enumeration>
+					<xs:enumeration value="true">
+					</xs:enumeration>
+					<xs:enumeration value="1-digit">
+					</xs:enumeration>
+					<xs:enumeration value="2-digits">
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showMinutes">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+					</xs:enumeration>
+					<xs:enumeration value="true">
+					</xs:enumeration>
+					<xs:enumeration value="1-digit">
+					</xs:enumeration>
+					<xs:enumeration value="2-digits">
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showSeconds">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+					</xs:enumeration>
+					<xs:enumeration value="true">
+					</xs:enumeration>
+					<xs:enumeration value="1-digit">
+					</xs:enumeration>
+					<xs:enumeration value="2-digits">
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showMilliseconds">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="false">
+					</xs:enumeration>
+					<xs:enumeration value="true">
+					</xs:enumeration>
+					<xs:enumeration value="1-digit">
+					</xs:enumeration>
+					<xs:enumeration value="2-digits">
+					</xs:enumeration>
+					<xs:enumeration value="3-digits">
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="timeSeparator" type="xs:string">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="CommonTimeFormatAttributes">
+		<xs:attribute name="timeStyle">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="short"/>
+					<xs:enumeration value="long"/>
+					<xs:enumeration value="full"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showAmPm" type="xs:boolean">
+		</xs:attribute>
+		<xs:attribute name="showTimeZone" type="xs:boolean">
+		</xs:attribute>
+		<xs:attribute name="clock">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="12-hour">
+					</xs:enumeration>
+					<xs:enumeration value="24-hour">
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="decimalDelimiter" type="xs:string">
+		</xs:attribute>
+		<xs:attributeGroup ref="CommonIntervalFormatAttributes"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="IntegerFormatAttributes">
+		<xs:attribute name="sign" type="xs:string">
+		</xs:attribute>
+		<xs:attribute name="useTrailingSign" type="xs:boolean">
+		</xs:attribute>
+		<xs:attribute name="maxDigits" type="xs:nonNegativeInteger">
+		</xs:attribute>
+		<xs:attribute name="minDigits" type="xs:nonNegativeInteger">
+		</xs:attribute>
+		<xs:attribute name="paddingCharacter" type="xs:string">
+		</xs:attribute>
+		<xs:attribute name="scale" type="xs:short">
+		</xs:attribute>
+		<xs:attribute name="useGrouping" type="xs:boolean">
+		</xs:attribute>
+		<xs:attribute name="groupDelimiter" type="xs:string">
+		</xs:attribute>
+		<xs:attribute name="groupSize" type="xs:positiveInteger">
+		</xs:attribute>
+		<xs:attribute name="groupSecondarySize" type="xs:positiveInteger">
+		</xs:attribute>
+		<xs:attribute name="whenNegative" type="xs:string">
+		</xs:attribute>
+		<xs:attribute name="whenZero" type="xs:string">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DecimalFormatAttributes">
+		<xs:attribute name="decimalSize" type="xs:nonNegativeInteger">
+		</xs:attribute>
+		<xs:attribute name="decimalDelimiter" type="xs:string">
+		</xs:attribute>
+		<xs:attributeGroup ref="IntegerFormatAttributes"/>
+		<xs:attribute name="whenDivideZero" type="xs:string">
+		</xs:attribute>
+		<xs:attribute name="whenNumericOverflow" type="xs:string">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:element name="style" type="StyleType">
+	</xs:element>
+	<xs:element name="conditionalStyles">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="conditionalStyleCases">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="conditionalStyle" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="StyleType">
+											<xs:attributeGroup ref="ConditionalPartAttributes"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attributeGroup ref="ConditionalOwnerAttributes"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="conditionalStyleDefault" type="StyleType"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CSS">
+		<xs:complexType>
+			<xs:attribute name="value" type="xs:string" use="required">
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dataFormat">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="numberFormat"/>
+				<xs:element ref="percentFormat"/>
+				<xs:element ref="currencyFormat"/>
+				<xs:element ref="stringFormat"/>
+				<xs:element ref="dateFormat"/>
+				<xs:element ref="dateTimeFormat"/>
+				<xs:element ref="timeFormat"/>
+				<xs:element ref="intervalFormat"/>
+				<xs:element ref="format"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="ConditionalPartAttributes">
+		<xs:attribute name="refVariableValue" type="xs:string" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ConditionalOwnerAttributes">
+		<xs:attribute name="refVariable" type="xs:string" use="required"/>
+	</xs:attributeGroup>
+	<xs:complexType name="StyleType">
+		<xs:all>
+			<xs:element ref="CSS" minOccurs="0"/>
+			<xs:element ref="dataFormat" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:element name="conditionalRender">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="renderFor" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attributeGroup ref="ConditionalPartAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attributeGroup ref="ConditionalOwnerAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="XMLAttributes">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="XMLAttribute">
+					<xs:complexType>
+						<xs:attribute name="name" type="xs:string" use="required">
+						</xs:attribute>
+						<xs:attribute name="value" type="xs:string" use="required">
+						</xs:attribute>
+						<xs:attribute name="render" type="xs:boolean" default="true">
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dataSource" type="DataSourceType">
+	</xs:element>
+	<xs:element name="conditionalDataSources">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="conditionalDataSource" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="DataSourceType">
+								<xs:attributeGroup ref="ConditionalPartAttributes"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attributeGroup ref="ConditionalOwnerAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="reportExpression" type="ExpressionType">
+	</xs:element>
+	<xs:element name="defaultMeasure">
+		<xs:complexType>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="SolveOrderAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="reportDrills">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="reportDrill" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="drillTarget" minOccurs="0">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="reportPath"/>
+										<xs:element name="drillLinks" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="drillLink" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:all>
+																<xs:element name="drillSourceContext" minOccurs="0">
+																	<xs:complexType>
+																		<xs:choice>
+																			<xs:element ref="dataItemContext"/>
+																			<xs:element ref="parameterContext"/>
+																		</xs:choice>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="drillTargetContext">
+																	<xs:complexType>
+																		<xs:choice>
+																			<xs:element ref="parameterContext"/>
+																		</xs:choice>
+																	</xs:complexType>
+																</xs:element>
+															</xs:all>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="showInNewWindow" type="xs:boolean" default="false">
+									</xs:attribute>
+									<xs:attribute name="method" use="optional">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="edit"/>
+												<xs:enumeration value="execute"/>
+												<xs:enumeration value="view"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="outputFormat" use="optional">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="CSV"/>
+												<xs:enumeration value="HTML"/>
+												<xs:enumeration value="HTMLFragment"/>
+												<xs:enumeration value="PDF"/>
+												<xs:enumeration value="XHTML"/>
+												<xs:enumeration value="XLS"/>
+												<xs:enumeration value="XLWA"/>
+												<xs:enumeration value="singleXLS"/>
+												<xs:enumeration value="XML"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="bookmarkRef" minOccurs="0">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="dataSource"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="drillLabel">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="dataSource"/>
+										<xs:element ref="conditionalDataSources" minOccurs="0"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="name" type="xs:string" use="required">
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="masterDetailLinks">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="masterDetailLink" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="masterContext">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element ref="dataItemContext"/>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="detailContext">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element ref="dataItemContext"/>
+										<xs:element ref="parameterContext"/>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="reportPath">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="path" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dataItemContext">
+		<xs:complexType>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="parameterContext">
+		<xs:complexType>
+			<xs:attribute name="parameter" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="propertyList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="propertyItem" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="DataSourceType">
+		<xs:choice>
+			<xs:element name="staticValue">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="preserve"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dataItemValue">
+				<xs:complexType>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="reportExpression"/>
+			<xs:element name="dataItemLabel">
+				<xs:complexType>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="memberCaption">
+				<xs:complexType/>
+			</xs:element>
+			<xs:element name="cellValue">
+				<xs:complexType/>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="GenericLayoutStyleType">
+		<xs:all>
+			<xs:element ref="style" minOccurs="0"/>
+			<xs:element ref="conditionalStyles" minOccurs="0"/>
+			<xs:element ref="XMLAttributes" minOccurs="0"/>
+		</xs:all>
+		<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+	</xs:complexType>
+	<xs:attributeGroup name="DefaultLayoutStyleAttributes">
+		<xs:attribute name="class" type="xs:string">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="NameLayoutAttributes">
+		<xs:attribute name="name" type="xs:string">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="CommonLayoutAttributes">
+		<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+		<xs:attributeGroup ref="NameLayoutAttributes"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="KeepWithAttributes">
+		<xs:attribute name="keepWithHeader" type="xs:positiveInteger">
+		</xs:attribute>
+		<xs:attribute name="keepWithFooter" type="xs:positiveInteger">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="KeepWithNextPrevAttributes">
+		<xs:attribute name="keepWithNext" type="xs:positiveInteger">
+		</xs:attribute>
+		<xs:attribute name="keepWithPrevious" type="xs:positiveInteger">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ResetPageAttributes">
+		<xs:attribute name="resetPageNumber" type="xs:positiveInteger">
+		</xs:attribute>
+		<xs:attribute name="resetPageCount" type="xs:positiveInteger">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="RepeatEveryPageAttributes">
+		<xs:attribute name="repeatEveryPage" type="xs:boolean" default="false">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="GlobalQuerySingletonAttributes">
+		<xs:attribute name="refQuery" type="xs:string" use="optional"/>
+		<xs:attribute name="singleton" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DescriptionLayoutAttributes">
+		<xs:attribute name="description" type="xs:string" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PushToBottom">
+		<xs:attribute name="pushToBottom" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="SolveOrderAttributes">
+		<xs:attribute name="solveOrder" type="xs:integer" use="optional">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:group name="promptElement">
+		<xs:choice>
+			<xs:element name="textBox">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="defaultSelections" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="PromptRangeAttributes"/>
+					<xs:attributeGroup ref="PromptMissingValueAttributes"/>
+					<xs:attribute name="numbersOnly" type="xs:boolean" default="false"/>
+					<xs:attribute name="multiLine" type="xs:boolean" default="false"/>
+					<xs:attribute name="hideText" type="xs:boolean" default="false"/>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+					<xs:attribute name="showThousandSeparator" type="xs:boolean" default="false"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectDate">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="defaultSelections" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptDateAttributes"/>
+					<xs:attributeGroup ref="PromptMissingValueAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="PromptRangeAttributes"/>
+					<xs:attribute name="selectDateUI" default="calendar">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="calendar"/>
+								<xs:enumeration value="editBox"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectDateTime">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="defaultSelections" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptMissingValueAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="PromptRangeAttributes"/>
+					<xs:attributeGroup ref="PromptTimeAttributes"/>
+					<xs:attributeGroup ref="PromptDateAttributes"/>
+					<xs:attribute name="selectDateTimeUI" use="optional" default="calendar">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="calendar"/>
+								<xs:enumeration value="editBox"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectTime">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="defaultSelections" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptTimeAttributes"/>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptMissingValueAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="PromptRangeAttributes"/>
+					<xs:attribute name="selectTimeUI" default="clock">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="clock"/>
+								<xs:enumeration value="editBox"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectInterval">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="defaultSelections" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptMissingValueAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="PromptRangeAttributes"/>
+					<xs:attribute name="showSeconds" type="xs:boolean" default="false"/>
+					<xs:attribute name="showMilliseconds" type="xs:boolean" default="false">
+					</xs:attribute>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectValue">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="defaultSelections" minOccurs="0"/>
+						<xs:element ref="useItem" minOccurs="0"/>
+						<xs:element ref="selectOptions" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="sortList" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element ref="propertyList" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptDataDrivenAttributes"/>
+					<xs:attributeGroup ref="PromptMissingValueAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="PromptRangeAttributes"/>
+					<xs:attribute name="selectValueUI" default="dropdown">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="dropdown"/>
+								<xs:enumeration value="listBox"/>
+								<xs:enumeration value="radioGroup"/>
+								<xs:enumeration value="checkboxGroup"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+					<xs:attribute name="autoSubmit" type="xs:boolean" default="false"/>
+					<xs:attribute name="refQuery" type="xs:string" use="optional"/>
+					<xs:attributeGroup ref="PromptPrePopulateAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectWithSearch">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="useItem" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element ref="sortList" minOccurs="0"/>
+						<xs:element ref="selectOptions" minOccurs="0"/>
+						<xs:element ref="propertyList" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptDataDrivenAttributes"/>
+					<xs:attributeGroup ref="PromptMissingValueAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+					<xs:attribute name="refQuery" type="xs:string"/>
+					<xs:attribute name="caseInsensitiveIsDefault" type="xs:boolean" default="true"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selectWithTree">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="selectWithTreeItem" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="sortList" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element name="defaultTreeSelections" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="defaultTreeSelection" type="xs:string" maxOccurs="unbounded">
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+					<xs:attribute name="forceSelectionAtLowestLevel" type="xs:boolean" default="false"/>
+					<xs:attribute name="selectTreeUI" default="normalTree">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="normalTree"/>
+								<xs:enumeration value="compressedTree"/>
+								<xs:enumeration value="dropdown"/>
+								<xs:enumeration value="cascadingPrompt"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+					<xs:attributeGroup ref="PromptDataDrivenAttributes"/>
+					<xs:attributeGroup ref="PromptMultiSelectAttributes"/>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+					<xs:attribute name="refQuery" type="xs:string"/>
+					<xs:attributeGroup ref="PromptPrePopulateAttributes"/>
+					<xs:attribute name="prePopulateLevels" type="xs:positiveInteger" default="1">
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="generatedPrompt">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="PromptCommonAttributes"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:element name="defaultSelections">
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="defaultSimpleSelection"/>
+				<xs:element name="defaultRangeSelection">
+					<xs:complexType>
+						<xs:attribute name="min" type="xs:string">
+						</xs:attribute>
+						<xs:attribute name="max" type="xs:string">
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="PromptCommonAttributes">
+		<xs:attribute name="parameter" type="xs:string"/>
+		<xs:attribute name="required" type="xs:boolean" default="true"/>
+		<xs:attribute name="hideAdornments" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptRangeAttributes">
+		<xs:attribute name="range" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptMultiSelectAttributes">
+		<xs:attribute name="multiSelect" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptMissingValueAttributes">
+		<xs:attribute name="allowIsMissing" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptDateAttributes">
+		<xs:attribute name="calendar" default="Gregorian">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Gregorian"/>
+					<xs:enumeration value="Imperial"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="firstDate" type="xs:date" use="optional"/>
+		<xs:attribute name="lastDate" type="xs:date" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptTimeAttributes">
+		<xs:attribute name="clockMode" default="static">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="static"/>
+					<xs:enumeration value="live"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showSeconds" type="xs:boolean" default="false"/>
+		<xs:attribute name="showMilliseconds" type="xs:boolean" default="false">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptDataDrivenAttributes">
+		<xs:attribute name="rowsPerPage" type="xs:positiveInteger" default="5000"/>
+		<xs:attribute name="cascadeOn" type="xs:string" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptAutoSubmitAttributes">
+		<xs:attribute name="autoSubmit" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptTreeAttributes">
+		<xs:attribute name="maxDepthOfLevels" type="xs:positiveInteger" use="optional"/>
+		<xs:attribute name="lowestLevelToDisplay" type="xs:string" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PromptPrePopulateAttributes">
+		<xs:attribute name="prePopulateIfParentOptional" type="xs:boolean" default="false">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:element name="useItem">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="displayItem" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="selectOptions">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="selectOption" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="displayValue" type="TextType" minOccurs="0">
+							</xs:element>
+							<xs:element name="conditionalDisplayValues" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="conditionalDisplayValue" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="TextType">
+														<xs:attributeGroup ref="ConditionalPartAttributes"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="useValue" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="refVariable" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="defaultSimpleSelection" type="xs:string">
+	</xs:element>
+	<xs:group name="chartElement">
+		<xs:choice>
+			<xs:element ref="pieChart"/>
+			<xs:element ref="paretoChart"/>
+			<xs:element ref="scatterChart"/>
+			<xs:element ref="polarChart"/>
+			<xs:element ref="radarChart"/>
+			<xs:element ref="progressiveChart"/>
+			<xs:element ref="combinationChart"/>
+			<xs:element ref="bubbleChart"/>
+			<xs:element ref="threeDCombinationChart"/>
+			<xs:element ref="threeDScatterChart"/>
+			<xs:element ref="gaugeChart"/>
+			<xs:element ref="mapChart"/>
+			<xs:element ref="metricsChart"/>
+		</xs:choice>
+	</xs:group>
+	<xs:element name="pieChart">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="pies" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="pieSlices" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element name="pieLabels" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="reportDrills" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+						<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+						<xs:attributeGroup ref="CategoryTrunction"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="axisTitle" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attribute name="holeSize" type="xs:nonNegativeInteger" default="0"/>
+			<xs:attribute name="depth" type="xs:nonNegativeInteger" default="0"/>
+			<xs:attribute name="showPieLabels" default="none">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="inside"/>
+						<xs:enumeration value="outside"/>
+						<xs:enumeration value="outsideWithLines"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="showPieValues" default="none">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="inside"/>
+						<xs:enumeration value="outside"/>
+						<xs:enumeration value="outsideWithLines"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="ShowValuesAsPercent"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attribute name="avoidLabelCollision" type="xs:boolean" default="false">
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="radarChart">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="points" minOccurs="0"/>
+				<xs:element name="radialClusters" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="radialMeasure" minOccurs="0"/>
+				<xs:element ref="numericalAxisRadial" minOccurs="0"/>
+				<xs:element ref="baselines" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="markers" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="ordinalAxis" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="SpiderEffects"/>
+			<xs:attribute name="radarType" default="line">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="line"/>
+						<xs:enumeration value="area"/>
+						<xs:enumeration value="stackedArea"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="PointChartDataPointAttributes"/>
+			<xs:attributeGroup ref="ShowValuesAndLocation"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveChart">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="progressiveBars" minOccurs="0"/>
+				<xs:element name="numericalAxisProgressive" type="MeasureAxisType" minOccurs="0">
+				</xs:element>
+				<xs:element name="total" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="totalColumnColor" minOccurs="0">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element ref="chartPattern"/>
+										<xs:element ref="chartColor"/>
+										<xs:element ref="chartGradient"/>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="totalColumnLabel" minOccurs="0">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="chartContents" minOccurs="0"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="firstColumnColor" minOccurs="0">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="chartColor"/>
+							<xs:element ref="chartGradient"/>
+							<xs:element ref="chartPattern"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="positiveColumnColor" minOccurs="0">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="chartColor"/>
+							<xs:element ref="chartGradient"/>
+							<xs:element ref="chartPattern"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="negativeColumnColor" minOccurs="0">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="chartColor"/>
+							<xs:element ref="chartGradient"/>
+							<xs:element ref="chartPattern"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="baselines" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="markers" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="ordinalAxis" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="connectLines" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="VisualEffects"/>
+			<xs:attribute name="orientation" default="vertical">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="vertical"/>
+						<xs:enumeration value="horizontal"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="ShowValuesAndLocation"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="RotatedLabels"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="combinationChart">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="commonClusters" minOccurs="0"/>
+				<xs:element ref="combinationChartTypes" minOccurs="0"/>
+				<xs:element ref="baselines" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="markers" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="numericalAxisY1" minOccurs="0"/>
+				<xs:element ref="numericalAxisY2" minOccurs="0"/>
+				<xs:element ref="ordinalAxis" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="RotatedLabels"/>
+			<xs:attributeGroup ref="MatchSeriesColor"/>
+			<xs:attributeGroup ref="VisualEffects"/>
+			<xs:attribute name="orientation" default="vertical">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="vertical"/>
+						<xs:enumeration value="horizontal"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="AxisY2"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="paretoChart">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="cumulationLine" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="cumulationAxis" type="MeasureAxisType" minOccurs="0"/>
+							<xs:element name="cumulationLabel" minOccurs="0">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="chartContents" minOccurs="0"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+						<xs:attributeGroup ref="DataPointAttributes"/>
+						<xs:attributeGroup ref="LineStyles"/>
+						<xs:attributeGroup ref="ShowValuesBoolean"/>
+						<xs:attributeGroup ref="DisplayDataLocation"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="paretoBars" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="paretoBarClusters" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="baselines" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="markers" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="ordinalAxis" minOccurs="0"/>
+				<xs:element name="numericalAxisPareto" type="MeasureAxisType" minOccurs="0">
+				</xs:element>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="connectLines" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="RotatedLabels"/>
+			<xs:attributeGroup ref="VisualEffects"/>
+			<xs:attribute name="orientation" default="vertical">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="vertical"/>
+						<xs:enumeration value="horizontal"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="ShowValuesAndLocation"/>
+			<xs:attributeGroup ref="ShowAbsoluteValues"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="scatterChart">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="points" minOccurs="0"/>
+				<xs:element ref="pointClusters" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="pointXMeasure" minOccurs="0"/>
+				<xs:element ref="pointYMeasure" minOccurs="0"/>
+				<xs:element ref="numericalAxisX" minOccurs="0"/>
+				<xs:element ref="numericalAxisY" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="pointChartMarkers" minOccurs="0"/>
+				<xs:element ref="pointChartBaselines" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="regressionLine" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="PointChartDataPointAttributes"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+			<xs:attributeGroup ref="ShowPointValues"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bubbleChart">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="points" minOccurs="0"/>
+				<xs:element ref="pointClusters" minOccurs="0"/>
+				<xs:element ref="pointXMeasure" minOccurs="0"/>
+				<xs:element ref="pointYMeasure" minOccurs="0"/>
+				<xs:element name="bubbleMeasure" type="ChartMeasureType" minOccurs="0">
+				</xs:element>
+				<xs:element ref="numericalAxisX" minOccurs="0"/>
+				<xs:element ref="numericalAxisY" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="pointChartMarkers" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="pointChartBaselines" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="regressionLine" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="PointChartDataShape"/>
+			<xs:attributeGroup ref="ShowBubblePointValues"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="polarChart">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="radialMeasure" minOccurs="0"/>
+				<xs:element name="angularMeasure" type="ChartMeasureType" minOccurs="0">
+				</xs:element>
+				<xs:element name="numericalAxisAngular" type="MeasureAxisType" minOccurs="0">
+				</xs:element>
+				<xs:element ref="numericalAxisRadial" minOccurs="0"/>
+				<xs:element ref="points" minOccurs="0"/>
+				<xs:element ref="pointClusters" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="pointChartMarkers" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="pointChartBaselines" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="SpiderEffects"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="PointChartDataPointAttributes"/>
+			<xs:attributeGroup ref="ShowPointValues"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="threeDCombinationChart">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="commonClusters" minOccurs="0"/>
+				<xs:element name="threeDCombinationChartTypes" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice maxOccurs="unbounded">
+								<xs:element name="threeDBar">
+									<xs:complexType>
+										<xs:all>
+											<xs:element ref="chartNodes" minOccurs="0"/>
+										</xs:all>
+										<xs:attributeGroup ref="BorderProperties"/>
+										<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="threeDLine">
+									<xs:complexType>
+										<xs:all>
+											<xs:element ref="chartNodes" minOccurs="0"/>
+										</xs:all>
+										<xs:attributeGroup ref="BorderProperties"/>
+										<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="threeDArea">
+									<xs:complexType>
+										<xs:all>
+											<xs:element ref="chartNodes" minOccurs="0"/>
+										</xs:all>
+										<xs:attributeGroup ref="BorderProperties"/>
+										<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element name="numericalAxis" type="MeasureAxisType" minOccurs="0"/>
+				<xs:element name="threeDComboBaselines" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="threeDComboBaseline" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element ref="threeDBaselinePosition" minOccurs="0"/>
+										<xs:element ref="style" minOccurs="0"/>
+										<xs:element ref="conditionalStyles" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+										<xs:element ref="masterDetailLinks" minOccurs="0"/>
+									</xs:choice>
+									<xs:attribute name="refQuery" type="xs:string" use="optional"/>
+									<xs:attributeGroup ref="LineStyles"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ordinalAxisX" type="OrdinalAxisType" minOccurs="0">
+				</xs:element>
+				<xs:element name="ordinalAxisY" type="OrdinalAxisType" minOccurs="0">
+				</xs:element>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="viewingAngle"/>
+			<xs:attribute name="matchSeriesColor" type="xs:boolean" default="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="threeDScatterChart">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="points" minOccurs="0"/>
+				<xs:element ref="pointClusters" minOccurs="0"/>
+				<xs:element ref="pointXMeasure" minOccurs="0"/>
+				<xs:element ref="pointYMeasure" minOccurs="0"/>
+				<xs:element name="pointZMeasure" type="ChartMeasureType" minOccurs="0">
+				</xs:element>
+				<xs:element ref="numericalAxisX" minOccurs="0"/>
+				<xs:element ref="numericalAxisY" minOccurs="0"/>
+				<xs:element name="numericalAxisZ" type="MeasureAxisType" minOccurs="0">
+				</xs:element>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element name="threeDScatterBaselines" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="threeDScatterBaseline" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element ref="threeDBaselinePosition" minOccurs="0"/>
+										<xs:element ref="style" minOccurs="0"/>
+										<xs:element ref="conditionalStyles" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+										<xs:element ref="masterDetailLinks" minOccurs="0"/>
+									</xs:choice>
+									<xs:attribute name="refQuery" type="xs:string"/>
+									<xs:attributeGroup ref="LineStyles"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="viewingAngle"/>
+			<xs:attribute name="showFeelers" type="xs:boolean" default="true"/>
+			<xs:attributeGroup ref="PointChartDataPointAttributes"/>
+			<xs:attributeGroup ref="ShowPointValues"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gaugeChart">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="gauges" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="indicators" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartNodes"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element name="gaugeLabels" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="reportDrills" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+						<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+						<xs:attributeGroup ref="CategoryTrunction"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="axisTitle" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element name="gaugeNumericalAxis" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="gridlines" minOccurs="0"/>
+							<xs:element ref="minorGridlines" minOccurs="0"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="min" type="xs:float">
+						</xs:attribute>
+						<xs:attribute name="max" type="xs:float">
+						</xs:attribute>
+						<xs:attribute name="scaleInterval" type="xs:float"/>
+						<xs:attribute name="scale" default="linear">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="linear"/>
+									<xs:enumeration value="log"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="sameRangeAllInstances" type="xs:boolean" default="true"/>
+						<xs:attribute name="includeZeroForAutoScale" type="xs:boolean" default="true"/>
+						<xs:attribute name="class" type="xs:string"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="gaugePalette" minOccurs="0">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="continuousChartPalette"/>
+							<xs:element name="discreteGaugePalette">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="discreteGaugePaletteEntry" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:attribute name="discreteGaugePaletteValue" type="xs:float" use="optional"/>
+												<xs:attribute name="discreteGaugePaletteColor" type="ColorType" default="black"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+						<xs:attribute name="percentValues" type="xs:boolean" default="true"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attribute name="faceColor" type="ColorType" default="white"/>
+			<xs:attribute name="dialOutlineColor" type="ColorType" default="black"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="mapChart">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element name="pointLayer" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="pointSizeMeasure" minOccurs="0">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="ChartMeasureType">
+											<xs:attribute name="minPointSize" type="xs:decimal" default="5"/>
+											<xs:attribute name="maxPointSize" type="xs:decimal" default="30"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="pointMeasure" type="ChartMeasureType" minOccurs="0">
+							</xs:element>
+							<xs:element ref="numericChartPalette" minOccurs="0"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="mapChartDrills" minOccurs="0"/>
+							<xs:element ref="fillEffects" minOccurs="0"/>
+							<xs:element name="mapPointLocation" minOccurs="0">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="mapPointRefinementLocation" minOccurs="0">
+											<xs:complexType>
+												<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="conditionalChartColors" minOccurs="0"/>
+							<xs:element name="pointSizeLegendTitle" minOccurs="0">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="chartContents" minOccurs="0"/>
+										<xs:element ref="masterDetailLinks" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refQuery" type="xs:string"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="pointColorLegendTitle" minOccurs="0">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="chartContents" minOccurs="0"/>
+										<xs:element ref="masterDetailLinks" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refQuery" type="xs:string"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+						<xs:attributeGroup ref="MapLayerProperties"/>
+						<xs:attributeGroup ref="MapDataLayerProperties"/>
+						<xs:attributeGroup ref="ShowMapValuesAndLabels"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="regionLayer" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="regionMeasure" type="ChartMeasureType" minOccurs="0">
+							</xs:element>
+							<xs:element name="regionColorLegendTitle" minOccurs="0">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="chartContents" minOccurs="0"/>
+										<xs:element ref="masterDetailLinks" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refQuery" type="xs:string"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="mapRegionLocation" minOccurs="0">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="mapRegionRefinementLocation" minOccurs="0">
+											<xs:complexType>
+												<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="numericChartPalette" minOccurs="0"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="mapChartDrills" minOccurs="0"/>
+							<xs:element ref="fillEffects" minOccurs="0"/>
+							<xs:element ref="conditionalChartColors" minOccurs="0"/>
+						</xs:all>
+						<xs:attributeGroup ref="MapLayerProperties"/>
+						<xs:attributeGroup ref="MapDataLayerProperties"/>
+						<xs:attributeGroup ref="ShowMapValuesAndLabels"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="displayLayers" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="displayLayer" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="style" minOccurs="0"/>
+										<xs:element ref="conditionalStyles" minOccurs="0"/>
+										<xs:element ref="fillEffects" minOccurs="0"/>
+									</xs:all>
+									<xs:attributeGroup ref="MapLayerProperties"/>
+									<xs:attributeGroup ref="ShowLabelsBoolean"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="mapDictionary" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="mapDictionaryEntry" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="dataName" type="xs:string" use="required"/>
+									<xs:attribute name="locale" type="xs:string"/>
+									<xs:attribute name="mapName" type="xs:string" use="required"/>
+									<xs:attribute name="mapRefinementName" type="xs:string"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="axisTitle" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attribute name="refMap" type="xs:string" use="required"/>
+			<xs:attribute name="noDataFeaturesSize" type="xs:decimal" default="5"/>
+			<xs:attribute name="allowUnplottedData" type="xs:boolean" default="false"/>
+			<xs:attribute name="dataLocale" type="xs:string">
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="metricsChart">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="commonClusters" minOccurs="0"/>
+				<xs:element ref="combinationChartTypes" minOccurs="0"/>
+				<xs:element ref="defaultChartMeasure" minOccurs="0"/>
+				<xs:element name="toleranceMeasure" type="ChartMeasureType" minOccurs="0">
+				</xs:element>
+				<xs:element name="targetMeasure" type="ChartMeasureType" minOccurs="0">
+				</xs:element>
+				<xs:element ref="baselines" minOccurs="0"/>
+				<xs:element ref="chartBody" minOccurs="0"/>
+				<xs:element ref="chartFooter" minOccurs="0"/>
+				<xs:element ref="chartPalette" minOccurs="0"/>
+				<xs:element ref="chartSubTitle" minOccurs="0"/>
+				<xs:element ref="chartTitle" minOccurs="0"/>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="markers" minOccurs="0"/>
+				<xs:element ref="notes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="conditionalChartColors" minOccurs="0"/>
+				<xs:element ref="legend" minOccurs="0"/>
+				<xs:element ref="numericalAxisY1" minOccurs="0"/>
+				<xs:element ref="ordinalAxis" minOccurs="0"/>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element name="targetLabel" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartContents" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="toleranceLabel" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartContents" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="diamondLabel" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartContents" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attributeGroup ref="StandardChartAttributes"/>
+			<xs:attributeGroup ref="VisualEffects"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+			<xs:attribute name="toleranceColor" type="ColorType" default="green"/>
+			<xs:attribute name="targetRange" type="xs:decimal" default="50"/>
+			<xs:attribute name="targetColor" type="ColorType" default="#FFC800"/>
+			<xs:attribute name="markerColor" type="ColorType" default="green"/>
+			<xs:attribute name="targetBorderColor" type="ColorType" default="black"/>
+			<xs:attribute name="performancePattern" default="onTarget">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="onTarget"/>
+						<xs:enumeration value="belowTarget"/>
+						<xs:enumeration value="aboveTarget"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="skew" type="xs:decimal" default="100"/>
+			<xs:attribute name="showTargetMarker" type="xs:boolean" default="true"/>
+			<xs:attribute name="targetMarkerPosition" default="first">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="first"/>
+						<xs:enumeration value="center">
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ordinalAxis" type="OrdinalAxisType">
+	</xs:element>
+	<xs:element name="baselines">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="baseline" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="baselinePosition" minOccurs="0">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element ref="numericPosition"/>
+										<xs:element ref="memberPosition"/>
+									</xs:choice>
+									<xs:attributeGroup ref="UseNumericalAxis"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="baselineLabel" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+							<xs:element ref="masterDetailLinks" minOccurs="0"/>
+						</xs:all>
+						<xs:attributeGroup ref="BaselineAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="notes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="note" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+							<xs:element name="noteContent" minOccurs="0">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="chartContents"/>
+										<xs:element ref="style" minOccurs="0"/>
+										<xs:element ref="masterDetailLinks" minOccurs="0"/>
+										<xs:element ref="conditionalStyles" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+									</xs:all>
+									<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+									<xs:attribute name="refQuery" type="xs:string" use="optional"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="noteBorder" minOccurs="0">
+								<xs:complexType>
+									<xs:attributeGroup ref="LineStyleAttribute"/>
+									<xs:attribute name="color" type="ColorType" default="black"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="bottom" type="xs:nonNegativeInteger" default="0"/>
+						<xs:attribute name="left" type="xs:nonNegativeInteger" default="0"/>
+						<xs:attribute name="height" type="xs:positiveInteger" default="35">
+						</xs:attribute>
+						<xs:attribute name="width" type="xs:positiveInteger" default="150"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pointChartMarkers">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="pointChartMarker" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="markerLabel" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+							<xs:element name="pointChartMarkerPosition">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="XPosition"/>
+										<xs:element ref="YPosition"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+							<xs:element ref="masterDetailLinks" minOccurs="0"/>
+						</xs:all>
+						<xs:attributeGroup ref="DataPointAttributes"/>
+						<xs:attribute name="dataPointColor" type="ColorType" default="black"/>
+						<xs:attribute name="refQuery" type="xs:string"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="markerTextLocation" default="chart">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="chart"/>
+						<xs:enumeration value="legend"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="markers">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="marker" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="markerPosition">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="memberPosition"/>
+										<xs:element ref="numericPosition"/>
+									</xs:all>
+									<xs:attributeGroup ref="UseNumericalAxis"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="markerLabel" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+							<xs:element ref="masterDetailLinks" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="dataPointColor" type="ColorType" default="black"/>
+						<xs:attributeGroup ref="DataPointAttributes"/>
+						<xs:attribute name="refQuery" type="xs:string"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="markerTextLocation" default="chart">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="chart"/>
+						<xs:enumeration value="legend"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="legend">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element name="legendPosition">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="relativePosition">
+								<xs:complexType>
+									<xs:attribute name="legendPosition" default="right">
+										<xs:simpleType>
+											<xs:restriction base="xs:NMTOKEN">
+												<xs:enumeration value="right"/>
+												<xs:enumeration value="left"/>
+												<xs:enumeration value="bottom"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="absolutePosition">
+								<xs:complexType>
+									<xs:attribute name="topLegendPosition" type="xs:nonNegativeInteger" default="50"/>
+									<xs:attribute name="leftLegendPosition" type="xs:nonNegativeInteger" default="0"/>
+									<xs:attribute name="rightLegendPosition" type="xs:nonNegativeInteger" default="50"/>
+									<xs:attribute name="bottomLegendPosition" type="xs:nonNegativeInteger" default="0"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="legendTitle" minOccurs="0">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="ChartTitle">
+								<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="reportDrills" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="autoFontResizing" type="xs:boolean" default="true"/>
+			<xs:attribute name="allowTruncation" type="xs:boolean" default="true"/>
+			<xs:attribute name="truncationText" type="xs:string" default="..."/>
+			<xs:attribute name="maxCharacters" type="xs:positiveInteger" default="48"/>
+			<xs:attribute name="separator" type="xs:string" default=" - ">
+			</xs:attribute>
+			<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attribute name="showLegendValues" default="none">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="first">
+						</xs:enumeration>
+						<xs:enumeration value="last"/>
+						<xs:enumeration value="min">
+						</xs:enumeration>
+						<xs:enumeration value="max">
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartTitle">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ChartTitle">
+					<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartSubTitle">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ChartTitle">
+					<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartGradient">
+		<xs:complexType>
+			<xs:attribute name="direction" default="down">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="up"/>
+						<xs:enumeration value="down"/>
+						<xs:enumeration value="left">
+						</xs:enumeration>
+						<xs:enumeration value="right">
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fromColor" type="ColorType" default="black"/>
+			<xs:attribute name="toColor" type="ColorType" default="white"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartColor">
+		<xs:complexType>
+			<xs:attribute name="value" type="ColorType" default="black">
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartPattern">
+		<xs:complexType>
+			<xs:attribute name="patternType" default="horizontal">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="horizontal">
+						</xs:enumeration>
+						<xs:enumeration value="vertical">
+						</xs:enumeration>
+						<xs:enumeration value="forwardDiagonal"/>
+						<xs:enumeration value="backwardDiagonal"/>
+						<xs:enumeration value="cross"/>
+						<xs:enumeration value="diagonalCross"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="foregroundColor" type="ColorType" default="black"/>
+			<xs:attribute name="backgroundColor" type="ColorType" default="white"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartPalette">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="chartGradient"/>
+					<xs:element ref="chartColor"/>
+					<xs:element ref="chartPattern"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fillEffects">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="chartGradient"/>
+				<xs:element ref="chartPattern"/>
+				<xs:element ref="chartColor"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartNode">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="chartNodeMembers">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="chartNodeMember" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="chartContents" minOccurs="0"/>
+										<xs:element ref="chartLabel" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+										<xs:element ref="sortList" minOccurs="0"/>
+										<xs:element ref="XMLAttributes" minOccurs="0"/>
+										<xs:element ref="style" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+									<xs:attributeGroup ref="SolveOrderAttributes"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="chartNestedNodes" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="chartNode" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartFooter">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ChartTitle">
+					<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartBody">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="fillEffects" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveBars">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartNodes" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gridlines">
+		<xs:complexType>
+			<xs:attributeGroup ref="LineStyles"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pointXMeasure" type="ChartMeasureType">
+	</xs:element>
+	<xs:element name="pointYMeasure" type="ChartMeasureType">
+	</xs:element>
+	<xs:element name="points">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartNodes"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pointClusters">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartNodes"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="axisTitle">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ChartTitle">
+					<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="conditionalChartColors">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="conditionalChartColor" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="chartColor"/>
+							<xs:element ref="chartGradient"/>
+							<xs:element ref="chartPattern"/>
+						</xs:choice>
+						<xs:attributeGroup ref="ConditionalPartAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attributeGroup ref="ConditionalOwnerAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartContents">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="chartTextItem" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="conditionalDataSources" minOccurs="0"/>
+							<xs:element ref="dataSource"/>
+							<xs:element ref="style" minOccurs="0"/>
+							<xs:element ref="conditionalStyles" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commonClusters">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartNodes"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartNodes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="chartNode" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="radialMeasure" type="ChartMeasureType">
+	</xs:element>
+	<xs:element name="bar">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartNodes" minOccurs="0"/>
+				<xs:element ref="connectLines" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="UseNumericalAxis"/>
+			<xs:attributeGroup ref="ChartValueType"/>
+			<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+			<xs:attributeGroup ref="ShowAbsoluteValues"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="line">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartNodes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="UseNumericalAxis"/>
+			<xs:attributeGroup ref="ChartValueType"/>
+			<xs:attribute name="showLine" type="xs:boolean" default="true"/>
+			<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+			<xs:attributeGroup ref="ShowAbsoluteValues"/>
+			<xs:attributeGroup ref="PointChartDataPointAttributes"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="LineStylesNoColor"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="area">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartNodes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="UseNumericalAxis"/>
+			<xs:attributeGroup ref="ChartValueType"/>
+			<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+			<xs:attributeGroup ref="BorderProperties"/>
+			<xs:attributeGroup ref="ShowAbsoluteValues"/>
+			<xs:attributeGroup ref="DisplayDataLocation"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="numericalAxisY1">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="MeasureAxisType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="numericalAxisY2">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="MeasureAxisType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="numericPosition">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ChartDynamicValue"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="memberPosition">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="reportExpression"/>
+			</xs:all>
+			<xs:attribute name="memberOffset" type="xs:decimal" default="0"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="numericalAxisX" type="MeasureAxisType">
+	</xs:element>
+	<xs:element name="numericalAxisY" type="MeasureAxisType">
+	</xs:element>
+	<xs:element name="numericalAxisRadial" type="MeasureAxisType">
+	</xs:element>
+	<xs:element name="baselineLabel">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartContents"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="threeDBaselinePosition" type="ChartDynamicValue">
+	</xs:element>
+	<xs:element name="markerLabel">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartContents"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pointChartBaselines">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="pointChartBaseline" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="baselineLabel" minOccurs="0"/>
+							<xs:element ref="conditionalRender" minOccurs="0"/>
+							<xs:element name="pointChartBaselinePosition" type="ChartDynamicValue">
+							</xs:element>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+							<xs:element ref="masterDetailLinks" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+						<xs:attributeGroup ref="BaselineAttributes"/>
+						<xs:attribute name="pointChartAxis" default="xAxis">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="xAxis"/>
+									<xs:enumeration value="yAxis"/>
+									<xs:enumeration value="radialAxis"/>
+									<xs:enumeration value="angularAxis"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="XPosition" type="ChartDynamicValue">
+	</xs:element>
+	<xs:element name="YPosition" type="ChartDynamicValue">
+	</xs:element>
+	<xs:element name="defaultChartMeasure" type="ChartMeasureType">
+	</xs:element>
+	<xs:element name="connectLines">
+		<xs:complexType>
+			<xs:attributeGroup ref="LineStyles"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="numericChartPalette">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="discreteChartPalette">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="discreteChartPaletteEntry" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element ref="chartGradient"/>
+										<xs:element ref="chartPattern"/>
+										<xs:element ref="chartColor"/>
+									</xs:choice>
+									<xs:attribute name="paletteValue" type="xs:float" use="optional"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="continuousChartPalette"/>
+			</xs:choice>
+			<xs:attribute name="percentValues" type="xs:boolean" default="true"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="mapChartDrills">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="mapChartDrill" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="reportDrills" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="featureId" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="minorGridlines">
+		<xs:complexType>
+			<xs:attribute name="numberOfMinorGridlines" type="xs:nonNegativeInteger" default="0"/>
+			<xs:attributeGroup ref="LineStyles"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="regressionLine">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="regressionLinePosition">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="commonLog">
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="naturalLog">
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="linear">
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="exponential">
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="polynomialFit">
+								<xs:complexType>
+									<xs:attribute name="exponent" type="xs:positiveInteger" default="1"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="regressionLineLabel" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="chartContents" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="propertyList" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="numberOfRegressionLines" default="oneForAllData">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="oneForAllData"/>
+						<xs:enumeration value="oneForEachSeries"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="LineStyles"/>
+			<xs:attribute name="showInLegend" type="xs:boolean" default="true"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="combinationChartTypes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="bar"/>
+					<xs:element ref="line"/>
+					<xs:element ref="area"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="axisLine">
+		<xs:complexType>
+			<xs:attributeGroup ref="LineStyles"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="continuousChartPalette">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="continuousChartPaletteEntry" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="paletteEntryValue" type="xs:float" use="required"/>
+						<xs:attribute name="paletteEntryColor" type="ColorType" default="black"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="chartLabel">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="chartContents" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ChartMeasureType">
+		<xs:all>
+			<xs:element ref="style" minOccurs="0"/>
+			<xs:element ref="conditionalStyles" minOccurs="0"/>
+			<xs:element ref="chartLabel" minOccurs="0"/>
+		</xs:all>
+		<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+		<xs:attributeGroup ref="SolveOrderAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="ChartTitle">
+		<xs:all>
+			<xs:element ref="chartContents" minOccurs="0"/>
+			<xs:element ref="style" minOccurs="0"/>
+			<xs:element ref="conditionalStyles" minOccurs="0"/>
+			<xs:element ref="XMLAttributes" minOccurs="0"/>
+			<xs:element ref="propertyList" minOccurs="0"/>
+			<xs:element ref="masterDetailLinks" minOccurs="0"/>
+		</xs:all>
+		<xs:attribute name="refQuery" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="ChartDynamicValue">
+		<xs:choice>
+			<xs:element ref="dataSource"/>
+			<xs:element name="mean">
+				<xs:complexType>
+					<xs:attribute name="numberOfStddev" type="xs:decimal" default="0"/>
+					<xs:attribute name="comboIndex" type="xs:nonNegativeInteger" default="0"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="limit">
+				<xs:complexType>
+					<xs:attribute name="limitType" default="max">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="min"/>
+								<xs:enumeration value="max"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="comboIndex" type="xs:nonNegativeInteger" default="0"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="percentile">
+				<xs:complexType>
+					<xs:attribute name="percentile" type="xs:decimal" default="50"/>
+					<xs:attribute name="comboIndex" type="xs:nonNegativeInteger" default="0"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="percentAlongAxis">
+				<xs:complexType>
+					<xs:attribute name="percentAlongAxis" type="xs:decimal" default="50"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="MeasureAxisType">
+		<xs:all>
+			<xs:element ref="axisTitle" minOccurs="0"/>
+			<xs:element ref="gridlines" minOccurs="0"/>
+			<xs:element ref="minorGridlines" minOccurs="0"/>
+			<xs:element ref="axisLine" minOccurs="0"/>
+			<xs:element ref="style" minOccurs="0"/>
+			<xs:element ref="conditionalStyles" minOccurs="0"/>
+		</xs:all>
+		<xs:attributeGroup ref="MeasureAxisAttributes"/>
+		<xs:attribute name="includeZeroForAutoScale" type="xs:boolean" default="true"/>
+		<xs:attribute name="showAxisLabels" type="xs:boolean" default="true"/>
+		<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="EmptyType">
+	</xs:complexType>
+	<xs:complexType name="OrdinalAxisType">
+		<xs:all>
+			<xs:element ref="style" minOccurs="0"/>
+			<xs:element ref="conditionalStyles" minOccurs="0"/>
+			<xs:element ref="axisTitle" minOccurs="0"/>
+			<xs:element ref="reportDrills" minOccurs="0"/>
+			<xs:element ref="gridlines" minOccurs="0"/>
+			<xs:element ref="minorGridlines" minOccurs="0"/>
+			<xs:element ref="axisLine" minOccurs="0"/>
+			<xs:element name="labelControl" minOccurs="0">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="autoLabelControl">
+							<xs:complexType>
+								<xs:attribute name="allowRotate45DegreesForCategoryLabels" type="xs:boolean" default="true"/>
+								<xs:attribute name="allowRotate90DegreesForCategoryLabels" type="xs:boolean" default="true"/>
+								<xs:attribute name="allowStaggerForCategoryLabels" type="xs:boolean" default="true"/>
+								<xs:attribute name="allowSkipForCategoryLabels" type="xs:boolean" default="true"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="manualLabelControl">
+							<xs:complexType>
+								<xs:attribute name="displayFrequency" type="xs:integer" default="5"/>
+								<xs:attribute name="firstLabel" type="xs:integer" default="1"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+		<xs:attribute name="categoryitemMaxCharacters" type="xs:positiveInteger" default="48"/>
+		<xs:attribute name="categoryitemEnableTruncation" type="xs:boolean" default="true"/>
+		<xs:attribute name="truncationText" type="xs:string" default="..."/>
+		<xs:attribute name="showAxisLabels" type="xs:boolean" default="true"/>
+		<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="MapLocation">
+		<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="ColorType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:attributeGroup name="StandardChartAttributes">
+		<xs:attribute name="refQuery" type="xs:string" use="required"/>
+		<xs:attributeGroup ref="CommonLayoutAttributes"/>
+		<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+		<xs:attribute name="showTooltips" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ChartValueType">
+		<xs:attribute name="valueType" default="absolute">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="absolute"/>
+					<xs:enumeration value="stacked"/>
+					<xs:enumeration value="stacked100Percent"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="AxisY2">
+		<xs:attribute name="axisY2Position" default="dual">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="dual"/>
+					<xs:enumeration value="bipolar"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="BaselineAttributes">
+		<xs:attribute name="refQuery" type="xs:string" use="optional"/>
+		<xs:attribute name="showInLegend" type="xs:boolean" default="true"/>
+		<xs:attributeGroup ref="LineStyles"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="MeasureAxisAttributes">
+		<xs:attribute name="min" type="xs:float">
+		</xs:attribute>
+		<xs:attribute name="max" type="xs:float">
+		</xs:attribute>
+		<xs:attribute name="scaleInterval" type="xs:float"/>
+		<xs:attribute name="scale" default="linear">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="linear"/>
+					<xs:enumeration value="log"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="sameRangeAllInstances" type="xs:boolean" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="VisualEffects">
+		<xs:attribute name="depth" type="xs:nonNegativeInteger" default="0"/>
+		<xs:attribute name="visualAngle" type="xs:nonNegativeInteger" default="45"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="SpiderEffects">
+		<xs:attribute name="useSpiderEffects" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DataPointShape">
+		<xs:attribute name="dataPointShape" default="plainX">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="circle"/>
+					<xs:enumeration value="square"/>
+					<xs:enumeration value="house"/>
+					<xs:enumeration value="hexagon"/>
+					<xs:enumeration value="pentagon"/>
+					<xs:enumeration value="diamond"/>
+					<xs:enumeration value="triangle"/>
+					<xs:enumeration value="downTriangle"/>
+					<xs:enumeration value="rightTriangle"/>
+					<xs:enumeration value="leftTriangle"/>
+					<xs:enumeration value="skewLeftTriangle"/>
+					<xs:enumeration value="skewRightTriangle"/>
+					<xs:enumeration value="downSkewLeftTriangle"/>
+					<xs:enumeration value="downSkewRightTriangle"/>
+					<xs:enumeration value="verticalLine"/>
+					<xs:enumeration value="horizontalLine"/>
+					<xs:enumeration value="plus"/>
+					<xs:enumeration value="fatPlus"/>
+					<xs:enumeration value="star90"/>
+					<xs:enumeration value="pentagram"/>
+					<xs:enumeration value="star"/>
+					<xs:enumeration value="skewedStar"/>
+					<xs:enumeration value="plainX"/>
+					<xs:enumeration value="softX"/>
+					<xs:enumeration value="fatX"/>
+					<xs:enumeration value="spikedX"/>
+					<xs:enumeration value="castle"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DataPointAttributes">
+		<xs:attribute name="dataPointSize" type="xs:decimal" default="0"/>
+		<xs:attributeGroup ref="DataPointShape"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="LineStyles">
+		<xs:attributeGroup ref="LineStylesNoColor"/>
+		<xs:attribute name="color" type="ColorType" default="black"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="LineStylesNoColor">
+		<xs:attributeGroup ref="LineStyleAttribute"/>
+		<xs:attribute name="weight" type="xs:decimal" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="viewingAngle">
+		<xs:attribute name="threeDViewingAngle" default="standard">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="standard"/>
+					<xs:enumeration value="thickStandard"/>
+					<xs:enumeration value="lowThin"/>
+					<xs:enumeration value="near1x3"/>
+					<xs:enumeration value="tallFar"/>
+					<xs:enumeration value="groupView"/>
+					<xs:enumeration value="nearView"/>
+					<xs:enumeration value="seriesView"/>
+					<xs:enumeration value="groupStretch"/>
+					<xs:enumeration value="seriesStretch"/>
+					<xs:enumeration value="birdsEye"/>
+					<xs:enumeration value="lowHigh"/>
+					<xs:enumeration value="lowLow"/>
+					<xs:enumeration value="tallDistortion"/>
+					<xs:enumeration value="lowDistort"/>
+					<xs:enumeration value="isometric"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="LineAttributes">
+		<xs:attributeGroup ref="LineStyles"/>
+		<xs:attributeGroup ref="DataPointAttributes"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="LineAttributesNoColor">
+		<xs:attributeGroup ref="LineStylesNoColor"/>
+		<xs:attributeGroup ref="DataPointAttributes"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="MatchSeriesColor">
+		<xs:attribute name="matchSeriesColor" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="UseNumericalAxis">
+		<xs:attribute name="useNumericalAxis" default="numericalAxisY1">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="numericalAxisY1"/>
+					<xs:enumeration value="numericalAxisY2"/>
+					<xs:enumeration value="xAxis"/>
+					<xs:enumeration value="yAxis"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DisplayDataLocation">
+		<xs:attribute name="displayDataLocation" default="centered">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="insideAtTop"/>
+					<xs:enumeration value="outsideAtTop"/>
+					<xs:enumeration value="insideAtBottom"/>
+					<xs:enumeration value="outsideAtBottom"/>
+					<xs:enumeration value="centered"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="CategoryTrunction">
+		<xs:attribute name="categoryitemMaxCharacters" type="xs:positiveInteger" default="48"/>
+		<xs:attribute name="categoryitemEnableTruncation" type="xs:boolean" default="true"/>
+		<xs:attribute name="truncationText" type="xs:string" default="..."/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowValuesAsPercent">
+		<xs:attribute name="showValuesAsPercent" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowAbsoluteValues">
+		<xs:attribute name="showAbsoluteValues" type="xs:boolean" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PointChartDataShape">
+		<xs:attribute name="pointChartDataPointShape" default="series">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="series"/>
+					<xs:enumeration value="category"/>
+					<xs:enumeration value="circle"/>
+					<xs:enumeration value="square"/>
+					<xs:enumeration value="house"/>
+					<xs:enumeration value="hexagon"/>
+					<xs:enumeration value="pentagon"/>
+					<xs:enumeration value="diamond"/>
+					<xs:enumeration value="triangle"/>
+					<xs:enumeration value="downTriangle"/>
+					<xs:enumeration value="rightTriangle"/>
+					<xs:enumeration value="leftTriangle"/>
+					<xs:enumeration value="skewLeftTriangle"/>
+					<xs:enumeration value="skewRightTriangle"/>
+					<xs:enumeration value="downSkewLeftTriangle"/>
+					<xs:enumeration value="downSkewRightTriangle"/>
+					<xs:enumeration value="verticalLine"/>
+					<xs:enumeration value="horizontalLine"/>
+					<xs:enumeration value="plus"/>
+					<xs:enumeration value="fatPlus"/>
+					<xs:enumeration value="star90"/>
+					<xs:enumeration value="pentagram"/>
+					<xs:enumeration value="star"/>
+					<xs:enumeration value="skewedStar"/>
+					<xs:enumeration value="plainX"/>
+					<xs:enumeration value="softX"/>
+					<xs:enumeration value="fatX"/>
+					<xs:enumeration value="spikedX"/>
+					<xs:enumeration value="castle"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="PointChartDataPointAttributes">
+		<xs:attribute name="dataPointSize" type="xs:decimal" default="6"/>
+		<xs:attributeGroup ref="PointChartDataShape"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="BorderProperties">
+		<xs:attribute name="showBorders" type="xs:boolean" default="false"/>
+		<xs:attribute name="borderColor" type="ColorType" default="black"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="MapLayerProperties">
+		<xs:attribute name="refLayer" type="xs:string" use="required"/>
+		<xs:attributeGroup ref="BorderProperties"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowValuesBoolean">
+		<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowValuesAndLocation">
+		<xs:attributeGroup ref="ShowValuesBoolean"/>
+		<xs:attributeGroup ref="DisplayDataLocation"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowLabelsBoolean">
+		<xs:attribute name="showLabels" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="MapDataLayerProperties">
+		<xs:attribute name="showNoDataFeatures" type="xs:boolean" default="true">
+		</xs:attribute>
+		<xs:attribute name="showDataRangeInLegend" type="xs:boolean" default="true">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="LineStyleAttribute">
+		<xs:attribute name="lineStyle" default="solid">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="solid"/>
+					<xs:enumeration value="dash"/>
+					<xs:enumeration value="dot"/>
+					<xs:enumeration value="dotdash"/>
+					<xs:enumeration value="dashdotdot"/>
+					<xs:enumeration value="mediumdash"/>
+					<xs:enumeration value="shortdash"/>
+					<xs:enumeration value="longdash"/>
+					<xs:enumeration value="longdot"/>
+					<xs:enumeration value="dotdotdot"/>
+					<xs:enumeration value="dashdashdot"/>
+					<xs:enumeration value="dashdashdotdot"/>
+					<xs:enumeration value="longdashdot"/>
+					<xs:enumeration value="longdashdotdot"/>
+					<xs:enumeration value="longdashdashdot"/>
+					<xs:enumeration value="longdashdashdotdot"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowPointValues">
+		<xs:attribute name="showPointValues" default="none">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="valuesAndLabels"/>
+					<xs:enumeration value="valuesOnly"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showPointValuesForPoints" default="none">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="valuesAndLabels">
+					</xs:enumeration>
+					<xs:enumeration value="valuesOnly">
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showPointValuesForPointClusters" default="none">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="valuesAndLabels">
+					</xs:enumeration>
+					<xs:enumeration value="valuesOnly">
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowBubblePointValues">
+		<xs:attribute name="showBubblePointValues" default="none">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="valuesAndLabels">
+					</xs:enumeration>
+					<xs:enumeration value="valuesOnly"/>
+					<xs:enumeration value="sizeValueAndLabel"/>
+					<xs:enumeration value="sizeValueOnly"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showPointValuesForPoints" default="none">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="valuesAndLabels">
+					</xs:enumeration>
+					<xs:enumeration value="valuesOnly">
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="showPointValuesForPointClusters" default="none">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="valuesAndLabels">
+					</xs:enumeration>
+					<xs:enumeration value="valuesOnly">
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShowMapValuesAndLabels">
+		<xs:attribute name="showValues" type="xs:boolean" default="false"/>
+		<xs:attribute name="showLabels" type="xs:boolean" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="RotatedLabels">
+		<xs:attribute name="rotateLabelsWithChart" type="xs:boolean" default="false"/>
+	</xs:attributeGroup>
+	<xs:group name="layoutElement">
+		<xs:choice>
+			<xs:element ref="list"/>
+			<xs:element ref="crosstab"/>
+			<xs:element ref="repeaterTable"/>
+			<xs:element ref="repeater"/>
+			<xs:element name="block">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="GenericContainerElementType">
+							<xs:attributeGroup ref="CommonLayoutAttributes"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="table">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="tableRows">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="tableRow" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:all>
+												<xs:element name="tableCells">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="tableCell" maxOccurs="unbounded">
+																<xs:complexType>
+																	<xs:complexContent>
+																		<xs:extension base="GenericContainerSubElementType">
+																			<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+																			<xs:attribute name="colSpan" type="xs:positiveInteger" default="1">
+																			</xs:attribute>
+																		</xs:extension>
+																	</xs:complexContent>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element ref="style" minOccurs="0"/>
+												<xs:element ref="conditionalStyles" minOccurs="0"/>
+												<xs:element ref="XMLAttributes" minOccurs="0"/>
+											</xs:all>
+											<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="CommonLayoutAttributes"/>
+					<xs:attribute name="repeatOnPageBreak" type="xs:boolean" default="true">
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="textItem">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dataSource"/>
+						<xs:element ref="conditionalDataSources" minOccurs="0"/>
+						<xs:element ref="reportDrills" minOccurs="0"/>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="maxCharacters" type="xs:positiveInteger" use="optional">
+					</xs:attribute>
+					<xs:attribute name="useDetailValue" type="xs:boolean" default="false">
+					</xs:attribute>
+					<xs:attributeGroup ref="CommonLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="image">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dataSource"/>
+						<xs:element ref="conditionalDataSources" minOccurs="0"/>
+						<xs:element ref="reportDrills" minOccurs="0"/>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="CommonLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="hyperlink">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="contents"/>
+						<xs:element ref="dataSource"/>
+						<xs:element ref="conditionalDataSources" minOccurs="0"/>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="CommonLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="button">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="contents"/>
+						<xs:element ref="dataSource"/>
+						<xs:element ref="conditionalDataSources" minOccurs="0"/>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="CommonLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="promptButton">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="contents"/>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="type">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="back"/>
+								<xs:enumeration value="cancel"/>
+								<xs:enumeration value="next"/>
+								<xs:enumeration value="finish"/>
+								<xs:enumeration value="reprompt"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="CommonLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="HTMLItem">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dataSource"/>
+						<xs:element ref="conditionalDataSources" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+					<xs:attributeGroup ref="DescriptionLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="richTextItem">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dataSource"/>
+						<xs:element ref="conditionalDataSources" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+					<xs:attributeGroup ref="DescriptionLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="bookmark">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="dataSource"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="fieldSet">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="contents"/>
+						<xs:element name="fieldSetCaption" type="GenericContainerSubElementType"/>
+						<xs:element ref="style" minOccurs="0"/>
+						<xs:element ref="conditionalStyles" minOccurs="0"/>
+						<xs:element ref="conditionalRender" minOccurs="0"/>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="showCaption" default="left">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="left">
+								</xs:enumeration>
+								<xs:enumeration value="right">
+								</xs:enumeration>
+								<xs:enumeration value="center"/>
+								<xs:enumeration value="hide"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="CommonLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="conditionalBlocks">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="conditionalBlockCases" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="conditionalBlock" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:complexContent>
+												<xs:extension base="GenericContainerSubElementType">
+													<xs:attributeGroup ref="ConditionalPartAttributes"/>
+													<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+												</xs:extension>
+											</xs:complexContent>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attributeGroup ref="ConditionalOwnerAttributes"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="conditionalBlockDefault">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="GenericContainerSubElementType">
+										<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attributeGroup ref="NameLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="layoutComponentRef">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="reportPath" minOccurs="0"/>
+						<xs:element name="layoutComponent" minOccurs="0">
+							<xs:complexType>
+								<xs:group ref="layoutElement"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="layoutComponentOverrides" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="layoutComponentOverride" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:group ref="layoutElement" minOccurs="0"/>
+											<xs:attribute name="refLayoutElement" type="xs:string" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="XMLAttributes" minOccurs="0"/>
+					</xs:all>
+					<xs:attribute name="refLayoutElement" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CMMMap">
+				<xs:complexType>
+					<xs:attribute name="cmmID" type="xs:string" use="required"/>
+					<xs:attributeGroup ref="DescriptionLayoutAttributes"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="asOfTime">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="reportExpression"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:group ref="chartElement"/>
+			<xs:group ref="promptElement"/>
+		</xs:choice>
+	</xs:group>
+	<xs:element name="layouts">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="layout" type="LayoutType"/>
+				<xs:element name="conditionalLayouts" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="conditionalLayout" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="LayoutType">
+											<xs:attributeGroup ref="ConditionalPartAttributes"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attributeGroup ref="ConditionalOwnerAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pageSet">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="pageOverallGroup" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="headerPages" minOccurs="0"/>
+							<xs:element ref="footerPages" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="pageGroups" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="pageGroup" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="headerPages" minOccurs="0"/>
+										<xs:element ref="footerPages" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+										<xs:element ref="sortList" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="detailPages">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice minOccurs="0" maxOccurs="unbounded">
+								<xs:element ref="page"/>
+								<xs:element ref="pageSet"/>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="propertyList" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attributeGroup ref="ResetPageAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="page">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="pageBody">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="GenericContainerSubElementType">
+								<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="pageHeader" minOccurs="0">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="GenericContainerSubElementType">
+								<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="pageFooter" minOccurs="0">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="GenericContainerSubElementType">
+								<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="propertyList" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="refQuery" type="xs:string">
+			</xs:attribute>
+			<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+			<xs:attributeGroup ref="ResetPageAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="list">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="listColumns" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="listColumn" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="listColumnTitle">
+											<xs:complexType>
+												<xs:all>
+													<xs:element ref="contents"/>
+													<xs:element ref="style" minOccurs="0"/>
+													<xs:element ref="conditionalStyles" minOccurs="0"/>
+													<xs:element ref="XMLAttributes" minOccurs="0"/>
+												</xs:all>
+												<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="listColumnBody">
+											<xs:complexType>
+												<xs:all>
+													<xs:element ref="contents"/>
+													<xs:element name="listColumnRowSpan" minOccurs="0">
+														<xs:complexType>
+															<xs:attribute name="refDataItem" type="xs:string" use="optional"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element ref="style" minOccurs="0"/>
+													<xs:element ref="conditionalStyles" minOccurs="0"/>
+													<xs:element ref="XMLAttributes" minOccurs="0"/>
+												</xs:all>
+												<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element ref="style" minOccurs="0"/>
+										<xs:element ref="conditionalStyles" minOccurs="0"/>
+										<xs:element ref="conditionalRender" minOccurs="0"/>
+										<xs:element ref="XMLAttributes" minOccurs="0"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="listColumnStyle" type="GenericLayoutStyleType" minOccurs="0">
+				</xs:element>
+				<xs:element name="listColumnTitleStyle" type="GenericLayoutStyleType" minOccurs="0">
+				</xs:element>
+				<xs:element name="listColumnBodyStyle" type="GenericLayoutStyleType" minOccurs="0">
+				</xs:element>
+				<xs:element name="listOverallGroup" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="listHeader" minOccurs="0"/>
+							<xs:element ref="listFooter" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="listGroups" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="listGroup" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="listHeader" minOccurs="0"/>
+										<xs:element ref="listFooter" minOccurs="0"/>
+										<xs:element ref="propertyList" minOccurs="0"/>
+										<xs:element ref="sortList" minOccurs="0"/>
+										<xs:element ref="XMLAttributes" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="propertyList" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element name="listPageHeader" minOccurs="0">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="ListHFType">
+								<xs:attribute name="afterOverallHeader" type="xs:boolean" default="false"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="listPageFooter" minOccurs="0">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="ListHFType">
+								<xs:attributeGroup ref="PushToBottom"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attribute name="rowsPerPage" type="xs:positiveInteger">
+			</xs:attribute>
+			<xs:attribute name="cellHeightBehavior" default="minimal">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="minimal">
+						</xs:enumeration>
+						<xs:enumeration value="stretch"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="showColumnTitles" default="startOfList">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="hide"/>
+						<xs:enumeration value="startOfList"/>
+						<xs:enumeration value="startOfDetails"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="pageBreakText" type="xs:boolean" default="true">
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonLayoutAttributes"/>
+			<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+			<xs:attributeGroup ref="KeepWithAttributes"/>
+			<xs:attributeGroup ref="ShareQuery"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="crosstab">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="crosstabColumns" type="CrosstabNodeListType" minOccurs="0">
+				</xs:element>
+				<xs:element name="crosstabRows" type="CrosstabNodeListType" minOccurs="0">
+				</xs:element>
+				<xs:element name="crosstabFactCell" minOccurs="0">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="GenericContainerSubElementType">
+								<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="defaultMeasure" minOccurs="0"/>
+				<xs:element name="crosstabCorner" minOccurs="0">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="GenericContainerSubElementType">
+								<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="crosstabIntersections" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="crosstabIntersection" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="contents" minOccurs="0"/>
+										<xs:element ref="style" minOccurs="0"/>
+										<xs:element ref="conditionalStyles" minOccurs="0"/>
+										<xs:element ref="XMLAttributes" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="row" type="xs:string" use="required"/>
+									<xs:attribute name="column" type="xs:string" use="required"/>
+									<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="crosstabRowNodeStyle" type="GenericLayoutStyleType" minOccurs="0"/>
+				<xs:element name="crosstabColumnNodeStyle" type="GenericLayoutStyleType" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attribute name="rowsPerPage" type="xs:positiveInteger">
+			</xs:attribute>
+			<xs:attribute name="factCellStylePrecedence" default="rows">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="rows"/>
+						<xs:enumeration value="columns"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="pageBreakText" type="xs:boolean" default="true">
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonLayoutAttributes"/>
+			<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="repeaterTable">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="repeaterTableCell">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="GenericContainerElementType">
+								<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="repeaterGroups" minOccurs="0"/>
+				<xs:element ref="propertyList" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attribute name="across" type="xs:positiveInteger">
+			</xs:attribute>
+			<xs:attribute name="down" type="xs:positiveInteger">
+			</xs:attribute>
+			<xs:attribute name="direction" default="lr-tb">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="lr-tb"/>
+						<xs:enumeration value="tb-lr"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="CommonLayoutAttributes"/>
+			<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+			<xs:attributeGroup ref="ShareQuery"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="repeater">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="contents"/>
+				<xs:element ref="repeaterGroups" minOccurs="0"/>
+				<xs:element ref="propertyList" minOccurs="0"/>
+				<xs:element ref="sortList" minOccurs="0"/>
+				<xs:element ref="conditionalRender" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element ref="masterDetailLinks" minOccurs="0"/>
+			</xs:all>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+			<xs:attribute name="rowsPerPage" type="xs:positiveInteger"/>
+			<xs:attributeGroup ref="NameLayoutAttributes"/>
+			<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+			<xs:attributeGroup ref="ShareQuery"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="burst">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="burstGroups">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="burstGroup" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="sortList" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="burstRecipient">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="masterDetailLinks" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="refQuery" type="xs:string" use="required"/>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+						<xs:attribute name="type" default="auto">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="auto"/>
+									<xs:enumeration value="email"/>
+									<xs:enumeration value="directory"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="burstLabel" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attribute name="refQuery" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="repeaterGroups">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="repeaterGroup" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="sortList" minOccurs="0"/>
+							<xs:element ref="propertyList" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="reportVariables">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="reportVariable" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="reportExpression"/>
+							<xs:element name="variableValues" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:choice maxOccurs="unbounded">
+											<xs:element ref="variableValue"/>
+											<xs:element name="variableValueGroup">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element ref="variableValue" maxOccurs="unbounded"/>
+													</xs:sequence>
+													<xs:attribute name="value" type="xs:string" use="required">
+													</xs:attribute>
+												</xs:complexType>
+											</xs:element>
+										</xs:choice>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="type" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="string"/>
+									<xs:enumeration value="boolean"/>
+									<xs:enumeration value="locale"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="classStyles">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="classStyle" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="CSS" minOccurs="0"/>
+						</xs:all>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="label" type="xs:string" use="optional">
+						</xs:attribute>
+						<xs:attributeGroup ref="DescriptionLayoutAttributes"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="drillBehavior">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="drillQueryBehavior" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="drillDataItemBehavior" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="drillUpBehavior" type="DrillBehaviorType" minOccurs="0"/>
+										<xs:element name="drillDownBehavior" type="DrillBehaviorType" minOccurs="0"/>
+									</xs:all>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+									<xs:attribute name="disableDrillUp" type="xs:boolean" default="false"/>
+									<xs:attribute name="disableDrillDown" type="xs:boolean" default="false"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="refQuery" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="drillUpDown" type="xs:boolean" default="false">
+			</xs:attribute>
+			<xs:attribute name="modelBasedDrillThru" type="xs:boolean" default="false">
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="LayoutType">
+		<xs:all>
+			<xs:element name="reportPages" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice maxOccurs="unbounded">
+							<xs:element ref="page"/>
+							<xs:element ref="pageSet"/>
+						</xs:choice>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="promptPages" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="page" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="defaultDataFormats" minOccurs="0">
+				<xs:complexType>
+					<xs:all>
+						<xs:element ref="numberFormat" minOccurs="0"/>
+						<xs:element ref="percentFormat" minOccurs="0"/>
+						<xs:element ref="currencyFormat" minOccurs="0"/>
+						<xs:element ref="dateFormat" minOccurs="0"/>
+						<xs:element ref="dateTimeFormat" minOccurs="0"/>
+						<xs:element ref="timeFormat" minOccurs="0"/>
+						<xs:element ref="intervalFormat" minOccurs="0"/>
+						<xs:element ref="stringFormat" minOccurs="0"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pageSetup" minOccurs="0">
+				<xs:complexType>
+					<xs:choice minOccurs="0">
+						<xs:element name="namedPaper">
+							<xs:complexType>
+								<xs:attribute name="name" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="customPaper">
+							<xs:complexType>
+								<xs:attribute name="width" type="xs:decimal" use="required">
+								</xs:attribute>
+								<xs:attribute name="height" type="xs:decimal" use="required">
+								</xs:attribute>
+								<xs:attribute name="unit" default="in">
+									<xs:simpleType>
+										<xs:restriction base="xs:NMTOKEN">
+											<xs:enumeration value="in"/>
+											<xs:enumeration value="cm"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+					<xs:attribute name="orientation" default="portrait">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="portrait"/>
+								<xs:enumeration value="landscape"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="GenericContainerSubElementType">
+		<xs:all>
+			<xs:element ref="contents"/>
+			<xs:element ref="style" minOccurs="0"/>
+			<xs:element ref="conditionalStyles" minOccurs="0"/>
+			<xs:element ref="XMLAttributes" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="GenericContainerElementType">
+		<xs:all>
+			<xs:element ref="contents"/>
+			<xs:element ref="style" minOccurs="0"/>
+			<xs:element ref="conditionalStyles" minOccurs="0"/>
+			<xs:element ref="conditionalRender" minOccurs="0"/>
+			<xs:element ref="XMLAttributes" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="ListHFType">
+		<xs:all>
+			<xs:element ref="listRows"/>
+			<xs:element ref="rowCellsStyle" minOccurs="0"/>
+			<xs:element ref="XMLAttributes" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="ListGroupHFType">
+		<xs:all>
+			<xs:element ref="listRows"/>
+			<xs:element ref="rowCellsStyle" minOccurs="0"/>
+			<xs:element ref="XMLAttributes" minOccurs="0"/>
+			<xs:element ref="propertyList" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="CrosstabNodeListType">
+		<xs:sequence>
+			<xs:element name="crosstabNode" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="crosstabNodeMembers">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:choice maxOccurs="unbounded">
+										<xs:element name="crosstabNodeMember">
+											<xs:complexType>
+												<xs:all>
+													<xs:element ref="contents"/>
+													<xs:element ref="style" minOccurs="0"/>
+													<xs:element ref="conditionalStyles" minOccurs="0"/>
+													<xs:element ref="factCellStyle" minOccurs="0"/>
+													<xs:element ref="factCell" minOccurs="0"/>
+													<xs:element ref="propertyList" minOccurs="0"/>
+													<xs:element ref="sortList" minOccurs="0"/>
+													<xs:element ref="XMLAttributes" minOccurs="0"/>
+												</xs:all>
+												<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+												<xs:attribute name="indentationLength" type="xs:string">
+												</xs:attribute>
+												<xs:attribute name="indentationStartLevel" type="xs:positiveInteger">
+												</xs:attribute>
+												<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+												<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+												<xs:attributeGroup ref="KeepWithNextPrevAttributes"/>
+												<xs:attributeGroup ref="SolveOrderAttributes"/>
+												<xs:attributeGroup ref="CrosstabEdgeLocation"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="crosstabSpacer">
+											<xs:complexType>
+												<xs:all>
+													<xs:element ref="contents"/>
+													<xs:element ref="style" minOccurs="0"/>
+													<xs:element ref="conditionalStyles" minOccurs="0"/>
+													<xs:element ref="factCell" minOccurs="0"/>
+													<xs:element ref="XMLAttributes" minOccurs="0"/>
+												</xs:all>
+												<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+												<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+												<xs:attributeGroup ref="KeepWithNextPrevAttributes"/>
+												<xs:attributeGroup ref="CrosstabEdgeLocation"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="crosstabNestedNodes" type="CrosstabNodeListType" minOccurs="0">
+						</xs:element>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DrillBehaviorType">
+		<xs:choice>
+			<xs:element name="drillSimpleType">
+				<xs:complexType>
+					<xs:attribute name="type" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="preserve">
+								</xs:enumeration>
+								<xs:enumeration value="emptySet"/>
+								<xs:enumeration value="replaceItem"/>
+								<xs:enumeration value="replaceExpression"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="drillChange">
+				<xs:complexType>
+					<xs:attribute name="refDataItem" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="drillChangeToDepthBasedExpression">
+				<xs:complexType>
+					<xs:attribute name="depthOffset" type="xs:integer" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="drillAncestor">
+				<xs:complexType>
+					<xs:attribute name="depthOffset" type="xs:integer" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="contents">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="layoutElement" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="rowCellsStyle" type="GenericLayoutStyleType"/>
+	<xs:element name="factCellStyle">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="GenericLayoutStyleType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="factCell">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="contents" minOccurs="0"/>
+				<xs:element ref="style" minOccurs="0"/>
+				<xs:element ref="conditionalStyles" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+			</xs:all>
+			<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="variableValue">
+		<xs:complexType>
+			<xs:attribute name="value" type="xs:string" use="required">
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="headerPages">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="page"/>
+					<xs:element ref="pageSet"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="footerPages">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="page"/>
+					<xs:element ref="pageSet"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listRows">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="listRow" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="rowCells">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="rowCell" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="GenericContainerSubElementType">
+														<xs:attribute name="colSpan" type="xs:positiveInteger" default="1"/>
+														<xs:attributeGroup ref="DefaultLayoutStyleAttributes"/>
+													</xs:extension>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="rowCellsStyle" minOccurs="0"/>
+							<xs:element ref="XMLAttributes" minOccurs="0"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listHeader">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ListGroupHFType">
+					<xs:attributeGroup ref="RepeatEveryPageAttributes"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listFooter">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ListGroupHFType">
+					<xs:attributeGroup ref="PushToBottom"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="CrosstabEdgeLocation">
+		<xs:attribute name="edgeLocation" type="xs:string">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ShareQuery">
+		<xs:attribute name="shareQuery" type="xs:boolean" default="false">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:element name="query" type="queryType">
+	</xs:element>
+	<xs:element name="source" type="sourceType">
+	</xs:element>
+	<xs:element name="selection">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dataItem" minOccurs="0" maxOccurs="unbounded"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="autoSummary" type="xs:boolean" use="optional" default="true"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dataItem">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="expression" type="queryExpressionType">
+				</xs:element>
+			</xs:all>
+			<xs:attribute name="name" type="xs:string" use="required">
+			</xs:attribute>
+			<xs:attribute name="label" type="xs:string" use="optional">
+			</xs:attribute>
+			<xs:attribute name="aggregate" use="optional" default="automatic">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none">
+						</xs:enumeration>
+						<xs:enumeration value="automatic">
+						</xs:enumeration>
+						<xs:enumeration value="summarize">
+						</xs:enumeration>
+						<xs:enumeration value="total"></xs:enumeration>
+						<xs:enumeration value="minimum"></xs:enumeration>
+						<xs:enumeration value="maximum"></xs:enumeration>
+						<xs:enumeration value="average"></xs:enumeration>
+						<xs:enumeration value="count"></xs:enumeration>
+						<xs:enumeration value="calculated">
+						</xs:enumeration>
+						<xs:enumeration value="countDistinct"></xs:enumeration>
+						<xs:enumeration value="standardDeviation"></xs:enumeration>
+						<xs:enumeration value="variance"></xs:enumeration>
+						<xs:enumeration value="median"></xs:enumeration>
+						<xs:enumeration value="notApplicable">
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="rollupAggregate" use="optional" default="automatic">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="none">
+						</xs:enumeration>
+						<xs:enumeration value="automatic">
+						</xs:enumeration>
+						<xs:enumeration value="summarize">
+						</xs:enumeration>
+						<xs:enumeration value="total"></xs:enumeration>
+						<xs:enumeration value="minimum"></xs:enumeration>
+						<xs:enumeration value="maximum"></xs:enumeration>
+						<xs:enumeration value="average"></xs:enumeration>
+						<xs:enumeration value="count"></xs:enumeration>
+						<xs:enumeration value="calculated">
+						</xs:enumeration>
+						<xs:enumeration value="countDistinct"></xs:enumeration>
+						<xs:enumeration value="standardDeviation"></xs:enumeration>
+						<xs:enumeration value="variance"></xs:enumeration>
+						<xs:enumeration value="median"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="sort" use="optional" default="none">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="ascending"></xs:enumeration>
+						<xs:enumeration value="descending"></xs:enumeration>
+						<xs:enumeration value="none">
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="detail" use="optional" default="automatic">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="automatic">
+						</xs:enumeration>
+						<xs:enumeration value="true">
+						</xs:enumeration>
+						<xs:enumeration value="false">
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="naInCalcMemberContext" type="xs:boolean" default="false">
+			</xs:attribute>
+			<xs:attribute name="solveOrder" type="xs:integer" use="optional">
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dimensionInfo">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="dimensions" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="dimension" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element ref="levels" minOccurs="0"></xs:element>
+										<xs:element name="hierarchies" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:choice minOccurs="0" maxOccurs="unbounded">
+														<xs:element name="levelHierarchy">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element ref="levelRef" minOccurs="0" maxOccurs="unbounded"></xs:element>
+																</xs:sequence>
+																<xs:attribute name="name" type="xs:string" use="required">
+																</xs:attribute>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="memberHierarchy">
+															<xs:complexType>
+																<xs:sequence minOccurs="0">
+																	<xs:element ref="calculatedMembers" minOccurs="0"></xs:element>
+																</xs:sequence>
+																<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+															</xs:complexType>
+														</xs:element>
+													</xs:choice>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="name" type="xs:string" use="required">
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="factList" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="fact" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="scope" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:choice maxOccurs="unbounded">
+														<xs:element name="scopeDimension">
+															<xs:complexType>
+																<xs:attribute name="refDimension" type="xs:string" use="required"></xs:attribute>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="scopeHierarchy">
+															<xs:complexType>
+																<xs:attribute name="refHierarchy" type="xs:string" use="required"></xs:attribute>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="scopeLevel">
+															<xs:complexType>
+																<xs:attribute name="refLevel" type="xs:string" use="required"></xs:attribute>
+															</xs:complexType>
+														</xs:element>
+													</xs:choice>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"></xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="levels">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="level" minOccurs="0" maxOccurs="unbounded"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="level">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="keys">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="key" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="name" type="xs:string" use="required">
+									</xs:attribute>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"></xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="attributes" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+									<xs:attribute name="refDataItem" type="xs:string" use="required"></xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="sortList" minOccurs="0"></xs:element>
+				<xs:element name="caption" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="refDataItem" type="xs:string" use="required"></xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="calculatedMembers" minOccurs="0"></xs:element>
+			</xs:all>
+			<xs:attribute name="name" type="xs:string" use="required">
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="levelRef">
+		<xs:complexType>
+			<xs:attribute name="refLevel" type="xs:string" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="slicer">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="slicerMemberSet" type="queryExpressionType" maxOccurs="unbounded">
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="queryRef">
+		<xs:complexType>
+			<xs:attribute name="refQuery" type="xs:string" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="filterExpression" type="queryExpressionType">
+	</xs:element>
+	<xs:element name="calculatedMembers">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="calculatedMember" minOccurs="0" maxOccurs="unbounded"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="queryType">
+		<xs:all>
+			<xs:element ref="source"></xs:element>
+			<xs:element ref="selection"></xs:element>
+			<xs:element name="detailFilters" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="detailFilter" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:all>
+									<xs:element ref="filterExpression"></xs:element>
+								</xs:all>
+								<xs:attribute name="use" use="optional" default="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:NMTOKEN">
+											<xs:enumeration value="required"></xs:enumeration>
+											<xs:enumeration value="optional"></xs:enumeration>
+											<xs:enumeration value="prohibited"></xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="postAutoAggregation" type="xs:boolean" use="optional" default="false">
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="summaryFilters" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="summaryFilter" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:all>
+									<xs:element ref="filterExpression"></xs:element>
+									<xs:element name="summaryFilterLevels" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="summaryFilterLevel" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:attribute name="refDataItem" type="xs:string" use="required"></xs:attribute>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:all>
+								<xs:attribute name="use" use="optional" default="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:NMTOKEN">
+											<xs:enumeration value="required"></xs:enumeration>
+											<xs:enumeration value="optional"></xs:enumeration>
+											<xs:enumeration value="prohibited"></xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="dimensionInfo" minOccurs="0"></xs:element>
+			<xs:element ref="slicer" minOccurs="0"></xs:element>
+			<xs:element name="queryHints" minOccurs="0">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="avoidZeroDiv" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="value" type="xs:boolean" use="required"></xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="autoSort" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="none">
+											</xs:enumeration>
+											<xs:enumeration value="all"></xs:enumeration>
+											<xs:enumeration value="minimal">
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="executionOptimization" minOccurs="0"></xs:element>
+						<xs:element name="queryProcessing" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="databaseOnly">
+											</xs:enumeration>
+											<xs:enumeration value="minimizeLocal">
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="outerJoinAllowed" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="allow">
+											</xs:enumeration>
+											<xs:enumeration value="warn">
+											</xs:enumeration>
+											<xs:enumeration value="deny">
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="crossProductAllowed" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="allow">
+											</xs:enumeration>
+											<xs:enumeration value="warn">
+											</xs:enumeration>
+											<xs:enumeration value="deny">
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="suppress" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="none">
+											</xs:enumeration>
+											<xs:enumeration value="nulls">
+											</xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="rollupProcessing" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="extended"></xs:enumeration>
+											<xs:enumeration value="database"></xs:enumeration>
+											<xs:enumeration value="local"></xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="maxRowsRetrieved" type="PositiveUnboundedIntegerType" minOccurs="0">
+						</xs:element>
+						<xs:element name="maxTablesPerQuery" type="PositiveUnboundedIntegerType" minOccurs="0">
+						</xs:element>
+						<xs:element name="maxQueryExecutionTime" type="PositiveUnboundedIntegerType" minOccurs="0">
+						</xs:element>
+						<xs:element name="maxTextBlobCharacters" type="PositiveUnboundedIntegerType" minOccurs="0">
+						</xs:element>
+						<xs:element name="useSQLWithClause" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="value" type="xs:boolean" use="required"></xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="localCache" minOccurs="0"></xs:element>
+						<xs:element name="useV4Interpretation" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="value" type="xs:boolean" use="optional" default="false"></xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="executionMethod" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="sequential"></xs:enumeration>
+											<xs:enumeration value="concurrent"></xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="useForParameterInfo" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="value" type="xs:boolean" use="optional" default="false"></xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="useSQLJoinSyntax" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="value" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="implicit"></xs:enumeration>
+											<xs:enumeration value="explicit"></xs:enumeration>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="memberSetStructure" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="memberSet" minOccurs="0" maxOccurs="unbounded"></xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+		<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="sourceType">
+		<xs:choice>
+			<xs:element name="model">
+				<xs:complexType></xs:complexType>
+			</xs:element>
+			<xs:element ref="queryRef"></xs:element>
+			<xs:element name="sqlQuery">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="sqlText" type="ExpressionType">
+						</xs:element>
+						<xs:element name="mdProjectedItems" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="mdProjectedItem" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+					<xs:attribute name="name" type="xs:string" use="required">
+					</xs:attribute>
+					<xs:attribute name="dataSource" type="xs:string" use="required">
+					</xs:attribute>
+					<xs:attribute name="type" use="optional" default="native">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="cogSQL">
+								</xs:enumeration>
+								<xs:enumeration value="native">
+								</xs:enumeration>
+								<xs:enumeration value="passThrough">
+								</xs:enumeration>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="mdxQuery">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="mdxText" type="ExpressionType">
+						</xs:element>
+						<xs:element name="mdDimensionalInfo" minOccurs="0">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="mdDimensions" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="mdDimension" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="mdHierarchy">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element ref="mdLevel" minOccurs="0" maxOccurs="unbounded"></xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+														<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="mdFacts" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="mdFact" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:attribute name="name" type="xs:string" use="required">
+														</xs:attribute>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+					<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+					<xs:attribute name="dataSource" type="xs:string" use="required">
+					</xs:attribute>
+					<xs:attribute name="catalog" type="xs:string" use="optional"></xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="queryOperation">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="queryRefs" type="queryOpArgumentType"></xs:element>
+						<xs:element name="projectionList">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="queryItem" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="autoGenerated" type="xs:boolean" default="false">
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+					<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+					<xs:attribute name="setOperation" default="UNION">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="UNION"></xs:enumeration>
+								<xs:enumeration value="INTERSECT"></xs:enumeration>
+								<xs:enumeration value="EXCEPT"></xs:enumeration>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="duplicates" default="remove">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="remove"></xs:enumeration>
+								<xs:enumeration value="preserve">
+								</xs:enumeration>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="joinOperation"></xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="queryOpArgumentType">
+		<xs:sequence>
+			<xs:element ref="queryRef" minOccurs="0" maxOccurs="unbounded"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="joinArgumentType">
+		<xs:all>
+			<xs:element ref="queryRef" minOccurs="0"></xs:element>
+		</xs:all>
+		<xs:attribute name="cardinality" default="1:N">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="1:N"></xs:enumeration>
+					<xs:enumeration value="1:1"></xs:enumeration>
+					<xs:enumeration value="0:N"></xs:enumeration>
+					<xs:enumeration value="0:1"></xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="queryExpressionType">
+		<xs:simpleContent>
+			<xs:extension base="ExpressionType"></xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="joinOperation">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="joinFilter">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="filterExpression"></xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="joinOperands">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="joinOperand" minOccurs="2" maxOccurs="2"></xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="joinOperand" type="joinArgumentType"></xs:element>
+	<xs:element name="calculatedMember">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="calculatedMembers" minOccurs="0"></xs:element>
+			</xs:all>
+			<xs:attribute name="name" type="xs:string" use="required">
+			</xs:attribute>
+			<xs:attribute name="refDataItem" type="xs:string" use="required">
+			</xs:attribute>
+			<xs:attribute name="caption" type="xs:string"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="executionOptimization">
+		<xs:complexType>
+			<xs:attribute name="value" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="allRows">
+						</xs:enumeration>
+						<xs:enumeration value="firstRow">
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="mdLevel">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="memberSet">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="memberSets" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="memberSet" maxOccurs="unbounded"></xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+			<xs:attribute name="refDataItem" type="xs:string" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="localCache">
+		<xs:complexType>
+			<xs:attribute name="value" type="xs:boolean" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="report">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="modelPath" minOccurs="0"/>
+				<xs:element ref="layouts"/>
+				<xs:element name="queries" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence maxOccurs="unbounded">
+							<xs:element ref="query"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="classStyles" minOccurs="0"/>
+				<xs:element ref="burst" minOccurs="0"/>
+				<xs:element ref="reportVariables" minOccurs="0"/>
+				<xs:element ref="drillBehavior" minOccurs="0"/>
+				<xs:element ref="XMLAttributes" minOccurs="0"/>
+				<xs:element name="upgradeInfo" minOccurs="0">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="upgradedSpec" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:whiteSpace value="preserve"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="upgradeMessages" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="upgradeMessage" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="type" use="required">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:enumeration value="error"/>
+																	<xs:enumeration value="warning"/>
+																	<xs:enumeration value="info"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attribute name="expressionLocale" type="xs:language" use="required"/>
+			<xs:attribute name="template" type="xs:boolean" default="false"/>
+			<xs:attribute name="useStyleVersion">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="interactivePageBreakByFrame" type="xs:boolean" default="false"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

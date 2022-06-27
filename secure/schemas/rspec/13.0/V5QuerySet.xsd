@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed Materials - Property of IBM
+ IBM Cognos Products: rspec
+ (C) Copyright IBM Corp. 2003, 2014
+ US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<!--
+    Copyright (C) 2008 Cognos ULC, an IBM Company. All rights reserved.
+    Cognos (R) is a trademark of Cognos ULC, (formerly Cognos Incorporated).
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="V5Query.xsd"/>
+	<xs:include schemaLocation="V5_modQuery.xsd"/>
+	<xs:include schemaLocation="V5QueryResultDefinition.xsd"/>
+	<xs:element name="querySet">
+		<xs:annotation>
+			<xs:documentation>Root Element of the V5 query specification.  The Query Framework (i.e. the Bering Common Query Engine) expects a valid querySet per request.  A querySet has one or more named queries and one or more named queryResultDefinitions(QRDs).  Each QRD is based on a single query and must reference it.  Multiple QRDs in the same querySet can reference the same query.  A QSAPI Masterdataset is returned for each queryResultDefinition specified in a querySet.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="querySetType">
+					<xs:attribute name="expressionLocale" type="xs:language" use="required">
+						<xs:annotation>
+							<xs:documentation>The expressionLocale attribute indicates the locale of all query expressions in the request. It is required.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Types: -->
+	<xs:complexType name="queriesType">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="query"/>
+			<xs:element ref="modQuery"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="queryResultDefinitionsType">
+		<xs:sequence>
+			<xs:element ref="queryResultDefinition" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="querySetType">
+		<xs:all>
+			<xs:element ref="modelPath" minOccurs="0"/>
+			<xs:element name="queries" type="queriesType">
+				<xs:annotation>
+					<xs:documentation>a set of queries </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="queryResultDefinitions" type="queryResultDefinitionsType">
+				<xs:annotation>
+					<xs:documentation>a set of QRDs</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="requestHints" type="requestHintsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>hints that apply to all queries in this querySet</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="requestHintsType">
+		<xs:all>
+			<xs:element name="noDataMode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>When enabled, query returns sample (fake) data for this request.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="enabled" type="xs:boolean" default="true"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="designMode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>When enabled, Query Framework applies all design filters that are specified in the model for the query subjects associated with this request.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="enabled" type="xs:boolean" default="true"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="executionOptimization" minOccurs="0"/>
+			<xs:element ref="localCache" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+</xs:schema>
